@@ -1,0 +1,29 @@
+{
+"framerate":24,
+"images":["images/gallows.png"],
+"frames":[
+    [1623, 0, 123, 12, 0, -3, -256],
+    [1500, 0, 123, 267, 0, -3, -1],
+    [1320, 0, 180, 267, 0, -3, -1],
+    [1140, 0, 180, 267, 0, -3, -1],
+    [960, 0, 180, 267, 0, -3, -1],
+    [768, 0, 192, 267, 0, -3, -1],
+    [576, 0, 192, 267, 0, -3, -1],
+    [384, 0, 192, 267, 0, -3, -1],
+    [192, 0, 192, 267, 0, -3, -1],
+    [0, 0, 192, 267, 0, -3, -1]
+],
+"animations":{
+    "death": {"frames": [9], "speed": 1},
+    "rope": {"frames": [3], "speed": 1},
+    "gallowbottom": {"frames": [0], "speed": 1},
+    "rightarm": {"frames": [8], "speed": 1},
+    "body": {"frames": [4], "speed": 1},
+    "head": {"frames": [9], "speed": 1},
+    "leftarm": {"frames": [7], "speed": 1},
+    "gallowtop": {"frames": [2], "speed": 1},
+    "leftleg": {"frames": [6], "speed": 1},
+    "rightleg": {"frames": [5], "speed": 1},
+    "gallowback": {"frames": [1], "speed": 1}
+}
+}
