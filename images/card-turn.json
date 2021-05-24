@@ -1,6 +1,6 @@
 {
 "framerate":24,
-"images":["./card-turn.png"],
+"images":["../images/card-turn.png"],
 "frames":[
     [0, 0, 256, 512, 0, -481, -15],
     [256, 0, 256, 512, 0, -481, -15],

@@ -1,6 +1,6 @@
 {
 "framerate":24,
-"images":["./gallows.png"],
+"images":["../images/gallows.png"],
 "frames":[
     [1623, 0, 123, 12, 0, -3, -256],
     [1500, 0, 123, 267, 0, -3, -1],
