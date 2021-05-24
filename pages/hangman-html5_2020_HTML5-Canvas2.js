@@ -840,7 +840,7 @@ if (reversed == null) { reversed = false; }
 		    var animatedPreloader = [
 		        {
 		            id: "card_turn",
-		            src: "images/card-turn.json",
+		            src: "../images/card-turn.json",
 		            type: "spritesheet",
 		            crossOrigin: true,
 		        },
@@ -889,23 +889,23 @@ if (reversed == null) { reversed = false; }
 		    preload.addEventListener("progress", preloadProgress);
 		    preload.addEventListener("complete", layoutGui);
 		    var manifest1 = [
-		        { id: "circle", src: "cards-copy/card_circle.png" },
-		        { id: "diamond", src: "cards-copy/card_diamond.png" },
-		        { id: "spade", src: "cards-copy/card_spade.png" },
-		        { id: "square", src: "cards-copy/card_square.png" },
-		        { id: "star", src: "cards-copy/card_star.png" },
-		        { id: "triangle", src: "cards-copy/card_triangle.png" },
-		        { id: "wavey", src: "cards-copy/card_wavey_lines.png" },
-		        { id: "back", src: "cards-copy/card_back.png" },
+		        { id: "circle", src: "../images/cards-copy/card_circle.png" },
+		        { id: "diamond", src: "../images/cards-copy/card_diamond.png" },
+		        { id: "spade", src: "../images/cards-copy/card_spade.png" },
+		        { id: "square", src: "../images/cards-copy/card_square.png" },
+		        { id: "star", src: "../images/cards-copy/card_star.png" },
+		        { id: "triangle", src: "../images/cards-copy/card_triangle.png" },
+		        { id: "wavey", src: "../images/cards-copy/card_wavey_lines.png" },
+		        { id: "back", src: "../images/cards-copy/card_back.png" },
 		        {
 		            id: "gallows",
-		            src: "images/gallows.json",
+		            src: "../images/gallows.json",
 		            type: "spritesheet",
 		            crossOrigin: true,
 		        },
 		        {
 		            id: "slot-symbols",
-		            src: "images/slot-symbols.json",
+		            src: "../images/slot-symbols.json",
 		            type: "spritesheet",
 		            crossOrigin: true,
 		        },
