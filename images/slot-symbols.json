@@ -1,6 +1,6 @@
 {
 "framerate":24,
-"images":["images/slot-symbols.png"],
+"images":["./slot-symbols.png"],
 "frames":[
     [790, 0, 81, 81, 0, -280, -200],
     [1195, 0, 81, 81, 0, -280, -200],
