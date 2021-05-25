@@ -837,7 +837,7 @@ if (reversed == null) { reversed = false; }
 		        /* frames: {width:384, height:216, count:287, regX: 192, regY:108, spacing:0, margin:0} */
 		        {
 		            id: "woody",
-		            src: "images/woody-painting-white.json",
+		            src: "../images/woody-painting-white.json",
 		            type: "spritesheet",
 		            crossOrigin: true,
 		        },
@@ -902,7 +902,7 @@ if (reversed == null) { reversed = false; }
 		        { id: "back", src: "cards-copy/card_back.png" }, */
 		        {
 		            id: "gallows",
-		            src: "images/gallows.json",
+		            src: "../images/gallows.json",
 		            type: "spritesheet",
 		            crossOrigin: true,
 		        },
