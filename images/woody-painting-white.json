@@ -1,0 +1,8 @@
+{ 
+    "framerate": 24, 
+    "images": [
+        "../images/woody-painting-white.png"
+    ],
+    "frames": {"width":384, "height":216, "count":287, "regX": 192, "regY":108, "spacing":0, "margin":0} ,
+    "animations": {}
+}

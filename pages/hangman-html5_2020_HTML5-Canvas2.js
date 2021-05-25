@@ -224,7 +224,7 @@ if (reversed == null) { reversed = false; }
 		    this._self = this;
 		    this.borderW = 0;
 		    this.scrollW = 25;
-		    this.cardSpinner;
+		    this.attractionAnim;
 		    this.gallows;
 		    this.CanvasDom;
 		    this.TheStage;
@@ -291,6 +291,7 @@ if (reversed == null) { reversed = false; }
 		
 		function startHangman() {
 		    GameData.startBtn.removeEventListener("click", startHangman);
+		    fadeItem( GameData.attractionAnim , 150, 150, "out");
 		    fadeItem(GameData.startBtn, 150, 650, "out", getXMLdata);
 		}
 		
@@ -435,12 +436,7 @@ if (reversed == null) { reversed = false; }
 		    /*set up pointers for the parts*/
 		    GameData.GUI.addChild(GameData.InterfaceDisplayPieces);
 		
-		    GameData.GameLog = createTextField(
-		        " ",
-		        "#000000",
-		        "16px Roboto",
-		        "left"
-		    );
+		    GameData.GameLog = createTextField(" ", "#000000", "16px Roboto", "left");
 		    GameData.GameLog._name = "game_log";
 		    GameData.GUI.addChild(GameData.GameLog);
 		
@@ -676,8 +672,8 @@ if (reversed == null) { reversed = false; }
 		    GameData.gallows.visible = false;
 		    GameData.dashedGuess.text = "";
 		    GameData.dashedGuess.text = createDashedStrArr().join("");
-		  //  GameData.GameLog.text = "Game Log:";
-		  GameData.GameLog.text = "";
+		    //  GameData.GameLog.text = "Game Log:";
+		    GameData.GameLog.text = "";
 		
 		    fadeItem(GameData.btnChoiceContainer, 0, 250, "in");
 		    fadeItem(GameData.dashedGuess, 0, 250, "in");
@@ -772,14 +768,14 @@ if (reversed == null) { reversed = false; }
 		}
 		
 		function layoutGui() {
-		  // console.log("Layout the GUI");
+		    // console.log("Layout the GUI");
 		    //start game when loading text disappears, avoid conflict with the event on fade complete
 		    fadeItem(GameData.LoadingText, 650, 650, "out", startGame);
 		}
 		
 		function startGame() {
 		    GameData.LoadingText.text = "LOADING: " + 0 + "%";
-		   // console.log("game, started!");
+		    // console.log("game, started!");
 		    primeGame();
 		}
 		
@@ -838,12 +834,19 @@ if (reversed == null) { reversed = false; }
 		    var preloadedStuff = new createjs.LoadQueue();
 		    preloadedStuff.addEventListener("complete", preloadStuff);
 		    var animatedPreloader = [
+		        /* frames: {width:384, height:216, count:287, regX: 192, regY:108, spacing:0, margin:0} */
 		        {
-		            id: "card_turn",
-		            src: "../images/card-turn.json",
+		            id: "woody",
+		            src: "images/woody-painting-white.json",
 		            type: "spritesheet",
 		            crossOrigin: true,
 		        },
+		        /*   {
+		            id: "card_turn",
+		            src: "images/card-turn.json",
+		            type: "spritesheet",
+		            crossOrigin: true,
+		        }, */
 		    ];
 		    GameData.PrimoPreload = preloadedStuff;
 		    preloadedStuff.loadManifest(animatedPreloader, true);
@@ -889,26 +892,26 @@ if (reversed == null) { reversed = false; }
 		    preload.addEventListener("progress", preloadProgress);
 		    preload.addEventListener("complete", layoutGui);
 		    var manifest1 = [
-		        { id: "circle", src: "../images/cards-copy/card_circle.png" },
-		        { id: "diamond", src: "../images/cards-copy/card_diamond.png" },
-		        { id: "spade", src: "../images/cards-copy/card_spade.png" },
-		        { id: "square", src: "../images/cards-copy/card_square.png" },
-		        { id: "star", src: "../images/cards-copy/card_star.png" },
-		        { id: "triangle", src: "../images/cards-copy/card_triangle.png" },
-		        { id: "wavey", src: "../images/cards-copy/card_wavey_lines.png" },
-		        { id: "back", src: "../images/cards-copy/card_back.png" },
+		       /*  { id: "circle", src: "cards-copy/card_circle.png" },
+		        { id: "diamond", src: "cards-copy/card_diamond.png" },
+		        { id: "spade", src: "cards-copy/card_spade.png" },
+		        { id: "square", src: "cards-copy/card_square.png" },
+		        { id: "star", src: "cards-copy/card_star.png" },
+		        { id: "triangle", src: "cards-copy/card_triangle.png" },
+		        { id: "wavey", src: "cards-copy/card_wavey_lines.png" },
+		        { id: "back", src: "cards-copy/card_back.png" }, */
 		        {
 		            id: "gallows",
-		            src: "../images/gallows.json",
+		            src: "images/gallows.json",
 		            type: "spritesheet",
 		            crossOrigin: true,
 		        },
-		        {
+		      /*   {
 		            id: "slot-symbols",
-		            src: "../images/slot-symbols.json",
+		            src: "images/slot-symbols.json",
 		            type: "spritesheet",
 		            crossOrigin: true,
-		        },
+		        }, */
 		    ];
 		    preload.loadManifest(manifest1, true);
 		    GameData.TheLoader = preload;
@@ -929,13 +932,15 @@ if (reversed == null) { reversed = false; }
 		
 		    GameData.TheStage.x = 0;
 		
-		    /*
-		    cardSpinner = new createjs.Sprite(PrimoPreload.getResult("card_turn"));
-		    cardSpinner.scale = 0.333;
-		    //cardSpinner.play();
-		    cardSpinner.gotoAndStop(12);
-		  GameData.  TheStage.addChild(cardSpinner);
-		*/
+		    GameData.attractionAnim = new createjs.Sprite(
+		        GameData.PrimoPreload.getResult("woody")
+		    );
+		    GameData.attractionAnim.scale = 0.333;
+		    GameData.attractionAnim.play();
+		    GameData.attractionAnim.x = GameData.w / 2;
+		    GameData.attractionAnim.y = GameData.h / 2-GameData.attractionAnim.getBounds().height/4;
+		    //  GameData.attractionAnim.gotoAndStop(12);
+		    GameData.TheStage.addChild(GameData.attractionAnim);
 		    performResizeDuties();
 		}
 		
@@ -953,7 +958,7 @@ if (reversed == null) { reversed = false; }
 		}
 		
 		function getXMLdata(e) {
-		  //  console.log("::: ██ getXMLdata ██ :::");
+		    //  console.log("::: ██ getXMLdata ██ :::");
 		    var queue = new createjs.LoadQueue(true);
 		    queue.on("fileload", loadGameData, this);
 		    queue.loadFile({
