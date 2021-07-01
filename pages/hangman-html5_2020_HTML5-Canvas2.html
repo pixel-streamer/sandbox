@@ -21,6 +21,16 @@
 	left:0;right:0;
 	top:0;bottom:0;
   }
+  .canvas_representative{
+	display:inline;
+	position:fixed;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	z-index:-1;
+  }
+  
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Paytone+One|Changa+One|Rockwell" type="text/css" media="all">
 <script src="../libs/1.0.0/createjs.min.js"></script>
@@ -57,9 +67,12 @@ function handleComplete(evt,comp) {
 </head>
 <body onload="init();" style="margin:0px;">
 	<div id="animation_container" style="background-color:rgba(164, 157, 155, 1.00); width:640px; height:400px">
-		<canvas id="canvas" width="640" height="400" style="position: absolute; display: block; background-color:rgba(164, 157, 155, 1.00);"></canvas>
+		<canvas id="canvas" width="640" height="400" style="position: absolute; display: block; background-color:rgba(164, 157, 155, 1.00);">
+			<img class="canvas_representative hangman" src="../images/hangman-hero-t.png" />
+		</canvas>
 		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:640px; height:400px; position: absolute; left: 0px; top: 0px; display: block;">
 		</div>
+		
 	</div>
 	
 </body>
