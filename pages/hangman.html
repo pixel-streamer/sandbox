@@ -16,29 +16,38 @@
 <style>
 	body{
 		background-color:rgba(164, 157, 155, 1.00);
-		width:640px; height:400px;
 		margin:0px;
+	} 
+	.styled_h1{
+		/*font-family: "Rockwell", "Paytone One","Changa One";*/
+		font-family: "Rockwell", san-serif;
+	} 
+	.canvas_representative{
+		margin: auto;
+		max-width: 100%;
+		width: 100%;
+		height:auto;
 	}
-	#animation_container{
-		background-color:rgba(164, 157, 155, 1.00);
-		width:640px; height:400px;
+	.products{
+		display:flex;
+		flex-direction: column;
+		align-content: center;
+		justify-content: center;
 	}
-   
-  .canvas_representative{
-		display:inline-block;
-		position:relative;
-		top:0;
-		right:0;
-		bottom:0;
-		left:0;
-		/*z-index:-1;*/
-  }
-  
+	.sample{ 
+		margin: auto;
+		max-width: 75vw; 
+	}
 </style>    
 </head>
-<body > 
-	<h1>Click to see my hangman game</h1>
-<a href="hangman-html5_2020_HTML5-Canvas2.html" alt="Click to view my hangman game. It still needs some polish." title="Hangman: An HTML5 Adventure"><img class="canvas_representative hangman" src="../images/hangman-hero-t.png" /></a>
-
+<body >
+	<div class="products"> 
+		<div class="sample">
+		<h1 class="styled_h1">Click to see my hangman game</h1>
+		<p>
+			<a href="hangman-html5_2020_HTML5-Canvas2.html" alt="Click to view my hangman game. It still needs some polish." title="Hangman: An HTML5 Adventure"><img class="canvas_representative hangman" src="../images/hangman-hero-t.png" /></a> 
+		</p>
+		</div>
+	</div>
 </body>
 </html>
