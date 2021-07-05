@@ -495,7 +495,8 @@ if (reversed == null) { reversed = false; }
 		    var _textColor = "#000000";
 		    var _align = "center";
 		    /* "bump" the angle "ninety" degrees!! (90-57.295779513) */
-		    var bump = -(90 - 57);
+			var bump = -(90 - 57);
+			/* TODO: change the clock to full screen on mobile browsers */
 		    var clockArea = ClockData.stageW / 2;
 		    var _fSize = clockArea / 12;
 		    var padding = _fSize / 2;
