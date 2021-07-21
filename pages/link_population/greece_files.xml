@@ -1,12 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?> 
 <!-- 
-	The mdn site requests a long "comment" here so their browser doesn't fuck up.
-
-<?DOCTYPE PICS [
-	<!ELEMENT PICS (PIC, LINK, THUMBLINK, pages, page, intro, calibration, div, footer_outro, p)  >
-	<!ELEMENT PIC (CAPTION, THUMB)  >
-	<!ELEMENT pages (page, intro, calibration, div, footer_outro, p)  > 
-]?> -->
+	for some reason FF needs a long comment here. All this stuff is copyrighted information by Joseph Henderson
+ -->
 <?xml-stylesheet type="text/xsl" href="./images_pop.xsl"?>
 <PICS>
 	<LINK fullsize_base="./honeymoon/images/greece-fullsize/">
