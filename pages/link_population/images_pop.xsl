@@ -3,7 +3,7 @@
 
 	<xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
 	<xsl:strip-space elements="*,text(),@*"/>
-
+<xsl:template match="/"></xsl:template>
 	<!-- 
 	<xsl:template match="/PICS">
 		<xsl:element name="html">
