@@ -1,39 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- 
-<!DOCTYPE xsl:stylesheet
-	[
- 	<!ENTITY nbsp   "&#160;">
-<!ENTITY copy   "&#169;">
-<!ENTITY reg    "&#174;">
-<!ENTITY trade  "&#8482;">
-<!ENTITY mdash  "&#8212;">
-<!ENTITY ldquo  "&#8220;">
-<!ENTITY rdquo  "&#8221;">
-<!ENTITY pound  "&#163;">
-<!ENTITY yen    "&#165;">
-<!ENTITY euro   "&#8364;">
-<!ENTITY comma	"&#0044;">
-<!ENTITY period	"&#0046;">
-<!ENTITY spades	"&#9824;">
-<!ENTITY clubs	"&#9827;">
-<!ENTITY hearts	"&#9829;">
-<!ENTITY diams	"&#9830;">
-<!ENTITY apostrophy	"&#0039;">
-<!ENTITY backslash	"&#92;">
-<!ENTITY carriagereturn	"&#13;">
-<!ENTITY less-than	"&#60;">
-<!ENTITY greater-than	"&#62;">
- 
-<!ENTITY spades	"&#9824;"> 
-<!ENTITY clubs	"&#9827;">  
-<!ENTITY hearts	"&#9829;">   
-<!ENTITY diams	"&#9830;">  
-	]
-> -->
-
-<xsl:stylesheet version="1.0"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+ <!-- <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" > -->
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:output method="html"/>
 	<xsl:strip-space elements="*,text(),@*"/>
