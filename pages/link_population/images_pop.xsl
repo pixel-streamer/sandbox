@@ -141,10 +141,12 @@ strip the whitespace by making a variable named "class", and calling that with t
 					</xsl:element>
 				</xsl:element>
 				<script>
+					<!-- 
 					function reportMe(e){
 						alert("some message you got there.");
 					}
 					//window.addEventListener("load", reportMe);
+					-->
 				</script>
 			</body>
 		</html>
