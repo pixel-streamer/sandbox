@@ -38,7 +38,7 @@
 	<xsl:output method="html"/>
 	<xsl:strip-space elements="*,text(),@*"/>
 	<xsl:template match="/PICS">
-
+		<!DOCTYPE html>
 		<html>
 			<head>
 				<title>Here's a population scheme for my pictures.</title>
