@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <?DOCTYPE PICS [
-	<!ELEMENT PIC (#PCDATA)>
-<!ELEMENT CAPTION (#PCDATA)>
-<!ELEMENT THUMB (#PCDATA)>
-<!ELEMENT LINK (#CDATA)>
-<!ELEMENT THUMBLINK (#CDATA)>
+	<!ELEMENT PICS (PIC, LINK, THUMBLINK, pages, page, intro, calibration, div, footer_outro, p)  >
+	<!ELEMENT PIC (CAPTION, THUMB)  >
+	<!ELEMENT pages (page, intro, calibration, div, footer_outro, p)  > 
 ]?>
 <?xml-stylesheet type="text/xsl" href="./images_pop.xsl"?>
 <PICS>
@@ -734,27 +732,28 @@ GIF: https://www.placecage.com/gif/200/300
 			Page two: It was unreal— ancient monuments stood in the midst of all the business in Athens. Other places felt as if Mark Antony and Cleopatra could have been there, but some places were accessible only on archeological digs. Still, there was a feeling of being able to see everything. Also Greece was undergoing heavy recontruction because of the visiblity from the Olympics in 2004.   
 			</footer_outro>
 		</page>
-	</pages>
-	<page pagenum="3">
-		<intro>
+
+		<page pagenum="3">
+			<intro>
 			 Welcome to our honeymoon trip to Greece, April 18th thru April 30th, 2005.  To enlarge the view of a thumbnail, click the image or the link when the hand appears. 
-		</intro>
-		<footer_outro>
+			</intro>
+			<footer_outro>
 		 	Page Three: More pictures.  
-		</footer_outro>
-	</page>
-	<page pagenum="4">
-		<intro> Welcome to our honeymoon trip to Greece, April 18th thru April 30th, 2005.  To enlarge the view of a thumbnail, click the image or the link when the hand appears.  
-		</intro>
-		<footer_outro>
-			<p>Page Four: The Belle Air was a superb restaurant, owned by my friend's brother. We hung out here while in Greece, and were able to enjoy lots of great food with a local flair.
-			</p>
-			<p>
+			</footer_outro>
+		</page>
+		<page pagenum="4">
+			<intro> Welcome to our honeymoon trip to Greece, April 18th thru April 30th, 2005.  To enlarge the view of a thumbnail, click the image or the link when the hand appears.  
+			</intro>
+			<footer_outro>
+				<p>Page Four: The Belle Air was a superb restaurant, owned by my friend's brother. We hung out here while in Greece, and were able to enjoy lots of great food with a local flair.
+				</p>
+				<p>
 			Easter was such a wonderful time in Greece; much different than western Easter celebrations that have more to do with the Easter bunny than the real reason for the holiday. Even though Greek Orthodox members have a version of the "Easter Egg," the egg symbol has more history than over here.
-			</p>
-			<p>
+				</p>
+				<p>
 			On Good Friday, starting with extinguishing all the lights in the cathedral, Greek Orthodox people carry a beautiful representation of Christ through the streets to remind everyone of His spiritual journey before His ultimate sacrifice. Then, with a fervent excitement, they return It to their cathedral and light all the candles and lights that had been extinguished. It was a beautiful site! Too bad we didn't get to stay for the whole Easter celebration.
-			</p>
-		</footer_outro>
-	</page>
+				</p>
+			</footer_outro>
+		</page>
+	</pages>
 </PICS>
