@@ -3,7 +3,7 @@
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-	<xsl:output method="html"/>
+	<xsl:output method="html" version="1.0"/>
 	<xsl:strip-space elements="*,text(),@*"/>
 	<xsl:template match="/PICS">
 		<xsl:element name="html">
