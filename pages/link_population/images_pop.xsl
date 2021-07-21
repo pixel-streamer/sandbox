@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
-<!--  <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>  -->
-<!--  <xsl:output method="text"/>  -->
+<xsl:stylesheet version="1.0"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<!--  <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>  -->
+	<!--  <xsl:output method="text"/>  -->
 	<xsl:strip-space elements="*,text(),@*"/>
 	<xsl:template match="/PICS">
 		<xsl:element name="html">
@@ -126,6 +127,16 @@
 												<xsl:value-of select="normalize-space(./..//@thumbnail_base)" />
 												<xsl:value-of select="normalize-space(./THUMB)" />
 											</xsl:attribute>
+
+											<xsl:attribute name="target">
+												<xsl:variable name="target_new_tab">
+													<xsl:text>
+								 _blank 
+													</xsl:text>
+												</xsl:variable>
+												<xsl:value-of select="normalize-space($target_new_tab)"/>
+											</xsl:attribute>
+
 										</xsl:element>
 									</xsl:element>
 								</xsl:if>
