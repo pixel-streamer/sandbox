@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
 <!DOCTYPE xsl:stylesheet
 	[
  	<!ENTITY nbsp   "&#160;">
@@ -22,13 +24,13 @@
 <!ENTITY carriagereturn	"&#13;">
 <!ENTITY less-than	"&#60;">
 <!ENTITY greater-than	"&#62;">
-<!-- Miscellaneous Symbols-->
-<!ENTITY spades	"&#9824;"><!-- black spade suit, U+2660 ISOpub (black here seems to mean filled as opposed to hollow) -->
-<!ENTITY clubs	"&#9827;"><!-- black club suit = shamrock, U+2663 ISOpub -->
-<!ENTITY hearts	"&#9829;"><!-- black heart suit = valentine, U+2665 ISOpup -->
-<!ENTITY diams	"&#9830;"><!-- black diamond suit, U+2666 ISOpub --> 
+ 
+<!ENTITY spades	"&#9824;"> 
+<!ENTITY clubs	"&#9827;">  
+<!ENTITY hearts	"&#9829;">   
+<!ENTITY diams	"&#9830;">  
 	]
->
+> -->
 
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
