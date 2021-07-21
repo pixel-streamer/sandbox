@@ -6,7 +6,7 @@
 
 	<!--  <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>  -->
 	<!--  <xsl:output method="text"/>  -->
-	<xsl:output method="html" indent="yes" encoding="UTF-8" />
+	<xsl:output method="application/xml" indent="yes" encoding="UTF-8" />
 	<xsl:strip-space elements="*"/>
 	<xsl:template match="/PICS">
 		<xsl:element name="html">
