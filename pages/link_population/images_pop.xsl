@@ -4,9 +4,11 @@
 
 	<xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
 	<xsl:strip-space elements="*,text(),@*"/>
+	
+	<!-- 
 	<xsl:template match="/PICS">
 		<xsl:element name="html">
-		<!-- 
+		
 			<xsl:element name="head">
 				<xsl:element name="title">
 					<xsl:variable name="title_text">
@@ -182,7 +184,7 @@
 					//window.addEventListener("load", reportMe);
 					*/
 				</xsl:element> 
-			</xsl:element>-->
+			</xsl:element>
 		</xsl:element>
-	</xsl:template>
+	</xsl:template>-->
 </xsl:stylesheet>
