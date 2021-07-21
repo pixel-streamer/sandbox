@@ -1,0 +1,67 @@
+html {
+    font: normal normal 16px/100% Arial, sans-serif;
+}
+body {
+    font: normal normal 75%/125% Arial, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: normal;
+}
+#main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-around;
+    /* flex-basis: 75vw; */
+    color: rgba(45, 1, 0, 1);
+}
+.slide_container {
+    display: flex;
+    flex-direction: column;
+    /*  background-color: red; */
+    flex-basis: calc(1280px / 7);
+    margin: 0.5rem;
+    align-items: center;
+    align-content: space-around;
+    padding: 0.5rem;
+}
+.slide_container p {
+    /* text-indent: 1rem;
+	text-align: justify; */
+    text-align: center;
+}
+.slide_container img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+.cal_chip {
+    width: 2rem;
+    min-height: 2rem;
+    display: inline;
+    align-items: center;
+}
+.cal_chip p.calibration_text {
+    display: inherit;
+    text-align: center;
+}
+#calibration {
+    color: #72758d;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+}
+/* needs media queries testing for breakpoints */
+.cal_chip + p {
+    width: calc(88vw - 5%);
+    display: inline-block;
+    color: rgba(45, 1, 0, 1);
+}
