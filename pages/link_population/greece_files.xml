@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <?DOCTYPE PICS [
-	<!ELEMENT PIC (#CDATA)>
-<!ELEMENT CAPTION (#CDATA)>
+	<!ELEMENT PIC (#PCDATA)>
+<!ELEMENT CAPTION (#PCDATA)>
 <!ELEMENT THUMB (#PCDATA)>
 <!ELEMENT LINK (#CDATA)>
 <!ELEMENT THUMBLINK (#CDATA)>
