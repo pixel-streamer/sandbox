@@ -2,7 +2,9 @@
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:myNS="http://devedge.netscape.com/2002/de">
-	<!-- <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/TR/xhtml1/strict"> -->
+	<!-- with help from this page, the myNS namespace did the trick for FF:
+	https://developer.mozilla.org/en-US/docs/Web/API/XSLTProcessor/Generating_HTML
+	 -->
 	<xsl:output method="html"/>
 	<!-- <xsl:output method="html" indent="yes" encoding="UTF-8" /> -->
 	<xsl:strip-space elements="*"/>
