@@ -1,24 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
- <!-- <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" > -->
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<!-- <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"> -->
+<xsl:stylesheet version="1.0"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:output method="html"/>
 	<xsl:strip-space elements="*,text(),@*"/>
 	<xsl:template match="/PICS">
-		<!DOCTYPE html>
-		<html>
-			<head>
-				<title>Here's a population scheme for my pictures.</title>
-				<link rel="stylesheet" href="honeymoon-styles.css" type="text/css" />
-				<meta charset="UTF-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-			</head>
-			<body>
-				<h1>
-					can an ENTITY like this: &backslash; -- by putting in &amp; backslash &#59; (in this particular case, backslash is defined in the Doctype DTD)
-				</h1>
-				<div id="container">
-					<div id="main">
+		<xsl:element name="html">
+			<xsl:element name="head">
+				<xsl:element name="title">
+					<xsl:variable name="title_text">
+						<xsl:text>
+		  Here's a population scheme for my pictures.
+						</xsl:text>
+					</xsl:variable>
+					<xsl:value-of select="normalize-space($title_text)"/>
+				</xsl:element>
+
+				<xsl:element name="link">
+					<xsl:attribute name="rel">
+						<xsl:variable name="css_rel">
+							<xsl:text>
+								  stylesheet 
+							</xsl:text>
+						</xsl:variable>
+						<xsl:value-of select="normalize-space($css_rel)"/>
+					</xsl:attribute>
+
+					<xsl:attribute name="href">
+						<xsl:variable name="css_link">
+							<xsl:text>
+								  honeymoon-styles.css
+							</xsl:text>
+						</xsl:variable>
+						<xsl:value-of select="normalize-space($css_link)"/>
+					</xsl:attribute>
+
+					<xsl:attribute name="type">
+						<xsl:variable name="css_type">
+							<xsl:text>
+								  text/css
+							</xsl:text>
+						</xsl:variable>
+						<xsl:value-of select="normalize-space($css_type)"/>
+					</xsl:attribute>
+				</xsl:element>
+
+				<xsl:element name="meta">
+					<xsl:attribute name="charset">
+						<xsl:variable name="char_set">
+							<xsl:text>
+								 UTF-8 
+							</xsl:text>
+						</xsl:variable>
+						<xsl:value-of select="normalize-space($char_set)"/>
+					</xsl:attribute>
+				</xsl:element>
+
+				<xsl:element name="meta">
+					<xsl:attribute name="name">
+						<xsl:variable name="viewport_name">
+							<xsl:text>
+								viewport
+							</xsl:text>
+						</xsl:variable>
+						<xsl:value-of select="normalize-space($viewport_name)"/>
+					</xsl:attribute>
+
+					<xsl:attribute name="content">
+						<xsl:variable name="viewport_scale">
+							<xsl:text> width=device-width, initial-scale=1
+							</xsl:text>
+						</xsl:variable>
+						<xsl:value-of select="normalize-space($viewport_scale)"/>
+					</xsl:attribute>
+				</xsl:element>
+
+			</xsl:element>
+			<xsl:element name="body">
+				<xsl:element name="h1">
+						 inputting an ENTITY like this:  &amp;backslash&#59; (would show a \ if backslash is defined in the Doctype DTD)
+				</xsl:element>
+
+				<xsl:element name="div">
+					<xsl:attribute name="id">
+						<xsl:variable name="container_id">
+							<xsl:text>
+								  container 
+							</xsl:text>
+						</xsl:variable>
+						<xsl:value-of select="normalize-space($container_id)"/>
+					</xsl:attribute>
+
+					<xsl:element name="div">
+						<xsl:attribute name="id">
+							<xsl:variable name="main_id">
+								<xsl:text>
+								  main 
+								</xsl:text>
+							</xsl:variable>
+							<xsl:value-of select="normalize-space($main_id)"/>
+						</xsl:attribute>
+
 						<xsl:for-each select="PIC">
 							<xsl:element name="div">
 								<xsl:attribute name="class">
@@ -77,8 +160,8 @@ strip the whitespace by making a variable named "class", and calling that with t
 								<!--close caption tag -->
 							</xsl:element>							<!-- h2 -->
 						</xsl:for-each>
-					</div>
-				</div>
+					</xsl:element>
+				</xsl:element>
 
 				<xsl:element name="div">
 					<xsl:attribute name="id">
@@ -109,15 +192,15 @@ strip the whitespace by making a variable named "class", and calling that with t
 						<xsl:value-of select="normalize-space(./pages/page/calibration/footer_outro)" />
 					</xsl:element>
 				</xsl:element>
-				<script>
+				<xsl:element name="script">
 					<!-- 
 					function reportMe(e){
 						alert("some message you got there.");
 					}
 					//window.addEventListener("load", reportMe);
 					-->
-				</script>
-			</body>
-		</html>
+				</xsl:element>
+			</xsl:element>
+		</xsl:element>
 	</xsl:template>
 </xsl:stylesheet>
