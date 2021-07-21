@@ -20,6 +20,7 @@ h6 {
     align-content: space-around;
     /* flex-basis: 75vw; */
     color: rgba(45, 1, 0, 1);
+    max-width: 1280px;
 }
 .slide_container {
     display: flex;
