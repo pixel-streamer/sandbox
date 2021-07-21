@@ -75,9 +75,10 @@
 				</xsl:element>
 			</xsl:element>
 			<xsl:element name="body">
-				<xsl:element name="h1">						 inputting an ENTITY like this:  &amp;backslash&#59; (would show a \ if backslash is defined in the Doctype DTD)
-				</xsl:element>
-
+				<xsl:comment >
+					<xsl:element name="h1">						 inputting an ENTITY like this:  &amp;backslash&#59; (would show a \ if backslash is defined in the Doctype DTD)
+					</xsl:element>
+				</xsl:comment>
 				<xsl:element name="div">
 					<xsl:attribute name="id">
 						<xsl:variable name="container_id">
