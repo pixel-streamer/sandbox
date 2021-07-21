@@ -636,17 +636,35 @@ Gray: https://www.placecage.com/g/200/300
 CRAZY: https://www.placecage.com/c/200/300
 
 GIF: https://www.placecage.com/gif/200/300
-
+-->
 
 	<PIC URL="https://www.placecage.com/601/400" LOCATION="Wherever He May Roam">
+		<CAPTION>Fill your page with the cage.</CAPTION>
+	</PIC>
+	<PIC URL="https://www.placecage.com/600/400" LOCATION="Wherever He May Roam2">
+		<CAPTION>Fill your page with the cage.</CAPTION>
+	</PIC>
+	<PIC URL="https://www.placecage.com/599/400" LOCATION="Wherever He May Roam3">
 		<CAPTION>Fill your page with the cage.</CAPTION>
 	</PIC>
 	<PIC URL="https://www.fillmurray.com/601/400" LOCATION="Wherever You May Find Him">
 		<CAPTION>These images fit the Bill.</CAPTION>
 	</PIC>
+	<PIC URL="https://www.fillmurray.com/599/400" LOCATION="Wherever You May Find Him2">
+		<CAPTION>These images fit the Bill2.</CAPTION>
+	</PIC>
+	<PIC URL="https://www.fillmurray.com/599/401" LOCATION="Wherever You May Find Him3">
+		<CAPTION>These images fit the Bill3.</CAPTION>
+	</PIC>
 	<PIC URL="https://www.stevensegallery.com/599/400" LOCATION="Wherever He Wants To Roam">
 		<CAPTION>This guy fills in the gaps (in your teeth).</CAPTION>
-	</PIC> -->
+	</PIC> 
+	<PIC URL="https://www.stevensegallery.com/600/400" LOCATION="Wherever He Wants To Roam2">
+		<CAPTION>This guy fills in the gaps (in your teeth).2</CAPTION>
+	</PIC> 
+	<PIC URL="https://www.stevensegallery.com/600/401" LOCATION="Wherever He Wants To Roam3">
+		<CAPTION>This guy fills in the gaps (in your teeth).3</CAPTION>
+	</PIC> 
 	<pages>
 		<page pagenum="1">
 			<intro>
