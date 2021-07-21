@@ -1,13 +1,11 @@
 <?xml version="1.0" ?>
-<?xml-stylesheet type="text/xsl" href="images_pop.xsl"?>
-<!-- 
-
-	<?DOCTYPE pics [
+<?xml-stylesheet type="text/xsl" href="./images_pop.xsl"?>
+ 
+<?DOCTYPE pics [
 	<!ELEMENT pics (pic, link, thumblink, pages, page, intro, calibration, div, footer_outro, p)  >
 	<!ELEMENT pic (caption, thumb)  >
 	<!ELEMENT pages (page, intro, calibration, div, footer_outro, p)  > 
-]?>
--->
+]?> 
 <pics>
 	<link fullsize_base="./honeymoon/images/greece-fullsize/">
 		 	
