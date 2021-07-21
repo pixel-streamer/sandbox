@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<?xml-stylesheet type="text/xsl" href="images_pop.xsl" ?>
+<?xml-stylesheet type="text/xsl" href="images_pop.xsl"?>
 <!-- 
 
 	<?DOCTYPE pics [
@@ -10,13 +10,12 @@
 -->
 <pics>
 	<link fullsize_base="./honeymoon/images/greece-fullsize/">
-		<![CDATA[		
+		 	
 empty yuppies make foolish guppies		    		
 
-
-]]>
+ 
 	</link>
-	<thumblink thumbnail_base="./honeymoon/images/greece-thumbs/"><![CDATA[empty]]></thumblink>
+	<thumblink thumbnail_base="./honeymoon/images/greece-thumbs/"> empty </thumblink>
 	<pic URL="acropolis_montage.jpg">
 		<caption>Montage of the Acropolis.
 		
