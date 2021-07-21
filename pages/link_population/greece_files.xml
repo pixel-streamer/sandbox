@@ -6,7 +6,7 @@
 <!ELEMENT LINK (#CDATA)>
 <!ELEMENT THUMBLINK (#CDATA)>
 ]?>
-<?xml-stylesheet type="text/xsl" href="images_pop.xsl"?>
+<?xml-stylesheet type="text/xsl" href="./images_pop.xsl"?>
 <PICS>
 	<LINK fullsize_base="./honeymoon/images/greece-fullsize/">
 		<![CDATA[		
