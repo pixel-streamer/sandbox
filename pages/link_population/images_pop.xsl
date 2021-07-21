@@ -6,6 +6,7 @@
 	<xsl:strip-space elements="*,text(),@*"/>
 	<xsl:template match="/PICS">
 		<xsl:element name="html">
+		<!-- 
 			<xsl:element name="head">
 				<xsl:element name="title">
 					<xsl:variable name="title_text">
@@ -67,10 +68,9 @@
 						</xsl:variable>
 						<xsl:value-of select="normalize-space($viewport_scale)"/>
 					</xsl:attribute>
-				</xsl:element>
-
+				</xsl:element> 
 			</xsl:element>
-			<xsl:element name="body"><!-- 
+			<xsl:element name="body">
 				<xsl:element name="h1">						 inputting an ENTITY like this:  &amp;backslash&#59; (would show a \ if backslash is defined in the Doctype DTD)
 				</xsl:element>
 
@@ -181,8 +181,8 @@
 					}
 					//window.addEventListener("load", reportMe);
 					*/
-				</xsl:element> -->
-			</xsl:element>
+				</xsl:element> 
+			</xsl:element>-->
 		</xsl:element>
 	</xsl:template>
 </xsl:stylesheet>
