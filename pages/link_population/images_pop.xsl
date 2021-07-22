@@ -8,7 +8,7 @@
 	<xsl:output method="html"/>
 	<!-- <xsl:output method="html" indent="yes" encoding="UTF-8" /> -->
 	<xsl:strip-space elements="*"/>
-	<xsl:template match="/PICS">
+	<xsl:template match="/pics">
 		<xsl:element name="html">
 
 			<xsl:element name="head">
@@ -100,9 +100,9 @@
 						</xsl:attribute>
 
 
-						<xsl:for-each select="PIC">
+						<xsl:for-each select="pic">
 							<!-- sort all the pictures before display -->
-							<xsl:sort select="normalize-space(@LOCATION)" />
+							<xsl:sort select="normalize-space(@location)" />
 							<xsl:element name="div">
 								<xsl:attribute name="class">
 									<xsl:variable name="class">
@@ -112,7 +112,7 @@
 									</xsl:variable>
 									<xsl:value-of select="normalize-space($class)"/>
 								</xsl:attribute>
-								<xsl:if test="contains( ./@URL ,'http')">
+								<xsl:if test="contains( ./@url ,'http')">
 									<xsl:element name="a">
 										<xsl:attribute name="class">
 											<xsl:variable name="thumbclass2">
@@ -131,17 +131,17 @@
 											<xsl:value-of select="normalize-space($ref2)"/>
 										</xsl:attribute>
 										<xsl:attribute name="link">
-											<xsl:value-of select="normalize-space(./@URL)" />
+											<xsl:value-of select="normalize-space(./@url)" />
 										</xsl:attribute>
 
 										<xsl:element name="img">
 											<xsl:attribute name="src">
-												<xsl:value-of select="normalize-space(./@URL)" />
+												<xsl:value-of select="normalize-space(./@url)" />
 											</xsl:attribute>
 										</xsl:element>
 									</xsl:element>
 								</xsl:if>
-								<xsl:if test="not(contains( ./@URL ,'http'))">
+								<xsl:if test="not(contains( ./@url ,'http'))">
 									<xsl:element name="a">
 										<xsl:attribute name="class">
 											<xsl:variable name="thumbclass">
@@ -161,13 +161,13 @@
 										</xsl:attribute>
 										<xsl:attribute name="link">
 											<xsl:value-of select="normalize-space(./..//@fullsize_base)" />
-											<xsl:value-of select="normalize-space(./@URL)" />
+											<xsl:value-of select="normalize-space(./@url)" />
 										</xsl:attribute>
 
 										<xsl:element name="img">
 											<xsl:attribute name="src">
 												<xsl:value-of select="normalize-space(./..//@thumbnail_base)" />
-												<xsl:value-of select="normalize-space(./THUMB)" />
+												<xsl:value-of select="normalize-space(./thumb)" />
 											</xsl:attribute>
 
 											<xsl:attribute name="target">
@@ -184,15 +184,15 @@
 								</xsl:if>
 
 								<xsl:choose>
-									<xsl:when test="normalize-space(./CAPTION) != ''">
+									<xsl:when test="normalize-space(./caption) != ''">
 										<xsl:element name="p">
-											<xsl:value-of select="normalize-space(./CAPTION)" />
+											<xsl:value-of select="normalize-space(./caption)" />
 										</xsl:element>
 									</xsl:when>
 									<xsl:otherwise>
 										<xsl:element name="p">
 											<xsl:variable name="vacation_location">
-												<xsl:value-of select="./@LOCATION" />
+												<xsl:value-of select="./@location" />
 											</xsl:variable>
 											<xsl:value-of select="normalize-space($vacation_location)"/>
 										</xsl:element>

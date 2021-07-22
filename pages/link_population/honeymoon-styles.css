@@ -67,9 +67,35 @@ h6 {
     color: rgba(45, 1, 0, 1);
 }
 .fullsize_display {
+    display: inherit;
     display: flex;
-    max-width: 90vw;
-    align-self: center;
+    z-index: 20;
+    background-color: aqua;
     justify-content: center;
-    flex-direction: column;
+    align-content: center;
+}
+.fullsize_display img {
+    max-width: 100%;
+    height: auto;
+}
+.fullsize {
+    position: fixed;
+    top: 5vw;
+    left: 5vw;
+    right: 5vw;
+    display: flex;
+    bottom: 5vw;
+    margin: auto;
+    justify-content: center;
+    background-color: blue; 
+    max-width: 100%;
+    max-height: fit-content;
+}
+.visible {
+    opacity: inherit;
+    display: inherit;
+}
+.hidden {
+    opacity: 0;
+    display: none;
 }

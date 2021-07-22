@@ -3,630 +3,627 @@
 	for some reason FF needs a long comment here. All this stuff is copyrighted information by Joseph Henderson
  -->
 <?xml-stylesheet type="text/xsl" href="images_pop.xsl"?>
-<PICS>
-	<LINK fullsize_base="./honeymoon/images/greece-fullsize/">
-		<![CDATA[		
-empty yuppies make foolish guppies		    		
-
-]]>
-	</LINK>
-	<THUMBLINK thumbnail_base="./honeymoon/images/greece-thumbs/"><![CDATA[empty]]></THUMBLINK>
-	<PIC URL="acropolis_montage.jpg" LOCATION="Athens, Greece">
-		<CAPTION>Montage of the Acropolis.
+<pics>
+	<link fullsize_base="./honeymoon/images/greece-fullsize/">
+		<![CDATA[ empty yuppies make foolish guppies  ]]>
+	</link>
+	<thumblink thumbnail_base="./honeymoon/images/greece-thumbs/"><![CDATA[empty]]></thumblink>
+	<pic url="acropolis_montage.jpg" location="Athens, Greece">
+		<caption>Montage of the Acropolis.
 		
-		Every building constructed      				in Athens has a view of the acropolis.</CAPTION>
-		<THUMB>
+		Every building constructed      				in Athens has a view of the acropolis.</caption>
+		<thumb>
 acropolis_montage-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="acropolis_theater.jpg" LOCATION="Athens, Greece">
-		<CAPTION>Every city-state in Greece had it's own acropolis, accompanied by an ampitheater, where people would gather to worship and hear speeches and plays. This is the ampitheater within Athen's famous Acropolis compound. It must have seemed cramped with so many people inside.</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="acropolis_theater.jpg" location="Athens, Greece">
+		<caption>Every city-state in Greece had it's own acropolis, accompanied by an ampitheater, where people would gather to worship and hear speeches and plays. This is the ampitheater within Athen's famous Acropolis compound. It must have seemed cramped with so many people inside.</caption>
+		<thumb>
 acropolis_theater-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="acropolis_corner.jpg" LOCATION="Athens, Greece">
-		<CAPTION>Acropolis header background with corner faded</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="acropolis_corner.jpg" location="Athens, Greece">
+		<caption>Acropolis header background with corner faded</caption>
+		<thumb>
 acropolis_corner-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="acropolis_pan.jpg" LOCATION="Athens, Greece">
-		<CAPTION>Panoramic of the massive Acropolis, too big to fit in only one picture. From our hotel room.</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="acropolis_pan.jpg" location="Athens, Greece">
+		<caption>Panoramic of the massive Acropolis, too big to fit in only one picture. From our hotel room.</caption>
+		<thumb>
 acropolis_pan-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="agean1.jpg" LOCATION="Dockside at Kusadasi">
-		<CAPTION>
-		</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="agean1.jpg" location="Dockside at Kusadasi">
+		<caption>
+		</caption>
+		<thumb>
 agean1-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="ancient_door.jpg" LOCATION="Rhodes">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="ancient_door.jpg" location="Rhodes">
+		<caption></caption>
+		<thumb>
 ancient_door-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="athens_metro.jpg" LOCATION="Athens">
-		<CAPTION>This was the spotless Athens metro. At one point I witnessed an employee wiping down a sign. It was immaculate.</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="athens_metro.jpg" location="Athens">
+		<caption>This was the spotless Athens metro. At one point I witnessed an employee wiping down a sign. It was immaculate.</caption>
+		<thumb>
 athens_metro-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="atm.jpg" LOCATION="Athens-From the Plaka">
-		<CAPTION>It was strange to read a foreign language on such a day-to-day device like an atm machine.</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="atm.jpg" location="Athens-From the Plaka">
+		<caption>It was strange to read a foreign language on such a day-to-day device like an atm machine.</caption>
+		<thumb>
 atm-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="belle-air.jpg" LOCATION="Athens">
-		<CAPTION>Bellaire was a restaurant owned by my friend's brother, Yanni. It was a great place to visit and hang out.</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="belle-air.jpg" location="Athens">
+		<caption>Bellaire was a restaurant owned by my friend's brother, Yanni. It was a great place to visit and hang out.</caption>
+		<thumb>
 belle-air-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="belle-air2.jpg" LOCATION="Athens">
-		<CAPTION>Outdoor view of the Bellaire.</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="belle-air2.jpg" location="Athens">
+		<caption>Outdoor view of the Bellaire.</caption>
+		<thumb>
 belle-air2-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="belle-air-area.jpg" LOCATION="Athens">
-		<CAPTION>Street view of the Bellaire location. The shutter was a bit slow on the camera. That's why there were streaks. But this was the only chance I had to capture the outdoor atmosphere of the bistro.</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="belle-air-area.jpg" location="Athens">
+		<caption>Street view of the Bellaire location. The shutter was a bit slow on the camera. That's why there were streaks. But this was the only chance I had to capture the outdoor atmosphere of the bistro.</caption>
+		<thumb>
 belle-air-area-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="bells.jpg" LOCATION="Patmos">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="bells.jpg" location="Patmos">
+		<caption></caption>
+		<thumb>
 bells-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="boat-pan.jpg" LOCATION="Near Mykonos">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="boat-pan.jpg" location="Near Mykonos">
+		<caption></caption>
+		<thumb>
 boat-pan-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="cableview.jpg" LOCATION="Santorini-From the Cable Cars">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="cableview.jpg" location="Santorini-From the Cable Cars">
+		<caption></caption>
+		<thumb>
 cableview-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="camel_jockey.jpg" LOCATION="Ephesus">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="camel_jockey.jpg" location="Ephesus">
+		<caption></caption>
+		<thumb>
 camel_jockey-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="cameo.jpg" LOCATION="Santorini- Street Vendor">
-		<CAPTION>A gorgeous cameo being sold at in a Santorini - street vendor shop</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="cameo.jpg" location="Santorini- Street Vendor">
+		<caption>A gorgeous cameo being sold at in a Santorini - street vendor shop</caption>
+		<thumb>
 cameo-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="caryatids.jpg" LOCATION="Athens- Erechtheion">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="caryatids.jpg" location="Athens- Erechtheion">
+		<caption></caption>
+		<thumb>
 caryatids-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="catamaran.jpg" LOCATION="Near Patmos">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="catamaran.jpg" location="Near Patmos">
+		<caption></caption>
+		<thumb>
 catamaran-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="cathedral.jpg" LOCATION="Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="cathedral.jpg" location="Athens">
+		<caption></caption>
+		<thumb>
 cathedral-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="cathedral2.jpg" LOCATION="Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="cathedral2.jpg" location="Athens">
+		<caption></caption>
+		<thumb>
 cathedral2-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="cathedral3.jpg" LOCATION="Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="cathedral3.jpg" location="Athens">
+		<caption></caption>
+		<thumb>
 cathedral3-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="cathedral4.jpg" LOCATION="Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="cathedral4.jpg" location="Athens">
+		<caption></caption>
+		<thumb>
 cathedral4-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="cathedral5.jpg" LOCATION="Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="cathedral5.jpg" location="Athens">
+		<caption></caption>
+		<thumb>
 cathedral5-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="cathedral-streak.jpg" LOCATION="Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="cathedral-streak.jpg" location="Athens">
+		<caption></caption>
+		<thumb>
 cathedral-streak-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="changing-guard.jpg" LOCATION="Athens-Palace">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="changing-guard.jpg" location="Athens-Palace">
+		<caption></caption>
+		<thumb>
 changing-guard-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="chapel_fresco.jpg" LOCATION="Patmos- St. John's Grotto">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="chapel_fresco.jpg" location="Patmos- St. John's Grotto">
+		<caption></caption>
+		<thumb>
 chapel_fresco-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="clock.jpg" LOCATION="Santorini">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="clock.jpg" location="Santorini">
+		<caption></caption>
+		<thumb>
 clock-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="closed_site.jpg" LOCATION="Near Ephesus">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="closed_site.jpg" location="Near Ephesus">
+		<caption></caption>
+		<thumb>
 closed_site-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="close-deb.jpg" LOCATION="At Sea- Aboard Agean 1">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="close-deb.jpg" location="At Sea- Aboard Agean 1">
+		<caption></caption>
+		<thumb>
 close-deb-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="column_base.jpg" LOCATION="Athens- Olympia">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="column_base.jpg" location="Athens- Olympia">
+		<caption></caption>
+		<thumb>
 column_base-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="crystal_waters.jpg" LOCATION="At Sea- Aboard Agean 1">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="crystal_waters.jpg" location="At Sea- Aboard Agean 1">
+		<caption></caption>
+		<thumb>
 crystal_waters-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="deb_cabin.jpg" LOCATION="At Sea- Aboard Agean 1">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="deb_cabin.jpg" location="At Sea- Aboard Agean 1">
+		<caption></caption>
+		<thumb>
 deb_cabin-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="deb_smell.jpg" LOCATION="Athens- Public Gardens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="deb_smell.jpg" location="Athens- Public Gardens">
+		<caption></caption>
+		<thumb>
 deb_smell-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="deb-at-napflio.jpg" LOCATION="Napflio- Palamidi Palace">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="deb-at-napflio.jpg" location="Napflio- Palamidi Palace">
+		<caption></caption>
+		<thumb>
 deb-at-napflio-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="donkey_ride.jpg" LOCATION="Santorini">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="donkey_ride.jpg" location="Santorini">
+		<caption></caption>
+		<thumb>
 donkey_ride-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="drink_deb.jpg" LOCATION="At Sea- Aboard Agean 1">
-		<CAPTION>Drinks aboard the Agean 1</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="drink_deb.jpg" location="At Sea- Aboard Agean 1">
+		<caption>Drinks aboard the Agean 1</caption>
+		<thumb>
 drink_deb-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="drink_joe.jpg" LOCATION="At Sea- Aboard Agean 1">
-		<CAPTION>More drinks on the boat!</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="drink_joe.jpg" location="At Sea- Aboard Agean 1">
+		<caption>More drinks on the boat!</caption>
+		<thumb>
 drink_joe-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="ephesus-Library.jpg" LOCATION="Ephesus">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="ephesus-Library.jpg" location="Ephesus">
+		<caption></caption>
+		<thumb>
 ephesus-library-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="epitaphios1.jpg" LOCATION="Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="epitaphios1.jpg" location="Athens">
+		<caption></caption>
+		<thumb>
 epitaphios1-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="epitaphios2.jpg" LOCATION="Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="epitaphios2.jpg" location="Athens">
+		<caption></caption>
+		<thumb>
 epitaphios2-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="epitaphios3.jpg" LOCATION="Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="epitaphios3.jpg" location="Athens">
+		<caption></caption>
+		<thumb>
 epitaphios3-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="epitaphios4.jpg" LOCATION="Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="epitaphios4.jpg" location="Athens">
+		<caption></caption>
+		<thumb>
 epitaphios4-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="erechtheion.jpg" LOCATION="Athens- Erechtheion">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="erechtheion.jpg" location="Athens- Erechtheion">
+		<caption></caption>
+		<thumb>
 erechtheion-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="first_paved.jpg" LOCATION="Knossos">
-		<CAPTION>
-		Reportedly the first paved road in civilization. Amazing. No potholes!</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="first_paved.jpg" location="Knossos">
+		<caption>
+		Reportedly the first paved road in civilization. Amazing. No potholes!</caption>
+		<thumb>
 first_paved-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="flat_hill_pan.jpg" LOCATION="Near Santorini">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="flat_hill_pan.jpg" location="Near Santorini">
+		<caption></caption>
+		<thumb>
 flat_hill_pan-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="fountain.jpg" LOCATION="Heraklio, Crete- Morosini Fountain">
-		<CAPTION>On our way back from the Palace at Knossos, we stopped to walk through the Venetian basilica at St. Marks, and stopped at the Lion Fountain</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="fountain.jpg" location="Heraklio, Crete- Morosini Fountain">
+		<caption>On our way back from the Palace at Knossos, we stopped to walk through the Venetian basilica at St. Marks, and stopped at the Lion Fountain</caption>
+		<thumb>
 fountain-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="graffiti_park.jpg" LOCATION="Athens">
-		<CAPTION>Like every urban center, Athens has it's share of the decorative touches from the idle hands of inner city youth.</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="graffiti_park.jpg" location="Athens">
+		<caption>Like every urban center, Athens has it's share of the decorative touches from the idle hands of inner city youth.</caption>
+		<thumb>
 graffiti_park-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="greekskies.jpg" LOCATION="Airplane over Greece">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="greekskies.jpg" location="Airplane over Greece">
+		<caption></caption>
+		<thumb>
 greekskies-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="grotto_chapel.jpg" LOCATION="Patmos- Near Grotto of Saint John">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="grotto_chapel.jpg" location="Patmos- Near Grotto of Saint John">
+		<caption></caption>
+		<thumb>
 grotto_chapel-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="grotto_view.jpg" LOCATION="Patmos- View from Grotto Receiving Area">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="grotto_view.jpg" location="Patmos- View from Grotto Receiving Area">
+		<caption></caption>
+		<thumb>
 grotto_view-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="gus.jpg" LOCATION="Mycenae, Near the Tomb of Atreus">
-		<CAPTION>A friend from college, and my tour guide to the Argolida Province to see the citadel at Nafplio (the center of the Peloponnese prefectures) and the tomb of Atreus (Treasure of Atreus), along with the acropolis nearby.</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="gus.jpg" location="Mycenae, Near the Tomb of Atreus">
+		<caption>A friend from college, and my tour guide to the Argolida Province to see the citadel at Nafplio (the center of the Peloponnese prefectures) and the tomb of Atreus (Treasure of Atreus), along with the acropolis nearby.</caption>
+		<thumb>
 gus-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="hadrian_arch.jpg" LOCATION="Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="hadrian_arch.jpg" location="Athens">
+		<caption></caption>
+		<thumb>
 hadrian_arch-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="image0016-19-pan.jpg" LOCATION="Island near Mykonos">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="image0016-19-pan.jpg" location="Island near Mykonos">
+		<caption></caption>
+		<thumb>
 image0016-19-pan-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="inside-belle-air.jpg" LOCATION="Athens- Bellaire Restaurant">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="inside-belle-air.jpg" location="Athens- Bellaire Restaurant">
+		<caption></caption>
+		<thumb>
 inside-belle-air-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="island_pan.jpg" LOCATION="At Sea">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="island_pan.jpg" location="At Sea">
+		<caption></caption>
+		<thumb>
 island_pan-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="klm.jpg" LOCATION="Amsterdam Airport, Schiphol">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="klm.jpg" location="Amsterdam Airport, Schiphol">
+		<caption></caption>
+		<thumb>
 klm-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="knossos_dolphins.jpg" LOCATION="Knossos, Crete">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="knossos_dolphins.jpg" location="Knossos, Crete">
+		<caption></caption>
+		<thumb>
 knossos_dolphins-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="knossos_port.jpg" LOCATION="Knossos port">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="knossos_port.jpg" location="Knossos port">
+		<caption></caption>
+		<thumb>
 knossos_port-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="kobuloi.jpg" LOCATION="Athens- Hotel">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="kobuloi.jpg" location="Athens- Hotel">
+		<caption></caption>
+		<thumb>
 kobuloi-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="kusadasi.jpg" LOCATION="Kusadasi, Turkey">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="kusadasi.jpg" location="Kusadasi, Turkey">
+		<caption></caption>
+		<thumb>
 kusadasi-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="kusadasi_fort.jpg" LOCATION="Kusadasi, Turkey">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="kusadasi_fort.jpg" location="Kusadasi, Turkey">
+		<caption></caption>
+		<thumb>
 kusadasi_fort-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="kusadasi2.jpg" LOCATION="Kusadasi, Turkey">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="kusadasi2.jpg" location="Kusadasi, Turkey">
+		<caption></caption>
+		<thumb>
 kusadasi2-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="leaving.jpg" LOCATION="Houston Intercontinental Airport">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="leaving.jpg" location="Houston Intercontinental Airport">
+		<caption></caption>
+		<thumb>
 leaving-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="library-pan.jpg" LOCATION="Athens- University of Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="library-pan.jpg" location="Athens- University of Athens">
+		<caption></caption>
+		<thumb>
 library-pan-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="main_lounge.jpg" LOCATION="At Sea- Aboard the Agean 1">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="main_lounge.jpg" location="At Sea- Aboard the Agean 1">
+		<caption></caption>
+		<thumb>
 main_lounge-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="metal_fab_toys.jpg" LOCATION="Santorini- Street Vendor">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="metal_fab_toys.jpg" location="Santorini- Street Vendor">
+		<caption></caption>
+		<thumb>
 metal_fab_toys-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="mule_master-sm.jpg" LOCATION="Santorini">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="mule_master-sm.jpg" location="Santorini">
+		<caption></caption>
+		<thumb>
 mule_master-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="mycenean_artifacts.jpg" LOCATION="Mycenae- Archeological Museum">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="mycenean_artifacts.jpg" location="Mycenae- Archeological Museum">
+		<caption></caption>
+		<thumb>
 mycenean_artifacts-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="mykonos_pan.jpg" LOCATION="Agean 1- Docked at Mykonos">
-		<CAPTION>We opted for dinner on the boat that night. The view of the shore was just as pretty as I imagine the beaches were. It would be nice see the beaches from down on the sand someday.</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="mykonos_pan.jpg" location="Agean 1- Docked at Mykonos">
+		<caption>We opted for dinner on the boat that night. The view of the shore was just as pretty as I imagine the beaches were. It would be nice see the beaches from down on the sand someday.</caption>
+		<thumb>
 mykonos_pan-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="mykonos_pan2.jpg" LOCATION="Agean 1- Docked at Mykonos">
-		<CAPTION>The docks of Mykonos</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="mykonos_pan2.jpg" location="Agean 1- Docked at Mykonos">
+		<caption>The docks of Mykonos</caption>
+		<thumb>
 mykonos_pan2-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="napflio_castle.jpg" LOCATION="Nafplio- Port Fortress">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="napflio_castle.jpg" location="Nafplio- Port Fortress">
+		<caption></caption>
+		<thumb>
 napflio_castle-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="napflio_pan.jpg" LOCATION="Nafplio- Palamidi Citidel">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="napflio_pan.jpg" location="Nafplio- Palamidi Citidel">
+		<caption></caption>
+		<thumb>
 napflio_pan-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="near_st_john.jpg" LOCATION="Patmos- Near Grotto of Saint John">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="near_st_john.jpg" location="Patmos- Near Grotto of Saint John">
+		<caption></caption>
+		<thumb>
 near_st_john-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="olympus_col.jpg" LOCATION="Temple of Olympia, Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="olympus_col.jpg" location="Temple of Olympia, Athens">
+		<caption></caption>
+		<thumb>
 olympus_col-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="ourhotel.jpg" LOCATION="Athens, Greece">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="ourhotel.jpg" location="Athens, Greece">
+		<caption></caption>
+		<thumb>
 ourhotel-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="outdoor_shop.jpg" LOCATION="Plaka, Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="outdoor_shop.jpg" location="Plaka, Athens">
+		<caption></caption>
+		<thumb>
 outdoor_shop-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="palamidi_castle.jpg" LOCATION="Palamidi">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="palamidi_castle.jpg" location="Palamidi">
+		<caption></caption>
+		<thumb>
 palamidi_castle-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="panathenian.jpg" LOCATION="Athens, Greece">
-		<CAPTION>Originally built in 143 AD. and refurbished in 1896. The only stadium in the world built entirely of marble.</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="panathenian.jpg" location="Athens, Greece">
+		<caption>Originally built in 143 AD. and refurbished in 1896. The only stadium in the world built entirely of marble.</caption>
+		<thumb>
 panathenian-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="panoramic_temple_olympus.jpg" LOCATION="Temple of Olympia Athens, Greece">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="panoramic_temple_olympus.jpg" location="Temple of Olympia Athens, Greece">
+		<caption></caption>
+		<thumb>
 pan_olympus-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="peacock.jpg" LOCATION="Knossos">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="peacock.jpg" location="Knossos">
+		<caption></caption>
+		<thumb>
 peacock-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="pediment.jpg" LOCATION="Ephesus, Turkey">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="pediment.jpg" location="Ephesus, Turkey">
+		<caption></caption>
+		<thumb>
 pediment-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="plaka.jpg" LOCATION="Athens, Greece">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="plaka.jpg" location="Athens, Greece">
+		<caption></caption>
+		<thumb>
 plaka-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="reconstruction.jpg" LOCATION="Ephesus, Turkey">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="reconstruction.jpg" location="Ephesus, Turkey">
+		<caption></caption>
+		<thumb>
 reconstruction-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="santorini_cable.jpg" LOCATION="Santorini">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="santorini_cable.jpg" location="Santorini">
+		<caption></caption>
+		<thumb>
 santorini_cable-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="santorini_sidest.jpg" LOCATION="Santorini">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="santorini_sidest.jpg" location="Santorini">
+		<caption></caption>
+		<thumb>
 santorini_sidest-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="sculpture.jpg" LOCATION="Ephesus, Turkey">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="sculpture.jpg" location="Ephesus, Turkey">
+		<caption></caption>
+		<thumb>
 sculpture-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="sculpture2.jpg" LOCATION="Ephesus, Turkey">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="sculpture2.jpg" location="Ephesus, Turkey">
+		<caption></caption>
+		<thumb>
 sculpture2-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="ship_from_mule.jpg" LOCATION="Santorini">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="ship_from_mule.jpg" location="Santorini">
+		<caption></caption>
+		<thumb>
 ship_from_mule-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="ship_mates.jpg" LOCATION="Near St. John's Grotto">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="ship_mates.jpg" location="Near St. John's Grotto">
+		<caption></caption>
+		<thumb>
 ship_mates-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="ship_shop.jpg" LOCATION="Aboard the Agean 1">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="ship_shop.jpg" location="Aboard the Agean 1">
+		<caption></caption>
+		<thumb>
 ship_shop-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="sphinx.jpg" LOCATION="Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="sphinx.jpg" location="Athens">
+		<caption></caption>
+		<thumb>
 sphinx-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="street_cafe.jpg" LOCATION="Plaka, Athens">
-		<CAPTION>A small, bustling cafe on the Plaka.</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="street_cafe.jpg" location="Plaka, Athens">
+		<caption>A small, bustling cafe on the Plaka.</caption>
+		<thumb>
 street_cafe-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="surf-swirl.jpg" LOCATION="Agean Sea, from Aboard the Agean 1">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="surf-swirl.jpg" location="Agean Sea, from Aboard the Agean 1">
+		<caption></caption>
+		<thumb>
 surf-swir-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="tender_boat.jpg" LOCATION="Ephesus, Turkey">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="tender_boat.jpg" location="Ephesus, Turkey">
+		<caption></caption>
+		<thumb>
 tender_boat-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="theater_ephesus.jpg" LOCATION="Ephesus, Turkey">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="theater_ephesus.jpg" location="Ephesus, Turkey">
+		<caption></caption>
+		<thumb>
 theater_ephesus-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="treasury_atreus.jpg" LOCATION="Mycenae, The Tomb of Atreus">
-		<CAPTION>Day trip to this amazing structure</CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="treasury_atreus.jpg" location="Mycenae, The Tomb of Atreus">
+		<caption>Day trip to this amazing structure</caption>
+		<thumb>
 treasury_atreus-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="turn-streak-web.jpg" LOCATION="Hotel, Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="turn-streak-web.jpg" location="Hotel, Athens">
+		<caption></caption>
+		<thumb>
 turn-streak-web-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="viewing.jpg" LOCATION="Aboard the Agean 1">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="viewing.jpg" location="Aboard the Agean 1">
+		<caption></caption>
+		<thumb>
 viewing-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="village_pan.jpg" LOCATION="About To Take the Shuttle Boat">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="village_pan.jpg" location="About To Take the Shuttle Boat">
+		<caption></caption>
+		<thumb>
 village_pan-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="village-santorini.jpg" LOCATION="Santorini">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="village-santorini.jpg" location="Santorini">
+		<caption></caption>
+		<thumb>
 village-santorini-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="wares2.jpg" LOCATION="Plaka, Athens">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="wares2.jpg" location="Plaka, Athens">
+		<caption></caption>
+		<thumb>
 wares2-t.gif
-		</THUMB>
-	</PIC>
-	<PIC URL="yummy_seafood.jpg" LOCATION="Fish Market Near the Plaka">
-		<CAPTION></CAPTION>
-		<THUMB>
+		</thumb>
+	</pic>
+	<pic url="yummy_seafood.jpg" location="Fish Market Near the Plaka">
+		<caption></caption>
+		<thumb>
 yummy_seafood-t.gif
-		</THUMB>
-	</PIC>
+		</thumb>
+	</pic>
 	<!-- 
 Calm: https://www.placecage.com/200/300
 
@@ -637,33 +634,33 @@ CRAZY: https://www.placecage.com/c/200/300
 GIF: https://www.placecage.com/gif/200/300
 -->
 
-	<PIC URL="https://www.placecage.com/601/400" LOCATION="Wherever He May Roam">
-		<CAPTION>Fill your page with the cage.</CAPTION>
-	</PIC>
-	<PIC URL="https://www.placecage.com/600/401" LOCATION="Wherever He May Roam2">
-		<CAPTION>Fill your page with the cage.2</CAPTION>
-	</PIC>
-	<PIC URL="https://www.placecage.com/599/400" LOCATION="Wherever He May Roam3">
-		<CAPTION>Fill your page with the cage.3</CAPTION>
-	</PIC>
-	<PIC URL="https://www.fillmurray.com/601/400" LOCATION="Wherever You May Find Him">
-		<CAPTION>These images fit the Bill.</CAPTION>
-	</PIC>
-	<PIC URL="https://www.fillmurray.com/599/400" LOCATION="Wherever You May Find Him2">
-		<CAPTION>These images fit the Bill2.</CAPTION>
-	</PIC>
-	<PIC URL="https://www.fillmurray.com/599/401" LOCATION="Wherever You May Find Him3">
-		<CAPTION>These images fit the Bill3.</CAPTION>
-	</PIC>
-	<PIC URL="https://www.stevensegallery.com/599/400" LOCATION="Wherever He Wants To Roam">
-		<CAPTION>This guy fills in the gaps (in your teeth).</CAPTION>
-	</PIC>
-	<PIC URL="https://www.stevensegallery.com/600/400" LOCATION="Wherever He Wants To Roam2">
-		<CAPTION>This guy fills in the gaps (in your teeth).2</CAPTION>
-	</PIC>
-	<PIC URL="https://www.stevensegallery.com/600/401" LOCATION="Wherever He Wants To Roam3">
-		<CAPTION>This guy fills in the gaps (in your teeth).3</CAPTION>
-	</PIC>
+	<pic url="https://www.placecage.com/601/400" location="Wherever He May Roam">
+		<caption>Fill your page with the cage.</caption>
+	</pic>
+	<pic url="https://www.placecage.com/600/401" location="Wherever He May Roam2">
+		<caption>Fill your page with the cage.2</caption>
+	</pic>
+	<pic url="https://www.placecage.com/599/400" location="Wherever He May Roam3">
+		<caption>Fill your page with the cage.3</caption>
+	</pic>
+	<pic url="https://www.fillmurray.com/601/400" location="Wherever You May Find Him">
+		<caption>These images fit the Bill.</caption>
+	</pic>
+	<pic url="https://www.fillmurray.com/599/400" location="Wherever You May Find Him2">
+		<caption>These images fit the Bill2.</caption>
+	</pic>
+	<pic url="https://www.fillmurray.com/599/401" location="Wherever You May Find Him3">
+		<caption>These images fit the Bill3.</caption>
+	</pic>
+	<pic url="https://www.stevensegallery.com/599/400" location="Wherever He Wants To Roam">
+		<caption>This guy fills in the gaps (in your teeth).</caption>
+	</pic>
+	<pic url="https://www.stevensegallery.com/600/400" location="Wherever He Wants To Roam2">
+		<caption>This guy fills in the gaps (in your teeth).2</caption>
+	</pic>
+	<pic url="https://www.stevensegallery.com/600/401" location="Wherever He Wants To Roam3">
+		<caption>This guy fills in the gaps (in your teeth).3</caption>
+	</pic>
 	<pages>
 		<page pagenum="1">
 			<intro>
@@ -771,4 +768,4 @@ GIF: https://www.placecage.com/gif/200/300
 			</footer_outro>
 		</page>
 	</pages>
-</PICS>
+</pics>
