@@ -14,7 +14,7 @@
 			<xsl:element name="head">
 				<xsl:element name="title">
 					<xsl:variable name="title_text">
-						<xsl:text>		  Here's a population scheme for my pictures.
+						<xsl:text>		 Greecian Honeymoon, April 18th thru April 30th, 2005 
 						</xsl:text>
 					</xsl:variable>
 					<xsl:value-of select="normalize-space($title_text)"/>
