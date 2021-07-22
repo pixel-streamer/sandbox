@@ -114,9 +114,26 @@
 								</xsl:attribute>
 								<xsl:if test="contains( ./@URL ,'http')">
 									<xsl:element name="a">
+										<xsl:attribute name="class">
+											<xsl:variable name="thumbclass2">
+												<xsl:text>
+													 thumb_link
+												</xsl:text>
+											</xsl:variable>
+											<xsl:value-of select="normalize-space($thumbclass2)"/>
+										</xsl:attribute>
 										<xsl:attribute name="href">
+											<xsl:variable name="ref2">
+												<xsl:text>
+														#
+												</xsl:text>
+											</xsl:variable>
+											<xsl:value-of select="normalize-space($ref2)"/>
+										</xsl:attribute>
+										<xsl:attribute name="link">
 											<xsl:value-of select="normalize-space(./@URL)" />
 										</xsl:attribute>
+
 										<xsl:element name="img">
 											<xsl:attribute name="src">
 												<xsl:value-of select="normalize-space(./@URL)" />
@@ -126,10 +143,27 @@
 								</xsl:if>
 								<xsl:if test="not(contains( ./@URL ,'http'))">
 									<xsl:element name="a">
+										<xsl:attribute name="class">
+											<xsl:variable name="thumbclass">
+												<xsl:text>
+													 thumb_link
+												</xsl:text>
+											</xsl:variable>
+											<xsl:value-of select="normalize-space($thumbclass)"/>
+										</xsl:attribute>
 										<xsl:attribute name="href">
+											<xsl:variable name="ref">
+												<xsl:text>
+														#
+												</xsl:text>
+											</xsl:variable>
+											<xsl:value-of select="normalize-space($ref)"/>
+										</xsl:attribute>
+										<xsl:attribute name="link">
 											<xsl:value-of select="normalize-space(./..//@fullsize_base)" />
 											<xsl:value-of select="normalize-space(./@URL)" />
 										</xsl:attribute>
+
 										<xsl:element name="img">
 											<xsl:attribute name="src">
 												<xsl:value-of select="normalize-space(./..//@thumbnail_base)" />
@@ -157,13 +191,13 @@
 									</xsl:when>
 									<xsl:otherwise>
 										<xsl:element name="p">
-											<xsl:variable name="vacation_location"> 
-								  	  <xsl:value-of select="./@LOCATION" /> 
+											<xsl:variable name="vacation_location">
+												<xsl:value-of select="./@LOCATION" />
 											</xsl:variable>
-											<xsl:value-of select="normalize-space($vacation_location)"/> 
+											<xsl:value-of select="normalize-space($vacation_location)"/>
 										</xsl:element>
 									</xsl:otherwise>
-								</xsl:choose> 
+								</xsl:choose>
 
 							</xsl:element>
 						</xsl:for-each>
@@ -200,12 +234,14 @@
 					</xsl:element>
 				</xsl:element>
 				<xsl:element name="script">
-					 
-					function reportMe(e){
-						alert("some message you got there.");
-					}
-					// window.addEventListener("load", reportMe);
-					 
+					<xsl:attribute name="src">
+									<xsl:variable name="img_popjs">
+										<xsl:text>
+								image_pop.js
+										</xsl:text>
+									</xsl:variable>
+									<xsl:value-of select="normalize-space($img_popjs)"/>
+								</xsl:attribute>
 				</xsl:element>
 			</xsl:element>
 		</xsl:element>
