@@ -99,7 +99,10 @@
 							<xsl:value-of select="normalize-space($main_id)"/>
 						</xsl:attribute>
 
+
 						<xsl:for-each select="PIC">
+							<!-- sort all the pictures before display -->
+							<xsl:sort select="normalize-space(@LOCATION)" />
 							<xsl:element name="div">
 								<xsl:attribute name="class">
 									<xsl:variable name="class">
@@ -145,16 +148,23 @@
 										</xsl:element>
 									</xsl:element>
 								</xsl:if>
-								<xsl:element name="p">
-									<xsl:choose>
-										<xsl:when test="normalize-space(./CAPTION) != ''">
+
+								<xsl:choose>
+									<xsl:when test="normalize-space(./CAPTION) != ''">
+										<xsl:element name="p">
 											<xsl:value-of select="normalize-space(./CAPTION)" />
-										</xsl:when>
-										<xsl:otherwise>
-											<xsl:value-of select="normalize-space(./@LOCATION)" />
-										</xsl:otherwise>
-									</xsl:choose>
-								</xsl:element>
+										</xsl:element>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:element name="p">
+											<xsl:variable name="vacation_location"> 
+								  	  <xsl:value-of select="./@LOCATION" /> 
+											</xsl:variable>
+											<xsl:value-of select="normalize-space($vacation_location)"/> 
+										</xsl:element>
+									</xsl:otherwise>
+								</xsl:choose> 
+
 							</xsl:element>
 						</xsl:for-each>
 					</xsl:element>
@@ -194,7 +204,7 @@
 					function reportMe(e){
 						alert("some message you got there.");
 					}
-					//window.addEventListener("load", reportMe);
+					 window.addEventListener("load", reportMe);
 					 
 				</xsl:element>
 			</xsl:element>

@@ -11,7 +11,7 @@ empty yuppies make foolish guppies
 ]]>
 	</LINK>
 	<THUMBLINK thumbnail_base="./honeymoon/images/greece-thumbs/"><![CDATA[empty]]></THUMBLINK>
-	<PIC URL="acropolis_montage.jpg">
+	<PIC URL="acropolis_montage.jpg" LOCATION="Athens, Greece">
 		<CAPTION>Montage of the Acropolis.
 		
 		Every building constructed      				in Athens has a view of the acropolis.</CAPTION>
@@ -19,19 +19,19 @@ empty yuppies make foolish guppies
 acropolis_montage-t.gif
 		</THUMB>
 	</PIC>
-	<PIC URL="acropolis_theater.jpg">
+	<PIC URL="acropolis_theater.jpg" LOCATION="Athens, Greece">
 		<CAPTION>Every city-state in Greece had it's own acropolis, accompanied by an ampitheater, where people would gather to worship and hear speeches and plays. This is the ampitheater within Athen's famous Acropolis compound. It must have seemed cramped with so many people inside.</CAPTION>
 		<THUMB>
 acropolis_theater-t.gif
 		</THUMB>
 	</PIC>
-	<PIC URL="acropolis_corner.jpg">
+	<PIC URL="acropolis_corner.jpg" LOCATION="Athens, Greece">
 		<CAPTION>Acropolis header background with corner faded</CAPTION>
 		<THUMB>
 acropolis_corner-t.gif
 		</THUMB>
 	</PIC>
-	<PIC URL="acropolis_pan.jpg">
+	<PIC URL="acropolis_pan.jpg" LOCATION="Athens, Greece">
 		<CAPTION>Panoramic of the massive Acropolis, too big to fit in only one picture. From our hotel room.</CAPTION>
 		<THUMB>
 acropolis_pan-t.gif
@@ -315,7 +315,7 @@ grotto_chapel-t.gif
 grotto_view-t.gif
 		</THUMB>
 	</PIC>
-	<PIC URL="gus.jpg" LOCATION="Mycenae- Near the Tomb of Atreus">
+	<PIC URL="gus.jpg" LOCATION="Mycenae, Near the Tomb of Atreus">
 		<CAPTION>A friend from college, and my tour guide to the Argolida Province to see the citadel at Nafplio (the center of the Peloponnese prefectures) and the tomb of Atreus (Treasure of Atreus), along with the acropolis nearby.</CAPTION>
 		<THUMB>
 gus-t.gif
@@ -585,7 +585,7 @@ tender_boat-t.gif
 theater_ephesus-t.gif
 		</THUMB>
 	</PIC>
-	<PIC URL="treasury_atreus.jpg" LOCATION="The Tomb of Atreus, Mycenae">
+	<PIC URL="treasury_atreus.jpg" LOCATION="Mycenae, The Tomb of Atreus">
 		<CAPTION>Day trip to this amazing structure</CAPTION>
 		<THUMB>
 treasury_atreus-t.gif
