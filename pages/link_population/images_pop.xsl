@@ -204,7 +204,7 @@
 					function reportMe(e){
 						alert("some message you got there.");
 					}
-					 window.addEventListener("load", reportMe);
+					// window.addEventListener("load", reportMe);
 					 
 				</xsl:element>
 			</xsl:element>
