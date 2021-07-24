@@ -67,29 +67,34 @@ h6 {
     color: rgba(45, 1, 0, 1);
 }
 .fullsize_display {
-    display: inherit;
+    /* display: inherit; */
     display: flex;
     z-index: 20;
-    background-color: aqua;
+    background-color: rgba(255,255,255,.01);
+    align-items: center;
     justify-content: center;
-    align-content: center;
+    position: fixed;
+    align-self: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 .fullsize_display img {
     max-width: 100%;
     height: auto;
 }
 .fullsize {
-    position: fixed;
-    top: 5vw;
+/*     position: fixed;
+    top: calc(100vh - 97vh);
     left: 5vw;
     right: 5vw;
     display: flex;
-    bottom: 5vw;
+    bottom: calc(100vh - 97vh);
     margin: auto;
-    justify-content: center;
-    background-color: blue; 
+    justify-content: center; 
     max-width: 100%;
-    max-height: fit-content;
+    max-height: fit-content;  */
 }
 .visible {
     opacity: inherit;

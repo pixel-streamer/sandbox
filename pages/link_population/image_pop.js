@@ -1,16 +1,17 @@
 function handleFSClick(e) {
     console.log("handleFSClick");
-    e = e || window.event;
-    var target = e.target || e.srcElement;
-    var fsDisplay = target.parentNode.parentNode;
-    var fsDisplayCSS = fsDisplay.style.cssText;
-    //if (fsDisplayCSS.match("visible"))
-    console.log(fsDisplay,fsDisplayCSS);
-   /*  if (!fsDisplayCSS.match("visible")) {
-        fsDisplayCSS += "hidden";
-    } else if (fsDisplayCSS.match("hidden")) {
-        fsDisplayCSS.replace("hidden", "visible");
-    } */
+    /*   e = e || window.event;
+    var target = e.target || e.srcElement; */
+    var target = document.querySelector("#fsdisplay");
+    /*   var fsDisplay = target.parentNode.parentNode; */
+    var fsDisplay = target;
+    var fsDisplayCSS = fsDisplay.classList;
+
+    if (!fsDisplayCSS.value.match("visible")) {
+        fsDisplayCSS.value += " hidden";
+    } else if (fsDisplayCSS.value.match("hidden")) {
+        fsDisplayCSS.value.replace("hidden", "visible");
+    }
 }
 
 function buildFullSizeDisplay(link_param) {
@@ -20,6 +21,7 @@ function buildFullSizeDisplay(link_param) {
         var docfrag = document.createDocumentFragment();
         var el = document.createElement("div");
         el.setAttribute("class", "fullsize_display");
+        el.setAttribute("id", "fsdisplay");
         var fsContainer = document.createElement("div");
         fsContainer.setAttribute("class", "fullsize");
         el.appendChild(fsContainer);
@@ -34,6 +36,7 @@ function buildFullSizeDisplay(link_param) {
         img.src = link_param;
     } else {
         fsDisplay.innerHTML = "";
+        fsDisplay.setAttribute("class", "fullsize_display");
         var fsContainer2 = document.createElement("div");
         fsContainer2.setAttribute("class", "fullsize");
         fsDisplay.appendChild(fsContainer2);
