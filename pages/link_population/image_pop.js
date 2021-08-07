@@ -63,7 +63,7 @@ function hookUpThumbnails() {
 
     setupMoreCaptions();
 }
-window.addEventListener("load", hookUpThumbnails);
+window.addEventListener("DOMContentLoaded", hookUpThumbnails);
 
 /* 
 Agean Sea, from Aboard the
