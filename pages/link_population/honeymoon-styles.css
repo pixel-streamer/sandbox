@@ -113,8 +113,13 @@ h6 {
     position: relative;
     content: "more...";
     max-width: 3rem;
-    color: red;
+    color: grey;
     border: 1px solid grey;
+    font-size: 75%;
+    padding: 0.25rem;
+    align-self: center;
+    z-index: autoauto;
+    margin: 2px; 
 }
 .short_caption {
     overflow: visible;
