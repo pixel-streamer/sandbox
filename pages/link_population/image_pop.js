@@ -87,7 +87,7 @@ function showWholeCaption(e) {
         console.log("MORE on");
         target.setAttribute("class", "short_caption");
     }
-    else if (target.getAttribute("class", "short_caption")) {
+    if (target.getAttribute("class", "short_caption")) {
         console.log("short ONE");
         target.setAttribute("class", "more_caption");
     }
