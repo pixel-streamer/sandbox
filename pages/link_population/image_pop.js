@@ -72,7 +72,7 @@ Agean Sea, from Aboard the
 function setupMoreCaptions() {
     var allScs = document.querySelectorAll(".short_caption");
     allScs.forEach(function (item, index) {
-        if (item.textContent.length >= 20) {
+        if (item.textContent.length >= 22) {
             item.setAttribute("class", "more_caption");
             item.addEventListener("click", showWholeCaption);
         }
