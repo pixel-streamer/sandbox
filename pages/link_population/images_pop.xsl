@@ -199,6 +199,14 @@
 									</xsl:when>
 									<xsl:otherwise>
 										<xsl:element name="p">
+											<xsl:attribute name="class">
+												<xsl:variable name="caption_class2">
+													<xsl:text>
+														short_caption 
+													</xsl:text>
+												</xsl:variable>
+												<xsl:value-of select="normalize-space($caption_class2)"/>
+											</xsl:attribute>
 											<xsl:variable name="vacation_location">
 												<xsl:value-of select="./@location" />
 											</xsl:variable>
