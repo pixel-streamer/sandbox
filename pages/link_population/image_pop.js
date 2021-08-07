@@ -86,7 +86,7 @@ function showWholeCaption(e) {
 }
 
 function guessLength(param) {
-    if (param.length > 20) {
+    if (param.length > 18) {
         console.log("yes");
     }
 }
