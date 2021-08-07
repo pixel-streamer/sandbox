@@ -127,4 +127,5 @@ h6 {
 }
 .short_caption {
     overflow: visible;
+    border: 2px solid transparent;
 }
