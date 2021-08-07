@@ -186,6 +186,14 @@
 								<xsl:choose>
 									<xsl:when test="normalize-space(./caption) != ''">
 										<xsl:element name="p">
+											<xsl:attribute name="class">
+												<xsl:variable name="caption_class">
+													<xsl:text>
+								short_caption 
+													</xsl:text>
+												</xsl:variable>
+												<xsl:value-of select="normalize-space($caption_class)"/>
+											</xsl:attribute>
 											<xsl:value-of select="normalize-space(./caption)" />
 										</xsl:element>
 									</xsl:when>
@@ -235,13 +243,13 @@
 				</xsl:element>
 				<xsl:element name="script">
 					<xsl:attribute name="src">
-									<xsl:variable name="img_popjs">
-										<xsl:text>
+						<xsl:variable name="img_popjs">
+							<xsl:text>
 								image_pop.js
-										</xsl:text>
-									</xsl:variable>
-									<xsl:value-of select="normalize-space($img_popjs)"/>
-								</xsl:attribute>
+							</xsl:text>
+						</xsl:variable>
+						<xsl:value-of select="normalize-space($img_popjs)"/>
+					</xsl:attribute>
 				</xsl:element>
 			</xsl:element>
 		</xsl:element>
