@@ -107,13 +107,14 @@ h6 {
 .more_caption {
     overflow: hidden;
     max-height: 1rem;
-    display:flex;
+    display: flex;
 }
 .more_caption::after {
     position: relative;
     content: "more...";
     max-width: 3rem;
     color: red;
+    border: 1px solid grey;
 }
 .short_caption {
     overflow: visible;
