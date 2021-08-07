@@ -107,6 +107,8 @@ h6 {
 .more_caption{
     overflow: hidden;
     max-height:1rem;
+}.more_caption::after{
+    content: "more...";
 }
 .short_caption{
     overflow: visible;
