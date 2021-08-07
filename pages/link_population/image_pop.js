@@ -83,12 +83,14 @@ function showWholeCaption(e) {
     e = e || window.event;
     var target = e.target || e.srcElement;
     target.setAttribute("class", "short_caption");
+   /*  try to set up a click without memory leak */
+    if (this != target) {
+        target.addEventListener("click", showWholeCaption);
+    }
 }
 
 function guessLength(param) {
     if (param.length > 18) {
         console.log("yes");
     }
-}
-
-guessLength("Agean Sea, from Aboard the");
+} 
