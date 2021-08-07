@@ -83,18 +83,23 @@ function showWholeCaption(e) {
     /*  set the target to the correct target    */
     e = e || window.event;
     var target = e.target || e.srcElement;
-
+    if (target.getAttribute("class", "more_caption")) {
+        target.setAttribute("class", "short_caption");
+    }
+    if (target.getAttribute("class", "short_caption")) {
+        target.setAttribute("class", "more_caption");
+    }
     /*  try to set up a click without memory leak */
-    switch (true) {
+    /*  switch (true) {
         case target.getAttribute("class", "more_caption"):
             console.log("found my MORE");
-           // target.setAttribute("class", "short_caption");
+           target.setAttribute("class", "short_caption");
             break;
         case target.getAttribute("class", "short_caption"):
             console.log("found my short");
-         //   target.setAttribute("class", "more_caption");
+            target.setAttribute("class", "more_caption");
             break;
-       /*  default:
-            break; */
-    }
+        default:
+            break;
+    } */
 }
