@@ -113,17 +113,14 @@ h6 {
     cursor: pointer;
 }
 .more_caption::after {
-    position: relative;
-    content: "more...";
-    max-width: 3rem;
-    color: grey;
-    border: 1px solid grey;
-    font-size: 75%;
-    padding: 0px 3px;
-    align-self: center;
-    z-index: autoauto;
-    margin: 2px;
-    height: 14px;
+	position: relative;
+	content: "more..."; 
+	color: grey;
+	border: 1px solid grey;
+	font-size: 75%;
+	padding: 0 3px;
+	align-self: center; 
+	height: 14px;
 }
 .short_caption {
     overflow: visible;
