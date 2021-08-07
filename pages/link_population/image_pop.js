@@ -87,9 +87,11 @@ function showWholeCaption(e) {
     /*  try to set up a click without memory leak */
     switch (true) {
         case target.getAttribute("class", "more_caption"):
+            console.log("found my MORE");
             target.setAttribute("class", "short_caption");
             break;
         case target.getAttribute("class", "short_caption"):
+            console.log("found my short");
             target.setAttribute("class", "more_caption");
             break;
        /*  default:
