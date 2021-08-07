@@ -86,15 +86,15 @@ function showWholeCaption(e) {
 
     /*  try to set up a click without memory leak */
     switch (true) {
-        case target.getAttribute("class", "more_caption"):
+        case target.style.classList.match("more_caption"):
             console.log("MORE on");
             target.setAttribute("class", "short_caption");
             break;
-        case target.getAttribute("class", "short_caption"):
+        case target.style.classList.match("short_caption"):
             console.log("short ONE");
             target.setAttribute("class", "more_caption");
             break;
-     /*    default:  console.log("always on");
+        /*    default:  console.log("always on");
             break; */
     }
 }
