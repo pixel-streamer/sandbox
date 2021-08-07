@@ -86,7 +86,7 @@ function showWholeCaption(e) {
     if (target.getAttribute("class", "more_caption")) {
         target.setAttribute("class", "short_caption");
     }
-    if (target.getAttribute("class", "short_caption")) {
+    else if (target.getAttribute("class", "short_caption")) {
         target.setAttribute("class", "more_caption");
     }
     /*  try to set up a click without memory leak */
