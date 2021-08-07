@@ -110,6 +110,7 @@ h6 {
     display: flex;
     box-sizing: border-box;
     border: 2px solid transparent;
+    cursor: pointer;
 }
 .more_caption::after {
     position: relative;
