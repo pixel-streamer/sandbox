@@ -83,14 +83,16 @@ function showWholeCaption(e) {
     /*  set the target to the correct target    */
     e = e || window.event;
     var target = e.target || e.srcElement;
+    var moreReg = /more_caption/gi;
+    var shortReg = /short_caption/gi;
 
     /*  try to set up a click without memory leak */
     switch (true) {
-        case target.classList.value.match("more_caption"):
+        case moreReg.test(target.classList):
             console.log("MORE on");
             target.setAttribute("class", "short_caption");
             break;
-        case target.classList.value.match("short_caption"):
+        case shortReg.test(target.classList):
             console.log("short ONE");
             target.setAttribute("class", "more_caption");
             break;
