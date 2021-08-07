@@ -189,7 +189,7 @@
 											<xsl:attribute name="class">
 												<xsl:variable name="caption_class">
 													<xsl:text>
-								short_caption 
+														short_caption 
 													</xsl:text>
 												</xsl:variable>
 												<xsl:value-of select="normalize-space($caption_class)"/>
