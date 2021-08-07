@@ -106,8 +106,10 @@ h6 {
 }
 .more_caption {
     overflow: hidden;
-    max-height: 1rem;
+    max-height: 20px;
     display: flex;
+    box-sizing: border-box;
+    border: 2px solid transparent;
 }
 .more_caption::after {
     position: relative;
@@ -116,10 +118,11 @@ h6 {
     color: grey;
     border: 1px solid grey;
     font-size: 75%;
-    padding: 0.25rem;
+    padding: 0px 3px;
     align-self: center;
     z-index: autoauto;
-    margin: 2px; 
+    margin: 2px;
+    height: 14px;
 }
 .short_caption {
     overflow: visible;
