@@ -84,9 +84,11 @@ function showWholeCaption(e) {
     e = e || window.event;
     var target = e.target || e.srcElement;
     if (target.getAttribute("class", "more_caption")) {
+        console.log("MORE on");
         target.setAttribute("class", "short_caption");
     }
     else if (target.getAttribute("class", "short_caption")) {
+        console.log("short ONE");
         target.setAttribute("class", "more_caption");
     }
     /*  try to set up a click without memory leak */
