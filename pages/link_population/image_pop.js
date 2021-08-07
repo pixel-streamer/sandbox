@@ -94,7 +94,7 @@ function showWholeCaption(e) {
             console.log("short ONE");
             target.setAttribute("class", "more_caption");
             break;
-        default:  console.log("always on");
-            break;
+     /*    default:  console.log("always on");
+            break; */
     }
 }
