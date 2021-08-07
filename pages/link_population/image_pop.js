@@ -89,14 +89,13 @@ function showWholeCaption(e) {
     /*  try to set up a click without memory leak */
     switch (true) {
         case moreReg.test(target.classList):
-            console.log("MORE on");
             target.setAttribute("class", "short_caption");
             break;
         case shortReg.test(target.classList):
-            console.log("short ONE");
             target.setAttribute("class", "more_caption");
             break;
-        /*    default:  console.log("always on");
-            break; */
+        default:
+            console.log("always on");
+            break;
     }
 }
