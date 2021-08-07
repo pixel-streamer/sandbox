@@ -84,8 +84,8 @@ h6 {
     max-width: 100%;
     height: auto;
 }
-.fullsize {
-/*     position: fixed;
+/* .fullsize {
+    position: fixed;
     top: calc(100vh - 97vh);
     left: 5vw;
     right: 5vw;
@@ -94,8 +94,8 @@ h6 {
     margin: auto;
     justify-content: center; 
     max-width: 100%;
-    max-height: fit-content;  */
-}
+    max-height: fit-content; 
+} */
 .visible {
     opacity: inherit;
     display: inherit;
@@ -103,4 +103,10 @@ h6 {
 .hidden {
     opacity: 0;
     display: none;
+}
+.more_caption{
+    overflow: hidden;
+}
+.short_caption{
+    overflow: visible;
 }
