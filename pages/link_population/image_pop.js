@@ -1,9 +1,6 @@
 function handleFSClick(e) {
     console.log("handleFSClick");
-    /*   e = e || window.event;
-    var target = e.target || e.srcElement; */
     var target = document.querySelector("#fsdisplay");
-    /*   var fsDisplay = target.parentNode.parentNode; */
     var fsDisplay = target;
     var fsDisplayCSS = fsDisplay.classList;
 
@@ -50,7 +47,7 @@ function buildFullSizeDisplay(link_param) {
     }
 }
 function handleThumbClick(e) {
-    /*set the target to the correct target*/
+    /*  set the target to the correct target    */
     e = e || window.event;
     var target = e.target || e.srcElement;
     var targetFullsize = target.parentNode.getAttribute("link");
@@ -63,5 +60,35 @@ function hookUpThumbnails() {
     thumbnails.forEach(function (item, index) {
         item.addEventListener("click", handleThumbClick);
     });
+
+    setupMoreCaptions();
 }
 window.addEventListener("load", hookUpThumbnails);
+
+/* 
+Agean Sea, from Aboard the
+ */
+
+function setupMoreCaptions() {
+    var allScs = document.querySelectorAll(".short_caption");
+    allScs.forEach(function (item, index) {
+        console.log(item.textContent);
+        item.setAttribute("class", "more_caption");
+        item.addEventListener("click", showWholeCaption);
+    });
+}
+
+function showWholeCaption(e) {
+    /*  set the target to the correct target    */
+    e = e || window.event;
+    var target = e.target || e.srcElement;
+    target.setAttribute("class", "short_caption");
+}
+
+function guessLength(param) {
+    if (param.length > 25) {
+        console.log("yes");
+    }
+}
+
+guessLength("Agean Sea, from Aboard the");
