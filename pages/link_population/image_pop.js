@@ -72,9 +72,11 @@ Agean Sea, from Aboard the
 function setupMoreCaptions() {
     var allScs = document.querySelectorAll(".short_caption");
     allScs.forEach(function (item, index) {
-        console.log(item.textContent);
-        item.setAttribute("class", "more_caption");
-        item.addEventListener("click", showWholeCaption);
+        console.log(item.textContent.toString().length > 20);
+       /*  if (item.textContent.toString().length > 20) {
+            item.setAttribute("class", "more_caption");
+            item.addEventListener("click", showWholeCaption);
+        } */
     });
 }
 
@@ -83,7 +85,7 @@ function showWholeCaption(e) {
     e = e || window.event;
     var target = e.target || e.srcElement;
 
-    /*  try to set up a click without memory leak */ 
+    /*  try to set up a click without memory leak */
     switch (true) {
         case target.getAttribute("class", "more_caption"):
             target.setAttribute("class", "short_caption");
@@ -93,11 +95,5 @@ function showWholeCaption(e) {
             break;
         default:
             break;
-    }
-}
-
-function guessLength(param) {
-    if (param.length > 18) {
-        console.log("yes");
     }
 }
