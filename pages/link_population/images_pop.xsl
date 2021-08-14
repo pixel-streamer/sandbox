@@ -58,6 +58,23 @@
 
 				<xsl:element name="meta">
 					<xsl:attribute name="name">
+						<xsl:variable name="keywords">
+							<xsl:text>								keywords 
+							</xsl:text>
+						</xsl:variable>
+						<xsl:value-of select="normalize-space($keywords)"/>
+					</xsl:attribute>
+					<xsl:attribute name="content">
+						<xsl:variable name="keywords_content">
+							<xsl:text>								children's books, children's book illustrators, illustrator, artwork, logos, animation, Corel Painter IX, designs, Lightwave, Computer Generated Artwork, two-dimensional art, 2d Artwork, CG art, art ideas, cartoons, realism, humor, computer graphics, graphics, custom graphics 
+							</xsl:text>
+						</xsl:variable>
+						<xsl:value-of select="normalize-space($keywords_content)"/>
+					</xsl:attribute>
+				</xsl:element>
+
+				<xsl:element name="meta">
+					<xsl:attribute name="name">
 						<xsl:variable name="viewport_name">
 							<xsl:text>								viewport
 							</xsl:text>
