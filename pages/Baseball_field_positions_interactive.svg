@@ -4,6 +4,7 @@
 
 <!-- <svg version="1.0" id="default" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="128px" height="128px" viewBox="0 0 128 128" enable-background="new 0 0 128 128" xml:space="preserve"> -->
 <svg version="1.0" id="default" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="320px" height="240px" viewBox="0 0 320 240" enable-background="new 0 0 320 240" xml:space="default">
+<text xmlns="http://www.w3.org/2000/svg" y="150" x="8.1">demostrates positions for particular gloves.</text>
 		<symbol  id="bases" viewBox="0 -8.1 8.1 8.1">
 			<g>
 				<path fill="#4C4C4C" d="M4-0.7L7.4-4L4-7.4L0.7-4L4-0.7 M4,0L3.7-0.4L0.4-3.7L0-4l0.4-0.4l3.3-3.3L4-8.1l0.4,0.4l3.3,3.3L8.1-4
