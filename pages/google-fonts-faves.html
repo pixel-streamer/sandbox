@@ -7,7 +7,7 @@
     </head>
 
     <body>
-        <h1>My favorite Google Fonts (it takes a bit to load)</h1> 
+        <h1>My favorite Google Fonts (it takes two full seconds to load)</h1> 
         <script>
             /* 
 this will ensure that the fonts used in the games have been added to the manifest, and their font-families (from google) are available
@@ -242,11 +242,11 @@ this will ensure that the fonts used in the games have been added to the manifes
                 headFrag.appendChild(stylesListing);
                 var t = setTimeout(function () {
                     document.head.appendChild(headFrag);
-                }, 1000);
+                }, 2000);
                 document.body.appendChild(docFrag);
 
                 var message=document.createElement("div");
-                message.appendChild(document.createTextNode("you have to remove the type='css' part from the css link to keep the page from using the 'old' cache value of bupkis"))
+                message.appendChild(document.createTextNode("you have to remove the type='css' part from the css link to keep the page from using the 'old' cache value of bupkis."))
                 document.body.appendChild(message);
             }
             window.addEventListener("load", function () {
