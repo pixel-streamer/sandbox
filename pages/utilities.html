@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>RGB to hex</title>
+  </head>
+
+  <body>
+	<div>here are some utilities that I find useful:</div>
+    <h2>
+      Enter in a hex number (with or without the hash mark), and get an rgb
+      result (this conversion ignores opacity). Also, you can swap between the answers in rgb, and hex
+    </h2> 
+    <div>
+      <input id="input" type="text" placeholder="enter here" />
+      <button class="swap_btn">swap inputs</button>
+    </div>
+
+    <div>
+      <input
+        id="output"
+        type="text"
+        style="display: inline"
+        placeholder="output"
+      />
+      <p id="output_block"></p>
+      <button class="enter_hex">enter hex value</button>
+    </div>
+    <div>
+      <h3>output:</h3>
+      <span id="color_output"> </span>
+    </div>
+
+    <script type="text/javascript">
+      function activateInterface() {
+        /*stores configObj info*/
+        var cObj = {};
+        cObj.inputTF = document.getElementById("input");
+        cObj.outputTF = document.getElementById("output");
+        cObj.inputVal = cObj.inputTF.value;
+        cObj.outputVal = cObj.outputTF.value;
+        cObj.inputStr = "";
+        cObj.outputStr = "";
+
+        document
+          .querySelector(".enter_hex")
+          .addEventListener("click", getAnswers);
+        document.querySelector(".swap_btn").addEventListener("click", swapVals);
+        generateBlockInOutput("#450067");
+        return cObj;
+      }
+
+      function swapVals(e) {
+        //console.log("swapped.");
+        swapInput();
+        e.preventDefault();
+      }
+
+      function getAnswers(e) {
+        //console.log("enter_hex.");
+        getResult();
+        e.preventDefault();
+      }
+
+      function swapInput() {
+        //get values
+        configObj.inputVal = configObj.inputTF.value;
+        configObj.outputVal = configObj.outputTF.value;
+        //store values
+        configObj.inputStr = configObj.inputVal;
+        configObj.outputStr = configObj.outputVal;
+        //swap values
+        configObj.inputTF.value = configObj.outputStr;
+        configObj.outputTF.value = configObj.inputStr;
+      }
+
+      function getResult() {
+        //console.log("getResult::: 42");
+        //#2D8ECF
+        configObj.inputVal = configObj.inputTF.value;
+        configObj.outputVal = configObj.outputTF.value;
+        configObj.inputStr = configObj.inputVal;
+        configObj.outputStr = configObj.outputVal;
+
+        configObj.outputTF.value = "";
+
+        if (
+          configObj.inputStr === "" ||
+          configObj.inputStr === "Please input something."
+        ) {
+          configObj.outputTF.value = "Please input something.";
+          return;
+        } else {
+          getColorFromStr(configObj.inputStr);
+        }
+      }
+
+      function outputHexFromRGBStr(rgb2Hex) {
+        /* rgba(69, 0, 103,1); */
+        var tempStr = "";
+        /* for some reason I couldn't do the two operations on the same line? */
+        tempStr = rgb2Hex.substr(rgb2Hex.indexOf("("), rgb2Hex.length);
+        tempStr = tempStr.substr(1, tempStr.lastIndexOf(")") - 1);
+        //convert to array temporarily
+        tempStr = tempStr.split(",");
+
+        var tempRcolorHex = parseInt(tempStr[0].toString(), 10).toString(16);
+        var tempGcolorHex = parseInt(tempStr[1].toString(), 10).toString(16);
+        var tempBcolorHex = parseInt(tempStr[2].toString(), 10).toString(16);
+
+        tempRcolorHex.toString().length < 2
+          ? (tempRcolorHex = "0" + tempRcolorHex)
+          : tempRcolorHex;
+        tempGcolorHex.toString().length < 2
+          ? (tempGcolorHex = "0" + tempGcolorHex)
+          : tempGcolorHex;
+        tempBcolorHex.toString().length < 2
+          ? (tempBcolorHex = "0" + tempBcolorHex)
+          : tempBcolorHex;
+
+        var colorVal = "";
+        colorVal = "#" + tempRcolorHex + tempGcolorHex + tempBcolorHex;
+
+        configObj.outputTF.value = colorVal;
+        configObj.outputVal = configObj.outputTF.value.toUpperCase();
+        configObj.outputStr = configObj.outputVal;
+        //console.log("colorVal: ", colorVal);
+        return colorVal;
+      }
+
+      function outputRGBFromHexStr(hex2RBG) {
+        var colorVal = "";
+        colorVal =
+          "rgba(" +
+          parseInt(hex2RBG.substr(0, 2), 16) +
+          ", " +
+          parseInt(hex2RBG.substr(2, 2), 16) +
+          ", " +
+          parseInt(hex2RBG.substr(4, 2), 16) +
+          ",1);";
+        configObj.outputTF.value = colorVal;
+        configObj.outputVal = configObj.outputTF.value;
+        configObj.outputStr = configObj.outputVal;
+        // console.log(colorVal);
+        return colorVal;
+      }
+
+      function fixShortHex(tempStringer) {
+        var tempStr2;
+        if (tempStringer.length <= 3) {
+          //well, how long is it?
+          if (tempStringer.length < 3) {
+            //console.log(" less than three", tempStringer);
+            tempStringer += "0000";
+          } else {
+            //console.log(" counts three", tempStringer);
+            tempStr2 = tempStringer.toString();
+            tempStringer = tempStringer.split("");
+
+            tempStringer.splice(1, 0, tempStr2.substr(0, 1));
+            tempStringer.splice(2, 0, tempStr2.substr(1, 1));
+            tempStringer.splice(4, 0, tempStr2.substr(2, 1));
+
+            tempStringer = tempStringer.join("");
+            // //console.log(tempStringer);
+          }
+        } else {
+          tempStr2 = tempStringer.toString();
+          tempStringer = tempStringer.split("");
+
+          tempStringer.splice(1, 0, tempStr2.substr(0, 1));
+          tempStringer.splice(2, 0, tempStr2.substr(1, 1));
+          tempStringer.splice(4, 0, tempStr2.substr(2, 1));
+
+          tempStringer = tempStringer.join("");
+        }
+        return tempStringer;
+      }
+
+      function getColorFromStr(inputStr) {
+        //console.log("getColorFromStr");
+        var digitTest = /\D/;
+        // var isNotHex = /[a-f|A-F]|[0-8]/i;
+        var isNotHex = /[g-z|G-Z|9]/i;
+        var tempStringer;
+        var tempStr2;
+        if (inputStr.substring(0, 1) === "#") {
+          //console.log("it's hex.");
+
+          tempStringer = inputStr.substr(inputStr.indexOf("#") + 1);
+          if (tempStringer.length <= 3) {
+            //well, how long is it?
+            if (tempStringer.length < 3) {
+              //console.log(" less than three", tempStringer);
+              tempStringer += "0000";
+            } else {
+              //console.log(" counts three", tempStringer);
+              tempStr2 = tempStringer.toString();
+              tempStringer = tempStringer.split("");
+
+              tempStringer.splice(1, 0, tempStr2.substr(0, 1));
+              tempStringer.splice(2, 0, tempStr2.substr(1, 1));
+              tempStringer.splice(4, 0, tempStr2.substr(2, 1));
+
+              tempStringer = tempStringer.join("");
+              // //console.log(tempStringer);
+            }
+          }
+          generateBlockInOutput(outputRGBFromHexStr(tempStringer));
+        } else if (inputStr.substring(0, 1).toLowerCase() !== "r") {
+          console.log("no hash");
+          console.log("no START r");
+          console.log("isNotHex.test(inputStr)", isNotHex.test(inputStr));
+      //    if (inputStr.substring(0, 1).toLowerCase().match(digitTest)) {
+            //doesn't start with a digit.
+      //      console.log("it's no digit");
+      //    } 
+      //    else {
+            //starts with a digit.
+            if (isNotHex.test(inputStr)) {
+              configObj.outputTF.value = "input digits";
+              configObj.outputVal = configObj.outputTF.value;
+              configObj.outputStr = configObj.outputVal;
+              return;
+            } else {
+              console.log("no isNotHex");
+              generateBlockInOutput(outputRGBFromHexStr(fixShortHex(inputStr)));
+            } 
+      //    }
+        } else if (inputStr.substring(0, 1).toLowerCase() === "r") {
+          /* assume it's rgb, or rgba */
+          //console.log("assume it's rgb, or rgba");
+          /*  var rgbTEST = /^\s{,*?}rgb.*?|^\s*?rgb.*?/i;
+          if (rgbTEST.test(inputStr)) {
+            //console.log("contains rgb");
+          } */
+          generateBlockInOutput(outputHexFromRGBStr(inputStr));
+        }
+      }
+
+      function generateBlockInOutput(colParam) {
+        console.log(":::generateBlockInOutput:::", colParam);
+        if (colParam === undefined) {
+          colParam = "#000";
+        }
+        var outputView = document.getElementById("color_output");
+        outputView.innerHTML = "&#9608;";
+        outputView.style = "font-size:400%; color:" + colParam;
+      }
+
+      var configObj = activateInterface();
+    </script>
+  </body>
+</html>
