@@ -10,6 +10,21 @@
     <h2>
       Enter in a hex number (with or without the hash mark), and get an rgb
       result (this conversion ignores opacity). Also, you can swap between the answers in rgb, and hex
+	  
+	  <!-- TODO: 
+	  figure the color combination of an rbg that isn't one.
+	  
+	  One way:
+	  (1 - opacity[a] ) * 255 = color component to use outright. In a case of grey, or to figure into all the other color components, (r, or g, or b). assuming colors are presented over white, this would neeed adjustment.
+	  
+	  ie: rgba(0,0,0,.125); 
+	  
+		( 1 - .125 ) = .875
+		.875 * 255 =
+		223.125=
+
+		~ rgba(223, 223, 223,1);
+	  -->
     </h2> 
     <div>
       <input id="input" type="text" placeholder="enter here" />
