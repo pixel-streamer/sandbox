@@ -47,7 +47,7 @@
     </div>
 
     <script type="text/javascript">
-      function activateInterface() {
+       function activateInterface() {
         /*stores configObj info*/
         var cObj = {};
         cObj.inputTF = document.getElementById("input");
@@ -162,6 +162,7 @@
 
       function fixShortHex(tempStringer) {
         var tempStr2;
+        var tempStringer=tempStringer.trim();
         if (tempStringer.length <= 3) {
           //well, how long is it?
           if (tempStringer.length < 3) {
@@ -177,7 +178,7 @@
             tempStringer.splice(4, 0, tempStr2.substr(2, 1));
 
             tempStringer = tempStringer.join("");
-             //console.log(tempStringer);
+            // //console.log(tempStringer);
           }
         } else {
           tempStr2 = tempStringer.toString();
@@ -193,6 +194,7 @@
       }
 
       function getColorFromStr(inputStr) {
+        var inputStr=inputStr.trim();
         //console.log("getColorFromStr");
         var digitTest = /\D/;
         // var isNotHex = /[a-f|A-F]|[0-8]/i;
@@ -223,9 +225,9 @@
           }
           generateBlockInOutput(outputRGBFromHexStr(tempStringer));
         } else if (inputStr.substring(0, 1).toLowerCase() !== "r") {
-          //console.log("no hash");
-          //console.log("no START r");
-          //console.log("isNotHex.test(inputStr)", isNotHex.test(inputStr));
+          console.log("no hash");
+          console.log("no START r");
+          console.log("isNotHex.test(inputStr)", isNotHex.test(inputStr));
       //    if (inputStr.substring(0, 1).toLowerCase().match(digitTest)) {
             //doesn't start with a digit.
       //      console.log("it's no digit");
@@ -238,7 +240,7 @@
               configObj.outputStr = configObj.outputVal;
               return;
             } else {
-             // console.log("no isNotHex");
+              console.log("no isNotHex");
               generateBlockInOutput(outputRGBFromHexStr(fixShortHex(inputStr)));
             } 
       //    }
@@ -254,7 +256,7 @@
       }
 
       function generateBlockInOutput(colParam) {
-       // console.log(":::generateBlockInOutput:::", colParam);
+        console.log(":::generateBlockInOutput:::", colParam);
         if (colParam === undefined) {
           colParam = "#000";
         }
