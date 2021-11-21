@@ -175,7 +175,7 @@ this will ensure that the fonts used in the games have been added to the manifes
                     var linkAttrib = "";
                     linkAttrib += "https://fonts.googleapis.com/css?family=";
 
-                    var crushableString = fontFamilyArr.slice().join("@");
+                    var crushableString = fontFamilyArr.sort().slice().join("@");
                     crushableString = crushableString.replaceAll(" ", "+");
                     crushableString = crushableString.split("@").join("|");
 
