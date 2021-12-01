@@ -189,7 +189,7 @@ var acesLow = true;
     <h1>this reports a shuffled deck of cards:</h1>
     <p id="output"></p>
     <p id="megaball_numbers"></p>
-    <script>
+   <script>
       window.addEventListener("load", function () {
         var arr = kShuffle(makeRegularDeck());
         var output = document.querySelector("#output");
@@ -229,28 +229,71 @@ var acesLow = true;
         var megaBallPick = [];
 
         for (var i = 1; i < 71; i++) {
-          arrPick5_70.push(i.toString());
+          arrPick5_70.push(i < 10 ? "0" + i.toString() : i.toString());
         }
 
         for (var j = 1; j < 26; j++) {
-          arrPick1_25.push(j.toString());
+          arrPick1_25.push(j < 10 ? "0" + j.toString() : j.toString());
         }
-        console.log(arrPick5_70);
+      //  console.log(arrPick5_70);
 
-        console.log(arrPick1_25);
+       // console.log(arrPick1_25);
 
         megaPicks = pick5(arrPick5_70).sort();
         megaBallPick = pick1(arrPick1_25).sort();
 
         var output = document.querySelector("#megaball_numbers");
-        var outputPre = document.createElement("pre");
+
+        output.setAttribute(
+          "style",
+          "position:relative;display:flex;flex-wrap:wrap;"
+        );
+        /*    var outputPre = document.createElement("pre");
         var outputText = " pick: ";
         outputText += megaPicks.join("\n pick: ");
         outputText += "\n megaball: " + megaBallPick;
-        outputPre.textContent = outputText;
-        output.appendChild(outputPre);
+        outputPre.textContent = outputText; */
+        megaPicks.forEach(function (mPick) {
+          /*TODO: handle this with canvas elements */
+          var container = document.createElement("div");
+          container.setAttribute("style", "position:relative;");
+          var bg = new Image();
+          bg.setAttribute("style", "position:relative;");
+          var numImg = new Image();
+          bg.addEventListener("load", function () {
+            console.log("got it:" + mPick);
+            numImg.addEventListener("load", function () {
+              numImg.setAttribute("style", "position:absolute;top:0;left:0;");
+              container.appendChild(numImg);
+            });
+            numImg.src = "./lotto-balls-numbers/" + mPick + ".png";
+            container.appendChild(bg);
+            output.appendChild(container);
+          });
+          bg.src = "./lotto-ball-skin.png";
+          //"./lotto-balls-numbers/lotto-ball-skin.png"
+        });
+
+        megaBallPick.forEach(function (megaChoice) {
+          var container = document.createElement("div");
+          container.setAttribute("style", "position:relative;");
+          var bg = new Image();
+          bg.setAttribute("style", "position:relative;");
+          var numImg = new Image();
+          bg.addEventListener("load", function () {
+            numImg.addEventListener("load", function () {
+              numImg.setAttribute("style", "position:absolute;top:0;left:0;");
+              container.appendChild(numImg);
+            });
+            numImg.src = "./lotto-balls-numbers/" + megaChoice + ".png";
+            container.appendChild(bg);
+            output.appendChild(container);
+          });
+          bg.src = "./lotto-ball-skin-colored.png";
+          /*   lotto-ball-skin-colored.png */
+        });
       }
-      console.log(megaDraw());
+      
     </script>
   </body>
 </html>
