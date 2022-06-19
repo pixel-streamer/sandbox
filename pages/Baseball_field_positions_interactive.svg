@@ -3,94 +3,264 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 
 <!-- <svg version="1.0" id="default" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="128px" height="128px" viewBox="0 0 128 128" enable-background="new 0 0 128 128" xml:space="preserve"> -->
-<svg version="1.0" id="default" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="320px" height="240px" viewBox="0 0 320 240" enable-background="new 0 0 320 240" xml:space="default">
-<text xmlns="http://www.w3.org/2000/svg" y="150" x="8.1">demostrates positions for particular gloves.</text>
-		<symbol  id="bases" viewBox="0 -8.1 8.1 8.1">
-			<g>
-				<path fill="#4C4C4C" d="M4-0.7L7.4-4L4-7.4L0.7-4L4-0.7 M4,0L3.7-0.4L0.4-3.7L0-4l0.4-0.4l3.3-3.3L4-8.1l0.4,0.4l3.3,3.3L8.1-4
-					L7.7-3.7L4.4-0.4L4,0L4,0z"/>
-				<polygon fill="#E1EBFF" points="4,-7.4 0.7,-4 4,-0.7 7.4,-4 		"/>
-			</g>
-			<polygon display="none" fill="none" points="-0.5,-0.5 8.5,-0.5 8.5,-7.5 -0.5,-7.5 	"/>
-		</symbol>
-		<symbol  id="field" viewBox="0.3 -62.8 73.6 63">
-			<g>
-				<path fill="#FFFFFF" d="M73.6-26L37.8-62.4L0.6-25c0,0,11.4,25,37.3,25S73.6-26,73.6-26z"/>
-				<path fill="none" stroke="#45484C" stroke-width="0.5" d="M73.6-26L37.8-62.4L0.6-25c0,0,11.4,25,37.3,25S73.6-26,73.6-26z"/>
-			</g>
-			<polygon display="none" fill="none" points="-0.5,-0.5 74.5,-0.5 74.5,-62.5 -0.5,-62.5 	"/>
-		</symbol>
-		<symbol  id="fielding_position" viewBox="-0.5 -8.3 9 8.6">
-			<g>
-				<!--
+<svg version="1.0"
+	id="default"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	x="0px"
+	y="0px"
+	width="320px"
+	height="240px"
+	viewBox="0 0 320 240"
+	enable-background="new 0 0 320 240"
+	xml:space="default">
+	<text xmlns="http://www.w3.org/2000/svg"
+		y="150"
+		x="8.1">demostrates positions for particular gloves.</text>
+	<symbol id="bases"
+		viewBox="0 -8.1 8.1 8.1">
+		<g>
+			<path fill="#4C4C4C"
+				d="M4-0.7L7.4-4L4-7.4L0.7-4L4-0.7 M4,0L3.7-0.4L0.4-3.7L0-4l0.4-0.4l3.3-3.3L4-8.1l0.4,0.4l3.3,3.3L8.1-4
+					L7.7-3.7L4.4-0.4L4,0L4,0z" />
+			<polygon fill="#E1EBFF"
+				points="4,-7.4 0.7,-4 4,-0.7 7.4,-4 		" />
+		</g>
+		<polygon display="none"
+			fill="none"
+			points="-0.5,-0.5 8.5,-0.5 8.5,-7.5 -0.5,-7.5 	" />
+	</symbol>
+	<symbol id="field"
+		viewBox="0.3 -62.8 73.6 63">
+		<g>
+			<path fill="#FFFFFF"
+				d="M73.6-26L37.8-62.4L0.6-25c0,0,11.4,25,37.3,25S73.6-26,73.6-26z" />
+			<path fill="none"
+				stroke="#45484C"
+				stroke-width="0.5"
+				d="M73.6-26L37.8-62.4L0.6-25c0,0,11.4,25,37.3,25S73.6-26,73.6-26z" />
+		</g>
+		<polygon display="none"
+			fill="none"
+			points="-0.5,-0.5 74.5,-0.5 74.5,-62.5 -0.5,-62.5 	" />
+	</symbol>
+	<symbol id="fielding_position"
+		viewBox="-0.5 -8.3 9 8.6">
+		<g>
+			<!--
 				<path fill="#FF0000" stroke="#45484C" d="M7.3-4c0-1.8-1.5-3.3-3.3-3.3C2.2-7.3,0.7-5.8,0.7-4c0,1.8,1.5,3.3,3.3,3.3C5.8-0.7,7.3-2.2,7.3-4z"/>
 				-->
-				<path d="M7.3-4c0-1.8-1.5-3.3-3.3-3.3C2.2-7.3,0.7-5.8,0.7-4c0,1.8,1.5,3.3,3.3,3.3C5.8-0.7,7.3-2.2,7.3-4z"/>
-			</g>
-			
-		</symbol>
-		<symbol  id="home_plate_1_" viewBox="-4 -3.7 7.9 7.5">
-			<g id="bases_1_">
-				<g>
-					<path fill="#45484C" d="M3.5,3.2v-3.3L0-3.1l-3.5,3v3.3H3.5 M4,3.7H3.5h-6.9H-4V3.2v-3.3v-0.2l0.2-0.1l3.5-3L0-3.7l0.3,0.3l3.5,3
-						L4-0.3v0.2v3.3V3.7L4,3.7z"/>
-					<polygon fill="#DFE9FF" points="3.5,3.2 3.5,-0.1 0,-3.1 -3.5,-0.1 -3.5,3.2"/>
-				</g>
-			</g>
-		</symbol>
-		<symbol  id="infield" viewBox="-0.7 -40.7 41.4 41.4">
-			<g>
-				<polygon fill="none" stroke="#4C4C4C" points="20,-40 0,-20 20,0 40,-20"/>
-				<polygon fill="#E3ECFF" points="20,-40 0,-20 20,0 40,-20"/>
-			</g>
-			<polygon display="none" fill="none" points="-1.5,0.5 41.5,0.5 41.5,-40.5 -1.5,-40.5"/>
-		</symbol>
-		<symbol  id="mound" viewBox="-7.5 -1.5 15 2.7">
-			<g>
-				<path fill="none" d="M6.8-1.2C6.3,0.2,3.5,1.2,0,1.2s-6.3-1-6.8-2.4H6.8z"/>
-			</g>
-			<polygon display="none" fill="none" points="-7.5,0.5 7.5,0.5 7.5,-1.5 -7.5,-1.5"/>
-		</symbol>
-		<symbol  id="pitchers_rubber_1_" viewBox="-0.5 -1.5 4 1">
-			<polygon fill="none" points="3.5,-1.5 -0.5,-1.5 -0.5,-0.5 3.5,-0.5"/>
-			<polygon display="none" fill="none" points="-0.5,-0.5 3.5,-0.5 3.5,-1.5 -0.5,-1.5"/>
-		</symbol>
-		<g id="whole_field">			
-				<use xlink:href="#field"  width="73.6" height="63" id="XMLID_2_" x="0.3" y="-62.8" transform="matrix(1.6825 0 0 -1.6825 2.1255 14.5703)" overflow="visible"/>
-			
-				<use xlink:href="#infield"  width="41.4" height="41.4" x="-0.7" y="-40.7" transform="matrix(1.711 0 0 -1.711 31.2275 45.251)" overflow="visible"/>
-			
-				<use xlink:href="#bases"  width="8.1" height="8.1" y="-8.1" transform="matrix(1.711 0 0 -1.711 87.6919 72.6289)" overflow="visible"/>
-			
-				<use xlink:href="#bases"  width="8.1" height="8.1" y="-8.1" transform="matrix(1.711 0 0 -1.711 29.5156 72.6289)" overflow="visible"/>
-			
-				<use xlink:href="#mound"  width="15" height="2.7" x="-7.5" y="-1.5" transform="matrix(1.711 0 0 -1.711 65.4487 79.4717)" overflow="visible"/>
-			
-				<use xlink:href="#pitchers_rubber_1_"  width="4" height="1" id="pitchers_rubber" x="-0.5" y="-1.5" transform="matrix(1.711 0 0 -1.711 62.7368 77.7617)" overflow="visible"/>
-			
-				<use xlink:href="#home_plate_1_"  width="7.9" height="7.5" id="home_plate" x="-4" y="-3.7" transform="matrix(1.711 0 0 -1.711 65.3149 109.0977)" overflow="visible"/>
-			
-				<use xlink:href="#bases"  width="8.1" height="8.1" y="-8.1" transform="matrix(1.711 0 0 -1.711 58.604 43.541)" overflow="visible"/>
+			<path d="M7.3-4c0-1.8-1.5-3.3-3.3-3.3C2.2-7.3,0.7-5.8,0.7-4c0,1.8,1.5,3.3,3.3,3.3C5.8-0.7,7.3-2.2,7.3-4z" />
 		</g>
-		<use xlink:href="#fielding_position"  width="9" height="8.6" id="pitcher" x="-0.5" y="-8.3" transform="matrix(1.711 0 0 -1.711 58.604 66.0742)" overflow="visible"/>
-		<use xlink:href="#fielding_position"  width="9" height="8.6" id="catcher" x="-0.5" y="-8.3" transform="matrix(1.711 0 0 -1.711 58.604 96.584)" overflow="visible"/>
-		<use xlink:href="#fielding_position"  width="9" height="8.6" id="first_base" x="-0.5" y="-8.3" transform="matrix(1.711 0 0 -1.711 89.4023 65.7842)" overflow="visible"/>
-		<use xlink:href="#fielding_position"  width="9" height="8.6" id="third_base" x="-0.5" y="-8.3" transform="matrix(1.711 0 0 -1.711 27.8052 65.7842)" overflow="visible"/>
-		<use xlink:href="#fielding_position"  width="9" height="8.6" id="second_base" x="-0.5" y="-8.3" transform="matrix(1.711 0 0 -1.711 74.0039 48.6738)" overflow="visible"/>
-		<use xlink:href="#fielding_position"  width="9" height="8.6" id="short_stop" x="-0.5" y="-8.3" transform="matrix(1.711 0 0 -1.711 43.2046 50.3848)" overflow="visible"/>
-		<use xlink:href="#fielding_position"  width="9" height="8.6" id="left_field" x="-0.5" y="-8.3" transform="matrix(1.711 0 0 -1.711 26.0942 34.9863)" overflow="visible"/>
-		<use xlink:href="#fielding_position"  width="9" height="8.6" id="center_field" x="-0.5" y="-8.3" transform="matrix(1.711 0 0 -1.711 58.604 21.2979)" overflow="visible"/>
-		<use xlink:href="#fielding_position"  width="9" height="8.6" id="right_field" x="-0.5" y="-8.3" transform="matrix(1.711 0 0 -1.711 89.4023 36.6963)" overflow="visible"/>
 
-<g id="cycle_positions_button" transform="matrix(1 0 0 1 0 45)">
-	<rect x="100" y="55" height="32" width="150" style="stroke:#006600; fill: #00cc00"/>	
-	<text font-family="Arial" font-size="14" x="128" y="75" style="stroke: none; fill: #FFFFFF;">Cycle Positions</text>
-</g>
+	</symbol>
+	<symbol id="home_plate_1_"
+		viewBox="-4 -3.7 7.9 7.5">
+		<g id="bases_1_">
+			<g>
+				<path fill="#45484C"
+					d="M3.5,3.2v-3.3L0-3.1l-3.5,3v3.3H3.5 M4,3.7H3.5h-6.9H-4V3.2v-3.3v-0.2l0.2-0.1l3.5-3L0-3.7l0.3,0.3l3.5,3
+						L4-0.3v0.2v3.3V3.7L4,3.7z" />
+				<polygon fill="#DFE9FF"
+					points="3.5,3.2 3.5,-0.1 0,-3.1 -3.5,-0.1 -3.5,3.2" />
+			</g>
+		</g>
+	</symbol>
+	<symbol id="infield"
+		viewBox="-0.7 -40.7 41.4 41.4">
+		<g>
+			<polygon fill="none"
+				stroke="#4C4C4C"
+				points="20,-40 0,-20 20,0 40,-20" />
+			<polygon fill="#E3ECFF"
+				points="20,-40 0,-20 20,0 40,-20" />
+		</g>
+		<polygon display="none"
+			fill="none"
+			points="-1.5,0.5 41.5,0.5 41.5,-40.5 -1.5,-40.5" />
+	</symbol>
+	<symbol id="mound"
+		viewBox="-7.5 -1.5 15 2.7">
+		<g>
+			<path fill="none"
+				d="M6.8-1.2C6.3,0.2,3.5,1.2,0,1.2s-6.3-1-6.8-2.4H6.8z" />
+		</g>
+		<polygon display="none"
+			fill="none"
+			points="-7.5,0.5 7.5,0.5 7.5,-1.5 -7.5,-1.5" />
+	</symbol>
+	<symbol id="pitchers_rubber_1_"
+		viewBox="-0.5 -1.5 4 1">
+		<polygon fill="none"
+			points="3.5,-1.5 -0.5,-1.5 -0.5,-0.5 3.5,-0.5" />
+		<polygon display="none"
+			fill="none"
+			points="-0.5,-0.5 3.5,-0.5 3.5,-1.5 -0.5,-1.5" />
+	</symbol>
+	<g id="whole_field">
+		<use xlink:href="#field"
+			width="73.6"
+			height="63"
+			id="XMLID_2_"
+			x="0.3"
+			y="-62.8"
+			transform="matrix(1.6825 0 0 -1.6825 2.1255 14.5703)"
+			overflow="visible" />
 
-<text id="current_position_configuration_readout" x="115" y="85" font-family="Arial" font-size="15" style="stroke: none; fill: #000000; text-align:center;">configuration:</text>
-	
-	
-	<script language="javascript" type="text/javascript">
+		<use xlink:href="#infield"
+			width="41.4"
+			height="41.4"
+			x="-0.7"
+			y="-40.7"
+			transform="matrix(1.711 0 0 -1.711 31.2275 45.251)"
+			overflow="visible" />
+
+		<use xlink:href="#bases"
+			width="8.1"
+			height="8.1"
+			y="-8.1"
+			transform="matrix(1.711 0 0 -1.711 87.6919 72.6289)"
+			overflow="visible" />
+
+		<use xlink:href="#bases"
+			width="8.1"
+			height="8.1"
+			y="-8.1"
+			transform="matrix(1.711 0 0 -1.711 29.5156 72.6289)"
+			overflow="visible" />
+
+		<use xlink:href="#mound"
+			width="15"
+			height="2.7"
+			x="-7.5"
+			y="-1.5"
+			transform="matrix(1.711 0 0 -1.711 65.4487 79.4717)"
+			overflow="visible" />
+
+		<use xlink:href="#pitchers_rubber_1_"
+			width="4"
+			height="1"
+			id="pitchers_rubber"
+			x="-0.5"
+			y="-1.5"
+			transform="matrix(1.711 0 0 -1.711 62.7368 77.7617)"
+			overflow="visible" />
+
+		<use xlink:href="#home_plate_1_"
+			width="7.9"
+			height="7.5"
+			id="home_plate"
+			x="-4"
+			y="-3.7"
+			transform="matrix(1.711 0 0 -1.711 65.3149 109.0977)"
+			overflow="visible" />
+
+		<use xlink:href="#bases"
+			width="8.1"
+			height="8.1"
+			y="-8.1"
+			transform="matrix(1.711 0 0 -1.711 58.604 43.541)"
+			overflow="visible" />
+	</g>
+	<use xlink:href="#fielding_position"
+		width="9"
+		height="8.6"
+		id="pitcher"
+		x="-0.5"
+		y="-8.3"
+		transform="matrix(1.711 0 0 -1.711 58.604 66.0742)"
+		overflow="visible" />
+	<use xlink:href="#fielding_position"
+		width="9"
+		height="8.6"
+		id="catcher"
+		x="-0.5"
+		y="-8.3"
+		transform="matrix(1.711 0 0 -1.711 58.604 96.584)"
+		overflow="visible" />
+	<use xlink:href="#fielding_position"
+		width="9"
+		height="8.6"
+		id="first_base"
+		x="-0.5"
+		y="-8.3"
+		transform="matrix(1.711 0 0 -1.711 89.4023 65.7842)"
+		overflow="visible" />
+	<use xlink:href="#fielding_position"
+		width="9"
+		height="8.6"
+		id="third_base"
+		x="-0.5"
+		y="-8.3"
+		transform="matrix(1.711 0 0 -1.711 27.8052 65.7842)"
+		overflow="visible" />
+	<use xlink:href="#fielding_position"
+		width="9"
+		height="8.6"
+		id="second_base"
+		x="-0.5"
+		y="-8.3"
+		transform="matrix(1.711 0 0 -1.711 74.0039 48.6738)"
+		overflow="visible" />
+	<use xlink:href="#fielding_position"
+		width="9"
+		height="8.6"
+		id="short_stop"
+		x="-0.5"
+		y="-8.3"
+		transform="matrix(1.711 0 0 -1.711 43.2046 50.3848)"
+		overflow="visible" />
+	<use xlink:href="#fielding_position"
+		width="9"
+		height="8.6"
+		id="left_field"
+		x="-0.5"
+		y="-8.3"
+		transform="matrix(1.711 0 0 -1.711 26.0942 34.9863)"
+		overflow="visible" />
+	<use xlink:href="#fielding_position"
+		width="9"
+		height="8.6"
+		id="center_field"
+		x="-0.5"
+		y="-8.3"
+		transform="matrix(1.711 0 0 -1.711 58.604 21.2979)"
+		overflow="visible" />
+	<use xlink:href="#fielding_position"
+		width="9"
+		height="8.6"
+		id="right_field"
+		x="-0.5"
+		y="-8.3"
+		transform="matrix(1.711 0 0 -1.711 89.4023 36.6963)"
+		overflow="visible" />
+
+	<g id="cycle_positions_button"
+		transform="matrix(1 0 0 1 0 45)">
+		<rect x="100"
+			y="55"
+			height="32"
+			width="150"
+			style="stroke:#006600; fill: #00cc00" />
+		<text font-family="Arial"
+			font-size="14"
+			x="128"
+			y="75"
+			style="stroke: none; fill: #FFFFFF;">Cycle Positions</text>
+	</g>
+
+	<text id="current_position_configuration_readout"
+		x="115"
+		y="85"
+		font-family="Arial"
+		font-size="15"
+		style="stroke: none; fill: #000000; text-align:center;">configuration:</text>
+
+
+	<script
+		language="javascript"
+		type="text/javascript"
+	>
 		<![CDATA[
 		var btn;		//defined later
 		var readout;	//defined later

@@ -3,17 +3,17 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>My Favorite Google Fonts- Nov '20- updated 10/10/2021</title> 
+        <title>My Favorite Google Fonts- Nov '20- updated 10/10/2021</title>
     </head>
 
     <body>
-        <h1>My favorite Google Fonts (it takes two full seconds to load)</h1> 
+        <h1>My favorite Google Fonts (it takes two full seconds to load)</h1>
         <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic"> -->
         <script>
-            /* 
+/* 
 this will ensure that the fonts used in the games have been added to the manifest, and their font-families (from google) are available
 */
-            /*
+/*
 -- correct google font inclusion
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine" type="text/css">
 */
@@ -155,14 +155,14 @@ this will ensure that the fonts used in the games have been added to the manifes
                     "Cormorant Unicase",
                     "Rhodium Libre",
                     "Black And White Picture",
-					"Poppins",
+                    "Poppins",
                 ];
 
                 var headFrag = document.createDocumentFragment();
                 var docFrag = document.createDocumentFragment();
                 var stylesListing = document.createElement("style");
 
-                /*  var fontFamilyArr = [
+/*  var fontFamilyArr = [
     "Tangerine",
     "Special Elite",
     "Alfa Slab One",
@@ -176,13 +176,16 @@ this will ensure that the fonts used in the games have been added to the manifes
                     var linkAttrib = "";
                     linkAttrib += "https://fonts.googleapis.com/css?family=";
 
-                    var crushableString = fontFamilyArr.sort().slice().join("@");
+                    var crushableString = fontFamilyArr
+                        .sort()
+                        .slice()
+                        .join("@");
                     crushableString = crushableString.replaceAll(" ", "+");
                     crushableString = crushableString.split("@").join("|");
 
                     linkAttrib += crushableString;
                     link.setAttribute("href", linkAttrib);
-                   /*  link.setAttribute("type", "css"); */
+                    /*  link.setAttribute("type", "css"); */
                     headFrag.appendChild(link);
                     fontFamilyArr.forEach((element, index) => {
                         var stylesListingText = "";
@@ -247,8 +250,12 @@ this will ensure that the fonts used in the games have been added to the manifes
                 }, 2000);
                 document.body.appendChild(docFrag);
 
-                var message=document.createElement("div");
-                message.appendChild(document.createTextNode("you have to remove the type='css' part from the css link to keep the page from using the 'old' cache value of bupkis."))
+                var message = document.createElement("div");
+                message.appendChild(
+                    document.createTextNode(
+                        "you have to remove the type='css' part from the css link to keep the page from using the 'old' cached value of bupkis."
+                    )
+                );
                 document.body.appendChild(message);
             }
             window.addEventListener("load", function () {
