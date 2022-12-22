@@ -69,8 +69,8 @@ function initCollection(param) {
 
 function initGUI() {
   //  initPaginationGUI();  
-  // initCollection("#3d_renders");
-   initCollection("#gif_animations");
+    initCollection("#3d_renders");
+  // initCollection("#gif_animations");
 }
 
 function renderEltoDom(ELkind, ELtext, ELcontainer, hook) {
