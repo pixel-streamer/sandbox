@@ -68,9 +68,10 @@ function initCollection(param) {
 }
 
 function initGUI() {
-  //  initPaginationGUI();  
-    initCollection("#3d_renders");
-  // initCollection("#gif_animations");
+    //  initPaginationGUI();
+    // initCollection("#3d_renders");
+    initCollection("#3d_renders, #gif_animations");
+    //initCollection("#gif_animations");
 }
 
 function renderEltoDom(ELkind, ELtext, ELcontainer, hook) {
