@@ -142,7 +142,7 @@ table {
  */
 body {
     font: normal normal 100%/125% sans-serif;
-    font-family: "Nunito", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Nunito", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
     background: #a49d9b;
     min-width: 350px;
     height: 100%;
