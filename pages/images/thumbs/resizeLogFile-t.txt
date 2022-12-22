@@ -1,0 +1,1168 @@
+RESIZING IMAGES TO 700 x 700 pixels
+docFilePath: ~/Desktop/resize/output
+
+ 
+file: 55064.jpg
+original dimensions: 366,555
+new dimensions: 164.864864864865,250
+resized to: 700,700
+
+ 
+file: aerospace.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: after_rembrandt-450.jpg
+original dimensions: 344,450
+new dimensions: 191.111111111111,250
+resized to: 700,700
+
+ 
+file: a_0420.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: band.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: barber.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: basket_ball.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: bass-fish.jpg
+original dimensions: 256,252
+new dimensions: 250,246.09375
+resized to: 700,700
+
+ 
+file: bass.gif
+original dimensions: 965,1629
+new dimensions: 148.096992019644,250
+resized to: 700,700
+
+ 
+file: bassdude.jpg
+original dimensions: 371,480
+new dimensions: 193.229166666667,250
+resized to: 700,700
+
+ 
+file: basstemp.png
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: batmanscan.jpg
+original dimensions: 1010,1165
+new dimensions: 216.738197424893,250
+resized to: 700,700
+
+ 
+file: bed.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: bike.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: binmove.gif
+original dimensions: 78,27
+new dimensions: 250,86.5384615384615
+resized to: 196,25
+
+ 
+file: binocular.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: blue.jpg
+original dimensions: 128,128
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: bluestone.jpg
+original dimensions: 150,150
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: bonnie.jpg
+original dimensions: 350,334
+new dimensions: 250,238.571428571429
+resized to: 700,700
+
+ 
+file: bottle.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: bow0001.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: box-blue.gif
+original dimensions: 198,259
+new dimensions: 191.119691119691,250
+resized to: 700,700
+
+ 
+file: box-brown.gif
+original dimensions: 198,259
+new dimensions: 191.119691119691,250
+resized to: 700,700
+
+ 
+file: box-green.gif
+original dimensions: 198,259
+new dimensions: 191.119691119691,250
+resized to: 700,700
+
+ 
+file: box-purp.gif
+original dimensions: 198,259
+new dimensions: 191.119691119691,250
+resized to: 700,700
+
+ 
+file: bronze.jpg
+original dimensions: 150,150
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: brtiles.gif
+original dimensions: 66,86
+new dimensions: 191.860465116279,250
+resized to: 700,700
+
+ 
+file: brushed.jpg
+original dimensions: 150,150
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: caduceus.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: card.jpg
+original dimensions: 400,474
+new dimensions: 210.970464135021,250
+resized to: 700,700
+
+ 
+file: cardgrb.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: cardrgb.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: cartemp.png
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: cbass.jpg
+original dimensions: 483,815
+new dimensions: 148.159509202454,250
+resized to: 700,700
+
+ 
+file: cc-icons-snap.jpg
+original dimensions: 773,738
+new dimensions: 250,238.680465717982
+resized to: 700,700
+
+ 
+file: cc_2003_sshot.jpg
+original dimensions: 880,680
+new dimensions: 250,193.181818181818
+resized to: 700,700
+
+ 
+file: cdevil.jpg
+original dimensions: 514,772
+new dimensions: 166.450777202073,250
+resized to: 700,700
+
+ 
+file: cdrums.jpg
+original dimensions: 537,770
+new dimensions: 174.350649350649,250
+resized to: 700,700
+
+ 
+file: chess-pieces.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: child-img.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: child-img1.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: chr1temp.png
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: chr2temp.png
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: cjohnny.jpg
+original dimensions: 514,770
+new dimensions: 166.883116883117,250
+resized to: 700,700
+
+ 
+file: cjohnny2.jpg
+original dimensions: 532,772
+new dimensions: 172.279792746114,250
+resized to: 700,700
+
+ 
+file: configuration_headersmall.jpg
+original dimensions: 49,49
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: configuration_watermarksmall.jpg
+original dimensions: 164,314
+new dimensions: 130.573248407643,250
+resized to: 700,700
+
+ 
+file: cop-splash.jpg
+original dimensions: 462,322
+new dimensions: 250,174.242424242424
+resized to: 700,700
+
+ 
+file: coppox.jpg
+original dimensions: 350,350
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: cover.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: crackle.jpg
+original dimensions: 150,150
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: crap.jpg
+original dimensions: 230,600
+new dimensions: 95.8333333333333,250
+resized to: 700,700
+
+ 
+file: crhythm.jpg
+original dimensions: 537,743
+new dimensions: 180.686406460296,250
+resized to: 700,700
+
+ 
+file: czarina_angel-origin.jpg
+original dimensions: 320,480
+new dimensions: 166.666666666667,250
+resized to: 700,700
+
+ 
+file: czarina_angel-wings.jpg
+original dimensions: 320,480
+new dimensions: 166.666666666667,250
+resized to: 700,700
+
+ 
+file: devil.jpg
+original dimensions: 957,574
+new dimensions: 250,149.947753396029
+resized to: 700,700
+
+ 
+file: devilhed.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: devl.gif
+original dimensions: 1105,1618
+new dimensions: 170.735475896168,250
+resized to: 700,700
+
+ 
+file: devlpoint.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: devltemp.png
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: dirty.jpg
+original dimensions: 320,240
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: dragon.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: drawing.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: drumcrop.gif
+original dimensions: 372,320
+new dimensions: 250,215.05376344086
+resized to: 700,700
+
+ 
+file: drummergirl.jpg
+original dimensions: 274,480
+new dimensions: 142.708333333333,250
+resized to: 700,700
+
+ 
+file: drums.gif
+original dimensions: 1074,1539
+new dimensions: 174.463937621832,250
+resized to: 700,700
+
+ 
+file: drumtemp.png
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: dsc-critical.jpg
+original dimensions: 64,96
+new dimensions: 166.666666666667,250
+resized to: 700,700
+
+ 
+file: dsc-danger.jpg
+original dimensions: 64,96
+new dimensions: 166.666666666667,250
+resized to: 700,700
+
+ 
+file: dsc-explosive.jpg
+original dimensions: 64,96
+new dimensions: 166.666666666667,250
+resized to: 700,700
+
+ 
+file: dsc-ok.jpg
+original dimensions: 64,96
+new dimensions: 166.666666666667,250
+resized to: 700,700
+
+ 
+file: dsc-warning.jpg
+original dimensions: 64,96
+new dimensions: 166.666666666667,250
+resized to: 700,700
+
+ 
+file: duck.jpg
+original dimensions: 240,320
+new dimensions: 187.5,250
+resized to: 700,700
+
+ 
+file: dvd-tracker.jpg
+original dimensions: 420,340
+new dimensions: 250,202.380952380952
+resized to: 700,700
+
+ 
+file: dwarf.jpg
+original dimensions: 444,478
+new dimensions: 232.217573221757,250
+resized to: 700,700
+
+ 
+file: easter.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: endold.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: evildude.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: firey.jpg
+original dimensions: 150,150
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: flatulent_gator_flat_bak.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: flat_home_page_build_team_cropped.png
+original dimensions: 208,161
+new dimensions: 250,193.509615384615
+resized to: 243,190
+
+ 
+file: flat_home_page_clearcase_cropped.png
+original dimensions: 208,161
+new dimensions: 250,193.509615384615
+resized to: 243,190
+
+ 
+file: flat_home_page_clearquest_cropped.png
+original dimensions: 208,161
+new dimensions: 250,193.509615384615
+resized to: 243,190
+
+ 
+file: flat_home_page_ui-Graphics_cropped.png
+original dimensions: 208,161
+new dimensions: 250,193.509615384615
+resized to: 243,190
+
+ 
+file: frogcol.gif
+original dimensions: 216,152
+new dimensions: 250,175.925925925926
+resized to: 700,700
+
+ 
+file: gnomescuplture.jpg
+original dimensions: 343,600
+new dimensions: 142.916666666667,250
+resized to: 700,700
+
+ 
+file: goldstar.gif
+original dimensions: 43,41
+new dimensions: 250,238.372093023256
+resized to: 215,196
+
+ 
+file: halloween.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: haphalloween.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: hapshot.gif
+original dimensions: 50,50
+new dimensions: 250,250
+resized to: 250,250
+
+ 
+file: heron.jpg
+original dimensions: 256,252
+new dimensions: 250,246.09375
+resized to: 700,700
+
+ 
+file: housecl.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: houstemp.png
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: ice.jpg
+original dimensions: 150,150
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: icey.jpg
+original dimensions: 150,150
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: illbet.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: jar.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: jedifrog.jpg
+original dimensions: 640,473
+new dimensions: 250,184.765625
+resized to: 700,700
+
+ 
+file: jeeves-splash.jpg
+original dimensions: 462,322
+new dimensions: 250,174.242424242424
+resized to: 700,700
+
+ 
+file: jeeves_alt-splash.jpg
+original dimensions: 462,322
+new dimensions: 250,174.242424242424
+resized to: 700,700
+
+ 
+file: jimi.jpg
+original dimensions: 182,220
+new dimensions: 206.818181818182,250
+resized to: 700,700
+
+ 
+file: johnny.gif
+original dimensions: 1028,1539
+new dimensions: 166.991552956465,250
+resized to: 700,700
+
+ 
+file: johnny.jpg
+original dimensions: 375,480
+new dimensions: 195.3125,250
+resized to: 700,700
+
+ 
+file: johnny02.gif
+original dimensions: 1064,1544
+new dimensions: 172.279792746114,250
+resized to: 700,700
+
+ 
+file: johnny2.jpg
+original dimensions: 375,480
+new dimensions: 195.3125,250
+resized to: 700,700
+
+ 
+file: johntemp.png
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: johny.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: katherines_dead.jpg
+original dimensions: 621,480
+new dimensions: 250,193.236714975845
+resized to: 700,700
+
+ 
+file: lady.jpg
+original dimensions: 512,640
+new dimensions: 200,250
+resized to: 700,700
+
+ 
+file: larry.jpg
+original dimensions: 270,480
+new dimensions: 140.625,250
+resized to: 700,700
+
+ 
+file: ldevtemp.png
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: lilcard.gif
+original dimensions: 121,162
+new dimensions: 186.728395061728,250
+resized to: 700,700
+
+ 
+file: louie.jpg
+original dimensions: 353,480
+new dimensions: 183.854166666667,250
+resized to: 700,700
+
+ 
+file: magic.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: making_toys2.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: math_wiz.jpg
+original dimensions: 640,576
+new dimensions: 250,225
+resized to: 700,700
+
+ 
+file: mboxmove.gif
+original dimensions: 88,135
+new dimensions: 162.962962962963,250
+resized to: 161,235
+
+ 
+file: moesmall.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: moscwall.gif
+original dimensions: 150,76
+new dimensions: 250,126.666666666667
+resized to: 700,700
+
+ 
+file: mossy.jpg
+original dimensions: 150,150
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: new-ball-d.gif
+original dimensions: 48,38
+new dimensions: 250,197.916666666667
+resized to: 240,151
+
+ 
+file: new-ball.gif
+original dimensions: 48,26
+new dimensions: 250,135.416666666667
+resized to: 240,71
+
+ 
+file: new_puppy.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: new_rot.gif
+original dimensions: 25,20
+new dimensions: 250,200
+resized to: 125,80
+
+ 
+file: openinter.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: openshot.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: page03-cc.jpg
+original dimensions: 612,792
+new dimensions: 193.181818181818,250
+resized to: 700,700
+
+ 
+file: parrtpap.jpg
+original dimensions: 620,530
+new dimensions: 250,213.709677419355
+resized to: 700,700
+
+ 
+file: pa_blue.jpg
+original dimensions: 612,648
+new dimensions: 236.111111111111,250
+resized to: 700,700
+
+ 
+file: pa_brown.jpg
+original dimensions: 864,864
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: pa_green.jpg
+original dimensions: 612,614
+new dimensions: 249.185667752443,250
+resized to: 700,700
+
+ 
+file: pa_green_logo.jpg
+original dimensions: 504,612
+new dimensions: 205.882352941176,250
+resized to: 700,700
+
+ 
+file: pa_purple.jpg
+original dimensions: 612,614
+new dimensions: 249.185667752443,250
+resized to: 700,700
+
+ 
+file: pencil.jpg
+original dimensions: 455,287
+new dimensions: 250,157.692307692308
+resized to: 700,700
+
+ 
+file: pencils.jpg
+original dimensions: 1024,768
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: pickles.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: planes.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: planet_bak.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: pointdtl.jpg
+original dimensions: 240,146
+new dimensions: 250,152.083333333333
+resized to: 700,700
+
+ 
+file: pointing.jpg
+original dimensions: 180,240
+new dimensions: 187.5,250
+resized to: 700,700
+
+ 
+file: pwrpnt_1.jpg
+original dimensions: 768,360
+new dimensions: 250,117.1875
+resized to: 700,700
+
+ 
+file: pwrpnt_2.jpg
+original dimensions: 768,360
+new dimensions: 250,117.1875
+resized to: 700,700
+
+ 
+file: pwrpnt_3.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: queryengine_headersmall.jpg
+original dimensions: 49,49
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: queryengine_watermarksmall.jpg
+original dimensions: 164,314
+new dimensions: 130.573248407643,250
+resized to: 700,700
+
+ 
+file: rc_planes.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: ref_test.jpg
+original dimensions: 1024,768
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: rhythm.gif
+original dimensions: 1073,1485
+new dimensions: 180.639730639731,250
+resized to: 700,700
+
+ 
+file: rissun.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: rocket.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: royal-essence.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: rules_headersmall.jpg
+original dimensions: 49,49
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: rules_watermarksmall.jpg
+original dimensions: 164,314
+new dimensions: 130.573248407643,250
+resized to: 700,700
+
+ 
+file: santa.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: silver_star.gif
+original dimensions: 43,41
+new dimensions: 250,238.372093023256
+resized to: 215,196
+
+ 
+file: slump.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: snow.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: snuff.gif
+original dimensions: 75,75
+new dimensions: 250,250
+resized to: 250,250
+
+ 
+file: soonyi.jpg
+original dimensions: 285,480
+new dimensions: 148.4375,250
+resized to: 700,700
+
+ 
+file: spidey.gif
+original dimensions: 64,78
+new dimensions: 205.128205128205,250
+resized to: 132,196
+
+ 
+file: spring.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: springpeepr.jpg
+original dimensions: 320,240
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: springpeeprbump.jpg
+original dimensions: 256,256
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: stuff.jpg
+original dimensions: 1064,1544
+new dimensions: 172.279792746114,250
+resized to: 700,700
+
+ 
+file: superbak.jpg
+original dimensions: 320,240
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: swimming.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: temple.jpg
+original dimensions: 1024,768
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: theend.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: thnksgvn.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: tiles.gif
+original dimensions: 66,86
+new dimensions: 191.860465116279,250
+resized to: 700,700
+
+ 
+file: toolkit-surgical.jpg
+original dimensions: 600,600
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: toolkit2.jpg
+original dimensions: 600,600
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: toys.gif
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: toys.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: tracklite.gif
+original dimensions: 53,117
+new dimensions: 113.247863247863,250
+resized to: 38,244
+
+ 
+file: tractor.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: travel.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: truck.jpg
+original dimensions: 640,480
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: tunnels.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: uglybrown.jpg
+original dimensions: 256,256
+new dimensions: 250,250
+resized to: 700,700
+
+ 
+file: ui-mockup.jpg
+original dimensions: 1024,768
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: ui-mockup2.jpg
+original dimensions: 1024,768
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: valentines.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: valentn2.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: various.jpg
+original dimensions: 328,480
+new dimensions: 170.833333333333,250
+resized to: 700,700
+
+ 
+file: viagra_mountanddo_bg.jpg
+original dimensions: 800,600
+new dimensions: 250,187.5
+resized to: 700,700
+
+ 
+file: walking_home.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: watch.jpg
+original dimensions: 600,480
+new dimensions: 250,200
+resized to: 700,700
+
+ 
+file: wiseman.jpg
+original dimensions: 762,508
+new dimensions: 250,166.666666666667
+resized to: 700,700
+
+ 
+file: wizard-schedule.jpg
+original dimensions: 164,314
+new dimensions: 130.573248407643,250
+resized to: 700,700
+
+ 
+file: wizard-work_flow.jpg
+original dimensions: 164,314
+new dimensions: 130.573248407643,250
+resized to: 700,700
+
+ 
+file: wizard.jpg
+original dimensions: 762,508
+new dimensions: 250,166.666666666667
+resized to: 700,700
+
+ 
+file: wizardcolr.jpg
+original dimensions: 750,675
+new dimensions: 250,225
+resized to: 700,700
+
+ 
+file: zuni-450.jpg
+original dimensions: 334,450
+new dimensions: 185.555555555556,250
+resized to: 700,700
+
+ 			 Completed::: 1-29-20
