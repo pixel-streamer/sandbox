@@ -3,6 +3,73 @@
 /*******************************************************************************************/
 /*******************************************************************************************/
 
+//tasks:
+//preloader
+
+//load content
+// src= gallery_non_js.htm
+
+//determine device dimensions with group of dom elements corresponding to display size
+//based off the visible element (media query) load in appropriate imagery
+
+//if tiny, small, medium, large elements are browsed for visibility... targeted breakpoint elements will be visible.
+//use to determine asset to load
+
+// phone, tablet, laptop, desktop would be the sizes
+//width: 320, 768, 1024, >1280
+//		360x640		768x1024	1024x768	1280x800
+
+//build gui
+//setup display area
+//setup buttons for interaction
+//paginate necessary arrays
+
+//perform layout:
+//layout thumbnail items
+//grid the thumbnails
+
+//initialize objects in memory for the following:
+//display area fullsize image (with possible interaction in mind for later)
+//pagination handling
+//interaction buttons req.
+
+//grab "all array"
+//split all by slice mod increment
+
+//thumbnail handling
+//interaction buttons req. (thumbnails)
+
+//THUMBNAIL INTERACTION:
+// onclick
+//display large url in display area.
+//set border on thumbnail
+
+/*
+// SimpleGallery TODO:
+//  pass a configure object to this simple gallery (with xml, or query string)
+//  to control:
+//  can the gallery be resized?
+//      _galleryCanResize
+//  thumbnail dims:
+//     
+//  fullSize dims (max)
+//     
+//  slide_objects:
+//     
+//      _originalThumb?  <<< --- derived from the original size image. (sounds best)
+//      holds the full, and thumb, so that if resized, can be re-rendered
+//  gallery grid (or not) config
+//    
+//  does this gallery have text?
+//      
+//  text to include as captions (or not)
+//      
+//  caption_location?
+//  header for gallery (font enabled)?
+//  footer for gallery?
+//  date and time stamp of gallery render?
+*/
+
 var aspect, stage, w, h, loader;
 var trackingMC, bgMC, bg;
 var subject;
@@ -159,112 +226,8 @@ function init1() {
             ""
     );
 
-    //TODO: got to figure how createjs calculates the math for scale.
-    //I think it's based on the page text size....
-    //set up a home for the canvas visuals
-    stageContainer.setAttribute("class", "fulldisplay cleared_top");
-    stageHome.appendChild(stageContainer);
-    document.body.insertBefore(stageHome, document.body.firstChild);
+           
 
-    stage = new createjs.Stage("testCanvas");
-    stage.enableMouseOver();
-    aspect =
-        Math.min(displayArea.height, displayArea.width) /
-        Math.max(displayArea.height, displayArea.width);
-    // grab canvas width and height for later calculations:
-    console.log("aspect", aspect);
-    w = displayArea.width;
-    h = displayArea.height;
-    stage.setBounds(0, 0, w, h);
-
-    //clarify: this sets the width and height attributes on the canvas element
-    //within the page.
-    stage.canvas.width = stage.getBounds().width;
-    stage.canvas.height = stage.getBounds().height;
-
-    bgMC = new MovieClip();
-    bg = new createjs.Shape();
-    bgMC.addChild(bg);
-
-    bg.graphics.beginFill("#BADA55").drawRect(0, 0, w, h).endFill();
-    bgMC.setBounds(0, 0, w, h);
-    stage.addChild(bgMC);
-
-    //scale the base text 10px based on the displayArea.width 1000
-    //baseTextTo10PxTo10Percent = (w * 0.01);
-    //the text is passed an undefined at this time. Not sure how that doesn't break, so it's the
-    //start of the big mystery of scaling. it might go off of the page text size?
-
-    //so lets scale the text to 10px based on the screen size of displayArea width (1000)
-    baseTextSizeFromDims = new TextClip();
-    baseTextSizeFromDims.makeTextClip(
-        "M",
-        "normal",
-        undefined,
-        "sans-serif",
-        "#000000"
-    );
-
-    var testdimsTextSize = parseFloat(baseTextSizeFromDims.getMeasuredWidth());
-
-    baseTextTo10Px = parseFloat(testdimsTextSize * 1.2005 * 0.1 * 10);
-    baseTextTo10PxTo10Percent = parseFloat(
-        testdimsTextSize * 1.2005 * (w * 0.01) * 0.1
-    );
-
-    //then scale the text to the percentage of the screen for a comfortable view:
-    //console.log("baseTextTo10PxTo10Percent: ", baseTextTo10PxTo10Percent);
-
-    baseTextTo16px = Math.max(baseTextTo10PxTo10Percent * 1.601, 16);
-    //1.601 @1000px, comfy≈16 (alt9463)
-
-    baseTextVariableTen = baseTextTo16px * 0.85;
-
-    //  skip adding the test to the stage.
-    //  bgMC.addChild(baseTextSizeFromDims);
-    subject = new MovieClip();
-    subject.name = "things_to_see_go_here";
-    console.log("subject name: ", subject.name);
-    bgMC.addChild(subject);
-    subject.cursor = "pointer";
-    stage.update();
-
-    defaultTextFormat.text = baseTextTo16px;
-    defaultTextFormat.color = "#0000FF";
-    defaultTextFormat.fontProps = {
-        fontStyle: "normal",
-        fontSize: baseTextVariableTen,
-        fontFamily: "Nunito",
-        fontColor: defaultTextFormat.color,
-    };
-    defaultTextFormat.font =
-        defaultTextFormat.fontProps.fontStyle +
-        " " +
-        defaultTextFormat.fontProps.fontSize +
-        "px " +
-        defaultTextFormat.fontProps.fontFamily +
-        " " +
-        defaultTextFormat.fontProps.fontColor;
-
-    console.log("defaultTextFormat.font: ", defaultTextFormat.font);
-    //handle what happens at resize.
-    //resize was here:
-    //https://web.archive.org/web/20220714020647/https://bencentra.com/code/2015/02/27/optimizing-window-resize.html
-    //debouncing from here:
-    //https://web.archive.org/web/20160611224002/http://codepen.io/bencentra/pen/PwapWX/
-    //resize observer is like firing an event with resize. Adding the delay is "debouncing".
-
-    resizeObserver = new ResizeObserver(function () {
-        clearTimeout(timeout);
-        timeout = setTimeout(reportScaled, delay);
-    });
-    resizeObserver.observe(displayArea.fsDisplayWin);
-
-    // loader = new createjs.LoadQueue(false);
-    // loader.addEventListener("complete", stageSetupNowStart);
-    // loader.loadManifest(manifest, true, "./scripts/testimgs/");
-
-    stageSetupNowStart();
 } */
 
 function reportSizeChange(event) {
@@ -438,9 +401,10 @@ function preloadStuff() {
 }
 
 function preloadProgress(e) {
+    simpleGalleryConfig._preLoaderDisplay.scaleX = parseFloat(e.progress);
     console.log("LOADING: " + Math.floor(e.progress * 100) + "%");
-    simpleGalleryConfig._preLoaderDisplay.scaleX =
-        getNumberResized(w) * Math.floor(e.progress * 100);
+    /*    simpleGalleryConfig._preLoaderDisplay.scaleX =
+        getNumberResized(w) * Math.floor(e.progress * 100); */
     stage.update();
     /* preloadingText.text = "LOADING: " + Math.floor(e.progress * 100) + "%";
     var loadTextW = preloadingText.getMeasuredWidth();
@@ -601,6 +565,8 @@ function prepPreloader() {
         preLoaderMC_visualCenter.getBounds().height;
     //hide the center so that it can be used as reference
     preLoaderMC_visualCenter.alpha = 0.0;
+    var loadBar = new MovieClip();
+
     var loadingIndicator = new ShapeObject();
     loadingIndicator.drawBox(
         0,
@@ -609,11 +575,20 @@ function prepPreloader() {
         getNumberResized(10),
         "#0080FF"
     );
-    preLoaderMC.addChild(loadingIndicator);
+    loadBar.addChild(loadingIndicator);
+    preLoaderMC.addChild(loadBar);
     loadingIndicator.x =
         preLoaderMC_visualCenter.x - loadingIndicator.getBounds().width / 2;
     loadingIndicator.y = loadingIndicator.getBounds().height / 2;
-    simpleGalleryConfig._preLoaderDisplay = loadingIndicator;
+    simpleGalleryConfig._preLoaderDisplay = loadBar;
+
+    console.log("defaultTextFormat.font: ", defaultTextFormat.font);
+    //handle what happens at resize.
+    //resize was here:
+    //https://web.archive.org/web/20220714020647/https://bencentra.com/code/2015/02/27/optimizing-window-resize.html
+    //debouncing from here:
+    //https://web.archive.org/web/20160611224002/http://codepen.io/bencentra/pen/PwapWX/
+    //resize observer is like firing an event with resize and "debouncing" at the same time.
 
     //getNumberResized(w) *
     resizeObserver = new ResizeObserver(function () {
@@ -689,73 +664,6 @@ function initSimpleGallery() {
     //fade only avail. in v1
     return simpleGalleryConfig;
 }
-
-//tasks:
-//preloader
-
-//load content
-// src= gallery_non_js.htm
-
-//determine device dimensions with group of dom elements corresponding to display size
-//based off the visible element (media query) load in appropriate imagery
-
-//if tiny, small, medium, large elements are browsed for visibility... targeted breakpoint elements will be visible.
-//use to determine asset to load
-
-// phone, tablet, laptop, desktop would be the sizes
-//width: 320, 768, 1024, >1280
-//		360x640		768x1024	1024x768	1280x800
-
-//build gui
-//setup display area
-//setup buttons for interaction
-//paginate necessary arrays
-
-//perform layout:
-//layout thumbnail items
-//grid the thumbnails
-
-//initialize objects in memory for the following:
-//display area fullsize image (with possible interaction in mind for later)
-//pagination handling
-//interaction buttons req.
-
-//grab "all array"
-//split all by slice mod increment
-
-//thumbnail handling
-//interaction buttons req. (thumbnails)
-
-//THUMBNAIL INTERACTION:
-// onclick
-//display large url in display area.
-//set border on thumbnail
-
-/*
-// SimpleGallery TODO:
-//  pass a configure object to this simple gallery (with xml, or query string)
-//  to control:
-//  can the gallery be resized?
-//      _galleryCanResize
-//  thumbnail dims:
-//     
-//  fullSize dims (max)
-//     
-//  slide_objects:
-//     
-//      _originalThumb?  <<< --- derived from the original size image. (sounds best)
-//      holds the full, and thumb, so that if resized, can be re-rendered
-//  gallery grid (or not) config
-//    
-//  does this gallery have text?
-//      
-//  text to include as captions (or not)
-//      
-//  caption_location?
-//  header for gallery (font enabled)?
-//  footer for gallery?
-//  date and time stamp of gallery render?
-*/
 
 /*
 split the loaded images into a grid
