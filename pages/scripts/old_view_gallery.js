@@ -166,9 +166,9 @@ class TextClip extends createjs.Text {
         this.textFontFamily = textFontFamily;
         this.textReference = textReference;
 
-        //implied empty "else"
         if (this.textClip === undefined) {
             this.textClip = new MovieClip();
+            this.textClip.name = this.textStr.toString().split(" ").join("_");
         }
         TextClip.prototype.snapToPixel = true;
         this.set({
@@ -402,7 +402,11 @@ function preloadStuff() {
 
 function preloadProgress(e) {
     simpleGalleryConfig._preLoaderDisplay.scaleX = parseFloat(e.progress);
+    simpleGalleryConfig._preLoaderDisplay.getChildByName("loader_textMC").text =
+        "LOADING: " + Math.floor(e.progress * 100) + "%";
     console.log("LOADING: " + Math.floor(e.progress * 100) + "%");
+
+    //console.log(simpleGalleryConfig._preLoaderDisplay.children[2]);
     /*    simpleGalleryConfig._preLoaderDisplay.scaleX =
         getNumberResized(w) * Math.floor(e.progress * 100); */
     stage.update();
@@ -580,8 +584,24 @@ function prepPreloader() {
     loadingIndicator.x =
         preLoaderMC_visualCenter.x - loadingIndicator.getBounds().width / 2;
     loadingIndicator.y = loadingIndicator.getBounds().height / 2;
-    simpleGalleryConfig._preLoaderDisplay = loadBar;
 
+    var loaderText = new TextClip();
+    loaderText.makeTextClip(
+        "Loading: 999%",
+        defaultTextFormat.fontProps.fontStyle,
+        parseInt(defaultTextFormat.fontProps.fontSize * 2),
+        defaultTextFormat.fontProps.fontFamily,
+        "#FFCC00",
+        null
+    );
+    loadBar.name = "loadbar";
+    loaderText.name = "loader_textMC";
+    preLoaderMC.name = "preloader_display";
+    preLoaderMC.addChild(loaderText);
+    simpleGalleryConfig._preLoaderDisplay = preLoaderMC;
+    //See: http://www.createjs.com/Docs/EaselJS/classes/Shadow.html for more
+    preLoaderMC.shadow = new createjs.Shadow("rgba(0,0,127,0.35)", 0.5, 1.5, 5);
+    console.log(preLoaderMC.shadow);
     console.log("defaultTextFormat.font: ", defaultTextFormat.font);
     //handle what happens at resize.
     //resize was here:
