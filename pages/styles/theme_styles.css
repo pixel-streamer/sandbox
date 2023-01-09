@@ -1,5 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:400,900|Barlow:700,900,italic,700italic);
-
+/* @import url(https://fonts.googleapis.com/css?family=Nunito:400,900|Barlow:700,900,italic,700italic);
+ */
 /*
 	reset styles:
 	*/
@@ -154,6 +154,16 @@ body {
     margin: 0;
     padding: 0;
 }
+/*
+.default_font {
+     
+    used for the styles within the graphics engine., once it's supported, so
+    that this can be used to set the style for the library in use. May deprecate.
+   
+    font-family: "Barlow";
+    font-style: normal;
+    font-size: 16px;
+} */
 
 h1,
 h2,
@@ -174,7 +184,7 @@ h1 {
     margin: auto;
     padding: 0;
     padding-bottom: 0.5rem;
-    /*   line-height: 65%; */
+    line-height: 85%;
     text-transform: uppercase;
 }
 
@@ -183,7 +193,7 @@ h2 {
     margin: auto;
     padding: 0;
     padding-bottom: 0.75rem;
-    /* line-height: 75%; */
+    line-height: 75%;
 }
 
 h3 {
@@ -508,6 +518,7 @@ html {
     min-height: 1px;
     font-size: 16px;
     max-width: 100vw;
+    /*  height: 1px; */
 }
 
 body {
@@ -515,7 +526,7 @@ body {
     background: #a49d9b;
     /*  
     line-height: 1; 
- */
+    */
 }
 
 * {
@@ -790,7 +801,8 @@ body {
     min-width: 88px;
 }
 
-html,
+/*
+html,*/
 body {
     position: relative;
     height: 100%;
