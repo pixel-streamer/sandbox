@@ -12,7 +12,14 @@
         <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
         <script src="https://code.createjs.com/1.0.0/preloadjs.min.js"></script>
         <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-
+        <script src="../pages/scripts/SimpleGalleryConfig.js"></script>
+        <script src="../pages/scripts/SimpleGallery.js"></script>
+        <script src="../pages/scripts/SimpleImage.js"></script>
+        <script src="../pages/scripts/SimpleCanvas.js"></script>
+        <script src="../pages/scripts/SimpleSlide.js"></script>
+        <script src="../pages/scripts/ShapeObject.js"></script>
+        <script src="../pages/scripts/MovieClip.js"></script>
+        <script src="../pages/scripts/TextClip.js"></script>
         <!--
             <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
            
@@ -20,7 +27,7 @@
         -->
 
         <!-- <script src="portfolio-gui.js"></script> -->
-        <script src="scripts/old_view_gallery.js?209"></script>
+        <script src="scripts/old_view_gallery.js?num11screwedup"></script>
         <style>
             canvas {
                 /* from:
@@ -45,10 +52,10 @@
             this is the full display rectangle for a [lame-man's] device test
             */
                 position: absolute;
-                width: 99.9%;
-                height: 100vh;
-                /*   width: 1000px;
-                height: 1000px;  */
+                /*  width: 99.9%; */
+                width: calc(100vw - 18px);
+                height: calc(100vh - 16px);
+
                 background-color: blueviolet;
 
                 /* position: absolute;
@@ -61,10 +68,10 @@
                 z-index: -400000;
             }
 
-            /* set up this rule to enforce the aspect ratio of 16:9 (any percent of vh) */
+            /* set up this rule to enforce the aspect ratio of arbitrary 16:9 (or any percent of vh) */
             .fulldisplay > canvas {
                 /*  width: 100%; */
-                height: 46vh;
+                /*  height: 46vh; */
                 /*  height: 75vh;  */
                 /*  height: 100vh;  */
             }
@@ -74,13 +81,16 @@
                 clear: right;
                 position: relative;
             }
+            html,
+            body {
+                min-width: 320px;
+                min-height: 320px;
+            }
         </style>
     </head>
 
     <body class="hidden1">
-        <div class="fulldisplay cleared_top">
-            <canvas id="testCanvas"></canvas>
-        </div>
+        <div id="testCanvas" class="fulldisplay cleared_top"></div>
 
         <!--
         <div id="width"></div>
