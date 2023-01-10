@@ -63,12 +63,10 @@
 
             /* set up this rule to enforce the aspect ratio of 16:9 (any percent of vh) */
             .fulldisplay > canvas {
-                position: absolute;
-                width: 100%;
+                /*  width: 100%; */
                 height: 46vh;
                 /*  height: 75vh;  */
                 /*  height: 100vh;  */
-                background-color: #450067;
             }
 
             .cleared_top {
@@ -80,6 +78,10 @@
     </head>
 
     <body class="hidden1">
+        <div class="fulldisplay cleared_top">
+            <canvas id="testCanvas"></canvas>
+        </div>
+
         <!--
         <div id="width"></div>
         <div id="height"></div>
@@ -11034,7 +11036,6 @@
                 </p>
             </div>
         </div>
-
         <div class="fulldisplay"></div>
     </body>
 </html>
