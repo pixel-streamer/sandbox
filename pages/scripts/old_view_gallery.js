@@ -409,7 +409,7 @@ function handle_Click() {
 
 function preloadStuff() {}
 
-function preloadProgress(e) {
+function preloadProgress(e) { 
     // console.log("what is", simpleGalleryConfig._preLoaderDisplay);
     // console.log(":::monitor the progress of loading something:::\n");
     var preloadingText =
