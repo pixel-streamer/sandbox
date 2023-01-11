@@ -152,12 +152,10 @@ function setupStage() {
     bottomLeft = makeCorner();
     bottomRight = makeCorner();
 
-    stage.addChild(topLeft, topRight, bottomLeft, bottomRight, center);
+    // stage.addChild(topLeft, topRight, bottomLeft, bottomRight, center);
     //ENDs resize test-- now debounced.
     resizeObserver = new ResizeObserver((entries) => {});
-
     resizeObserver.observe(canvas);
-
     window.addEventListener("resize", function () {
         clearTimeout(timeout);
         timeout = setTimeout(handle_Redraw, delay);
@@ -180,7 +178,11 @@ function setupStage() {
 
     bg.graphics.beginFill("#BADA55").drawRect(0, 0, w, h).endFill();
     bgMC.setBounds(0, 0, w, h);
+    bgMC.name = "backdrop";
     stage.addChild(bgMC);
+
+    console.log("backdrop: ", stage.getChildByName("backdrop"));
+    stage.addChild(topLeft, topRight, bottomLeft, bottomRight, center);
 
     baseTextSizeFromDims = new TextClip();
     baseTextSizeFromDims.makeTextClip(
@@ -409,24 +411,15 @@ function handle_Click() {
 
 function preloadStuff() {}
 
-function preloadProgress(e) { 
-    // console.log("what is", simpleGalleryConfig._preLoaderDisplay);
-    // console.log(":::monitor the progress of loading something:::\n");
+function preloadProgress(e) {
     var preloadingText =
         simpleGalleryConfig._preLoaderDisplay.getChildByName("loader_textMC");
     var loadBar =
         simpleGalleryConfig._preLoaderDisplay.getChildByName("loadbar");
     loadBar.scaleX = parseFloat(e.progress);
     preloadingText.text = "LOADING: " + Math.floor(e.progress * 100) + "%";
-    console.log("LOADING: " + Math.floor(e.progress * 100) + "%");
-
+    //console.log("LOADING: " + Math.floor(e.progress * 100) + "%");
     stage.update();
-    return;
-    preloadingText.regX = loadTextW * 0.5;
-    preloadingText.regY = loadTextH * 0.5;
-
-    preloadingText.x = w / 2;
-    preloadingText.y = h / 2;
 }
 
 window.addEventListener("load", init);
@@ -450,6 +443,8 @@ function redrawStageDims(w, h) {
 
     center.x = parseInt(w / 2);
     center.y = parseInt(h / 2);
+    var backdrop = stage.getChildByName("backdrop");
+    backdrop.setBounds(0, 0, w, h);
 }
 
 function makeCorner() {
