@@ -410,11 +410,13 @@ function handle_Click() {
 function preloadStuff() {}
 
 function preloadProgress(e) {
-   // console.log("what is", simpleGalleryConfig._preLoaderDisplay); 
-   // console.log(":::monitor the progress of loading something:::\n");
+    // console.log("what is", simpleGalleryConfig._preLoaderDisplay);
+    // console.log(":::monitor the progress of loading something:::\n");
     var preloadingText =
         simpleGalleryConfig._preLoaderDisplay.getChildByName("loader_textMC");
-    simpleGalleryConfig._preLoaderDisplay.scaleX = parseFloat(e.progress);
+    var loadBar =
+        simpleGalleryConfig._preLoaderDisplay.getChildByName("loadbar");
+    loadBar.scaleX = parseFloat(e.progress);
     preloadingText.text = "LOADING: " + Math.floor(e.progress * 100) + "%";
     console.log("LOADING: " + Math.floor(e.progress * 100) + "%");
 
