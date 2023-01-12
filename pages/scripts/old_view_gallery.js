@@ -76,7 +76,7 @@ let canvasHome, canvas, stage;
 let aspect, originW, originH;
 let w = window.innerWidth;
 let h = window.innerHeight;
-let attractionAnim, preLoader;
+let preLoader, animatedPreloader, attractionAnim;
 let resizeObserver;
 let delay = 250;
 let timeout, ticker;
@@ -161,6 +161,7 @@ function setupStage() {
         timeout = setTimeout(handle_Redraw, delay);
         return;
     });
+
     simpleGalleryConfig._ticker = createjs.Ticker;
     ticker = simpleGalleryConfig._ticker;
 
@@ -170,18 +171,17 @@ function setupStage() {
     ticker.timingMode = ticker.RAF_SYNCHED;
     //createjs.Ticker.timingMode = createjs.Ticker.RAF;
     ticker.framerate = 30;
+    //ticker.delta=4;
     ticker.addEventListener("tick", tick);
 
     bgMC = new MovieClip();
     bg = new createjs.Shape();
-    bgMC.addChild(bg);
-
     bg.graphics.beginFill("#BADA55").drawRect(0, 0, w, h).endFill();
+    bgMC.addChild(bg);
     bgMC.setBounds(0, 0, w, h);
     bgMC.name = "backdrop";
     stage.addChild(bgMC);
-
-    console.log("backdrop: ", stage.getChildByName("backdrop"));
+    // console.log("backdrop: ", stage.getChildByName("backdrop"));
     stage.addChild(topLeft, topRight, bottomLeft, bottomRight, center);
 
     baseTextSizeFromDims = new TextClip();
@@ -201,7 +201,6 @@ function setupStage() {
     );
 
     baseTextTo16px = Math.max(baseTextTo10PxTo10Percent * 1.601, 16);
-
     baseTextVariableTen = baseTextTo16px * 0.85;
 
     simpleGalleryConfig._baseText10px = baseTextTo10Px; //baseTextTo10Px
@@ -211,9 +210,10 @@ function setupStage() {
     subject = new MovieClip();
     subject.name = "subject";
     bgMC.addChild(subject);
+
+    subject.setBounds(0, 0, bgMC.getBounds().width, bgMC.getBounds().height);
     subject.cursor = "pointer";
 
-    defaultTextFormat["text"] = " ";
     defaultTextFormat.text = baseTextTo16px;
     defaultTextFormat.color = "#0000FF";
     defaultTextFormat.fontProps = {
@@ -230,38 +230,25 @@ function setupStage() {
         defaultTextFormat.fontProps.fontFamily +
         " " +
         defaultTextFormat.fontProps.fontColor;
+
+    stage.addEventListener("stagemousedown", handle_Click);
+    prepPreloader();
+}
+function prepPreloader() {
     simpleGalleryConfig._preLoader = new createjs.LoadQueue();
 
     preLoader = simpleGalleryConfig._preLoader;
-
-    var animatedPreloader = [
-        {
-            id: "woody",
-            src: "../images/woody-painting-white.json",
-            type: "spritesheet",
-            crossOrigin: false,
-            // crossOrigin: true,
-        },
-        {
-            id: "really_large_img",
-            src: "../pages/images/extremely-large-image.png",
-            type: "image",
-            crossOrigin: false,
-        },
-    ];
-    stage.addEventListener("stagemousedown", handle_Click);
-    preLoader.loadManifest(animatedPreloader, true);
     //preloader:----
     attractionAnim = new createjs.Sprite(preLoader.getResult("woody"));
 
-    console.log(":::←←←←←←←prepPreloader←:::");
+    //console.log(":::←←←←←←←prepPreloader←:::");
     preLoaderMC = new MovieClip();
     var preLoaderMC_visualCenter = new ShapeObject(); // new createjs.Shape();
     preLoaderMC_visualCenter.drawBox(
         0,
         0,
-        util_getScreenRelativeNumber(1),
-        util_getScreenRelativeNumber(1),
+        util_getScreenRelativeNumber(10),
+        util_getScreenRelativeNumber(10),
         "#FF0000"
     );
     preLoaderMC.addChild(preLoaderMC_visualCenter);
@@ -305,45 +292,60 @@ function setupStage() {
     preLoaderMC.name = "preloader_display";
     preLoaderMC.addChild(loaderText);
     simpleGalleryConfig._preLoaderDisplay = preLoaderMC;
+
+    //set up the attraction animation
+    var anMC = new MovieClip();
+    anMC.name = "animation_home";
+
+    //console.log("attractionAnim:::: \n", attractionAnim);
+    //  stage.addChild(anMC);
+
+    anMC.x = stage.getBounds().width / 2;
+    anMC.y = stage.getBounds().height / 2;
+    anMC.alpha = 1;
+
+    //console.log("preLoaderMC██");
+    //See: http://www.createjs.com/Docs/EaselJS/classes/Shadow.html for more
+    preLoaderMC.shadow = new createjs.Shadow("rgba(0,0,127,0.35)", 0.5, 1.5, 5);
+    preLoaderMC.addChild(anMC);
+
+    animatedPreloader = [
+        {
+            id: "woody",
+            src: "../images/woody-painting-white.json",
+            type: "spritesheet",
+            crossOrigin: false,
+            // crossOrigin: true,
+        },
+        {
+            id: "really_large_img",
+            src: "../pages/images/extremely-large-image.png",
+            type: "image",
+            crossOrigin: false,
+        },
+    ];
+    preLoadManifest();
+}
+function preLoadManifest() {
     //preloader:
-    console.log("::::preloadStuff");
+    //console.log("::::preloadStuff");
     preLoader.addEventListener("progress", preloadProgress);
     preLoader.addEventListener("complete", showAttractionAnim);
 
-    console.log("preLoaderMC██");
-    //See: http://www.createjs.com/Docs/EaselJS/classes/Shadow.html for more
-    preLoaderMC.shadow = new createjs.Shadow("rgba(0,0,127,0.35)", 0.5, 1.5, 5);
+    preLoader.loadManifest(animatedPreloader, true);
+
+    console.log(
+        'preLoaderMC.getChildByName("animation_home"): ',
+        preLoaderMC.getChildByName("animation_home")
+    );
 }
 
 function showAttractionAnim() {
     console.log(":::  showAttractionAnim  :::");
-
-    //   attractionAnim.scale = thingSize[2]  ;
-    //console.log(thingSize[2]); //0.333;
+    //.addChild(attractionAnim);
     attractionAnim.play();
-
-    var anMC = new MovieClip();
-    var animHome = new MovieClip();
-    anMC.name = "animation_home";
-
-    console.log("attractionAnim:::: ", attractionAnim);
-    animHome.addChild(attractionAnim);
-    animHome.scale = 2 * aspect;
-    anMC.alpha = 0;
-    //  stage.addChild(anMC);
-    //  anMC.addChild(animHome);
-
-    anMC.x = stage.getBounds().width / 2;
-    anMC.y = stage.getBounds().height / 2;
-    //fade in now....
-    //TODO: fade in
-    anMC.alpha = 1;
-    //set up a home for the canvas visuals
-    // stageSetupNowStart();
-
     fadeThisOut.call(attractionAnim);
 }
-
 var hasFadedOut = false;
 function checkFade() {
     console.log("this is checkFade: ");
@@ -427,7 +429,8 @@ window.addEventListener("load", init);
 //I think that createjs requires the starting function to be "init"
 function init() {
     setupStage();
-    preloadStuff();
+
+    // preloadStuff();
     /*
         showAttractionAnim();
         initCollections();
@@ -444,6 +447,8 @@ function redrawStageDims(w, h) {
     center.x = parseInt(w / 2);
     center.y = parseInt(h / 2);
     var backdrop = stage.getChildByName("backdrop");
+    var subject = backdrop.getChildByName("subject");
+    subject.setBounds(0, 0, w, h);
     backdrop.setBounds(0, 0, w, h);
 }
 
