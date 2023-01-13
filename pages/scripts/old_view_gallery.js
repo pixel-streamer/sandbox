@@ -300,9 +300,6 @@ function prepPreloader() {
 
     //anMC.alpha = 1;
 
-    //console.log("preLoaderMC██");
-    //See: http://www.createjs.com/Docs/EaselJS/classes/Shadow.html for more
-
     preLoaderMC.addChild(anMC);
 
     animatedPreloaderManifest = [
@@ -310,15 +307,14 @@ function prepPreloader() {
             id: "woody",
             src: "../images/woody-painting-white.json",
             type: "spritesheet",
-            // crossOrigin: false,
-            crossOrigin: true,
+            crossOrigin: false,
         },
-        {
+        /*   {
             id: "really_large_img",
             src: "../pages/images/extremely-large-image.png",
             type: "image",
             crossOrigin: false,
-        },
+        }, */
     ];
 
     simpleGalleryConfig._preLoader.addEventListener(
@@ -329,6 +325,8 @@ function prepPreloader() {
         "complete",
         showAttractionAnim
     );
+    //console.log("preLoaderMC██");
+    //See: http://www.createjs.com/Docs/EaselJS/classes/Shadow.html for more
     preLoaderMC.shadow = new createjs.Shadow("rgba(0,0,127,0.35)", 0.5, 1.5, 5);
     preLoadManifest();
 }
@@ -345,9 +343,19 @@ function showAttractionAnim(e) {
         simpleGalleryConfig._preLoader.getResult("woody")
     );
     preLoaderMC.addChild(attractionAnim);
-    console.log("attractionAnim: 0", attractionAnim);
     attractionAnim.play();
-    console.log("::::e:::::", preLoader, attractionAnim);
+
+    var bmp = new createjs.Bitmap("../pages/images/extremely-large-image.png");
+    console.log(":::: bmp ::::", bmp);
+
+    bmp.image.onload = function () {
+        stage.update();
+    };
+    stage.addChild(bmp);
+
+    /*  var thingy = stage.getChildByName("subject");
+    console.log("thingy: ", thingy); */
+
     // fadeThisOut.call(attractionAnim);
 }
 var hasFadedOut = false;
@@ -433,12 +441,6 @@ window.addEventListener("load", init);
 //I think that createjs requires the starting function to be "init"
 function init() {
     setupStage();
-
-    // preloadStuff();
-    /*
-        showAttractionAnim();
-        initCollections();
-    */
 }
 
 function redrawStageDims(w, h) {
