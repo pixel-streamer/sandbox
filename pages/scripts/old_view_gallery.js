@@ -257,6 +257,19 @@ function prepPreloader() {
         "#FFCC00",
         null
     );
+
+
+    var loadingStripe = new ShapeObject();
+    loadingStripe.drawBox(
+        0,
+        0,
+        util_getScreenRelativeNumber(w),
+        util_getScreenRelativeNumber(10),
+        "#0080FF"
+    );
+    loadBar.addChild(loadingStripe);
+    preLoaderMC.addChild(loadBar);
+ 
     loadBar.name = "loadbar";
     loaderText.name = "loader_textMC";
     preLoaderMC.name = "preloader_display";
@@ -301,14 +314,16 @@ function prepPreloader() {
     preLoaderMC.shadow = new createjs.Shadow("rgba(0,0,127,0.35)", 0.5, 1.5, 5);
 
     //center preloader visuals
-    var loadingIndicator = new ShapeObject();
-    loadingIndicator.drawBox(0, 0, 2, 2, "#ff0000");
-    loadingIndicator.x = w / 2;
-    loadingIndicator.y = h / 2;
-    loadingIndicator.name = "loading_indicator";
-    stage.addChild(loadingIndicator);
+    var preLoaderMC_visualCenter = new ShapeObject();
+    preLoaderMC_visualCenter.drawBox(0, 0, 2, 2, "#ff0000");
+    preLoaderMC_visualCenter.x = w / 2;
+    preLoaderMC_visualCenter.y = h / 2;
+    preLoaderMC_visualCenter.name = "loading_indicator";
+    stage.addChild(preLoaderMC_visualCenter);
     //hide the center so that it can be used as reference
-    loadingIndicator.alpha = 1; //0.0;
+    preLoaderMC_visualCenter.alpha = 1; //0.0;
+    loadingStripe.x =
+    preLoaderMC_visualCenter.x - loadingStripe.getBounds().width / 2;
     preLoadManifest();
 }
 
