@@ -241,24 +241,9 @@ function prepPreloader() {
 
     //console.log(":::←←←←←←←prepPreloader←:::");
     preLoaderMC = new MovieClip();
-    var preLoaderMC_visualCenter = new ShapeObject(); // new createjs.Shape();
-    preLoaderMC_visualCenter.drawBox(
-        0,
-        0,
-        util_getScreenRelativeNumber(10),
-        util_getScreenRelativeNumber(10),
-        "#FF0000"
-    );
-    preLoaderMC_visualCenter.name = "preloader_visual";
-    preLoaderMC.addChild(preLoaderMC_visualCenter);
+
     stage.addChild(preLoaderMC);
-    //center preloader visuals
-    preLoaderMC_visualCenter.x =
-        w / 2 - preLoaderMC_visualCenter.getBounds().width;
-    preLoaderMC_visualCenter.y =
-        h / 2 - preLoaderMC_visualCenter.getBounds().height;
-    //hide the center so that it can be used as reference
-    preLoaderMC_visualCenter.alpha = 1; //0.0;
+
     var loadBar = new MovieClip();
 
     preLoaderMC.addChild(loadBar);
@@ -315,10 +300,15 @@ function prepPreloader() {
     //See: http://www.createjs.com/Docs/EaselJS/classes/Shadow.html for more
     preLoaderMC.shadow = new createjs.Shadow("rgba(0,0,127,0.35)", 0.5, 1.5, 5);
 
+    //center preloader visuals
     var loadingIndicator = new ShapeObject();
     loadingIndicator.drawBox(0, 0, 2, 2, "#ff0000");
+    loadingIndicator.x = w / 2;
+    loadingIndicator.y = h / 2;
     loadingIndicator.name = "loading_indicator";
     stage.addChild(loadingIndicator);
+    //hide the center so that it can be used as reference
+    loadingIndicator.alpha = 1; //0.0;
     preLoadManifest();
 }
 
