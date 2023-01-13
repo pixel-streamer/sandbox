@@ -351,11 +351,7 @@ function showAttractionAnim(e) {
     bmp.image.onload = function () {
         stage.update();
     };
-    stage.getChildByName("subject").addChild(bmp);
-
-    /*  var thingy = stage.getChildByName("subject");
-    console.log("thingy: ", thingy); */
-
+    stage.getChildByName("backdrop").getChildByName("subject").addChild(bmp);
     // fadeThisOut.call(attractionAnim);
 }
 var hasFadedOut = false;
