@@ -258,7 +258,6 @@ function prepPreloader() {
         null
     );
 
-
     var loadingStripe = new ShapeObject();
     loadingStripe.drawBox(
         0,
@@ -269,7 +268,7 @@ function prepPreloader() {
     );
     loadBar.addChild(loadingStripe);
     preLoaderMC.addChild(loadBar);
- 
+
     loadBar.name = "loadbar";
     loaderText.name = "loader_textMC";
     preLoaderMC.name = "preloader_display";
@@ -323,7 +322,7 @@ function prepPreloader() {
     //hide the center so that it can be used as reference
     preLoaderMC_visualCenter.alpha = 1; //0.0;
     loadingStripe.x =
-    preLoaderMC_visualCenter.x - loadingStripe.getBounds().width / 2;
+        preLoaderMC_visualCenter.x - loadingStripe.getBounds().width / 2;
     preLoadManifest();
 }
 
@@ -338,18 +337,39 @@ function showAttractionAnim(e) {
     attractionAnim = new createjs.Sprite(
         simpleGalleryConfig._preLoader.getResult("woody")
     );
+
     preLoaderMC.addChild(attractionAnim);
     attractionAnim.play();
-
+    attractionAnim.x =
+        (stage.getChildByName("loading_indicator").x +
+            attractionAnim.getBounds().width) /
+        2;
+    attractionAnim.y =
+        (stage.getChildByName("loading_indicator").y +
+            attractionAnim.getBounds().height) /
+        2;
+    var hulking = new MovieClip();
     var bmp = new createjs.Bitmap("../pages/images/extremely-large-image.png");
-
-    /*  bmp.image.onload = function () {
-        stage.update();
-    }; */
     bmp.image.addEventListener("load", function () {
+        bmp.setBounds(0, 0, bmp.image.naturalWidth, bmp.image.naturalHeight);
+        console.log("this is the dimensions of the bmp.... ", bmp.getBounds());
         stage.update();
     });
-    stage.getChildByName("backdrop").getChildByName("subject").addChild(bmp);
+    hulking.addChild(bmp);
+    stage
+        .getChildByName("backdrop")
+        .getChildByName("subject")
+        .addChild(hulking);
+    hulking.name = "special_ops_bmp";  
+    /* 
+    TODO:---
+    ensure this is a patterned tile image that loads into the back of the interface, so that
+    the appearance of a grid is established. Sounds so 1990. But I want it that way, just to 
+    be through with this for once. 
+    I can always make it better later, right?
+    see  Cleaned_Files\code_library\collection\tiled_background\waveys
+    */
+    //    console.log("this is the dimensions of the bmp.... ", bmp.width);
     // fadeThisOut.call(attractionAnim);
 }
 var hasFadedOut = false;
@@ -450,9 +470,27 @@ function redrawStageDims(w, h) {
     var subject = backdrop.getChildByName("subject");
     subject.setBounds(0, 0, w, h);
     backdrop.setBounds(0, 0, w, h);
+
+    var stageCenter = stage.getChildByName("loading_indicator");
     //stage.getChildByName("loading_indicator").setBounds(0, 0, w, h);
-    stage.getChildByName("loading_indicator").x = parseInt(w / 2);
-    stage.getChildByName("loading_indicator").y = parseInt(h / 2);
+    stageCenter.x = parseInt(w / 2);
+    stageCenter.y = parseInt(h / 2);
+    attractionAnim.x = parseInt(w / 2);
+    attractionAnim.y = parseInt(h / 2);
+    var bkGraphic = stage
+        .getChildByName("backdrop")
+        .getChildByName("subject")
+        .getChildByName("special_ops_bmp");
+    /* if (bkGraphic.getChildByName("special_ops_bmp").getBounds().height <= h) {
+        //TODO:
+        //figure backdrop scale, so that it fits into the height of the window....
+        var bH = bkGraphic
+            .getBounds().height;
+        var bScale = bH / h;
+        console.log(";;;;; bH ", bH, h);
+    }
+    console.log(bkGraphic.getBounds(), h); */
+    console.log(bkGraphic.getBounds().height);
 }
 function thisReportIsWeird() {
     console.log("::: thisReportIsWeird :::");
