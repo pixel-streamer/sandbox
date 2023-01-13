@@ -351,7 +351,7 @@ function showAttractionAnim(e) {
     bmp.image.onload = function () {
         stage.update();
     };
-    stage.addChild(bmp);
+    stage.getChildByName("subject").addChild(bmp);
 
     /*  var thingy = stage.getChildByName("subject");
     console.log("thingy: ", thingy); */
