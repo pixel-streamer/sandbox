@@ -254,28 +254,14 @@ function prepPreloader() {
     stage.addChild(preLoaderMC);
     //center preloader visuals
     preLoaderMC_visualCenter.x =
-        stage.getBounds().width / 2 -
-        preLoaderMC_visualCenter.getBounds().width;
+        w / 2 - preLoaderMC_visualCenter.getBounds().width;
     preLoaderMC_visualCenter.y =
-        stage.getBounds().height / 2 -
-        preLoaderMC_visualCenter.getBounds().height;
+        h / 2 - preLoaderMC_visualCenter.getBounds().height;
     //hide the center so that it can be used as reference
-    preLoaderMC_visualCenter.alpha = 0.0;
+    preLoaderMC_visualCenter.alpha = 1; //0.0;
     var loadBar = new MovieClip();
 
-    var loadingIndicator = new ShapeObject();
-    loadingIndicator.drawBox(
-        0,
-        0,
-        util_getScreenRelativeNumber(w),
-        util_getScreenRelativeNumber(10),
-        "#0080FF"
-    );
-    loadBar.addChild(loadingIndicator);
     preLoaderMC.addChild(loadBar);
-    loadingIndicator.x =
-        preLoaderMC_visualCenter.x - loadingIndicator.getBounds().width / 2;
-    loadingIndicator.y = loadingIndicator.getBounds().height / 2;
 
     var loaderText = new TextClip();
     loaderText.makeTextClip(
@@ -328,6 +314,11 @@ function prepPreloader() {
     //console.log("preLoaderMC██");
     //See: http://www.createjs.com/Docs/EaselJS/classes/Shadow.html for more
     preLoaderMC.shadow = new createjs.Shadow("rgba(0,0,127,0.35)", 0.5, 1.5, 5);
+
+    var loadingIndicator = new ShapeObject();
+    loadingIndicator.drawBox(0, 0, 2, 2, "#ff0000");
+    loadingIndicator.name = "loading_indicator";
+    stage.addChild(loadingIndicator);
     preLoadManifest();
 }
 
@@ -346,11 +337,13 @@ function showAttractionAnim(e) {
     attractionAnim.play();
 
     var bmp = new createjs.Bitmap("../pages/images/extremely-large-image.png");
-    console.log(":::: bmp ::::", bmp);
 
-    bmp.image.onload = function () {
+    /*  bmp.image.onload = function () {
         stage.update();
-    };
+    }; */
+    bmp.image.addEventListener("load", function () {
+        stage.update();
+    });
     stage.getChildByName("backdrop").getChildByName("subject").addChild(bmp);
     // fadeThisOut.call(attractionAnim);
 }
@@ -452,8 +445,13 @@ function redrawStageDims(w, h) {
     var subject = backdrop.getChildByName("subject");
     subject.setBounds(0, 0, w, h);
     backdrop.setBounds(0, 0, w, h);
+    //stage.getChildByName("loading_indicator").setBounds(0, 0, w, h);
+    stage.getChildByName("loading_indicator").x = parseInt(w / 2);
+    stage.getChildByName("loading_indicator").y = parseInt(h / 2);
 }
-
+function thisReportIsWeird() {
+    console.log("::: thisReportIsWeird :::");
+}
 function makeCorner() {
     //from https://codepen.io/createjs/pen/dZvVKp
     var r = 32;
