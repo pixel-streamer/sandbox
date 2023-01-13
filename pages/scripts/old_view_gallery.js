@@ -76,7 +76,7 @@ let canvasHome, canvas, stage;
 let aspect, originW, originH;
 let w = window.innerWidth;
 let h = window.innerHeight;
-let preLoader, animatedPreloader, attractionAnim;
+let preLoader, animatedPreloaderManifest, attractionAnim;
 let resizeObserver;
 let delay = 250;
 let timeout, ticker;
@@ -170,7 +170,7 @@ function setupStage() {
     //ticker.interval = 25;
     ticker.timingMode = ticker.RAF_SYNCHED;
     //createjs.Ticker.timingMode = createjs.Ticker.RAF;
-    ticker.framerate = 30;
+    // ticker.framerate = 30;
     //ticker.delta=4;
     ticker.addEventListener("tick", tick);
 
@@ -238,8 +238,6 @@ function prepPreloader() {
     simpleGalleryConfig._preLoader = new createjs.LoadQueue();
 
     preLoader = simpleGalleryConfig._preLoader;
-    //preloader:----
-    attractionAnim = new createjs.Sprite(preLoader.getResult("woody"));
 
     //console.log(":::←←←←←←←prepPreloader←:::");
     preLoaderMC = new MovieClip();
@@ -251,6 +249,7 @@ function prepPreloader() {
         util_getScreenRelativeNumber(10),
         "#FF0000"
     );
+    preLoaderMC_visualCenter.name = "preloader_visual";
     preLoaderMC.addChild(preLoaderMC_visualCenter);
     stage.addChild(preLoaderMC);
     //center preloader visuals
@@ -294,28 +293,25 @@ function prepPreloader() {
     simpleGalleryConfig._preLoaderDisplay = preLoaderMC;
 
     //set up the attraction animation
-    var anMC = new MovieClip();
+    var anMC = new createjs.MovieClip();
     anMC.name = "animation_home";
-
-    //console.log("attractionAnim:::: \n", attractionAnim);
-    //  stage.addChild(anMC);
-
     anMC.x = stage.getBounds().width / 2;
     anMC.y = stage.getBounds().height / 2;
-    anMC.alpha = 1;
+
+    //anMC.alpha = 1;
 
     //console.log("preLoaderMC██");
     //See: http://www.createjs.com/Docs/EaselJS/classes/Shadow.html for more
-    preLoaderMC.shadow = new createjs.Shadow("rgba(0,0,127,0.35)", 0.5, 1.5, 5);
+
     preLoaderMC.addChild(anMC);
 
-    animatedPreloader = [
+    animatedPreloaderManifest = [
         {
             id: "woody",
             src: "../images/woody-painting-white.json",
             type: "spritesheet",
-            crossOrigin: false,
-            // crossOrigin: true,
+            // crossOrigin: false,
+            crossOrigin: true,
         },
         {
             id: "really_large_img",
@@ -324,27 +320,35 @@ function prepPreloader() {
             crossOrigin: false,
         },
     ];
+
+    simpleGalleryConfig._preLoader.addEventListener(
+        "progress",
+        preloadProgress
+    );
+    simpleGalleryConfig._preLoader.addEventListener(
+        "complete",
+        showAttractionAnim
+    );
+    preLoaderMC.shadow = new createjs.Shadow("rgba(0,0,127,0.35)", 0.5, 1.5, 5);
     preLoadManifest();
 }
+
 function preLoadManifest() {
-    //preloader:
-    //console.log("::::preloadStuff");
-    preLoader.addEventListener("progress", preloadProgress);
-    preLoader.addEventListener("complete", showAttractionAnim);
-
-    preLoader.loadManifest(animatedPreloader, true);
-
-    console.log(
-        'preLoaderMC.getChildByName("animation_home"): ',
-        preLoaderMC.getChildByName("animation_home")
+    simpleGalleryConfig._preLoader.loadManifest(
+        animatedPreloaderManifest,
+        true
     );
 }
 
-function showAttractionAnim() {
-    console.log(":::  showAttractionAnim  :::");
-    //.addChild(attractionAnim);
+function showAttractionAnim(e) {
+    attractionAnim = new createjs.Sprite(
+        simpleGalleryConfig._preLoader.getResult("woody")
+    );
+    preLoaderMC.addChild(attractionAnim);
+    console.log("attractionAnim: 0", attractionAnim);
     attractionAnim.play();
-    fadeThisOut.call(attractionAnim);
+    console.log("::::e:::::", preLoader, attractionAnim);
+    // fadeThisOut.call(attractionAnim);
 }
 var hasFadedOut = false;
 function checkFade() {
@@ -410,9 +414,9 @@ function handle_SimpleImage_load() {
 function handle_Click() {
     console.log(":::  handle_Click  :::");
 }
-
+/* 
 function preloadStuff() {}
-
+ */
 function preloadProgress(e) {
     var preloadingText =
         simpleGalleryConfig._preLoaderDisplay.getChildByName("loader_textMC");
