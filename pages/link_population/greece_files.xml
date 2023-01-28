@@ -1,6 +1,10 @@
 <?xml version="1.0" standalone="no" ?>
 <!-- 
-	for some reason FF needs a long comment here. All this stuff is copyrighted information by Joseph Henderson
+	for some reason FF needs a long comment here.
+	All this stuff is copyrighted information by Joseph Henderson
+
+	TODO: this needs to roll-out the longer captions into their own box so that the page
+	doesn't jag downward.
  -->
 <?xml-stylesheet type="text/xsl" href="images_pop.xsl"?>
 <pics>
@@ -634,31 +638,31 @@ CRAZY: https://www.placecage.com/c/200/300
 GIF: https://www.placecage.com/gif/200/300
 	-->
 
-	<pic url="https://www.placecage.com/601/400" location="Wherever He May Roam">
+	<pic url="https://placekitten.com/602/400" location="Wherever He May Roam">
 		<caption>Fill your page with the cage.</caption>
 	</pic>
-	<pic url="https://www.placecage.com/598/401" location="Wherever He May Roam2">
+	<pic url="https://placekitten.com/598/400" location="Wherever He May Roam2">
 		<caption>Fill your page with the cage.2</caption>
 	</pic>
-	<pic url="https://www.placecage.com/599/400" location="Wherever He May Roam3">
+	<pic url="https://placekitten.com/599/400" location="Wherever He May Roam3">
 		<caption>Fill your page with the cage.3</caption>
 	</pic>
-	<pic url="https://www.fillmurray.com/601/400" location="Wherever You May Find Him">
+	<pic url="https://placekitten.com/600/397" location="Wherever You May Find Him">
 		<caption>These images fit the Bill.</caption>
 	</pic>
-	<pic url="https://www.fillmurray.com/599/400" location="Wherever You May Find Him2">
+	<pic url="https://placekitten.com/600/395" location="Wherever You May Find Him2">
 		<caption>These images fit the Bill2.</caption>
 	</pic>
-	<pic url="https://www.fillmurray.com/599/401" location="Wherever You May Find Him3">
+	<pic url="https://placekitten.com/596/401" location="Wherever You May Find Him3">
 		<caption>These images fit the Bill3.</caption>
 	</pic>
-	<pic url="https://www.stevensegallery.com/599/400" location="Wherever He Wants To Roam">
+	<pic url="https://placekitten.com/595/400" location="Wherever He Wants To Roam">
 		<caption>This guy fills in the gaps (in your teeth).</caption>
 	</pic>
-	<pic url="https://www.stevensegallery.com/600/400" location="Wherever He Wants To Roam2">
+	<pic url="https://placekitten.com/600/401" location="Wherever He Wants To Roam2">
 		<caption>This guy fills in the gaps (in your teeth).2</caption>
 	</pic>
-	<pic url="https://www.stevensegallery.com/600/401" location="Wherever He Wants To Roam3">
+	<pic url="https://placekitten.com/600/403" location="Wherever He Wants To Roam3">
 		<caption>This guy fills in the gaps (in your teeth).3</caption>
 	</pic>
 
