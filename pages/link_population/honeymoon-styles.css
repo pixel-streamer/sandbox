@@ -109,8 +109,10 @@ h6 {
     max-height: 20px;
     display: flex;
     box-sizing: border-box;
-    border: 2px solid transparent;
-    cursor: pointer;
+    border: 2px solid transparent; 
+}
+.more_caption:hover{
+	cursor: pointer;
 }
 .more_caption::after {
 	position: relative;
