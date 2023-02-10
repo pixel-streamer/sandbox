@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="web,design,html5,portfolio,sound,xml" />
+        <title>Loading sounds from an xml page using HTML5</title>
+
+        <script src="./scripts/createjs.min.js"></script>
+        <script src="./scripts/easeljs.min.js"></script>
+        <script src="./scripts/tweenjs.min.js"></script>
+        <script src="./scripts/preloadjs.min.js"></script>
+        <script src="./scripts/soundjs.min.js"></script> 
+        <style>
+            /* reset: *************************************** */
+            * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+                border: 2px solid transparent;
+            }
+            /* ********************************************** */
+            html {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            html,
+            body {
+                min-width: 350px;
+                min-height: 320px;
+            }
+            body {
+                font: normal normal 16px/125% sans-serif;
+                /* font-family: "Nunito", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important; */
+                background: #a49d9b;
+
+                height: 100%;
+                width: 100%;
+                color: #443d3b;
+                position: relative;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                /* overflow: hidden; */
+            }
+
+            .fulldisplay {
+                position: absolute;
+                /* width: 99.9%; */
+                width: calc(100vw - 12px);
+                height: calc(100vh - 12px);
+                /* margin: auto; */
+                margin-top: -8px;
+                /* background-color: blueviolet; */
+                /* background-color: #a49d9b; */
+                background-color: #450067;
+                z-index: -400000;
+                overflow: hidden;
+            }
+
+            .cleared_top {
+                z-index: 99999;
+                clear: both;
+                position: relative;
+            }
+        </style>
+        <style>
+            /* 
+        this to be externalized.
+        */
+            .custom_lightbox_modal {
+                background-color: rgba(0, 0, 0, 0.42);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 999999;
+            }
+            .custom_lightbox_window {
+                /* background-color: rgba(0, 127, 255, 1); */
+                border: 1px solid transparent;
+                position: fixed;
+                top: 4vw;
+                left: 4vw;
+                right: 4vw;
+                bottom: 4vw;
+                display: flex;
+                justify-content: center;
+                min-width: 320px;
+            }
+            /* .custom_lightbox_window:hover {
+border: 1px solid white;
+} */
+
+            /* #light_box_window img:hover {
+border: 0.25rem solid rgba(255, 255, 255, 0.3);
+cursor: pointer;
+border-radius: 3px;
+} */
+            .custom_lightbox_modal #light_box_window img {
+                max-width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+            canvas {
+                image-rendering: optimizeSpeed; /* Older versions of FF          */
+                image-rendering: -moz-crisp-edges; /* FF 6.0+                       */
+                image-rendering: -webkit-optimize-contrast; /* Safari                        */
+                image-rendering: -o-crisp-edges; /* OS X & Windows Opera (12.02+) */
+                image-rendering: pixelated; /* Awesome future-browsers       */
+                -ms-interpolation-mode: nearest-neighbor; /* IE                            */
+            }
+            .suppressed {
+                display: none;
+            }
+
+            /* flex-grow: 1; */
+            /* max-width: 100%; */
+            /* max-height: 100%; */
+            /* min-width: 33vw; */
+            /* min-height: 33vh; */
+            /* height: 100vh; */
+            /*  display: flex;
+        align-content: center;
+        justify-content: center;
+        flex-shrink: 1;
+        align-self: center;
+        object-fit: cover; */
+
+            .spotlight_box {
+                display: flex;
+                align-content: center;
+                justify-content: center;
+                flex-grow: 1;
+                flex-shrink: 1;
+                max-width: 100%;
+                max-height: 100%;
+                min-width: 33vw;
+                min-height: 33vh;
+                height: 100vh;
+                align-self: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="progress"></div>
+        <div id="gallery"></div>
+        <noscript>
+            (this site requires javascript to be enabled, so that the interface
+            can be constructed around the data you see here)
+        </noscript>
+        <div id="testCanvas" class="fulldisplay cleared_top">
+            <canvas id="big_stage" class="full_size_canvas"></canvas>
+        </div>
+        <div class="hidden"></div>
+        <script src="./scripts/font-loading_module.js"></script>
+        <script src="./scripts/sounds_from_a_list.js"></script>
+    </body>
+</html>
