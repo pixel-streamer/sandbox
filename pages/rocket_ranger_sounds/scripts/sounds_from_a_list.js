@@ -44,7 +44,9 @@ function setupStage(e) {
     /* 
     // from http://www.javascriptkit.com/dhtmltutors/sticky-hover-issue-solutions.shtml
     */
-    nofullhover = window.matchMedia("(hover:none), (hover:on-demand)").matches; //returns true or false
+    //returns true or false, based on hover capable
+    nofullhover = window.matchMedia("(hover:none), (hover:on-demand)").matches;
+
     bigCanvas.setAttribute("width", w);
     bigCanvas.setAttribute("height", h);
     //console.log("≈██ setupStage ██≈", e.detail);
@@ -53,7 +55,10 @@ function setupStage(e) {
     //console.log("::::::::::::::stage::: ", stage, "nofullhover: ", nofullhover);
     stage.setBounds(0, 0, w, h);
     stageBounds = stage.getBounds();
+
+    background_content = new createjs.Container();
     subject_content = new createjs.Container();
+    stage.addChild(background_content);
     stage.addChild(subject_content);
 
     ticker = createjs.Ticker;
@@ -174,6 +179,7 @@ main canvas size firmly inside the 100vw/vh area
 var fileLoader;
 var bigArea = document.querySelector("#testCanvas");
 var subject_content;
+var background_content;
 var w = parseInt(getComputedStyle(bigArea).width);
 var h = parseInt(getComputedStyle(bigArea).height);
 var bigCanvas = document.querySelector(".full_size_canvas");
@@ -376,7 +382,7 @@ function makeSomeText() {
         "#FFFFFF"
     );
     //console.log(":::text:::", text);
-    stage.addChild(text);
+    subject_content.addChild(text);
     var textMetrics = text.getMetrics();
     var textW = textMetrics.width;
     var textH = textMetrics.height;
@@ -384,7 +390,7 @@ function makeSomeText() {
     text.x = (stageBounds.width - textW) / 2;
     text.y = (stageBounds.height - textH) / 2;
 
-    stage.addChild(textSmaller);
+    subject_content.addChild(textSmaller);
     var textSmallerMetrics = textSmaller.getMetrics();
     var textSmallerW = textSmallerMetrics.width;
     var textSmallerH = textSmallerMetrics.height;
@@ -549,10 +555,11 @@ function addErrorVideo() {
 
     vid.appendChild(source);
     var bitmap = new createjs.Bitmap(vid);
-    stage.addChild(bitmap);
-   // document.body.appendChild(vid);
+    bitmap.scaleX = 0.5;
+    bitmap.scaley = 0.5;
+    background_content.addChild(bitmap);
+    // document.body.appendChild(vid);
 
-   
     // fileLoader.loadManifest([
     //     {
     //         id: "disappointed",
