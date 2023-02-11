@@ -231,7 +231,8 @@ function handle_fileComplete(e) {
     });
 
     fileLoader.loadFile({
-        src: "../images/ui_vectors/playhead-buttons-copy.svg",
+        src: "../images/ui_vectors/work_selections-copy.svg",
+        //src: "../images/ui_vectors/playhead-buttons-copy.svg",
         //src: "../images/ui_vectors/rec.svg",
         id: "playhead",
         //type: createjs.Types.SVG,
