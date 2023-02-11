@@ -263,11 +263,11 @@ function handle_fileComplete(e) {
         //src: "../images/ui_vectors/playhead-buttons-copy.svg",
         //src: "../images/ui_vectors/rec.svg",
         id: "playhead",
-        // type: createjs.Types.IMAGE,
+        type: createjs.Types.IMAGE,
         //type: createjs.Types.SVG,             // throws an error
         //type: "svg",                          // throws an error
         //type: createjs.LoadQueue.IMAGE,       // gets deprecation warning.
-        type: createjs.LoadQueue.TEXT, // throws an error
+        //type: createjs.LoadQueue.TEXT,          // gets deprecation warning.
     });
     ////console.log("basePath: ", basePath);
 }
@@ -375,13 +375,11 @@ function addSVG(e) {
     console.log(":::addSVG:::", e);
     //adding the data part didn't seem to do anything
     // var svg =  "data:image/svg+xml," + fileLoader.getResult("playhead");
-    var svg = fileLoader.getResult("playhead");
+    //var svg = fileLoader.getResult("playhead");
     //console.log(":::addSVG:::", svg);
-    var bg = new createjs.Bitmap(svg);
-    stage.addChild(bg);
+    var bg = new createjs.Bitmap(e.result);
+
     var bgDims = bg.getTransformedBounds();
-    // bg.x = (stageBounds.width - textW) / 2;
-    // bg.y = (stageBounds.height - textH) / 2;
 
     console.log("bg.width: ", bgDims);
 
@@ -389,10 +387,21 @@ function addSVG(e) {
         bg.x = (stageBounds.width - bgDims.width) / 2;
         bg.y = (stageBounds.height - bgDims.height) / 2;
     } else {
-        console.log(e.result.getAttribute("WORK_title"));
-        
+        // var wiggles = new createjs.Shape();
+        // wiggles.graphics.beginFill("#FFcc00").rect(0, 0, 75, 75);
+        // var oldDraw = wiggles.draw;
+        // wiggles.draw = this.draw;
+        // wiggles.cache(0, 0, 320, 320, 2);
+        // wiggles.draw = oldDraw;
+
+        // var wiggles = new createjs.Shape();
+        // wiggles.draw(e.result);
+        // wiggles.graphics.beginFill("#FFcc00").rect(0, 0, 75, 75);
+        bg.beginFill("#FFcc00");
+        //console.log(e.result.getAttribute("WORK_title"));
     }
 
+    stage.addChild(bg);
     stage.update();
 }
 
