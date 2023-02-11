@@ -35,12 +35,27 @@ function createLongGoogleFontLinkHref() {
         "Barlow",
         "Barlow ExtraBold",
         "Barlow Semi Condensed",
+        "Luckiest Guy",
+        "Rum Raisin",
+        "Slackey",
+        "Smokum",
+        "Irish Grover",
+        "Oswald",
+        "Roboto",
+        "Montserrat",
+        "Open Sans",
+        "Source Sans Pro",
+        "Roboto Condensed",
+        "Roboto Mono",
+        "Raleway",
+        "Noto Sans",
+        "Roboto Slab",
+        "Source Code Pro",
         // "Fredoka One",
         // "Alfa Slab One",
         // "Special Elite",
         // "Passion One",
         // "Squada One",
-        // "Luckiest Guy",
         // "Black Ops One",
         // "Bungee",
         // "Racing Sans One",
@@ -55,7 +70,6 @@ function createLongGoogleFontLinkHref() {
         // "Faster One",
         // "Oregano",
         // "Creepster",
-        // "Slackey",
         // "Sail",
         // "Codystar",
         // "Iceland",
@@ -81,26 +95,14 @@ function createLongGoogleFontLinkHref() {
         // "Girassol",
         // "Odibee Sans",
         // "Snowburst One",
-        // "Smokum",
         // "Caesar Dressing",
         // "New Rocker",
         // "Jolly Lodger",
         // "Londrina Shadow",
         // "Hanalei Fill",
-        // "Irish Grover",
         // "Butcherman",
         // "Hanalei",
-        // "Roboto",
-        // "Montserrat",
-        // "Open Sans",
-        // "Source Sans Pro",
-        // "Roboto Condensed",
-        // "Oswald",
-        // "Roboto Mono",
-        // "Raleway",
-        // "Noto Sans",
-        // "Roboto Slab",
-        // "Source Code Pro",
+
         // "Libre Baskerville",
         // "Crimson Text",
         // "Fjalla One",
@@ -164,7 +166,6 @@ function createLongGoogleFontLinkHref() {
         // "Sarpanch",
         // "Mouse Memoirs",
         // "Geo",
-        // "Rum Raisin",
         // "Cormorant Unicase",
         // "Rhodium Libre",
         // "Black And White Picture",
@@ -227,7 +228,7 @@ function createLongGoogleFontLinkHref() {
 }
 
 //one solution for adding numbers in an array:
-// var numbers = [4, 10, 5, 7, 13, 20]; 
+// var numbers = [4, 10, 5, 7, 13, 20];
 // function getAddedNums() {
 //     var tally = 0;
 //     numbers.forEach(function (el) {
@@ -240,7 +241,6 @@ function createLongGoogleFontLinkHref() {
 // console.log(getAddedNums());
 //
 // i can also call: array.reducer to have it "auto add"
-
 
 /*
 export { loadGoogleFonts };
