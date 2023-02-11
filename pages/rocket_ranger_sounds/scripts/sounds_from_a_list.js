@@ -63,6 +63,58 @@ function setupStage(e) {
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF STAGE SETUP FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
+
+/* 
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ RESIZE FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+*/
+let resizeObserver;
+let delay = 250;
+let timeout;
+
+/*
+ResizeObserver.disconnect()
+    Unobserves all observed Element targets of a particular observer.
+
+ResizeObserver.observe()
+    Initiates the observing of a specified Element.
+    
+ResizeObserver.unobserve()
+    Ends the observing of a specified Element.
+*/
+resizeObserver = new ResizeObserver((entries) => {});
+resizeObserver.observe(document.querySelector("#testCanvas"));
+window.addEventListener("resize", function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(handle_Redraw, delay);
+    return;
+});
+
+function handle_Redraw() {
+    // console.log(
+    //     "▄▄▄▄▄▄▄▄▄handle_Redraw▄▄▄▄▄▄▄▄",
+    //     "find a way to add something to all corners of the stage, and re-dim that sucker"
+    // );
+    //TODO:
+    //find a way to add something to all corners of the stage, and re-dim that sucker
+    /* 
+    you can handle text in a dynamic way:
+    https://stackoverflow.com/questions/22943186/html5-canvas-font-size-based-on-canvas-size
+    In your resize event handler, apply a font size to a range of canvas sizes:
+        if(canvas.width<480){
+        context.font='14px verdana';
+        }else if(canvas.width<768){
+        context.font='30px verdana';
+        }else{
+        context.font='80px verdana';
+        }
+    */
+}
+/* 
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF RESIZE FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
+
 /* 
 function:
 
@@ -187,19 +239,7 @@ function handle_fileComplete(e) {
             0,
             extension_trim.lastIndexOf(".")
         );
-        /*
-        //console.log(
-            "string: ",
-            basePath +
-                "/" +
-                peach_colored +
-                "/" +
-                extension_trim +
-                peachs_extension,
-            type: "img",
-        }
-        );
-        */
+
         fileLoader.loadFile(
             basePath +
                 "/" +
@@ -216,18 +256,6 @@ function handle_fileComplete(e) {
                 extension_trim +
                 greens_extension
         );
-
-        // this didn't work...
-        // fileLoader.loadFile({
-        //     src:
-        //         basePath +
-        //         "/" +
-        //         green_colored +
-        //         "/" +
-        //         extension_trim +
-        //         greens_extension,
-        //     type: "img",
-        // });
     });
 
     fileLoader.loadFile({
@@ -235,11 +263,11 @@ function handle_fileComplete(e) {
         //src: "../images/ui_vectors/playhead-buttons-copy.svg",
         //src: "../images/ui_vectors/rec.svg",
         id: "playhead",
-        //type: createjs.Types.SVG,
-        //type: createjs.Types.IMAGE,
-        //type: "svg",
-        type: createjs.LoadQueue.IMAGE,
-        //type: createjs.LoadQueue.TEXT,
+        // type: createjs.Types.IMAGE,
+        //type: createjs.Types.SVG,             // throws an error
+        //type: "svg",                          // throws an error
+        //type: createjs.LoadQueue.IMAGE,       // gets deprecation warning.
+        type: createjs.LoadQueue.TEXT, // throws an error
     });
     ////console.log("basePath: ", basePath);
 }
@@ -344,7 +372,7 @@ function makeSomeText() {
 }
 
 function addSVG(e) {
-    //console.log(":::addSVG:::", e);
+    console.log(":::addSVG:::", e);
     //adding the data part didn't seem to do anything
     // var svg =  "data:image/svg+xml," + fileLoader.getResult("playhead");
     var svg = fileLoader.getResult("playhead");
@@ -355,10 +383,16 @@ function addSVG(e) {
     // bg.x = (stageBounds.width - textW) / 2;
     // bg.y = (stageBounds.height - textH) / 2;
 
-    bg.x = (stageBounds.width - bgDims.width) / 2;
-    bg.y = (stageBounds.height - bgDims.height) / 2;
+    console.log("bg.width: ", bgDims);
 
-    //console.log("bg.width: ", bgDims);
+    if (bgDims !== null) {
+        bg.x = (stageBounds.width - bgDims.width) / 2;
+        bg.y = (stageBounds.height - bgDims.height) / 2;
+    } else {
+        console.log(e.result.getAttribute("WORK_title"));
+        
+    }
+
     stage.update();
 }
 
@@ -445,54 +479,4 @@ function layoutImage(e) {
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-*/
-/* 
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ RESIZE FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-*/
-let resizeObserver;
-let delay = 250;
-let timeout;
-
-/*
-ResizeObserver.disconnect()
-    Unobserves all observed Element targets of a particular observer.
-
-ResizeObserver.observe()
-    Initiates the observing of a specified Element.
-    
-ResizeObserver.unobserve()
-    Ends the observing of a specified Element.
-*/
-resizeObserver = new ResizeObserver((entries) => {});
-resizeObserver.observe(document.querySelector("#testCanvas"));
-window.addEventListener("resize", function () {
-    clearTimeout(timeout);
-    timeout = setTimeout(handle_Redraw, delay);
-    return;
-});
-
-function handle_Redraw() {
-    // console.log(
-    //     "▄▄▄▄▄▄▄▄▄handle_Redraw▄▄▄▄▄▄▄▄",
-    //     "find a way to add something to all corners of the stage, and re-dim that sucker"
-    // );
-    //TODO:
-    //find a way to add something to all corners of the stage, and re-dim that sucker
-    /* 
-    you can handle text in a dynamic way:
-    https://stackoverflow.com/questions/22943186/html5-canvas-font-size-based-on-canvas-size
-    In your resize event handler, apply a font size to a range of canvas sizes:
-        if(canvas.width<480){
-        context.font='14px verdana';
-        }else if(canvas.width<768){
-        context.font='30px verdana';
-        }else{
-        context.font='80px verdana';
-        }
-    */
-}
-/* 
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF RESIZE FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
