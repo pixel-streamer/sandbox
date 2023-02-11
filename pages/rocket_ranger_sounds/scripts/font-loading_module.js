@@ -51,7 +51,7 @@ function createLongGoogleFontLinkHref() {
         "Noto Sans",
         "Roboto Slab",
         "Source Code Pro",
-        // "Fredoka One",
+        "Fredoka One",
         // "Alfa Slab One",
         // "Special Elite",
         // "Passion One",
