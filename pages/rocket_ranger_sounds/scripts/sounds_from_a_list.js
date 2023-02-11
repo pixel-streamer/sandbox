@@ -57,6 +57,7 @@ function setupStage(e) {
     stageBounds = stage.getBounds();
 
     background_content = new createjs.Container();
+    background_content.setBounds(stageBounds);
     subject_content = new createjs.Container();
     stage.addChild(background_content);
     stage.addChild(subject_content);
