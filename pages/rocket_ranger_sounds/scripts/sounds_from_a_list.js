@@ -55,9 +55,30 @@ function setupStage(e) {
     stageBounds = stage.getBounds();
     subject_content = new createjs.Container();
     stage.addChild(subject_content);
+
+    ticker = createjs.Ticker;
+
+    // ticker.timingMode = createjs.Ticker.RAF;
+    // these are equivalent, 1000ms / 40fps (framerate) = 25ms (interval)
+    //ticker.interval = 25;
+    ticker.timingMode = ticker.RAF_SYNCHED;
+    //createjs.Ticker.timingMode = createjs.Ticker.RAF;
+    // ticker.framerate = 30;
+    //ticker.delta=4;
+    ticker.addEventListener("tick", tick);
+
     init();
     makeSomeText();
 }
+
+function tick(event) {
+    //var deltaS = event.delta / 1000;
+    //var position = <clip>.x + 15 * deltaS;
+    //var moverW = <clip>.getBounds().width * <clip>.scaleX;
+    //<clip>.x = position >= w + moverW ? -moverW : position;
+    stage.update(event);
+}
+var ticker;
 
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -312,6 +333,10 @@ function handle_ImageLoadReady(e) {
             addSVG(e);
             //console.log(":::: SVG ▄█▄█▄ SVG ::::", e.item.type);
             break;
+        case "mp4":
+            handleLoadedMovie(e);
+            //console.log(":::: SVG ▄█▄█▄ SVG ::::", e.item.type);
+            break;
         default:
             layoutImage(e);
         //console.log(":::::▄█ handle_ImageLoadReady █▄", e.item.type);
@@ -330,6 +355,7 @@ function handle_ImageLoadComplete(e) {
             "THIS IS THE LUCKIEST GUY! this is the Luckiest Guy!"
         )
     ); */
+    addErrorVideo();
 }
 
 function makeSomeText() {
@@ -485,7 +511,138 @@ function layoutImage(e) {
     imageCount++;
     stage.update();
 }
+function handleLoadedMovie(e) {
+    console.log("▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄", e);
+}
+
+function makeBitmapVideo(clip, path) {
+    var vid = document.createElement("video");
+    vid.src = path;
+    var bmp = stage.addChild(new createjs.Bitmap(vid));
+    bmp.video = vid;
+    return bmp;
+}
+
+function addErrorVideo() {
+    //popInVid();
+    //An example of how to use makeBitmapVideo:
+    // var myClip = makeBitmapVideo(
+    //     this,
+    //     "../video/error_page/woody-disappointed_copy.mp4"
+    // );
+    // myClip.video.play();
+    // myClip.rotation = 45;
+
+    var vid = document.createElement("video");
+    //vid.setAttribute("src", "../video/error_page/woody-disappointed_copy.mp4");
+    //vid.setAttribute("controls", "");
+    vid.setAttribute("autoplay", "");
+    vid.setAttribute("muted", "");
+    vid.setAttribute("loop", "");
+
+    var source = document.createElement("source");
+    source.setAttribute("type", "video/mp4");
+    source.setAttribute(
+        "src",
+        "../video/error_page/woody-disappointed_copy.mp4"
+    );
+
+    vid.appendChild(source);
+    var bitmap = new createjs.Bitmap(vid);
+    stage.addChild(bitmap);
+   // document.body.appendChild(vid);
+
+   
+    // fileLoader.loadManifest([
+    //     {
+    //         id: "disappointed",
+    //         src: "../video/error_page/woody-disappointed_copy.mp4",
+    //     },
+    //     {
+    //         id: "binoculars",
+    //         src: "../video/3d_render_videos/binocular_render_copy.mp4",
+    //     },
+    // ]);
+    /*  fileLoader.loadFile([
+                            {
+                                id: "disappointed",
+                                src: "../video/error_page/woody-disappointed_copy.mp4",
+                            },
+                            {
+                                id: "binoculars",
+                                src: "../video/3d_render_videos/binocular_render_copy.mp4",
+                            },
+                        ]);
+                    */
+    /* 
+                    to add the video to the screen, I need to work in something that builds an HTML5 video
+                    element, and then renders that into the stage as a BitmapData.
+
+                    something like this:
+
+                    var dissapointedVid =  document.getElementById("dissapointed_vid");
+                    var bitmap =  new Bitmap (dissapointedVid);
+                    stage.addChild (bitmap);
+                    <video src="../video/error_page/woody-disappointed_copy.mp4" controls></video>
+                    */
+}
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
+
+function popInVid() {
+    /* 
+    code for "popInVid" from
+    https://codepen.io/mrteal/pen/BaaqJjQ
+
+    check https://blog.logrocket.com/optimizing-video-backgrounds-css-javascript/#how-create-video-backgrounds
+    for information on getting that background as an image
+    */
+    // create manifest for files to load
+    //  queue.loadManifest([ needs to change to ... FILE LOADER
+    var queue = new createjs.LoadQueue();
+    var videosTarget = null;
+    queue.on("complete", handleComplete, this);
+    queue.loadManifest([
+        {
+            id: "myImage",
+            src: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/2RZVIMDLQQ.jpg",
+            type: createjs.AbstractLoader.IMAGE,
+        },
+        {
+            id: "myVideo",
+            src: "https://vjs.zencdn.net/v/oceans.mp4",
+            type: createjs.AbstractLoader.BINARY,
+        },
+    ]);
+    function handleComplete() {
+        // Insert Image
+        var image = queue.getResult("myImage");
+        // $(".img-holder").append(image);
+        document.body.appendChild(image);
+        // Insert Video
+        var videosTarget = queue.getResult("myVideo");
+        var video = document.createElement("video");
+        //video.setAttribute("controls", "");
+        video.setAttribute("muted", "");
+        //video.setAttribute("autoplay", "");  if autoplay OR loop are present, sound is on. :(
+        //video.setAttribute("loop", "");
+
+        var source = document.createElement("source");
+        source.setAttribute("type", "video/mp4");
+        var src = videosTarget;
+        var blob = new Blob([src], { type: "video/mp4" });
+        var urlCreator = window.URL || window.webkitURL;
+        var objUrl = urlCreator.createObjectURL(blob);
+        source.setAttribute("src", objUrl);
+        video.appendChild(source);
+        video.addEventListener("mouseenter", function (e) {
+            video.play();
+        });
+        video.addEventListener("mouseout", function (e) {
+            video.pause();
+        });
+        document.body.appendChild(video);
+    }
+}
