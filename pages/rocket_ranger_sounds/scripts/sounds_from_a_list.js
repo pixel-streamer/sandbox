@@ -63,7 +63,11 @@ function setupStage(e) {
     stageBounds = stage.getBounds();
     console.log("▌▌▌▌▌▀▀▀▀▌▌▌▌▌▌▌▌:::::::stageBounds::: ", stageBounds);
     background_content = new createjs.Container();
-    //  background_content.setBounds(stageBounds);
+    var anotherBigFill = new createjs.Shape();
+    anotherBigFill.graphics.beginFill("#0000FF");
+    anotherBigFill.graphics.drawRect(0, 0, w, h);
+    background_content.setBounds(stageBounds);
+    background_content.addChild(anotherBigFill);
     subject_content = new createjs.Container();
     stage.addChild(background_content);
     stage.addChild(subject_content);
@@ -566,6 +570,8 @@ function addErrorVideo() {
 
     vid.appendChild(source);
     var bitmap = new createjs.Bitmap(vid);
+    // bitmap.width = w;
+    // bitmap.height = h;
     bitmap.scaleX = 0.5;
     bitmap.scaley = 0.5;
     background_content.addChild(bitmap);
@@ -701,7 +707,7 @@ function makeCanvasTester() {
             if (isOnScreen.apply(shape)) {
                 shapeList[index].move(x, y);
             } else {
-                shapeList[index].render();
+                shape.render();
             }
         }
     }
@@ -709,11 +715,10 @@ function makeCanvasTester() {
     window.addEventListener("click", function (e) {
         var x = e.offsetX;
         var y = e.offsetY;
-        console.log("x, and y: " + x + ", " + y);
+        //console.log("x, and y: " + x + ", " + y);
         var square = new CanvasShape(x, y, 24, smallCanvas.getContext("2d"));
-        render(square, x, y);
-        square.render();
         shapeList.push(square);
+        render(square, x, y);
     });
 }
 
