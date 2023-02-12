@@ -47,20 +47,27 @@ function setupStage(e) {
     //returns true or false, based on hover capable
     nofullhover = window.matchMedia("(hover:none), (hover:on-demand)").matches;
 
+    // console.log("::::::::::::::stage::: ", stage, "nofullhover: ", nofullhover);
+    // console.log("▌▌▌▌▌▀▀▀▀▌▌▌▌▌▌▌▌:::::::w, h::: ", w, h);
+
     bigCanvas.setAttribute("width", w);
     bigCanvas.setAttribute("height", h);
     //console.log("≈██ setupStage ██≈", e.detail);
     stage = bigCanvas;
     stage = new createjs.Stage("big_stage");
-    //console.log("::::::::::::::stage::: ", stage, "nofullhover: ", nofullhover);
+    var bigFill = new createjs.Shape();
+    bigFill.graphics.beginFill("#0000FF");
+    bigFill.graphics.drawRect(0, 0, w, h);
+    stage.addChild(bigFill);
     stage.setBounds(0, 0, w, h);
     stageBounds = stage.getBounds();
-
+    console.log("▌▌▌▌▌▀▀▀▀▌▌▌▌▌▌▌▌:::::::stageBounds::: ", stageBounds);
     background_content = new createjs.Container();
-    background_content.setBounds(stageBounds);
+    //  background_content.setBounds(stageBounds);
     subject_content = new createjs.Container();
     stage.addChild(background_content);
     stage.addChild(subject_content);
+    stage.update();
 
     ticker = createjs.Ticker;
 
@@ -554,6 +561,9 @@ function addErrorVideo() {
         "../video/error_page/woody-disappointed_copy.mp4"
     );
 
+    vid.setAttribute("width", w);
+    vid.setAttribute("height", h);
+
     vid.appendChild(source);
     var bitmap = new createjs.Bitmap(vid);
     bitmap.scaleX = 0.5;
@@ -593,6 +603,8 @@ function addErrorVideo() {
                     stage.addChild (bitmap);
                     <video src="../video/error_page/woody-disappointed_copy.mp4" controls></video>
                     */
+
+    makeCanvasTester();
 }
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -652,5 +664,81 @@ function popInVid() {
             video.pause();
         });
         document.body.appendChild(video);
+    }
+}
+
+/* 
+get a random hex value for the color of something:
+*/
+var smallCanvas;
+
+function makeCanvasTester() {
+    console.log(":::: makeCanvasTester ::::");
+    smallCanvas = document.createElement("canvas");
+    smallCanvas.setAttribute("width", w);
+    smallCanvas.setAttribute("height", h);
+    smallCanvas.setAttribute("style", "border:1px solid #00FF00;");
+    smallCanvas.setAttribute("id", "square_tester");
+    document.body.appendChild(smallCanvas);
+
+    shapeList = [];
+
+    function isOnScreen() {
+        for (index in shapeList) {
+            if (this === shapeList[index]) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    function render(shape, x, y) {
+        smallCanvas
+            .getContext("2d")
+            .clearRect(0, 0, smallCanvas.width, smallCanvas.height);
+        for (index in shapeList) {
+            if (isOnScreen.apply(shape)) {
+                shapeList[index].move(x, y);
+            } else {
+                shapeList[index].render();
+            }
+        }
+    }
+
+    window.addEventListener("click", function (e) {
+        var x = e.offsetX;
+        var y = e.offsetY;
+        console.log("x, and y: " + x + ", " + y);
+        var square = new CanvasShape(x, y, 24, smallCanvas.getContext("2d"));
+        render(square, x, y);
+        square.render();
+        shapeList.push(square);
+    });
+}
+
+function getRandomHexNum() {
+    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+class CanvasShape {
+    constructor(x, y, size, ctx) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.ctx = ctx;
+        this.color = getRandomHexNum();
+        this.self = this;
+    }
+    move(newX, newY) {
+        this.x = newX;
+        this.y = newY;
+    }
+    render() {
+        this.ctx.beginPath();
+        this.ctx.rect(this.x, this.y, this.size, this.size);
+        this.ctx.closePath();
+        this.ctx.fillStyle = this.color;
+        this.ctx.fill();
     }
 }
