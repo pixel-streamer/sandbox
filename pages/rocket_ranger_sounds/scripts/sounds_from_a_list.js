@@ -565,15 +565,17 @@ function addErrorVideo() {
         "../video/error_page/woody-disappointed_copy.mp4"
     );
 
-    vid.setAttribute("width", w);
-    vid.setAttribute("height", h);
+    // source.setAttribute("width", w);
+    // source.setAttribute("height", h);
+    // vid.setAttribute("width", w);
+    // vid.setAttribute("height", h);
 
     vid.appendChild(source);
     var bitmap = new createjs.Bitmap(vid);
     // bitmap.width = w;
     // bitmap.height = h;
-    bitmap.scaleX = 0.5;
-    bitmap.scaley = 0.5;
+    // bitmap.scaleX = 0.5;
+    // bitmap.scaley = 0.5;
     background_content.addChild(bitmap);
     // document.body.appendChild(vid);
 
