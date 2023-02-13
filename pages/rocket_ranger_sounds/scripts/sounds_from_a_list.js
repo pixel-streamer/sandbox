@@ -575,8 +575,8 @@ function addErrorVideo() {
         source.setAttribute("type", "video/mp4");
         source.setAttribute("src", videoLoader.getResult("disappointed").src);
 
-        // source.setAttribute("width", w);
-        // source.setAttribute("height", h);
+        source.setAttribute("width", w);
+        source.setAttribute("height", h);
         vid.setAttribute("width", w);
         vid.setAttribute("height", h);
 
@@ -775,28 +775,30 @@ get a random hex value for the color of something:
 //     }
 // }
 
-function getPromiseFromEvent(item, event) {
-    return new Promise((resolve) => {
-        const listener = () => {
-            //
+//from https://stackoverflow.com/questions/30505960/use-promise-to-wait-until-polled-condition-is-satisfied
+//
+//function getPromiseFromEvent(item, event) {
+//     return new Promise((resolve) => {
+//         const listener = () => {
+//             //
 
-            item.removeEventListener(event, listener);
-            resolve();
-        };
-        item.addEventListener(event, listener);
-    });
-}
+//             item.removeEventListener(event, listener);
+//             resolve();
+//         };
+//         item.addEventListener(event, listener);
+//     });
+// }
 
-async function waitForButtonClick() {
-    const div = document.querySelector("div");
-    const button = document.querySelector("button");
-    div.innerText = "Waiting for you to press the button";
-    await getPromiseFromEvent(button, "click");
-    div.innerText = "The button was pressed!";
-}
+// async function waitForButtonClick() {
+//     const div = document.querySelector("div");
+//     const button = document.querySelector("button");
+//     div.innerText = "Waiting for you to press the button";
+//     await getPromiseFromEvent(button, "click");
+//     div.innerText = "The button was pressed!";
+// }
 
-var thingy = document.createElement("button");
-var btnText = document.createTextNode("click for event test");
-thingy.appendChild(btnText);
-thingy.addEventListener("click", waitForButtonClick);
-document.body.appendChild(thingy);
+// var thingy = document.createElement("button");
+// var btnText = document.createTextNode("click for event test");
+// thingy.appendChild(btnText);
+// thingy.addEventListener("click", waitForButtonClick);
+// document.body.appendChild(thingy);
