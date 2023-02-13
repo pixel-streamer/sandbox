@@ -42,6 +42,13 @@ var stageBounds;
 var nofullhover;
 function setupStage(e) {
     /* 
+    each element in the display list can interact with event "click".
+
+    TODO: 
+        explore how bubbling the event clicks in the window can get information from the
+        element that is undergoing interaction.
+    */
+    /* 
     // from http://www.javascriptkit.com/dhtmltutors/sticky-hover-issue-solutions.shtml
     */
     //returns true or false, based on hover capable
@@ -188,7 +195,7 @@ main canvas size firmly inside the 100vw/vh area
 
 */
 
-var fileLoader;
+var fileLoader, videoLoader;
 var bigArea = document.querySelector("#testCanvas");
 var subject_content;
 var background_content;
@@ -221,6 +228,8 @@ function init() {
     queue.loadFile("testing_numbers/testing.xml");
 
     fileLoader = new createjs.LoadQueue(false);
+
+    videoLoader = new createjs.LoadQueue(true);
 
     /*
   galleryImageLinks.forEach(function (member) {
@@ -540,7 +549,6 @@ function makeBitmapVideo(clip, path) {
     bmp.video = vid;
     return bmp;
 }
-
 function addErrorVideo() {
     //popInVid();
     //An example of how to use makeBitmapVideo:
@@ -551,32 +559,41 @@ function addErrorVideo() {
     // myClip.video.play();
     // myClip.rotation = 45;
 
-    var vid = document.createElement("video");
-    //vid.setAttribute("src", "../video/error_page/woody-disappointed_copy.mp4");
-    //vid.setAttribute("controls", "");
-    vid.setAttribute("autoplay", "");
-    vid.setAttribute("muted", "");
-    vid.setAttribute("loop", "");
+    function handle_videoLoaded(e) {
+        console.log("handle_videoLoaded::::: ");
+        var vid = document.createElement("video");
+        //vid.setAttribute("src", "../video/error_page/woody-disappointed_copy.mp4");
+        //vid.setAttribute("controls", "");
+        vid.setAttribute("autoplay", "");
+        vid.setAttribute("muted", "");
+        vid.setAttribute("loop", "");
 
-    var source = document.createElement("source");
-    source.setAttribute("type", "video/mp4");
-    source.setAttribute(
-        "src",
-        "../video/error_page/woody-disappointed_copy.mp4"
-    );
+        var source = document.createElement("source");
+        source.setAttribute("type", "video/mp4");
+        source.setAttribute("src", videoLoader.getResult("disappointed").src);
 
-    // source.setAttribute("width", w);
-    // source.setAttribute("height", h);
-    // vid.setAttribute("width", w);
-    // vid.setAttribute("height", h);
+        // source.setAttribute("width", w);
+        // source.setAttribute("height", h);
+        // vid.setAttribute("width", w);
+        // vid.setAttribute("height", h);
 
-    vid.appendChild(source);
-    var bitmap = new createjs.Bitmap(vid);
-    // bitmap.width = w;
-    // bitmap.height = h;
-    bitmap.scaleX = 0.5;
-    bitmap.scaley = 0.5;
-    background_content.addChild(bitmap);
+        vid.appendChild(source);
+        var bitmap = new createjs.Bitmap(vid);
+        // bitmap.width = w;
+        // bitmap.height = h;
+        // bitmap.scaleX = 1 * vid.videoWidth;
+        // bitmap.scaley = 1 * vid.videoHeight;
+        background_content.addChild(bitmap);
+    }
+
+    videoLoader.addEventListener("complete", handle_videoLoaded);
+
+    videoLoader.loadFile({
+        src: "../video/error_page/woody-disappointed_copy.mp4",
+        id: "disappointed",
+        type: createjs.Types.VIDEO,
+    });
+
     // document.body.appendChild(vid);
 
     // fileLoader.loadManifest([
@@ -612,7 +629,7 @@ function addErrorVideo() {
                     <video src="../video/error_page/woody-disappointed_copy.mp4" controls></video>
                     */
 
-    makeCanvasTester();
+    // makeCanvasTester();
 }
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
