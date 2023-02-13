@@ -41,6 +41,8 @@ var stage;
 var stageBounds;
 var nofullhover;
 function setupStage(e) {
+    // Add EventDispatcher capabilities to the "MyClass" class. (exposing "on")
+    // EventDispatcher.initialize(MyClass.prototype);
     /* 
     each element in the display list can interact with event "click".
 
@@ -575,8 +577,8 @@ function addErrorVideo() {
 
         // source.setAttribute("width", w);
         // source.setAttribute("height", h);
-        // vid.setAttribute("width", w);
-        // vid.setAttribute("height", h);
+        vid.setAttribute("width", w);
+        vid.setAttribute("height", h);
 
         console.log("bitmap::::: ", bitmap);
         console.log("vid::::: ", vid);
@@ -701,74 +703,100 @@ function popInVid() {
 /* 
 get a random hex value for the color of something:
 */
-var smallCanvas;
+// var smallCanvas;
 
-function makeCanvasTester() {
-    console.log(":::: makeCanvasTester ::::");
-    smallCanvas = document.createElement("canvas");
-    smallCanvas.setAttribute("width", w);
-    smallCanvas.setAttribute("height", h);
-    smallCanvas.setAttribute("style", "border:1px solid #00FF00;");
-    smallCanvas.setAttribute("id", "square_tester");
-    document.body.appendChild(smallCanvas);
+// function makeCanvasTester() {
+//     console.log(":::: makeCanvasTester ::::");
+//     smallCanvas = document.createElement("canvas");
+//     smallCanvas.setAttribute("width", w);
+//     smallCanvas.setAttribute("height", h);
+//     smallCanvas.setAttribute("style", "border:1px solid #00FF00;");
+//     smallCanvas.setAttribute("id", "square_tester");
+//     document.body.appendChild(smallCanvas);
 
-    shapeList = [];
+//     shapeList = [];
 
-    function isOnScreen() {
-        for (index in shapeList) {
-            if (this === shapeList[index]) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
+//     function isOnScreen() {
+//         for (index in shapeList) {
+//             if (this === shapeList[index]) {
+//                 return true;
+//             } else {
+//                 return false;
+//             }
+//         }
+//     }
 
-    function render(shape, x, y) {
-        smallCanvas
-            .getContext("2d")
-            .clearRect(0, 0, smallCanvas.width, smallCanvas.height);
-        for (index in shapeList) {
-            if (isOnScreen.apply(shape)) {
-                shapeList[index].move(x, y);
-            } else {
-                shape.render();
-            }
-        }
-    }
+//     function render(shape, x, y) {
+//         smallCanvas
+//             .getContext("2d")
+//             .clearRect(0, 0, smallCanvas.width, smallCanvas.height);
+//         for (index in shapeList) {
+//             if (isOnScreen.apply(shape)) {
+//                 shapeList[index].move(x, y);
+//             } else {
+//                 shape.render();
+//             }
+//         }
+//     }
 
-    window.addEventListener("click", function (e) {
-        var x = e.offsetX;
-        var y = e.offsetY;
-        //console.log("x, and y: " + x + ", " + y);
-        var square = new CanvasShape(x, y, 24, smallCanvas.getContext("2d"));
-        shapeList.push(square);
-        render(square, x, y);
+//     window.addEventListener("click", function (e) {
+//         var x = e.offsetX;
+//         var y = e.offsetY;
+//         //console.log("x, and y: " + x + ", " + y);
+//         var square = new CanvasShape(x, y, 24, smallCanvas.getContext("2d"));
+//         shapeList.push(square);
+//         render(square, x, y);
+//     });
+// }
+
+// function getRandomHexNum() {
+//     return "#" + Math.floor(Math.random() * 16777215).toString(16);
+// }
+
+// class CanvasShape {
+//     constructor(x, y, size, ctx) {
+//         this.x = x;
+//         this.y = y;
+//         this.size = size;
+//         this.ctx = ctx;
+//         this.color = getRandomHexNum();
+//         this.self = this;
+//     }
+//     move(newX, newY) {
+//         this.x = newX;
+//         this.y = newY;
+//     }
+//     render() {
+//         this.ctx.beginPath();
+//         this.ctx.rect(this.x, this.y, this.size, this.size);
+//         this.ctx.closePath();
+//         this.ctx.fillStyle = this.color;
+//         this.ctx.fill();
+//     }
+// }
+
+function getPromiseFromEvent(item, event) {
+    return new Promise((resolve) => {
+        const listener = () => {
+            //
+
+            item.removeEventListener(event, listener);
+            resolve();
+        };
+        item.addEventListener(event, listener);
     });
 }
 
-function getRandomHexNum() {
-    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+async function waitForButtonClick() {
+    const div = document.querySelector("div");
+    const button = document.querySelector("button");
+    div.innerText = "Waiting for you to press the button";
+    await getPromiseFromEvent(button, "click");
+    div.innerText = "The button was pressed!";
 }
 
-class CanvasShape {
-    constructor(x, y, size, ctx) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.ctx = ctx;
-        this.color = getRandomHexNum();
-        this.self = this;
-    }
-    move(newX, newY) {
-        this.x = newX;
-        this.y = newY;
-    }
-    render() {
-        this.ctx.beginPath();
-        this.ctx.rect(this.x, this.y, this.size, this.size);
-        this.ctx.closePath();
-        this.ctx.fillStyle = this.color;
-        this.ctx.fill();
-    }
-}
+var thingy = document.createElement("button");
+var btnText = document.createTextNode("click for event test");
+thingy.appendChild(btnText);
+thingy.addEventListener("click", waitForButtonClick);
+document.body.appendChild(thingy);
