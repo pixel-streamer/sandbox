@@ -553,6 +553,41 @@ function makeBitmapVideo(clip, path) {
     bmp.video = vid;
     return bmp;
 }
+
+// ---- Definitions ----- //
+
+/**
+ * Ready-to-use function
+ * https://stackoverflow.com/questions/4129102/html5-video-dimensions
+ Returns the dimensions of a video asynchrounsly.
+ @param {String} url Url of the video to get dimensions from.
+ @return {Promise<{width: number, height: number}>} Promise which returns the dimensions of the video in 'width' and 'height' properties.
+ */
+function getVideoDimensionsOf(url) {
+    return new Promise((resolve) => {
+        // create the video element
+        let video = document.createElement("video");
+
+        // place a listener on it
+        video.addEventListener(
+            "loadedmetadata",
+            function () {
+                // retrieve dimensions
+                const vidEl = this;
+                const height = this.videoHeight;
+                const width = this.videoWidth;
+
+                // send back result
+                resolve({ height, width, vidEl });
+            },
+            false
+        );
+
+        // start download meta-datas
+        video.src = url;
+    });
+}
+
 function addErrorVideo() {
     //popInVid();
     //An example of how to use makeBitmapVideo:
@@ -563,51 +598,57 @@ function addErrorVideo() {
     // myClip.video.play();
     // myClip.rotation = 45;
 
-    function handle_videoLoaded(e) {
-        console.log("handle_videoLoaded::::: ");
-        var vid = document.createElement("video");
-        //vid.setAttribute("controls", "");
-        vid.setAttribute("autoplay", "");
-        vid.setAttribute("muted", "");
-        vid.setAttribute("loop", "");
+    // function handle_videoLoaded(e) {
+    //     console.log("handle_videoLoaded::::: ");
+    //     var vid = document.createElement("video");
+    //     //vid.setAttribute("controls", "");
+    //     vid.setAttribute("autoplay", "");
+    //     vid.setAttribute("muted", "");
+    //     vid.setAttribute("loop", "");
 
-        var source = document.createElement("source");
-        source.setAttribute("type", "video/mp4");
-        source.setAttribute("src", videoLoader.getResult("disappointed").src);
+    //     var source = document.createElement("source");
+    //     source.setAttribute("type", "video/mp4");
+    //     source.setAttribute("src", videoLoader.getResult("disappointed").src);
 
-        // source.setAttribute("width", w);
-        // source.setAttribute("height", h);
-        // vid.setAttribute("width", w);
-        // vid.setAttribute("height", h);
-        //
-        vid.appendChild(source);
+    //     // source.setAttribute("width", w);
+    //     // source.setAttribute("height", h);
+    //     // vid.setAttribute("width", w);
+    //     // vid.setAttribute("height", h);
+    //     //
+    //     vid.appendChild(source);
 
-        var vidBuff = new createjs.VideoBuffer(vid);
+    //     // var vidBuff = new createjs.VideoBuffer(vid);
 
-        var vidW = vidBuff._video.width;
-        var vidH = vidBuff._video.height;
-        console.log("vidW::::: ", vidW, vidH);
-        var bitmap = new createjs.Bitmap(vidBuff);
+    //     var vidBuff = new createjs.VideoBuffer(vid);
 
-        var vidScaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
-        console.log("vidScaleRat::::: ", vidScaleRat);
-        // vid.setAttribute("width",vidScaleRat)
-        // vid.setAttribute("height")
-        // var scaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
-        // console.log("scaleRat::::: ", scaleRat);
+    //     // var vidW = vidBuff._video.width;
+    //     // var vidH = vidBuff._video.height;
 
-        // bitmap.scaleX = scaleRat;
-        // bitmap.scaleY = scaleRat;
-        background_content.addChild(bitmap);
-    }
+    //     console.log("disappointed::::: ", vidBuff);
 
-    videoLoader.addEventListener("complete", handle_videoLoaded);
+    //     var vidW = vidBuff._canvas;
+    //     console.log("vidW::::: ", vidW);
+    //     var bitmap = new createjs.Bitmap(vidBuff);
 
-    videoLoader.loadFile({
-        src: "../video/error_page/woody-disappointed_copy.mp4",
-        id: "disappointed",
-        type: createjs.Types.VIDEO,
-    });
+    //     // var vidScaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
+    //     // console.log("vidScaleRat::::: ", vidScaleRat);
+    //     // vid.setAttribute("width",vidScaleRat)
+    //     // vid.setAttribute("height")
+    //     // var scaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
+    //     // console.log("scaleRat::::: ", scaleRat);
+
+    //     // bitmap.scaleX = scaleRat;
+    //     // bitmap.scaleY = scaleRat;
+    //     background_content.addChild(bitmap);
+    // }
+
+    // videoLoader.addEventListener("complete", handle_videoLoaded);
+
+    // videoLoader.loadFile({
+    //     src: "../video/error_page/woody-disappointed_copy.mp4",
+    //     id: "disappointed",
+    //     type: createjs.Types.VIDEO,
+    // });
 
     // document.body.appendChild(vid);
 
@@ -645,6 +686,16 @@ function addErrorVideo() {
                     */
 
     // makeCanvasTester();
+
+    // ---- Use ---- //
+    getVideoDimensionsOf(
+        "../video/error_page/woody-disappointed_copy.mp4"
+    ).then(function (vidEl) {
+        //   var vidBuff = new createjs.VideoBuffer(vidEl);
+        //   var bitmap = new createjs.Bitmap(vidBuff);
+        var bitmap = new createjs.Bitmap(vidEl);
+        background_content.addChild(bitmap);
+    });
 }
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
