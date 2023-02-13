@@ -584,8 +584,6 @@ function addErrorVideo() {
 
         var vidW = vidBuff._video.width;
         var vidH = vidBuff._video.height;
-        vid.appendChild(source);
-        //var bitmap = new createjs.Bitmap(vid);
         var bitmap = new createjs.Bitmap(vidBuff);
         var scaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
         console.log("scaleRat::::: ", scaleRat);
@@ -593,10 +591,7 @@ function addErrorVideo() {
         bitmap.scaleX = scaleRat;
         bitmap.scaleY = scaleRat;
         background_content.addChild(bitmap);
-        console.log(
-            "background_content.getBounds()",
-            background_content.getBounds()
-        );
+        console.log("vidW", w);
     }
 
     videoLoader.addEventListener("complete", handle_videoLoaded);
