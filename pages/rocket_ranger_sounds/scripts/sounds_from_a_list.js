@@ -575,23 +575,30 @@ function addErrorVideo() {
         source.setAttribute("type", "video/mp4");
         source.setAttribute("src", videoLoader.getResult("disappointed").src);
 
-        source.setAttribute("width", w);
-        source.setAttribute("height", h);
-        vid.setAttribute("width", w);
-        vid.setAttribute("height", h);
+        // source.setAttribute("width", w);
+        // source.setAttribute("height", h);
+        // vid.setAttribute("width", w);
+        // vid.setAttribute("height", h);
+        //
+        vid.appendChild(source);
 
         var vidBuff = new createjs.VideoBuffer(vid);
 
         var vidW = vidBuff._video.width;
         var vidH = vidBuff._video.height;
+        console.log("vidW::::: ", vidW, vidH);
         var bitmap = new createjs.Bitmap(vidBuff);
-        var scaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
-        console.log("scaleRat::::: ", scaleRat);
 
-        bitmap.scaleX = scaleRat;
-        bitmap.scaleY = scaleRat;
+        var vidScaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
+        console.log("vidScaleRat::::: ", vidScaleRat);
+        // vid.setAttribute("width",vidScaleRat)
+        // vid.setAttribute("height")
+        // var scaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
+        // console.log("scaleRat::::: ", scaleRat);
+
+        // bitmap.scaleX = scaleRat;
+        // bitmap.scaleY = scaleRat;
         background_content.addChild(bitmap);
-        console.log("vidW", w);
     }
 
     videoLoader.addEventListener("complete", handle_videoLoaded);
