@@ -588,9 +588,9 @@ function addErrorVideo() {
         );
         vid.appendChild(source);
         var bitmap = new createjs.Bitmap(vid);
-          var scaleRat = Math.min(w, h) / Math.max(w, h);
-        bitmap.scaleX = .5;
-        bitmap.scaley = .5;  
+        /*  var scaleRat = Math.min(w, h) / Math.max(w, h);
+        bitmap.scaleX = 1 * scaleRat;
+        bitmap.scaley = 1 * scaleRat; */
         background_content.addChild(bitmap);
     }
 
@@ -802,4 +802,67 @@ get a random hex value for the color of something:
 // thingy.appendChild(btnText);
 // thingy.addEventListener("click", waitForButtonClick);
 // document.body.appendChild(thingy);
- 
+
+/* TODO:
+have a look here:
+https://www.youtube.com/embed/AIgtuB3569w */
+let poll = {
+    question: "what's your favorite programming, language?",
+    answers: ["C", "Java", "PHP", "JavaScript"],
+    pollCount: 20,
+    answersWeight: [4, 4, 2, 10],
+    selectedAnswer: -1,
+};
+let pollDom = {
+    question: document.querySelector(".poll .question"),
+    answers: document.querySelector(".poll .answers"),
+};
+pollDom.question.innerText = poll.question;
+pollDom.answers.innerHTML = poll.answers
+    .map(function (answer, i) {
+        return `
+            <div class ="answer" onclick ="markAnswer('${i}')" >
+            ${answer}
+                <span class="percentage-bar"></span> 
+                <span class="percentage-value"></span>
+            </div>
+           `;
+    })
+    .join("");
+
+function markAnswer(i) {
+    poll.selectedAnswer = +i;
+    try {
+        document
+            .querySelector(".poll .answers .answer .selected")
+            .classList.remove("selected");
+    } catch (msg) {
+        document
+            .querySelectorAll(".poll .answers .answer")
+            [+i].classList.add("selected");
+        showResults();
+    }
+
+    function showResults() {
+        let answers = document.querySelectorAll(".poll  .answers .answer");
+
+        for (let i = 0; i < answers.length; i++) {
+            let percentage = 0;
+
+            if (i == poll.selectedAnswer) {
+                percentage = Math.round(
+                    ((poll.answersWeight[i] + 1) * 100) / (poll.pollCount + 1)
+                );
+            } else {
+                percentage = Math.round(
+                    (poll.answersWeight[i] * 100) / (poll.pollCount + 1)
+                );
+            }
+
+            answers[i].querySelector(".percentage-bar").style.width =
+                percentage + "%";
+            answers[i].querySelector(".percentage-value").innerText =
+                percentage + "%";
+        }
+    }
+}

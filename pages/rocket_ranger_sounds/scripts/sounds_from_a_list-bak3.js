@@ -41,72 +41,23 @@ var stage;
 var stageBounds;
 var nofullhover;
 function setupStage(e) {
-    // Add EventDispatcher capabilities to the "MyClass" class. (exposing "on")
-    // EventDispatcher.initialize(MyClass.prototype);
-    /* 
-    each element in the display list can interact with event "click".
-
-    TODO: 
-        explore how bubbling the event clicks in the window can get information from the
-        element that is undergoing interaction.
-    */
     /* 
     // from http://www.javascriptkit.com/dhtmltutors/sticky-hover-issue-solutions.shtml
     */
-    //returns true or false, based on hover capable
-    nofullhover = window.matchMedia("(hover:none), (hover:on-demand)").matches;
-
-    // console.log("::::::::::::::stage::: ", stage, "nofullhover: ", nofullhover);
-    // console.log("▌▌▌▌▌▀▀▀▀▌▌▌▌▌▌▌▌:::::::w, h::: ", w, h);
-
+    nofullhover = window.matchMedia("(hover:none), (hover:on-demand)").matches; //returns true or false
     bigCanvas.setAttribute("width", w);
     bigCanvas.setAttribute("height", h);
     //console.log("≈██ setupStage ██≈", e.detail);
     stage = bigCanvas;
     stage = new createjs.Stage("big_stage");
-    var bigFill = new createjs.Shape();
-    bigFill.graphics.beginFill("#0000FF");
-    bigFill.graphics.drawRect(0, 0, w, h);
-    bigFill.name = "stage_main";
-    stage.addChild(bigFill);
+    //console.log("::::::::::::::stage::: ", stage, "nofullhover: ", nofullhover);
     stage.setBounds(0, 0, w, h);
     stageBounds = stage.getBounds();
-    console.log("▌▌▌▌▌▀▀▀▀▌▌▌▌▌▌▌▌:::::::stageBounds::: ", stageBounds);
-    background_content = new createjs.Container();
-    var anotherBigFill = new createjs.Shape();
-    anotherBigFill.graphics.beginFill("#0000FF");
-    anotherBigFill.graphics.drawRect(0, 0, w, h);
-    background_content.setBounds(stageBounds);
-    background_content.addChild(anotherBigFill);
-    background_content.name = "background_content";
     subject_content = new createjs.Container();
-    stage.addChild(background_content);
     stage.addChild(subject_content);
-    stage.update();
-
-    ticker = createjs.Ticker;
-
-    // ticker.timingMode = createjs.Ticker.RAF;
-    // these are equivalent, 1000ms / 40fps (framerate) = 25ms (interval)
-    //ticker.interval = 25;
-    ticker.timingMode = ticker.RAF_SYNCHED;
-    //createjs.Ticker.timingMode = createjs.Ticker.RAF;
-    // ticker.framerate = 30;
-    //ticker.delta=4;
-    ticker.addEventListener("tick", tick);
-
     init();
     makeSomeText();
 }
-
-function tick(event) {
-    //var deltaS = event.delta / 1000;
-    //var position = <clip>.x + 15 * deltaS;
-    //var moverW = <clip>.getBounds().width * <clip>.scaleX;
-    //<clip>.x = position >= w + moverW ? -moverW : position;
-    stage.update(event);
-}
-var ticker;
 
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -199,10 +150,9 @@ main canvas size firmly inside the 100vw/vh area
 
 */
 
-var fileLoader, videoLoader;
+var fileLoader;
 var bigArea = document.querySelector("#testCanvas");
 var subject_content;
-var background_content;
 var w = parseInt(getComputedStyle(bigArea).width);
 var h = parseInt(getComputedStyle(bigArea).height);
 var bigCanvas = document.querySelector(".full_size_canvas");
@@ -232,8 +182,6 @@ function init() {
     queue.loadFile("testing_numbers/testing.xml");
 
     fileLoader = new createjs.LoadQueue(false);
-
-    videoLoader = new createjs.LoadQueue(true);
 
     /*
   galleryImageLinks.forEach(function (member) {
@@ -291,7 +239,19 @@ function handle_fileComplete(e) {
             0,
             extension_trim.lastIndexOf(".")
         );
-
+        /*
+        //console.log(
+            "string: ",
+            basePath +
+                "/" +
+                peach_colored +
+                "/" +
+                extension_trim +
+                peachs_extension,
+            type: "img",
+        }
+        );
+        */
         fileLoader.loadFile(
             basePath +
                 "/" +
@@ -308,6 +268,18 @@ function handle_fileComplete(e) {
                 extension_trim +
                 greens_extension
         );
+
+        // this didn't work...
+        // fileLoader.loadFile({
+        //     src:
+        //         basePath +
+        //         "/" +
+        //         green_colored +
+        //         "/" +
+        //         extension_trim +
+        //         greens_extension,
+        //     type: "img",
+        // });
     });
 
     fileLoader.loadFile({
@@ -315,11 +287,11 @@ function handle_fileComplete(e) {
         //src: "../images/ui_vectors/playhead-buttons-copy.svg",
         //src: "../images/ui_vectors/rec.svg",
         id: "playhead",
-        type: createjs.Types.IMAGE,
-        //type: createjs.Types.SVG,             // throws an error
-        //type: "svg",                          // throws an error
-        //type: createjs.LoadQueue.IMAGE,       // gets deprecation warning.
-        //type: createjs.LoadQueue.TEXT,          // gets deprecation warning.
+        //type: createjs.Types.SVG,
+        //type: createjs.Types.IMAGE,
+        //type: "svg",
+        type: createjs.LoadQueue.IMAGE,
+        //type: createjs.LoadQueue.TEXT,
     });
     ////console.log("basePath: ", basePath);
 }
@@ -364,10 +336,6 @@ function handle_ImageLoadReady(e) {
             addSVG(e);
             //console.log(":::: SVG ▄█▄█▄ SVG ::::", e.item.type);
             break;
-        case "mp4":
-            handleLoadedMovie(e);
-            //console.log(":::: SVG ▄█▄█▄ SVG ::::", e.item.type);
-            break;
         default:
             layoutImage(e);
         //console.log(":::::▄█ handle_ImageLoadReady █▄", e.item.type);
@@ -386,7 +354,6 @@ function handle_ImageLoadComplete(e) {
             "THIS IS THE LUCKIEST GUY! this is the Luckiest Guy!"
         )
     ); */
-    addErrorVideo();
 }
 
 function makeSomeText() {
@@ -407,7 +374,7 @@ function makeSomeText() {
         "#FFFFFF"
     );
     //console.log(":::text:::", text);
-    subject_content.addChild(text);
+    stage.addChild(text);
     var textMetrics = text.getMetrics();
     var textW = textMetrics.width;
     var textH = textMetrics.height;
@@ -415,7 +382,7 @@ function makeSomeText() {
     text.x = (stageBounds.width - textW) / 2;
     text.y = (stageBounds.height - textH) / 2;
 
-    subject_content.addChild(textSmaller);
+    stage.addChild(textSmaller);
     var textSmallerMetrics = textSmaller.getMetrics();
     var textSmallerW = textSmallerMetrics.width;
     var textSmallerH = textSmallerMetrics.height;
@@ -429,36 +396,21 @@ function makeSomeText() {
 }
 
 function addSVG(e) {
-    console.log(":::addSVG:::", e);
+    //console.log(":::addSVG:::", e);
     //adding the data part didn't seem to do anything
     // var svg =  "data:image/svg+xml," + fileLoader.getResult("playhead");
-    //var svg = fileLoader.getResult("playhead");
+    var svg = fileLoader.getResult("playhead");
     //console.log(":::addSVG:::", svg);
-    var bg = new createjs.Bitmap(e.result);
-
-    var bgDims = bg.getTransformedBounds();
-
-    console.log("bg.width: ", bgDims);
-
-    if (bgDims !== null) {
-        bg.x = (stageBounds.width - bgDims.width) / 2;
-        bg.y = (stageBounds.height - bgDims.height) / 2;
-    } else {
-        // var wiggles = new createjs.Shape();
-        // wiggles.graphics.beginFill("#FFcc00").rect(0, 0, 75, 75);
-        // var oldDraw = wiggles.draw;
-        // wiggles.draw = this.draw;
-        // wiggles.cache(0, 0, 320, 320, 2);
-        // wiggles.draw = oldDraw;
-
-        // var wiggles = new createjs.Shape();
-        // wiggles.draw(e.result);
-        // wiggles.graphics.beginFill("#FFcc00").rect(0, 0, 75, 75);
-        bg.beginFill("#FFcc00");
-        //console.log(e.result.getAttribute("WORK_title"));
-    }
-
+    var bg = new createjs.Bitmap(svg);
     stage.addChild(bg);
+    var bgDims = bg.getTransformedBounds();
+    // bg.x = (stageBounds.width - textW) / 2;
+    // bg.y = (stageBounds.height - textH) / 2;
+
+    bg.x = (stageBounds.width - bgDims.width) / 2;
+    bg.y = (stageBounds.height - bgDims.height) / 2;
+
+    //console.log("bg.width: ", bgDims);
     stage.update();
 }
 
@@ -542,264 +494,7 @@ function layoutImage(e) {
     imageCount++;
     stage.update();
 }
-function handleLoadedMovie(e) {
-    console.log("▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄", e);
-}
-
-function makeBitmapVideo(clip, path) {
-    var vid = document.createElement("video");
-    vid.src = path;
-    var bmp = stage.addChild(new createjs.Bitmap(vid));
-    bmp.video = vid;
-    return bmp;
-}
-function addErrorVideo() {
-    //popInVid();
-    //An example of how to use makeBitmapVideo:
-    // var myClip = makeBitmapVideo(
-    //     this,
-    //     "../video/error_page/woody-disappointed_copy.mp4"
-    // );
-    // myClip.video.play();
-    // myClip.rotation = 45;
-
-    function handle_videoLoaded(e) {
-        console.log("handle_videoLoaded::::: ");
-        var vid = document.createElement("video");
-        //vid.setAttribute("controls", "");
-        vid.setAttribute("autoplay", "");
-        vid.setAttribute("muted", "");
-        vid.setAttribute("loop", "");
-
-        var source = document.createElement("source");
-        source.setAttribute("type", "video/mp4");
-        source.setAttribute("src", videoLoader.getResult("disappointed").src);
-
-        source.setAttribute("width", w);
-        source.setAttribute("height", h);
-        vid.setAttribute("width", w);
-        vid.setAttribute("height", h);
-
-        console.log("bitmap::::: ", bitmap);
-        console.log("vid::::: ", vid);
-        console.log(
-            "videoWidth: ::::: ",
-            videoLoader.getResult("disappointed").videoWidth
-        );
-        vid.appendChild(source);
-        var bitmap = new createjs.Bitmap(vid);
-          var scaleRat = Math.min(w, h) / Math.max(w, h);
-        bitmap.scaleX = .5;
-        bitmap.scaley = .5;  
-        background_content.addChild(bitmap);
-    }
-
-    videoLoader.addEventListener("complete", handle_videoLoaded);
-
-    videoLoader.loadFile({
-        src: "../video/error_page/woody-disappointed_copy.mp4",
-        id: "disappointed",
-        type: createjs.Types.VIDEO,
-    });
-
-    // document.body.appendChild(vid);
-
-    // fileLoader.loadManifest([
-    //     {
-    //         id: "disappointed",
-    //         src: "../video/error_page/woody-disappointed_copy.mp4",
-    //     },
-    //     {
-    //         id: "binoculars",
-    //         src: "../video/3d_render_videos/binocular_render_copy.mp4",
-    //     },
-    // ]);
-    /*  fileLoader.loadFile([
-                            {
-                                id: "disappointed",
-                                src: "../video/error_page/woody-disappointed_copy.mp4",
-                            },
-                            {
-                                id: "binoculars",
-                                src: "../video/3d_render_videos/binocular_render_copy.mp4",
-                            },
-                        ]);
-                    */
-    /* 
-                    to add the video to the screen, I need to work in something that builds an HTML5 video
-                    element, and then renders that into the stage as a BitmapData.
-
-                    something like this:
-
-                    var dissapointedVid =  document.getElementById("dissapointed_vid");
-                    var bitmap =  new Bitmap (dissapointedVid);
-                    stage.addChild (bitmap);
-                    <video src="../video/error_page/woody-disappointed_copy.mp4" controls></video>
-                    */
-
-    // makeCanvasTester();
-}
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
-
-function popInVid() {
-    /* 
-    code for "popInVid" from
-    https://codepen.io/mrteal/pen/BaaqJjQ
-
-    check https://blog.logrocket.com/optimizing-video-backgrounds-css-javascript/#how-create-video-backgrounds
-    for information on getting that background as an image
-    */
-    // create manifest for files to load
-    //  queue.loadManifest([ needs to change to ... FILE LOADER
-    var queue = new createjs.LoadQueue();
-    var videosTarget = null;
-    queue.on("complete", handleComplete, this);
-    queue.loadManifest([
-        {
-            id: "myImage",
-            src: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/2RZVIMDLQQ.jpg",
-            type: createjs.AbstractLoader.IMAGE,
-        },
-        {
-            id: "myVideo",
-            src: "https://vjs.zencdn.net/v/oceans.mp4",
-            type: createjs.AbstractLoader.BINARY,
-        },
-    ]);
-    function handleComplete() {
-        // Insert Image
-        var image = queue.getResult("myImage");
-        // $(".img-holder").append(image);
-        document.body.appendChild(image);
-        // Insert Video
-        var videosTarget = queue.getResult("myVideo");
-        var video = document.createElement("video");
-        //video.setAttribute("controls", "");
-        video.setAttribute("muted", "");
-        //video.setAttribute("autoplay", "");  if autoplay OR loop are present, sound is on. :(
-        //video.setAttribute("loop", "");
-
-        var source = document.createElement("source");
-        source.setAttribute("type", "video/mp4");
-        var src = videosTarget;
-        var blob = new Blob([src], { type: "video/mp4" });
-        var urlCreator = window.URL || window.webkitURL;
-        var objUrl = urlCreator.createObjectURL(blob);
-        source.setAttribute("src", objUrl);
-        video.appendChild(source);
-        video.addEventListener("mouseenter", function (e) {
-            video.play();
-        });
-        video.addEventListener("mouseout", function (e) {
-            video.pause();
-        });
-        document.body.appendChild(video);
-    }
-}
-
-/* 
-get a random hex value for the color of something:
-*/
-// var smallCanvas;
-
-// function makeCanvasTester() {
-//     console.log(":::: makeCanvasTester ::::");
-//     smallCanvas = document.createElement("canvas");
-//     smallCanvas.setAttribute("width", w);
-//     smallCanvas.setAttribute("height", h);
-//     smallCanvas.setAttribute("style", "border:1px solid #00FF00;");
-//     smallCanvas.setAttribute("id", "square_tester");
-//     document.body.appendChild(smallCanvas);
-
-//     shapeList = [];
-
-//     function isOnScreen() {
-//         for (index in shapeList) {
-//             if (this === shapeList[index]) {
-//                 return true;
-//             } else {
-//                 return false;
-//             }
-//         }
-//     }
-
-//     function render(shape, x, y) {
-//         smallCanvas
-//             .getContext("2d")
-//             .clearRect(0, 0, smallCanvas.width, smallCanvas.height);
-//         for (index in shapeList) {
-//             if (isOnScreen.apply(shape)) {
-//                 shapeList[index].move(x, y);
-//             } else {
-//                 shape.render();
-//             }
-//         }
-//     }
-
-//     window.addEventListener("click", function (e) {
-//         var x = e.offsetX;
-//         var y = e.offsetY;
-//         //console.log("x, and y: " + x + ", " + y);
-//         var square = new CanvasShape(x, y, 24, smallCanvas.getContext("2d"));
-//         shapeList.push(square);
-//         render(square, x, y);
-//     });
-// }
-
-// function getRandomHexNum() {
-//     return "#" + Math.floor(Math.random() * 16777215).toString(16);
-// }
-
-// class CanvasShape {
-//     constructor(x, y, size, ctx) {
-//         this.x = x;
-//         this.y = y;
-//         this.size = size;
-//         this.ctx = ctx;
-//         this.color = getRandomHexNum();
-//         this.self = this;
-//     }
-//     move(newX, newY) {
-//         this.x = newX;
-//         this.y = newY;
-//     }
-//     render() {
-//         this.ctx.beginPath();
-//         this.ctx.rect(this.x, this.y, this.size, this.size);
-//         this.ctx.closePath();
-//         this.ctx.fillStyle = this.color;
-//         this.ctx.fill();
-//     }
-// }
-
-//from https://stackoverflow.com/questions/30505960/use-promise-to-wait-until-polled-condition-is-satisfied
-//
-//function getPromiseFromEvent(item, event) {
-//     return new Promise((resolve) => {
-//         const listener = () => {
-//             //
-
-//             item.removeEventListener(event, listener);
-//             resolve();
-//         };
-//         item.addEventListener(event, listener);
-//     });
-// }
-
-// async function waitForButtonClick() {
-//     const div = document.querySelector("div");
-//     const button = document.querySelector("button");
-//     div.innerText = "Waiting for you to press the button";
-//     await getPromiseFromEvent(button, "click");
-//     div.innerText = "The button was pressed!";
-// }
-
-// var thingy = document.createElement("button");
-// var btnText = document.createTextNode("click for event test");
-// thingy.appendChild(btnText);
-// thingy.addEventListener("click", waitForButtonClick);
-// document.body.appendChild(thingy);
- 

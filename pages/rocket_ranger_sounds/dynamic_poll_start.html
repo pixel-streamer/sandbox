@@ -147,19 +147,75 @@ border-radius: 3px;
         </style>
     </head>
     <body>
-        <div id="progress"></div>
-        <div id="gallery"></div>
-        <noscript>
-            (this site requires javascript to be enabled, so that the interface
-            can be constructed around the data you see here)
-        </noscript>
-        <div id="testCanvas" class="fulldisplay cleared_top">
-            <canvas id="big_stage" class="full_size_canvas"></canvas>
+       
+        <style>
+            /* 
+        poll style
+         */
+            .poll {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 400px;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.35);
+                z-index: 45554884;
+            }
+            .poll .question {
+                padding: 20px;
+                color: #333;
+                font-size: 105%;
+                border-bottom: 1px solid #000;
+            }
+            .poll .answers {
+                padding: 20px;
+            }
+            .poll .answers .answer {
+                position: relative;
+                width: 100%;
+                height: 40px;
+                padding: 0 10px;
+                line-height: 40px;
+                color: #444;
+                margin-bottom: 10px;
+                border: 1px solid #000;
+                border-radius: 10px;
+                cursor: pointer;
+                overflow: hidden;
+            }
+            .poll .answers .answer .selected {
+                border: 2px solid saddlebrown;
+            }
+            .poll .answers .answer span.percentage-value {
+                position: absolute;
+                top: 50%;
+                right: 0;
+                width: 40px;
+                transform: translateY(-50%);
+            }
+            .poll .answers .answer span.percentage-bar {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 50%;
+                height: 100%;
+                background: salmon;
+                transition: width 200ms ease-in-out;
+                z-index: -1;
+            }
+        </style>
+        <div class="poll">
+            <div class="question"></div>
+            <div class="answers"></div>
         </div>
-        <div id="screen-log"></div>
-        <div class="hidden"></div>
 
-        <script src="./scripts/font-loading_module.js"></script>
-        <script src="./scripts/sounds_from_a_list.js"></script>
+        <!--  <div class="answer" onclick="markAnswer('${i}')">
+            ${answer}
+            <span class="percentage-bar"></span>
+            <span class="percentage-value"></span>
+        </div> --> 
+        <script src="./scripts/dynamic_polling_start.js"></script>
     </body>
 </html>
