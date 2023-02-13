@@ -65,6 +65,7 @@ function setupStage(e) {
     var bigFill = new createjs.Shape();
     bigFill.graphics.beginFill("#0000FF");
     bigFill.graphics.drawRect(0, 0, w, h);
+    bigFill.name = "stage_main";
     stage.addChild(bigFill);
     stage.setBounds(0, 0, w, h);
     stageBounds = stage.getBounds();
@@ -75,6 +76,7 @@ function setupStage(e) {
     anotherBigFill.graphics.drawRect(0, 0, w, h);
     background_content.setBounds(stageBounds);
     background_content.addChild(anotherBigFill);
+    background_content.name = "background_content";
     subject_content = new createjs.Container();
     stage.addChild(background_content);
     stage.addChild(subject_content);
@@ -562,27 +564,25 @@ function addErrorVideo() {
     function handle_videoLoaded(e) {
         console.log("handle_videoLoaded::::: ");
         var vid = document.createElement("video");
-        //vid.setAttribute("src", "../video/error_page/woody-disappointed_copy.mp4");
         //vid.setAttribute("controls", "");
         vid.setAttribute("autoplay", "");
         vid.setAttribute("muted", "");
         vid.setAttribute("loop", "");
-
-        var source = document.createElement("source");
-        source.setAttribute("type", "video/mp4");
-        source.setAttribute("src", videoLoader.getResult("disappointed").src);
+        vid.setAttribute("src", videoLoader.getResult("disappointed").src);
+        //var source = document.createElement("source");
+        vid.setAttribute("type", "video/mp4");
+        //source.setAttribute("src", videoLoader.getResult("disappointed").src);
 
         // source.setAttribute("width", w);
         // source.setAttribute("height", h);
         // vid.setAttribute("width", w);
         // vid.setAttribute("height", h);
 
-        vid.appendChild(source);
+        //vid.appendChild(source);
         var bitmap = new createjs.Bitmap(vid);
-        // bitmap.width = w;
-        // bitmap.height = h;
-        // bitmap.scaleX = 1 * vid.videoWidth;
-        // bitmap.scaley = 1 * vid.videoHeight;
+        var scaleRat = Math.min(w, h) / Math.max(w, h);
+        bitmap.scaleX = 1 * scaleRat;
+        bitmap.scaley = 1 * scaleRat;
         background_content.addChild(bitmap);
     }
 
