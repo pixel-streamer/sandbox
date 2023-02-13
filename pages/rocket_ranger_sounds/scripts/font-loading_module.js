@@ -33,7 +33,7 @@ function createLongGoogleFontLinkHref() {
     var fontFamilyArr = [
         "Press Start 2P",
         "Barlow",
-        "Barlow ExtraBold",
+        "Barlow Extra Bold",
         "Barlow Semi Condensed",
         "Luckiest Guy",
         "Rum Raisin",
