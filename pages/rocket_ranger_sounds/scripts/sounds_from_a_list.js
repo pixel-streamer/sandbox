@@ -568,20 +568,26 @@ function addErrorVideo() {
         vid.setAttribute("autoplay", "");
         vid.setAttribute("muted", "");
         vid.setAttribute("loop", "");
-        vid.setAttribute("src", videoLoader.getResult("disappointed").src);
-        //var source = document.createElement("source");
-        vid.setAttribute("type", "video/mp4");
-        //source.setAttribute("src", videoLoader.getResult("disappointed").src);
+
+        var source = document.createElement("source");
+        source.setAttribute("type", "video/mp4");
+        source.setAttribute("src", videoLoader.getResult("disappointed").src);
 
         // source.setAttribute("width", w);
         // source.setAttribute("height", h);
         // vid.setAttribute("width", w);
         // vid.setAttribute("height", h);
 
-        //vid.appendChild(source);
+        console.log("bitmap::::: ", bitmap);
+        console.log("vid::::: ", vid);
+        console.log(
+            "videoWidth: ::::: ",
+            videoLoader.getResult("disappointed").videoWidth
+        );
+        vid.appendChild(source);
         var bitmap = new createjs.Bitmap(vid);
-        var scaleRat = Math.min(w, h) / Math.max(w, h);
-     /*    bitmap.scaleX = 1 * scaleRat;
+        /*  var scaleRat = Math.min(w, h) / Math.max(w, h);
+        bitmap.scaleX = 1 * scaleRat;
         bitmap.scaley = 1 * scaleRat; */
         background_content.addChild(bitmap);
     }
