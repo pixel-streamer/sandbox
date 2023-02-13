@@ -590,7 +590,7 @@ function addErrorVideo() {
         var bitmap = new createjs.Bitmap(vid);
           var scaleRat = Math.min(w, h) / Math.max(w, h);
         bitmap.scaleX = .5;
-        bitmap.scaley = .5;  
+        bitmap.scaleY = .5;  
         background_content.addChild(bitmap);
     }
 
