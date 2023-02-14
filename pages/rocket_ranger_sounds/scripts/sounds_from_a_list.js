@@ -554,7 +554,25 @@ function makeBitmapVideo(clip, path) {
     return bmp;
 }
 
-// ---- Definitions ----- //
+function makeHTML5DomVid() {
+    //TODO
+    //this looks like it uses jquery to build the video element. may need tweaks
+    var videoDom = $(
+        `
+        <video
+            width="320"
+            height="240"
+            autoplay>
+                <source
+                    src="movie.mp4"
+                    type="video/mp4"
+                >
+        </video>
+        `
+    ).appendTo(document.body)[0];
+    var cjsVideo = new createjs.DOMElement(videoDom);
+    stage.addChild(cjsVideo);
+}
 
 /**
  * Ready-to-use function
@@ -566,29 +584,32 @@ function makeBitmapVideo(clip, path) {
 function getVideoDimensionsOf(url) {
     return new Promise((resolve) => {
         // create the video element
-        let video = document.createElement("video");
-        video.setAttribute("autoplay", "");
-        video.setAttribute("muted", "");
-        video.setAttribute("loop", "");
+        let videoEl = document.createElement("video");
+
+        videoEl.setAttribute("autoplay", "");
+        videoEl.setAttribute("muted", "");
+        videoEl.setAttribute("loop", "");
 
         // start download meta-datas
         let source = document.createElement("source");
         source.setAttribute("type", "video/mp4");
-        video.appendChild(source);
+
         // place a listener on it
-        video.addEventListener(
+        videoEl.addEventListener(
             "loadedmetadata",
             function () {
                 // retrieve dimensions
-                let height = this.videoHeight;
-                let width = this.videoWidth;
+                let height = videoEl.videoHeight;
+                let width = videoEl.videoWidth;
 
                 // send back result
                 // resolve({ height, width });
-                resolve({ height: height, width: width, vidEl: this });
+                resolve({ height: height, width: width, vidEl: video });
             },
             false
         );
+        videoEl.appendChild(source);
+        let video = new createjs.DOMElement(videoEl);
         source.setAttribute("src", url);
         // video.src = url;
     });
@@ -689,7 +710,7 @@ function addErrorVideo() {
         // var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode());
         // var vidBuff = new createjs.VideoBuffer(vidData);
         // var bitmap = new createjs.Bitmap(vidBuff);
-      //  var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode(true));
+        //  var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode(true));
         var bitmap = new createjs.Bitmap(promisedData.vidEl);
 
         var vidW = promisedData.width;
