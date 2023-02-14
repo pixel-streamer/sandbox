@@ -823,6 +823,17 @@ function getRandomHexNum() {
 //from a fiddle:
 https://jsfiddle.net/hcfvyx9k/1/ 
 */
+
+
+
+/* 
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
+
+was an attempt to fix this:
+  video.src = URL.createObjectURL(mediaSource);
+
+  //^^ in the text below, that line is throwing an error
+*/
 (async () => {
     const mediaSource = new MediaSource();
 
