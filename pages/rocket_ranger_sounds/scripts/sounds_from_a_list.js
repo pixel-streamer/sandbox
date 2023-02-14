@@ -573,16 +573,15 @@ function getVideoDimensionsOf(url) {
             "loadedmetadata",
             function () {
                 // retrieve dimensions
-                const height = this.videoHeight;
-                const width = this.videoWidth;
+                let height = this.videoHeight;
+                let width = this.videoWidth;
 
-                // // send back result
+                // send back result
                 // resolve({ height, width });
                 resolve({ height: height, width: width, vidEl: this });
             },
             false
         );
-
         // start download meta-datas
         video.src = url;
     });
@@ -669,10 +668,25 @@ function addErrorVideo() {
     getVideoDimensionsOf(
         "../video/error_page/woody-disappointed_copy.mp4"
     ).then(function (promisedData) {
-        var vidBuff = new createjs.VideoBuffer(promisedData.vidEl);
-        //   var bitmap = new createjs.Bitmap(vidBuff);
-        console.log(promisedData.vidEl);
+        var vidData = promisedData.vidEl.cloneNode(true);
+        console.log("vidData", vidData);
+
+        //var vidBuff = new createjs.VideoBuffer(promisedData.vidEl);
+        //vid.setAttribute("controls", "");
+        // promisedData.vidEl.setAttribute("autoplay", "");
+        // promisedData.vidEl.setAttribute("muted", "");
+        // promisedData.vidEl.setAttribute("loop", "");
+        //TODO: thinking about preventing a memory leak by cloning to prevent a direct ref.
+        //  var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode());
+        var vidBuff = new createjs.VideoBuffer(vidData);
         var bitmap = new createjs.Bitmap(vidBuff);
+
+        var vidW = promisedData.width;
+        var vidH = promisedData.height;
+        // bitmap.scaleX = 0.5;
+        // bitmap.scaleY = 0.5;
+        console.log("vidW,vidH", vidW, vidH);
+
         background_content.addChild(bitmap);
     });
 }
