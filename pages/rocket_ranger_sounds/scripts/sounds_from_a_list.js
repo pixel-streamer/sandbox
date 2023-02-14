@@ -600,7 +600,8 @@ function getVideoDimensionsOf(url) {
                 console.log("ç◙:::video::♪◙", video);
                 // send back result
                 // resolve({ height, width });
-                resolve({ height: height, width: width });
+                video.autoplay=true;
+                resolve({ height: height, width: width, vidEl: video });
             },
             false
         );
@@ -696,22 +697,24 @@ function addErrorVideo() {
 
     var vidURL = "../video/error_page/woody-disappointed_copy.mp4";
     getVideoDimensionsOf(vidURL).then(function (promisedData) {
-        let video = document.createElement("video");
-        let source = document.createElement("source");
-        source.setAttribute("type", "video/mp4");
-        //video.setAttribute("controls", "");
-        video.setAttribute("preload", "metadata");
-        video.setAttribute("autoplay", "");
-        video.setAttribute("muted", "");
-        video.setAttribute("loop", "");
-        video.setAttribute("playsinline", "");
-        video.appendChild(source);
-        source.setAttribute("src", vidURL);
-        console.log("vidData", video);
+        var bitmap = new createjs.Bitmap(promisedData.vidEl);
 
-        // var bitmap = new createjs.Bitmap(video);
-        var vidBuff = new createjs.VideoBuffer(video);
-        var bitmap = new createjs.Bitmap(vidBuff);
+        // let video = document.createElement("video");
+        // let source = document.createElement("source");
+        // source.setAttribute("type", "video/mp4");
+        // //video.setAttribute("controls", "");
+        // video.setAttribute("preload", "metadata");
+        // video.setAttribute("autoplay", "");
+        // video.setAttribute("muted", "");
+        // video.setAttribute("loop", "");
+        // video.setAttribute("playsinline", "");
+        // video.appendChild(source);
+        // source.setAttribute("src", vidURL);
+        // console.log("vidData", video);
+
+        // // var bitmap = new createjs.Bitmap(video);
+        // var vidBuff = new createjs.VideoBuffer(video);
+        // var bitmap = new createjs.Bitmap(vidBuff);
         var vidW = promisedData.width;
         var vidH = promisedData.height;
 
@@ -821,124 +824,127 @@ function getRandomHexNum() {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
 }
 
-/* 
-//from a fiddle:
-https://jsfiddle.net/hcfvyx9k/1/ 
-*/
+//https://stackoverflow.com/questions/28927434/easiest-way-to-load-a-video-in-createjs
+//maybe this would work?:  var bitmap = new createjs.Bitmap("moviePath.mp4");
 
-/* 
-https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
+// /*
+// //from a fiddle:
+// https://jsfiddle.net/hcfvyx9k/1/
+// */
 
-was an attempt to fix this:
-  video.src = URL.createObjectURL(mediaSource);
+// /*
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
 
-  //^^ in the text below, that line is throwing an error
-*/
-(async () => {
-    const mediaSource = new MediaSource();
+// was an attempt to fix this:
+//   video.src = URL.createObjectURL(mediaSource);
 
-    const video = document.querySelector("video");
+//   //^^ in the text below, that line is throwing an error
+// */
 
-    //video.oncanplay = e => video.play();
+// (async () => {
+//     const mediaSource = new MediaSource();
 
-    const urls = [
-        "../video/error_page/woody-disappointed_copy.mp4",
-        // "https://nickdesaulniers.github.io/netfix/demo/frag_bunny.mp4",
-        // "https://raw.githubusercontent.com/w3c/web-platform-tests/master/media-source/mp4/test.mp4",
-        // "https://raw.githubusercontent.com/w3c/web-platform-tests/master/media-source/mp4/test.mp4",
-        // "https://nickdesaulniers.github.io/netfix/demo/frag_bunny.mp4",
-    ];
+//     const video = document.querySelector("video");
 
-    const request = (url) =>
-        fetch(url).then((response) => response.arrayBuffer());
+//     //video.oncanplay = e => video.play();
 
-    // `urls.reverse()` stops at `.currentTime` : `9`
-    const files = await Promise.all(urls.map(request));
+//     const urls = [
+//         "../video/error_page/woody-disappointed_copy.mp4",
+//         // "https://nickdesaulniers.github.io/netfix/demo/frag_bunny.mp4",
+//         // "https://raw.githubusercontent.com/w3c/web-platform-tests/master/media-source/mp4/test.mp4",
+//         // "https://raw.githubusercontent.com/w3c/web-platform-tests/master/media-source/mp4/test.mp4",
+//         // "https://nickdesaulniers.github.io/netfix/demo/frag_bunny.mp4",
+//     ];
 
-    /*
-     `.webm` files 'SourceBuffer': This SourceBuffer has been removed from the parent media
-     Uncaught DOMException: Failed to execute 'appendBuffer' on source.
-     Uncaught DOMException: Failed to set the 'timestampOffset' property on 'SourceBuffer': This SourceBuffer has been removed from the parent media source.
-    */
-    // const mimeCodec = "video/webm; codecs=opus";
-    // https://stackoverflow.com/questions/14108536/how-do-i-append-two-video-files-data-to-a-source-buffer-using-media-source-api/
-    const mimeCodec = 'video/mp4; codecs="avc1.42E01E,mp4a.40.2"';
+//     const request = (url) =>
+//         fetch(url).then((response) => response.arrayBuffer());
 
-    const media = await Promise.all(
-        files.map((file) => {
-            return new Promise((resolve) => {
-                let media = document.createElement("video");
-                let blobURL = URL.createObjectURL(new Blob([file]));
-                media.onloadedmetadata = async (e) => {
-                    resolve({
-                        mediaDuration: media.duration,
-                        mediaBuffer: file,
-                    });
-                };
-                media.src = blobURL;
-            });
-        })
-    );
+//     // `urls.reverse()` stops at `.currentTime` : `9`
+//     const files = await Promise.all(urls.map(request));
 
-    console.log(media);
+//     /*
+//      `.webm` files 'SourceBuffer': This SourceBuffer has been removed from the parent media
+//      Uncaught DOMException: Failed to execute 'appendBuffer' on source.
+//      Uncaught DOMException: Failed to set the 'timestampOffset' property on 'SourceBuffer': This SourceBuffer has been removed from the parent media source.
+//     */
+//     // const mimeCodec = "video/webm; codecs=opus";
+//     // https://stackoverflow.com/questions/14108536/how-do-i-append-two-video-files-data-to-a-source-buffer-using-media-source-api/
+//     const mimeCodec = 'video/mp4; codecs="avc1.42E01E,mp4a.40.2"';
 
-    mediaSource.addEventListener("sourceopen", sourceOpen);
-    /* 
+//     const media = await Promise.all(
+//         files.map((file) => {
+//             return new Promise((resolve) => {
+//                 let media = document.createElement("video");
+//                 let blobURL = URL.createObjectURL(new Blob([file]));
+//                 media.onloadedmetadata = async (e) => {
+//                     resolve({
+//                         mediaDuration: media.duration,
+//                         mediaBuffer: file,
+//                     });
+//                 };
+//                 media.src = blobURL;
+//             });
+//         })
+//     );
 
-"Supporting fallback to the src property
-https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
+//     console.log(media);
 
-//below fixes the error caused by this:
-         video.src = URL.createObjectURL(mediaSource);     
+//     mediaSource.addEventListener("sourceopen", sourceOpen);
+//     /*
 
-//"Second, a new MediaSource is assigned to a newly-created <video> element,
-//with fallback for older browsers and browsers that don't yet support
-//assignment of MediaSource directly. "
+// "Supporting fallback to the src property
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
 
-const mediaSource = new MediaSource();
-const video = document.createElement('video');
-// Older browsers may not have srcObject
-if ('srcObject' in video) {
-  try {
-    video.srcObject = mediaSource;
-  } catch (err) {
-    if (err.name !== "TypeError") {
-      throw err;
-    }
-    // Even if they do, they may only support MediaStream
-    video.src = URL.createObjectURL(mediaSource);
-  }
-} else {
-  video.src = URL.createObjectURL(mediaSource);
-}
+// //below fixes the error caused by this:
+//          video.src = URL.createObjectURL(mediaSource);
 
+// //"Second, a new MediaSource is assigned to a newly-created <video> element,
+// //with fallback for older browsers and browsers that don't yet support
+// //assignment of MediaSource directly. "
 
-*/
+// const mediaSource = new MediaSource();
+// const video = document.createElement('video');
+// // Older browsers may not have srcObject
+// if ('srcObject' in video) {
+//   try {
+//     video.srcObject = mediaSource;
+//   } catch (err) {
+//     if (err.name !== "TypeError") {
+//       throw err;
+//     }
+//     // Even if they do, they may only support MediaStream
+//     video.src = URL.createObjectURL(mediaSource);
+//   }
+// } else {
+//   video.src = URL.createObjectURL(mediaSource);
+// }
 
-/* 
-this URL.createObjectURL throws an error
-*/
-    video.src = URL.createObjectURL(mediaSource);
+// */
 
-    async function sourceOpen(event) {
-        if (MediaSource.isTypeSupported(mimeCodec)) {
-            const sourceBuffer = mediaSource.addSourceBuffer(mimeCodec);
+// /*
+// this URL.createObjectURL throws an error
+// */
+//     video.src = URL.createObjectURL(mediaSource);
 
-            for (let chunk of media) {
-                await new Promise((resolve) => {
-                    sourceBuffer.appendBuffer(chunk.mediaBuffer);
-                    sourceBuffer.onupdateend = (e) => {
-                        sourceBuffer.onupdateend = null;
-                        sourceBuffer.timestampOffset += chunk.mediaDuration;
-                        console.log(mediaSource.duration);
-                        resolve();
-                    };
-                });
-            }
+//     async function sourceOpen(event) {
+//         if (MediaSource.isTypeSupported(mimeCodec)) {
+//             const sourceBuffer = mediaSource.addSourceBuffer(mimeCodec);
 
-            mediaSource.endOfStream();
-        } else {
-            console.warn(mimeCodec + " not supported");
-        }
-    }
-})();
+//             for (let chunk of media) {
+//                 await new Promise((resolve) => {
+//                     sourceBuffer.appendBuffer(chunk.mediaBuffer);
+//                     sourceBuffer.onupdateend = (e) => {
+//                         sourceBuffer.onupdateend = null;
+//                         sourceBuffer.timestampOffset += chunk.mediaDuration;
+//                         console.log(mediaSource.duration);
+//                         resolve();
+//                     };
+//                 });
+//             }
+
+//             mediaSource.endOfStream();
+//         } else {
+//             console.warn(mimeCodec + " not supported");
+//         }
+//     }
+// })();
