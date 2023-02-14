@@ -689,7 +689,8 @@ function addErrorVideo() {
         // var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode());
         // var vidBuff = new createjs.VideoBuffer(vidData);
         // var bitmap = new createjs.Bitmap(vidBuff);
-        var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode(true));
+      //  var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode(true));
+        var bitmap = new createjs.Bitmap(promisedData.vidEl);
 
         var vidW = promisedData.width;
         var vidH = promisedData.height;
