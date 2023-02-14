@@ -425,7 +425,7 @@ function makeSomeText() {
     var text = new createjs.Text(
         "WHO IS THIS GUY?",
         //"16px 'Press Start 2P'",
-        "800 italic 64px 'Barlow ExtraBold'",
+        "italic 64px 'Barlow ExtraBold'",
         // "#ff7700"
         "#FFFFFF"
     );
@@ -777,6 +777,7 @@ function addErrorVideo() {
 }
 
 var BaseClass = function (id) {
+    //from https://jsfiddle.net/lannymcnie/qTHb4/
     _instance = this;
     _id = id;
 };
