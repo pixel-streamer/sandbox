@@ -573,12 +573,12 @@ function getVideoDimensionsOf(url) {
             "loadedmetadata",
             function () {
                 // retrieve dimensions
-                const vidEl = this;
                 const height = this.videoHeight;
                 const width = this.videoWidth;
 
-                // send back result
-                resolve({ height, width, vidEl });
+                // // send back result
+                // resolve({ height, width });
+                resolve({ height: height, width: width, vidEl: this });
             },
             false
         );
@@ -589,111 +589,90 @@ function getVideoDimensionsOf(url) {
 }
 
 function addErrorVideo() {
-    //popInVid();
-    //An example of how to use makeBitmapVideo:
-    // var myClip = makeBitmapVideo(
-    //     this,
-    //     "../video/error_page/woody-disappointed_copy.mp4"
-    // );
-    // myClip.video.play();
-    // myClip.rotation = 45;
+    /*
+   function handle_videoLoaded(e) {
+        console.log("handle_videoLoaded::::: ");
+        var vid = document.createElement("video");
+        //vid.setAttribute("controls", "");
+        vid.setAttribute("autoplay", "");
+        vid.setAttribute("muted", "");
+        vid.setAttribute("loop", "");
 
-    // function handle_videoLoaded(e) {
-    //     console.log("handle_videoLoaded::::: ");
-    //     var vid = document.createElement("video");
-    //     //vid.setAttribute("controls", "");
-    //     vid.setAttribute("autoplay", "");
-    //     vid.setAttribute("muted", "");
-    //     vid.setAttribute("loop", "");
+        var source = document.createElement("source");
+        source.setAttribute("type", "video/mp4");
+        source.setAttribute("src", videoLoader.getResult("disappointed").src);
 
-    //     var source = document.createElement("source");
-    //     source.setAttribute("type", "video/mp4");
-    //     source.setAttribute("src", videoLoader.getResult("disappointed").src);
+        // source.setAttribute("width", w);
+        // source.setAttribute("height", h);
+        // vid.setAttribute("width", w);
+        // vid.setAttribute("height", h);
+        //
+        vid.appendChild(source);
 
-    //     // source.setAttribute("width", w);
-    //     // source.setAttribute("height", h);
-    //     // vid.setAttribute("width", w);
-    //     // vid.setAttribute("height", h);
-    //     //
-    //     vid.appendChild(source);
+        // var vidBuff = new createjs.VideoBuffer(vid);
 
-    //     // var vidBuff = new createjs.VideoBuffer(vid);
+        var vidBuff = new createjs.VideoBuffer(vid);
 
-    //     var vidBuff = new createjs.VideoBuffer(vid);
+        // var vidW = vidBuff._video.width;
+        // var vidH = vidBuff._video.height;
 
-    //     // var vidW = vidBuff._video.width;
-    //     // var vidH = vidBuff._video.height;
+        console.log("disappointed::::: ", vidBuff);
 
-    //     console.log("disappointed::::: ", vidBuff);
+        var vidW = vidBuff._canvas;
+        console.log("vidW::::: ", vidW);
+        var bitmap = new createjs.Bitmap(vidBuff);
 
-    //     var vidW = vidBuff._canvas;
-    //     console.log("vidW::::: ", vidW);
-    //     var bitmap = new createjs.Bitmap(vidBuff);
+        // var vidScaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
+        // console.log("vidScaleRat::::: ", vidScaleRat);
+        // vid.setAttribute("width",vidScaleRat)
+        // vid.setAttribute("height")
+        // var scaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
+        // console.log("scaleRat::::: ", scaleRat);
 
-    //     // var vidScaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
-    //     // console.log("vidScaleRat::::: ", vidScaleRat);
-    //     // vid.setAttribute("width",vidScaleRat)
-    //     // vid.setAttribute("height")
-    //     // var scaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
-    //     // console.log("scaleRat::::: ", scaleRat);
-
-    //     // bitmap.scaleX = scaleRat;
-    //     // bitmap.scaleY = scaleRat;
-    //     background_content.addChild(bitmap);
-    // }
-
-    // videoLoader.addEventListener("complete", handle_videoLoaded);
-
-    // videoLoader.loadFile({
-    //     src: "../video/error_page/woody-disappointed_copy.mp4",
-    //     id: "disappointed",
-    //     type: createjs.Types.VIDEO,
-    // });
-
-    // document.body.appendChild(vid);
-
-    // fileLoader.loadManifest([
-    //     {
-    //         id: "disappointed",
-    //         src: "../video/error_page/woody-disappointed_copy.mp4",
-    //     },
-    //     {
-    //         id: "binoculars",
-    //         src: "../video/3d_render_videos/binocular_render_copy.mp4",
-    //     },
-    // ]);
-    /*  fileLoader.loadFile([
-                            {
-                                id: "disappointed",
-                                src: "../video/error_page/woody-disappointed_copy.mp4",
-                            },
-                            {
-                                id: "binoculars",
-                                src: "../video/3d_render_videos/binocular_render_copy.mp4",
-                            },
-                        ]);
-                    */
+        // bitmap.scaleX = scaleRat;
+        // bitmap.scaleY = scaleRat;
+        background_content.addChild(bitmap);
+    } 
+*/
     /* 
-                    to add the video to the screen, I need to work in something that builds an HTML5 video
-                    element, and then renders that into the stage as a BitmapData.
+    fileLoader.loadManifest([
+        {
+            id: "disappointed",
+            src: "../video/error_page/woody-disappointed_copy.mp4",
+        },
+        {
+            id: "binoculars",
+            src: "../video/3d_render_videos/binocular_render_copy.mp4",
+        },
+    ]);
+     fileLoader.loadFile([
+         {
+             id: "disappointed",
+             src: "../video/error_page/woody-disappointed_copy.mp4",
+         },
+         {
+             id: "binoculars",
+             src: "../video/3d_render_videos/binocular_render_copy.mp4",
+         },
+     ]);
 
-                    something like this:
+    videoLoader.addEventListener("complete", handle_videoLoaded);
 
-                    var dissapointedVid =  document.getElementById("dissapointed_vid");
-                    var bitmap =  new Bitmap (dissapointedVid);
-                    stage.addChild (bitmap);
-                    <video src="../video/error_page/woody-disappointed_copy.mp4" controls></video>
-                    */
-
-    // makeCanvasTester();
+    videoLoader.loadFile({
+        src: "../video/error_page/woody-disappointed_copy.mp4",
+        id: "disappointed",
+        type: createjs.Types.VIDEO,
+    });
+  */
 
     // ---- Use ---- //
     getVideoDimensionsOf(
         "../video/error_page/woody-disappointed_copy.mp4"
-    ).then(function (vidEl) {
-        //   var vidBuff = new createjs.VideoBuffer(vidEl);
+    ).then(function (promisedData) {
+        var vidBuff = new createjs.VideoBuffer(promisedData.vidEl);
         //   var bitmap = new createjs.Bitmap(vidBuff);
-        var bitmap = new createjs.Bitmap(vidEl);
+        console.log(promisedData.vidEl);
+        var bitmap = new createjs.Bitmap(vidBuff);
         background_content.addChild(bitmap);
     });
 }
@@ -702,302 +681,7 @@ function addErrorVideo() {
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
 
-function popInVid() {
-    /* 
-    code for "popInVid" from
-    https://codepen.io/mrteal/pen/BaaqJjQ
-
-    check https://blog.logrocket.com/optimizing-video-backgrounds-css-javascript/#how-create-video-backgrounds
-    for information on getting that background as an image
-    */
-    // create manifest for files to load
-    //  queue.loadManifest([ needs to change to ... FILE LOADER
-    var queue = new createjs.LoadQueue();
-    var videosTarget = null;
-    queue.on("complete", handleComplete, this);
-    queue.loadManifest([
-        {
-            id: "myImage",
-            src: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/2RZVIMDLQQ.jpg",
-            type: createjs.AbstractLoader.IMAGE,
-        },
-        {
-            id: "myVideo",
-            src: "https://vjs.zencdn.net/v/oceans.mp4",
-            type: createjs.AbstractLoader.BINARY,
-        },
-    ]);
-    function handleComplete() {
-        // Insert Image
-        var image = queue.getResult("myImage");
-        // $(".img-holder").append(image);
-        document.body.appendChild(image);
-        // Insert Video
-        var videosTarget = queue.getResult("myVideo");
-        var video = document.createElement("video");
-        //video.setAttribute("controls", "");
-        video.setAttribute("muted", "");
-        //video.setAttribute("autoplay", "");  if autoplay OR loop are present, sound is on. :(
-        //video.setAttribute("loop", "");
-
-        var source = document.createElement("source");
-        source.setAttribute("type", "video/mp4");
-        var src = videosTarget;
-        var blob = new Blob([src], { type: "video/mp4" });
-        var urlCreator = window.URL || window.webkitURL;
-        var objUrl = urlCreator.createObjectURL(blob);
-        source.setAttribute("src", objUrl);
-        video.appendChild(source);
-        video.addEventListener("mouseenter", function (e) {
-            video.play();
-        });
-        video.addEventListener("mouseout", function (e) {
-            video.pause();
-        });
-        document.body.appendChild(video);
-    }
+function getRandomHexNum() {
+    // get a random hex value for the color of something:
+    return "#" + Math.floor(Math.random() * 16777215).toString(16);
 }
-
-/* 
-get a random hex value for the color of something:
-*/
-// var smallCanvas;
-
-// function makeCanvasTester() {
-//     console.log(":::: makeCanvasTester ::::");
-//     smallCanvas = document.createElement("canvas");
-//     smallCanvas.setAttribute("width", w);
-//     smallCanvas.setAttribute("height", h);
-//     smallCanvas.setAttribute("style", "border:1px solid #00FF00;");
-//     smallCanvas.setAttribute("id", "square_tester");
-//     document.body.appendChild(smallCanvas);
-
-//     shapeList = [];
-
-//     function isOnScreen() {
-//         for (index in shapeList) {
-//             if (this === shapeList[index]) {
-//                 return true;
-//             } else {
-//                 return false;
-//             }
-//         }
-//     }
-
-//     function render(shape, x, y) {
-//         smallCanvas
-//             .getContext("2d")
-//             .clearRect(0, 0, smallCanvas.width, smallCanvas.height);
-//         for (index in shapeList) {
-//             if (isOnScreen.apply(shape)) {
-//                 shapeList[index].move(x, y);
-//             } else {
-//                 shape.render();
-//             }
-//         }
-//     }
-
-//     window.addEventListener("click", function (e) {
-//         var x = e.offsetX;
-//         var y = e.offsetY;
-//         //console.log("x, and y: " + x + ", " + y);
-//         var square = new CanvasShape(x, y, 24, smallCanvas.getContext("2d"));
-//         shapeList.push(square);
-//         render(square, x, y);
-//     });
-// }
-
-// function getRandomHexNum() {
-//     return "#" + Math.floor(Math.random() * 16777215).toString(16);
-// }
-
-// class CanvasShape {
-//     constructor(x, y, size, ctx) {
-//         this.x = x;
-//         this.y = y;
-//         this.size = size;
-//         this.ctx = ctx;
-//         this.color = getRandomHexNum();
-//         this.self = this;
-//     }
-//     move(newX, newY) {
-//         this.x = newX;
-//         this.y = newY;
-//     }
-//     render() {
-//         this.ctx.beginPath();
-//         this.ctx.rect(this.x, this.y, this.size, this.size);
-//         this.ctx.closePath();
-//         this.ctx.fillStyle = this.color;
-//         this.ctx.fill();
-//     }
-// }
-
-//from https://stackoverflow.com/questions/30505960/use-promise-to-wait-until-polled-condition-is-satisfied
-//
-//function getPromiseFromEvent(item, event) {
-//     return new Promise((resolve) => {
-//         const listener = () => {
-//             //
-
-//             item.removeEventListener(event, listener);
-//             resolve();
-//         };
-//         item.addEventListener(event, listener);
-//     });
-// }
-
-// async function waitForButtonClick() {
-//     const div = document.querySelector("div");
-//     const button = document.querySelector("button");
-//     div.innerText = "Waiting for you to press the button";
-//     await getPromiseFromEvent(button, "click");
-//     div.innerText = "The button was pressed!";
-// }
-
-// var thingy = document.createElement("button");
-// var btnText = document.createTextNode("click for event test");
-// thingy.appendChild(btnText);
-// thingy.addEventListener("click", waitForButtonClick);
-// document.body.appendChild(thingy);
-/* 
-♥259 ♦260 ♣261 ♠262 •263 ◘264 ○265 ◙266 ♂267 ♀268 ♪269 ♫270 ☼271 ►272 ◄273 ↕274 ‼275 ¶276
-§277 ▬278 ↨279 ↑280 ↓281 →282 ←283 ↔285 ▲286 ▼287
-
-*/
-
-// /*
-//  * VideoBuffer
-//  * Visit http://createjs.com/ for documentation, updates and examples.
-//https://createjs.com/docs/easeljs/files/easeljs_utils_VideoBuffer.js.html
-//  *
-//  * Copyright (c) 2010 gskinner.com, inc.
-//  *
-//  * Permission is hereby granted, free of charge, to any person
-//  * obtaining a copy of this software and associated documentation
-//  * files (the "Software"), to deal in the Software without
-//  * restriction, including without limitation the rights to use,
-//  * copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  * copies of the Software, and to permit persons to whom the
-//  * Software is furnished to do so, subject to the following
-//  * conditions:
-//  *
-//  * The above copyright notice and this permission notice shall be
-//  * included in all copies or substantial portions of the Software.
-//  *
-//  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-//  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-//  * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-//  * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-//  * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-//  * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-//  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-//  * OTHER DEALINGS IN THE SOFTWARE.
-//  */
-
-// /**
-//  * @module EaselJS
-//  */
-
-// // namespace:
-// this.createjs = this.createjs || {};
-
-// (function () {
-//     "use strict";
-
-//     // constructor:
-//     /**
-//      * When an HTML video seeks, including when looping, there is an indeterminate period before a new frame is available.
-//      * This can result in the video blinking or flashing when it is drawn to a canvas. The VideoBuffer class resolves
-//      * this issue by drawing each frame to an off-screen canvas and preserving the prior frame during a seek.
-//      *
-//      * 	var myBuffer = new createjs.VideoBuffer(myVideo);
-//      * 	var myBitmap = new Bitmap(myBuffer);
-//      *
-//      * @class VideoBuffer
-//      * @param {HTMLVideoElement} video The HTML video element to buffer.
-//      * @constructor
-//      **/
-//     function VideoBuffer(video) {
-//         // private properties:
-//         /**
-//          * Used by Bitmap to determine when the video buffer is ready to be drawn. Not intended for general use.
-//          * @property readyState
-//          * @protected
-//          * @type {Number}
-//          * @default 0
-//          **/
-//         this.readyState = video.readyState;
-
-//         /**
-//          * @property _video
-//          * @protected
-//          * @type {HTMLVideoElement}
-//          * @default 0
-//          **/
-//         this._video = video;
-
-//         /**
-//          * @property _canvas
-//          * @protected
-//          * @type {HTMLCanvasElement}
-//          * @default 0
-//          **/
-//         this._canvas = null;
-
-//         /**
-//          * @property _lastTime
-//          * @protected
-//          * @type {Number}
-//          * @default -1
-//          **/
-//         this._lastTime = -1;
-
-//         if (this.readyState < 2) {
-//             video.addEventListener(
-//                 "canplaythrough",
-//                 this._videoReady.bind(this)
-//             );
-//         } //once:true isn't supported everywhere, but its a non-critical optimization here.
-//     }
-//     var p = VideoBuffer.prototype;
-
-//     // public methods:
-//     /**
-//      * Gets an HTML canvas element showing the current video frame, or the previous frame if in a seek / loop.
-//      * Primarily for use by {{#crossLink "Bitmap"}}{{/crossLink}}.
-//      * @method getImage
-//      **/
-//     p.getImage = function () {
-//         if (this.readyState < 2) {
-//             return;
-//         }
-//         var canvas = this._canvas,
-//             video = this._video;
-//         if (!canvas) {
-//             canvas = this._canvas = createjs.createCanvas
-//                 ? createjs.createCanvas()
-//                 : document.createElement("canvas");
-//             canvas.width = video.videoWidth;
-//             canvas.height = video.videoHeight;
-//         }
-//         if (video.readyState >= 2 && video.currentTime !== this._lastTime) {
-//             var ctx = canvas.getContext("2d");
-//             ctx.clearRect(0, 0, canvas.width, canvas.height);
-//             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-//             this._lastTime = video.currentTime;
-//         }
-//         return canvas;
-//     };
-
-//     // private methods:
-//     /**
-//      * @method _videoReady
-//      * @protected
-//      **/
-//     p._videoReady = function () {
-//         this.readyState = 2;
-//     };
-
-//     createjs.VideoBuffer = VideoBuffer;
-// })();
