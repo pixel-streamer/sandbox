@@ -582,6 +582,10 @@ function getVideoDimensionsOf(url) {
             },
             false
         );
+        video.setAttribute("autoplay", "");
+        video.setAttribute("muted", "");
+        video.setAttribute("loop", "");
+
         // start download meta-datas
         video.src = url;
     });
@@ -673,6 +677,14 @@ function addErrorVideo() {
         var vidData = promisedData.vidEl.cloneNode(true);
         console.log("vidData", vidData);
 
+        //TODO: I might need to add a source:
+        // var source = document.createElement("source");
+        // source.setAttribute("type", "video/mp4");
+        //TODO: if I have a source, then the promise needs to use a video loader
+        // source.setAttribute("src", videoLoader.getResult("disappointed").src);
+        // source.setAttribute("width", w);
+        // source.setAttribute("height", h);
+
         //var vidBuff = new createjs.VideoBuffer(promisedData.vidEl);
         //vid.setAttribute("controls", "");
         // promisedData.vidEl.setAttribute("autoplay", "");
@@ -682,7 +694,7 @@ function addErrorVideo() {
         // var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode());
         // var vidBuff = new createjs.VideoBuffer(vidData);
         // var bitmap = new createjs.Bitmap(vidBuff);
-        var bitmap = new createjs.Bitmap(vidData);
+        var bitmap = new createjs.Bitmap(vidData.play());
 
         var vidW = promisedData.width;
         var vidH = promisedData.height;
