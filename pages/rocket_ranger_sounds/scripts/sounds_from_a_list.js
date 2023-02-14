@@ -668,6 +668,8 @@ function addErrorVideo() {
     getVideoDimensionsOf(
         "../video/error_page/woody-disappointed_copy.mp4"
     ).then(function (promisedData) {
+        //TODO: thinking about preventing a memory leak by cloning
+        //to prevent a direct reference
         var vidData = promisedData.vidEl.cloneNode(true);
         console.log("vidData", vidData);
 
@@ -676,20 +678,111 @@ function addErrorVideo() {
         // promisedData.vidEl.setAttribute("autoplay", "");
         // promisedData.vidEl.setAttribute("muted", "");
         // promisedData.vidEl.setAttribute("loop", "");
-        //TODO: thinking about preventing a memory leak by cloning to prevent a direct ref.
-        //  var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode());
-        var vidBuff = new createjs.VideoBuffer(vidData);
-        var bitmap = new createjs.Bitmap(vidBuff);
+
+        // var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode());
+        // var vidBuff = new createjs.VideoBuffer(vidData);
+        // var bitmap = new createjs.Bitmap(vidBuff);
+        var bitmap = new createjs.Bitmap(vidData);
 
         var vidW = promisedData.width;
         var vidH = promisedData.height;
-        // bitmap.scaleX = 0.5;
-        // bitmap.scaleY = 0.5;
-        console.log("vidW,vidH", vidW, vidH);
 
+        //determineScaledFit(vidW, vidH, w, h);
+        var newDims = resizeToKnownDimensions(vidW, vidH, w, h);
+        //resized bitmap to these values:
+        console.log(
+            "newDims.newW, newDims.newH::: ",
+            newDims.newW,
+            newDims.newH
+        );
+        console.log("newDims ", newDims);
         background_content.addChild(bitmap);
+        bitmap.scaleX = newDims.scaleRatio;
+        bitmap.scaleY = newDims.scaleRatio;
     });
 }
+//resizeToKnownDimensions returns an object with named members:
+//aspect: aspect, scaleRatio: newScaleRatio, newW: 0, newH: 0
+function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
+    var containerAspect = constraintW / constraintH;
+
+    var fullW = contentW;
+    var fullH = contentH;
+
+    var aspect = fullW / fullH;
+
+    var fullMax = Math.max(fullW, fullH);
+    var fullMin = Math.min(fullW, fullH);
+
+    var contentMax = Math.max(constraintW, constraintH);
+    var contentMin = Math.min(constraintW, constraintH);
+
+    let newScaleRatio;
+
+    if (aspect < 1 || aspect === 1) {
+        //use contentMin/fullMax
+        newScaleRatio = contentMin / fullMax;
+        contentW = fullW * newScaleRatio;
+        contentH = fullH * newScaleRatio;
+    } else if (aspect > 1) {
+        //use contentMax/fullMax unless the containerAspect is greater than aspect
+        var greater = Math.max(aspect, containerAspect);
+        if (greater === aspect) {
+            //console.log("greater.... ASPECT!");
+            newScaleRatio = contentMax / fullMax;
+            contentW = fullW * newScaleRatio;
+            contentH = fullH * newScaleRatio;
+        } else {
+            //console.log("greater.... CONTAINERASPECT!");
+            newScaleRatio = contentMin / fullMin;
+            contentW = fullW * newScaleRatio;
+            contentH = fullH * newScaleRatio;
+        }
+    }
+    return {
+        aspect: containerAspect,
+        scaleRatio: newScaleRatio,
+        newW: contentW,
+        newH: contentH,
+    };
+}
+
+// function determineScaledFit(contentW, contentH, frameW, frameH) {
+//     var scaleRatio = contentW / contentH;
+//     var aspect = scaleRatio > 1 ? "landscape" : "portrait";
+//     var newScaleRatio = 0;
+
+//     console.log("vidW,vidH", contentW, contentH);
+//     console.log("aspect", aspect);
+//     console.log("scaleRatio", scaleRatio);
+
+//     if (aspect === "landscape") {
+//         //landscape: W longer than H
+//         //whats the smallest dim in the content
+//         //is content larger than frame?
+//         var cWFit = contentW > frameW ? true : false;
+//         if (cWFit) {
+//             //content is larger than frame
+//             newScaleRatio;
+//         }
+//         // newScale
+//     } else if (aspect === "portrait") {
+//         var cHFit = contentH > frameH ? true : false;
+//         if (contentW === contentH) {
+//             //handle dimensions for both (since square)
+//             //h is w
+//         } else {
+//             //h is longer than w
+//             if (cHFit) {
+//                 //content won't fit in frame
+//                 //we enlarge
+//                 //we shrink
+//             }
+//         }
+//     }
+
+//     return { aspect: aspect, scaleRatio: newScaleRatio, newW: 0, newH: 0 };
+// }
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
