@@ -594,8 +594,8 @@ function getVideoDimensionsOf(url) {
             function () {
                 // retrieve dimensions
                 //using "this" to refer to the video height was another request!
-                let height = this.videoHeight;
-                let width = this.videoWidth;
+                let height = video.videoHeight;
+                let width = video.videoWidth;
 
                 console.log("ç◙:::video::♪◙", video);
                 // send back result
@@ -604,10 +604,11 @@ function getVideoDimensionsOf(url) {
             },
             false
         );
-        video.setAttribute("preload", "auto");
+        video.setAttribute("preload", "metadata");
         video.setAttribute("autoplay", "");
         video.setAttribute("muted", "");
         video.setAttribute("loop", "");
+        video.setAttribute("playsinline", "");
         video.appendChild(source);
         source.setAttribute("src", url);
         // video.src = url;
@@ -703,6 +704,7 @@ function addErrorVideo() {
         video.setAttribute("autoplay", "");
         video.setAttribute("muted", "");
         video.setAttribute("loop", "");
+        video.setAttribute("playsinline", "");
         video.appendChild(source);
         source.setAttribute("src", vidURL);
         console.log("vidData", video);
@@ -824,8 +826,6 @@ function getRandomHexNum() {
 https://jsfiddle.net/hcfvyx9k/1/ 
 */
 
-
-
 /* 
 https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
 
@@ -883,7 +883,7 @@ was an attempt to fix this:
     console.log(media);
 
     mediaSource.addEventListener("sourceopen", sourceOpen);
-/* 
+    /* 
 
 "Supporting fallback to the src property
 https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
@@ -913,6 +913,10 @@ if ('srcObject' in video) {
 }
 
 
+*/
+
+/* 
+this URL.createObjectURL throws an error
 */
     video.src = URL.createObjectURL(mediaSource);
 
