@@ -567,7 +567,14 @@ function getVideoDimensionsOf(url) {
     return new Promise((resolve) => {
         // create the video element
         let video = document.createElement("video");
+        video.setAttribute("autoplay", "");
+        video.setAttribute("muted", "");
+        video.setAttribute("loop", "");
 
+        // start download meta-datas
+        let source = document.createElement("source");
+        source.setAttribute("type", "video/mp4");
+        video.appendChild(source);
         // place a listener on it
         video.addEventListener(
             "loadedmetadata",
@@ -582,12 +589,8 @@ function getVideoDimensionsOf(url) {
             },
             false
         );
-        video.setAttribute("autoplay", "");
-        video.setAttribute("muted", "");
-        video.setAttribute("loop", "");
-
-        // start download meta-datas
-        video.src = url;
+        source.setAttribute("src", url);
+        // video.src = url;
     });
 }
 
@@ -674,16 +677,8 @@ function addErrorVideo() {
     ).then(function (promisedData) {
         //TODO: thinking about preventing a memory leak by cloning
         //to prevent a direct reference
-        var vidData = promisedData.vidEl;
-        console.log("vidData", vidData);
 
-        //TODO: I might need to add a source:
-        // var source = document.createElement("source");
-        // source.setAttribute("type", "video/mp4");
-        //TODO: if I have a source, then the promise needs to use a video loader
-        // source.setAttribute("src", videoLoader.getResult("disappointed").src);
-        // source.setAttribute("width", w);
-        // source.setAttribute("height", h);
+        console.log("vidData", promisedData.vidEl);
 
         //var vidBuff = new createjs.VideoBuffer(promisedData.vidEl);
         //vid.setAttribute("controls", "");
@@ -694,7 +689,7 @@ function addErrorVideo() {
         // var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode());
         // var vidBuff = new createjs.VideoBuffer(vidData);
         // var bitmap = new createjs.Bitmap(vidBuff);
-        var bitmap = new createjs.Bitmap(vidData);
+        var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode(true));
 
         var vidW = promisedData.width;
         var vidH = promisedData.height;
