@@ -584,32 +584,31 @@ function makeHTML5DomVid() {
 function getVideoDimensionsOf(url) {
     return new Promise((resolve) => {
         // create the video element
-        let videoEl = document.createElement("video");
-
-        videoEl.setAttribute("autoplay", "");
-        videoEl.setAttribute("muted", "");
-        videoEl.setAttribute("loop", "");
-
+        let video = document.createElement("video");
         // start download meta-datas
         let source = document.createElement("source");
         source.setAttribute("type", "video/mp4");
-
         // place a listener on it
-        videoEl.addEventListener(
+        video.addEventListener(
             "loadedmetadata",
             function () {
                 // retrieve dimensions
-                let height = videoEl.videoHeight;
-                let width = videoEl.videoWidth;
+                //using "this" to refer to the video height was another request!
+                let height = this.videoHeight;
+                let width = this.videoWidth;
 
+                console.log("ç◙:::video::♪◙", video);
                 // send back result
                 // resolve({ height, width });
-                resolve({ height: height, width: width, vidEl: video });
+                resolve({ height: height, width: width });
             },
             false
         );
-        videoEl.appendChild(source);
-        let video = new createjs.DOMElement(videoEl);
+        video.setAttribute("preload", "auto");
+        video.setAttribute("autoplay", "");
+        video.setAttribute("muted", "");
+        video.setAttribute("loop", "");
+        video.appendChild(source);
         source.setAttribute("src", url);
         // video.src = url;
     });
@@ -693,26 +692,24 @@ function addErrorVideo() {
   */
 
     // ---- Use ---- //
-    getVideoDimensionsOf(
-        "../video/error_page/woody-disappointed_copy.mp4"
-    ).then(function (promisedData) {
-        //TODO: thinking about preventing a memory leak by cloning
-        //to prevent a direct reference
 
-        console.log("vidData", promisedData.vidEl);
+    var vidURL = "../video/error_page/woody-disappointed_copy.mp4";
+    getVideoDimensionsOf(vidURL).then(function (promisedData) {
+        let video = document.createElement("video");
+        let source = document.createElement("source");
+        source.setAttribute("type", "video/mp4");
+        //video.setAttribute("controls", "");
+        video.setAttribute("preload", "metadata");
+        video.setAttribute("autoplay", "");
+        video.setAttribute("muted", "");
+        video.setAttribute("loop", "");
+        video.appendChild(source);
+        source.setAttribute("src", vidURL);
+        console.log("vidData", video);
 
-        //var vidBuff = new createjs.VideoBuffer(promisedData.vidEl);
-        //vid.setAttribute("controls", "");
-        // promisedData.vidEl.setAttribute("autoplay", "");
-        // promisedData.vidEl.setAttribute("muted", "");
-        // promisedData.vidEl.setAttribute("loop", "");
-
-        // var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode());
-        // var vidBuff = new createjs.VideoBuffer(vidData);
-        // var bitmap = new createjs.Bitmap(vidBuff);
-        //  var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode(true));
-        var bitmap = new createjs.Bitmap(promisedData.vidEl);
-
+        // var bitmap = new createjs.Bitmap(video);
+        var vidBuff = new createjs.VideoBuffer(video);
+        var bitmap = new createjs.Bitmap(vidBuff);
         var vidW = promisedData.width;
         var vidH = promisedData.height;
 
@@ -724,10 +721,10 @@ function addErrorVideo() {
             newDims.newW,
             newDims.newH
         );
-        console.log("newDims ", newDims);
-        background_content.addChild(bitmap);
         bitmap.scaleX = newDims.scaleRatio;
         bitmap.scaleY = newDims.scaleRatio;
+        console.log("newDims ", newDims);
+        background_content.addChild(bitmap);
     });
 }
 //resizeToKnownDimensions returns an object with named members:
@@ -821,3 +818,112 @@ function getRandomHexNum() {
     // get a random hex value for the color of something:
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
 }
+
+/* 
+//from a fiddle:
+https://jsfiddle.net/hcfvyx9k/1/ 
+*/
+(async () => {
+    const mediaSource = new MediaSource();
+
+    const video = document.querySelector("video");
+
+    //video.oncanplay = e => video.play();
+
+    const urls = [
+        "../video/error_page/woody-disappointed_copy.mp4",
+        // "https://nickdesaulniers.github.io/netfix/demo/frag_bunny.mp4",
+        // "https://raw.githubusercontent.com/w3c/web-platform-tests/master/media-source/mp4/test.mp4",
+        // "https://raw.githubusercontent.com/w3c/web-platform-tests/master/media-source/mp4/test.mp4",
+        // "https://nickdesaulniers.github.io/netfix/demo/frag_bunny.mp4",
+    ];
+
+    const request = (url) =>
+        fetch(url).then((response) => response.arrayBuffer());
+
+    // `urls.reverse()` stops at `.currentTime` : `9`
+    const files = await Promise.all(urls.map(request));
+
+    /*
+     `.webm` files 'SourceBuffer': This SourceBuffer has been removed from the parent media
+     Uncaught DOMException: Failed to execute 'appendBuffer' on source.
+     Uncaught DOMException: Failed to set the 'timestampOffset' property on 'SourceBuffer': This SourceBuffer has been removed from the parent media source.
+    */
+    // const mimeCodec = "video/webm; codecs=opus";
+    // https://stackoverflow.com/questions/14108536/how-do-i-append-two-video-files-data-to-a-source-buffer-using-media-source-api/
+    const mimeCodec = 'video/mp4; codecs="avc1.42E01E,mp4a.40.2"';
+
+    const media = await Promise.all(
+        files.map((file) => {
+            return new Promise((resolve) => {
+                let media = document.createElement("video");
+                let blobURL = URL.createObjectURL(new Blob([file]));
+                media.onloadedmetadata = async (e) => {
+                    resolve({
+                        mediaDuration: media.duration,
+                        mediaBuffer: file,
+                    });
+                };
+                media.src = blobURL;
+            });
+        })
+    );
+
+    console.log(media);
+
+    mediaSource.addEventListener("sourceopen", sourceOpen);
+/* 
+
+"Supporting fallback to the src property
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
+
+//below fixes the error caused by this:
+         video.src = URL.createObjectURL(mediaSource);     
+
+//"Second, a new MediaSource is assigned to a newly-created <video> element,
+//with fallback for older browsers and browsers that don't yet support
+//assignment of MediaSource directly. "
+
+const mediaSource = new MediaSource();
+const video = document.createElement('video');
+// Older browsers may not have srcObject
+if ('srcObject' in video) {
+  try {
+    video.srcObject = mediaSource;
+  } catch (err) {
+    if (err.name !== "TypeError") {
+      throw err;
+    }
+    // Even if they do, they may only support MediaStream
+    video.src = URL.createObjectURL(mediaSource);
+  }
+} else {
+  video.src = URL.createObjectURL(mediaSource);
+}
+
+
+*/
+    video.src = URL.createObjectURL(mediaSource);
+
+    async function sourceOpen(event) {
+        if (MediaSource.isTypeSupported(mimeCodec)) {
+            const sourceBuffer = mediaSource.addSourceBuffer(mimeCodec);
+
+            for (let chunk of media) {
+                await new Promise((resolve) => {
+                    sourceBuffer.appendBuffer(chunk.mediaBuffer);
+                    sourceBuffer.onupdateend = (e) => {
+                        sourceBuffer.onupdateend = null;
+                        sourceBuffer.timestampOffset += chunk.mediaDuration;
+                        console.log(mediaSource.duration);
+                        resolve();
+                    };
+                });
+            }
+
+            mediaSource.endOfStream();
+        } else {
+            console.warn(mimeCodec + " not supported");
+        }
+    }
+})();
