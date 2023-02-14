@@ -425,7 +425,7 @@ function makeSomeText() {
     var text = new createjs.Text(
         "WHO IS THIS GUY?",
         //"16px 'Press Start 2P'",
-        "800 64px 'Barlow ExtraBold'",
+        "italic 64px 'Bungee'",
         // "#ff7700"
         "#FFFFFF"
     );
