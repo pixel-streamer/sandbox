@@ -674,7 +674,7 @@ function addErrorVideo() {
     ).then(function (promisedData) {
         //TODO: thinking about preventing a memory leak by cloning
         //to prevent a direct reference
-        var vidData = promisedData.vidEl.cloneNode(true);
+        var vidData = promisedData.vidEl;
         console.log("vidData", vidData);
 
         //TODO: I might need to add a source:
@@ -694,7 +694,7 @@ function addErrorVideo() {
         // var bitmap = new createjs.Bitmap(promisedData.vidEl.cloneNode());
         // var vidBuff = new createjs.VideoBuffer(vidData);
         // var bitmap = new createjs.Bitmap(vidBuff);
-        var bitmap = new createjs.Bitmap(promisedData.vidEl);
+        var bitmap = new createjs.Bitmap(vidData);
 
         var vidW = promisedData.width;
         var vidH = promisedData.height;
