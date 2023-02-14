@@ -7,6 +7,7 @@ window.addEventListener("load", loadGoogleFonts);
 // import "font-loading_module.js";
 
 var fontsHaveLoaded = false;
+var importantVideo;
 
 function loadFonts(config) {
     var loader = new createjs.FontLoader(config, true);
@@ -386,7 +387,36 @@ function handle_ImageLoadComplete(e) {
             "THIS IS THE LUCKIEST GUY! this is the Luckiest Guy!"
         )
     ); */
-    addErrorVideo();
+    //addErrorVideo();
+
+    var a = new BaseClass();
+    a.addEventListener("click", function () {});
+    var s = new SubClass();
+    s.addEventListener("click", function () {
+        // create the video element
+        let video = document.createElement("video");
+        video.setAttribute("autoplay", "");
+        video.setAttribute("muted", "");
+        video.setAttribute("loop", "");
+
+        // start download meta-datas
+        let source = document.createElement("source");
+        source.setAttribute("type", "video/mp4");
+        var vidURL = "../video/error_page/woody-disappointed_copy.mp4";
+
+        var newNEWdims = getVideoDimensionsOf(vidURL).then(function (
+            promisedData
+        ) {
+            console.log("newNEWdims", promisedData);
+        });
+        video.appendChild(source);
+        source.setAttribute("src", vidURL);
+        var bitmap = new createjs.Bitmap(video);
+        background_content.addChild(bitmap);
+        console.log("!");
+    });
+
+    s.dispatchEvent("click");
 }
 
 function makeSomeText() {
@@ -574,6 +604,14 @@ function makeHTML5DomVid() {
     stage.addChild(cjsVideo);
 }
 
+/* 
+
+TODO: one last thing to try--- 
+setup the delegate API that "comes with" createjs.... 
+that should allow for the elements to continue their loading, etc....
+(until I want them not to load whatever.)
+*/
+
 /**
  * Ready-to-use function
  * https://stackoverflow.com/questions/4129102/html5-video-dimensions
@@ -585,9 +623,11 @@ function getVideoDimensionsOf(url) {
     return new Promise((resolve) => {
         // create the video element
         let video = document.createElement("video");
+        importantVideo = video;
         // start download meta-datas
         let source = document.createElement("source");
         source.setAttribute("type", "video/mp4");
+
         // place a listener on it
         video.addEventListener(
             "loadedmetadata",
@@ -600,19 +640,18 @@ function getVideoDimensionsOf(url) {
                 console.log("ç◙:::video::♪◙", video);
                 // send back result
                 // resolve({ height, width });
-                video.autoplay=true;
+                //video.setAttribute("preload", "metadata");
+                video.setAttribute("autoplay", "");
+                video.setAttribute("muted", "");
+                video.setAttribute("loop", "");
+                //video.setAttribute("playsinline", "");
                 resolve({ height: height, width: width, vidEl: video });
             },
             false
         );
-        video.setAttribute("preload", "metadata");
-        video.setAttribute("autoplay", "");
-        video.setAttribute("muted", "");
-        video.setAttribute("loop", "");
-        video.setAttribute("playsinline", "");
+
         video.appendChild(source);
-        source.setAttribute("src", url);
-        // video.src = url;
+        source.setAttribute("src", url); 
     });
 }
 
@@ -693,12 +732,16 @@ function addErrorVideo() {
     });
   */
 
-    // ---- Use ---- //
+    // ---- Use
+    //---- //
 
     var vidURL = "../video/error_page/woody-disappointed_copy.mp4";
     getVideoDimensionsOf(vidURL).then(function (promisedData) {
         var bitmap = new createjs.Bitmap(promisedData.vidEl);
-
+        console.log(
+            "promisedData.vidEl.autoplay::: ",
+            promisedData.vidEl.autoplay
+        );
         // let video = document.createElement("video");
         // let source = document.createElement("source");
         // source.setAttribute("type", "video/mp4");
@@ -732,6 +775,18 @@ function addErrorVideo() {
         background_content.addChild(bitmap);
     });
 }
+
+var BaseClass = function (id) {
+    _instance = this;
+    _id = id;
+};
+createjs.EventDispatcher.initialize(BaseClass.prototype);
+var SubClass = function (id) {
+    BaseClass.call(this, id);
+    _instance = this;
+};
+SubClass.prototype = BaseClass.prototype;
+
 //resizeToKnownDimensions returns an object with named members:
 //aspect: aspect, scaleRatio: newScaleRatio, newW: 0, newH: 0
 function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
