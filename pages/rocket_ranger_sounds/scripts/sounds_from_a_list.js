@@ -42,27 +42,10 @@ var stage;
 var stageBounds;
 var nofullhover;
 function setupStage(e) {
-    // Add EventDispatcher capabilities to the "MyClass" class. (exposing "on")
-    // EventDispatcher.initialize(MyClass.prototype);
-    /* 
-    each element in the display list can interact with event "click".
-
-    TODO: 
-        explore how bubbling the event clicks in the window can get information from the
-        element that is undergoing interaction.
-    */
-    /* 
-    // from http://www.javascriptkit.com/dhtmltutors/sticky-hover-issue-solutions.shtml
-    */
-    //returns true or false, based on hover capable
-    nofullhover = window.matchMedia("(hover:none), (hover:on-demand)").matches;
-
-    // console.log("::::::::::::::stage::: ", stage, "nofullhover: ", nofullhover);
-    // console.log("▌▌▌▌▌▀▀▀▀▌▌▌▌▌▌▌▌:::::::w, h::: ", w, h);
+    //nofullhover = window.matchMedia("(hover:none), (hover:on-demand)").matches;
 
     bigCanvas.setAttribute("width", w);
     bigCanvas.setAttribute("height", h);
-    //console.log("≈██ setupStage ██≈", e.detail);
     stage = bigCanvas;
     stage = new createjs.Stage("big_stage");
     var bigFill = new createjs.Shape();
@@ -77,8 +60,9 @@ function setupStage(e) {
     var anotherBigFill = new createjs.Shape();
     anotherBigFill.graphics.beginFill("#0000FF");
     anotherBigFill.graphics.drawRect(0, 0, w, h);
-    background_content.setBounds(stageBounds);
     background_content.addChild(anotherBigFill);
+    background_content.regX = 0;
+    background_content.regY = 0;
     background_content.name = "background_content";
     subject_content = new createjs.Container();
     stage.addChild(background_content);
@@ -141,10 +125,10 @@ window.addEventListener("resize", function () {
 });
 
 function handle_Redraw() {
-    // console.log(
-    //     "▄▄▄▄▄▄▄▄▄handle_Redraw▄▄▄▄▄▄▄▄",
-    //     "find a way to add something to all corners of the stage, and re-dim that sucker"
-    // );
+    console.log(
+        "▄▄▄▄▄▄▄▄▄handle_Redraw▄▄▄▄▄▄▄▄",
+        "find a way to add something to all corners of the stage, and re-dim that sucker"
+    );
     //TODO:
     //find a way to add something to all corners of the stage, and re-dim that sucker
     /* 
@@ -163,41 +147,6 @@ function handle_Redraw() {
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF RESIZE FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-*/
-
-/* 
-function:
-
-preload the attractor animation
-
-load thumbnail images for main sections
-
-setup classes for the interface parts?
-  needs pagination for the detail images
-
-  pagination requires that there is an amount of loaded materials,
-  enough to require segmentation my modulo
-
-  (clicking through them would go something like this:
-    amount % displayed amount
-        would give the paginated, displayable amount of detail images that should be available.
-
-        round-robin'ing the detail images would go:
-            display amount % 1, 2, 3,
-
-            it's been a while that I've had something that would work that way now.
-  )
-
-needs a project class that dynamically uses the layout from the page:
-https://pixel-streamer.github.io/sandbox/pages/responsive-image-viewer-with-long-text.html
-
-here's an xml listing of images to test the cyclical round-robin of the thumbnails for clicking on:
-
-testing_numbers/testing.xml
-
-the canvas width/height changes of the resize function on the other file is what's needed to keep the
-main canvas size firmly inside the 100vw/vh area
-
 */
 
 var fileLoader, videoLoader;
@@ -219,11 +168,6 @@ function init() {
     x = 0;
     y = 0;
 
-    /* 
-    preload part of the init
-    */
-    //console.log("init from page.");
-
     var queue = new createjs.LoadQueue(false);
     queue.on("fileload", handle_fileComplete);
     queue.on("progress", handle_progress);
@@ -231,16 +175,6 @@ function init() {
     queue.loadFile("testing_numbers/testing.xml");
     fileLoader = new createjs.LoadQueue(false);
     videoLoader = new createjs.LoadQueue(true);
-
-    /*
-  galleryImageLinks.forEach(function (member) {
-    queue.loadFile(member);
-  });
-*/
-
-    /* 
-  END preload part of the init
-  */
 }
 
 /* 
@@ -258,9 +192,6 @@ function handle_preloadComplete(e) {
 
 function handle_fileComplete(e) {
     //console.log("whoohoo xml loaded ", e);
-    /// note use of querySelector on the loaded result. This func can set up all the
-    // variables....
-    // IMAGES LOADING FROM THIS FUNCTION TOO...  fileLoader is for loading images
 
     var basePath = e.result.querySelector("base_path").getAttribute("url");
     var green_colored = e.result
@@ -282,30 +213,32 @@ function handle_fileComplete(e) {
     fileLoader.on("progress", handle_ImageLoadProgress);
     fileLoader.on("complete", handle_ImageLoadComplete);
 
-    // imagesNodeList.forEach(function (member) {
-    //     var extension_trim = member.getAttribute("src");
-    //     extension_trim = extension_trim.substring(
-    //         0,
-    //         extension_trim.lastIndexOf(".")
-    //     );
+    /* 
+    imagesNodeList.forEach(function (member) {
+        var extension_trim = member.getAttribute("src");
+        extension_trim = extension_trim.substring(
+            0,
+            extension_trim.lastIndexOf(".")
+        );
 
-    //     fileLoader.loadFile(
-    //         basePath +
-    //             "/" +
-    //             peach_colored +
-    //             "/" +
-    //             extension_trim +
-    //             peachs_extension
-    //     );
-    //     fileLoader.loadFile(
-    //         basePath +
-    //             "/" +
-    //             green_colored +
-    //             "/" +
-    //             extension_trim +
-    //             greens_extension
-    //     );
-    // });
+        fileLoader.loadFile(
+            basePath +
+                "/" +
+                peach_colored +
+                "/" +
+                extension_trim +
+                peachs_extension
+        );
+        fileLoader.loadFile(
+            basePath +
+                "/" +
+                green_colored +
+                "/" +
+                extension_trim +
+                greens_extension
+        );
+    });
+*/
 
     fileLoader.loadFile({
         src: "../images/ui_vectors/work_selections-copy.svg",
@@ -315,6 +248,14 @@ function handle_fileComplete(e) {
         type: createjs.Types.IMAGE,
     });
     ////console.log("basePath: ", basePath);
+
+    fileLoader.loadFile({
+        // src: "../video/error_page/woody-disappointed_copy.mp4",
+        src: "https://voolatech.github.io/banner/vpaid/videos/video.mp4",
+        id: "disappointed",
+        preload: "metadata",
+        type: createjs.Types.VIDEO,
+    });
 }
 
 var galleryImageLinks = [
@@ -361,12 +302,6 @@ function handle_ImageLoadProgress(e) {
 
 function handle_ImageLoadComplete(e) {
     //console.log(":::handle_ImageLoadComplete:::", e);
-    /* 
-    goodFontP.appendChild(
-        document.createTextNode(
-            "THIS IS THE LUCKIEST GUY! this is the Luckiest Guy!"
-        )
-    ); */
     //addErrorVideo();
 }
 
@@ -407,47 +342,16 @@ function makeSomeText() {
 }
 
 function addSVG(e) {
-    // console.log("▌▐▌▐▌▐◘◘:::addSVG:::", e.result);
-
-    //adding the data part didn't seem to do anything
-    //var svg =  "data:image/svg+xml," + fileLoader.getResult("playhead");
-    //  var svg = fileLoader.getResult("playhead");
-    //  var svg = fileLoader.getResult("playhead");
-    var svgContent = new createjs.DOMElement(e.result);
-    console.log("▌▐▌▐▌▐◘◘:::addSVG:::", svgContent.htmlElement);
-    // var bg = new createjs.Bitmap(svg);
-    // var bgDims = bg.getTransformedBounds();
-    // bg.x = (stageBounds.width - bgDims.width) / 2;
-    // bg.y = (stageBounds.height - bgDims.height) / 2;
-    // stage.addChild(bg);
-    svgContent.x = 34;
-    svgContent.y = 34;
-    subject_content.addChild(svgContent);
-    //  var bgDims = background_content.getTransformedBounds();
-    // bg.x = (stageBounds.width - bgDims.width) / 2;
-    // bg.y = (stageBounds.height - bgDims.height) / 2;
-    // stage.update();
+    var svg = fileLoader.getResult("playhead");
+    var bg = new createjs.Bitmap(svg);
+    var bgDims = bg.getTransformedBounds();
+    bg.x = (stageBounds.width - bgDims.width) / 2;
+    bg.y = (stageBounds.height - bgDims.height) / 2;
+    subject_content.addChild(bg);
+    stage.update();
 }
 
 function layoutImage(e) {
-    //  //console.log("target index: ", e, e.item.id.substring());
-    /*
-    right now, all this does is load in a bunch of graphics onto a grid, in
-    the main canvas.
-
-    what I need is:
-    I need to collect some kind of data and relate that to the thumbnail, so 
-    that the "full size" image can be loaded.
-    */
-
-    //get some kind of count:
-    // e.item.id is brought along with the loaded images.
-    /* 
-        drawImage(image, dx, dy)
-        drawImage(image, dx, dy, dWidth, dHeight)
-        drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight) 
-    */
-
     var bg = new createjs.Bitmap(e.result);
     bg.scaleX = 85 / e.result.width;
     bg.scaleY = 64 / e.result.height;
@@ -474,252 +378,117 @@ function layoutImage(e) {
     bg.x = x;
     bg.y = y;
 
-    // var loadedImgProxyCanvas = document.createElement("canvas");
-    // var proxyContext = loadedImgProxyCanvas.getContext("2d");
-    // loadedImgProxyCanvas.setAttribute("width", e.result.naturalWidth);
-    // loadedImgProxyCanvas.setAttribute("height", e.result.naturalHeight);
-    // //document.querySelector(".hidden").appendChild(loadedImgProxyCanvas);
-    // proxyContext.drawImage(e.result, 0, 0);
-
-    // var bigCanvasContext = bigCanvas.getContext("2d");
-    // var thumbCanvas = document.createElement("canvas");
-    // var thumbContext = thumbCanvas.getContext("2d");
-    // //document.querySelector(".hidden").appendChild(thumbCanvas);
-    // thumbContext.drawImage(loadedImgProxyCanvas, 0, 0, 85, 64);
-    // var xWidth = parseInt(imageCount * 85);
-    // // //console.log(" xWidth: ", xWidth);
-
-    // if (xWidth >= parseInt(w - 85)) {
-    //     yCount = parseInt(yCount + 1);
-    //     imageCount = 0;
-    // }
-    // // //console.log("╫╫  y  ", y);
-
-    // xWidth = parseInt(imageCount * 85);
-    // x = xWidth;
-    // y = parseInt(yCount * 64);
-    // bigCanvasContext.drawImage(thumbCanvas, x, y);
-    //  bigCanvasContext.restore();
-    //  bigCanvasContext.save();
-    /* 
-    TODO: there is a *single* count of images here that are loaded.
-    since there are more than one "lists" of images, not all the images
-    are placed correctly.
-    */
     imageCount++;
     stage.update();
 }
 function handleLoadedMovie(e) {
-    console.log("▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄", e);
+    //console.log("▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄", e);
+    // console.log(
+    //     "▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄",
+    //     e.target.getResult("disappointed")
+    // );
+    // console.log(
+    //     "▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄",
+    //     e.target.getResult("disappointed").src
+    // );
 
-    var a = new BaseClass();
-    a.addEventListener("click", function () {});
-    var s = new SubClass();
-    s.addEventListener("click", function () {
-        // create the video element
-        let video = document.createElement("video");
-        video.setAttribute("autoplay", "");
-        video.setAttribute("muted", "");
-        video.setAttribute("loop", "");
+    // create the video element
+    //  let video = document.createElement("video");
+    let video = e.target.getResult("disappointed"); //the loaded disappointment
 
-        // start download meta-datas
-        let source = document.createElement("source");
-        source.setAttribute("type", "video/mp4");
-        var vidURL = "../video/error_page/woody-disappointed_copy.mp4";
+    video.addEventListener(
+        "loadedmetadata",
+        new Promise((resolve) => {
+            // retrieve dimensions
+            //using "this" to refer to the video height was another request!
+            let Vwidth = video.videoWidth;
+            let Vheight = video.videoHeight;
+            video.setAttribute("preload", "metadata");
+            video.setAttribute("autoplay", "");
+            video.setAttribute("muted", "");
+            video.setAttribute("loop", "");
+            video.setAttribute("playsinline", "");
 
-        var newNEWdims = getVideoDimensionsOf(vidURL).then(function (
-            promisedData
-        ) {
-            console.log("newNEWdims", promisedData);
-        });
-        video.appendChild(source);
-        source.setAttribute("src", vidURL);
-        var bitmap = new createjs.Bitmap(video);
-        background_content.addChild(bitmap);
-        console.log("!");
-    });
-
-    s.dispatchEvent("click");
+            var newDims = resizeToKnownDimensions(Vwidth, Vheight, w, h);
+            return resolve(
+                addVideoToStage({
+                    w: Vwidth,
+                    h: Vheight,
+                    vid: video,
+                    scaledToWindow: newDims.scaleRatio,
+                })
+            );
+        }, false)
+    );
 }
 
-/**
- * Ready-to-use function
- * https://stackoverflow.com/questions/4129102/html5-video-dimensions
- Returns the dimensions of a video asynchrounsly.
- @param {String} url Url of the video to get dimensions from.
- @return {Promise<{width: number, height: number}>} Promise which returns the dimensions of the video in 'width' and 'height' properties.
- */
-function getVideoDimensionsOf(url) {
-    return new Promise((resolve) => {
-        // create the video element
-        let video = document.createElement("video");
-        importantVideo = video;
-        // start download meta-datas
-        let source = document.createElement("source");
-        source.setAttribute("type", "video/mp4");
+function addVideoToStage(newVideoProps) {
+    var videoContentContainer = new createjs.Container();
+    var bmp = new createjs.Bitmap(newVideoProps.vid);
+    bmp.setBounds(0, 0, newVideoProps.w, newVideoProps.h);
+    bmp.scaleX = newVideoProps.scaleRatio;
+    bmp.scaleY = newVideoProps.scaleRatio;
+    videoContentContainer.addChild(bmp);
+    background_content.addChild(videoContentContainer);
+    videoContentContainer.x = (stageBounds.width - newVideoProps.w) / 2;
+    videoContentContainer.y = (stageBounds.height - newVideoProps.h) / 2;
 
-        // place a listener on it
-        video.addEventListener(
-            "loadedmetadata",
-            function () {
-                // retrieve dimensions
-                //using "this" to refer to the video height was another request!
-                let height = video.videoHeight;
-                let width = video.videoWidth;
+    console.log("☻☺◙Ö:::video::♪◙☺☻", videoContentContainer.getBounds());
 
-                console.log("ç◙:::video::♪◙", video);
-                // send back result
-                // resolve({ height, width });
-                //video.setAttribute("preload", "metadata");
-                video.setAttribute("autoplay", "");
-                video.setAttribute("muted", "");
-                video.setAttribute("loop", "");
-                video.setAttribute("playsinline", "");
-                resolve({ height: height, width: width, vidEl: video });
-            },
-            false
-        );
+    var interactiveTextHitArea = new createjs.Container();
+    var interactiveTextMask = new createjs.Shape();
+    var videoPlayText = new createjs.Text(
+        "play the f-in video, Chrome",
+        "16px 'Press Start 2P'",
+        "#ff8A00"
+    );
+    var textMetrics = videoPlayText.getMetrics();
+    var textW = textMetrics.width;
+    var textH = textMetrics.height;
+    videoPlayText.x = 8;
+    videoPlayText.y = 8;
 
-        video.appendChild(source);
-        source.setAttribute("src", url);
-    });
-}
+    interactiveTextMask.graphics
+        // .beginFill("#FF00FF")
+        .beginFill("rgba(255,0,255,.3)")
+        .drawRect(0, 0, textW + 16, textH + 16)
+        .endFill();
 
-function addErrorVideo() {
-    /*
-   function handle_videoLoaded(e) {
-        console.log("handle_videoLoaded::::: ");
-        var vid = document.createElement("video");
-        //vid.setAttribute("controls", "");
-        vid.setAttribute("autoplay", "");
-        vid.setAttribute("muted", "");
-        vid.setAttribute("loop", "");
+    interactiveTextHitArea.regX = 0;
+    interactiveTextHitArea.regY = 0;
+    interactiveTextHitArea.addChild(videoPlayText);
+    interactiveTextHitArea.addChild(interactiveTextMask);
 
-        var source = document.createElement("source");
-        source.setAttribute("type", "video/mp4");
-        source.setAttribute("src", videoLoader.getResult("disappointed").src);
-
-        // source.setAttribute("width", w);
-        // source.setAttribute("height", h);
-        // vid.setAttribute("width", w);
-        // vid.setAttribute("height", h);
-        //
-        vid.appendChild(source);
-
-        // var vidBuff = new createjs.VideoBuffer(vid);
-
-        var vidBuff = new createjs.VideoBuffer(vid);
-
-        // var vidW = vidBuff._video.width;
-        // var vidH = vidBuff._video.height;
-
-        console.log("disappointed::::: ", vidBuff);
-
-        var vidW = vidBuff._canvas;
-        console.log("vidW::::: ", vidW);
-        var bitmap = new createjs.Bitmap(vidBuff);
-
-        // var vidScaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
-        // console.log("vidScaleRat::::: ", vidScaleRat);
-        // vid.setAttribute("width",vidScaleRat)
-        // vid.setAttribute("height")
-        // var scaleRat = Math.min(vidW, vidH) / Math.max(vidW, vidH);
-        // console.log("scaleRat::::: ", scaleRat);
-
-        // bitmap.scaleX = scaleRat;
-        // bitmap.scaleY = scaleRat;
-        background_content.addChild(bitmap);
-    } 
-*/
-    /* 
-    fileLoader.loadManifest([
-        {
-            id: "disappointed",
-            src: "../video/error_page/woody-disappointed_copy.mp4",
-        },
-        {
-            id: "binoculars",
-            src: "../video/3d_render_videos/binocular_render_copy.mp4",
-        },
-    ]);
-     fileLoader.loadFile([
-         {
-             id: "disappointed",
-             src: "../video/error_page/woody-disappointed_copy.mp4",
-         },
-         {
-             id: "binoculars",
-             src: "../video/3d_render_videos/binocular_render_copy.mp4",
-         },
-     ]);
-
-    videoLoader.addEventListener("complete", handle_videoLoaded);
-
-    videoLoader.loadFile({
-        src: "../video/error_page/woody-disappointed_copy.mp4",
-        id: "disappointed",
-        type: createjs.Types.VIDEO,
-    });
-  */
-
-    // ---- Use
-    //---- //
-
-    var vidURL = "../video/error_page/woody-disappointed_copy.mp4";
-    getVideoDimensionsOf(vidURL).then(function (promisedData) {
-        var bitmap = new createjs.Bitmap(promisedData.vidEl);
+    interactiveTextHitArea.x =
+        (stageBounds.width - interactiveTextHitArea.getBounds().width) / 2;
+    interactiveTextHitArea.y =
+        (stageBounds.height - interactiveTextHitArea.getBounds().height) / 2;
+    interactiveTextHitArea.addEventListener("click", function () {
+        newVideoProps.vid.play();
         console.log(
-            "promisedData.vidEl.autoplay::: ",
-            promisedData.vidEl.autoplay
+            " videoContentContainer.getBounds() ",
+            videoContentContainer.getTransformedBounds()
         );
-        // let video = document.createElement("video");
-        // let source = document.createElement("source");
-        // source.setAttribute("type", "video/mp4");
-        // //video.setAttribute("controls", "");
-        // video.setAttribute("preload", "metadata");
-        // video.setAttribute("autoplay", "");
-        // video.setAttribute("muted", "");
-        // video.setAttribute("loop", "");
-        // video.setAttribute("playsinline", "");
-        // video.appendChild(source);
-        // source.setAttribute("src", vidURL);
-        // console.log("vidData", video);
-
-        // // var bitmap = new createjs.Bitmap(video);
-        // var vidBuff = new createjs.VideoBuffer(video);
-        // var bitmap = new createjs.Bitmap(vidBuff);
-        var vidW = promisedData.width;
-        var vidH = promisedData.height;
-
-        //determineScaledFit(vidW, vidH, w, h);
-        var newDims = resizeToKnownDimensions(vidW, vidH, w, h);
-        //resized bitmap to these values:
-        console.log(
-            "newDims.newW, newDims.newH::: ",
-            newDims.newW,
-            newDims.newH
-        );
-        bitmap.scaleX = newDims.scaleRatio;
-        bitmap.scaleY = newDims.scaleRatio;
-        console.log("newDims ", newDims);
-        background_content.addChild(bitmap);
     });
-}
+    background_content.addChild(interactiveTextHitArea); // bmp.x = (stageBounds.width - bmp.getBounds().width) / 2;
+    // bmp.y = (stageBounds.height - bmp.getBounds().height) / 2;
+    stage.update();
+    // should we need a source tag later:
+    // let source = document.createElement("source");
+    // source.setAttribute("type", "video/mp4");
+    // var vidURL = "URL.mp4";
+    // video.appendChild(source);
+    // source.setAttribute("src", vidURL);
 
-var BaseClass = function (id) {
+    //base class to initialize createjs eventdispatcher to handle movie...
     //from https://jsfiddle.net/lannymcnie/qTHb4/
-    _instance = this;
-    _id = id;
-};
-createjs.EventDispatcher.initialize(BaseClass.prototype);
-var SubClass = function (id) {
-    BaseClass.call(this, id);
-    _instance = this;
-};
-SubClass.prototype = BaseClass.prototype;
+}
 
-//resizeToKnownDimensions returns an object with named members:
-//aspect: aspect, scaleRatio: newScaleRatio, newW: 0, newH: 0
+/*
+ * Ready-to-use video scale promise-based function
+ * https://stackoverflow.com/questions/4129102/html5-video-dimensions
+ */
+
 function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
     var containerAspect = constraintW / constraintH;
 
@@ -773,128 +542,3 @@ function getRandomHexNum() {
     // get a random hex value for the color of something:
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
 }
-
-//https://stackoverflow.com/questions/28927434/easiest-way-to-load-a-video-in-createjs
-//maybe this would work?:  var bitmap = new createjs.Bitmap("moviePath.mp4");
-
-// /*
-// //from a fiddle:
-// https://jsfiddle.net/hcfvyx9k/1/
-// */
-
-// /*
-// https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
-
-// was an attempt to fix this:
-//   video.src = URL.createObjectURL(mediaSource);
-
-//   //^^ in the text below, that line is throwing an error
-// */
-
-// (async () => {
-//     const mediaSource = new MediaSource();
-
-//     const video = document.querySelector("video");
-
-//     //video.oncanplay = e => video.play();
-
-//     const urls = [
-//         "../video/error_page/woody-disappointed_copy.mp4",
-//         // "https://nickdesaulniers.github.io/netfix/demo/frag_bunny.mp4",
-//         // "https://raw.githubusercontent.com/w3c/web-platform-tests/master/media-source/mp4/test.mp4",
-//         // "https://raw.githubusercontent.com/w3c/web-platform-tests/master/media-source/mp4/test.mp4",
-//         // "https://nickdesaulniers.github.io/netfix/demo/frag_bunny.mp4",
-//     ];
-
-//     const request = (url) =>
-//         fetch(url).then((response) => response.arrayBuffer());
-
-//     // `urls.reverse()` stops at `.currentTime` : `9`
-//     const files = await Promise.all(urls.map(request));
-
-//     /*
-//      `.webm` files 'SourceBuffer': This SourceBuffer has been removed from the parent media
-//      Uncaught DOMException: Failed to execute 'appendBuffer' on source.
-//      Uncaught DOMException: Failed to set the 'timestampOffset' property on 'SourceBuffer': This SourceBuffer has been removed from the parent media source.
-//     */
-//     // const mimeCodec = "video/webm; codecs=opus";
-//     // https://stackoverflow.com/questions/14108536/how-do-i-append-two-video-files-data-to-a-source-buffer-using-media-source-api/
-//     const mimeCodec = 'video/mp4; codecs="avc1.42E01E,mp4a.40.2"';
-
-//     const media = await Promise.all(
-//         files.map((file) => {
-//             return new Promise((resolve) => {
-//                 let media = document.createElement("video");
-//                 let blobURL = URL.createObjectURL(new Blob([file]));
-//                 media.onloadedmetadata = async (e) => {
-//                     resolve({
-//                         mediaDuration: media.duration,
-//                         mediaBuffer: file,
-//                     });
-//                 };
-//                 media.src = blobURL;
-//             });
-//         })
-//     );
-
-//     console.log(media);
-
-//     mediaSource.addEventListener("sourceopen", sourceOpen);
-//     /*
-
-// "Supporting fallback to the src property
-// https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
-
-// //below fixes the error caused by this:
-//          video.src = URL.createObjectURL(mediaSource);
-
-// //"Second, a new MediaSource is assigned to a newly-created <video> element,
-// //with fallback for older browsers and browsers that don't yet support
-// //assignment of MediaSource directly. "
-
-// const mediaSource = new MediaSource();
-// const video = document.createElement('video');
-// // Older browsers may not have srcObject
-// if ('srcObject' in video) {
-//   try {
-//     video.srcObject = mediaSource;
-//   } catch (err) {
-//     if (err.name !== "TypeError") {
-//       throw err;
-//     }
-//     // Even if they do, they may only support MediaStream
-//     video.src = URL.createObjectURL(mediaSource);
-//   }
-// } else {
-//   video.src = URL.createObjectURL(mediaSource);
-// }
-
-// */
-
-// /*
-// this URL.createObjectURL throws an error
-// */
-//     video.src = URL.createObjectURL(mediaSource);
-
-//     async function sourceOpen(event) {
-//         if (MediaSource.isTypeSupported(mimeCodec)) {
-//             const sourceBuffer = mediaSource.addSourceBuffer(mimeCodec);
-
-//             for (let chunk of media) {
-//                 await new Promise((resolve) => {
-//                     sourceBuffer.appendBuffer(chunk.mediaBuffer);
-//                     sourceBuffer.onupdateend = (e) => {
-//                         sourceBuffer.onupdateend = null;
-//                         sourceBuffer.timestampOffset += chunk.mediaDuration;
-//                         console.log(mediaSource.duration);
-//                         resolve();
-//                     };
-//                 });
-//             }
-
-//             mediaSource.endOfStream();
-//         } else {
-//             console.warn(mimeCodec + " not supported");
-//         }
-//     }
-// })();
