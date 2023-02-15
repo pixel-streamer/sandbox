@@ -7,7 +7,7 @@ window.addEventListener("load", loadGoogleFonts);
 // import "font-loading_module.js";
 
 var fontsHaveLoaded = false;
-var importantVideo;
+let importantVideo;
 
 function loadFonts(config) {
     var loader = new createjs.FontLoader(config, true);
@@ -381,6 +381,7 @@ function layoutImage(e) {
     imageCount++;
     stage.update();
 }
+
 function handleLoadedMovie(e) {
     //console.log("▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄", e);
     // console.log(
@@ -394,20 +395,20 @@ function handleLoadedMovie(e) {
 
     // create the video element
     //  let video = document.createElement("video");
-    let video = e.target.getResult("disappointed"); //the loaded disappointment
+    importantVideo = e.target.getResult("disappointed"); //the loaded disappointment
 
-    video.addEventListener(
+    importantVideo.addEventListener(
         "loadedmetadata",
         new Promise((resolve) => {
             // retrieve dimensions
             //using "this" to refer to the video height was another request!
-            let Vwidth = video.videoWidth;
-            let Vheight = video.videoHeight;
-            video.setAttribute("preload", "metadata");
-            video.setAttribute("autoplay", "");
-            video.setAttribute("muted", "");
-            video.setAttribute("loop", "");
-            video.setAttribute("playsinline", "");
+            let Vwidth = importantVideo.videoWidth;
+            let Vheight = importantVideo.videoHeight;
+            importantVideo.setAttribute("preload", "metadata");
+            importantVideo.setAttribute("autoplay", "");
+            importantVideo.setAttribute("muted", "");
+            importantVideo.setAttribute("loop", "");
+            importantVideo.setAttribute("playsinline", "");
 
             var newDims = resizeToKnownDimensions(Vwidth, Vheight, w, h);
             console.log(newDims);
@@ -415,7 +416,7 @@ function handleLoadedMovie(e) {
                 addVideoToStage({
                     w: newDims.newW,
                     h: newDims.newH,
-                    vid: video,
+                    vid: importantVideo,
                     scaledToWindow: newDims.scaleRatio,
                 })
             );
@@ -467,21 +468,21 @@ function addVideoToStage(newVideoProps) {
     interactiveTextHitArea.y =
         (stageBounds.height - interactiveTextHitArea.getBounds().height) / 2;
     interactiveTextHitArea.addEventListener("click", function () {
-        newVideoProps.vid.play();
-        createjs.Sound.play("pop", {
-            interrupt: createjs.Sound.INTERRUPT_ANY,
-            loop: -1,
-        });
+        // newVideoProps.vid.play();
+        handle_VideoControls();
+        handle_SoundControls("pop");
+
+        // createjs.Sound.play("pop", {
+        //     // interrupt: createjs.Sound.INTERRUPT_ANY,
+        //     interrupt: createjs.Sound.INTERRUPT_NONE,
+        //     loop: -1,
+        // });
         console.log(
             " videoContentContainer.getBounds() ",
             videoContentContainer.getTransformedBounds()
         );
     });
-
-    createjs.Sound.registerSound(
-        "../rocket_ranger_sounds/sounds/landing-copy.mp3",
-        "pop"
-    );
+    handle_SoundsRegistry();
 
     background_content.addChild(interactiveTextHitArea); // bmp.x = (stageBounds.width - bmp.getBounds().width) / 2;
     // bmp.y = (stageBounds.height - bmp.getBounds().height) / 2;
@@ -495,6 +496,61 @@ function addVideoToStage(newVideoProps) {
 
     //base class to initialize createjs eventdispatcher to handle movie...
     //from https://jsfiddle.net/lannymcnie/qTHb4/
+}
+
+var videoWillPlay = true;
+function handle_VideoControls() {
+    var instance = importantVideo;
+
+    switch (videoWillPlay) {
+        case true:
+            videoWillPlay = false;
+            instance.play();
+            break;
+        case false:
+            videoWillPlay = true;
+            instance.pause();
+            break;
+        default:
+            break;
+    }
+}
+function handle_SoundsRegistry() {
+    createjs.Sound.registerSound(
+        "../rocket_ranger_sounds/sounds/landing-copy.mp3",
+        "pop"
+    );
+}
+
+var soundWillPlay = true;
+function handle_SoundControls(soundID) {
+    var instance = createjs.Sound.play(soundID, {
+        // interrupt: createjs.Sound.INTERRUPT_ANY,
+        interrupt: createjs.Sound.INTERRUPT_NONE,
+        //loop: -1,
+    });
+    // console.log(" ▌▌▌ ▌▌▌ ▌▌▌ ", instance);
+
+    switch (soundWillPlay) {
+        case true:
+            soundWillPlay = false;
+            instance.play();
+            // console.log(
+            //     "╘╘╘╝╘▌▌▌playSound" + "paused? (true) ▌",
+            //     instance.getPaused()
+            // );
+            break;
+        case false:
+            soundWillPlay = true;
+            instance.setPaused(true);
+            // console.log(
+            //     "╘╘╘╝╘▌▌▌playSound" + "paused? (false) ▌",
+            //     instance.getPaused()
+            // );
+            break;
+        default:
+            break;
+    }
 }
 
 /*
