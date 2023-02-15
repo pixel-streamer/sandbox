@@ -468,11 +468,18 @@ function addVideoToStage(newVideoProps) {
         (stageBounds.height - interactiveTextHitArea.getBounds().height) / 2;
     interactiveTextHitArea.addEventListener("click", function () {
         newVideoProps.vid.play();
+        createjs.Sound.play("pop");
         console.log(
             " videoContentContainer.getBounds() ",
             videoContentContainer.getTransformedBounds()
         );
     });
+
+    createjs.Sound.registerSound(
+        "../rocket_ranger_sounds/sounds/zeppelin-copy.mp3",
+        "pop"
+    );
+
     background_content.addChild(interactiveTextHitArea); // bmp.x = (stageBounds.width - bmp.getBounds().width) / 2;
     // bmp.y = (stageBounds.height - bmp.getBounds().height) / 2;
     stage.update();
