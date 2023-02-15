@@ -7,7 +7,7 @@ window.addEventListener("load", loadGoogleFonts);
 // import "font-loading_module.js";
 
 var fontsHaveLoaded = false;
-let importantVideo;
+var importantVideo;
 
 function loadFonts(config) {
     var loader = new createjs.FontLoader(config, true);
@@ -471,16 +471,11 @@ function addVideoToStage(newVideoProps) {
         // newVideoProps.vid.play();
         handle_VideoControls();
         handle_SoundControls("pop");
-
-        // createjs.Sound.play("pop", {
-        //     // interrupt: createjs.Sound.INTERRUPT_ANY,
-        //     interrupt: createjs.Sound.INTERRUPT_NONE,
-        //     loop: -1,
-        // });
-        console.log(
-            " videoContentContainer.getBounds() ",
-            videoContentContainer.getTransformedBounds()
-        );
+ 
+        // console.log(
+        //     " videoContentContainer.getBounds() ",
+        //     videoContentContainer.getTransformedBounds()
+        // );
     });
     handle_SoundsRegistry();
 
@@ -515,6 +510,7 @@ function handle_VideoControls() {
             break;
     }
 }
+
 function handle_SoundsRegistry() {
     createjs.Sound.registerSound(
         "../rocket_ranger_sounds/sounds/landing-copy.mp3",
@@ -550,7 +546,12 @@ function handle_SoundControls(soundID) {
             break;
         default:
             break;
-    }
+    } 
+    // createjs.Sound.play("pop", {
+    //     // interrupt: createjs.Sound.INTERRUPT_ANY,
+    //     interrupt: createjs.Sound.INTERRUPT_NONE,
+    //     loop: -1,
+    // });
 }
 
 /*
