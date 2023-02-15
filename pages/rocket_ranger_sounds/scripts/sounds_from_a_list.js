@@ -213,7 +213,6 @@ function handle_fileComplete(e) {
     fileLoader.on("progress", handle_ImageLoadProgress);
     fileLoader.on("complete", handle_ImageLoadComplete);
 
-    /* 
     imagesNodeList.forEach(function (member) {
         var extension_trim = member.getAttribute("src");
         extension_trim = extension_trim.substring(
@@ -238,7 +237,6 @@ function handle_fileComplete(e) {
                 greens_extension
         );
     });
-*/
 
     fileLoader.loadFile({
         src: "../images/ui_vectors/work_selections-copy.svg",
@@ -471,7 +469,7 @@ function addVideoToStage(newVideoProps) {
         // newVideoProps.vid.play();
         handle_VideoControls();
         handle_SoundControls("pop");
- 
+
         // console.log(
         //     " videoContentContainer.getBounds() ",
         //     videoContentContainer.getTransformedBounds()
@@ -546,7 +544,7 @@ function handle_SoundControls(soundID) {
             break;
         default:
             break;
-    } 
+    }
     // createjs.Sound.play("pop", {
     //     // interrupt: createjs.Sound.INTERRUPT_ANY,
     //     interrupt: createjs.Sound.INTERRUPT_NONE,
