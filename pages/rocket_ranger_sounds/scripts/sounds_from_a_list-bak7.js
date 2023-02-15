@@ -225,11 +225,15 @@ function init() {
     //console.log("init from page.");
 
     var queue = new createjs.LoadQueue(false);
+
     queue.on("fileload", handle_fileComplete);
     queue.on("progress", handle_progress);
     queue.on("complete", handle_preloadComplete);
+
     queue.loadFile("testing_numbers/testing.xml");
+
     fileLoader = new createjs.LoadQueue(false);
+
     videoLoader = new createjs.LoadQueue(true);
 
     /*
@@ -282,30 +286,30 @@ function handle_fileComplete(e) {
     fileLoader.on("progress", handle_ImageLoadProgress);
     fileLoader.on("complete", handle_ImageLoadComplete);
 
-    // imagesNodeList.forEach(function (member) {
-    //     var extension_trim = member.getAttribute("src");
-    //     extension_trim = extension_trim.substring(
-    //         0,
-    //         extension_trim.lastIndexOf(".")
-    //     );
+    imagesNodeList.forEach(function (member) {
+        var extension_trim = member.getAttribute("src");
+        extension_trim = extension_trim.substring(
+            0,
+            extension_trim.lastIndexOf(".")
+        );
 
-    //     fileLoader.loadFile(
-    //         basePath +
-    //             "/" +
-    //             peach_colored +
-    //             "/" +
-    //             extension_trim +
-    //             peachs_extension
-    //     );
-    //     fileLoader.loadFile(
-    //         basePath +
-    //             "/" +
-    //             green_colored +
-    //             "/" +
-    //             extension_trim +
-    //             greens_extension
-    //     );
-    // });
+        fileLoader.loadFile(
+            basePath +
+                "/" +
+                peach_colored +
+                "/" +
+                extension_trim +
+                peachs_extension
+        );
+        fileLoader.loadFile(
+            basePath +
+                "/" +
+                green_colored +
+                "/" +
+                extension_trim +
+                greens_extension
+        );
+    });
 
     fileLoader.loadFile({
         src: "../images/ui_vectors/work_selections-copy.svg",
@@ -316,7 +320,7 @@ function handle_fileComplete(e) {
         //type: createjs.Types.SVG,             // throws an error
         //type: "svg",                          // throws an error
         //type: createjs.LoadQueue.IMAGE,       // gets deprecation warning.
-        //type: createjs.LoadQueue.TEXT,        // gets deprecation warning.
+        //type: createjs.LoadQueue.TEXT,          // gets deprecation warning.
     });
     ////console.log("basePath: ", basePath);
 }
@@ -339,8 +343,17 @@ var galleryImageLinks = [
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
 function handle_ImageLoadReady(e) {
-    //console.log(":::::▄█ handle_ImageLoadReady █▄", e.item.type);
+    /*
+    //console.log(
+    "::::::handle_ImageLoadReady::::::\nsingle image loaded and waiting\n",
+    e.item.src
+    );
+    */
 
+    /* 
+        //console.log(":::::▄█ handle_ImageLoadReady █▄", e.item.type);
+    */
+    //i'm just going to try to get pull the extension from .src
     var src = e.item.src;
     var extension_trim = src.substring(src.lastIndexOf("/") + 1);
     var extension = extension_trim.substring(
@@ -408,20 +421,20 @@ function handle_ImageLoadComplete(e) {
 
 function makeSomeText() {
     //console.log(":::makeSomeText:::");
+
     var text = new createjs.Text(
         "WHO IS THIS GUY?",
         //"16px 'Press Start 2P'",
-        //"800 italic 64px 'Barlow ExtraBold'",
         "italic 64px 'Bungee'",
-        "#ff8A00"
-        //"#FFFFFF"
+        // "#ff7700"
+        "#FFFFFF"
     );
     var textSmaller = new createjs.Text(
         "(click on a section to see my work)",
         //"16px 'Press Start 2P'",
         "800 italic 21px 'Barlow Semi Condensed'",
-        "#ff8A00"
-        //"#FFFFFF"
+        // "#ff7700"
+        "#FFFFFF"
     );
     //console.log(":::text:::", text);
     subject_content.addChild(text);
@@ -430,7 +443,7 @@ function makeSomeText() {
     var textH = textMetrics.height;
 
     text.x = (stageBounds.width - textW) / 2;
-    text.y = h - h - textH - 85;
+    text.y = (stageBounds.height - textH) / 2;
 
     subject_content.addChild(textSmaller);
     var textSmallerMetrics = textSmaller.getMetrics();
@@ -438,31 +451,45 @@ function makeSomeText() {
     var textSmallerH = textSmallerMetrics.height;
 
     textSmaller.x = (stageBounds.width - textSmallerW) / 2;
-    textSmaller.y = text.y + (textH - textH / 4) + generalPadding;
+    textSmaller.y =
+        (stageBounds.height - textSmallerH) / 2 +
+        textMetrics.height / 2 +
+        generalPadding;
     stage.update();
 }
 
 function addSVG(e) {
-    // console.log("▌▐▌▐▌▐◘◘:::addSVG:::", e.result);
-
+    console.log(":::addSVG:::", e);
     //adding the data part didn't seem to do anything
-    //var svg =  "data:image/svg+xml," + fileLoader.getResult("playhead");
-    //  var svg = fileLoader.getResult("playhead");
-    //  var svg = fileLoader.getResult("playhead");
-    var svgContent = new createjs.DOMElement(e.result);
-    console.log("▌▐▌▐▌▐◘◘:::addSVG:::", svgContent.htmlElement);
-    // var bg = new createjs.Bitmap(svg);
-    // var bgDims = bg.getTransformedBounds();
-    // bg.x = (stageBounds.width - bgDims.width) / 2;
-    // bg.y = (stageBounds.height - bgDims.height) / 2;
-    // stage.addChild(bg);
-    svgContent.x = 34;
-    svgContent.y = 34;
-    subject_content.addChild(svgContent);
-    //  var bgDims = background_content.getTransformedBounds();
-    // bg.x = (stageBounds.width - bgDims.width) / 2;
-    // bg.y = (stageBounds.height - bgDims.height) / 2;
-    // stage.update();
+    // var svg =  "data:image/svg+xml," + fileLoader.getResult("playhead");
+    //var svg = fileLoader.getResult("playhead");
+    //console.log(":::addSVG:::", svg);
+    var bg = new createjs.Bitmap(e.result);
+
+    var bgDims = bg.getTransformedBounds();
+
+    console.log("bg.width: ", bgDims);
+
+    if (bgDims !== null) {
+        bg.x = (stageBounds.width - bgDims.width) / 2;
+        bg.y = (stageBounds.height - bgDims.height) / 2;
+    } else {
+        // var wiggles = new createjs.Shape();
+        // wiggles.graphics.beginFill("#FFcc00").rect(0, 0, 75, 75);
+        // var oldDraw = wiggles.draw;
+        // wiggles.draw = this.draw;
+        // wiggles.cache(0, 0, 320, 320, 2);
+        // wiggles.draw = oldDraw;
+
+        // var wiggles = new createjs.Shape();
+        // wiggles.draw(e.result);
+        // wiggles.graphics.beginFill("#FFcc00").rect(0, 0, 75, 75);
+        bg.beginFill("#FFcc00");
+        //console.log(e.result.getAttribute("WORK_title"));
+    }
+
+    stage.addChild(bg);
+    stage.update();
 }
 
 function layoutImage(e) {
@@ -624,7 +651,7 @@ function getVideoDimensionsOf(url) {
         );
 
         video.appendChild(source);
-        source.setAttribute("src", url);
+        source.setAttribute("src", url); 
     });
 }
 
