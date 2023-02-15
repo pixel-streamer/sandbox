@@ -250,8 +250,8 @@ function handle_fileComplete(e) {
     ////console.log("basePath: ", basePath);
 
     fileLoader.loadFile({
-        // src: "../video/error_page/woody-disappointed_copy.mp4",
-        src: "https://voolatech.github.io/banner/vpaid/videos/video.mp4",
+        src: "../video/error_page/woody-disappointed_copy.mp4",
+        // src: "https://voolatech.github.io/banner/vpaid/videos/video.mp4",
         id: "disappointed",
         preload: "metadata",
         type: createjs.Types.VIDEO,
@@ -410,10 +410,11 @@ function handleLoadedMovie(e) {
             video.setAttribute("playsinline", "");
 
             var newDims = resizeToKnownDimensions(Vwidth, Vheight, w, h);
+            console.log(newDims);
             return resolve(
                 addVideoToStage({
-                    w: Vwidth,
-                    h: Vheight,
+                    w: newDims.newW,
+                    h: newDims.newH,
                     vid: video,
                     scaledToWindow: newDims.scaleRatio,
                 })
@@ -425,15 +426,17 @@ function handleLoadedMovie(e) {
 function addVideoToStage(newVideoProps) {
     var videoContentContainer = new createjs.Container();
     var bmp = new createjs.Bitmap(newVideoProps.vid);
+    // bmp.setBounds(0, 0, newVideoProps.w, newVideoProps.h);
+    bmp.scaleX = newVideoProps.scaledToWindow;
+    bmp.scaleY = newVideoProps.scaledToWindow;
     bmp.setBounds(0, 0, newVideoProps.w, newVideoProps.h);
-    bmp.scaleX = newVideoProps.scaleRatio;
-    bmp.scaleY = newVideoProps.scaleRatio;
+    console.log("☻☺◙Ö:::bmp::♪◙☺☻", bmp.getBounds().width);
     videoContentContainer.addChild(bmp);
     background_content.addChild(videoContentContainer);
     videoContentContainer.x = (stageBounds.width - newVideoProps.w) / 2;
     videoContentContainer.y = (stageBounds.height - newVideoProps.h) / 2;
 
-    console.log("☻☺◙Ö:::video::♪◙☺☻", videoContentContainer.getBounds());
+    // console.log("☻☺◙Ö:::video::♪◙☺☻", videoContentContainer.getBounds());
 
     var interactiveTextHitArea = new createjs.Container();
     var interactiveTextMask = new createjs.Shape();
