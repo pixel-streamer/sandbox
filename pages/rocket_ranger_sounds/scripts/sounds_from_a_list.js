@@ -468,7 +468,10 @@ function addVideoToStage(newVideoProps) {
         (stageBounds.height - interactiveTextHitArea.getBounds().height) / 2;
     interactiveTextHitArea.addEventListener("click", function () {
         newVideoProps.vid.play();
-        createjs.Sound.play("pop");
+        createjs.Sound.play("pop", {
+            interrupt: createjs.Sound.INTERRUPT_ANY,
+            loop: -1,
+        });
         console.log(
             " videoContentContainer.getBounds() ",
             videoContentContainer.getTransformedBounds()
@@ -476,7 +479,7 @@ function addVideoToStage(newVideoProps) {
     });
 
     createjs.Sound.registerSound(
-        "../rocket_ranger_sounds/sounds/zeppelin-copy.mp3",
+        "../rocket_ranger_sounds/sounds/landing-copy.mp3",
         "pop"
     );
 
