@@ -313,10 +313,6 @@ function handle_fileComplete(e) {
         //src: "../images/ui_vectors/rec.svg",
         id: "playhead",
         type: createjs.Types.IMAGE,
-        //type: createjs.Types.SVG,             // throws an error
-        //type: "svg",                          // throws an error
-        //type: createjs.LoadQueue.IMAGE,       // gets deprecation warning.
-        //type: createjs.LoadQueue.TEXT,        // gets deprecation warning.
     });
     ////console.log("basePath: ", basePath);
 }
@@ -350,16 +346,13 @@ function handle_ImageLoadReady(e) {
     switch (extension) {
         case "svg":
             addSVG(e);
-            //console.log(":::: SVG ▄█▄█▄ SVG ::::", e.item.type);
             break;
         case "mp4":
             handleLoadedMovie(e);
-            //console.log(":::: SVG ▄█▄█▄ SVG ::::", e.item.type);
             break;
         default:
             layoutImage(e);
-        //console.log(":::::▄█ handle_ImageLoadReady █▄", e.item.type);
-        // code block
+            break;
     }
 }
 function handle_ImageLoadProgress(e) {
@@ -375,35 +368,6 @@ function handle_ImageLoadComplete(e) {
         )
     ); */
     //addErrorVideo();
-
-    var a = new BaseClass();
-    a.addEventListener("click", function () {});
-    var s = new SubClass();
-    s.addEventListener("click", function () {
-        // create the video element
-        let video = document.createElement("video");
-        video.setAttribute("autoplay", "");
-        video.setAttribute("muted", "");
-        video.setAttribute("loop", "");
-
-        // start download meta-datas
-        let source = document.createElement("source");
-        source.setAttribute("type", "video/mp4");
-        var vidURL = "../video/error_page/woody-disappointed_copy.mp4";
-
-        var newNEWdims = getVideoDimensionsOf(vidURL).then(function (
-            promisedData
-        ) {
-            console.log("newNEWdims", promisedData);
-        });
-        video.appendChild(source);
-        source.setAttribute("src", vidURL);
-        var bitmap = new createjs.Bitmap(video);
-        background_content.addChild(bitmap);
-        console.log("!");
-    });
-
-    s.dispatchEvent("click");
 }
 
 function makeSomeText() {
@@ -547,43 +511,36 @@ function layoutImage(e) {
 }
 function handleLoadedMovie(e) {
     console.log("▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄", e);
+
+    var a = new BaseClass();
+    a.addEventListener("click", function () {});
+    var s = new SubClass();
+    s.addEventListener("click", function () {
+        // create the video element
+        let video = document.createElement("video");
+        video.setAttribute("autoplay", "");
+        video.setAttribute("muted", "");
+        video.setAttribute("loop", "");
+
+        // start download meta-datas
+        let source = document.createElement("source");
+        source.setAttribute("type", "video/mp4");
+        var vidURL = "../video/error_page/woody-disappointed_copy.mp4";
+
+        var newNEWdims = getVideoDimensionsOf(vidURL).then(function (
+            promisedData
+        ) {
+            console.log("newNEWdims", promisedData);
+        });
+        video.appendChild(source);
+        source.setAttribute("src", vidURL);
+        var bitmap = new createjs.Bitmap(video);
+        background_content.addChild(bitmap);
+        console.log("!");
+    });
+
+    s.dispatchEvent("click");
 }
-
-function makeBitmapVideo(clip, path) {
-    var vid = document.createElement("video");
-    vid.src = path;
-    var bmp = stage.addChild(new createjs.Bitmap(vid));
-    bmp.video = vid;
-    return bmp;
-}
-
-function makeHTML5DomVid() {
-    //TODO
-    //this looks like it uses jquery to build the video element. may need tweaks
-    var videoDom = $(
-        `
-        <video
-            width="320"
-            height="240"
-            autoplay>
-                <source
-                    src="movie.mp4"
-                    type="video/mp4"
-                >
-        </video>
-        `
-    ).appendTo(document.body)[0];
-    var cjsVideo = new createjs.DOMElement(videoDom);
-    stage.addChild(cjsVideo);
-}
-
-/* 
-
-TODO: one last thing to try--- 
-setup the delegate API that "comes with" createjs.... 
-that should allow for the elements to continue their loading, etc....
-(until I want them not to load whatever.)
-*/
 
 /**
  * Ready-to-use function
@@ -617,7 +574,7 @@ function getVideoDimensionsOf(url) {
                 video.setAttribute("autoplay", "");
                 video.setAttribute("muted", "");
                 video.setAttribute("loop", "");
-                //video.setAttribute("playsinline", "");
+                video.setAttribute("playsinline", "");
                 resolve({ height: height, width: width, vidEl: video });
             },
             false
@@ -807,42 +764,6 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
     };
 }
 
-// function determineScaledFit(contentW, contentH, frameW, frameH) {
-//     var scaleRatio = contentW / contentH;
-//     var aspect = scaleRatio > 1 ? "landscape" : "portrait";
-//     var newScaleRatio = 0;
-
-//     console.log("vidW,vidH", contentW, contentH);
-//     console.log("aspect", aspect);
-//     console.log("scaleRatio", scaleRatio);
-
-//     if (aspect === "landscape") {
-//         //landscape: W longer than H
-//         //whats the smallest dim in the content
-//         //is content larger than frame?
-//         var cWFit = contentW > frameW ? true : false;
-//         if (cWFit) {
-//             //content is larger than frame
-//             newScaleRatio;
-//         }
-//         // newScale
-//     } else if (aspect === "portrait") {
-//         var cHFit = contentH > frameH ? true : false;
-//         if (contentW === contentH) {
-//             //handle dimensions for both (since square)
-//             //h is w
-//         } else {
-//             //h is longer than w
-//             if (cHFit) {
-//                 //content won't fit in frame
-//                 //we enlarge
-//                 //we shrink
-//             }
-//         }
-//     }
-
-//     return { aspect: aspect, scaleRatio: newScaleRatio, newW: 0, newH: 0 };
-// }
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
