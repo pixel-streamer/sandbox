@@ -153,6 +153,7 @@ var y;
 var generalPadding = 16;
 let progress = document.querySelector("#progress");
 let gallery = document.querySelector("#gallery");
+var largeText = 0;
 
 function init() {
     console.log("▄▄▄▄▄▄▄▄▄init▄▄▄▄▄▄▄▄");
@@ -295,16 +296,34 @@ function handle_ImageLoadComplete(e) {
     //addErrorVideo();
 }
 
+function getGoldenRatio(num) {
+    /*
+    sin(54°) = φ/2
+
+    Golden ratio formula is ϕ = 1 + (1/ϕ). ϕ is also equal to 2 × sin (54°)
+    If we take any two successive Fibonacci Numbers, their ratio is very close
+    to the value 1.618 (Golden ratio).  cos(36°)*2
+    From en.wikipedia.org/wiki/Golden_ratio#Alternative_forms :
+    "These correspond to the fact that the length of the diagonal of a regular
+    pentagon is φ times the length of its side" 
+    */
+    return parseFloat(num / 1.618).toPrecision(3);
+}
+
 function makeSomeText() {
     //console.log(":::makeSomeText:::");
+    largeText = getGoldenRatio(w) * 0.075;
+    console.log(":::getGoldenRatio:::", getGoldenRatio(largeText));
     var text = new createjs.Text(
         "WHO IS THIS GUY?",
-        "italic 64px 'Bungee'",
+        "italic " + largeText + "px 'Bungee'",
         "#ff8A00"
     );
     var textSmaller = new createjs.Text(
         "(click on a section to see my work)",
-        "800 italic 21px 'Barlow Semi Condensed'",
+        "800 italic " +
+            getGoldenRatio(largeText) * 0.67 +
+            "px 'Barlow Semi Condensed'",
         "#ff8A00"
     );
     //console.log(":::text:::", text);
@@ -324,7 +343,7 @@ function makeSomeText() {
     var textSmallerH = textSmallerMetrics.height;
 
     textSmaller.x = (stageBounds.width - textSmallerW) / 2;
-    textSmaller.y = text.y + (textH - textH / 4) + generalPadding;
+    textSmaller.y = text.y + (textH - textH / 3) + generalPadding;
 
     addInteractiveText();
     stage.update();
@@ -373,7 +392,7 @@ function layoutImage(e) {
 }
 
 function handleLoadedMovie(e) {
-    //console.log("▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄", e);
+    // console.log("▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄", e);
     // console.log(
     //     "▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄",
     //     e.target.getResult("disappointed")
@@ -382,51 +401,40 @@ function handleLoadedMovie(e) {
     //     "▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄",
     //     e.target.getResult("disappointed").src
     // );
-
-    // create the video element
+ 
     //  let video = document.createElement("video");
-    importantVideo = e.target.getResult("disappointed"); //the loaded disappointment
+    importantVideo = e.target.getResult("disappointed");  
 
-    // importantVideo.addEventListener(
-    //    "loadedmetadata",
-    new Promise((resolve) => {
-        // retrieve dimensions
-        //using "this" to refer to the video height was another request!
-        let Vwidth = importantVideo.videoWidth;
-        let Vheight = importantVideo.videoHeight;
-        importantVideo.setAttribute("preload", "metadata");
-        importantVideo.setAttribute("autoplay", "");
-        importantVideo.setAttribute("muted", "");
-        importantVideo.setAttribute("loop", "");
-        importantVideo.setAttribute("playsinline", "");
+    let vWidth = importantVideo.videoWidth;
+    let vHeight = importantVideo.videoHeight;
+    importantVideo.setAttribute("preload", "metadata");
+    importantVideo.setAttribute("autoplay", "");
+    importantVideo.setAttribute("muted", "");
+    importantVideo.setAttribute("loop", "");
+    importantVideo.setAttribute("playsinline", "");
 
-        var newDims = resizeToKnownDimensions(Vwidth, Vheight, w, h);
-        console.log(newDims);
-        return resolve(
-            addVideoToStage({
-                w: newDims.newW,
-                h: newDims.newH,
-                vid: importantVideo,
-                scaledToWindow: newDims.scaleRatio,
-            })
-        );
-    }, false);
-    //);
+    var newDims = resizeToKnownDimensions(vWidth, vHeight, w, h);
+
+    addVideoToStage({
+        w: newDims.newW,
+        h: newDims.newH,
+        vid: importantVideo,
+        scaledToWindow: newDims.scaleRatio,
+    });
 
     // importantVideo.addEventListener(
     //     "loadedmetadata",
     //     new Promise((resolve) => {
     //         // retrieve dimensions
     //         //using "this" to refer to the video height was another request!
-    //         let Vwidth = importantVideo.videoWidth;
-    //         let Vheight = importantVideo.videoHeight;
+    //         let vWidth = importantVideo.videoWidth;
+    //         let vHeight = importantVideo.videoHeight;
     //         importantVideo.setAttribute("preload", "metadata");
     //         importantVideo.setAttribute("autoplay", "");
     //         importantVideo.setAttribute("muted", "");
     //         importantVideo.setAttribute("loop", "");
-    //         importantVideo.setAttribute("playsinline", "");
-
-    //         var newDims = resizeToKnownDimensions(Vwidth, Vheight, w, h);
+    //         importantVideo.setAttribute("playsinline", ""); 
+    //         var newDims = resizeToKnownDimensions(vWidth, vHeight, w, h);
     //         console.log(newDims);
     //         return resolve(
     //             addVideoToStage({
