@@ -26,8 +26,7 @@ function handleFontLoad(e) {
 }
 //window.addEventListener("load", init); //called now from under font loaded event.
 window.addEventListener("fontload_evtStr", setupStage);
-//fonts are now loaded, so start putting things
-//onto the stage.
+//fonts are now loaded, so start putting things onto the stage.
 
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -59,8 +58,7 @@ function setupStage(e) {
 
     background_content = new createjs.Container();
     var anotherBigFill = new createjs.Shape();
-    anotherBigFill.graphics.beginFill("#0000FF");
-    anotherBigFill.graphics.drawRect(0, 0, w, h);
+    anotherBigFill.graphics.beginFill("#0000FF").drawRect(0, 0, w, h);
     background_content.addChild(anotherBigFill);
     background_content.regX = 0;
     background_content.regY = 0;
@@ -80,11 +78,11 @@ function setupStage(e) {
 
     // ticker.timingMode = createjs.Ticker.RAF;
     // these are equivalent, 1000ms / 40fps (framerate) = 25ms (interval)
-    //ticker.interval = 25;
+    // ticker.interval = 25;
     ticker.timingMode = ticker.RAF_SYNCHED;
-    //createjs.Ticker.timingMode = createjs.Ticker.RAF;
+    // createjs.Ticker.timingMode = createjs.Ticker.RAF;
     // ticker.framerate = 30;
-    //ticker.delta=4;
+    // ticker.delta=4;
     ticker.addEventListener("tick", tick);
 
     init();
@@ -116,10 +114,8 @@ let timeout;
 /*
 ResizeObserver.disconnect()
     Unobserves all observed Element targets of a particular observer.
-
 ResizeObserver.observe()
     Initiates the observing of a specified Element.
-    
 ResizeObserver.unobserve()
     Ends the observing of a specified Element.
 */
@@ -136,20 +132,6 @@ function handle_Redraw() {
         "▄▄▄▄▄▄▄▄▄handle_Redraw▄▄▄▄▄▄▄▄",
         "find a way to add something to all corners of the stage, and re-dim that sucker"
     );
-    //TODO:
-    //find a way to add something to all corners of the stage, and re-dim that sucker
-    /* 
-    you can handle text in a dynamic way:
-    https://stackoverflow.com/questions/22943186/html5-canvas-font-size-based-on-canvas-size
-    In your resize event handler, apply a font size to a range of canvas sizes:
-        if(canvas.width<480){
-        context.font='14px verdana';
-        }else if(canvas.width<768){
-        context.font='30px verdana';
-        }else{
-        context.font='80px verdana';
-        }
-    */
 }
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -200,7 +182,6 @@ function handle_preloadComplete(e) {
 
 function handle_fileComplete(e) {
     //console.log("whoohoo xml loaded ", e);
-
     var basePath = e.result.querySelector("base_path").getAttribute("url");
     var green_colored = e.result
         .querySelector("green_colored")
@@ -253,7 +234,6 @@ function handle_fileComplete(e) {
         id: "playhead",
         type: createjs.Types.IMAGE,
     });
-    ////console.log("basePath: ", basePath);
 
     fileLoader.loadFile({
         src: "../video/error_page/woody-disappointed_copy.mp4",
@@ -314,18 +294,13 @@ function makeSomeText() {
     //console.log(":::makeSomeText:::");
     var text = new createjs.Text(
         "WHO IS THIS GUY?",
-        //"16px 'Press Start 2P'",
-        //"800 italic 64px 'Barlow ExtraBold'",
         "italic 64px 'Bungee'",
         "#ff8A00"
-        //"#FFFFFF"
     );
     var textSmaller = new createjs.Text(
         "(click on a section to see my work)",
-        //"16px 'Press Start 2P'",
         "800 italic 21px 'Barlow Semi Condensed'",
         "#ff8A00"
-        //"#FFFFFF"
     );
     //console.log(":::text:::", text);
     // subject_content.addChild(text);
@@ -334,9 +309,8 @@ function makeSomeText() {
     var textW = textMetrics.width;
     var textH = textMetrics.height;
 
-   // text.x = (stageBounds.width - textW) / 2;
     text.x = (stageBounds.width - textW) / 2;
-    text.y =85;
+    text.y = 85;
 
     // subject_content.addChild(textSmaller);
     stage.addChild(textSmaller);
@@ -346,6 +320,8 @@ function makeSomeText() {
 
     textSmaller.x = (stageBounds.width - textSmallerW) / 2;
     textSmaller.y = text.y + (textH - textH / 4) + generalPadding;
+
+    addInteractiveText();
     stage.update();
 }
 
@@ -359,28 +335,30 @@ function addSVG(e) {
     stage.update();
 }
 
+var galleryConfig = {};
+galleryConfig.thumbnailW = 85;
+galleryConfig.thumbnailH = 64;
+
 function layoutImage(e) {
     var bg = new createjs.Bitmap(e.result);
-    bg.scaleX = 85 / e.result.width;
-    bg.scaleY = 64 / e.result.height;
+    bg.scaleX = galleryConfig.thumbnailW / e.result.width;
+    bg.scaleY = galleryConfig.thumbnailH / e.result.height;
     //add the images to the content
     image_content.addChild(bg);
     var subjBounds = image_content.getBounds();
     image_content.x = (stageBounds.width - subjBounds.width) / 2;
     image_content.y = (stageBounds.height - subjBounds.height) / 2;
 
-    var xWidth = parseInt(imageCount * 85);
-    // //console.log(" xWidth: ", xWidth);
+    var xWidth = parseInt(imageCount * galleryConfig.thumbnailW);
 
-    if (xWidth >= parseInt(w - 85)) {
+    if (xWidth >= parseInt(w - galleryConfig.thumbnailW)) {
         yCount = parseInt(yCount + 1);
         imageCount = 0;
     }
-    // //console.log("╫╫  y  ", y);
 
-    xWidth = parseInt(imageCount * 85);
+    xWidth = parseInt(imageCount * galleryConfig.thumbnailW);
     x = xWidth;
-    y = parseInt(yCount * 64);
+    y = parseInt(yCount * galleryConfig.thumbnailH);
 
     bg.x = x;
     bg.y = y;
@@ -431,25 +409,7 @@ function handleLoadedMovie(e) {
     );
 }
 
-function addInteractiveText(){
-
-}
-
-function addVideoToStage(newVideoProps) {
-    var videoContentContainer = new createjs.Container();
-    var bmp = new createjs.Bitmap(newVideoProps.vid);
-    // bmp.setBounds(0, 0, newVideoProps.w, newVideoProps.h);
-    bmp.scaleX = newVideoProps.scaledToWindow;
-    bmp.scaleY = newVideoProps.scaledToWindow;
-    bmp.setBounds(0, 0, newVideoProps.w, newVideoProps.h);
-    console.log("☻☺◙Ö:::bmp::♪◙☺☻", bmp.getBounds().width);
-    videoContentContainer.addChild(bmp);
-    background_content.addChild(videoContentContainer);
-    videoContentContainer.x = (stageBounds.width - newVideoProps.w) / 2;
-    videoContentContainer.y = (stageBounds.height - newVideoProps.h) / 2;
-
-    // console.log("☻☺◙Ö:::video::♪◙☺☻", videoContentContainer.getBounds());
-
+function addInteractiveText() {
     var interactiveTextHitArea = new createjs.Container();
     var interactiveTextMask = new createjs.Shape();
     var videoPlayText = new createjs.Text(
@@ -479,30 +439,30 @@ function addVideoToStage(newVideoProps) {
     interactiveTextHitArea.y =
         (stageBounds.height - interactiveTextHitArea.getBounds().height) / 2;
     interactiveTextHitArea.addEventListener("click", function () {
-        // newVideoProps.vid.play();
         handle_VideoControls();
         handle_SoundControls("pop");
-
-        // console.log(
-        //     " videoContentContainer.getBounds() ",
-        //     videoContentContainer.getTransformedBounds()
-        // );
     });
     handle_SoundsRegistry();
 
-    subject_content.addChild(interactiveTextHitArea); 
-    // bmp.x = (stageBounds.width - bmp.getBounds().width) / 2;
-    // bmp.y = (stageBounds.height - bmp.getBounds().height) / 2;
-    stage.update();
-    // should we need a source tag later:
-    // let source = document.createElement("source");
-    // source.setAttribute("type", "video/mp4");
-    // var vidURL = "URL.mp4";
-    // video.appendChild(source);
-    // source.setAttribute("src", vidURL);
+    subject_content.addChild(interactiveTextHitArea);
+}
 
-    //base class to initialize createjs eventdispatcher to handle movie...
-    //from https://jsfiddle.net/lannymcnie/qTHb4/
+function addVideoToStage(newVideoProps) {
+    var videoContentContainer = new createjs.Container();
+    var bmp = new createjs.Bitmap(newVideoProps.vid);
+    // bmp.setBounds(0, 0, newVideoProps.w, newVideoProps.h);
+    bmp.scaleX = newVideoProps.scaledToWindow;
+    bmp.scaleY = newVideoProps.scaledToWindow;
+    bmp.setBounds(0, 0, newVideoProps.w, newVideoProps.h);
+    console.log("☻☺◙Ö:::bmp::♪◙☺☻", bmp.getBounds().width);
+    videoContentContainer.addChild(bmp);
+    background_content.addChild(videoContentContainer);
+    videoContentContainer.x = (stageBounds.width - newVideoProps.w) / 2;
+    videoContentContainer.y = (stageBounds.height - newVideoProps.h) / 2;
+
+    // console.log("☻☺◙Ö:::video::♪◙☺☻", videoContentContainer.getBounds());
+ 
+    stage.update();
 }
 
 var videoWillPlay = true;
