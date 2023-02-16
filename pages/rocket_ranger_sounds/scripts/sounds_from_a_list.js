@@ -155,6 +155,7 @@ let progress = document.querySelector("#progress");
 let gallery = document.querySelector("#gallery");
 
 function init() {
+    console.log("▄▄▄▄▄▄▄▄▄init▄▄▄▄▄▄▄▄");
     x = 0;
     y = 0;
 
@@ -164,7 +165,7 @@ function init() {
     queue.on("complete", handle_preloadComplete);
     queue.loadFile("testing_numbers/testing.xml");
     fileLoader = new createjs.LoadQueue(false);
-    videoLoader = new createjs.LoadQueue(true);
+    videoLoader = new createjs.LoadQueue(false);
 }
 
 /* 
@@ -197,10 +198,14 @@ function handle_fileComplete(e) {
         .getAttribute("extensions");
     var imagesNodeList = e.result.querySelectorAll("image");
 
-    fileLoader = new createjs.LoadQueue(false);
+    //fileLoader = new createjs.LoadQueue(false);
     fileLoader.on("fileload", handle_ImageLoadReady);
     fileLoader.on("progress", handle_ImageLoadProgress);
     fileLoader.on("complete", handle_ImageLoadComplete);
+    
+    videoLoader.on("fileload", handle_ImageLoadReady);
+    videoLoader.on("progress", handle_ImageLoadProgress);
+    videoLoader.on("complete", handle_ImageLoadComplete);
 
     imagesNodeList.forEach(function (member) {
         var extension_trim = member.getAttribute("src");
@@ -235,7 +240,7 @@ function handle_fileComplete(e) {
         type: createjs.Types.IMAGE,
     });
 
-    fileLoader.loadFile({
+    videoLoader.loadFile({
         src: "../video/error_page/woody-disappointed_copy.mp4",
         // src: "https://voolatech.github.io/banner/vpaid/videos/video.mp4",
         id: "disappointed",
@@ -461,7 +466,7 @@ function addVideoToStage(newVideoProps) {
     videoContentContainer.y = (stageBounds.height - newVideoProps.h) / 2;
 
     // console.log("☻☺◙Ö:::video::♪◙☺☻", videoContentContainer.getBounds());
- 
+
     stage.update();
 }
 
