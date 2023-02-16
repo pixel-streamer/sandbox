@@ -24,6 +24,7 @@ function handleFontLoad(e) {
     fontsHaveLoaded = true;
     window.dispatchEvent(fontload_evt);
 }
+
 //window.addEventListener("load", init); //called now from under font loaded event.
 window.addEventListener("fontload_evtStr", setupStage);
 //fonts are now loaded, so start putting things onto the stage.
@@ -161,7 +162,7 @@ function init() {
     y = 0;
 
     var queue = new createjs.LoadQueue(false);
-    queue.on("fileload", handle_fileComplete);
+    queue.on("fileload", handle_xmlFileLoadComplete);
     queue.on("progress", handle_progress);
     queue.on("complete", handle_preloadComplete);
     queue.loadFile("testing_numbers/testing.xml");
@@ -182,7 +183,7 @@ function handle_preloadComplete(e) {
     //console.log(":::final func after loading xml. handle_preloadComplete:::");
 }
 
-function handle_fileComplete(e) {
+function handle_xmlFileLoadComplete(e) {
     //console.log("whoohoo xml loaded ", e);
     var basePath = e.result.querySelector("base_path").getAttribute("url");
     var green_colored = e.result
@@ -231,6 +232,21 @@ function handle_fileComplete(e) {
                 extension_trim +
                 greens_extension
         );
+    });
+    galleryImageLinks.forEach(function (src) {
+        var shortID = src.substring(
+            src.lastIndexOf("/") + 1,
+            src.lastIndexOf(".")
+        );
+        shortID = shortID.replace(/\s/g);
+        fileLoader.loadFile({
+            src: src,
+            //src: "../images/ui_vectors/playhead-buttons-copy.svg",
+            //src: "../images/ui_vectors/rec.svg",
+            crossOrigin: true,
+            id: shortID,
+            type: createjs.Types.IMAGE,
+        });
     });
 
     fileLoader.loadFile({
@@ -326,8 +342,7 @@ function makeSomeText() {
             "px 'Barlow Semi Condensed'",
         "#ff8A00"
     );
-    //console.log(":::text:::", text);
-    // subject_content.addChild(text);
+
     stage.addChild(text);
     var textMetrics = text.getMetrics();
     var textW = textMetrics.width;
@@ -386,9 +401,19 @@ function layoutImage(e) {
 
     bg.x = x;
     bg.y = y;
-
+    var fullsize;
+    bg.addEventListener("click", function () {
+        if (fullsize === undefined) {
+            fullsize = new createjs.Bitmap(e.result);
+            subject_content.addChild(fullsize);
+            fullsize.addEventListener("click", function () {
+                fullsize.visible = false;
+            });
+        } else {
+            fullsize.visible = true;
+        }
+    });
     imageCount++;
-    stage.update();
 }
 
 function handleLoadedMovie(e) {
@@ -401,9 +426,9 @@ function handleLoadedMovie(e) {
     //     "▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄",
     //     e.target.getResult("disappointed").src
     // );
- 
+
     //  let video = document.createElement("video");
-    importantVideo = e.target.getResult("disappointed");  
+    importantVideo = e.target.getResult("disappointed");
 
     let vWidth = importantVideo.videoWidth;
     let vHeight = importantVideo.videoHeight;
@@ -433,7 +458,7 @@ function handleLoadedMovie(e) {
     //         importantVideo.setAttribute("autoplay", "");
     //         importantVideo.setAttribute("muted", "");
     //         importantVideo.setAttribute("loop", "");
-    //         importantVideo.setAttribute("playsinline", ""); 
+    //         importantVideo.setAttribute("playsinline", "");
     //         var newDims = resizeToKnownDimensions(vWidth, vHeight, w, h);
     //         console.log(newDims);
     //         return resolve(
@@ -482,7 +507,6 @@ function addInteractiveText() {
         handle_SoundControls("pop");
     });
     handle_SoundsRegistry();
-
     subject_content.addChild(interactiveTextHitArea);
 }
 
@@ -498,10 +522,7 @@ function addVideoToStage(newVideoProps) {
     background_content.addChild(videoContentContainer);
     videoContentContainer.x = (stageBounds.width - newVideoProps.w) / 2;
     videoContentContainer.y = (stageBounds.height - newVideoProps.h) / 2;
-
     // console.log("☻☺◙Ö:::video::♪◙☺☻", videoContentContainer.getBounds());
-
-    stage.update();
 }
 
 var videoWillPlay = true;
@@ -565,11 +586,6 @@ function handle_SoundControls(soundID) {
     // });
 }
 
-/*
- * Ready-to-use video scale promise-based function
- * https://stackoverflow.com/questions/4129102/html5-video-dimensions
- */
-
 function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
     var containerAspect = constraintW / constraintH;
 
@@ -618,8 +634,16 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
+/* 
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ UTILITY FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+*/
 
 function getRandomHexNum() {
     // get a random hex value for the color of something:
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
 }
+/* 
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF UTILITY FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
