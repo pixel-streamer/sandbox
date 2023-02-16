@@ -56,6 +56,7 @@ function setupStage(e) {
     stage.setBounds(0, 0, w, h);
     stageBounds = stage.getBounds();
     console.log("▌▌▌▌▌▀▀▀▀▌▌▌▌▌▌▌▌:::::::stageBounds::: ", stageBounds);
+
     background_content = new createjs.Container();
     var anotherBigFill = new createjs.Shape();
     anotherBigFill.graphics.beginFill("#0000FF");
@@ -64,11 +65,17 @@ function setupStage(e) {
     background_content.regX = 0;
     background_content.regY = 0;
     background_content.name = "background_content";
+
+    image_content = new createjs.Container();
+    image_content.name = "image_content";
+
     subject_content = new createjs.Container();
+    subject_content.name = "subject_content";
+
     stage.addChild(background_content);
+    stage.addChild(image_content);
     stage.addChild(subject_content);
     stage.update();
-
     ticker = createjs.Ticker;
 
     // ticker.timingMode = createjs.Ticker.RAF;
@@ -152,6 +159,7 @@ function handle_Redraw() {
 var fileLoader, videoLoader;
 var bigArea = document.querySelector("#testCanvas");
 var subject_content;
+var image_content;
 var background_content;
 var w = parseInt(getComputedStyle(bigArea).width);
 var h = parseInt(getComputedStyle(bigArea).height);
@@ -320,15 +328,18 @@ function makeSomeText() {
         //"#FFFFFF"
     );
     //console.log(":::text:::", text);
-    subject_content.addChild(text);
+    // subject_content.addChild(text);
+    stage.addChild(text);
     var textMetrics = text.getMetrics();
     var textW = textMetrics.width;
     var textH = textMetrics.height;
 
+   // text.x = (stageBounds.width - textW) / 2;
     text.x = (stageBounds.width - textW) / 2;
-    text.y = h - h - textH - 85;
+    text.y =85;
 
-    subject_content.addChild(textSmaller);
+    // subject_content.addChild(textSmaller);
+    stage.addChild(textSmaller);
     var textSmallerMetrics = textSmaller.getMetrics();
     var textSmallerW = textSmallerMetrics.width;
     var textSmallerH = textSmallerMetrics.height;
@@ -352,12 +363,11 @@ function layoutImage(e) {
     var bg = new createjs.Bitmap(e.result);
     bg.scaleX = 85 / e.result.width;
     bg.scaleY = 64 / e.result.height;
-    //add the images to the subject content
-    subject_content.addChild(bg);
-
-    var subjBounds = subject_content.getBounds();
-    subject_content.x = (stageBounds.width - subjBounds.width) / 2;
-    subject_content.y = (stageBounds.height - subjBounds.height) / 2;
+    //add the images to the content
+    image_content.addChild(bg);
+    var subjBounds = image_content.getBounds();
+    image_content.x = (stageBounds.width - subjBounds.width) / 2;
+    image_content.y = (stageBounds.height - subjBounds.height) / 2;
 
     var xWidth = parseInt(imageCount * 85);
     // //console.log(" xWidth: ", xWidth);
@@ -421,6 +431,10 @@ function handleLoadedMovie(e) {
     );
 }
 
+function addInteractiveText(){
+
+}
+
 function addVideoToStage(newVideoProps) {
     var videoContentContainer = new createjs.Container();
     var bmp = new createjs.Bitmap(newVideoProps.vid);
@@ -476,7 +490,8 @@ function addVideoToStage(newVideoProps) {
     });
     handle_SoundsRegistry();
 
-    background_content.addChild(interactiveTextHitArea); // bmp.x = (stageBounds.width - bmp.getBounds().width) / 2;
+    subject_content.addChild(interactiveTextHitArea); 
+    // bmp.x = (stageBounds.width - bmp.getBounds().width) / 2;
     // bmp.y = (stageBounds.height - bmp.getBounds().height) / 2;
     stage.update();
     // should we need a source tag later:
