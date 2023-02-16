@@ -202,7 +202,7 @@ function handle_fileComplete(e) {
     fileLoader.on("fileload", handle_ImageLoadReady);
     fileLoader.on("progress", handle_ImageLoadProgress);
     fileLoader.on("complete", handle_ImageLoadComplete);
-    
+
     videoLoader.on("fileload", handle_ImageLoadReady);
     videoLoader.on("progress", handle_ImageLoadProgress);
     videoLoader.on("complete", handle_ImageLoadComplete);
@@ -387,31 +387,57 @@ function handleLoadedMovie(e) {
     //  let video = document.createElement("video");
     importantVideo = e.target.getResult("disappointed"); //the loaded disappointment
 
-    importantVideo.addEventListener(
-        "loadedmetadata",
-        new Promise((resolve) => {
-            // retrieve dimensions
-            //using "this" to refer to the video height was another request!
-            let Vwidth = importantVideo.videoWidth;
-            let Vheight = importantVideo.videoHeight;
-            importantVideo.setAttribute("preload", "metadata");
-            importantVideo.setAttribute("autoplay", "");
-            importantVideo.setAttribute("muted", "");
-            importantVideo.setAttribute("loop", "");
-            importantVideo.setAttribute("playsinline", "");
+    // importantVideo.addEventListener(
+    //    "loadedmetadata",
+    new Promise((resolve) => {
+        // retrieve dimensions
+        //using "this" to refer to the video height was another request!
+        let Vwidth = importantVideo.videoWidth;
+        let Vheight = importantVideo.videoHeight;
+        importantVideo.setAttribute("preload", "metadata");
+        importantVideo.setAttribute("autoplay", "");
+        importantVideo.setAttribute("muted", "");
+        importantVideo.setAttribute("loop", "");
+        importantVideo.setAttribute("playsinline", "");
 
-            var newDims = resizeToKnownDimensions(Vwidth, Vheight, w, h);
-            console.log(newDims);
-            return resolve(
-                addVideoToStage({
-                    w: newDims.newW,
-                    h: newDims.newH,
-                    vid: importantVideo,
-                    scaledToWindow: newDims.scaleRatio,
-                })
-            );
-        }, false)
-    );
+        var newDims = resizeToKnownDimensions(Vwidth, Vheight, w, h);
+        console.log(newDims);
+        return resolve(
+            addVideoToStage({
+                w: newDims.newW,
+                h: newDims.newH,
+                vid: importantVideo,
+                scaledToWindow: newDims.scaleRatio,
+            })
+        );
+    }, false);
+    //);
+
+    // importantVideo.addEventListener(
+    //     "loadedmetadata",
+    //     new Promise((resolve) => {
+    //         // retrieve dimensions
+    //         //using "this" to refer to the video height was another request!
+    //         let Vwidth = importantVideo.videoWidth;
+    //         let Vheight = importantVideo.videoHeight;
+    //         importantVideo.setAttribute("preload", "metadata");
+    //         importantVideo.setAttribute("autoplay", "");
+    //         importantVideo.setAttribute("muted", "");
+    //         importantVideo.setAttribute("loop", "");
+    //         importantVideo.setAttribute("playsinline", "");
+
+    //         var newDims = resizeToKnownDimensions(Vwidth, Vheight, w, h);
+    //         console.log(newDims);
+    //         return resolve(
+    //             addVideoToStage({
+    //                 w: newDims.newW,
+    //                 h: newDims.newH,
+    //                 vid: importantVideo,
+    //                 scaledToWindow: newDims.scaleRatio,
+    //             })
+    //         );
+    //     }, false)
+    // );
 }
 
 function addInteractiveText() {
