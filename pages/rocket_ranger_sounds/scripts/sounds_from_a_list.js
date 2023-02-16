@@ -251,7 +251,6 @@ function handle_fileComplete(e) {
         src: "../video/error_page/woody-disappointed_copy.mp4",
         // src: "https://voolatech.github.io/banner/vpaid/videos/video.mp4",
         id: "disappointed",
-        preload: "metadata",
         type: createjs.Types.VIDEO,
     });
 }
