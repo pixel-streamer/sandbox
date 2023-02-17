@@ -9,9 +9,15 @@
             href="https://fonts.googleapis.com/css?family=Nunito:400,900|Barlow:700,900,italic,700italic"
         />
         <link rel="stylesheet" type="text/css" href="styles/theme_styles.css" />
-        <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
+
+        <!--  <script src="../libs/1.0.0/soundjs.min.js"></script> -->
+        <script src="../libs/1.0.0/preloadjs.min.js"></script>
+        <script src="../libs/1.0.0/tweenjs.min.js"></script>
+        <script src="../libs/1.0.0/easeljs.min.js"></script>
+        <script src="../libs/1.0.0/createjs.min.js"></script>
+        <!--  <script src="https://code.createjs.com/1.0.0/tweenjs.min.js"></script>
         <script src="https://code.createjs.com/1.0.0/preloadjs.min.js"></script>
-        <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+        <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script> -->
         <script src="../pages/scripts/SimpleGalleryConfig.js"></script>
         <script src="../pages/scripts/SimpleGallery.js"></script>
         <script src="../pages/scripts/SimpleImage.js"></script>
@@ -27,8 +33,8 @@
         -->
 
         <!-- <script src="portfolio-gui.js"></script> -->
-        <script src="scripts/old_view_gallery.js?num11screwedup1142023"></script>
-        <style> 
+        <script src="scripts/old_view_gallery.js?num11screwedup1112"></script>
+        <style>
             canvas {
                 /* from:
                 https://www.reddit.com/r/createjs/comments/4bu1cp/is_it_possible_to_scale_a_sprite_as_nearest/
@@ -48,15 +54,14 @@
                 -ms-interpolation-mode: nearest-neighbor; /* IE                            */
             }
             .fulldisplay {
-               
                 /* 
             this is the full display rectangle for a [lame-man's] device test
             */
                 position: absolute;
                 /*  width: 99.9%; */
-                width: calc(100vw - 4px);
+                width: calc(100vw - 16px);
                 height: calc(100vh - 32px);
-                margin:auto;
+                margin: auto;
                 /* width: 100vw;
                 height: 100vh;*/
 
@@ -79,6 +84,9 @@
             body {
                 min-width: 320px;
                 min-height: 320px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
         </style>
     </head>
@@ -87,12 +95,12 @@
         <div id="testCanvas" class="fulldisplay cleared_top"></div>
 
         <!--
-        <div id="width"></div>
-        <div id="height"></div>
-        <div id="calls"></div>
-        -->
+<div id="width"></div>
+<div id="height"></div>
+<div id="calls"></div>
+-->
         <!-- 
-            almost not using xml for the load of html page elements.
+almost not using xml for the load of html page elements.
 <IF>
     <CONDITIONS>
         <CONDITION field="time" from="5pm" to="9pm"></CONDITION>
@@ -102,8 +110,7 @@
         <RESULTS><...some other actions defined.../></RESULTS>        
     </ELSE>
 </IF>
-
-         -->
+-->
         <noscript>
             (this site requires javascript to be enabled, so that the interface
             can be constructed around the data you see here)

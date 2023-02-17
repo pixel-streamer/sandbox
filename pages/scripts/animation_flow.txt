@@ -1,0 +1,182 @@
+/*
+https://stackoverflow.com/questions/43016650/tweenjs-animation-not-working
+*/
+
+var AnimationFlow = (function() {
+  'use strict';
+
+
+  var AnimationFlow = function(canvasID) {
+    this.canvas = document.getElementById(canvasID);
+    this.stage = new createjs.Stage(this.canvas);
+    this.timeline = new createjs.Timeline();
+    this.tween = [];
+
+    this.preload;
+
+    this.animData;
+    this.manifest = [];
+    this.animObject = [];
+    this.stageObject = [];
+
+    this.loadProgressLabel;
+    this.loadingBarContainer;
+    this.loadingBar;
+  };
+
+
+  AnimationFlow.prototype.setData = function(data) {
+    this.animData = data;
+    this.manifest = [];
+
+    this.renderProgressBar();
+
+    for (var i = 0; i < this.animData.length; i++) {
+      this.manifest.push({
+        'src': this.animData[i].targeturl,
+        'id': this.animData[i].targetID
+      });
+    }
+  };
+
+  AnimationFlow.prototype.init = function() {
+
+    createjs.Ticker.addEventListener("tick", this.tick.bind(this));
+    createjs.Ticker.setFPS(30);
+    createjs.Ticker.useRAF = true;
+
+    this.preload = new createjs.LoadQueue(false);
+    this.preload.addEventListener("complete", this.handleComplete.bind(this));
+    this.preload.addEventListener("progress", this.handleProgress.bind(this));
+    this.preload.loadManifest(this.manifest);
+    this.stage.update();
+  };
+
+  AnimationFlow.prototype.handleProgress = function() {
+    this.loadingBar.scaleX = this.preload.progress * this.loadingBarWidth;
+
+    this.progresPrecentage = Math.round(this.preload.progress * 100);
+    this.loadProgressLabel.text = this.progresPrecentage + "% Loaded";
+
+    this.stage.update();
+  };
+
+  AnimationFlow.prototype.handleComplete = function() {
+    //Load images logic to be added
+
+    for (var i = 0; i < this.manifest.length; i++) {
+      this.animObject.push(this.preload.getResult(this.manifest[i].id));
+    }
+
+    this.loadProgressLabel.text = "Loading complete click to start";
+    this.stage.update();
+    this.canvas.addEventListener("click", this.handleClick.bind(this));
+  };
+
+  AnimationFlow.prototype.handleClick = function() {
+    this.start();
+
+    this.stage.removeChild(this.loadProgressLabel, this.loadingBarContainer);
+    this.canvas.removeEventListener("click", this.handleClick);
+  };
+
+  AnimationFlow.prototype.start = function() {
+
+    for (var i = 0; i < this.animObject.length; i++) {
+      this.obj = new createjs.Bitmap(this.animObject[i]);
+      this.obj.x = this.animData[i].initialXPos;
+      this.obj.y = this.animData[i].initialYPos;
+      this.obj.visible = this.animData[i].initialVisibility;
+
+      this.stage.addChild(this.obj);
+      this.stageObject.push(this.obj);
+
+      if (this.animData[i].isAnimatable) {
+        console.log("animatable:" + this.animData[i].params.xpos + " " + this.animData[i].duration);
+        var c = createjs.Tween.get(this.obj);
+        c.to({
+          x: this.animData[i].params.xpos
+        }, this.animData[i].duration);
+        c.call(this.tweenComplete);
+        this.timeline.addTween(c);
+      }
+    }
+    this.timeline.gotoAndPlay(0);
+    this.stage.update();
+  };
+
+  AnimationFlow.prototype.tick = function() {
+    this.stage.update();
+  };
+
+  AnimationFlow.prototype.tweenComplete = function() {
+    console.log("tweenComplete.......");
+  };
+
+  AnimationFlow.prototype.renderProgressBar = function() {
+    this.loadProgressLabel = new createjs.Text("", "18px Verdana", "black");
+    this.loadProgressLabel.lineWidth = 200;
+    this.loadProgressLabel.textAlign = "center";
+    this.loadProgressLabel.x = this.canvas.width / 2;
+    this.loadProgressLabel.y = 50;
+    this.stage.addChild(this.loadProgressLabel);
+
+    this.loadingBarContainer = new createjs.Container();
+
+    this.loadingBarHeight = 20;
+    this.loadingBarWidth = 300;
+    this.LoadingBarColor = createjs.Graphics.getRGB(0, 0, 0);
+
+    this.loadingBar = new createjs.Shape();
+    this.loadingBar.graphics.beginFill(this.LoadingBarColor).drawRect(0, 0, 1, this.loadingBarHeight).endFill();
+
+    this.frame = new createjs.Shape();
+    this.padding = 3;
+    this.frame.graphics.setStrokeStyle(1).beginStroke(this.LoadingBarColor).drawRect(-this.padding / 2, -this.padding / 2, this.loadingBarWidth + this.padding, this.loadingBarHeight + this.padding);
+
+    this.loadingBarContainer.addChild(this.loadingBar, this.frame);
+    this.loadingBarContainer.x = Math.round(this.canvas.width / 2 - this.loadingBarWidth / 2);
+    this.loadingBarContainer.y = 100;
+    this.stage.addChild(this.loadingBarContainer);
+  };
+
+  return AnimationFlow;
+})();
+
+
+
+var data = [{
+  targetID: 'background',
+ // targeturl: 'https://s13.postimg.org/tyj4iop93/Sky_Pic.jpg',
+  targeturl: 'https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3doeS1pcy1za3ktYmx1ZS5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgyOH19fQ==',
+  isAnimatable: true,
+  duration: 2000,
+  params: {
+    xpos: -100
+  },
+  isVisibleAfterAnimation: true,
+  isVisibleAtStartAnimation: true,
+  initialVisibility: true,
+  initialXPos: 0,
+  initialYPos: 0
+}, {
+  targetID: 'mousePointer',
+  targeturl: 'http://jamesshaji.com/angular/assets/images/heliGame/helicopter.png',
+  isAnimatable: true,
+  duration: 2000,
+  params: {
+    xpos: 100
+  },
+  isVisibleAfterAnimation: false,
+  isVisibleAtStartAnimation: true,
+  initialVisibility: true,
+  initialXPos: 450,
+  initialYPos: 50
+}];
+
+var buttons = ["playPauseBtn", "startFirstBtn", "reverseBtn"];
+
+
+var animTool = new AnimationFlow('testCanvas');
+animTool.setData(data);
+animTool.init();

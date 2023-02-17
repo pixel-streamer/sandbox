@@ -1,0 +1,8 @@
+<script src="SimpleGalleryConfig.js"></script>
+<script src="SimpleGallery.js"></script>
+<script src="SimpleImage.js"></script>
+<script src="SimpleCanvas.js"></script>
+<script src="SimpleSlide.js"></script>
+<script src="ShapeObject.js"></script>
+<script src="MovieClip.js"></script>
+<script src="TextClip.js"></script>

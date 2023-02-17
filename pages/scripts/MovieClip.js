@@ -29,4 +29,8 @@ class MovieClip extends createjs.MovieClip {
         this.width = param.width;
         this.height = param.height;
     }
+    redraw(centerOfW, centerOfH) {
+        this.movieClip.x = parseInt(centerOfW / 2);
+        this.movieClip.y = parseInt(centerOfH / 2);
+    }
 }
