@@ -78,8 +78,8 @@ function setupStage(e) {
     subject_content.name = "subject_content";
 
     stage.addChild(background_content);
-    stage.addChild(image_content);
     stage.addChild(video_content);
+    stage.addChild(image_content);
     stage.addChild(subject_content);
     stage.addChild(fullsize_display);
     stage.update();
