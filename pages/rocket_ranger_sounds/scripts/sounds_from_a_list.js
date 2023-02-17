@@ -71,11 +71,15 @@ function setupStage(e) {
     fullsize_display = new createjs.Container();
     fullsize_display.name = "fullsize_display";
 
+    video_content = new createjs.Container();
+    video_content.name = "video_content";
+
     subject_content = new createjs.Container();
     subject_content.name = "subject_content";
 
     stage.addChild(background_content);
     stage.addChild(image_content);
+    stage.addChild(video_content);
     stage.addChild(subject_content);
     stage.addChild(fullsize_display);
     stage.update();
@@ -148,6 +152,7 @@ var bigArea = document.querySelector("#testCanvas");
 var subject_content;
 var image_content;
 var background_content;
+var video_content;
 var w = parseInt(getComputedStyle(bigArea).width);
 var h = parseInt(getComputedStyle(bigArea).height);
 var bigCanvas = document.querySelector(".full_size_canvas");
@@ -170,8 +175,10 @@ function init() {
     queue.on("progress", handle_progress);
     queue.on("complete", handle_preloadComplete);
     queue.loadFile("testing_numbers/testing.xml");
-    fileLoader = new createjs.LoadQueue(false);
-    videoLoader = new createjs.LoadQueue(false);
+    // fileLoader = new createjs.LoadQueue(false);
+    // videoLoader = new createjs.LoadQueue(false);
+    fileLoader = new createjs.LoadQueue(true);
+    videoLoader = new createjs.LoadQueue(true);
 }
 
 /* 
@@ -405,25 +412,37 @@ function layoutImage(e) {
 
     bg.x = x;
     bg.y = y;
-    var fullsize;
+    var fullSizeBmp;
+    var fsBiggest = resizeToKnownDimensions(
+        e.result.width,
+        e.result.height,
+        w,
+        h
+    );
     bg.addEventListener("click", function () {
-        if (fullsize === undefined) {
-            fullsize = new createjs.Bitmap(e.result);
-            // var fsBigFill = new createjs.Shape();
-            // fsBigFill.graphics
-            //     .beginFill("rgba(204, 160, 0,.5)")
-            //     .drawRect(0, 0, w, h)
-            //     .endFill();
-            fullsize_display.addChild(fullsize);
-            //fullsize_display.addChild(fsBigFill);
-            fullsize.addEventListener("click", function () {
-                fullsize.visible = false;
-                fullsize.mouseEnabled = false;
+        if (fullSizeBmp === undefined) {
+            fullSizeBmp = new createjs.Bitmap(e.result);
+            fullsize_display.addChild(fullSizeBmp);
+            //imageAspect
+            if (fsBiggest.imageAspect === "portrait") {
+                if (e.result.width > w) {
+                    fullSizeBmp.scaleX = fsBiggest.scaleRatio;
+                    fullSizeBmp.scaleY = fsBiggest.scaleRatio;
+                }
+            } else if (e.result.height > h) {
+                fullSizeBmp.scaleX = fsBiggest.scaleRatio;
+                fullSizeBmp.scaleY = fsBiggest.scaleRatio;
+            }
+
+            fullSizeBmp.x = (w - fullsize_display.getBounds().width) / 2;
+            fullSizeBmp.y = (h - fullsize_display.getBounds().height) / 2;
+            fullSizeBmp.addEventListener("click", function () {
+                fullSizeBmp.visible = false;
+                fullSizeBmp.mouseEnabled = false;
             });
-            // fsBigFill.click();
         } else {
-            fullsize.visible = true;
-            fullsize.mouseEnabled = true;
+            fullSizeBmp.visible = true;
+            fullSizeBmp.mouseEnabled = true;
         }
     });
     imageCount++;
@@ -443,47 +462,49 @@ function handleLoadedMovie(e) {
     //  let video = document.createElement("video");
     importantVideo = e.target.getResult("disappointed");
 
-    let vWidth = importantVideo.videoWidth;
-    let vHeight = importantVideo.videoHeight;
-    importantVideo.setAttribute("preload", "metadata");
-    importantVideo.setAttribute("autoplay", "");
-    importantVideo.setAttribute("muted", "");
-    importantVideo.setAttribute("loop", "");
-    importantVideo.setAttribute("playsinline", "");
+    // let vWidth = importantVideo.videoWidth;
+    // let vHeight = importantVideo.videoHeight;
 
-    var newDims = resizeToKnownDimensions(vWidth, vHeight, w, h);
+    // importantVideo.setAttribute("preload", "metadata");
+    // importantVideo.setAttribute("autoplay", "");
+    // importantVideo.setAttribute("muted", "");
+    // importantVideo.setAttribute("loop", "");
+    // importantVideo.setAttribute("playsinline", "");
 
-    addVideoToStage({
-        w: newDims.newW,
-        h: newDims.newH,
-        vid: importantVideo,
-        scaledToWindow: newDims.scaleRatio,
-    });
+    // console.log("video width, and height: ", vWidth, vHeight);
+    // var newDims = resizeToKnownDimensions(vWidth, vHeight, w, h);
 
-    // importantVideo.addEventListener(
-    //     "loadedmetadata",
-    //     new Promise((resolve) => {
-    //         // retrieve dimensions
-    //         //using "this" to refer to the video height was another request!
-    //         let vWidth = importantVideo.videoWidth;
-    //         let vHeight = importantVideo.videoHeight;
-    //         importantVideo.setAttribute("preload", "metadata");
-    //         importantVideo.setAttribute("autoplay", "");
-    //         importantVideo.setAttribute("muted", "");
-    //         importantVideo.setAttribute("loop", "");
-    //         importantVideo.setAttribute("playsinline", "");
-    //         var newDims = resizeToKnownDimensions(vWidth, vHeight, w, h);
-    //         console.log(newDims);
-    //         return resolve(
-    //             addVideoToStage({
-    //                 w: newDims.newW,
-    //                 h: newDims.newH,
-    //                 vid: importantVideo,
-    //                 scaledToWindow: newDims.scaleRatio,
-    //             })
-    //         );
-    //     }, false)
-    // );
+    // addVideoToStage({
+    //     w: newDims.newW,
+    //     h: newDims.newH,
+    //     vid: importantVideo,
+    //     scaledToWindow: newDims.scaleRatio,
+    // });
+
+    importantVideo.addEventListener(
+        "loadedmetadata",
+        new Promise((resolve) => {
+            // retrieve dimensions
+            //using "this" to refer to the video height was another request!
+            let vWidth = importantVideo.videoWidth;
+            let vHeight = importantVideo.videoHeight;
+            importantVideo.setAttribute("preload", "metadata");
+            importantVideo.setAttribute("autoplay", "");
+            importantVideo.setAttribute("muted", "");
+            importantVideo.setAttribute("loop", "");
+            importantVideo.setAttribute("playsinline", "");
+            var newDims = resizeToKnownDimensions(vWidth, vHeight, w, h);
+            console.log(newDims);
+            return resolve(
+                addVideoToStage({
+                    w: newDims.newW,
+                    h: newDims.newH,
+                    vid: importantVideo,
+                    scaledToWindow: newDims.scaleRatio,
+                })
+            );
+        }, false)
+    );
 }
 
 function addInteractiveText() {
@@ -525,14 +546,14 @@ function addInteractiveText() {
 
 function addVideoToStage(newVideoProps) {
     var videoContentContainer = new createjs.Container();
-    var bmp = new createjs.Bitmap(newVideoProps.vid);
+    var vidBMP = new createjs.Bitmap(newVideoProps.vid);
     // bmp.setBounds(0, 0, newVideoProps.w, newVideoProps.h);
-    bmp.scaleX = newVideoProps.scaledToWindow;
-    bmp.scaleY = newVideoProps.scaledToWindow;
-    bmp.setBounds(0, 0, newVideoProps.w, newVideoProps.h);
-    console.log("☻☺◙Ö:::bmp::♪◙☺☻", bmp.getBounds().width);
-    videoContentContainer.addChild(bmp);
-    background_content.addChild(videoContentContainer);
+    vidBMP.scaleX = newVideoProps.scaledToWindow;
+    vidBMP.scaleY = newVideoProps.scaledToWindow;
+    vidBMP.setBounds(0, 0, newVideoProps.w, newVideoProps.h);
+    console.log("☻☺◙Ö:::vidBMP::♪◙☺☻", vidBMP.getBounds().width);
+    videoContentContainer.addChild(vidBMP);
+    video_content.addChild(videoContentContainer);
     videoContentContainer.x = (stageBounds.width - newVideoProps.w) / 2;
     videoContentContainer.y = (stageBounds.height - newVideoProps.h) / 2;
     // console.log("☻☺◙Ö:::video::♪◙☺☻", videoContentContainer.getBounds());
@@ -606,6 +627,7 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
     var fullH = contentH;
 
     var aspect = fullW / fullH;
+    var imageAspect;
 
     var fullMax = Math.max(fullW, fullH);
     var fullMin = Math.min(fullW, fullH);
@@ -614,6 +636,8 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
     var contentMin = Math.min(constraintW, constraintH);
 
     let newScaleRatio;
+
+    imageAspect = aspect <= 1 ? "portrait" : "landscape";
 
     if (aspect < 1 || aspect === 1) {
         //use contentMin/fullMax
@@ -636,6 +660,7 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
         }
     }
     return {
+        imageAspect: imageAspect,
         aspect: containerAspect,
         scaleRatio: newScaleRatio,
         newW: contentW,
