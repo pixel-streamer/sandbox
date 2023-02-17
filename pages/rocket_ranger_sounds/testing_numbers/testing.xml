@@ -1,19 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <slides>
-	<base_path url="testing_numbers"/>
-	<green_colored url="green" extensions=".png"/>
-	<peach_colored url="peach" extensions=".jpg"/>
+	<base_path url="testing_numbers" />
+	<green_colored url="green"
+		extensions=".png" />
+	<peach_colored url="peach"
+		extensions=".jpg" />
 	<images>
-		<image src="01.png" ></image>
-		<image src="02.png" ></image>
-		<image src="03.png" ></image>
-		<image src="04.png" ></image>
-		<image src="05.png" ></image>
-		<image src="06.png" ><something txt="this is a caption">CAPTION</something></image>
-		<image src="07.png" ></image>
-		<image src="08.png" ></image>
-		<image src="09.png" ></image>
-		<image src="10.png" ></image>
-		<image src="11.png" ></image>
+		<image src="01.png">
+			<details>
+				<h1>it's the loneliest number</h1>
+				<p>it's the loneliest number since the number two</p>
+			</details>
+		</image>
+		<image src="02.png">
+			<details>
+				<h1>it denotes a pair</h1>
+				<p>'Two Kinds Of Teardrops' by Del Shannon (1963)</p>
+				<p>'Two Of Us' by The Beatles (1970)</p>
+			</details>
+		</image>
+		<image src="03.png">
+			<details>
+				<h1>three is a crowd</h1>
+				<p>Goldie Locks And The Three Bears</p>
+				<p>Three Dog Night</p>
+			</details>
+			<caption updated_date="02172023"
+				updated_time="00:49:00">Six All That Remains · 2006 </caption>
+		</image>
+		<image src="04.png">
+			<details>
+				<h1>Four posts has a stable bed.</h1>
+				<p>The Four Seasons</p>
+				<p>Breaking Up Is Hard to Do: by The Four Seasons</p>
+				<p>"Breaking Up Is Hard to Do" is a song recorded by
+				 Neil Sedaka, co-written by Sedaka and Howard Greenfield.
+				  Sedaka recorded this song twice, in 1962 and 1975,
+				   in two significantly different arrangements, 
+				   and it is considered to be his signature song.
+				</p>
+				<p>
+				   Between 1970 and 1975, it was a top-40 hit three separate 
+				   times for three separate artists: Lenny Welch, The Partridge Family,
+				    and Sedaka's second version. </p>
+			</details>
+		</image>
+		<image src="05.png">
+			<details>
+				<h1>Five (band) songs:</h1>
+				<p>Closer to Me: by Five</p>
+				<p>Let's Dance (Five song)</p>
+			</details>
+		</image>
+		<image src="06.png">
+			<details>
+				<h1>There Were Six in the Bed Baby Genius · 2012 </h1>
+				<p>(This Song's Just) Six Words Long</p>
+				<p>This album was the first ZZ Top album I bought and led me to going back through their archives before Afterburner came out. What a band! </p>
+			</details>
+			<caption updated_date="02162023"
+				updated_time="00:42:00">Six All That Remains · 2006 </caption>
+		</image>
+		<image src="07.png">
+			<details>
+				<h1>Seven O'Clock</h1>
+				<p>Pearl Jam - Seven O'Clock (Lyrics)</p>
+				<p>I've been listening to Pearl Jam ever since I was 3 years old thanks
+				 to my Mum and Aunt and I love there new album and this song especially. 
+				 Yes, it is a different sound from when they made Ten, but artists can 
+				 change their sound but still be reccognise as 'Yes, this is Pearl Jam'. </p>
+			</details>
+			<caption updated_date="02162023"
+				updated_time="00:45:00">You have to watch the video to get the lyrics to "Seven"</caption>
+		</image>
+		<image src="08.png">
+			<details>
+				<h1>8 Songs with the Number Eight in the Title</h1>
+				<p>'Eight Days A Week' by The Beatles (1964)</p>
+				<p>Fortunately, I came across the idea last number column to help me with
+				 an issue of a lack of songs I like with the number eight. Eight songs about 8 seems fine!
+				 But, truth be told, I found very few featuring nine or ten, so the next (and at this
+				 stage last) number column will be out of order.</p>
+			</details>
+			<caption updated_date="02162023"
+				updated_time="00:47:00">I'm finally up to the number eight.</caption>
+		</image>
+		<image src="09.png">
+			<details>
+				<h1>9 Greatest Songs With 9 In The Title</h1>
+				<p>by Jessica Goodman</p>
+				<p>"Nine Lives" by Aerosmith</p>
+			</details>
+			<caption updated_date="02162023"
+				updated_time="00:47:00">The number nine list was just a bunch of movies, with images like these:
+				<img src="nine-lives-thumbnail.png" />
+			</caption>
+		</image>
+		<image src="10.png">
+			<details>
+				<h1>10 Songs With "Ten" In The Title </h1>
+				<p>Does there have to be a reason? Maybe there is, maybe there isn't... Just enjoy!  ~  JH</p>
+			</details>
+			<caption updated_date="02172023"
+				updated_time="01:12:00">1)  Jewel  ~  "Ten", and others graced this list.</caption>
+		</image>
+		<image src="11.png">
+			<details>
+				<h1>11 Songs With "Eleven" In The Title </h1>
+				<p>There's ALWAYS a reason. Don't wonder— just enjoy!  ~  JH
+					<a href='https://www.youtube.com/watch?v=XhIB0xNKfO0'>Grateful Dead - The Eleven 12-30-69</a>
+				</p>
+			</details>
+			<caption updated_date="02172023"
+				updated_time="01:12:00">1)  Primus  ~  "Eleven"
+			</caption>
+			<picture>
+				<source srcset="logo-768.png, logo-768-1.5x.png 1.5x" />
+				<img src="logo-320.png"
+					alt="logo" />
+			</picture>
+		</image>
 	</images>
 </slides>

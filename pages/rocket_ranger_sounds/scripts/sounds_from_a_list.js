@@ -174,7 +174,16 @@ function init() {
     queue.on("fileload", handle_xmlFileLoadComplete);
     queue.on("progress", handle_progress);
     queue.on("complete", handle_preloadComplete);
-    queue.loadFile("testing_numbers/testing.xml");
+    queue.loadFile({
+        src: "testing_numbers/testing.xml",
+        //src: "../images/ui_vectors/playhead-buttons-copy.svg",
+        //src: "../images/ui_vectors/rec.svg",
+        id: "image_list",
+        //type: createjs.Types.IMAGE,
+        type: createjs.AbstractLoader.XML,
+    });
+
+    //type:createjs.AbstractLoader.XML
     // fileLoader = new createjs.LoadQueue(false);
     // videoLoader = new createjs.LoadQueue(false);
     fileLoader = new createjs.LoadQueue(true);
@@ -209,7 +218,7 @@ function handle_xmlFileLoadComplete(e) {
     var peachs_extension = e.result
         .querySelector("peach_colored")
         .getAttribute("extensions");
-    var imagesNodeList = e.result.querySelectorAll("image");
+    var imagesNodeList = e.result.querySelectorAll("*[src]");
 
     //fileLoader = new createjs.LoadQueue(false);
     fileLoader.on("fileload", handle_ImageLoadReady);
@@ -222,6 +231,7 @@ function handle_xmlFileLoadComplete(e) {
 
     imagesNodeList.forEach(function (member) {
         var extension_trim = member.getAttribute("src");
+        console.log("from the xml src: ", extension_trim);
         extension_trim = extension_trim.substring(
             0,
             extension_trim.lastIndexOf(".")
@@ -244,7 +254,8 @@ function handle_xmlFileLoadComplete(e) {
                 greens_extension
         );
     });
-    galleryImageLinks.forEach(function (src) {
+    galleryImageLinks.forEach(function ({ src }) {
+        console.log("src: ", src);
         var shortID = src.substring(
             src.lastIndexOf("/") + 1,
             src.lastIndexOf(".")
@@ -277,11 +288,21 @@ function handle_xmlFileLoadComplete(e) {
 }
 
 var galleryImageLinks = [
-    "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/haphalloween.jpg",
-    "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/animations/snuff.gif",
-    "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/bottle.jpg",
-    "https://pixel-streamer.github.io/sandbox/pages/images/thumbs/coke-bottle-render-t.png",
-    "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/coke-bottle-render.png",
+    {
+        src: "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/haphalloween.jpg",
+    },
+    {
+        src: "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/animations/snuff.gif",
+    },
+    {
+        src: "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/bottle.jpg",
+    },
+    {
+        src: "https://pixel-streamer.github.io/sandbox/pages/images/thumbs/coke-bottle-render-t.png",
+    },
+    {
+        src: "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/coke-bottle-render.png",
+    },
 ];
 
 /* 
@@ -314,6 +335,7 @@ function handle_ImageLoadReady(e) {
             break;
     }
 }
+
 function handle_ImageLoadProgress(e) {
     // //console.log(Math.floor(parseFloat(e.progress * 100).toPrecision(2)));
 }
@@ -321,20 +343,6 @@ function handle_ImageLoadProgress(e) {
 function handle_ImageLoadComplete(e) {
     //console.log(":::handle_ImageLoadComplete:::", e);
     //addErrorVideo();
-}
-
-function getGoldenRatio(num) {
-    /*
-    sin(54°) = φ/2
-
-    Golden ratio formula is ϕ = 1 + (1/ϕ). ϕ is also equal to 2 × sin (54°)
-    If we take any two successive Fibonacci Numbers, their ratio is very close
-    to the value 1.618 (Golden ratio).  cos(36°)*2
-    From en.wikipedia.org/wiki/Golden_ratio#Alternative_forms :
-    "These correspond to the fact that the length of the diagonal of a regular
-    pentagon is φ times the length of its side" 
-    */
-    return parseFloat(num / 1.618).toPrecision(3);
 }
 
 function makeSomeText() {
@@ -450,14 +458,6 @@ function layoutImage(e) {
 
 function handleLoadedMovie(e) {
     // console.log("▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄", e);
-    // console.log(
-    //     "▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄",
-    //     e.target.getResult("disappointed")
-    // );
-    // console.log(
-    //     "▄▀▌▀▌▄:::handleLoadedMovie:::▄▀▌▀▌▄",
-    //     e.target.getResult("disappointed").src
-    // );
 
     //  let video = document.createElement("video");
     importantVideo = e.target.getResult("disappointed");
@@ -488,13 +488,14 @@ function handleLoadedMovie(e) {
             //using "this" to refer to the video height was another request!
             let vWidth = importantVideo.videoWidth;
             let vHeight = importantVideo.videoHeight;
+            console.log("vWidth, vHeight", vWidth, vHeight);
             importantVideo.setAttribute("preload", "metadata");
             importantVideo.setAttribute("autoplay", "");
             importantVideo.setAttribute("muted", "");
             importantVideo.setAttribute("loop", "");
             importantVideo.setAttribute("playsinline", "");
             var newDims = resizeToKnownDimensions(vWidth, vHeight, w, h);
-            console.log(newDims);
+            console.log("newDims: ", newDims);
             return resolve(
                 addVideoToStage({
                     w: newDims.newW,
@@ -522,7 +523,6 @@ function addInteractiveText() {
     videoPlayText.y = 8;
 
     interactiveTextMask.graphics
-        // .beginFill("#FF00FF")
         .beginFill("rgba(255,0,255,.3)")
         .drawRect(0, 0, textW + 16, textH + 16)
         .endFill();
@@ -547,16 +547,16 @@ function addInteractiveText() {
 function addVideoToStage(newVideoProps) {
     var videoContentContainer = new createjs.Container();
     var vidBMP = new createjs.Bitmap(newVideoProps.vid);
-    // bmp.setBounds(0, 0, newVideoProps.w, newVideoProps.h);
     vidBMP.scaleX = newVideoProps.scaledToWindow;
     vidBMP.scaleY = newVideoProps.scaledToWindow;
+    vidBMP.regX = 0;
+    vidBMP.regY = 0;
     vidBMP.setBounds(0, 0, newVideoProps.w, newVideoProps.h);
-    console.log("☻☺◙Ö:::vidBMP::♪◙☺☻", vidBMP.getBounds().width);
     videoContentContainer.addChild(vidBMP);
     video_content.addChild(videoContentContainer);
-    videoContentContainer.x = (stageBounds.width - newVideoProps.w) / 2;
-    videoContentContainer.y = (stageBounds.height - newVideoProps.h) / 2;
-    // console.log("☻☺◙Ö:::video::♪◙☺☻", videoContentContainer.getBounds());
+    vidBMP.x = (stageBounds.width - newVideoProps.w) / 2;
+    vidBMP.y = (stageBounds.height - newVideoProps.h) / 2;
+    console.log("☻☺◙Ö:::newVideoProps::♪◙☺☻", newVideoProps);
 }
 
 var videoWillPlay = true;
@@ -620,6 +620,34 @@ function handle_SoundControls(soundID) {
     // });
 }
 
+/* 
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
+/* 
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ UTILITY FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+*/
+
+function getRandomHexNum() {
+    // get a random hex value for the color of something:
+    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+function getGoldenRatio(num) {
+    /*
+    sin(54°) = φ/2
+
+    Golden ratio formula is ϕ = 1 + (1/ϕ). ϕ is also equal to 2 × sin (54°)
+    If we take any two successive Fibonacci Numbers, their ratio is very close
+    to the value 1.618 (Golden ratio).  cos(36°)*2
+    From en.wikipedia.org/wiki/Golden_ratio#Alternative_forms :
+    "These correspond to the fact that the length of the diagonal of a regular
+    pentagon is φ times the length of its side" 
+    */
+    return parseFloat(num / 1.618).toPrecision(3);
+}
+
 function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
     var containerAspect = constraintW / constraintH;
 
@@ -666,20 +694,6 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
         newW: contentW,
         newH: contentH,
     };
-}
-
-/* 
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-*/
-/* 
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ UTILITY FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-*/
-
-function getRandomHexNum() {
-    // get a random hex value for the color of something:
-    return "#" + Math.floor(Math.random() * 16777215).toString(16);
 }
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
