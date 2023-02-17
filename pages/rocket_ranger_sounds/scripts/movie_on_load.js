@@ -255,7 +255,7 @@ function testingFunction() {
         vid: importantVideo,
         contentToHide: largerTextContainer,
     });
-    largerTextContainer.addEventListener("click", boundObj);
+    largerTextContainer.addEventListener("click", boundObj, { once: true });
 }
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
