@@ -59,7 +59,7 @@ function setupStage(e) {
 
     background_content = new createjs.Container();
     var anotherBigFill = new createjs.Shape();
-    anotherBigFill.graphics.beginFill("#0000FF").drawRect(0, 0, w, h);
+    anotherBigFill.graphics.beginFill("#0000FF").drawRect(0, 0, w, h).endFill();
     background_content.addChild(anotherBigFill);
     background_content.regX = 0;
     background_content.regY = 0;
@@ -68,12 +68,16 @@ function setupStage(e) {
     image_content = new createjs.Container();
     image_content.name = "image_content";
 
+    fullsize_display = new createjs.Container();
+    fullsize_display.name = "fullsize_display";
+
     subject_content = new createjs.Container();
     subject_content.name = "subject_content";
 
     stage.addChild(background_content);
     stage.addChild(image_content);
     stage.addChild(subject_content);
+    stage.addChild(fullsize_display);
     stage.update();
     ticker = createjs.Ticker;
 
@@ -405,12 +409,21 @@ function layoutImage(e) {
     bg.addEventListener("click", function () {
         if (fullsize === undefined) {
             fullsize = new createjs.Bitmap(e.result);
-            subject_content.addChild(fullsize);
+            // var fsBigFill = new createjs.Shape();
+            // fsBigFill.graphics
+            //     .beginFill("rgba(204, 160, 0,.5)")
+            //     .drawRect(0, 0, w, h)
+            //     .endFill();
+            fullsize_display.addChild(fullsize);
+            //fullsize_display.addChild(fsBigFill);
             fullsize.addEventListener("click", function () {
                 fullsize.visible = false;
+                fullsize.mouseEnabled = false;
             });
+            // fsBigFill.click();
         } else {
             fullsize.visible = true;
+            fullsize.mouseEnabled = true;
         }
     });
     imageCount++;
