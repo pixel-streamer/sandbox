@@ -347,7 +347,7 @@ function handle_ImageLoadComplete(e) {
 
 function makeSomeText() {
     //console.log(":::makeSomeText:::");
-    largeText = getGoldenRatio(w) * 0.075;
+    largeText = getGoldenRatio(w) * 0.085;
     console.log(":::getGoldenRatio:::", getGoldenRatio(largeText));
     var text = new createjs.Text(
         "WHO IS THIS GUY?",
