@@ -253,7 +253,7 @@ function testingFunction() {
 
     var boundObj = addVideoToStage.bind({
         vid: importantVideo,
-        interactiveContent: largerTextContainer,
+        contentToHide: largerTextContainer,
     });
     largerTextContainer.addEventListener("click", boundObj);
 }
@@ -343,8 +343,9 @@ function addInteractiveText() {
 
 function addVideoToStage() {
     //newVideoProps
-    this.interactiveContent.visible=false;
-    this.interactiveContent.mouseEnabled=false;
+    this.contentToHide.visible = false;
+    this.contentToHide.mouseEnabled = false;
+
     let vWidth = this.vid.videoWidth;
     let vHeight = this.vid.videoHeight;
     console.log("╙╙§ importantVideo -- vWidth, vHeight", vWidth, vHeight);
