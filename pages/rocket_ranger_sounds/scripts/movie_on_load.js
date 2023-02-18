@@ -123,17 +123,6 @@ var nofullhover;
 
 function setupStage(e) {
     //nofullhover = window.matchMedia("(hover:none), (hover:on-demand)").matches;
-
-    // bigCanvas.setAttribute("width", w);
-    // bigCanvas.setAttribute("height", h);
-    // stage = bigCanvas;
-    // stage = new createjs.Stage("big_stage");
-    // stage.setBounds(0, 0, w, h);
-    // stageBounds = stage.getBounds();
-
-    // video_content = new createjs.Container();
-    // video_content.name = "video_content";
-
     interactive_content = new createjs.Container();
     interactive_content.name = "interactive_content";
 
@@ -143,20 +132,7 @@ function setupStage(e) {
         subject_content,
         stage.getChildIndex("video_content")+1
     );
-
-    //stage.addChild(video_content);
     stage.addChild(interactive_content);
-
-    // ticker = createjs.Ticker;
-    // // ticker.timingMode = createjs.Ticker.RAF;
-    // // these are equivalent, 1000ms / 40fps (framerate) = 25ms (interval)
-    // // ticker.interval = 25;
-    // ticker.timingMode = ticker.RAF_SYNCHED;
-    // // createjs.Ticker.timingMode = createjs.Ticker.RAF;
-    // // ticker.framerate = 30;
-    // // ticker.delta=4;
-    // ticker.addEventListener("tick", tick);
-
     makeSomeText();
 }
 
@@ -260,42 +236,10 @@ function handle_loadMovieComplete(e) {
 window.addEventListener("videoload_evtStr", handleVideoLoad);
 
 function handleVideoLoad(e) {
-    console.log("▄▀▌▀▌▄:::handleVideoLoad:::▄▀▌▀▌▄", e);
-
+    // console.log("▄▀▌▀▌▄:::handleVideoLoad:::▄▀▌▀▌▄", e);
     importantVideo = videoLoader.getResult("disappointed");
-
-    // importantVideo.addEventListener(
-    //     "loadedmetadata",
-    //     new Promise((resolve) => {
-    //         // retrieve dimensions
-    //         //using "this" to refer to the video height was another request!
-    //         let vWidth = importantVideo.videoWidth;
-    //         let vHeight = importantVideo.videoHeight;
-    //         console.log("vWidth, vHeight", vWidth, vHeight);
-    //         importantVideo.setAttribute("preload", "metadata");
-    //         importantVideo.setAttribute("autoplay", "");
-    //         importantVideo.setAttribute("muted", "");
-    //         importantVideo.setAttribute("loop", "");
-    //         importantVideo.setAttribute("playsinline", "");
-    //         var newDims = resizeToKnownDimensions(vWidth, vHeight, w, h);
-    //         console.log("newDims: ", newDims);
-    //         return resolve(
-    //             addVideoToStage({
-    //                 w: newDims.newW,
-    //                 h: newDims.newH,
-    //                 vid: importantVideo,
-    //                 scaledToWindow: newDims.scaleRatio,
-    //             })
-    //         );
-    //     }, false)
-    // );
-
-    // retrieve dimensions
-    //using "this" to refer to the video height was another request!
-
     importantVideo.addEventListener("loadedmetadata", testingFunction);
-
-    console.log("importantVideo ", importantVideo);
+    // console.log("importantVideo ", importantVideo);
 }
 
 function testingFunction() {
@@ -336,8 +280,7 @@ function testingFunction() {
     // interactive_content.addChild(largerTextContainer);
 
     addVideoToStage.apply({
-        vid: importantVideo,
-        // tohide: largerTextContainer,
+        vid: importantVideo
     });
 }
 /* 
@@ -425,19 +368,10 @@ function addInteractiveText() {
 }
 
 function addVideoToStage() {
-    //newVideoProps
     console.log("obj: ", this);
-
-    // this.tohide.addEventListener("click", function () {
-    //     handle_VideoControls();
-    //     handle_SoundControls("pop");
-    // });
-    // this.tohide.visible = false;
-    // this.tohide.mouseEnabled = false;
 
     let vWidth = this.vid.videoWidth;
     let vHeight = this.vid.videoHeight;
-    // console.log("╙╙§ importantVideo -- vWidth, vHeight", vWidth, vHeight);
     this.vid.setAttribute("preload", "metadata");
     this.vid.setAttribute("autoplay", "");
     this.vid.setAttribute("muted", "");
