@@ -26,7 +26,8 @@ function handleFontLoad(e) {
 }
 
 //window.addEventListener("load", init); //called now from under font loaded event.
-window.addEventListener("fontload_evtStr", setupStage);
+//window.addEventListener("fontload_evtStr", setupStage);
+window.addEventListener("fontload_evtStr", setupStageForInteraction);
 //fonts are now loaded, so start putting things onto the stage.
 
 /* 
@@ -41,15 +42,90 @@ window.addEventListener("fontload_evtStr", setupStage);
 var stage;
 var stageBounds;
 var nofullhover;
-function setupStage(e) {
-    //nofullhover = window.matchMedia("(hover:none), (hover:on-demand)").matches;
 
+const startup_evt = new CustomEvent("startup_evtStr", {
+    detail: { msg: ":::startup began, now setup stage" },
+});
+
+window.addEventListener("startup_evtStr", setupStage);
+
+function setupStageForInteraction() {
     bigCanvas.setAttribute("width", w);
     bigCanvas.setAttribute("height", h);
     stage = bigCanvas;
     stage = new createjs.Stage("big_stage");
     stage.setBounds(0, 0, w, h);
     stageBounds = stage.getBounds();
+
+    startup_content = new createjs.Container();
+    startup_content.name = "startup_content";
+
+    stage.addChild(startup_content);
+
+    ticker = createjs.Ticker;
+    ticker.timingMode = ticker.RAF_SYNCHED;
+    ticker.addEventListener("tick", tick);
+
+    console.log("█▀ █▀setupStageForInteraction▀▌▀▌");
+
+    console.log(":::makeSomeText:::");
+    var nextLargerTextSize = getGoldenRatio(w) * 0.04;
+    console.log(":::getGoldenRatio:::", getGoldenRatio(nextLargerTextSize));
+    var largerTextContainer = new createjs.Container();
+
+    var largerText = new createjs.Text(
+        "click to start everything up",
+        "normal " + nextLargerTextSize + "px 'Barlow'",
+        "#ffffff"
+    );
+
+    var largerTextMetrics = largerText.getMetrics();
+
+    var textClickArea = new createjs.Shape();
+    textClickArea.graphics
+        .beginFill("rgba(128, 64, 255,.75)")
+        .drawRect(
+            0,
+            0,
+            largerTextMetrics.width + 16,
+            largerTextMetrics.height + 16
+        )
+        .endFill();
+    largerTextContainer.addChild(textClickArea);
+    largerTextContainer.addChild(largerText);
+    var largerTextW = largerTextMetrics.width;
+    var largerTextH = largerTextMetrics.height;
+
+    largerText.x = (stageBounds.width - largerTextW) / 2;
+    largerText.y = largerTextH;
+
+    textClickArea.x = largerText.x - 8;
+    textClickArea.y = largerText.y - 6;
+    largerTextContainer.y = 0;
+    startup_content.addChild(largerTextContainer);
+    largerTextContainer.addEventListener(
+        "click",
+        function () {
+            largerTextContainer.visible=false;
+            largerTextContainer.mouseEnabled=false;
+            
+            window.dispatchEvent(startup_evt);
+        },
+        { once: true }
+    );
+}
+
+var nofullhover;
+
+function setupStage(e) {
+    //nofullhover = window.matchMedia("(hover:none), (hover:on-demand)").matches;
+
+    // bigCanvas.setAttribute("width", w);
+    // bigCanvas.setAttribute("height", h);
+    // stage = bigCanvas;
+    // stage = new createjs.Stage("big_stage");
+    // stage.setBounds(0, 0, w, h);
+    // stageBounds = stage.getBounds();
 
     video_content = new createjs.Container();
     video_content.name = "video_content";
@@ -63,17 +139,16 @@ function setupStage(e) {
     stage.addChild(subject_content);
     stage.addChild(video_content);
     stage.addChild(interactive_content);
-    stage.update();
 
-    ticker = createjs.Ticker;
-    // ticker.timingMode = createjs.Ticker.RAF;
-    // these are equivalent, 1000ms / 40fps (framerate) = 25ms (interval)
-    // ticker.interval = 25;
-    ticker.timingMode = ticker.RAF_SYNCHED;
-    // createjs.Ticker.timingMode = createjs.Ticker.RAF;
-    // ticker.framerate = 30;
-    // ticker.delta=4;
-    ticker.addEventListener("tick", tick);
+    // ticker = createjs.Ticker;
+    // // ticker.timingMode = createjs.Ticker.RAF;
+    // // these are equivalent, 1000ms / 40fps (framerate) = 25ms (interval)
+    // // ticker.interval = 25;
+    // ticker.timingMode = ticker.RAF_SYNCHED;
+    // // createjs.Ticker.timingMode = createjs.Ticker.RAF;
+    // // ticker.framerate = 30;
+    // // ticker.delta=4;
+    // ticker.addEventListener("tick", tick);
 
     init();
     makeSomeText();
@@ -355,7 +430,7 @@ function addVideoToStage() {
 
     let vWidth = this.vid.videoWidth;
     let vHeight = this.vid.videoHeight;
-   // console.log("╙╙§ importantVideo -- vWidth, vHeight", vWidth, vHeight);
+    // console.log("╙╙§ importantVideo -- vWidth, vHeight", vWidth, vHeight);
     this.vid.setAttribute("preload", "metadata");
     this.vid.setAttribute("autoplay", "");
     this.vid.setAttribute("muted", "");
