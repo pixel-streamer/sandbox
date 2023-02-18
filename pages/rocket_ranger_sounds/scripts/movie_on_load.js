@@ -86,11 +86,11 @@ function setupStageForInteraction() {
 
     startup_content = new createjs.Container();
     startup_content.name = "startup_content";
-    stage.addChild(startup_content);
 
     video_content = new createjs.Container();
     video_content.name = "video_content";
     stage.addChild(video_content);
+    stage.addChild(startup_content);
 
     ticker = createjs.Ticker;
     ticker.timingMode = ticker.RAF_SYNCHED;
@@ -374,7 +374,7 @@ function handle_SoundsRegistry() {
     createjs.Sound.registerSound(
         "../rocket_ranger_sounds/sounds/landing-copy.mp3",
         "pop"
-    );
+    );createjs.Sound.volume = 1;
 }
 
 function handle_SoundControls(soundID) {
