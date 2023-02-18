@@ -1,39 +1,3 @@
-var stage,
-    stageBounds,
-    importantVideo,
-    fontsHaveLoaded = false,
-    ticker,
-    subject_content,
-    image_content,
-    startup_content,
-    background_content,
-    video_content,
-    fileLoader,
-    bigArea = document.querySelector("#testCanvas"),
-    w = parseInt(getComputedStyle(bigArea).width),
-    h = parseInt(getComputedStyle(bigArea).height),
-    bigCanvas = document.querySelector(".full_size_canvas"),
-    generalPadding = 16,
-    largeText = 0;
-
-let nofullhover;
-
-let videoLoader,
-    videoWillPlay = true,
-    soundWillPlay = true;
-
-let resizeObserver,
-    delay = 250,
-    timeout;
-
-/*
-ResizeObserver.disconnect()
-    Unobserves all observed Element targets of a particular observer.
-ResizeObserver.observe()
-    Initiates the observing of a specified Element.
-ResizeObserver.unobserve()
-    Ends the observing of a specified Element.
-*/
 window.addEventListener("load", loadGoogleFonts);
 /* 
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ FONT LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -41,6 +5,9 @@ window.addEventListener("load", loadGoogleFonts);
 */
 // import { loadGoogleFonts }
 // import "font-loading_module.js";
+
+var fontsHaveLoaded = false;
+var importantVideo;
 
 function loadFonts(config) {
     var loader = new createjs.FontLoader(config, true);
@@ -58,7 +25,10 @@ function handleFontLoad(e) {
     window.dispatchEvent(fontload_evt);
 }
 
+//window.addEventListener("load", init); //called now from under font loaded event.
+//window.addEventListener("fontload_evtStr", setupStage);
 window.addEventListener("fontload_evtStr", setupStageForInteraction);
+//fonts are now loaded, so start putting things onto the stage.
 
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -68,6 +38,10 @@ window.addEventListener("fontload_evtStr", setupStageForInteraction);
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ STAGE SETUP FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
+
+var stage;
+var stageBounds;
+var nofullhover;
 
 const startup_evt = new CustomEvent("startup_evtStr", {
     detail: { msg: ":::startup began, now setup stage" },
@@ -145,6 +119,8 @@ function setupStageForInteraction() {
     );
 }
 
+var nofullhover;
+
 function setupStage(e) {
     //nofullhover = window.matchMedia("(hover:none), (hover:on-demand)").matches;
     interactive_content = new createjs.Container();
@@ -152,18 +128,22 @@ function setupStage(e) {
 
     subject_content = new createjs.Container();
     subject_content.name = "subject_content";
-    stage.addChildAt(subject_content, stage.getChildIndex("video_content") + 1);
+    stage.addChildAt(
+        subject_content,
+        stage.getChildIndex("video_content")+1
+    );
     stage.addChild(interactive_content);
     makeSomeText();
 }
 
 function tick(event) {
-    stage.update(event);
     //var deltaS = event.delta / 1000;
     //var position = <clip>.x + 15 * deltaS;
     //var moverW = <clip>.getBounds().width * <clip>.scaleX;
     //<clip>.x = position >= w + moverW ? -moverW : position;
+    stage.update(event);
 }
+var ticker;
 
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -174,7 +154,18 @@ function tick(event) {
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ RESIZE FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
+let resizeObserver;
+let delay = 250;
+let timeout;
 
+/*
+ResizeObserver.disconnect()
+    Unobserves all observed Element targets of a particular observer.
+ResizeObserver.observe()
+    Initiates the observing of a specified Element.
+ResizeObserver.unobserve()
+    Ends the observing of a specified Element.
+*/
 resizeObserver = new ResizeObserver((entries) => {});
 resizeObserver.observe(document.querySelector("#testCanvas"));
 window.addEventListener("resize", function () {
@@ -193,6 +184,19 @@ function handle_Redraw() {
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF RESIZE FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
+
+var fileLoader, videoLoader;
+var bigArea = document.querySelector("#testCanvas");
+var subject_content;
+var image_content;
+var startup_content;
+var background_content;
+var video_content;
+var w = parseInt(getComputedStyle(bigArea).width);
+var h = parseInt(getComputedStyle(bigArea).height);
+var bigCanvas = document.querySelector(".full_size_canvas");
+var generalPadding = 16;
+var largeText = 0;
 
 function init() {
     console.log("▄▄▄▄▄▄▄▄▄init▄▄▄▄▄▄▄▄");
@@ -239,8 +243,44 @@ function handleVideoLoad(e) {
 }
 
 function testingFunction() {
+    //console.log(":::makeSomeText:::");
+    // var nextLargerTextSize = getGoldenRatio(w) * 0.04;
+    // console.log(":::getGoldenRatio:::", getGoldenRatio(nextLargerTextSize));
+    // var largerTextContainer = new createjs.Container();
+
+    // var largerText = new createjs.Text(
+    //     "click to add the new movie",
+    //     "normal " + nextLargerTextSize + "px 'Barlow'",
+    //     "#ffffff"
+    // );
+
+    // var largerTextMetrics = largerText.getMetrics();
+
+    // var textClickArea = new createjs.Shape();
+    // textClickArea.graphics
+    //     .beginFill("rgba(128, 64, 255,.75)")
+    //     .drawRect(
+    //         0,
+    //         0,
+    //         largerTextMetrics.width + 16,
+    //         largerTextMetrics.height + 16
+    //     )
+    //     .endFill();
+    // largerTextContainer.addChild(textClickArea);
+    // largerTextContainer.addChild(largerText);
+    // var largerTextW = largerTextMetrics.width;
+    // var largerTextH = largerTextMetrics.height;
+
+    // largerText.x = (stageBounds.width - largerTextW) / 2;
+    // largerText.y = largerTextH;
+
+    // textClickArea.x = largerText.x - 8;
+    // textClickArea.y = largerText.y - 6;
+    // largerTextContainer.y = 0;
+    // interactive_content.addChild(largerTextContainer);
+
     addVideoToStage.apply({
-        vid: importantVideo,
+        vid: importantVideo
     });
 }
 /* 
@@ -353,6 +393,7 @@ function addVideoToStage() {
     console.log("☻☺◙Ö:::newVideoProps::♪◙☺☻", newDims);
 }
 
+var videoWillPlay = true;
 function handle_VideoControls() {
     var instance = importantVideo;
 
@@ -377,6 +418,7 @@ function handle_SoundsRegistry() {
     );
 }
 
+var soundWillPlay = true;
 function handle_SoundControls(soundID) {
     var instance = createjs.Sound.play(soundID, {
         // interrupt: createjs.Sound.INTERRUPT_ANY,
