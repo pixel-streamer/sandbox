@@ -54,11 +54,15 @@ function setupStage(e) {
     video_content = new createjs.Container();
     video_content.name = "video_content";
 
+    interactive_content = new createjs.Container();
+    interactive_content.name = "interactive_content";
+
     subject_content = new createjs.Container();
     subject_content.name = "subject_content";
 
-    stage.addChild(video_content);
     stage.addChild(subject_content);
+    stage.addChild(video_content);
+    stage.addChild(interactive_content);
     stage.update();
 
     ticker = createjs.Ticker;
@@ -138,8 +142,6 @@ var largeText = 0;
 
 function init() {
     console.log("▄▄▄▄▄▄▄▄▄init▄▄▄▄▄▄▄▄");
-    x = 0;
-    y = 0;
 
     videoLoader = new createjs.LoadQueue(true);
     // videoLoader.on("fileload", handleLoadedMovie);
@@ -216,46 +218,45 @@ function handleVideoLoad(e) {
 
 function testingFunction() {
     //console.log(":::makeSomeText:::");
-    var nextLargerTextSize = getGoldenRatio(w) * 0.04;
-    console.log(":::getGoldenRatio:::", getGoldenRatio(nextLargerTextSize));
-    var largerTextContainer = new createjs.Container();
+    // var nextLargerTextSize = getGoldenRatio(w) * 0.04;
+    // console.log(":::getGoldenRatio:::", getGoldenRatio(nextLargerTextSize));
+    // var largerTextContainer = new createjs.Container();
 
-    var largerText = new createjs.Text(
-        "click to add the new movie",
-        "normal " + nextLargerTextSize + "px 'Barlow'",
-        "#ffffff"
-    );
+    // var largerText = new createjs.Text(
+    //     "click to add the new movie",
+    //     "normal " + nextLargerTextSize + "px 'Barlow'",
+    //     "#ffffff"
+    // );
 
-    var largerTextMetrics = largerText.getMetrics();
+    // var largerTextMetrics = largerText.getMetrics();
 
-    var textClickArea = new createjs.Shape();
-    textClickArea.graphics
-        .beginFill("rgba(128, 64, 255,.75)")
-        .drawRect(
-            0,
-            0,
-            largerTextMetrics.width + 16,
-            largerTextMetrics.height + 16
-        )
-        .endFill();
-    largerTextContainer.addChild(textClickArea);
-    largerTextContainer.addChild(largerText);
-    var largerTextW = largerTextMetrics.width;
-    var largerTextH = largerTextMetrics.height;
+    // var textClickArea = new createjs.Shape();
+    // textClickArea.graphics
+    //     .beginFill("rgba(128, 64, 255,.75)")
+    //     .drawRect(
+    //         0,
+    //         0,
+    //         largerTextMetrics.width + 16,
+    //         largerTextMetrics.height + 16
+    //     )
+    //     .endFill();
+    // largerTextContainer.addChild(textClickArea);
+    // largerTextContainer.addChild(largerText);
+    // var largerTextW = largerTextMetrics.width;
+    // var largerTextH = largerTextMetrics.height;
 
-    largerText.x = (stageBounds.width - largerTextW) / 2;
-    largerText.y = largerTextH;
+    // largerText.x = (stageBounds.width - largerTextW) / 2;
+    // largerText.y = largerTextH;
 
-    textClickArea.x = largerText.x - 8;
-    textClickArea.y = largerText.y - 6;
+    // textClickArea.x = largerText.x - 8;
+    // textClickArea.y = largerText.y - 6;
+    // largerTextContainer.y = 0;
+    // interactive_content.addChild(largerTextContainer);
 
-    subject_content.addChild(largerTextContainer);
-
-    var boundObj = addVideoToStage.bind({
+    addVideoToStage.apply({
         vid: importantVideo,
-        contentToHide: largerTextContainer,
+        // tohide: largerTextContainer,
     });
-    largerTextContainer.addEventListener("click", boundObj, { once: true });
 }
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -338,17 +339,23 @@ function addInteractiveText() {
         handle_SoundControls("pop");
     });
     handle_SoundsRegistry();
-    subject_content.addChild(interactiveTextHitArea);
+    interactive_content.addChild(interactiveTextHitArea);
 }
 
 function addVideoToStage() {
     //newVideoProps
-    this.contentToHide.visible = false;
-    this.contentToHide.mouseEnabled = false;
+    console.log("obj: ", this);
+
+    // this.tohide.addEventListener("click", function () {
+    //     handle_VideoControls();
+    //     handle_SoundControls("pop");
+    // });
+    // this.tohide.visible = false;
+    // this.tohide.mouseEnabled = false;
 
     let vWidth = this.vid.videoWidth;
     let vHeight = this.vid.videoHeight;
-    console.log("╙╙§ importantVideo -- vWidth, vHeight", vWidth, vHeight);
+   // console.log("╙╙§ importantVideo -- vWidth, vHeight", vWidth, vHeight);
     this.vid.setAttribute("preload", "metadata");
     this.vid.setAttribute("autoplay", "");
     this.vid.setAttribute("muted", "");
