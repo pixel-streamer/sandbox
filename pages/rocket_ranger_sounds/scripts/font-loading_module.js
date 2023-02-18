@@ -13,7 +13,7 @@ function handleFontLoad(){
 */
 
 function loadGoogleFonts() {
-    console.log("■·::: loadGoogleFonts :::·■");
+    //console.log("■·::: loadGoogleFonts :::·■");
     /*
 			loadFonts({
 			src: "https://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic", 
@@ -29,7 +29,7 @@ function loadGoogleFonts() {
 }
 
 function createLongGoogleFontLinkHref() {
-    console.log("■·::: createLongGoogleFontLinkHref :::·■");
+   // console.log("■·::: createLongGoogleFontLinkHref :::·■");
     var fontFamilyArr = [
         "Press Start 2P",
         "Barlow",
@@ -173,7 +173,7 @@ function createLongGoogleFontLinkHref() {
         // "Cormorant Garamond",
     ];
 
-    console.log("createLongGoogleFontLinkHref");
+    //console.log("createLongGoogleFontLinkHref");
     var resultHome = document.querySelector("#result");
     var resultFrag = document.createDocumentFragment();
     var choices = document.createElement("ul");
@@ -223,7 +223,7 @@ function createLongGoogleFontLinkHref() {
         .join("|");
 
     linkAttrib += crushableString;
-    console.log(linkAttrib);
+    //console.log(linkAttrib);
     return linkAttrib;
 }
 

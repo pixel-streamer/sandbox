@@ -96,11 +96,11 @@ function setupStageForInteraction() {
     ticker.timingMode = ticker.RAF_SYNCHED;
     ticker.addEventListener("tick", tick);
 
-    console.log("█▀ █▀setupStageForInteraction▀▌▀▌");
+    //console.log("█▀ █▀setupStageForInteraction▀▌▀▌");
 
-    console.log(":::makeSomeText:::");
+    //console.log(":::makeSomeText:::");
     var nextLargerTextSize = getGoldenRatio(w) * 0.04;
-    console.log(":::getGoldenRatio:::", getGoldenRatio(nextLargerTextSize));
+    //console.log(":::getGoldenRatio:::", getGoldenRatio(nextLargerTextSize));
     var largerTextContainer = new createjs.Container();
 
     var largerText = new createjs.Text(
@@ -184,10 +184,10 @@ window.addEventListener("resize", function () {
 });
 
 function handle_Redraw() {
-    console.log(
-        "▄▄▄▄▄▄▄▄▄handle_Redraw▄▄▄▄▄▄▄▄",
-        "find a way to add something to all corners of the stage, and re-dim that sucker"
-    );
+    // console.log(
+    //     "▄▄▄▄▄▄▄▄▄handle_Redraw▄▄▄▄▄▄▄▄",
+    //     "find a way to add something to all corners of the stage, and re-dim that sucker"
+    // );
 }
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -195,7 +195,7 @@ function handle_Redraw() {
 */
 
 function init() {
-    console.log("▄▄▄▄▄▄▄▄▄init▄▄▄▄▄▄▄▄");
+   // console.log("▄▄▄▄▄▄▄▄▄init▄▄▄▄▄▄▄▄");
 
     videoLoader = new createjs.LoadQueue(true);
     // videoLoader.on("fileload", handleLoadedMovie);
@@ -219,23 +219,21 @@ const videoload_evt = new CustomEvent("videoload_evtStr", {
 });
 
 function handle_progress(e) {
-    console.log(Math.floor(parseFloat(e.progress * 100).toPrecision(2)));
+    //console.log(Math.floor(parseFloat(e.progress * 100).toPrecision(2)));
 }
 
 function handle_loadMovieComplete(e) {
-    console.log(
-        ":::final func after loading video. handle_loadMovieComplete:::"
-    );
+    // console.log(
+    //     ":::final func after loading video. handle_loadMovieComplete:::"
+    // );
     window.dispatchEvent(videoload_evt);
 }
 
 window.addEventListener("videoload_evtStr", handleVideoLoad);
 
 function handleVideoLoad(e) {
-    // console.log("▄▀▌▀▌▄:::handleVideoLoad:::▄▀▌▀▌▄", e);
     importantVideo = videoLoader.getResult("disappointed");
     importantVideo.addEventListener("loadedmetadata", testingFunction);
-    // console.log("importantVideo ", importantVideo);
 }
 
 function testingFunction() {
@@ -256,7 +254,7 @@ function testingFunction() {
 function makeSomeText() {
     //console.log(":::makeSomeText:::");
     largeText = getGoldenRatio(w) * 0.085;
-    console.log(":::getGoldenRatio:::", getGoldenRatio(largeText));
+    //console.log(":::getGoldenRatio:::", getGoldenRatio(largeText));
     var text = new createjs.Text(
         "WHO IS THIS GUY?",
         "italic " + largeText + "px 'Bungee'",
@@ -328,7 +326,7 @@ function addInteractiveText() {
 }
 
 function addVideoToStage() {
-    console.log("obj: ", this);
+   // console.log("obj: ", this);
 
     let vWidth = this.vid.videoWidth;
     let vHeight = this.vid.videoHeight;
@@ -350,7 +348,7 @@ function addVideoToStage() {
     video_content.addChild(videoContentContainer);
     vidBMP.x = (stageBounds.width - newDims.newW) / 2;
     vidBMP.y = (stageBounds.height - newDims.newH) / 2;
-    console.log("☻☺◙Ö:::newVideoProps::♪◙☺☻", newDims);
+    //console.log("☻☺◙Ö:::newVideoProps::♪◙☺☻", newDims);
 }
 
 function handle_VideoControls() {
@@ -374,14 +372,15 @@ function handle_SoundsRegistry() {
     createjs.Sound.registerSound(
         "../rocket_ranger_sounds/sounds/landing-copy.mp3",
         "pop"
-    );createjs.Sound.volume = 1;
+    );
 }
 
 function handle_SoundControls(soundID) {
     var instance = createjs.Sound.play(soundID, {
-        // interrupt: createjs.Sound.INTERRUPT_ANY,
-        interrupt: createjs.Sound.INTERRUPT_NONE,
+        interrupt: createjs.Sound.INTERRUPT_ANY,
+        // interrupt: createjs.Sound.INTERRUPT_NONE,
         //loop: -1,
+        //volume: 1,
     });
     // console.log(" ▌▌▌ ▌▌▌ ▌▌▌ ", instance);
 
@@ -389,27 +388,14 @@ function handle_SoundControls(soundID) {
         case true:
             soundWillPlay = false;
             instance.play();
-            // console.log(
-            //     "╘╘╘╝╘▌▌▌playSound" + "paused? (true) ▌",
-            //     instance.getPaused()
-            // );
             break;
         case false:
             soundWillPlay = true;
             instance.setPaused(true);
-            // console.log(
-            //     "╘╘╘╝╘▌▌▌playSound" + "paused? (false) ▌",
-            //     instance.getPaused()
-            // );
             break;
         default:
             break;
     }
-    // createjs.Sound.play("pop", {
-    //     // interrupt: createjs.Sound.INTERRUPT_ANY,
-    //     interrupt: createjs.Sound.INTERRUPT_NONE,
-    //     loop: -1,
-    // });
 }
 
 /* 
