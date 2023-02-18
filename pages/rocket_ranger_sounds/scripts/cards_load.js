@@ -351,21 +351,20 @@ function handle_ImageLoadReady(e) {
     var extension = extension_trim.substring(
         extension_trim.lastIndexOf(".") + 1
     );
+    console.log(":::::▄█ src █▄", e.result);
     console.log(":::::▄█ src █▄", e.result.querySelector("#D-10"));
 
-    // var dataUrl =
-    //     "data:image/svg+xml," +
-    //     encodeURIComponent(e.result.querySelector("#D-10").toString());
-    var svgG =
-        "data:image/svg+xml," +
-        encodeURIComponent(e.result.querySelector("#D-10").outerHTML);
-    img = document.createElement("img");
-    img.src = svgG;
+    //  var svgElement = e.result.querySelector("#D-10").outerHTML;
+    var svgElement = e.result;
+    var img = document.createElement("img");
+    var imgSource =
+        "data:image/svg+xml;base64," +
+        window.btoa( (svgElement) );
+
+    img.src = imgSource;
     document.body.appendChild(img);
 
-    // var bg = new createjs.Bitmap(
-    //     "data:image/svg+xml," + encodeURIComponent(svgG)
-    // );
+    // var bg = new createjs.Bitmap(e.result);
     // image_content.addChild(bg);
     // var fsBiggest = resizeToKnownDimensions(
     //     e.result.width,
