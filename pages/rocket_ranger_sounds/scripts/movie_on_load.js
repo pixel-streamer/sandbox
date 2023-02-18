@@ -50,6 +50,7 @@ const startup_evt = new CustomEvent("startup_evtStr", {
 window.addEventListener("startup_evtStr", setupStage);
 
 function setupStageForInteraction() {
+    init();
     bigCanvas.setAttribute("width", w);
     bigCanvas.setAttribute("height", h);
     stage = bigCanvas;
@@ -59,8 +60,11 @@ function setupStageForInteraction() {
 
     startup_content = new createjs.Container();
     startup_content.name = "startup_content";
-
     stage.addChild(startup_content);
+
+    video_content = new createjs.Container();
+    video_content.name = "video_content";
+    stage.addChild(video_content);
 
     ticker = createjs.Ticker;
     ticker.timingMode = ticker.RAF_SYNCHED;
@@ -106,9 +110,9 @@ function setupStageForInteraction() {
     largerTextContainer.addEventListener(
         "click",
         function () {
-            largerTextContainer.visible=false;
-            largerTextContainer.mouseEnabled=false;
-            
+            largerTextContainer.visible = false;
+            largerTextContainer.mouseEnabled = false;
+            importantVideo.play();
             window.dispatchEvent(startup_evt);
         },
         { once: true }
@@ -127,17 +131,20 @@ function setupStage(e) {
     // stage.setBounds(0, 0, w, h);
     // stageBounds = stage.getBounds();
 
-    video_content = new createjs.Container();
-    video_content.name = "video_content";
+    // video_content = new createjs.Container();
+    // video_content.name = "video_content";
 
     interactive_content = new createjs.Container();
     interactive_content.name = "interactive_content";
 
     subject_content = new createjs.Container();
     subject_content.name = "subject_content";
+    stage.addChildAt(
+        subject_content,
+        stage.getChildIndex("video_content")+1
+    );
 
-    stage.addChild(subject_content);
-    stage.addChild(video_content);
+    //stage.addChild(video_content);
     stage.addChild(interactive_content);
 
     // ticker = createjs.Ticker;
@@ -150,7 +157,6 @@ function setupStage(e) {
     // // ticker.delta=4;
     // ticker.addEventListener("tick", tick);
 
-    init();
     makeSomeText();
 }
 
@@ -207,6 +213,7 @@ var fileLoader, videoLoader;
 var bigArea = document.querySelector("#testCanvas");
 var subject_content;
 var image_content;
+var startup_content;
 var background_content;
 var video_content;
 var w = parseInt(getComputedStyle(bigArea).width);
