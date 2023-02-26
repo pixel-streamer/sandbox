@@ -344,23 +344,16 @@ function playGame() {
 }
 
 function handle_ImageLoadReady(e) {
+    return;
     // console.log(":::::▄█ handle_ImageLoadReady █▄", e.item.type, e.result);
 
-    var src = e.item.src;
-    var extension_trim = src.substring(src.lastIndexOf("/") + 1);
-    var extension = extension_trim.substring(
-        extension_trim.lastIndexOf(".") + 1
-    );
-    console.log(":::::▄█ src █▄", e.result);
-    console.log(":::::▄█ src █▄", e.result.querySelector("#D-10"));
-
-    //  var svgElement = e.result.querySelector("#D-10").outerHTML;
-    var svgElement = e.result;
-    var img = document.createElement("img");
-    var imgSource = "data:image/svg+xml;base64," + window.btoa(svgElement);
-
-    img.src = imgSource;
-    document.body.appendChild(img);
+    // var src = e.item.src;
+    // var extension_trim = src.substring(src.lastIndexOf("/") + 1);
+    // var extension = extension_trim.substring(
+    //     extension_trim.lastIndexOf(".") + 1
+    // );
+    // console.log(":::::▄█ src █▄", e.result);
+    // console.log(":::::▄█ src █▄", e.result.querySelector("#D-10"));
 
     // var bg = new createjs.Bitmap(e.result);
     // image_content.addChild(bg);
@@ -387,8 +380,45 @@ function handle_ImageLoadReady(e) {
     } */
 }
 
-function handle_ImageLoadComplete() {
-    console.log("handle_ImageLoadComplete");
+function handle_ImageLoadComplete(e) {
+    console.log(
+        "handle_ImageLoadComplete"
+        // e.target.getResult("all_cards").firstChild.getAttribute("width"),
+        // e.target.getResult("all_cards").firstChild.getAttribute("height")
+    );
+
+    // console.log(
+    //     'e.target.getResult("all_cards")',
+    //     e.target.getResult("all_cards"),
+    //     e.target
+    // );
+    var svgElement = e.target.getResult("all_cards");
+    var img = document.createElement("img");
+
+    var s = new XMLSerializer().serializeToString(svgElement);
+    var imgSource = "data:image/svg+xml;base64," + window.btoa(s);
+
+    img.src = imgSource;
+
+    var bg = new createjs.Bitmap(img);
+    bg.addEventListener("added", function () {
+        console.log("handle_ImageLoadComplete img", img);
+        console.log(
+            "handle_ImageLoadComplete e.target.getResult('all_cards') svg",
+            e.target.getResult("all_cards")
+        );
+        // bg.cache(
+        //     0,
+        //     0,
+        //     e.target.getResult("all_cards").firstChild.getAttribute("width"),
+        //     e.target.getResult("all_cards").firstChild.getAttribute("height"),
+        //     1,
+        //     { gl: "new" }
+        // );
+        bg.graphics.draw(img);
+    });
+    image_content.addChild(bg);
+    // document.body.appendChild(img);
 }
 var galleryConfig = {};
 galleryConfig.thumbnailW = 85;
