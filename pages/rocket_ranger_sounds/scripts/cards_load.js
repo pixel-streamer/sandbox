@@ -394,108 +394,56 @@ function handle_ImageLoadComplete(e) {
     //     e.target
     // );
     var svgElement = e.target.getResult("all_cards");
-    var img = document.createElement("img");
     var s = new XMLSerializer().serializeToString(svgElement);
     var imgSource = "data:image/svg+xml;base64," + window.btoa(s);
-    //var bg = new createjs.Bitmap(img);
-    // bg.on("added", function () {
-    //     console.log("handle_ImageLoadComplete img", img);
-    //     // console.log(
-    //     //     "handle_ImageLoadComplete e.target.getResult('all_cards') svg",
-    //     //     e.target.getResult("all_cards")
-    //     // );
-    //     // bg.cache(
-    //     //     0,
-    //     //     0,
-    //     //     e.target.getResult("all_cards").firstChild.getAttribute("width"),
-    //     //     e.target.getResult("all_cards").firstChild.getAttribute("height"),
-    //     //     1,
-    //     //     { gl: "new" }
-    //     // );
-    //     bg.graphics.draw(imgSource);
-    //     // image_content.addChild(bgGraphic);
-
-    //     // console.log(
-    //     //     "handle_ImageLoadComplete",
-    //     //     e.target.getResult("all_cards").firstChild.getAttribute("width"),
-    //     //     e.target.getResult("all_cards").firstChild.getAttribute("height"),
-    //     //     img
-    //     // );
-    // });
-
-    // img.addEventListener("complete", function () {
-    //     if (img.naturalWidth !== 0) {
-    //         bg.addEventListener("added", function () {
-    //             bg = new createjs.Bitmap();
-    //             console.log("handle_ImageLoadComplete img", img);
-    //             console.log(
-    //                 "handle_ImageLoadComplete e.target.getResult('all_cards') svg",
-    //                 e.target.getResult("all_cards")
-    //             );
-    //             // bg.cache(
-    //             //     0,
-    //             //     0,
-    //             //     e.target.getResult("all_cards").firstChild.getAttribute("width"),
-    //             //     e.target.getResult("all_cards").firstChild.getAttribute("height"),
-    //             //     1,
-    //             //     { gl: "new" }
-    //             // );
-    //             // bg.draw(img);
-    //             // image_content.addChild(bgGraphic);
-    //         });
-    //         image_content.addChild(bg);
-    //     }
-
-    //     console.log(
-    //         "handle_ImageLoadComplete",
-    //         e.target.getResult("all_cards").firstChild.getAttribute("width"),
-    //         e.target.getResult("all_cards").firstChild.getAttribute("height")
-    //     );
-    // });
 
     // var bg = new createjs.Bitmap(
     //     imgCreator(
     //         "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/coke-bottle-render.png"
     //     )
     // );
-
-    // bg.on("added", function () {
-    //     console.log("image load completed.");
-    //     // bg.graphics.draw(img);
-    //     console.log("image load completed?: ", img.complete);
-    // });
-    // img.src = imgSource;
-    var bg = new createjs.Bitmap(imgCreator(imgSource));
+   // var bg = new createjs.Bitmap(imgCreator(imgSource));
+    var bg = new createjs.DOMElement(imgCreator(imgSource));
     // interactive_content "rgba(0,0,0,.3)"
-    interactive_content.addChild(bg);
-    // image_content.addChild(bg);
-    // document.body.appendChild(img);
+    image_content.addChild(bg); 
 }
 
 function imgCreator(imgSrc) {
-    var imgPopped = new Image();
-    imgPopped = loadImage(imgSrc)
-        .then(function (imgPopped) {
-            console.log("the IMG:! ", imgPopped);
-            document.body.appendChild(imgPopped);
+    var imgPopped = loadImage(imgSrc)
+        .then(function (imgPopped) { 
+            var fsBiggest = resizeToKnownDimensions(
+                imgPopped.naturalWidth,
+                imgPopped.naturalHeight,
+                w,
+                h
+            );
+            // var canvas = document.createElement("canvas");
+            // var ctx = canvas.getContext("2d");
+            // canvas.setAttribute("width", fsBiggest.newW);
+            // canvas.setAttribute("height", fsBiggest.newH);
+            // ctx.drawImage(imgPopped, 0, 0, fsBiggest.newW, fsBiggest.newH);
+            // document.body.appendChild(canvas); 
             return imgPopped;
         })
         .catch(function (err) {
             return console.error("damn, that errored out.: ", err, err.target);
         });
-    function loadImage(url) {
-        console.log("::: loadImage::: ");
-        return new Promise(function (resolve, reject) {
-            var img = new Image();
-            img.addEventListener("load", function () {
+}
+
+async function loadImage(url) {
+    return await new Promise(function (resolve, reject) {
+        var img = new Image();
+        img.addEventListener("load", function () {
+            console.log("::: loadImage :::", img.naturalWidth);
+            if (img.complete && img.naturalWidth > 0) {
                 return resolve(img);
-            });
-            img.addEventListener("error", function (err) {
-                return reject(err);
-            });
-            img.src = url;
+            }
         });
-    }
+        img.addEventListener("error", function (err) {
+            return reject(err);
+        });
+        img.src = url;
+    });
 }
 
 // /**
