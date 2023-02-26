@@ -395,35 +395,57 @@ function handle_ImageLoadComplete(e) {
     // );
     var svgElement = e.target.getResult("all_cards");
     var s = new XMLSerializer().serializeToString(svgElement);
-    var imgSource = "data:image/svg+xml;base64," + window.btoa(s);
+    // var imgSource = "data:image/svg+xml;base64," + window.btoa(s);
+    var imgSource = "" + window.btoa(s);
 
-    // var bg = new createjs.Bitmap(
-    //     imgCreator(
-    //         "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/coke-bottle-render.png"
-    //     )
-    // );
-   // var bg = new createjs.Bitmap(imgCreator(imgSource));
-    var bg = new createjs.DOMElement(imgCreator(imgSource));
+    var bg = new createjs.Bitmap(
+        imgCreator(
+            "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/coke-bottle-render.png",
+            function (img) {
+                var canvas = document.createElement("canvas");
+                var ctx = canvas.getContext("2d");
+                canvas.setAttribute("width", img.width);
+                canvas.setAttribute("height", img.height);
+                ctx.drawImage(img, 0, 0, img.width, img.height);
+                document.body.appendChild(canvas);
+                document.body.appendChild(img);
+                image_content.addChild(bg);
+            }
+        )
+    );
+    // var bg = new createjs.Bitmap(imgCreator(imgSource));
+    // var bg = new createjs.DOMElement(imgCreator(imgSource));
     // interactive_content "rgba(0,0,0,.3)"
-    image_content.addChild(bg); 
 }
 
-function imgCreator(imgSrc) {
+function imgCreator(imgSrc, callBack) {
     var imgPopped = loadImage(imgSrc)
-        .then(function (imgPopped) { 
+        .then(function (imgPopped) {
+            // var fsBiggest = resizeToKnownDimensions(
+            //     imgPopped.naturalWidth,
+            //     imgPopped.naturalHeight,
+            //     w,
+            //     h
+            // );
+            // var canvas = document.createElement("canvas");
+            // var ctx = canvas.getContext("2d");
+            // canvas.setAttribute("width", fsBiggest.newW);
+            // canvas.setAttribute("height", fsBiggest.newH);
+            // ctx.drawImage(imgPopped, 0, 0, fsBiggest.newW, fsBiggest.newH);
+            // document.body.appendChild(canvas);
+            return imgPopped;
+        })
+        .then(function (imgPopped) {
             var fsBiggest = resizeToKnownDimensions(
                 imgPopped.naturalWidth,
                 imgPopped.naturalHeight,
                 w,
                 h
             );
-            // var canvas = document.createElement("canvas");
-            // var ctx = canvas.getContext("2d");
-            // canvas.setAttribute("width", fsBiggest.newW);
-            // canvas.setAttribute("height", fsBiggest.newH);
-            // ctx.drawImage(imgPopped, 0, 0, fsBiggest.newW, fsBiggest.newH);
-            // document.body.appendChild(canvas); 
-            return imgPopped;
+            console.log("::: then :::", imgPopped.naturalWidth);
+            imgPopped.setAttribute("width", fsBiggest.newW);
+            imgPopped.setAttribute("height", fsBiggest.newH);
+            callBack(imgPopped);
         })
         .catch(function (err) {
             return console.error("damn, that errored out.: ", err, err.target);
@@ -434,7 +456,7 @@ async function loadImage(url) {
     return await new Promise(function (resolve, reject) {
         var img = new Image();
         img.addEventListener("load", function () {
-            console.log("::: loadImage :::", img.naturalWidth);
+            //console.log("::: loadImage :::", img.naturalWidth);
             if (img.complete && img.naturalWidth > 0) {
                 return resolve(img);
             }
