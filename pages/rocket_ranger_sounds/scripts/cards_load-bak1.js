@@ -335,31 +335,15 @@ function playGame() {
     fileLoader.on("fileload", handle_ImageLoadReady);
     // fileLoader.on("progress", handle_ImageLoadProgress);
     fileLoader.on("complete", handle_ImageLoadComplete);
-    // fileLoader.loadFile({
-    //     src: "../images/ui_vectors/cards_all-copy.svg",
-    //     id: "all_cards",
-    //     type: createjs.Types.IMAGE,
-    // });
-    fileLoader.loadFile({
+    /*  fileLoader.loadFile({
         src: "../images/ui_vectors/cards_all-copy.svg",
         id: "all_cards",
-        crossOrigin: true,
-        //type: createjs.Types.IMAGE,
-        type: createjs.Types.SVG,
-    });
-    // displaySingleCard(getSuitCode("hearts"));
+        type: createjs.Types.IMAGE,
+    }); */
+    displaySingleCard(getSuitCode("hearts"));
 }
 
 function handle_ImageLoadReady(e) {
-    // console.log(":::::▄█ handle_ImageLoadReady █▄", e.item.type, e.result);
-    // var svgElement = e.target.getResult("all_cards");
-    // var svgElement = e.result;
-    // var bg = new createjs.Bitmap(svgElement);
-    // bg.image.onload = function () {
-    //     console.log("OMG!", this.naturalWidth);
-    // };
-    // image_content.addChild(bg);
-
     return;
     // console.log(":::::▄█ handle_ImageLoadReady █▄", e.item.type, e.result);
 
@@ -397,25 +381,7 @@ function handle_ImageLoadReady(e) {
 }
 
 function handle_ImageLoadComplete(e) {
-    var svgElement = e.target.getResult("all_cards");
-    console.log("svg .src ", e.target._loadItemsById.all_cards.src);
-    console.log(
-        " handle_ImageLoadComplete, svg has loaded ",
-        svgElement.firstChild
-    );
-    console.log(":::::▄█ src █▄", svgElement.querySelector("#D-10"));
-    var use = document.createElement("use");
-    //  svgElement.firstChild
-    use.setAttribute("xlink:href", "#D-10");
-    use.setAttribute("href", "#D-10");
-
-    var bg = new createjs.Bitmap(svgElement.firstChild);
-    bg.image.onload = function () {
-        console.log("OMG!", this.naturalWidth);
-    };
-    image_content.addChild(bg);
-    return;
-
+    console.log(" handle_ImageLoadComplete, svg has loaded ");
     // console.log(
     //     "handle_ImageLoadComplete",
     //     // e.target.getResult("all_cards").firstChild.getAttribute("width"),
@@ -427,85 +393,56 @@ function handle_ImageLoadComplete(e) {
     //     e.target.getResult("all_cards"),
     //     e.target
     // );
-
     var svgElement = e.target.getResult("all_cards");
     var s = new XMLSerializer().serializeToString(svgElement);
     var imgSource = "data:image/svg+xml;base64," + window.btoa(s);
 
-    // imgSource =
-    //     "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/coke-bottle-render.png";
-
     var srcStr = imgSource.substring(0, 11);
-    //  console.log("::: srcStr :::", srcStr);
+    console.log("::: srcStr :::", srcStr);
 
-    // if (srcStr === "data:image/") {
-    //     console.log("this one's already an image");
-    //     var bgImg = populateImg64(imgSource)
-    //         .then(function (imgPopped) {
-    //             console.log("▌▌▌ok, here's the final bit 'image'", imgPopped);
-    //             // var canvas = document.createElement("canvas");
-    //             // var ctx = canvas.getContext("2d");
-    //             // var scaledDims2 = { newW: w, newH: h, scaleRatio: 1 };
-    //             // canvas.setAttribute("width", scaledDims2.newW);
-    //             // canvas.setAttribute("height", scaledDims2.newH);
-    //             // ctx.drawImage(
-    //             //     imgPopped,
-    //             //     0,
-    //             //     0,
-    //             //     scaledDims2.newW,
-    //             //     scaledDims2.newH
-    //             // );
-    //             // document.body.appendChild(canvas);
-    //             // document.body.appendChild(imgPopped);
-    //             // var bg = new createjs.Bitmap();
-
-    //             var bg = new createjs.Bitmap(imgPopped);
-    //             document.body.appendChild(imgPopped);
-    //             // bg.scaleX = scaledDims2.scaleRatio;
-    //             // bg.scaleY = scaledDims2.scaleRatio;
-    //             // var BGgetBounds = bg.getBounds();
-    //             // console.log("::: stageBounds :::", stageBounds);
-    //             // console.log("::: BGgetBounds :::", BGgetBounds);
-    //             image_content.addChild(bg);
-    //             // bg.x = (stageBounds.width - BGgetBounds.width) / 2;
-    //             // bg.y = (stageBounds.height - BGgetBounds.height) / 2;
-    //             return imgPopped;
-    //         })
-    //         .catch(function (err) {
-    //             return console.error(
-    //                 "damn, that errored out.: ",
-    //                 err,
-    //                 err.target
-    //             );
-    //         });
-    // } else {
-    //     console.log("this one needs to load an image");
-    //     var bgImg = imgCreator(imgSource, function (img, scaledDims) {
-    //         var canvas = document.createElement("canvas");
-    //         var ctx = canvas.getContext("2d");
-    //         canvas.setAttribute("width", scaledDims.newW);
-    //         canvas.setAttribute("height", scaledDims.newH);
-    //         ctx.drawImage(img, 0, 0, scaledDims.newW, scaledDims.newH);
-    //         document.body.appendChild(canvas);
-    //         document.body.appendChild(img);
-    //         var bg = new createjs.Bitmap(img);
-    //         bg.scaleX = scaledDims.scaleRatio;
-    //         bg.scaleY = scaledDims.scaleRatio;
-    //         var BGgetBounds = bg.getBounds();
-    //         console.log("::: stageBounds :::", stageBounds);
-    //         console.log("::: BGgetBounds :::", BGgetBounds);
-    //         image_content.addChild(bg);
-    //         bg.x = (stageBounds.width - BGgetBounds.width) / 2;
-    //         bg.y = (stageBounds.height - BGgetBounds.height) / 2;
-    //     });
-    // }
-
-    // var bg = new createjs.Bitmap(imgSource);
-    // var bg = new createjs.Bitmap(imgSource);
-    // bg.image.onload = function () {
-    //     console.log("OMG!", this.naturalWidth);
-    //     image_content.addChild(bg);
-    // };
+    if (srcStr === "data:image/") {
+        var bgImg = populateImg64(imgSource, function (img, scaledDims) {
+            var canvas = document.createElement("canvas");
+            var ctx = canvas.getContext("2d");
+            canvas.setAttribute("width", scaledDims.newW);
+            canvas.setAttribute("height", scaledDims.newH);
+            ctx.drawImage(img, 0, 0, scaledDims.newW, scaledDims.newH);
+            document.body.appendChild(canvas);
+            document.body.appendChild(img);
+            var bg = new createjs.Bitmap(img);
+            bg.scaleX = scaledDims.scaleRatio;
+            bg.scaleY = scaledDims.scaleRatio;
+            var BGgetBounds = bg.getBounds();
+            console.log("::: stageBounds :::", stageBounds);
+            console.log("::: BGgetBounds :::", BGgetBounds);
+            image_content.addChild(bg);
+            bg.x = (stageBounds.width - BGgetBounds.width) / 2;
+            bg.y = (stageBounds.height - BGgetBounds.height) / 2;
+        });
+    } else {
+        var bgImg = imgCreator(
+            // "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/coke-bottle-render.png",
+            imgSource,
+            function (img, scaledDims) {
+                var canvas = document.createElement("canvas");
+                var ctx = canvas.getContext("2d");
+                canvas.setAttribute("width", scaledDims.newW);
+                canvas.setAttribute("height", scaledDims.newH);
+                ctx.drawImage(img, 0, 0, scaledDims.newW, scaledDims.newH);
+                document.body.appendChild(canvas);
+                document.body.appendChild(img);
+                var bg = new createjs.Bitmap(img);
+                bg.scaleX = scaledDims.scaleRatio;
+                bg.scaleY = scaledDims.scaleRatio;
+                var BGgetBounds = bg.getBounds();
+                console.log("::: stageBounds :::", stageBounds);
+                console.log("::: BGgetBounds :::", BGgetBounds);
+                image_content.addChild(bg);
+                bg.x = (stageBounds.width - BGgetBounds.width) / 2;
+                bg.y = (stageBounds.height - BGgetBounds.height) / 2;
+            }
+        );
+    }
 
     // var bg = new createjs.Bitmap(imgCreator(imgSource));
     // var bg = new createjs.DOMElement(imgCreator(imgSource));
@@ -549,18 +486,21 @@ function imgCreator(imgSrc, callBack) {
         });
 }
 async function populateImg64(url) {
-    //console.log("::: populateImg64 :::", url);
+    console.log("::: populateImg64 :::");
     return await new Promise(function (resolve, reject) {
-        try {
-            var img = new Image();
-            img.src = url;
-            return resolve(img);
-        } catch (err) {
-            return reject;
-        }
+        var img = new Image();
+        img.addEventListener("load", function () {
+            //console.log("::: loadImage :::", img.naturalWidth);
+            if (img.complete && img.naturalWidth > 0) {
+                return resolve(decodePath(url));
+            }
+        });
+        img.addEventListener("error", function (err) {
+            return reject(err);
+        });
+        img.src = url;
     });
 }
-
 async function loadImage(url) {
     return await new Promise(function (resolve, reject) {
         var img = new Image();
@@ -700,8 +640,7 @@ function displaySingleCard() {
     fileLoader.loadFile({
         src: newSrc,
         id: "all_cards",
-        crossOrigin: true,
-        //type: createjs.Types.IMAGE,
+        // type: createjs.Types.IMAGE,
         type: createjs.Types.SVG,
         //type: "svg",
         //type: createjs.Types.XML,
