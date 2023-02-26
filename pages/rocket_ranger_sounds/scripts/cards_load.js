@@ -401,12 +401,12 @@ function handle_ImageLoadComplete(e) {
     var bg = new createjs.Bitmap(
         imgCreator(
             "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/coke-bottle-render.png",
-            function (img) {
+            function (img, nW, nH) {
                 var canvas = document.createElement("canvas");
                 var ctx = canvas.getContext("2d");
-                canvas.setAttribute("width", img.width);
-                canvas.setAttribute("height", img.height);
-                ctx.drawImage(img, 0, 0, img.width, img.height);
+                canvas.setAttribute("width", nW);
+                canvas.setAttribute("height", nH);
+                ctx.drawImage(img, 0, 0, nW, nH);
                 document.body.appendChild(canvas);
                 document.body.appendChild(img);
                 image_content.addChild(bg);
@@ -445,7 +445,7 @@ function imgCreator(imgSrc, callBack) {
             console.log("::: then :::", imgPopped.naturalWidth);
             imgPopped.setAttribute("width", fsBiggest.newW);
             imgPopped.setAttribute("height", fsBiggest.newH);
-            callBack(imgPopped);
+            callBack(imgPopped, fsBiggest.newW, fsBiggest.newH);
         })
         .catch(function (err) {
             return console.error("damn, that errored out.: ", err, err.target);
