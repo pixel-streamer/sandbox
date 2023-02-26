@@ -381,11 +381,12 @@ function handle_ImageLoadReady(e) {
 }
 
 function handle_ImageLoadComplete(e) {
-    console.log(
-        "handle_ImageLoadComplete"
-        // e.target.getResult("all_cards").firstChild.getAttribute("width"),
-        // e.target.getResult("all_cards").firstChild.getAttribute("height")
-    );
+    console.log(" handle_ImageLoadComplete, svg has loaded ");
+    // console.log(
+    //     "handle_ImageLoadComplete",
+    //     // e.target.getResult("all_cards").firstChild.getAttribute("width"),
+    //     // e.target.getResult("all_cards").firstChild.getAttribute("height")
+    // );
 
     // console.log(
     //     'e.target.getResult("all_cards")',
@@ -394,32 +395,171 @@ function handle_ImageLoadComplete(e) {
     // );
     var svgElement = e.target.getResult("all_cards");
     var img = document.createElement("img");
-
     var s = new XMLSerializer().serializeToString(svgElement);
     var imgSource = "data:image/svg+xml;base64," + window.btoa(s);
+    //var bg = new createjs.Bitmap(img);
+    // bg.on("added", function () {
+    //     console.log("handle_ImageLoadComplete img", img);
+    //     // console.log(
+    //     //     "handle_ImageLoadComplete e.target.getResult('all_cards') svg",
+    //     //     e.target.getResult("all_cards")
+    //     // );
+    //     // bg.cache(
+    //     //     0,
+    //     //     0,
+    //     //     e.target.getResult("all_cards").firstChild.getAttribute("width"),
+    //     //     e.target.getResult("all_cards").firstChild.getAttribute("height"),
+    //     //     1,
+    //     //     { gl: "new" }
+    //     // );
+    //     bg.graphics.draw(imgSource);
+    //     // image_content.addChild(bgGraphic);
 
-    img.src = imgSource;
+    //     // console.log(
+    //     //     "handle_ImageLoadComplete",
+    //     //     e.target.getResult("all_cards").firstChild.getAttribute("width"),
+    //     //     e.target.getResult("all_cards").firstChild.getAttribute("height"),
+    //     //     img
+    //     // );
+    // });
 
-    var bg = new createjs.Bitmap(img);
-    bg.addEventListener("added", function () {
-        console.log("handle_ImageLoadComplete img", img);
-        console.log(
-            "handle_ImageLoadComplete e.target.getResult('all_cards') svg",
-            e.target.getResult("all_cards")
-        );
-        // bg.cache(
-        //     0,
-        //     0,
-        //     e.target.getResult("all_cards").firstChild.getAttribute("width"),
-        //     e.target.getResult("all_cards").firstChild.getAttribute("height"),
-        //     1,
-        //     { gl: "new" }
-        // );
-        bg.graphics.draw(img);
-    });
-    image_content.addChild(bg);
+    // img.addEventListener("complete", function () {
+    //     if (img.naturalWidth !== 0) {
+    //         bg.addEventListener("added", function () {
+    //             bg = new createjs.Bitmap();
+    //             console.log("handle_ImageLoadComplete img", img);
+    //             console.log(
+    //                 "handle_ImageLoadComplete e.target.getResult('all_cards') svg",
+    //                 e.target.getResult("all_cards")
+    //             );
+    //             // bg.cache(
+    //             //     0,
+    //             //     0,
+    //             //     e.target.getResult("all_cards").firstChild.getAttribute("width"),
+    //             //     e.target.getResult("all_cards").firstChild.getAttribute("height"),
+    //             //     1,
+    //             //     { gl: "new" }
+    //             // );
+    //             // bg.draw(img);
+    //             // image_content.addChild(bgGraphic);
+    //         });
+    //         image_content.addChild(bg);
+    //     }
+
+    //     console.log(
+    //         "handle_ImageLoadComplete",
+    //         e.target.getResult("all_cards").firstChild.getAttribute("width"),
+    //         e.target.getResult("all_cards").firstChild.getAttribute("height")
+    //     );
+    // });
+
+    // var bg = new createjs.Bitmap(
+    //     imgCreator(
+    //         "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/coke-bottle-render.png"
+    //     )
+    // );
+
+    // bg.on("added", function () {
+    //     console.log("image load completed.");
+    //     // bg.graphics.draw(img);
+    //     console.log("image load completed?: ", img.complete);
+    // });
+    // img.src = imgSource;
+    var bg = new createjs.Bitmap(imgCreator(imgSource));
+    // interactive_content "rgba(0,0,0,.3)"
+    interactive_content.addChild(bg);
+    // image_content.addChild(bg);
     // document.body.appendChild(img);
 }
+
+function imgCreator(imgSrc) {
+    var imgPopped = new Image();
+    imgPopped = loadImage(imgSrc)
+        .then(function (imgPopped) {
+            console.log("the IMG:! ", imgPopped);
+            document.body.appendChild(imgPopped);
+            return imgPopped;
+        })
+        .catch(function (err) {
+            return console.error("damn, that errored out.: ", err, err.target);
+        });
+    function loadImage(url) {
+        console.log("::: loadImage::: ");
+        return new Promise(function (resolve, reject) {
+            var img = new Image();
+            img.addEventListener("load", function () {
+                return resolve(img);
+            });
+            img.addEventListener("error", function (err) {
+                return reject(err);
+            });
+            img.src = url;
+        });
+    }
+}
+
+// /**
+//  * Load an image from a given URL
+//  * @param {String} url The URL of the image resource
+//  * @returns {Promise<Image>} The loaded image
+//  */
+// function loadImage(url) {
+//     /*
+//      * We are going to return a Promise which, when we .then
+//      * will give us an Image that should be fully loaded
+//      */
+//     return new Promise(resolve => {
+//       /*
+//        * Create the image that we are going to use to
+//        * to hold the resource
+//        */
+//       const image = new Image();
+//       /*
+//        * The Image API deals in even listeners and callbacks
+//        * we attach a listener for the "load" event which fires
+//        * when the Image has finished the network request and
+//        * populated the Image with data
+//        */
+//       image.addEventListener('load', () => {
+//         /*
+//          * You have to manually tell the Promise that you are
+//          * done dealing with asynchronous stuff and you are ready
+//          * for it to give anything that attached a callback
+//          * through .then a realized value.  We do that by calling
+//          * resolve and passing it the realized value
+//          */
+//         resolve(image);
+//       });
+//       /*
+//        * Setting the Image.src is what starts the networking process
+//        * to populate an image.  After you set it, the browser fires
+//        * a request to get the resource.  We attached a load listener
+//        * which will be called once the request finishes and we have
+//        * image data
+//        */
+//       image.src = url;
+//     });
+//   }
+
+//   /*
+//    * To use this we call the loadImage function and call .then
+//    * on the Promise that it returns, passing a function that we
+//    * want to receive the realized Image
+//    */
+//   loadImage("example.com/house.jpg").then(houseImage => {
+//     ctx.drawImage(houseImage, 0, 0);
+//   });
+
+// loadImage("example.com/house.jpg")
+//     .then(function (img) {
+//         return console.log(
+//             "w: ".concat(img.width, " | h: ").concat(img.height)
+//         );
+//     })
+//     .catch(function (err) {
+//         return console.error(err);
+//     });
+
 var galleryConfig = {};
 galleryConfig.thumbnailW = 85;
 galleryConfig.thumbnailH = 64;
