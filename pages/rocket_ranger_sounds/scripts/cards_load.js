@@ -357,9 +357,7 @@ function handle_ImageLoadReady(e) {
     //  var svgElement = e.result.querySelector("#D-10").outerHTML;
     var svgElement = e.result;
     var img = document.createElement("img");
-    var imgSource =
-        "data:image/svg+xml;base64," +
-        window.btoa( (svgElement) );
+    var imgSource = "data:image/svg+xml;base64," + window.btoa(svgElement);
 
     img.src = imgSource;
     document.body.appendChild(img);
