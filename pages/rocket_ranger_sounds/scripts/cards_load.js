@@ -332,7 +332,7 @@ function setupGame() {
 function playGame() {
     console.log("playGame");
     fileLoader = new createjs.LoadQueue(true);
-    fileLoader.on("fileload", handle_ImageLoadReady);
+    // fileLoader.on("fileload", handle_ImageLoadReady);
     // fileLoader.on("progress", handle_ImageLoadProgress);
     fileLoader.on("complete", handle_ImageLoadComplete);
     // fileLoader.loadFile({
@@ -341,11 +341,11 @@ function playGame() {
     //     type: createjs.Types.IMAGE,
     // });
     fileLoader.loadFile({
-        src: "../images/ui_vectors/cards_all_use-copy.svg",
+        src: "../images/sprites/cards_sprite.png",
         id: "all_cards",
         crossOrigin: true,
-        //type: createjs.Types.IMAGE,
-        type: createjs.Types.SVG,
+        type: createjs.Types.IMAGE,
+        //type: createjs.Types.SVG,
     });
     // displaySingleCard(getSuitCode("hearts"));
 }
@@ -398,56 +398,63 @@ function handle_ImageLoadReady(e) {
 
 function handle_ImageLoadComplete(e) {
     var svgElement = e.target.getResult("all_cards");
-    console.log("svg .src ", e.target._loadItemsById.all_cards.src);
-    console.log(
-        " handle_ImageLoadComplete, svg has loaded ",
-        svgElement.firstChild
-    );
-    // console.log(":::::▄█ src █▄", svgElement.querySelector("#D-10"));
+    // console.log(":::::▄█ src █▄", e.target._loadItemsById.all_cards.src, svgElement.querySelector("#D-10"));
 
-    var bg = new createjs.Bitmap(svgElement.firstChild);
-    bg.image.onload = function () {
-        console.log("OMG!", this.naturalWidth);
-    };
-    image_content.addChild(bg);
+    // var xmlns = "http://www.w3.org/2000/svg";
+    // var view = document.createElementNS(xmlns, "view");
+    // view.setAttributeNS(null, "viewBox", "0 0 " + 3000 + " " + 3000 + "");
+    // view.setAttributeNS(xmlns, "id", "view_my_box");
 
-    var xmlns = "http://www.w3.org/2000/svg";
+    // var use = document.createElementNS(xmlns, "use");
 
-    var view = document.createElementNS(xmlns, "view");
-    //svg.setAttributeNS(null, "viewBox", "0 0 " + 320 + " " + 320 + "");
-    view.setAttributeNS(null, "viewBox", "0 0 " + 3000 + " " + 3000 + "");
-    view.setAttributeNS(xmlns, "id", "view_my_box");
+    // use.setAttributeNS(xmlns, "xlink:href", "#D-10");
+    // use.setAttributeNS(xmlns, "href", "#D-10");
+    // use.setAttributeNS(xmlns, "width", 290);
+    // use.setAttributeNS(xmlns, "height", 400);
+    // use.setAttributeNS(xmlns, "x", 0);
+    // use.setAttributeNS(xmlns, "y", 0);
+    // use.setAttributeNS(xmlns, "id", "looky_here");
+    // // e.target._loadItemsById.all_cards.src + "#D-10"
 
-    var use = document.createElementNS(xmlns, "use");
-    //  svgElement.firstChild
-    use.setAttributeNS(xmlns, "xlink:href", "#D-10");
-    use.setAttributeNS(xmlns, "href", "#D-10");
-    use.setAttributeNS(xmlns, "width", 290);
-    use.setAttributeNS(xmlns, "height", 400);
-    use.setAttributeNS(xmlns, "x", 0);
-    use.setAttributeNS(xmlns, "y", 0);
-    use.setAttributeNS(xmlns, "id", "looky_here");
-    // e.target._loadItemsById.all_cards.src + "#D-10"
+    // svgElement.querySelector("#good_looking").appendChild(view);
+    // svgElement.querySelector("#good_looking").appendChild(use);
 
-    svgElement.querySelector("#good_looking").appendChild(view);
-    svgElement.querySelector("#good_looking").appendChild(use);
-
-    var newSVGEl = svgElement.firstChild;
-    var newS = new XMLSerializer().serializeToString(newSVGEl);
+    // var newSVGEl = svgElement.firstChild;
+    // var newS = new XMLSerializer().serializeToString(newSVGEl);
     // var newImgSrc = "data:image/svg+xml;base64," + window.btoa(newS);
 
-    var newImgSrc = e.target._loadItemsById.all_cards.src + "#" + "view_my_box";
+    // imgCreator(newImgSrc, function (img, scaledDims) {
+    //     console.log("got the image");
+    //     var bg = new createjs.Bitmap(img);
+    //     bg.scaleX = scaledDims.scaleRatio;
+    //     bg.scaleY = scaledDims.scaleRatio;
+    //     image_content.addChild(bg);
+    // });
 
-    imgCreator(newImgSrc, function (img, scaledDims) {
+    /* 
+    imgCreator(svgElement.src, function (img, scaledDims) {
         console.log("got the image");
         var bg = new createjs.Bitmap(img);
         bg.scaleX = scaledDims.scaleRatio;
         bg.scaleY = scaledDims.scaleRatio;
         image_content.addChild(bg);
     });
+    */
+
+    var fsBiggest = resizeToKnownDimensions(
+        svgElement.naturalWidth,
+        svgElement.naturalHeight,
+        w,
+        h
+    );
+    var bg = new createjs.Bitmap(svgElement);
+    bg.scaleX = fsBiggest.scaleRatio;
+    bg.scaleY = fsBiggest.scaleRatio;
+    image_content.addChild(bg);
 }
 
 function imgCreator(imgSrc, callBack) {
+    //only works now with a verified src that needs to download, not a blob
     var imgPopped = loadImage(imgSrc)
         .then(function (imgPopped) {
             return imgPopped;
