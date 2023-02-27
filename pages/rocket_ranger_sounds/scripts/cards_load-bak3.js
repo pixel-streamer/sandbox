@@ -443,13 +443,121 @@ function handle_ImageLoadComplete(e) {
         var bg = new createjs.Bitmap(img);
         bg.scaleX = scaledDims.scaleRatio;
         bg.scaleY = scaledDims.scaleRatio;
-        image_content.addChild(bg);
+        image_content.addChild(bg); 
     });
+    return;  //ignore the rest of the crap in this function for now
+
+    // console.log(
+    //     "handle_ImageLoadComplete",
+    //     // e.target.getResult("all_cards").firstChild.getAttribute("width"),
+    //     // e.target.getResult("all_cards").firstChild.getAttribute("height")
+    // );
+
+    // console.log(
+    //     'e.target.getResult("all_cards")',
+    //     e.target.getResult("all_cards"),
+    //     e.target
+    // );
+
+    var svgElement = e.target.getResult("all_cards");
+    var s = new XMLSerializer().serializeToString(svgElement);
+    var imgSource = "data:image/svg+xml;base64," + window.btoa(s);
+
+    // imgSource =
+    //     "https://pixel-streamer.github.io/sandbox/pages/images/fullsize/3d_renders/coke-bottle-render.png";
+
+    var srcStr = imgSource.substring(0, 11);
+    //  console.log("::: srcStr :::", srcStr);
+
+    // if (srcStr === "data:image/") {
+    //     console.log("this one's already an image");
+    //     var bgImg = populateImg64(imgSource)
+    //         .then(function (imgPopped) {
+    //             console.log("▌▌▌ok, here's the final bit 'image'", imgPopped);
+    //             // var canvas = document.createElement("canvas");
+    //             // var ctx = canvas.getContext("2d");
+    //             // var scaledDims2 = { newW: w, newH: h, scaleRatio: 1 };
+    //             // canvas.setAttribute("width", scaledDims2.newW);
+    //             // canvas.setAttribute("height", scaledDims2.newH);
+    //             // ctx.drawImage(
+    //             //     imgPopped,
+    //             //     0,
+    //             //     0,
+    //             //     scaledDims2.newW,
+    //             //     scaledDims2.newH
+    //             // );
+    //             // document.body.appendChild(canvas);
+    //             // document.body.appendChild(imgPopped);
+    //             // var bg = new createjs.Bitmap();
+
+    //             var bg = new createjs.Bitmap(imgPopped);
+    //             document.body.appendChild(imgPopped);
+    //             // bg.scaleX = scaledDims2.scaleRatio;
+    //             // bg.scaleY = scaledDims2.scaleRatio;
+    //             // var BGgetBounds = bg.getBounds();
+    //             // console.log("::: stageBounds :::", stageBounds);
+    //             // console.log("::: BGgetBounds :::", BGgetBounds);
+    //             image_content.addChild(bg);
+    //             // bg.x = (stageBounds.width - BGgetBounds.width) / 2;
+    //             // bg.y = (stageBounds.height - BGgetBounds.height) / 2;
+    //             return imgPopped;
+    //         })
+    //         .catch(function (err) {
+    //             return console.error(
+    //                 "damn, that errored out.: ",
+    //                 err,
+    //                 err.target
+    //             );
+    //         });
+    // } else {
+    //     console.log("this one needs to load an image");
+    //     var bgImg = imgCreator(imgSource, function (img, scaledDims) {
+    //         var canvas = document.createElement("canvas");
+    //         var ctx = canvas.getContext("2d");
+    //         canvas.setAttribute("width", scaledDims.newW);
+    //         canvas.setAttribute("height", scaledDims.newH);
+    //         ctx.drawImage(img, 0, 0, scaledDims.newW, scaledDims.newH);
+    //         document.body.appendChild(canvas);
+    //         document.body.appendChild(img);
+    //         var bg = new createjs.Bitmap(img);
+    //         bg.scaleX = scaledDims.scaleRatio;
+    //         bg.scaleY = scaledDims.scaleRatio;
+    //         var BGgetBounds = bg.getBounds();
+    //         console.log("::: stageBounds :::", stageBounds);
+    //         console.log("::: BGgetBounds :::", BGgetBounds);
+    //         image_content.addChild(bg);
+    //         bg.x = (stageBounds.width - BGgetBounds.width) / 2;
+    //         bg.y = (stageBounds.height - BGgetBounds.height) / 2;
+    //     });
+    // }
+
+    // var bg = new createjs.Bitmap(imgSource);
+    // var bg = new createjs.Bitmap(imgSource);
+    // bg.image.onload = function () {
+    //     console.log("OMG!", this.naturalWidth);
+    //     image_content.addChild(bg);
+    // };
+
+    // var bg = new createjs.Bitmap(imgCreator(imgSource));
+    // var bg = new createjs.DOMElement(imgCreator(imgSource));
+    // interactive_content "rgba(0,0,0,.3)"
 }
 
 function imgCreator(imgSrc, callBack) {
     var imgPopped = loadImage(imgSrc)
         .then(function (imgPopped) {
+            // var fsBiggest = resizeToKnownDimensions(
+            //     imgPopped.naturalWidth,
+            //     imgPopped.naturalHeight,
+            //     w,
+            //     h
+            // );
+            // var canvas = document.createElement("canvas");
+            // var ctx = canvas.getContext("2d");
+            // canvas.setAttribute("width", fsBiggest.newW);
+            // canvas.setAttribute("height", fsBiggest.newH);
+            // ctx.drawImage(imgPopped, 0, 0, fsBiggest.newW, fsBiggest.newH);
+            // document.body.appendChild(canvas);
             return imgPopped;
         })
         .then(function (imgPopped) {
@@ -459,6 +567,10 @@ function imgCreator(imgSrc, callBack) {
                 w,
                 h
             );
+            console.log("::: width :::", imgPopped.naturalWidth);
+            console.log("::: height :::", imgPopped.naturalWidth);
+            console.log("::: fsBiggest.newW :::", fsBiggest.newW);
+            console.log("::: fsBiggest.newH :::", fsBiggest.newH);
             imgPopped.setAttribute("width", fsBiggest.newW);
             imgPopped.setAttribute("height", fsBiggest.newH);
             callBack(imgPopped, fsBiggest);
@@ -495,6 +607,68 @@ async function loadImage(url) {
         img.src = url;
     });
 }
+
+// /**
+//  * Load an image from a given URL
+//  * @param {String} url The URL of the image resource
+//  * @returns {Promise<Image>} The loaded image
+//  */
+// function loadImage(url) {
+//     /*
+//      * We are going to return a Promise which, when we .then
+//      * will give us an Image that should be fully loaded
+//      */
+//     return new Promise(resolve => {
+//       /*
+//        * Create the image that we are going to use to
+//        * to hold the resource
+//        */
+//       const image = new Image();
+//       /*
+//        * The Image API deals in even listeners and callbacks
+//        * we attach a listener for the "load" event which fires
+//        * when the Image has finished the network request and
+//        * populated the Image with data
+//        */
+//       image.addEventListener('load', () => {
+//         /*
+//          * You have to manually tell the Promise that you are
+//          * done dealing with asynchronous stuff and you are ready
+//          * for it to give anything that attached a callback
+//          * through .then a realized value.  We do that by calling
+//          * resolve and passing it the realized value
+//          */
+//         resolve(image);
+//       });
+//       /*
+//        * Setting the Image.src is what starts the networking process
+//        * to populate an image.  After you set it, the browser fires
+//        * a request to get the resource.  We attached a load listener
+//        * which will be called once the request finishes and we have
+//        * image data
+//        */
+//       image.src = url;
+//     });
+//   }
+
+//   /*
+//    * To use this we call the loadImage function and call .then
+//    * on the Promise that it returns, passing a function that we
+//    * want to receive the realized Image
+//    */
+//   loadImage("example.com/house.jpg").then(houseImage => {
+//     ctx.drawImage(houseImage, 0, 0);
+//   });
+
+// loadImage("example.com/house.jpg")
+//     .then(function (img) {
+//         return console.log(
+//             "w: ".concat(img.width, " | h: ").concat(img.height)
+//         );
+//     })
+//     .catch(function (err) {
+//         return console.error(err);
+//     });
 
 var galleryConfig = {};
 galleryConfig.thumbnailW = 85;
@@ -547,18 +721,23 @@ function displaySingleCard() {
 
     var randomShortName = Math.floor(Math.random() * shortNameCards.length);
     var newSrc =
-        "../images/sprites/cards_sprite.png" +
+        "../images/ui_vectors/cards_all_use-copy.svg" +
         "#" +
         shortNameCards[randomShortName];
 
     console.log("newSrc: ", newSrc);
 
+    //https://createjs.com/docs/preloadjs/classes/SVGLoader.html
     fileLoader.loadFile({
         src: newSrc,
         id: "all_cards",
         crossOrigin: true,
-        type: createjs.Types.IMAGE,
+        //type: createjs.Types.IMAGE,
+        type: createjs.Types.SVG,
+        //type: "svg",
+        //type: createjs.Types.XML,
     });
+    // console.log(fileLoader);
 }
 
 function getSuitCode(suit) {

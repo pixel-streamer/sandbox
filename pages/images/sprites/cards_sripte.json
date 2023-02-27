@@ -1,0 +1,8 @@
+{ 
+    "framerate": 24, 
+    "images": [
+        "./cards_sprite.png"
+    ],
+    "frames": {"width":286, "height":400, "count":52, "regX": 0, "regY":0, "spacing":8, "margin":0} ,
+    "animations": {}
+}
