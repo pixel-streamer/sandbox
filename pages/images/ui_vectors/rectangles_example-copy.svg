@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 1303.1 1257.4" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(3,3)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="6">
+  <g fill-opacity=".66667">
+   <path id="yellow_rect" d="m62.469 56.727h402.47v385.46h-402.47z" fill="#facc0e"/>
+   <path id="blue_rect" d="m216.43 198.58h371.29v521.51h-371.29z" fill="#5e9aff"/>
+   <path id="red_rect" d="m499.22 505.05h735.45v689.65h-735.45z" fill="#e12442"/>
+  </g>
+  <path d="m717 437.59a226.65 188.13 0 0 0-226.65-188.13 226.65 188.13 0 0 0-226.65 188.13 226.65 188.13 0 0 0 226.65 188.13 226.65 188.13 0 0 0 226.65-188.13z" fill="#78f900" fill-opacity=".4"/>
+ </g>
+</svg>

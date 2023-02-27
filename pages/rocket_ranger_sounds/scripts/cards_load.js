@@ -405,26 +405,35 @@ function handle_ImageLoadComplete(e) {
     );
     console.log(":::::▄█ src █▄", svgElement.querySelector("#D-10"));
 
-    // var bg = new createjs.Bitmap(svgElement.firstChild);
-    // bg.image.onload = function () {
-    //     console.log("OMG!", this.naturalWidth);
-    // };
-    // image_content.addChild(bg);
+    var bg = new createjs.Bitmap(svgElement.firstChild);
+    bg.image.onload = function () {
+        console.log("OMG!", this.naturalWidth);
+    };
+    image_content.addChild(bg);
 
-    var xmlns = "http://www.w3.org/2000/svg";
-
-    var svg = document.createElementNS(xmlns, "svg");
-    svg.setAttributeNS(null, "viewBox", "0 0 " + 320 + " " + 320 + "");
-
-    var use = document.createElementNS(xmlns, "use");
-    //  svgElement.firstChild
-    use.setAttribute(
-        "xlink:href",
-        e.target._loadItemsById.all_cards.src + "#D-10"
+    imgCreator(
+        e.target._loadItemsById.all_cards.src + "#D-10",
+        function (img, scaledDims) {
+            var newBG = new createjs.Bitmap(img);
+            document.body.appendChild(img);
+            interactive_content.addChild(newBG);
+        }
     );
-    use.setAttribute("href", e.target._loadItemsById.all_cards.src + "#D-10");
-    svg.appendChild(use);
-    document.body.appendChild(svg);
+
+    // var xmlns = "http://www.w3.org/2000/svg";
+
+    // var svg = document.createElementNS(xmlns, "svg");
+    // svg.setAttributeNS(null, "viewBox", "0 0 " + 320 + " " + 320 + "");
+
+    // var use = document.createElementNS(xmlns, "use");
+    // //  svgElement.firstChild
+    // use.setAttribute(
+    //     "xlink:href",
+    //     e.target._loadItemsById.all_cards.src + "#D-10"
+    // );
+    // use.setAttribute("href", e.target._loadItemsById.all_cards.src + "#D-10");
+    // svg.appendChild(use);
+    // document.body.appendChild(svg);
 
     return;
 
