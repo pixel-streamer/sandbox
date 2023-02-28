@@ -400,7 +400,48 @@ function handle_ImageLoadReady(e) {
 
 function handle_ImageLoadComplete(e) {
     var svgElement = e.target.getResult("all_cards");
+    // console.log(":::::▄█ src █▄", e.target._loadItemsById.all_cards.src, svgElement.querySelector("#D-10"));
 
+    // var xmlns = "http://www.w3.org/2000/svg";
+    // var view = document.createElementNS(xmlns, "view");
+    // view.setAttributeNS(null, "viewBox", "0 0 " + 3000 + " " + 3000 + "");
+    // view.setAttributeNS(xmlns, "id", "view_my_box");
+
+    // var use = document.createElementNS(xmlns, "use");
+
+    // use.setAttributeNS(xmlns, "xlink:href", "#D-10");
+    // use.setAttributeNS(xmlns, "href", "#D-10");
+    // use.setAttributeNS(xmlns, "width", 290);
+    // use.setAttributeNS(xmlns, "height", 400);
+    // use.setAttributeNS(xmlns, "x", 0);
+    // use.setAttributeNS(xmlns, "y", 0);
+    // use.setAttributeNS(xmlns, "id", "looky_here");
+    // // e.target._loadItemsById.all_cards.src + "#D-10"
+
+    // svgElement.querySelector("#good_looking").appendChild(view);
+    // svgElement.querySelector("#good_looking").appendChild(use);
+
+    // var newSVGEl = svgElement.firstChild;
+    // var newS = new XMLSerializer().serializeToString(newSVGEl);
+    // var newImgSrc = "data:image/svg+xml;base64," + window.btoa(newS);
+
+    // imgCreator(newImgSrc, function (img, scaledDims) {
+    //     console.log("got the image");
+    //     var bg = new createjs.Bitmap(img);
+    //     bg.scaleX = scaledDims.scaleRatio;
+    //     bg.scaleY = scaledDims.scaleRatio;
+    //     image_content.addChild(bg);
+    // });
+
+    /* 
+    imgCreator(svgElement.src, function (img, scaledDims) {
+        console.log("got the image");
+        var bg = new createjs.Bitmap(img);
+        bg.scaleX = scaledDims.scaleRatio;
+        bg.scaleY = scaledDims.scaleRatio;
+        image_content.addChild(bg);
+    });
+    */
     let xCount = 0;
     let yCount = 0;
     let xSpacing = 3.25;
@@ -434,14 +475,15 @@ function handle_ImageLoadComplete(e) {
     bmp.scaleX = fsBiggest.scaleRatio;
     bmp.scaleY = fsBiggest.scaleRatio;
     bmp.cache(2, 2, w, h);
-    // fsBiggest.scaleRatio is calculated to fit cards on the screen
-    // store all the cards in one container deck
+    //fsBiggest.scaleRatio is calculated to fit cards on the screen
+    //store all the cards in one container deck
 
     allCards = makeRegularDeck();
     allCards.forEach(function (member1, index1) {
         // numeric_value: "11", designation: "j",
-        // bmp.cache(2, 2, 69, 96);
-        // console.log(index1);
+        //bmp.cache(2, 2, 69, 96);
+        console.log(index1);
+        // if (index1 < 52) {
         if (index1 % 13 === 0) {
             xPos1 = xSpacing;
             yPos1 = yCount * yHeight + yCount * ySpacing;
@@ -449,60 +491,23 @@ function handle_ImageLoadComplete(e) {
             xCount = 0;
         }
         xPos1 = xCount * xWidth;
-        var cardContainer = new createjs.Container();
-        cardContainer.name = allCards[index1].short_name;
         allCards[index1].bmp = bmp.clone(); //clone the LARGE image (cache only captures rect of this)
         allCards[index1].bmp.cache(xPos1, yPos1, xWidth, yHeight);
+        allCards[index1].bmp.name = allCards[index1].short_name;
         allCards[index1].game_value = parseInt(allCards[index1].numeric_value);
-        allCards[index1].bmp.name = allCards[index1].short_name; 
-        allCards[index1].cardback = allCards[index1].bmp.clone(); //replaced later
-        allCards[index1].cardback.cache(
-             xWidth,
-            (ySpacing + yHeight) * 4,
-            xWidth,
-            yHeight
-        ); //replaced later
-        allCards[index1].cardback.name = allCards[53].short_name;
-
-        xCount++;
-        cardContainer.addChild(allCards[index1].bmp);
+        cardsDeck.addChild(allCards[index1].bmp);
         allCards[index1].bmp.x = xSpacing * xCount;
         allCards[index1].bmp.y = ySpacing * yCount;
-        cardContainer.addChild(allCards[index1].cardback);
-        allCards[index1].cardback.x = xSpacing * xCount - 5;
-        allCards[index1].cardback.y = ySpacing * yCount - 5;
-
-        //allCards[index1].cardback.visible = true;
-        // allCards[index1].bmp.visible = true;
-        cardsDeck.addChild(cardContainer);
-        allCards[index1].cardWhole = cardContainer;
-        stage.update();
+        allCards[index1].bmp.addEventListener("click", function (e) {
+            console.log("here's my designation: ", e.target.name);
+        });
+        xCount++;
     });
-
     cardsDeck.setBounds(0, 0, fsBiggest.newW, fsBiggest.newH);
 
     image_content.addChild(cardsDeck);
-
-    var cardback = allCards
-        .filter((allCards) => allCards.cardWhole.name == "R-BACK2")
-        .slice()[0];
-
-    allCards.forEach(function (popCard, index3) {
-        popCard.bmp.addEventListener("click", function (e) {
-            console.log("here's my designation: ", popCard.bmp.name);
-            console.log("here's my designation: ", popCard.cardback.name);
-
-            // e.target.getChildIndex(0).visible = false;
-            popCard.cardWhole.getChildByName(popCard.bmp.name).visible = false;
-            popCard.cardWhole.getChildByName(
-                popCard.cardback.name
-            ).visible = false;
-
-            // popCard.cardWhole.getChildAt(0).visible = true;
-            // popCard.cardWhole.getChildAt(1).visible = false;
-        });
-    });
     console.log(allCards);
+    stage.update();
 }
 
 function imgCreator(imgSrc, callBack) {
