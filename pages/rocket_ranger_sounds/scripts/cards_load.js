@@ -442,6 +442,14 @@ function handle_ImageLoadComplete(e) {
         image_content.addChild(bg);
     });
     */
+    let xCount = 0;
+    let yCount = 0;
+    let xSpacing = 3.25;
+    let ySpacing = 3.25;
+    let xWidth = 69.8;
+    let yHeight = 97;
+    var yPos1 = ySpacing;
+    var xPos1 = xSpacing;
 
     var fsBiggest = resizeToKnownDimensions(
         svgElement.naturalWidth,
@@ -459,32 +467,45 @@ function handle_ImageLoadComplete(e) {
 
     //assume image loaded
     //assume cards image :D
-    //assume scale of cards: no scale w,h: 69 * 96 1-2px spacing
+    //assume scale of cards: no scale w,h: 69 * 96  2px spacing
     //cut cards into pixel slices for inclusion onto deck.
 
     var cardsDeck = new createjs.Container();
-
     var bmp = new createjs.Bitmap(svgElement);
-
-    bmp.cache(2, 2, 69, 96);
-
+    bmp.scaleX = fsBiggest.scaleRatio;
+    bmp.scaleY = fsBiggest.scaleRatio;
+    bmp.cache(2, 2, w, h);
     //fsBiggest.scaleRatio is calculated to fit cards on the screen
     //store all the cards in one container deck
-    cardsDeck.addChild(bmp);
 
-    console.log(bmp.getBounds().width);
-    var bmp2 = bmp.clone(); //clone the LARGE image (cache only captures rect of this)
-    bmp2.cache(2 + 69, 2, 69, 96);
-
-    cardsDeck.addChild(bmp2);
-    bmp2.x = 2;
-
-    cardsDeck.scaleX = fsBiggest.scaleRatio;
-    cardsDeck.scaleY = fsBiggest.scaleRatio;
+    allCards = makeRegularDeck();
+    allCards.forEach(function (member1, index1) {
+        // numeric_value: "11", designation: "j",
+        //bmp.cache(2, 2, 69, 96);
+        console.log(index1);
+        // if (index1 < 52) {
+        if (index1 % 13 === 0) {
+            xPos1 = xSpacing;
+            yPos1 = yCount * yHeight + yCount * ySpacing;
+            yCount++;
+            xCount = 0;
+        }
+        xPos1 = xCount * xWidth;
+        allCards[index1].bmp = bmp.clone(); //clone the LARGE image (cache only captures rect of this)
+        allCards[index1].bmp.cache(xPos1, yPos1, xWidth, yHeight);
+        allCards[index1].bmp.name = allCards[index1].short_name;
+        allCards[index1].game_value = parseInt(allCards[index1].numeric_value);
+        cardsDeck.addChild(allCards[index1].bmp);
+        allCards[index1].bmp.x = xSpacing * xCount;
+        allCards[index1].bmp.y = ySpacing * yCount;
+        allCards[index1].bmp.addEventListener("click", function (e) {
+            console.log("here's my designation: ", e.target.name);
+        });
+        xCount++;
+    });
+    cardsDeck.setBounds(0, 0, fsBiggest.newW, fsBiggest.newH);
 
     image_content.addChild(cardsDeck);
-    //let allCards = makeRegularDeck();
-    allCards = makeRegularDeck();
     console.log(allCards);
     stage.update();
 }
@@ -647,8 +668,10 @@ makeRegularDeck IS FROM A DIFFERENT FILE... USE THE MODULE!
 let deck; //can be accessible after building.
 let isDeckBuilt = false;
 let allCards;
+let isUsingJokers = false;
 //TODO: add event dispatch for built deck.
 //isDeckBuilt makeRegularDeck
+
 function makeRegularDeck() {
     deck = [];
     let tableauSpades = [];
@@ -656,7 +679,8 @@ function makeRegularDeck() {
     let tableauClubs = [];
     let tableauHearts = [];
     let countingJokersIn = [];
-    let isUsingJokers = false;
+    let card_back = [];
+    // isUsingJokers = true;
 
     let acesLow = true;
 
@@ -1160,15 +1184,17 @@ function makeRegularDeck() {
         name: "joker",
         designation: "q",
         ink_color: "red",
-    }; //red or (smaller joker, when monochrome)
+    };
+    //red or (smaller joker, when monochrome)
     let card_joker_b = {
         numeric_value: "16",
         short_name: "J-B",
         name: "joker",
         designation: "k",
         ink_color: "black",
-    }; //black (larger) out-ranks red joker
+    };
 
+    //black (larger) out-ranks red joker
     countingJokersIn[0] = card_joker_r;
     countingJokersIn[1] = card_joker_b;
 
@@ -1239,13 +1265,38 @@ function makeRegularDeck() {
         tableauClubs.pop();
     }
 
+    let card_back_red = {
+        numeric_value: null,
+        short_name: "R-BACK",
+        name: "card_back",
+        designation: "back",
+        suit: null,
+        suit_color: null,
+        ink_color: "red",
+    };
+
+    let card_back_red2 = {
+        numeric_value: null,
+        short_name: "R-BACK2",
+        name: "card_back2",
+        designation: "back",
+        suit: null,
+        suit_color: null,
+        ink_color: "red",
+    };
+
+    card_back[0] = card_back_red;
+    card_back[1] = card_back_red2;
+
     deck = tableauSpades
+        .concat(tableauHearts)
         .concat(tableauDiamonds)
         .concat(tableauClubs)
-        .concat(tableauHearts);
+        .concat(card_back);
 
     if (isUsingJokers) {
         deck = deck.concat(countingJokersIn);
     }
+
     return deck;
 }
