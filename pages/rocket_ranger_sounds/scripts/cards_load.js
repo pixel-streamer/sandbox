@@ -473,18 +473,19 @@ function handle_ImageLoadComplete(e) {
     cardsDeck.addChild(bmp);
 
     console.log(bmp.getBounds().width);
-    var bmp2 = bmp.clone();
+    var bmp2 = bmp.clone(); //clone the LARGE image (cache only captures rect of this)
     bmp2.cache(2 + 69, 2, 69, 96);
 
     cardsDeck.addChild(bmp2);
     bmp2.x = 2;
-    // bmp2.cacheCanvas = bmp.cacheCanvas;
-    // bmp2.bitmapCache = bmp2.bitmapCache;
 
     cardsDeck.scaleX = fsBiggest.scaleRatio;
     cardsDeck.scaleY = fsBiggest.scaleRatio;
 
     image_content.addChild(cardsDeck);
+    //let allCards = makeRegularDeck();
+    allCards = makeRegularDeck();
+    console.log(allCards);
     stage.update();
 }
 
@@ -581,7 +582,7 @@ function loadCards() {
 function displaySingleCard() {
     console.log("display single card");
 
-    var allCards = makeRegularDeck();
+    allCards = makeRegularDeck();
     var shortNameCards = [];
     allCards.forEach(function (member) {
         shortNameCards.push(member.short_name);
@@ -643,8 +644,13 @@ function getSuitCode(suit) {
 /* 
 makeRegularDeck IS FROM A DIFFERENT FILE... USE THE MODULE!
 */
+let deck; //can be accessible after building.
+let isDeckBuilt = false;
+let allCards;
+//TODO: add event dispatch for built deck.
+//isDeckBuilt makeRegularDeck
 function makeRegularDeck() {
-    let deck = [];
+    deck = [];
     let tableauSpades = [];
     let tableauDiamonds = [];
     let tableauClubs = [];
