@@ -340,6 +340,8 @@ function playGame() {
     //     id: "all_cards",
     //     type: createjs.Types.IMAGE,
     // });
+
+    //cards size @960 768 -- 69x96px
     fileLoader.loadFile({
         src: "../images/sprites/cards_sprite.png",
         id: "all_cards",
@@ -447,10 +449,43 @@ function handle_ImageLoadComplete(e) {
         w,
         h
     );
-    var bg = new createjs.Bitmap(svgElement);
-    bg.scaleX = fsBiggest.scaleRatio;
-    bg.scaleY = fsBiggest.scaleRatio;
-    image_content.addChild(bg);
+    console.log(
+        "here's the size of the image: ",
+        fsBiggest.newW,
+        fsBiggest.newH,
+        svgElement.naturalWidth,
+        svgElement.naturalHeight
+    );
+
+    //assume image loaded
+    //assume cards image :D
+    //assume scale of cards: no scale w,h: 69 * 96 1-2px spacing
+    //cut cards into pixel slices for inclusion onto deck.
+
+    var cardsDeck = new createjs.Container();
+
+    var bmp = new createjs.Bitmap(svgElement);
+
+    bmp.cache(2, 2, 69, 96);
+
+    //fsBiggest.scaleRatio is calculated to fit cards on the screen
+    //store all the cards in one container deck
+    cardsDeck.addChild(bmp);
+
+    console.log(bmp.getBounds().width);
+    var bmp2 = bmp.clone();
+    bmp2.cache(2 + 69, 2, 69, 96);
+
+    cardsDeck.addChild(bmp2);
+    bmp2.x = 2;
+    // bmp2.cacheCanvas = bmp.cacheCanvas;
+    // bmp2.bitmapCache = bmp2.bitmapCache;
+
+    cardsDeck.scaleX = fsBiggest.scaleRatio;
+    cardsDeck.scaleY = fsBiggest.scaleRatio;
+
+    image_content.addChild(cardsDeck);
+    stage.update();
 }
 
 function imgCreator(imgSrc, callBack) {
@@ -474,6 +509,7 @@ function imgCreator(imgSrc, callBack) {
             return console.error("damn, that errored out.: ", err, err.target);
         });
 }
+
 async function populateImg64(url) {
     //console.log("::: populateImg64 :::", url);
     return await new Promise(function (resolve, reject) {
