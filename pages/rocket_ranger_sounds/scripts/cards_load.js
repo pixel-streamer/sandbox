@@ -197,53 +197,63 @@ function addStartupText() {
         { once: true }
     );
 }
+class InteractiveText extends createjs.Text {
+    //this is a really crappy, fast class... use the other one.
+    constructor(interactivePhrase, atXPos, atYPos, fillCol) {
+        super();
+        this.gamePlayText;
+        largeText = getGoldenRatio(w) * 0.085;
+        var interactiveTextHitArea = new createjs.Container();
+        var interactiveTextMask = new createjs.Shape();
 
-function addInteractiveText(interactivePhrase) {
-    largeText = getGoldenRatio(w) * 0.085;
-    var interactiveTextHitArea = new createjs.Container();
-    var interactiveTextMask = new createjs.Shape();
+        this.gamePlayText = new createjs.Text(
+            interactivePhrase,
+            "16px 'Press Start 2P'",
+            fillCol
+        );
+        var textMetrics = this.gamePlayText.getMetrics();
+        var textW = textMetrics.width;
+        var textH = textMetrics.height;
+        this.gamePlayText.x = 8;
+        this.gamePlayText.y = 8;
 
-    var gamePlayText = new createjs.Text(
-        interactivePhrase,
-        "16px 'Press Start 2P'",
-        "#FFCC00"
-    );
-    var textMetrics = gamePlayText.getMetrics();
-    var textW = textMetrics.width;
-    var textH = textMetrics.height;
-    gamePlayText.x = 8;
-    gamePlayText.y = 8;
+        interactiveTextMask.graphics
+            .beginFill("rgba(0,0,0,.3)")
+            .drawRect(0, 0, textW + 16, textH + 16)
+            .endFill();
 
-    interactiveTextMask.graphics
-        .beginFill("rgba(0,0,0,.3)")
-        .drawRect(0, 0, textW + 16, textH + 16)
-        .endFill();
+        interactiveTextHitArea.regX = 0;
+        interactiveTextHitArea.regY = 0;
 
-    interactiveTextHitArea.regX = 0;
-    interactiveTextHitArea.regY = 0;
+        interactiveTextHitArea.addChild(interactiveTextMask);
+        interactiveTextHitArea.addChild(this.gamePlayText);
 
-    interactiveTextHitArea.addChild(interactiveTextMask);
-    interactiveTextHitArea.addChild(gamePlayText);
+        interactiveTextHitArea.x =
+            atXPos - interactiveTextHitArea.getBounds().width / 2;
+        interactiveTextHitArea.y =
+            atYPos - interactiveTextHitArea.getBounds().height / 2;
 
-    interactiveTextHitArea.x =
-        (stageBounds.width - interactiveTextHitArea.getBounds().width) / 2;
-    interactiveTextHitArea.y =
-        (stageBounds.height - interactiveTextHitArea.getBounds().height) / 2;
+        interactiveTextHitArea.addEventListener(
+            "click",
+            function () {
+                console.log("clicked me one time!");
+                interactiveTextHitArea.visible = false;
+                interactiveTextHitArea.mouseEnabled = false;
+                window.dispatchEvent(gamePlay_evt);
+            },
+            { once: true }
+        );
 
-    interactiveTextHitArea.addEventListener(
-        "click",
-        function () {
-            console.log("clicked me one time!");
-            interactiveTextHitArea.visible = false;
-            interactiveTextHitArea.mouseEnabled = false;
-            window.dispatchEvent(gamePlay_evt);
-        },
-        { once: true }
-    );
-
-    // handle_SoundsRegistry();
-    interactive_content.addChild(interactiveTextHitArea);
+        // handle_SoundsRegistry();
+        interactive_content.addChild(interactiveTextHitArea);
+    }
+    updateText = function (param) {
+        this.gamePlayText.text = param;
+    };
 }
+// function addInteractiveText(interactivePhrase, atXPos, atYPos, fillCol) {
+
+// }
 
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -324,10 +334,25 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF UTILITY FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
+var outputTextClip;
 function setupGame() {
     console.log("setupGame");
     var phraseAsStr = "Welcome to Cards.\n\t\t\tLet's Play.";
-    addInteractiveText(phraseAsStr);
+
+    var phrase2 = new InteractiveText(
+        phraseAsStr,
+        stageBounds.width / 2,
+        stageBounds.height / 2,
+        "#FFCC00"
+    );
+
+    outputTextClip = new InteractiveText( //TODO: broken event
+        "card name appears here.\nbroken: (clicking this shouldn't layout cards again)",
+        stageBounds.width / 2,
+        stageBounds.height - 65,
+        "#FFCC00"
+        // ).mouseEnabled=false;  //using this throws error...
+    );
 }
 function playGame() {
     console.log("playGame");
@@ -506,29 +531,36 @@ function handle_ImageLoadComplete(e) {
             popCard.cardWhole.regX = cardBounds.x;
             popCard.cardWhole.regY = cardBounds.y;
 
-            var halfWidthMinusFaceWidth = (w - 69) / 2 - 69 / 2;
-            var halfHeightMinusFaceHeight = (h - 96) / 2 - 96 / 2;
-            popCard.cardWhole.x =
-                halfWidthMinusFaceWidth * Math.sin(index55) +
-                halfWidthMinusFaceWidth;
-            popCard.cardWhole.y =
-                halfHeightMinusFaceHeight * Math.cos(index55) +
-                halfHeightMinusFaceHeight;
-         //   cardsDeck.addChild(popCard.cardWhole);
+            // var halfWidthMinusFaceWidth = (w - 69) / 2 - 69 / 2;
+            // var halfHeightMinusFaceHeight = (h - 96) / 2 - 96 / 2;
+            // popCard.cardWhole.x =
+            //     halfWidthMinusFaceWidth * Math.sin(index55) +
+            //     halfWidthMinusFaceWidth;
+            // popCard.cardWhole.y =
+            //     halfHeightMinusFaceHeight * Math.cos(index55) +
+            //     halfHeightMinusFaceHeight;
+            //   cardsDeck.addChild(popCard.cardWhole); //add to visual
 
             popCard.cardWhole.addEventListener("click", function (e) {
-                popCard.flip();
+                popCard.flip(false);
                 setTimeout(() => {
                     popCard.hide();
                 }, 750);
             });
 
-            popCard.flip = function () {
+            popCard.flip = function (param) {
                 window.dispatchEvent(
                     new CustomEvent("cardflip_evt_evtStr", {
                         detail: { card: popCard.cardWhole, card_data: popCard },
                     })
                 );
+
+                if (param !== undefined) {
+                    outputTextClip.updateText(
+                        popCard.cardWhole.getChildAt(0).name
+                    );
+                }
+                console.log(popCard.cardWhole.getChildAt(0).name);
             };
 
             popCard.hide = function () {
@@ -536,17 +568,31 @@ function handle_ImageLoadComplete(e) {
             };
         }
     });
-   // image_content.addChild(cardsDeck);
+    // image_content.addChild(cardsDeck);
 
     //
-    kShuffle(allCards);
+    allCards = kShuffle(allCards);
     allCards.forEach(function (popCard) {
         // card flip for later
         if (popCard.hasOwnProperty("flip")) {
             popCard.flip();
         }
-        cardsDeck.addChild(popCard.cardWhole);
     });
+    gridLayoutAccountingWH(
+        allCards,
+        "cardWhole",
+        69.8,
+        97,
+        3.25,
+        3.25,
+        13,
+        w,
+        h
+    );
+    allCards.forEach(function (doneCards) {
+        cardsDeck.addChild(doneCards.cardWhole);
+    });
+
     image_content.addChild(cardsDeck);
 }
 
@@ -562,6 +608,45 @@ function handleCardFlip(e) {
     //console.log("card_data.short_name: ", e.detail.card_data.name);
 }
 window.addEventListener("cardflip_evt_evtStr", handleCardFlip);
+
+function gridLayoutAccountingWH(
+    contentArr,
+    contentFocus,
+    contentW,
+    contentH,
+    xPadding,
+    yPadding,
+    amountPerRow,
+    availW,
+    availH
+) {
+    let xCount = 0;
+    let yCount = 0;
+    let xSpacing = xPadding * 3;
+    let ySpacing = yPadding * 3;
+    let xWidth = contentW;
+    let yHeight = contentH;
+    let yPos1 = ySpacing;
+    let xPos1 = xSpacing;
+    //TODO: allow for any width, and automatically fit the contentW's per availW/availH
+
+    var tempArr = contentArr.filter((content1) =>
+        content1.hasOwnProperty("flip")
+    );
+    contentArr = tempArr.slice();
+    contentArr.forEach(function (member1, idx) {
+        if (idx % amountPerRow === 0) {
+            xPos1 = xSpacing;
+            yPos1 = yCount * yHeight + yCount * ySpacing;
+            yCount++;
+            xCount = 0;
+        }
+        xPos1 = xCount * xWidth;
+        contentArr[idx][contentFocus].x = xPos1 + xSpacing * xCount;
+        contentArr[idx][contentFocus].y = yPos1 + ySpacing * yCount;
+        xCount++;
+    });
+}
 
 // function toggleVis(thing) {
 //     thing.visible = !thing.visible;
