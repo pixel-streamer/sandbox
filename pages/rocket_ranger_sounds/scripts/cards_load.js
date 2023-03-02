@@ -518,6 +518,9 @@ function handle_ImageLoadComplete(e) {
 
             popCard.cardWhole.addEventListener("click", function (e) {
                 popCard.flip();
+                setTimeout(() => {
+                    popCard.hide();
+                }, 750);
             });
 
             popCard.flip = function () {
@@ -526,6 +529,10 @@ function handle_ImageLoadComplete(e) {
                         detail: { card: popCard.cardWhole, card_data: popCard },
                     })
                 );
+            };
+
+            popCard.hide = function () {
+                popCard.cardWhole.visible = false;
             };
         }
     });
