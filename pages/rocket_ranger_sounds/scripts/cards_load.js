@@ -476,8 +476,8 @@ function handle_ImageLoadComplete(e) {
 
         allCards[index1].cardback.regX = cardbackBounds.x - xPos1;
         allCards[index1].cardback.regY = cardbackBounds.y - yPos1;
-        allCards[index1].cardback.x = xSpacing * xCount +0;
-        allCards[index1].cardback.y = ySpacing * yCount +0;
+        allCards[index1].cardback.x = xSpacing * xCount + 0;
+        allCards[index1].cardback.y = ySpacing * yCount + 0;
 
         // allCards[index1].cardback.visible = true;
         // allCards[index1].bmp.visible = true;
@@ -501,18 +501,25 @@ function handle_ImageLoadComplete(e) {
             console.log("bmp designation: ", popCard.bmp.name);
             console.log("cardback designation: ", popCard.cardback.name);
 
-            // e.target.getChildIndex(0).visible = false;
-            popCard.cardWhole.getChildByName(popCard.bmp.name).visible = false;
-            popCard.cardWhole.getChildByName(
-                popCard.cardback.name
-            ).visible = false;
+            // popCard.cardWhole.getChildByName(popCard.bmp.name).visible = true;
+            // popCard.cardWhole.getChildByName(
+            //     popCard.cardback.name
+            // ).visible = true;
+
+            popCard.cardWhole.swapChildren(popCard.bmp, popCard.cardback);
 
             // popCard.cardWhole.getChildAt(0).visible = true;
+            //toggleVis(popCard.cardWhole.getChildAt(0));
             // popCard.cardWhole.getChildAt(1).visible = false;
+            //toggleVis(popCard.cardWhole.getChildAt(1));
         });
     });
     console.log(allCards);
 }
+
+// function toggleVis(thing) {
+//     thing.visible = !thing.visible;
+// }
 
 function imgCreator(imgSrc, callBack) {
     //only works now with a verified src that needs to download, not a blob
@@ -672,7 +679,7 @@ makeRegularDeck IS *** MODDED *** FROM A DIFFERENT FILE!
 let deck; //can be accessible after building.
 let isDeckBuilt = false;
 let allCards;
-let isUsingJokers = false;
+let isUsingJokers = true;
 //TODO: add event dispatch for built deck.
 //isDeckBuilt makeRegularDeck
 
