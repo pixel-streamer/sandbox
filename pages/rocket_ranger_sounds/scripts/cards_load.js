@@ -622,8 +622,8 @@ function gridLayoutAccountingWH(
 ) {
     let xCount = 0;
     let yCount = 0;
-    let xSpacing = xPadding * 3;
-    let ySpacing = yPadding * 3;
+    let xSpacing = xPadding * 2;
+    let ySpacing = yPadding * 2;
     let xWidth = contentW;
     let yHeight = contentH;
     let yPos1 = ySpacing;
