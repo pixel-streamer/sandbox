@@ -449,8 +449,7 @@ function handle_ImageLoadComplete(e) {
             xCount = 0;
         }
         xPos1 = xCount * xWidth;
-        var cardContainer = new createjs.Container();
-        cardContainer.name = allCards[index1].short_name;
+
         allCards[index1].bmp = bmp.clone(); //clone the LARGE image (cache only captures rect of this)
         allCards[index1].bmp.cache(xPos1, yPos1, xWidth, yHeight);
         allCards[index1].bmp.regX = 0;
@@ -481,41 +480,87 @@ function handle_ImageLoadComplete(e) {
 
         // allCards[index1].cardback.visible = true;
         // allCards[index1].bmp.visible = true;
-        cardContainer.addChild(allCards[index1].bmp);
-        cardContainer.addChild(allCards[index1].cardback);
-        cardsDeck.addChild(cardContainer);
+        var cardContainer = new createjs.Container();
+        cardContainer.name = allCards[index1].short_name;
         allCards[index1].cardWhole = cardContainer;
         xCount++;
     });
 
     cardsDeck.setBounds(0, 0, fsBiggest.newW, fsBiggest.newH);
 
-    image_content.addChild(cardsDeck);
-
     var cardback = allCards
         .filter((allCards) => allCards.cardWhole.name == "R-BACK2")
         .slice()[0];
 
-    allCards.forEach(function (popCard, index3) {
-        popCard.bmp.addEventListener("click", function (e) {
-            console.log("bmp designation: ", popCard.bmp.name);
-            console.log("cardback designation: ", popCard.cardback.name);
+    //ready deck for game
+    allCards.forEach(function (popCard) {
+        if (popCard.designation !== "back") {
+            if (popCard.name === "joker") {
+                popCard.game_value -= 1;
+                popCard.numeric_value -= 1;
+            }
+            console.log(
+                "shortName designation: ",
+                popCard.short_name,
+                popCard.designation
+            );
+            popCard.cardWhole.addChild(popCard.bmp);
+            popCard.cardWhole.addChild(popCard.cardback);
+            cardsDeck.addChild(popCard.cardWhole);
+            // popCard.cardWhole.addEventListener("click", function (e) {
+            //     // console.log(
+            //     //     "bmp designation: ",
+            //     //     popCard.bmp.name,
+            //     //     popCard.game_value
+            //     // );
+            //popCard.cardWhole.swapChildren(popCard.bmp, popCard.cardback); //cardflip
+            //     // console.log("cardback designation: ", popCard.cardback.name);
 
-            // popCard.cardWhole.getChildByName(popCard.bmp.name).visible = true;
-            // popCard.cardWhole.getChildByName(
-            //     popCard.cardback.name
-            // ).visible = true;
+            //     // popCard.cardWhole.getChildByName(popCard.bmp.name).visible = true;
+            //     // popCard.cardWhole.getChildByName(
+            //     //     popCard.cardback.name
+            //     // ).visible = true;
 
-            popCard.cardWhole.swapChildren(popCard.bmp, popCard.cardback);
+            //     // popCard.cardWhole.getChildAt(0).visible = true;
+            //     //toggleVis(popCard.cardWhole.getChildAt(0));
+            //     // popCard.cardWhole.getChildAt(1).visible = false;
+            //     //toggleVis(popCard.cardWhole.getChildAt(1));
+            // });
+            popCard.cardWhole.addEventListener("click", function (e) {
+                // window.dispatchEvent(cardflip_evt) ;
+                popCard.flip();
+            });
 
-            // popCard.cardWhole.getChildAt(0).visible = true;
-            //toggleVis(popCard.cardWhole.getChildAt(0));
-            // popCard.cardWhole.getChildAt(1).visible = false;
-            //toggleVis(popCard.cardWhole.getChildAt(1));
-        });
+            popCard.flip = function () {
+                window.dispatchEvent(
+                    new CustomEvent("cardflip_evt_evtStr", {
+                        detail: { card: popCard.cardWhole, card_data: popCard },
+                    })
+                );
+            };
+        }
     });
-    console.log(allCards);
+    image_content.addChild(cardsDeck);
+
+    // console.log(allCards);
+
+    //    allCards.forEach(function())
 }
+
+// const cardflip_evt = new CustomEvent("cardflip_evt_evtStr", {
+//     detail: { msg: ":::flip card" },
+// });
+
+function handleCardFlip(e) {
+    //console.log("e.target: ", e.detail.card );
+    e.detail.card.swapChildren(
+        e.detail.card.getChildAt(0),
+        e.detail.card.getChildAt(1)
+    );
+    console.log("card_data.short_name: ", e.detail.card_data.short_name);
+}
+
+window.addEventListener("cardflip_evt_evtStr", handleCardFlip);
 
 // function toggleVis(thing) {
 //     thing.visible = !thing.visible;
@@ -1193,7 +1238,7 @@ function makeRegularDeck() {
         numeric_value: "15",
         short_name: "J-R",
         name: "joker",
-        designation: "q",
+        designation: "joker_red",
         ink_color: "red",
     };
     //red or (smaller joker, when monochrome)
@@ -1201,7 +1246,7 @@ function makeRegularDeck() {
         numeric_value: "16",
         short_name: "J-B",
         name: "joker",
-        designation: "k",
+        designation: "joker_black",
         ink_color: "black",
     };
 
