@@ -506,8 +506,8 @@ function handle_ImageLoadComplete(e) {
             popCard.cardWhole.regX = cardBounds.x;
             popCard.cardWhole.regY = cardBounds.y;
 
-            var halfWidthMinusFaceWidth = (w - 69) / 2;
-            var halfHeightMinusFaceHeight = (h - 96) / 2;
+            var halfWidthMinusFaceWidth = (w - 69) / 2 - 69 / 2;
+            var halfHeightMinusFaceHeight = (h - 96) / 2 - 96 / 2;
             popCard.cardWhole.x =
                 halfWidthMinusFaceWidth * Math.sin(index55) +
                 halfWidthMinusFaceWidth;
