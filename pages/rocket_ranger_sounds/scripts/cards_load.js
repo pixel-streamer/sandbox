@@ -374,7 +374,7 @@ function playGame() {
         type: createjs.Types.IMAGE,
         //type: createjs.Types.SVG,
     });
-    // displaySingleCard(getSuitCode("hearts"));
+    gameLogic();
 }
 
 function handle_ImageLoadReady(e) {
@@ -495,7 +495,9 @@ function handle_ImageLoadComplete(e) {
         //      allCards[index1].bmp.getBounds().y - yHeight - ySpacing * yCount;
         allCards[index1].bmp.x = xSpacing * xCount;
         allCards[index1].bmp.y = ySpacing * yCount;
-        allCards[index1].game_value = parseInt(allCards[index1].numeric_value);
+
+        allCards[index1].game_value =
+            parseInt(allCards[index1].numeric_value) || null;
         var cardbackBounds = allCards[index1].cardback.getBounds();
 
         allCards[index1].cardback.regX = cardbackBounds.x - xPos1;
@@ -512,10 +514,6 @@ function handle_ImageLoadComplete(e) {
     });
 
     cardsDeck.setBounds(0, 0, fsBiggest.newW, fsBiggest.newH);
-
-    var cardback = allCards
-        .filter((allCards) => allCards.cardWhole.name == "R-BACK2")
-        .slice()[0];
 
     //ready deck for game
     allCards.forEach(function (popCard, index55) {
@@ -594,6 +592,8 @@ function handle_ImageLoadComplete(e) {
     });
 
     image_content.addChild(cardsDeck);
+
+    displaySingleCard(getSuitCode("hearts"));
 }
 
 // const cardflip_evt = new CustomEvent("cardflip_evt_evtStr", {
@@ -745,7 +745,7 @@ function loadCards() {
 function displaySingleCard() {
     console.log("display single card");
 
-    allCards = makeRegularDeck();
+    // allCards = makeRegularDeck();
     var shortNameCards = [];
     allCards.forEach(function (member) {
         shortNameCards.push(member.short_name);
@@ -753,19 +753,29 @@ function displaySingleCard() {
     console.log(shortNameCards);
 
     var randomShortName = Math.floor(Math.random() * shortNameCards.length);
-    var newSrc =
-        "../images/sprites/cards_sprite.png" +
-        "#" +
-        shortNameCards[randomShortName];
+    var newSrc = shortNameCards[randomShortName];
 
-    console.log("newSrc: ", newSrc);
+    // allCards.forEach(function (doneCards) {
+    //     cardsDeck.addChild(doneCards.cardWhole);
+    // });
 
-    fileLoader.loadFile({
-        src: newSrc,
-        id: "all_cards",
-        crossOrigin: true,
-        type: createjs.Types.IMAGE,
-    });
+    shortNameCards = allCards
+        .filter((cardTarget) => cardTarget.short_name === newSrc)
+        .slice()[0].cardWhole;
+
+    // var cardback = allCards
+    // .filter((allCards) => allCards.cardWhole.name == "R-BACK2")
+    // .slice()[0];
+
+    console.log(shortNameCards.name);
+
+    shortNameCards.regX = shortNameCards.getBounds().x;
+    shortNameCards.regY = shortNameCards.getBounds().y;
+
+    shortNameCards.x = w - (69 + 12);
+    shortNameCards.y = h - (96 + 12);
+
+    image_content.addChild(shortNameCards);
 }
 
 function getSuitCode(suit) {
@@ -1441,4 +1451,21 @@ function makeRegularDeck() {
     }
 
     return deck;
+}
+
+function gameLogic() {
+    console.log("apply logic to the game");
+    /* 
+    set up the game parameters: (for solitaire)
+        alternating patterns of red and black 
+            a red card can only go on top of a black card
+        
+        tableau play insists that the columns be constructed in decending order
+
+        in the tableau, only the Kings can "start" an empty slot
+
+        aces will move to the top four spots.
+
+
+    */
 }
