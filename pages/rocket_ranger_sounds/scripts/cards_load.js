@@ -514,7 +514,7 @@ function handle_ImageLoadComplete(e) {
             popCard.cardWhole.y =
                 halfHeightMinusFaceHeight * Math.cos(index55) +
                 halfHeightMinusFaceHeight;
-            cardsDeck.addChild(popCard.cardWhole);
+         //   cardsDeck.addChild(popCard.cardWhole);
 
             popCard.cardWhole.addEventListener("click", function (e) {
                 popCard.flip();
@@ -536,16 +536,18 @@ function handle_ImageLoadComplete(e) {
             };
         }
     });
-    image_content.addChild(cardsDeck);
+   // image_content.addChild(cardsDeck);
 
     //
-
+    kShuffle(allCards);
     allCards.forEach(function (popCard) {
         // card flip for later
         if (popCard.hasOwnProperty("flip")) {
             popCard.flip();
         }
+        cardsDeck.addChild(popCard.cardWhole);
     });
+    image_content.addChild(cardsDeck);
 }
 
 // const cardflip_evt = new CustomEvent("cardflip_evt_evtStr", {
