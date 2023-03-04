@@ -505,16 +505,15 @@ function handle_ImageLoadComplete(e) {
         },
     });
     cardsAll = new createjs.Sprite(data, "run");
-    //cardsAll.stop();
-    cardsAll.play();
+    cardsAll.stop();
+    //cardsAll.play();
     var cardContainer = new createjs.Container();
     cardContainer.addChild(cardsAll);
     var cardCounter = 0;
-    /*  cardContainer.addEventListener("click", function () {
-        cardsAll.gotoAndStop(cardCounter);
-        stage.update();
+    cardContainer.addEventListener("click", function () {
         cardCounter++;
-    }); */
+        cardsAll.gotoAndStop(cardCounter);
+    });
     image_content.addChild(cardContainer);
     //   image_content.addChild(cardsDeck);
 
