@@ -476,9 +476,7 @@ function handle_ImageLoadComplete(e) {
         xPos1 = xCount * xWidth;
 
         allCards[index1].bmp = bmp.clone(); //clone the LARGE image (cache only captures rect of this)
-        allCards[index1].bmp.cache(xPos1, yPos1, xWidth, yHeight, 3, {
-            gl: "new",
-        });
+        allCards[index1].bmp.cache(xPos1, yPos1, xWidth, yHeight);
         allCards[index1].bmp.regX = 0;
         allCards[index1].bmp.regY = 0;
         allCards[index1].bmp.name = allCards[index1].short_name;
@@ -487,9 +485,7 @@ function handle_ImageLoadComplete(e) {
             xWidth,
             (ySpacing + yHeight) * 4,
             xWidth,
-            yHeight,
-            3,
-            { gl: "new" }
+            yHeight
         );
         allCards[index1].cardback.name = allCards[53].short_name;
 
