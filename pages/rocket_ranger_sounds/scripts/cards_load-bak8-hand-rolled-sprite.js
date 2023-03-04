@@ -374,7 +374,7 @@ function playGame() {
         type: createjs.Types.IMAGE,
         //type: createjs.Types.SVG,
     });
-    // gameLogic();
+    gameLogic();
 }
 
 function handle_ImageLoadReady(e) {
@@ -424,117 +424,8 @@ function handle_ImageLoadReady(e) {
 }
 
 function handle_ImageLoadComplete(e) {
-    /* 
-    If the frames are of different sizes, use an array of frame definitions. Each definition is itself an array with 4 required and 3 optional entries, in the order:
-
-    The first four, x, y, width, and height are required and define the frame rectangle.
-    The fifth, imageIndex, specifies the index of the source image (defaults to 0)
-    The last two, regX and regY specify the registration point of the frame
-
-            frames: [
-                // x, y, width, height, imageIndex*, regX*, regY*
-                [64, 0, 96, 64],
-                [0, 0, 64, 64, 1, 32, 32]
-                // etc.
-            ]
-
-            animations: {
-                // start, end, next*, speed*
-                run: [0, 8],
-                jump: [9, 12, "run", 2]
-            }
-
-            for non-consecutive frames, you can use an object with a frames property defining an array of frame indexes to play in order. The object can also specify next and speed properties.
-
-                animations: {
-                    walk: {
-                        frames: [1,2,3,3,2,1]
-                    },
-                    shoot: {
-                        frames: [1,4,5,6],
-                        next: "walk",
-                        speed: 0.5
-                    }
-                }
-
-
-
-            var data = {
-                images: ["sprites.jpg"],
-                frames: {width:50, height:50},
-                animations: {
-                    stand:0,
-                    run:[1,5],
-                    jump:[6,8,"run"]
-                }
-            };
-            var spriteSheet = new createjs.SpriteSheet(data);
-            var animation = new createjs.Sprite(spriteSheet, "run");
-    */
-    /* ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ */
-    var cardsImg = new createjs.Bitmap(e.target.getResult("all_cards")).image;
-
-    var data = new createjs.SpriteSheet({
-        images: [cardsImg],
-        // frames: { regX: 0, regY: 0, width: 69.8, height: 97, count: 55 },
-        //  frames:  {"regX": 82, "height": 292, "count": 64, "regY": 0, "width": 165}
-        frames: {
-            x: 0,
-            y: 0,
-            width: 67.55,
-            height: 97,
-            count: 56,
-            regX: 0,
-            regY: 0,
-            spacing: 2.19,
-            margin: 0,
-        },
-        // frames: [
-        //     // x, y, width, height, imageIndex*, regX*, regY*
-        //     [0, 0, 69.8, 97, 1, 0, 0],
-        //     [0, 0, 69.8, 97, 2, 0, 0],
-        //     [0, 0, 69.8, 97, 3, 0, 0],
-        //     [0, 0, 69.8, 97, 4, 0, 0],
-        //     [0, 0, 69.8, 97, 5, 0, 0],
-        //     // etc.
-        // ],
-        // define one animations that plays "all" next, and (loops @ .2x speed):
-        animations: {
-            // run: [0, 56,"all",.2],
-            run: [0, 56, "all", 1],
-        },
-    });
-    cardsAll = new createjs.Sprite(data, "run");
-    //cardsAll.stop();
-    cardsAll.play();
-    var cardContainer = new createjs.Container();
-    cardContainer.addChild(cardsAll);
-    var cardCounter = 0;
-    /*  cardContainer.addEventListener("click", function () {
-        cardsAll.gotoAndStop(cardCounter);
-        stage.update();
-        cardCounter++;
-    }); */
-    image_content.addChild(cardContainer);
-    //   image_content.addChild(cardsDeck);
-
-    // var fsBiggest = resizeToKnownDimensions(
-    //     svgElement.naturalWidth,
-    //     svgElement.naturalHeight,
-    //     w,
-    //     h
-    // );
-    // console.log(
-    //     "here's the size of the image: ",
-    //     fsBiggest.newW,
-    //     fsBiggest.newH,
-    //     svgElement.naturalWidth,
-    //     svgElement.naturalHeight
-    // );
-
-    /* ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ */
-
-    /* var svgElement = e.target.getResult("all_cards");
+   // var cardsImg = e.target.getResult("all_cards");
+    var svgElement = e.target.getResult("all_cards");
 
     let xCount = 0;
     let yCount = 0;
@@ -706,9 +597,8 @@ function handle_ImageLoadComplete(e) {
     });
 
     image_content.addChild(cardsDeck);
- */
 
-    // displaySingleCard(getSuitCode("hearts"));
+    displaySingleCard(getSuitCode("hearts"));
 }
 
 // const cardflip_evt = new CustomEvent("cardflip_evt_evtStr", {
