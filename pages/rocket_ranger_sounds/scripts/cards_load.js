@@ -472,6 +472,26 @@ function handle_ImageLoadComplete(e) {
             var animation = new createjs.Sprite(spriteSheet, "run");
     */
     /* ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ */
+
+    var cardsNames = {};
+    cardsNames.animations = {};
+    allCards = makeRegularDeck();
+    allCards.forEach(function (poppedCard, popped_index) {
+        if (popped_index === 0) {
+            cardsNames.animations[poppedCard.short_name] = [
+                0,
+                popped_index + 1,
+            ];
+        }
+        if (popped_index > 0) {
+            cardsNames.animations[poppedCard.short_name] = [
+                popped_index,
+                popped_index + 1,
+            ];
+        }
+        // run: [0, 56,"all",.2],
+    });
+
     var cardsImg = new createjs.Bitmap(e.target.getResult("all_cards")).image;
 
     var data = new createjs.SpriteSheet({
@@ -499,20 +519,23 @@ function handle_ImageLoadComplete(e) {
         //     // etc.
         // ],
         // define one animations that plays "all" next, and (loops @ .2x speed):
-        animations: {
-            // run: [0, 56,"all",.2],
-            run: [0, 56, "all", 1],
-        },
+        // animations: {
+        //     // run: [0, 56,"all",.2],
+        //     run: [0, 56, "all", 1],
+        // },
+        animations: cardsNames.animations,
     });
-    cardsAll = new createjs.Sprite(data, "run");
+    cardsAll = new createjs.Sprite(data);
     cardsAll.stop();
     //cardsAll.play();
     var cardContainer = new createjs.Container();
     cardContainer.addChild(cardsAll);
     var cardCounter = 0;
     cardContainer.addEventListener("click", function () {
-        cardCounter++;
-        cardsAll.gotoAndStop(cardCounter);
+        // console.log(cardsAll.spriteSheet.getAnimations()[53]); //R-BACK2
+        console.log(cardsAll.spriteSheet );  
+        cardCounter++; 
+        cardsAll.gotoAndStop(cardsAll.spriteSheet.getAnimations()[cardCounter]);
     });
     image_content.addChild(cardContainer);
     //   image_content.addChild(cardsDeck);
