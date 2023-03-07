@@ -424,6 +424,55 @@ function handle_ImageLoadReady(e) {
 }
 
 function handle_ImageLoadComplete(e) {
+    /* 
+    If the frames are of different sizes, use an array of frame definitions. Each definition is itself an array with 4 required and 3 optional entries, in the order:
+
+    The first four, x, y, width, and height are required and define the frame rectangle.
+    The fifth, imageIndex, specifies the index of the source image (defaults to 0)
+    The last two, regX and regY specify the registration point of the frame
+
+            frames: [
+                // x, y, width, height, imageIndex*, regX*, regY*
+                [64, 0, 96, 64],
+                [0, 0, 64, 64, 1, 32, 32]
+                // etc.
+            ]
+
+            animations: {
+                // start, end, next*, speed*
+                run: [0, 8],
+                jump: [9, 12, "run", 2]
+            }
+
+            for non-consecutive frames, you can use an object with a frames property defining an array of frame indexes to play in order. The object can also specify next and speed properties.
+
+                animations: {
+                    walk: {
+                        frames: [1,2,3,3,2,1]
+                    },
+                    shoot: {
+                        frames: [1,4,5,6],
+                        next: "walk",
+                        speed: 0.5
+                    }
+                }
+
+
+
+            var data = {
+                images: ["sprites.jpg"],
+                frames: {width:50, height:50},
+                animations: {
+                    stand:0,
+                    run:[1,5],
+                    jump:[6,8,"run"]
+                }
+            };
+            var spriteSheet = new createjs.SpriteSheet(data);
+            var animation = new createjs.Sprite(spriteSheet, "run");
+    */
+    /* ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ */
+
     var cardsNames = {};
     cardsNames.animations = {};
     allCards = makeRegularDeck();
@@ -447,44 +496,240 @@ function handle_ImageLoadComplete(e) {
 
     var data = new createjs.SpriteSheet({
         images: [cardsImg],
+        // frames: { regX: 0, regY: 0, width: 69.8, height: 97, count: 55 },
+        //  frames:  {"regX": 82, "height": 292, "count": 64, "regY": 0, "width": 165}
         frames: {
             x: 0,
-            y: 0, 
-            width: 71,  
-            height: 102.63,  
-            count: 56,
-            regX: 0,
-            regY: 0,
-            spacing: 2.67,   
-            /*  width: 67.55,
+            y: 0,
+            width: 67.55,
             height: 97,
             count: 56,
             regX: 0,
             regY: 0,
-            spacing: 2.19, */
+            spacing: 2.19,
             margin: 0,
         },
+        // frames: [
+        //     // x, y, width, height, imageIndex*, regX*, regY*
+        //     [0, 0, 69.8, 97, 1, 0, 0],
+        //     [0, 0, 69.8, 97, 2, 0, 0],
+        //     [0, 0, 69.8, 97, 3, 0, 0],
+        //     [0, 0, 69.8, 97, 4, 0, 0],
+        //     [0, 0, 69.8, 97, 5, 0, 0],
+        //     // etc.
+        // ],
+        // define one animations that plays "all" next, and (loops @ .2x speed):
+        // animations: {
+        //     // run: [0, 56,"all",.2],
+        //     run: [0, 56, "all", 1],
+        // },
         animations: cardsNames.animations,
     });
     cardsAll = new createjs.Sprite(data);
-    //cardsAll.stop();
-    cardsAll.play();
+    cardsAll.stop();
+    //cardsAll.play();
     var cardDeckContainer = new createjs.Container();
     cardDeckContainer.addChild(cardsAll);
     var cardCounter = 0;
     cardDeckContainer.addEventListener("click", function () {
         // console.log(cardsAll.spriteSheet.getAnimations()[53]); //R-BACK2
-        // console.log(cardsAll.spriteSheet);
-        console.log(
-            e.target
-            /* cardsAll.spriteSheet._data[
-                cardsAll.spriteSheet.getAnimations()[cardCounter]
-            ] */
-        );
-        cardCounter++;
+        console.log(cardsAll.spriteSheet );  
+        cardCounter++; 
         cardsAll.gotoAndStop(cardsAll.spriteSheet.getAnimations()[cardCounter]);
     });
     image_content.addChild(cardDeckContainer);
+    //   image_content.addChild(cardsDeck);
+
+    // var fsBiggest = resizeToKnownDimensions(
+    //     svgElement.naturalWidth,
+    //     svgElement.naturalHeight,
+    //     w,
+    //     h
+    // );
+    // console.log(
+    //     "here's the size of the image: ",
+    //     fsBiggest.newW,
+    //     fsBiggest.newH,
+    //     svgElement.naturalWidth,
+    //     svgElement.naturalHeight
+    // );
+
+    /* ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ */
+
+    /* var svgElement = e.target.getResult("all_cards");
+
+    let xCount = 0;
+    let yCount = 0;
+    let xSpacing = 3.25;
+    let ySpacing = 3.25;
+    let xWidth = 69.8;
+    let yHeight = 97;
+    var yPos1 = ySpacing;
+    var xPos1 = xSpacing;
+
+    var fsBiggest = resizeToKnownDimensions(
+        svgElement.naturalWidth,
+        svgElement.naturalHeight,
+        w,
+        h
+    );
+    console.log(
+        "here's the size of the image: ",
+        fsBiggest.newW,
+        fsBiggest.newH,
+        svgElement.naturalWidth,
+        svgElement.naturalHeight
+    );
+
+    //assume image loaded
+    //assume cards image :D
+    //assume scale of cards: no scale w,h: 69 * 96  2px spacing
+    //cut cards into pixel slices for inclusion onto deck.
+
+    var cardsDeck = new createjs.Container();
+    var bmp = new createjs.Bitmap(svgElement);
+    bmp.scaleX = fsBiggest.scaleRatio;
+    bmp.scaleY = fsBiggest.scaleRatio;
+    //bmp.cache(2, 2, w, h);
+    // fsBiggest.scaleRatio is calculated to fit cards on the screen
+    // store all the cards in one container deck
+
+    allCards = makeRegularDeck();
+    allCards.forEach(function (member1, index1) {
+        // numeric_value: "11", designation: "j",
+        // bmp.cache(2, 2, 69, 96);
+        // console.log(index1);
+        if (index1 % 13 === 0) {
+            xPos1 = xSpacing;
+            yPos1 = yCount * yHeight + yCount * ySpacing;
+            yCount++;
+            xCount = 0;
+        }
+        xPos1 = xCount * xWidth;
+
+        allCards[index1].bmp = bmp.clone(); //clone the LARGE image (cache only captures rect of this)
+        allCards[index1].bmp.cache(xPos1, yPos1, xWidth, yHeight, 3, {
+            gl: "new",
+        });
+        allCards[index1].bmp.regX = 0;
+        allCards[index1].bmp.regY = 0;
+        allCards[index1].bmp.name = allCards[index1].short_name;
+        allCards[index1].cardback = bmp.clone(); //replaced later
+        allCards[index1].cardback.cache(
+            xWidth,
+            (ySpacing + yHeight) * 4,
+            xWidth,
+            yHeight,
+            3,
+            { gl: "new" }
+        );
+        allCards[index1].cardback.name = allCards[53].short_name;
+
+        // allCards[index1].bmp.regX =
+        //      allCards[index1].bmp.getBounds().x - xWidth - xSpacing * xCount;
+        // allCards[index1].bmp.regY =
+        //      allCards[index1].bmp.getBounds().y - yHeight - ySpacing * yCount;
+        allCards[index1].bmp.x = xSpacing * xCount;
+        allCards[index1].bmp.y = ySpacing * yCount;
+
+        allCards[index1].game_value =
+            parseInt(allCards[index1].numeric_value) || null;
+        var cardbackBounds = allCards[index1].cardback.getBounds();
+
+        allCards[index1].cardback.regX = cardbackBounds.x - xPos1;
+        allCards[index1].cardback.regY = cardbackBounds.y - yPos1;
+        allCards[index1].cardback.x = xSpacing * xCount + 0;
+        allCards[index1].cardback.y = ySpacing * yCount + 0;
+
+        // allCards[index1].cardback.visible = true;
+        // allCards[index1].bmp.visible = true;
+        var cardContainer = new createjs.Container();
+        cardContainer.name = allCards[index1].short_name;
+        allCards[index1].cardWhole = cardContainer;
+        xCount++;
+    });
+
+    cardsDeck.setBounds(0, 0, fsBiggest.newW, fsBiggest.newH);
+
+    //ready deck for game
+    allCards.forEach(function (popCard, index55) {
+        if (popCard.designation !== "back") {
+            if (popCard.name === "joker") {
+                popCard.game_value -= 1;
+                popCard.numeric_value -= 1;
+            }
+
+            popCard.cardWhole.addChild(popCard.bmp);
+            popCard.cardWhole.addChild(popCard.cardback);
+            var cardBounds = popCard.cardWhole.getBounds();
+            popCard.cardWhole.regX = cardBounds.x;
+            popCard.cardWhole.regY = cardBounds.y;
+
+            // var halfWidthMinusFaceWidth = (w - 69) / 2 - 69 / 2;
+            // var halfHeightMinusFaceHeight = (h - 96) / 2 - 96 / 2;
+            // popCard.cardWhole.x =
+            //     halfWidthMinusFaceWidth * Math.sin(index55) +
+            //     halfWidthMinusFaceWidth;
+            // popCard.cardWhole.y =
+            //     halfHeightMinusFaceHeight * Math.cos(index55) +
+            //     halfHeightMinusFaceHeight;
+            //   cardsDeck.addChild(popCard.cardWhole); //add to visual
+
+            popCard.cardWhole.addEventListener("click", function (e) {
+                popCard.flip(false);
+                setTimeout(() => {
+                    popCard.hide();
+                }, 750);
+            });
+
+            popCard.flip = function (param) {
+                window.dispatchEvent(
+                    new CustomEvent("cardflip_evt_evtStr", {
+                        detail: { card: popCard.cardWhole, card_data: popCard },
+                    })
+                );
+
+                if (param !== undefined) {
+                    outputTextClip.updateText(
+                        popCard.cardWhole.getChildAt(0).name
+                    );
+                }
+                console.log(popCard.cardWhole.getChildAt(0).name);
+            };
+
+            popCard.hide = function () {
+                popCard.cardWhole.visible = false;
+            };
+        }
+    });
+    // image_content.addChild(cardsDeck);
+
+    //
+    allCards = kShuffle(allCards);
+    allCards.forEach(function (popCard) {
+        // card flip for later
+        if (popCard.hasOwnProperty("flip")) {
+            popCard.flip();
+        }
+    });
+    gridLayoutAccountingWH(
+        allCards,
+        "cardWhole",
+        69.8,
+        97,
+        3.25,
+        3.25,
+        13,
+        w,
+        h
+    );
+    allCards.forEach(function (doneCards) {
+        cardsDeck.addChild(doneCards.cardWhole);
+    });
+
+    image_content.addChild(cardsDeck);
+ */
+
     // displaySingleCard(getSuitCode("hearts"));
 }
 
@@ -596,10 +841,8 @@ async function loadImage(url) {
 }
 
 var galleryConfig = {};
-// galleryConfig.thumbnailW = 85;
-// galleryConfig.thumbnailH = 64;
-galleryConfig.thumbnailW = 72;
-galleryConfig.thumbnailH = 102;
+galleryConfig.thumbnailW = 85;
+galleryConfig.thumbnailH = 64;
 
 function addSVG(e) {
     var bg = new createjs.Bitmap(e.result);
@@ -610,8 +853,8 @@ function addSVG(e) {
         w,
         h
     );
-    // bg.scaleX = fsBiggest.scaleRatio;
-    // bg.scaleY = fsBiggest.scaleRatio;
+    bg.scaleX = fsBiggest.scaleRatio;
+    bg.scaleY = fsBiggest.scaleRatio;
 }
 
 function layoutImage(e) {
@@ -666,13 +909,8 @@ function displaySingleCard() {
     shortNameCards.regX = shortNameCards.getBounds().x;
     shortNameCards.regY = shortNameCards.getBounds().y;
 
-    // shortNameCards.x = w - (69 + 12);
-    // shortNameCards.y = h - (96 + 12);
-
-    // width: 72,
-    // height: 102,
-    shortNameCards.x = w - (72 + 12);
-    shortNameCards.y = h - (102 + 12);
+    shortNameCards.x = w - (69 + 12);
+    shortNameCards.y = h - (96 + 12);
 
     image_content.addChild(shortNameCards);
 }
