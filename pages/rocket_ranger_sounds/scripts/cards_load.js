@@ -444,18 +444,20 @@ function handle_ImageLoadComplete(e) {
     });
 
     var cardsImg = new createjs.Bitmap(e.target.getResult("all_cards")).image;
-
+    cardsImg.snapToPixel = true;
     var data = new createjs.SpriteSheet({
         images: [cardsImg],
         frames: {
-            x: 0,
-            y: 0, 
-            width: 71,  
-            height: 102.63,  
+            x: 10,
+            y: 10,
+            width: 71, 
+            width: 71 , 
+            height: 102.63,
+            height: 103,
             count: 56,
             regX: 0,
             regY: 0,
-            spacing: 2.67,   
+            spacing: 2.67, 
             /*  width: 67.55,
             height: 97,
             count: 56,
@@ -467,8 +469,8 @@ function handle_ImageLoadComplete(e) {
         animations: cardsNames.animations,
     });
     cardsAll = new createjs.Sprite(data);
-    //cardsAll.stop();
-    cardsAll.play();
+    cardsAll.stop();
+     cardsAll.play();
     var cardDeckContainer = new createjs.Container();
     cardDeckContainer.addChild(cardsAll);
     var cardCounter = 0;
