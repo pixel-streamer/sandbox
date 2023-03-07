@@ -476,6 +476,14 @@ function handle_ImageLoadComplete(e) {
     cardsAll.stop();
     //cardsAll.play();
     var cardDeckContainer = new createjs.Container();
+
+    allCards.forEach(function (arrMember, arrIdx) {
+        var another = cardsAll.clone();
+        another.gotoAndStop(another.spriteSheet.getAnimations()[arrIdx]);
+        cardDeckContainer.addChild(another);
+        another.x = another.spriteSheet.getFrameBounds(0).width*arrIdx;
+    });
+
     cardDeckContainer.addChild(cardsAll);
     var cardCounter = 0;
     cardDeckContainer.addEventListener("click", function () {
