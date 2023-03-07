@@ -448,29 +448,33 @@ function handle_ImageLoadComplete(e) {
     var data = new createjs.SpriteSheet({
         images: [cardsImg],
         frames: {
-            x: 10,
-            y: 10,
-            width: 71, 
-            width: 71 , 
-            height: 102.63,
-            height: 103,
-            count: 56,
-            regX: 0,
-            regY: 0,
-            spacing: 2.67, 
+            margin: 2,
+            x: 0,
+            y: 0,
+            width: 96, //for the 1280 one
+            height: 138, //for the 1280 one
+            count: 56, //for the 1280 one
+            regX: 2.5, //for the 1280 one
+            regY: 2.5, //for the 1280 one
+            spacing: 2, //for the 1280 one
+            // width: 71 ,
+            // height: 103,
+            // count: 56,
+            // regX: 0,
+            // regY: 0,
+            // spacing: 2.67,
             /*  width: 67.55,
             height: 97,
             count: 56,
             regX: 0,
             regY: 0,
             spacing: 2.19, */
-            margin: 0,
         },
         animations: cardsNames.animations,
     });
     cardsAll = new createjs.Sprite(data);
     cardsAll.stop();
-     cardsAll.play();
+    //cardsAll.play();
     var cardDeckContainer = new createjs.Container();
     cardDeckContainer.addChild(cardsAll);
     var cardCounter = 0;
@@ -478,15 +482,23 @@ function handle_ImageLoadComplete(e) {
         // console.log(cardsAll.spriteSheet.getAnimations()[53]); //R-BACK2
         // console.log(cardsAll.spriteSheet);
         console.log(
-            e.target
-            /* cardsAll.spriteSheet._data[
+            cardsAll.spriteSheet._data[
                 cardsAll.spriteSheet.getAnimations()[cardCounter]
-            ] */
+            ]["name"]
         );
         cardCounter++;
         cardsAll.gotoAndStop(cardsAll.spriteSheet.getAnimations()[cardCounter]);
     });
     image_content.addChild(cardDeckContainer);
+
+    var fsBiggest = resizeToKnownDimensions(
+        cardsImg.width,
+        cardsImg.height,
+        w,
+        h
+    );
+    cardDeckContainer.scaleX = fsBiggest.scaleRatio;
+    cardDeckContainer.scaleY = fsBiggest.scaleRatio;
     // displaySingleCard(getSuitCode("hearts"));
 }
 
@@ -612,8 +624,8 @@ function addSVG(e) {
         w,
         h
     );
-    // bg.scaleX = fsBiggest.scaleRatio;
-    // bg.scaleY = fsBiggest.scaleRatio;
+    bg.scaleX = fsBiggest.scaleRatio;
+    bg.scaleY = fsBiggest.scaleRatio;
 }
 
 function layoutImage(e) {
