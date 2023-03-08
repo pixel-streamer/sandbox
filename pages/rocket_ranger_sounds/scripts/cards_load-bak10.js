@@ -506,8 +506,15 @@ function handle_ImageLoadComplete(e) {
 
     cardDeckContainer.addChild(cardsAll);
     var cardCounter = 0;
-    cardDeckContainer.addEventListener("click", function () { 
-        //console.log(cardsAll.spriteSheet.getAnimations()[cardCounter % 56]);
+    cardDeckContainer.addEventListener("click", function () {
+        // console.log(cardsAll.spriteSheet.getAnimations()[53]); //R-BACK2
+        // console.log(cardsAll.spriteSheet);
+        // console.log(
+        //     cardsAll.spriteSheet._data[
+        //         cardsAll.spriteSheet.getAnimations()[cardCounter % 56]
+        //     ]["name"]
+        // );
+        console.log(cardsAll.spriteSheet.getAnimations()[cardCounter % 56]);
         cardCounter++;
         cardsAll.gotoAndStop(
             cardsAll.spriteSheet.getAnimations()[cardCounter % 56] //mod loops without having to reset
