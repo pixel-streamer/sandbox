@@ -203,14 +203,17 @@ class InteractiveText extends createjs.Text {
     constructor(interactivePhrase, atXPos, atYPos, fillCol) {
         super();
         this.gamePlayText;
+        this._fontCol = fillCol;
+        // this._fontChoice = "16px 'Press Start 2P'";
+        this._fontChoice = "35px 'Press Start 2P'";
         largeText = getGoldenRatio(w) * 0.085;
         this.interactiveTextHitArea = new createjs.Container();
         var interactiveTextMask = new createjs.Shape();
 
         this.gamePlayText = new createjs.Text(
             interactivePhrase,
-            "16px 'Press Start 2P'",
-            fillCol
+            this._fontChoice,
+            this._fontCol
         );
         var textMetrics = this.gamePlayText.getMetrics();
         var textW = textMetrics.width;
@@ -238,7 +241,14 @@ class InteractiveText extends createjs.Text {
         interactive_content.addChild(this.interactiveTextHitArea);
     }
     updateText = function (param) {
-        this.gamePlayText.text = param;
+        // this.gamePlayText.font = this._fontChoice;
+        // this.gamePlayText.text = param;
+        // this.gamePlayText.color = this._fontCol;
+        this.gamePlayText.set({
+            color: this._fontCol,
+            font: this._fontChoice,
+            text: param,
+        });
     };
     activate = function () {
         return this.interactiveTextHitArea;
@@ -375,6 +385,13 @@ function handle_ImageLoadComplete(e) {
     cardsNames.animations = {};
     allCards = makeRegularDeck();
     allCards.forEach(function (poppedCard, popped_index) {
+        // console.log(poppedCard.suit);
+        if (poppedCard.suit !== null && poppedCard.suit !== undefined) {
+            poppedCard["symbol"] = getSuitCode(poppedCard.suit);
+        } else {
+            poppedCard["symbol"] = null;
+        }
+
         if (popped_index === 0) {
             cardsNames.animations[poppedCard.short_name] = [
                 0,
@@ -389,6 +406,8 @@ function handle_ImageLoadComplete(e) {
         }
         // run: [0, 56,"all",.2],
     });
+
+    console.log(allCards);
 
     var cardsImg = new createjs.Bitmap(e.target.getResult("all_cards")).image;
     cardsImg.snapToPixel = true;
@@ -465,12 +484,11 @@ function handle_ImageLoadComplete(e) {
                     allCards[arrIdx]["suit"] !== undefined
                         ? allCards[arrIdx]["name"] +
                               " of " +
-                              allCards[arrIdx]["suit"]
+                              allCards[arrIdx]["symbol"]
                         : allCards[arrIdx]["ink_color"] +
                               " " +
                               allCards[arrIdx]["name"]
                 );
-              
             });
             x_Pos = xC * xW;
 
@@ -479,10 +497,10 @@ function handle_ImageLoadComplete(e) {
             );
             let binaryChoice = binaryChoicePart % 2;
 
-            // another.rotation =
-            //     binaryChoice === 0
-            //         ? Math.random() * 10
-            //         : Math.random() * (10 * -1);
+            another.rotation =
+                binaryChoice === 0
+                    ? Math.random() * 5
+                    : Math.random() * (5 * -1);
             another.regX = 0;
             another.regY = 0;
             another.x = x_Pos + xS * xC;
@@ -734,7 +752,7 @@ function getSuitCode(suit) {
             //♣261
             choice = "♣";
             break;
-        case "diamods":
+        case "diamonds":
             //♦260
             choice = "♦";
             break;
