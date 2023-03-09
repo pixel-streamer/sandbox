@@ -202,11 +202,14 @@ class InteractiveText extends createjs.Text {
     //this is a really crappy, fast class... use the other one.
     constructor(interactivePhrase, atXPos, atYPos, fillCol) {
         super();
+        // largeText = getGoldenRatio(w) * 0.085;
+        largeText = Math.max(getGoldenRatio(w) * 0.0271, 16);
         this.gamePlayText;
         this._fontCol = fillCol;
         // this._fontChoice = "16px 'Press Start 2P'";
-        this._fontChoice = "35px 'Press Start 2P'";
-        largeText = getGoldenRatio(w) * 0.085;
+        console.log("largeText: ", largeText);
+        this._fontChoice = largeText + "px 'Press Start 2P'";
+
         this.interactiveTextHitArea = new createjs.Container();
         var interactiveTextMask = new createjs.Shape();
 
