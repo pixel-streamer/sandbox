@@ -456,11 +456,21 @@ function handle_ImageLoadComplete(e) {
                     );
                 }
                 flipped = !flipped;
-                console.log(
-                    another.spriteSheet._data[
-                        another.spriteSheet.getAnimations()[arrIdx]
-                    ]["name"]
+                // console.log(
+                //     another.spriteSheet._data[
+                //         another.spriteSheet.getAnimations()[arrIdx]
+                //     ]["name"]
+                // );
+                outputTextClip.updateText(
+                    allCards[arrIdx]["suit"] !== undefined
+                        ? allCards[arrIdx]["name"] +
+                              " of " +
+                              allCards[arrIdx]["suit"]
+                        : allCards[arrIdx]["ink_color"] +
+                              " " +
+                              allCards[arrIdx]["name"]
                 );
+              
             });
             x_Pos = xC * xW;
 
@@ -482,6 +492,7 @@ function handle_ImageLoadComplete(e) {
             // );
             // another.hitTest(another.x, another.y);
             // console.log(another.hitTest(another.x, another.y));
+
             cardContainer.addChild(another);
             xC++;
         }
