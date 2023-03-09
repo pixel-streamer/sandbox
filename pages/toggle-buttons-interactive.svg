@@ -3618,7 +3618,7 @@
 		prev_act.style.opacity=0;
 		
 		setTimeout( function (){
-			window.location.href="https://www.fillmurray.com/" //https://placekitten.com/
+			window.location.href="https://placekitten.com/640" //https://www.fillmurray.com/
 		}, 250);
 	}                                                     	
                                                           
@@ -3661,7 +3661,7 @@
 		next_act.style.opacity=0; 
 		
 		setTimeout( function (){
-			window.location.href="https://www.placecage.com/"
+			window.location.href="https://placekitten.com/480" //https://www.placecage.com/
 		}, 250);
 	}
 
