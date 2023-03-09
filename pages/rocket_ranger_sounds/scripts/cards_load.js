@@ -479,10 +479,10 @@ function handle_ImageLoadComplete(e) {
             );
             let binaryChoice = binaryChoicePart % 2;
 
-            another.rotation =
-                binaryChoice === 0
-                    ? Math.random() * 10
-                    : Math.random() * (10 * -1);
+            // another.rotation =
+            //     binaryChoice === 0
+            //         ? Math.random() * 10
+            //         : Math.random() * (10 * -1);
             another.regX = 0;
             another.regY = 0;
             another.x = x_Pos + xS * xC;
