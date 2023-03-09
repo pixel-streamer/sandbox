@@ -197,13 +197,14 @@ function addStartupText() {
         { once: true }
     );
 }
+
 class InteractiveText extends createjs.Text {
     //this is a really crappy, fast class... use the other one.
     constructor(interactivePhrase, atXPos, atYPos, fillCol) {
         super();
         this.gamePlayText;
         largeText = getGoldenRatio(w) * 0.085;
-        var interactiveTextHitArea = new createjs.Container();
+        this.interactiveTextHitArea = new createjs.Container();
         var interactiveTextMask = new createjs.Shape();
 
         this.gamePlayText = new createjs.Text(
@@ -222,33 +223,25 @@ class InteractiveText extends createjs.Text {
             .drawRect(0, 0, textW + 16, textH + 16)
             .endFill();
 
-        interactiveTextHitArea.regX = 0;
-        interactiveTextHitArea.regY = 0;
+        this.interactiveTextHitArea.regX = 0;
+        this.interactiveTextHitArea.regY = 0;
 
-        interactiveTextHitArea.addChild(interactiveTextMask);
-        interactiveTextHitArea.addChild(this.gamePlayText);
+        this.interactiveTextHitArea.addChild(interactiveTextMask);
+        this.interactiveTextHitArea.addChild(this.gamePlayText);
 
-        interactiveTextHitArea.x =
-            atXPos - interactiveTextHitArea.getBounds().width / 2;
-        interactiveTextHitArea.y =
-            atYPos - interactiveTextHitArea.getBounds().height / 2;
-
-        interactiveTextHitArea.addEventListener(
-            "click",
-            function () {
-                console.log("clicked me one time!");
-                interactiveTextHitArea.visible = false;
-                interactiveTextHitArea.mouseEnabled = false;
-                window.dispatchEvent(gamePlay_evt);
-            },
-            { once: true }
-        );
+        this.interactiveTextHitArea.x =
+            atXPos - this.interactiveTextHitArea.getBounds().width / 2;
+        this.interactiveTextHitArea.y =
+            atYPos - this.interactiveTextHitArea.getBounds().height / 2;
 
         // handle_SoundsRegistry();
-        interactive_content.addChild(interactiveTextHitArea);
+        interactive_content.addChild(this.interactiveTextHitArea);
     }
     updateText = function (param) {
         this.gamePlayText.text = param;
+    };
+    activate = function () {
+        return this.interactiveTextHitArea;
     };
 }
 // function addInteractiveText(interactivePhrase, atXPos, atYPos, fillCol) {
@@ -345,9 +338,18 @@ function setupGame() {
         stageBounds.height / 2,
         "#FFCC00"
     );
-
-    outputTextClip = new InteractiveText( //TODO: broken event
-        "card name appears here.\nbroken: (clicking this shouldn't layout cards again)",
+    phrase2.activate().addEventListener(
+        "click",
+        function () {
+            console.log("clicked me one time!");
+            phrase2.activate().visible = false;
+            phrase2.activate().mouseEnabled = false;
+            window.dispatchEvent(gamePlay_evt);
+        },
+        { once: true }
+    );
+    outputTextClip = new InteractiveText(
+        "card name appears here",
         stageBounds.width / 2,
         stageBounds.height - 65,
         "#FFCC00"
@@ -357,70 +359,15 @@ function setupGame() {
 function playGame() {
     console.log("playGame");
     fileLoader = new createjs.LoadQueue(true);
-    // fileLoader.on("fileload", handle_ImageLoadReady);
-    // fileLoader.on("progress", handle_ImageLoadProgress);
     fileLoader.on("complete", handle_ImageLoadComplete);
-    // fileLoader.loadFile({
-    //     src: "../images/ui_vectors/cards_all_use-copy.svg",
-    //     id: "all_cards",
-    //     type: createjs.Types.IMAGE,
-    // });
 
-    //cards size @960 768 -- 69x96px
     fileLoader.loadFile({
         src: "../images/sprites/cards_sprite.png",
         id: "all_cards",
         crossOrigin: true,
         type: createjs.Types.IMAGE,
-        //type: createjs.Types.SVG,
     });
     // gameLogic();
-}
-
-function handle_ImageLoadReady(e) {
-    // console.log(":::::▄█ handle_ImageLoadReady █▄", e.item.type, e.result);
-    // var svgElement = e.target.getResult("all_cards");
-    // var svgElement = e.result;
-    // var bg = new createjs.Bitmap(svgElement);
-    // bg.image.onload = function () {
-    //     console.log("OMG!", this.naturalWidth);
-    // };
-    // image_content.addChild(bg);
-
-    return;
-    // console.log(":::::▄█ handle_ImageLoadReady █▄", e.item.type, e.result);
-
-    // var src = e.item.src;
-    // var extension_trim = src.substring(src.lastIndexOf("/") + 1);
-    // var extension = extension_trim.substring(
-    //     extension_trim.lastIndexOf(".") + 1
-    // );
-    // console.log(":::::▄█ src █▄", e.result);
-    // console.log(":::::▄█ src █▄", e.result.querySelector("#D-10"));
-
-    // var bg = new createjs.Bitmap(e.result);
-    // image_content.addChild(bg);
-    // var fsBiggest = resizeToKnownDimensions(
-    //     e.result.width,
-    //     e.result.height,
-    //     w,
-    //     h
-    // );
-    // bg.scaleX = fsBiggest.scaleRatio;
-    // bg.scaleY = fsBiggest.scaleRatio;
-    //console.log(":::::▄█ svg first el █▄", e.result.querySelector( id ));
-
-    /*  switch (extension) {
-        case "svg":
-            addSVG(e);
-            break;
-        // case "mp4":
-        //     handleLoadedMovie(e);
-        //     break;
-        default:
-            layoutImage(e);
-            break;
-    } */
 }
 
 function handle_ImageLoadComplete(e) {
@@ -488,29 +435,68 @@ function handle_ImageLoadComplete(e) {
     let yS = 2;
 
     allCards.forEach(function (arrMember, arrIdx) {
-        if (arrIdx % 13 === 0) {
-            x_Pos = xS;
-            y_Pos = yC * yH + yC * yS;
-            yC++;
-            xC = 0;
-        }
-        var another = cardsAll.clone();
-        another.gotoAndStop(another.spriteSheet.getAnimations()[arrIdx]);
+        if (arrIdx < 52 || arrIdx > 53) {
+            let flipped = false;
+            if (arrIdx % 13 === 0) {
+                x_Pos = xS;
+                y_Pos = yC * yH + yC * yS;
+                yC++;
+                xC = 0;
+            }
+            var another = cardsAll.clone();
+            another.gotoAndStop(another.spriteSheet.getAnimations()[arrIdx]);
+            another.addEventListener("click", function () {
+                if (!flipped) {
+                    another.gotoAndStop(
+                        another.spriteSheet.getAnimations()[53]
+                    );
+                } else {
+                    another.gotoAndStop(
+                        another.spriteSheet.getAnimations()[arrIdx]
+                    );
+                }
+                flipped = !flipped;
+                console.log(
+                    another.spriteSheet._data[
+                        another.spriteSheet.getAnimations()[arrIdx]
+                    ]["name"]
+                );
+            });
+            x_Pos = xC * xW;
 
-        x_Pos = xC * xW;
-        another.x = x_Pos + xS * xC;
-        another.y = y_Pos + yS * yC;
-        cardContainer.addChild(another);
-        xC++;
+            let binaryChoicePart = Math.floor(
+                (Math.random() * 1000).toPrecision(3)
+            );
+            let binaryChoice = binaryChoicePart % 2;
+
+            another.rotation =
+                binaryChoice === 0
+                    ? Math.random() * 10
+                    : Math.random() * (10 * -1);
+            another.regX = 0;
+            another.regY = 0;
+            another.x = x_Pos + xS * xC;
+            another.y = y_Pos + yS * yC;
+            // console.log(
+            //     another.spriteSheet.getFilterBounds(another.spriteSheet)
+            // );
+            // another.hitTest(another.x, another.y);
+            // console.log(another.hitTest(another.x, another.y));
+            cardContainer.addChild(another);
+            xC++;
+        }
     });
 
     cardDeckContainer.addChild(cardsAll);
     var cardCounter = 0;
-    cardDeckContainer.addEventListener("click", function () { 
+    cardDeckContainer.addEventListener("click", function () {
         //console.log(cardsAll.spriteSheet.getAnimations()[cardCounter % 56]);
         cardCounter++;
         cardsAll.gotoAndStop(
             cardsAll.spriteSheet.getAnimations()[cardCounter % 56] //mod loops without having to reset
+        );
+        outputTextClip.updateText(
+            cardsAll.spriteSheet.getAnimations()[cardCounter % 56]["name"]
         );
     });
 
@@ -527,7 +513,7 @@ function handle_ImageLoadComplete(e) {
     cardContainer.scaleY = fsBiggest.scaleRatio;
 
     image_content.addChild(cardContainer);
-   // image_content.addChild(cardDeckContainer);
+    // image_content.addChild(cardDeckContainer);
     // displaySingleCard(getSuitCode("hearts"));
 }
 
