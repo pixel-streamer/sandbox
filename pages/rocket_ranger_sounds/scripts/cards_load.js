@@ -37,10 +37,11 @@ window.addEventListener("load", loadGoogleFonts);
 // import { loadGoogleFonts }
 // import "font-loading_module.js";
 
+let fontLoader;
 function loadFonts(config) {
-    var loader = new createjs.FontLoader(config, true);
-    loader.on("complete", handleFontLoad);
-    loader.load();
+    fontLoader = new createjs.FontLoader(config, true);
+    fontLoader.on("complete", handleFontLoad);
+    fontLoader.load();
 }
 
 const fontload_evt = new CustomEvent("fontload_evtStr", {
@@ -203,13 +204,23 @@ class InteractiveText extends createjs.Text {
     constructor(interactivePhrase, atXPos, atYPos, fillCol) {
         super();
         // largeText = getGoldenRatio(w) * 0.085;
-        largeText = Math.max(getGoldenRatio(w) * 0.0271, 16);
+        largeText = parseInt(
+            Math.max(getGoldenRatio(w) * (0.0271 *2), 32).toPrecision(2)
+        ).toString();
         this.gamePlayText;
         this._fontCol = fillCol;
-        // this._fontChoice = "16px 'Press Start 2P'";
-        console.log("largeText: ", largeText);
-        this._fontChoice = largeText + "px 'Press Start 2P'";
+       // this._fontChoice = "16px 'Press Start 2P'";
+        this._fontChoice = "32px 'Rum Raisin'";
 
+        this.fontFamily = "Press Start 2P";
+        this.fontFamily = "Rum Raisin";
+        //  this.fontFamily = fontLoader.getItem("Press Start 2P");
+        //  this.fontFamily = fontLoader._faces("Press Start 2P");
+
+        console.log("largeText: ", largeText);
+        console.log("  this.fontFamily : ", this.fontFamily);
+        //  this._fontChoice =  (largeText + "px " + this.fontFamily) ;
+        console.log("  this._fontChoice  : ", this._fontChoice);
         this.interactiveTextHitArea = new createjs.Container();
         var interactiveTextMask = new createjs.Shape();
 
@@ -247,6 +258,7 @@ class InteractiveText extends createjs.Text {
         // this.gamePlayText.font = this._fontChoice;
         // this.gamePlayText.text = param;
         // this.gamePlayText.color = this._fontCol;
+
         this.gamePlayText.set({
             color: this._fontCol,
             font: this._fontChoice,
