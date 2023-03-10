@@ -203,40 +203,44 @@ class InteractiveText extends createjs.Text {
     //this is a really crappy, fast class... use the other one.
     constructor(interactivePhrase, atXPos, atYPos, fillCol) {
         super();
+        this.userText_xPos = atXPos;
+        this.userText_yPos = atYPos;
         // largeText = getGoldenRatio(w) * 0.085;
         largeText = parseInt(
             Math.max(getGoldenRatio(w) * (0.0271 * 2), 32).toPrecision(2)
         ).toString();
+        this.lineHeight = parseInt(largeText * 1.125);
         this.gamePlayText;
         this._fontCol = fillCol;
         // this._fontChoice = "16px 'Press Start 2P'";
         this._fontChoice = "32px 'Rum Raisin'";
-
+        this._fontChoice = "24px 'Press Start 2P'";
         this.fontFamily = "Press Start 2P";
-        this.fontFamily = "Rum Raisin";
-        //  this.fontFamily = fontLoader.getItem("Press Start 2P");
-        //  this.fontFamily = fontLoader._faces("Press Start 2P");
+        // this.fontFamily = "Rum Raisin";
+        // this.fontFamily = fontLoader.getItem("Press Start 2P");
+        // this.fontFamily = fontLoader._faces("Press Start 2P");
 
-        console.log("largeText: ", largeText);
-        console.log("  this.fontFamily : ", this.fontFamily);
+        console.log(" largeText: ", largeText);
+        console.log(" this.fontFamily: ", this.fontFamily);
         //  this._fontChoice =  (largeText + "px " + this.fontFamily) ;
         console.log("  this._fontChoice  : ", this._fontChoice);
         this.interactiveTextHitArea = new createjs.Container();
-        var interactiveTextMask = new createjs.Shape();
+        this.interactiveTextMask = new createjs.Shape();
 
         this.gamePlayText = new createjs.Text(
             interactivePhrase,
             this._fontChoice,
             this._fontCol
         );
-        this.gamePlayText.set({ lineHeight: parseInt(largeText * 1.225) });
+        //:rolleyes: lineheight isn't a percentage of the font.
+        this.gamePlayText.set({ lineHeight: this.lineHeight });
         var textMetrics = this.gamePlayText.getMetrics();
         var textW = textMetrics.width;
         var textH = textMetrics.height;
         this.gamePlayText.x = 8;
         this.gamePlayText.y = 8;
 
-        interactiveTextMask.graphics
+        this.interactiveTextMask.graphics
             .beginFill("rgba(0,0,0,.3)")
             .drawRect(0, 0, textW + 16, textH + 16)
             .endFill();
@@ -244,13 +248,15 @@ class InteractiveText extends createjs.Text {
         this.interactiveTextHitArea.regX = 0;
         this.interactiveTextHitArea.regY = 0;
 
-        this.interactiveTextHitArea.addChild(interactiveTextMask);
+        this.interactiveTextHitArea.addChild(this.interactiveTextMask);
         this.interactiveTextHitArea.addChild(this.gamePlayText);
 
         this.interactiveTextHitArea.x =
-            atXPos - this.interactiveTextHitArea.getBounds().width / 2;
+            this.userText_xPos -
+            this.interactiveTextHitArea.getBounds().width / 2;
         this.interactiveTextHitArea.y =
-            atYPos - this.interactiveTextHitArea.getBounds().height / 2;
+            this.userText_yPos -
+            this.interactiveTextHitArea.getBounds().height / 2;
 
         // handle_SoundsRegistry();
         interactive_content.addChild(this.interactiveTextHitArea);
@@ -265,6 +271,20 @@ class InteractiveText extends createjs.Text {
             font: this._fontChoice,
             text: param,
         });
+        var textMetrics = this.gamePlayText.getMetrics();
+        var textW = textMetrics.width;
+        var textH = textMetrics.height;
+        this.interactiveTextMask.graphics
+            .clear()
+            .beginFill("rgba(0,0,0,.3)")
+            .drawRect(0, 0, textW + 16, textH + 16)
+            .endFill();
+        this.interactiveTextHitArea.x =
+            this.userText_xPos -
+            this.interactiveTextHitArea.getBounds().width / 2;
+        this.interactiveTextHitArea.y =
+            this.userText_yPos -
+            this.interactiveTextHitArea.getBounds().height / 2;
     };
     activate = function () {
         return this.interactiveTextHitArea;
