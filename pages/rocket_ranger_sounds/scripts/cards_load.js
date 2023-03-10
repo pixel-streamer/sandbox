@@ -205,11 +205,11 @@ class InteractiveText extends createjs.Text {
         super();
         // largeText = getGoldenRatio(w) * 0.085;
         largeText = parseInt(
-            Math.max(getGoldenRatio(w) * (0.0271 *2), 32).toPrecision(2)
+            Math.max(getGoldenRatio(w) * (0.0271 * 2), 32).toPrecision(2)
         ).toString();
         this.gamePlayText;
         this._fontCol = fillCol;
-       // this._fontChoice = "16px 'Press Start 2P'";
+        // this._fontChoice = "16px 'Press Start 2P'";
         this._fontChoice = "32px 'Rum Raisin'";
 
         this.fontFamily = "Press Start 2P";
@@ -229,6 +229,7 @@ class InteractiveText extends createjs.Text {
             this._fontChoice,
             this._fontCol
         );
+        this.gamePlayText.set({ lineHeight: parseInt(largeText * 1.225) });
         var textMetrics = this.gamePlayText.getMetrics();
         var textW = textMetrics.width;
         var textH = textMetrics.height;
@@ -404,7 +405,10 @@ function handle_ImageLoadComplete(e) {
         if (poppedCard.suit !== null && poppedCard.suit !== undefined) {
             poppedCard["symbol"] = getSuitCode(poppedCard.suit);
         } else {
-            poppedCard["symbol"] = null;
+            //   poppedCard["symbol"] = null;
+            poppedCard["symbol"] = "&#127136";
+            poppedCard["symbol"] = String.fromCharCode("0x01F0CB");
+            poppedCard["symbol"] = String.fromCharCode("1F0A0");
         }
 
         if (popped_index === 0) {
@@ -514,8 +518,8 @@ function handle_ImageLoadComplete(e) {
 
             another.rotation =
                 binaryChoice === 0
-                    ? Math.random() * 5
-                    : Math.random() * (5 * -1);
+                    ? Math.random() * 3
+                    : Math.random() * (3 * -1);
             another.regX = 0;
             another.regY = 0;
             another.x = x_Pos + xS * xC;
