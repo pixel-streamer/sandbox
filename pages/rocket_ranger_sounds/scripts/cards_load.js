@@ -15,7 +15,7 @@ var stage,
     largeText = 0;
 
 let nofullhover;
-
+//RESIZE VARIABLES
 let resizeObserver,
     delay = 250,
     timeout;
@@ -160,6 +160,7 @@ function addStartupText() {
     var largerText = new createjs.Text(
         "click to begin".toUpperCase(),
         "normal " + nextLargerTextSize + "px 'Press Start 2P'",
+        // "normal " + nextLargerTextSize + "px 'Mystery Quest'",
         "#ffffff"
     );
 
@@ -215,7 +216,9 @@ class InteractiveText extends createjs.Text {
         // this._fontChoice = "16px 'Press Start 2P'";
         this._fontChoice = "32px 'Rum Raisin'";
         this._fontChoice = "24px 'Press Start 2P'";
-        this.fontFamily = "Press Start 2P";
+        this._fontChoice = "24px 'Mystery Quest'";
+        //this.fontFamily = "Press Start 2P";
+        this.fontFamily = "Mystery Quest";
         // this.fontFamily = "Rum Raisin";
         // this.fontFamily = fontLoader.getItem("Press Start 2P");
         // this.fontFamily = fontLoader._faces("Press Start 2P");
@@ -373,6 +376,93 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF UTILITY FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
+
+/* 
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ CLASSES FOR SNAP UI ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+*/
+class SpecialPoint extends Number {
+    //TODO: SNAP UI
+    //this should extend createjs Points
+    constructor() {
+        super();
+        this.SpecialNode = null;
+        this._tl = null;
+        this._tr = null;
+        this._bl = null;
+        this._br = null;
+        this._top = null;
+        this._right = null;
+        this._bottom = null;
+        this._left = null;
+    }
+    doSomething = function (param) {
+        return param; //as Number to do something with later
+    };
+}
+Object.defineProperty(SpecialPoint.prototype, "vector", {
+    get: function () {
+        //vector = ?; I'm not sure how this is a bit of extra info yet
+        return vector;
+    },
+    set: function (param) {
+        vector = param;
+    },
+    configurable: true,
+});
+Object.defineProperty(SpecialPoint.prototype, "_tl", {
+    get: function () {
+        //_tl = true (top, left)
+        return _tl;
+    },
+    set: function (param) {
+        _tl = param;
+        this._top = true;
+        this._left = true;
+    },
+    configurable: true,
+});
+Object.defineProperty(SpecialPoint.prototype, "_tr", {
+    get: function () {
+        //_tr = true (top, right)
+        return _tr;
+    },
+    set: function (param) {
+        _tr = param;
+        this._top = true;
+        this._right = true;
+    },
+    configurable: true,
+});
+Object.defineProperty(SpecialPoint.prototype, "_bl", {
+    get: function () {
+        //_bl = true (bottom, left)
+        return _bl;
+    },
+    set: function (param) {
+        _bl = param;
+        this._bottom = true;
+        this._left = true;
+    },
+    configurable: true,
+});
+Object.defineProperty(SpecialPoint.prototype, "_br", {
+    get: function () {
+        //_br = true (bottom, right)
+        return _br;
+    },
+    set: function (param) {
+        _br = param;
+        this._right = true;
+        this._bottom = true;
+    },
+    configurable: true,
+});
+//
+/* 
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF CLASSES FOR SNAP UI ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
 var outputTextClip;
 function setupGame() {
     console.log("setupGame");
@@ -407,27 +497,47 @@ function playGame() {
     fileLoader = new createjs.LoadQueue(true);
     fileLoader.on("complete", handle_ImageLoadComplete);
 
-    fileLoader.loadFile({
-        src: "../images/sprites/cards_sprite.png",
-        id: "all_cards",
-        crossOrigin: true,
-        type: createjs.Types.IMAGE,
+    // fileLoader.loadFile(
+    //     {
+    //         src: "../images/sprites/cards_sprite.png",
+    //         id: "all_cards",
+    //         crossOrigin: true,
+    //         type: createjs.Types.IMAGE,
+    //     }
+    // );
+    fileLoader.loadManifest({
+        manifest: [
+            {
+                src: "../images/sprites/cards_sprite.png",
+                id: "all_cards",
+                crossOrigin: true,
+                type: createjs.Types.IMAGE,
+            },
+            {
+                src: "../images/interface.jpg",
+                id: "interface_img",
+                crossOrigin: true,
+                type: createjs.Types.IMAGE,
+            },
+        ],
     });
     // gameLogic();
 }
 
 function handle_ImageLoadComplete(e) {
+    console.log("██: : :handle_ImageLoadComplete: : : █ò█");
     var cardsNames = {};
     cardsNames.animations = {};
     allCards = makeRegularDeck();
+
     allCards.forEach(function (poppedCard, popped_index) {
         // console.log(poppedCard.suit);
         if (poppedCard.suit !== null && poppedCard.suit !== undefined) {
             poppedCard["symbol"] = getSuitCode(poppedCard.suit);
         } else {
             //   poppedCard["symbol"] = null;
+            //playing card back expected...  https://graphemica.com/1F0A0
             poppedCard["symbol"] = "&#127136";
-            poppedCard["symbol"] = String.fromCharCode("0x01F0CB");
             poppedCard["symbol"] = String.fromCharCode("1F0A0");
         }
 
@@ -443,10 +553,52 @@ function handle_ImageLoadComplete(e) {
                 popped_index + 1,
             ];
         }
+        return allCards;
         // run: [0, 56,"all",.2],
     });
 
     console.log(allCards);
+
+    //allCards = kShuffle(allCards); // TODO: uses card backs, and doesn't work!
+    console.log(allCards[12]);
+    console.log(allCards[12].indexNum);
+
+    var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
+    var mapPiece = new createjs.Bitmap();
+    loadedMap.snapToPixel = true;
+    mapPiece = loadedMap.clone();
+    //TODO: update the canvas with the part of the image that has loaded as a background...
+
+    /*
+    
+    using:
+    direction vector
+    
+    map image abs. top bound
+    map image abs. right bound
+    map image abs. bottom bound
+    map image abs. left bound
+     
+    screen top bound
+    screen right bound
+    screen bottom bound
+    screen left bound
+
+    variable percentage of overlap?
+
+    scroll distance toward tr (drag)
+    scroll distance toward tl (drag)
+    scroll distance toward br (drag)
+    scroll distance toward bl (drag)
+
+    */
+    mapPiece.cache(0, 0, 320, 240);
+    var mapContainer = new createjs.Container();
+
+    mapContainer.addChild(mapPiece);
+    image_content.addChild(mapContainer);
+
+    return;
 
     var cardsImg = new createjs.Bitmap(e.target.getResult("all_cards")).image;
     cardsImg.snapToPixel = true;
@@ -503,6 +655,7 @@ function handle_ImageLoadComplete(e) {
             }
             var another = cardsAll.clone();
             another.gotoAndStop(another.spriteSheet.getAnimations()[arrIdx]);
+
             another.addEventListener("click", function () {
                 if (!flipped) {
                     another.gotoAndStop(
@@ -514,11 +667,10 @@ function handle_ImageLoadComplete(e) {
                     );
                 }
                 flipped = !flipped;
-                // console.log(
-                //     another.spriteSheet._data[
-                //         another.spriteSheet.getAnimations()[arrIdx]
-                //     ]["name"]
-                // );
+
+                //TODO: fix the reference to the corrected (and selected) menu
+                //        console.log("arrMember:::", arrMember.indexNum[50]);
+
                 outputTextClip.updateText(
                     allCards[arrIdx]["suit"] !== undefined
                         ? allCards[arrIdx]["name"] +
@@ -538,8 +690,8 @@ function handle_ImageLoadComplete(e) {
 
             another.rotation =
                 binaryChoice === 0
-                    ? Math.random() * 3
-                    : Math.random() * (3 * -1);
+                    ? Math.random() * 1.5
+                    : Math.random() * (1.5 * -1);
             another.regX = 0;
             another.regY = 0;
             another.x = x_Pos + xS * xC;
@@ -580,7 +732,8 @@ function handle_ImageLoadComplete(e) {
     cardContainer.scaleX = fsBiggest.scaleRatio;
     cardContainer.scaleY = fsBiggest.scaleRatio;
 
-    image_content.addChild(cardContainer);
+    //  image_content.addChild(cardContainer);
+
     // image_content.addChild(cardDeckContainer);
     // displaySingleCard(getSuitCode("hearts"));
 }
@@ -1318,6 +1471,7 @@ function makeRegularDeck() {
         suit_color: "black",
         ink_color: "various",
     };
+
     let card_a_c = card_01_c;
 
     if ((acesLow = false)) {
@@ -1445,6 +1599,13 @@ function makeRegularDeck() {
     if (isUsingJokers) {
         deck = deck.concat(countingJokersIn);
     }
+
+    /* this is serving as a quick way to add an "raw" index number */
+
+    deck.forEach(function (member, memIndex) {
+        member["indexNum"] = memIndex;
+    });
+    console.log("deck.forEach::: ", deck);
 
     return deck;
 }

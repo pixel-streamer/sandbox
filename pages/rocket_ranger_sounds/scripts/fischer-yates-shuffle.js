@@ -1,7 +1,7 @@
 function kShuffle(shuffleThis) {
   //console.log("FischerYatesKnuthShuffle");
   //http://extremelearning.com.au/fisher-yates-algorithm/
-  var arr = shuffleThis;
+  var arr = shuffleThis.slice();
   function knuthShuffle(shuffleThis) {
     var rand, temp, i;
 

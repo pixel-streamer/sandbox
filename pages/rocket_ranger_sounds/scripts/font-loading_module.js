@@ -89,7 +89,7 @@ function createLongGoogleFontLinkHref() {
         // "Kumar One",
         // "Chicle",
         // "Nosifer",
-        // "Mystery Quest",
+         "Mystery Quest",
         // "Stint Ultra Expanded",
         // "Flavors",
         // "Girassol",
