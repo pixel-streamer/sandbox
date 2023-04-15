@@ -519,6 +519,12 @@ function playGame() {
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
             },
+            {
+                src: "./assets/legend-data-pass1_copy.xml",
+                id: "cities",
+                crossOrigin: true,
+                type: createjs.Types.XML,
+            },
         ],
     });
     // gameLogic();
@@ -557,9 +563,10 @@ function handle_ImageLoadComplete(e) {
         // run: [0, 56,"all",.2],
     });
 
-    console.log(allCards);
+    //console.log(allCards);
 
-    //allCards = kShuffle(allCards); // TODO: uses card backs, and doesn't work!
+    //allCards = kShuffle(allCards);
+    // TODO: uses card backs, and doesn't work!
     console.log(allCards[12]);
     console.log(allCards[12].indexNum);
 
@@ -598,6 +605,50 @@ function handle_ImageLoadComplete(e) {
     mapContainer.addChild(mapPiece);
     image_content.addChild(mapContainer);
 
+    var cities = e.target.getResult("cities").querySelectorAll("location");
+    var towns = [];
+
+    var insideParenRE = /(?:\()(?:.*?)(?:\))/gm;
+    cities.forEach(function (param2) {
+        var hasParens = false;
+        var parenLocation = 0;
+        var location_name =
+            param2.getElementsByTagName("location_name")[0].firstChild.data;
+        /*
+        <root>
+            <location>
+                <location_name>Tol-in-Gaurhoth (Isle of Werewolves) (Sauron's Isle) (Tol Sirion)</location_name>
+                <lattitude>731</lattitude>
+                <longitude>159</longitude>
+                <legend_code>0</legend_code>
+            </location>
+        </root>
+        */
+        parenLocation = location_name.indexOf("(");
+        if (!(parenLocation === -1)) {
+            hasParens = true;
+        }
+        if (hasParens) {
+            //  var location_first_part = location_name.substring(0, parenLocation);
+            // var location_first_part = location_name.matchAll(insideParenRE).split(" ")[0];
+            var location_first_part =
+                location_name.substring(0, parenLocation) +
+                "\n" +
+                location_name.match(insideParenRE).join("\n");
+        } else {
+            var location_first_part = location_name;
+        }
+
+        var latitude =
+            param2.getElementsByTagName("lattitude")[0].firstChild.data;
+        var longitude =
+            param2.getElementsByTagName("longitude")[0].firstChild.data;
+
+        towns.push(location_first_part);
+        towns.push(latitude);
+        towns.push(longitude);
+    });
+    console.log(towns.join("\n"));
     return;
 
     var cardsImg = new createjs.Bitmap(e.target.getResult("all_cards")).image;
@@ -1605,7 +1656,7 @@ function makeRegularDeck() {
     deck.forEach(function (member, memIndex) {
         member["indexNum"] = memIndex;
     });
-    console.log("deck.forEach::: ", deck);
+    // console.log("deck.forEach::: ", deck);
 
     return deck;
 }

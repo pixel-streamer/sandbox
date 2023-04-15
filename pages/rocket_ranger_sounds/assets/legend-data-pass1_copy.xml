@@ -1,0 +1,3657 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mapping_test xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<location>
+		<location_name>Ered Lómin (Echoing Mountains)</location_name>
+		<lattitude>775</lattitude>
+		<longitude>50</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Hithlum (Hísilómë) (Mist Shadow)</location_name>
+		<lattitude>775</lattitude>
+		<longitude>100</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Thangorodrim (Mountains of Oppression) [35k ft]</location_name>
+		<lattitude>787</lattitude>
+		<longitude>181</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Balrogs (Valaraukar)</location_name>
+		<lattitude>825</lattitude>
+		<longitude>187</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lammoth (The Great Echo)</location_name>
+		<lattitude>750</lattitude>
+		<longitude>50</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Losgar</location_name>
+		<lattitude>735</lattitude>
+		<longitude>50</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Cirith Ninniach (Rainbow Cleft)</location_name>
+		<lattitude>743</lattitude>
+		<longitude>79</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Annon-in-Gelydh (Gate of the Noldor)</location_name>
+		<lattitude>744</lattitude>
+		<longitude>87</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Vinyamar (on Taras-ness)</location_name>
+		<lattitude>694</lattitude>
+		<longitude>15</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mount Taras (high horn)</location_name>
+		<lattitude>690</lattitude>
+		<longitude>23</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nevrast (hither shore)</location_name>
+		<lattitude>715</lattitude>
+		<longitude>50</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Linaewen (lake of birds)</location_name>
+		<lattitude>706</lattitude>
+		<longitude>68</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Woods of Núath</location_name>
+		<lattitude>693</lattitude>
+		<longitude>81</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dor-lómin (Land of Echoes)</location_name>
+		<lattitude>731</lattitude>
+		<longitude>100</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nen Lalaith (laughing stream)</location_name>
+		<lattitude>726</lattitude>
+		<longitude>110</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Amon Darthir</location_name>
+		<lattitude>715</lattitude>
+		<longitude>106</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ered Wethrin (Mountains of Shadow)</location_name>
+		<lattitude>718</lattitude>
+		<longitude>118</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Eithel Ivrin</location_name>
+		<lattitude>706</lattitude>
+		<longitude>109</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Ginglith</location_name>
+		<lattitude>675</lattitude>
+		<longitude>100</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tumhalad</location_name>
+		<lattitude>675</lattitude>
+		<longitude>106</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Narog (Rushing)</location_name>
+		<lattitude>675</lattitude>
+		<longitude>110</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mithrim (grey people)</location_name>
+		<lattitude>748</lattitude>
+		<longitude>137</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lake Mithrim</location_name>
+		<lattitude>750</lattitude>
+		<longitude>125</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ered Mithrim</location_name>
+		<lattitude>735</lattitude>
+		<longitude>121</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tol-in-Gaurhoth (Isle of Werewolves) (Sauron's Isle) (Tol Sirion)</location_name>
+		<lattitude>731</lattitude>
+		<longitude>159</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Glithui</location_name>
+		<lattitude>712</lattitude>
+		<longitude>133</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Malduin (gold river)</location_name>
+		<lattitude>712</lattitude>
+		<longitude>141</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Teiglin (Taeglin) (boundary-singer)</location_name>
+		<lattitude>712</lattitude>
+		<longitude>127</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Crossings of Teiglin (Taeglin) (boundary-singer)</location_name>
+		<lattitude>690</lattitude>
+		<longitude>137</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dor-Cúarthol (The Land of Bow and Helm)</location_name>
+		<lattitude>675</lattitude>
+		<longitude>125</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Moors of the Nibin-noeg (Petty-dwarves)</location_name>
+		<lattitude>667</lattitude>
+		<longitude>137</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Amon Rûdh (The Bald Hill) (Sharbhund)</location_name>
+		<lattitude>669</lattitude>
+		<longitude>156</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Eithel Sirion (well of the great river)</location_name>
+		<lattitude>758</lattitude>
+		<longitude>154</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Barad Eithel (tower of the well)</location_name>
+		<lattitude>756</lattitude>
+		<longitude>158</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Rivil</location_name>
+		<lattitude>737</lattitude>
+		<longitude>183</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Echoriath (Encircling Mountains)</location_name>
+		<lattitude>731</lattitude>
+		<longitude>183</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Sirion (Great River)</location_name>
+		<lattitude>750</lattitude>
+		<longitude>160</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Crissaegrim (abode of eagles)</location_name>
+		<lattitude>718</lattitude>
+		<longitude>143</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dimbar (sad)</location_name>
+		<lattitude>693</lattitude>
+		<longitude>175</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Forest of Brethil</location_name>
+		<lattitude>698</lattitude>
+		<longitude>156</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Haudh-en-Elleth (Mound of the Elf-maid)</location_name>
+		<lattitude>687</lattitude>
+		<longitude>144</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ephel Brandir (encircling fence of lordly man)</location_name>
+		<lattitude>693</lattitude>
+		<longitude>154</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Pass of Anach</location_name>
+		<lattitude>723</lattitude>
+		<longitude>191</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nan Dungortheb (Valley of Dreadful Death)</location_name>
+		<lattitude>706</lattitude>
+		<longitude>200</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Forest of Neldoreth (host of beeches) (Taur-na-neldor)</location_name>
+		<lattitude>676</lattitude>
+		<longitude>200</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Esgalduin (hidden river)</location_name>
+		<lattitude>704</lattitude>
+		<longitude>226</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Brithon (gravel river)</location_name>
+		<lattitude>667</lattitude>
+		<longitude>48</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Falas (shore)</location_name>
+		<lattitude>637</lattitude>
+		<longitude>50</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Barad Nimras</location_name>
+		<lattitude>622</lattitude>
+		<longitude>57</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Nenning</location_name>
+		<lattitude>667</lattitude>
+		<longitude>71</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Taur-en-Faroth</location_name>
+		<lattitude>633</lattitude>
+		<longitude>108</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Ringwil</location_name>
+		<lattitude>648</lattitude>
+		<longitude>108</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>West Beleriand</location_name>
+		<lattitude>625</lattitude>
+		<longitude>112</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Arvernien</location_name>
+		<lattitude>600</lattitude>
+		<longitude>125</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nimbrethil (white birches) (Birchwood)</location_name>
+		<lattitude>578</lattitude>
+		<longitude>123</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Talath Dirnen (Guarded Plain)</location_name>
+		<lattitude>656</lattitude>
+		<longitude>132</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Bar-en-Danwedh (house of ransom) (Camp of the Faithful) (Echad i Sedryn) (Bar-en-Nibin-noeg)</location_name>
+		<lattitude>669</lattitude>
+		<longitude>156</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Methed-en-glad (end of the wood)</location_name>
+		<lattitude>671</lattitude>
+		<longitude>169</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nivrim (west-march)</location_name>
+		<lattitude>667</lattitude>
+		<longitude>175</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Amon Ethir (Hill of Spies)</location_name>
+		<lattitude>637</lattitude>
+		<longitude>128</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Gates of Sirion</location_name>
+		<lattitude>625</lattitude>
+		<longitude>155</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Forest of Region (holly-tree forest)</location_name>
+		<lattitude>672</lattitude>
+		<longitude>200</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Doriath (Eglador) (land of the forsaken people)</location_name>
+		<lattitude>674</lattitude>
+		<longitude>200</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nan-tathren (valley of the willows)</location_name>
+		<lattitude>600</lattitude>
+		<longitude>156</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Cape Balar</location_name>
+		<lattitude>567</lattitude>
+		<longitude>98</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mouths of Sirion</location_name>
+		<lattitude>573</lattitude>
+		<longitude>156</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Bay of Balar</location_name>
+		<lattitude>531</lattitude>
+		<longitude>137</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Isle of Balar</location_name>
+		<lattitude>518</lattitude>
+		<longitude>100</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Aman (blessed realm) (Undying Lands)</location_name>
+		<lattitude>408</lattitude>
+		<longitude>96</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Enchanted Isles</location_name>
+		<lattitude>381</lattitude>
+		<longitude>100</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Formenos (northern fortress)</location_name>
+		<lattitude>381</lattitude>
+		<longitude>56</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Plain of Valinor (land of the powers) (Guarded Realm)</location_name>
+		<lattitude>419</lattitude>
+		<longitude>56</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Pelóri (fencing mountains) (Mountains of Defence)</location_name>
+		<lattitude>400</lattitude>
+		<longitude>67</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Araman (outside Aman)</location_name>
+		<lattitude>456</lattitude>
+		<longitude>81</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Oiomúrë (ever-shadowed)</location_name>
+		<lattitude>475</lattitude>
+		<longitude>100</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Helcaraxë (Grinding Ice)</location_name>
+		<lattitude>481</lattitude>
+		<longitude>112</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Elwing's Tower</location_name>
+		<lattitude>433</lattitude>
+		<longitude>83</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ekkaia (Encircling Sea) (Outer Sea)</location_name>
+		<lattitude>367</lattitude>
+		<longitude>37</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Híri</location_name>
+		<lattitude>369</lattitude>
+		<longitude>44</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Sirnúmen (Kelusindi)</location_name>
+		<lattitude>375</lattitude>
+		<longitude>44</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tirion (great watch-tower)</location_name>
+		<lattitude>366</lattitude>
+		<longitude>72</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Calacirya (Pass of Light)</location_name>
+		<lattitude>364</lattitude>
+		<longitude>67</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Bay of Eldamar</location_name>
+		<lattitude>367</lattitude>
+		<longitude>75</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Túna (hill)</location_name>
+		<lattitude>367</lattitude>
+		<longitude>71</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tol Eressëa (The Lonely Isle)</location_name>
+		<lattitude>363</lattitude>
+		<longitude>89</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ilmarin</location_name>
+		<lattitude>356</lattitude>
+		<longitude>67</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Valmar (Máhanaxar)</location_name>
+		<lattitude>356</lattitude>
+		<longitude>50</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Telperion (White Tree)</location_name>
+		<lattitude>349</lattitude>
+		<longitude>52</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Laurelin (Golden Tree)</location_name>
+		<lattitude>351</lattitude>
+		<longitude>46</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ezellohar (Green Mound) (Corollairë)</location_name>
+		<lattitude>346</lattitude>
+		<longitude>50</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Taniquetil (high white peak) (Amon Uilos) (Elerrína) (Oiolossë) [tallest Pelóri]</location_name>
+		<lattitude>343</lattitude>
+		<longitude>67</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Halls of Oromë</location_name>
+		<lattitude>333</lattitude>
+		<longitude>54</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Aulë's Great Court</location_name>
+		<lattitude>337</lattitude>
+		<longitude>68</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Forests of Oromë</location_name>
+		<lattitude>318</lattitude>
+		<longitude>56</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Shadowy Seas</location_name>
+		<lattitude>325</lattitude>
+		<longitude>100</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Pastures of Yavanna (giver of fruits) (Kementári)</location_name>
+		<lattitude>308</lattitude>
+		<longitude>46</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Avathar (shadows)</location_name>
+		<lattitude>300</lattitude>
+		<longitude>79</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Haerast</location_name>
+		<lattitude>287</lattitude>
+		<longitude>85</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Belegaer (great dread) (The Great Sea)</location_name>
+		<lattitude>375</lattitude>
+		<longitude>375</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tolfalas (shoreland isle)</location_name>
+		<lattitude>223</lattitude>
+		<longitude>765</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Númenor (Akallabêth) (Anadûnê) (Andor) (Atalantë) (Elenna·nórë) (Mar-nu-Falmar) (Starwards) (Yôzâyan)</location_name>
+		<lattitude>181</lattitude>
+		<longitude>125</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>North Cape</location_name>
+		<lattitude>166</lattitude>
+		<longitude>131</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Bay of Andúnië</location_name>
+		<lattitude>125</lattitude>
+		<longitude>31</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Bay of Eldanna (towards the Eldar)</location_name>
+		<lattitude>93</lattitude>
+		<longitude>69</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Andúnië (sunset)</location_name>
+		<lattitude>125</lattitude>
+		<longitude>67</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tower of Sorontil (eagle horn)</location_name>
+		<lattitude>160</lattitude>
+		<longitude>119</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Forostar (Northlands)</location_name>
+		<lattitude>143</lattitude>
+		<longitude>118</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ondosto (fortress of stone)</location_name>
+		<lattitude>131</lattitude>
+		<longitude>96</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Hyarastorni</location_name>
+		<lattitude>127</lattitude>
+		<longitude>119</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Orrostar (Eastlands)</location_name>
+		<lattitude>125</lattitude>
+		<longitude>175</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Bay of Rómenna</location_name>
+		<lattitude>106</lattitude>
+		<longitude>175</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tower of Oromet</location_name>
+		<lattitude>122</lattitude>
+		<longitude>68</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Andustar (Westlands)</location_name>
+		<lattitude>118</lattitude>
+		<longitude>75</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Meneltarma (Pillar of Heaven) [14k ft]</location_name>
+		<lattitude>112</lattitude>
+		<longitude>116</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tol Uinen</location_name>
+		<lattitude>111</lattitude>
+		<longitude>144</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Calmindon (Light-tower)</location_name>
+		<lattitude>111</lattitude>
+		<longitude>144</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Nunduinë</location_name>
+		<lattitude>106</lattitude>
+		<longitude>100</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Arandor (Kingsland)</location_name>
+		<lattitude>114</lattitude>
+		<longitude>129</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Rómenna (eastwards)</location_name>
+		<lattitude>107</lattitude>
+		<longitude>144</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Armenelos (royal fortress of heaven)</location_name>
+		<lattitude>107</lattitude>
+		<longitude>128</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nísinen</location_name>
+		<lattitude>99</lattitude>
+		<longitude>87</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Emerië (sheep-land)</location_name>
+		<lattitude>94</lattitude>
+		<longitude>106</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mittalmar</location_name>
+		<lattitude>96</lattitude>
+		<longitude>125</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>White House of Erendis</location_name>
+		<lattitude>93</lattitude>
+		<longitude>108</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nísimaldar (Fragrant Trees)</location_name>
+		<lattitude>93</lattitude>
+		<longitude>83</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Hyarrostar</location_name>
+		<lattitude>87</lattitude>
+		<longitude>169</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Siril</location_name>
+		<lattitude>79</lattitude>
+		<longitude>120</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Hyarnustar (Southwestlands)</location_name>
+		<lattitude>69</lattitude>
+		<longitude>81</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nindamos</location_name>
+		<lattitude>75</lattitude>
+		<longitude>127</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Northern Waste</location_name>
+		<lattitude>867</lattitude>
+		<longitude>340</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ered Engrin (Iron Mountains)</location_name>
+		<lattitude>800</lattitude>
+		<longitude>300</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dor Daedeloth (Land of the Shadow of Dread)</location_name>
+		<lattitude>766</lattitude>
+		<longitude>225</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Anfauglith (Ard-galen/Dor-nu-Fauglith/Gasping Dust)</location_name>
+		<lattitude>762</lattitude>
+		<longitude>300</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ladros (plain of dew)</location_name>
+		<lattitude>737</lattitude>
+		<longitude>252</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lothlann (wide and empty)</location_name>
+		<lattitude>740</lattitude>
+		<longitude>318</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dorthonion (land of pines) (Taur-nu-Fuin) (Tol Fuin)</location_name>
+		<lattitude>731</lattitude>
+		<longitude>218</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tarn Aeluin (blue mountain lake)</location_name>
+		<lattitude>732</lattitude>
+		<longitude>239</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>March of Maedhros</location_name>
+		<lattitude>722</lattitude>
+		<longitude>290</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ered Gorgoroth (Mountains of Terror)</location_name>
+		<lattitude>725</lattitude>
+		<longitude>231</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Himring (ever-cold) (Himling)</location_name>
+		<lattitude>716</lattitude>
+		<longitude>279</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Pass of Aglon (pass between high walls)</location_name>
+		<lattitude>717</lattitude>
+		<longitude>270</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Maglor's Gap</location_name>
+		<lattitude>712</lattitude>
+		<longitude>306</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ered Luin (Blue Mountains) [between 4.5k &amp; 12k ft]</location_name>
+		<lattitude>700</lattitude>
+		<longitude>367</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Iant Iaur (old bridge)</location_name>
+		<lattitude>698</lattitude>
+		<longitude>221</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dor Dínen (Silent Land)</location_name>
+		<lattitude>706</lattitude>
+		<longitude>231</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Himlad (cool plain)</location_name>
+		<lattitude>700</lattitude>
+		<longitude>256</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Celon</location_name>
+		<lattitude>693</lattitude>
+		<longitude>271</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Arthórien (hidden or fenced realm)</location_name>
+		<lattitude>673</lattitude>
+		<longitude>241</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Estolad (Encampment)</location_name>
+		<lattitude>668</lattitude>
+		<longitude>256</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nan Elmoth (vale of the star pool)</location_name>
+		<lattitude>679</lattitude>
+		<longitude>264</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Little Gelion</location_name>
+		<lattitude>700</lattitude>
+		<longitude>300</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Greater Gelion</location_name>
+		<lattitude>700</lattitude>
+		<longitude>325</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lake Helevorn (black glass lake)</location_name>
+		<lattitude>700</lattitude>
+		<longitude>341</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Forlindon (north Lindon)</location_name>
+		<lattitude>683</lattitude>
+		<longitude>325</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Thargelion (beyond Gelion) (Talath Rhúnen) (Dor Caranthir)</location_name>
+		<lattitude>662</lattitude>
+		<longitude>318</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Girdle of Melian</location_name>
+		<lattitude>650</lattitude>
+		<longitude>221</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>East Beleriand</location_name>
+		<lattitude>631</lattitude>
+		<longitude>256</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Andram (The Long Wall)</location_name>
+		<lattitude>612</lattitude>
+		<longitude>225</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ramdal (Wall's End)</location_name>
+		<lattitude>604</lattitude>
+		<longitude>262</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Amon Ereb</location_name>
+		<lattitude>606</lattitude>
+		<longitude>283</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Gelion</location_name>
+		<lattitude>600</lattitude>
+		<longitude>305</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mount Dolmed (wet head)</location_name>
+		<lattitude>656</lattitude>
+		<longitude>354</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dwarf-road</location_name>
+		<lattitude>635</lattitude>
+		<longitude>337</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Ascar (rushing) (Rathlóriel) (Goldenbed)</location_name>
+		<lattitude>632</lattitude>
+		<longitude>337</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Thalos (torrent)</location_name>
+		<lattitude>612</lattitude>
+		<longitude>325</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Legolin (free-running)</location_name>
+		<lattitude>594</lattitude>
+		<longitude>329</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ossiriand (Land of Seven Rivers)</location_name>
+		<lattitude>587</lattitude>
+		<longitude>312</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Wicked Dwarves (Nauglath)</location_name>
+		<lattitude>618</lattitude>
+		<longitude>362</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Gulf of Lhûn (Lune)</location_name>
+		<lattitude>640</lattitude>
+		<longitude>400</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Taur-im-Duinath (Forest Between Rivers)</location_name>
+		<lattitude>537</lattitude>
+		<longitude>225</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Brilthor</location_name>
+		<lattitude>575</lattitude>
+		<longitude>312</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lindon (land of music)</location_name>
+		<lattitude>562</lattitude>
+		<longitude>325</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Duilwen</location_name>
+		<lattitude>556</lattitude>
+		<longitude>312</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tol Galen (Green Isle) (Dor Firn-i-Guinar) (Land of the Dead that Live)</location_name>
+		<lattitude>532</lattitude>
+		<longitude>341</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Adurant (double course)</location_name>
+		<lattitude>531</lattitude>
+		<longitude>300</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Elendil's ships</location_name>
+		<lattitude>179</lattitude>
+		<longitude>204</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Isildur's ships</location_name>
+		<lattitude>164</lattitude>
+		<longitude>200</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Anárion's ships</location_name>
+		<lattitude>169</lattitude>
+		<longitude>183</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dragons</location_name>
+		<lattitude>850</lattitude>
+		<longitude>400</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Forochel (northern ice)</location_name>
+		<lattitude>780</lattitude>
+		<longitude>460</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Little Lune (Lhûn)</location_name>
+		<lattitude>741</lattitude>
+		<longitude>412</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Lhûn (Lune)</location_name>
+		<lattitude>771</lattitude>
+		<longitude>425</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Hills of Evendim (Emyn Uial)</location_name>
+		<lattitude>725</lattitude>
+		<longitude>487</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lake Nenuial (Evendim) (evening twilight)</location_name>
+		<lattitude>700</lattitude>
+		<longitude>492</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Brandywine</location_name>
+		<lattitude>693</lattitude>
+		<longitude>521</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Hobbits (Halflings)</location_name>
+		<lattitude>675</lattitude>
+		<longitude>450</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Annúminas</location_name>
+		<lattitude>693</lattitude>
+		<longitude>496</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Greenfields</location_name>
+		<lattitude>679</lattitude>
+		<longitude>525</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>The Shire (fiefdom land)</location_name>
+		<lattitude>675</lattitude>
+		<longitude>500</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tower Hills (Emyn Beraid)</location_name>
+		<lattitude>633</lattitude>
+		<longitude>437</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Harlindon (south Lindon)</location_name>
+		<lattitude>600</lattitude>
+		<longitude>425</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Eriador (Lone-lands)</location_name>
+		<lattitude>608</lattitude>
+		<longitude>466</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>White Towers</location_name>
+		<lattitude>650</lattitude>
+		<longitude>441</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Far Downs</location_name>
+		<lattitude>650</lattitude>
+		<longitude>462</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Arthedain (Edain realm)</location_name>
+		<lattitude>656</lattitude>
+		<longitude>481</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Hills of Scary</location_name>
+		<lattitude>656</lattitude>
+		<longitude>522</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Hobbiton</location_name>
+		<lattitude>652</lattitude>
+		<longitude>518</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Bywater</location_name>
+		<lattitude>646</lattitude>
+		<longitude>520</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Brandywine Bridge (Bridge of Stonebows) (Great Bridge)</location_name>
+		<lattitude>646</lattitude>
+		<longitude>531</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Buckland</location_name>
+		<lattitude>637</lattitude>
+		<longitude>537</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Withywindle (willow-winding)</location_name>
+		<lattitude>637</lattitude>
+		<longitude>541</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Old Forest</location_name>
+		<lattitude>633</lattitude>
+		<longitude>546</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Wights</location_name>
+		<lattitude>637</lattitude>
+		<longitude>555</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Baranduin (Brandywine) (Bralda-hîm) (Branda-nîn)</location_name>
+		<lattitude>612</lattitude>
+		<longitude>543</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tookland</location_name>
+		<lattitude>641</lattitude>
+		<longitude>512</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tuckborough</location_name>
+		<lattitude>637</lattitude>
+		<longitude>500</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Green Hill Country</location_name>
+		<lattitude>625</lattitude>
+		<longitude>518</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>White Downs</location_name>
+		<lattitude>625</lattitude>
+		<longitude>493</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Michel Delving (great excavation)</location_name>
+		<lattitude>635</lattitude>
+		<longitude>483</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Minhiriath (between two rivers)</location_name>
+		<lattitude>537</lattitude>
+		<longitude>518</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Eryn Vorn (black woods)</location_name>
+		<lattitude>487</lattitude>
+		<longitude>437</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ras Morthil (Cape of Andrast)</location_name>
+		<lattitude>275</lattitude>
+		<longitude>500</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mountains of Angmar</location_name>
+		<lattitude>800</lattitude>
+		<longitude>600</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Angmar (home of iron)</location_name>
+		<lattitude>800</lattitude>
+		<longitude>667</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Giants</location_name>
+		<lattitude>787</lattitude>
+		<longitude>706</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Wraiths</location_name>
+		<lattitude>783</lattitude>
+		<longitude>631</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Arnor (land of the king) (The Northern Kingdom)</location_name>
+		<lattitude>762</lattitude>
+		<longitude>550</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Misty Mountains (Hithlaegir) [12k ft]</location_name>
+		<lattitude>700</lattitude>
+		<longitude>725</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mount Gram (fierce king)</location_name>
+		<lattitude>730</lattitude>
+		<longitude>693</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Hoardale</location_name>
+		<lattitude>687</lattitude>
+		<longitude>679</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ettenmoors (Coldfells) (Troll-fells)</location_name>
+		<lattitude>721</lattitude>
+		<longitude>667</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>North Downs</location_name>
+		<lattitude>712</lattitude>
+		<longitude>567</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Fornost Erain (kings north fortress) (Deadmen's Dike) (Kings Norbury)</location_name>
+		<lattitude>700</lattitude>
+		<longitude>550</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Weather Hills</location_name>
+		<lattitude>675</lattitude>
+		<longitude>587</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Trolls</location_name>
+		<lattitude>680</lattitude>
+		<longitude>693</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Rhudaur (east forest)</location_name>
+		<lattitude>681</lattitude>
+		<longitude>668</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Bree-land (land around the hill)</location_name>
+		<lattitude>668</lattitude>
+		<longitude>568</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Great East Road</location_name>
+		<lattitude>660</lattitude>
+		<longitude>631</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Last Bridge (Bridge of Mitheithel)</location_name>
+		<lattitude>654</lattitude>
+		<longitude>662</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Trollshaws (troll-woods)</location_name>
+		<lattitude>650</lattitude>
+		<longitude>687</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Moria (black chasm) (Khazad-dûm) (dwarf-mansions)</location_name>
+		<lattitude>675</lattitude>
+		<longitude>725</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Caradhras (Redhorn) (Barazinbar) (The Cruel)</location_name>
+		<lattitude>575</lattitude>
+		<longitude>706</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Chetwood</location_name>
+		<lattitude>654</lattitude>
+		<longitude>564</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Forsaken Inn</location_name>
+		<lattitude>643</lattitude>
+		<longitude>566</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Prancing Pony</location_name>
+		<lattitude>650</lattitude>
+		<longitude>558</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Bree (hill)</location_name>
+		<lattitude>650</lattitude>
+		<longitude>558</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Andrath (long climb)</location_name>
+		<lattitude>625</lattitude>
+		<longitude>564</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>South Downs</location_name>
+		<lattitude>618</lattitude>
+		<longitude>600</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Cardolan (red hill land)</location_name>
+		<lattitude>600</lattitude>
+		<longitude>600</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Hoarwell (Mitheithel) (pale grey spring)</location_name>
+		<lattitude>612</lattitude>
+		<longitude>657</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lone-lands</location_name>
+		<lattitude>648</lattitude>
+		<longitude>637</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dúnedain</location_name>
+		<lattitude>634</lattitude>
+		<longitude>675</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>The Angle</location_name>
+		<lattitude>625</lattitude>
+		<longitude>673</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Bruinen (Loudwater)</location_name>
+		<lattitude>612</lattitude>
+		<longitude>677</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Greenway (Great Road) (North Road) (North-South Road) (Old South Road) (Royal Road)</location_name>
+		<lattitude>575</lattitude>
+		<longitude>581</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tharbad (crossway)</location_name>
+		<lattitude>552</lattitude>
+		<longitude>595</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Gwathló (Greyflood) (Agathurush) (Gwathir)</location_name>
+		<lattitude>525</lattitude>
+		<longitude>560</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dunland (brown land)</location_name>
+		<lattitude>485</lattitude>
+		<longitude>625</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Methedras</location_name>
+		<lattitude>487</lattitude>
+		<longitude>668</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Eregion (Hollin) (land of holly)</location_name>
+		<lattitude>571</lattitude>
+		<longitude>655</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ost-in-Edhil (fortified city of the elves)</location_name>
+		<lattitude>550</lattitude>
+		<longitude>650</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Hollin Gate (West-gate) (Doors of Durin) (Elven Door)</location_name>
+		<lattitude>556</lattitude>
+		<longitude>704</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Sirannon (Gate-stream of Khazad-dûm)</location_name>
+		<lattitude>548</lattitude>
+		<longitude>668</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Glanduin (border river)</location_name>
+		<lattitude>545</lattitude>
+		<longitude>675</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ents (Shepherds of the Trees)</location_name>
+		<lattitude>506</lattitude>
+		<longitude>712</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Enedwaith (land of the middle-folk)</location_name>
+		<lattitude>445</lattitude>
+		<longitude>562</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Angren (Isen) (iron river)</location_name>
+		<lattitude>418</lattitude>
+		<longitude>612</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Drúwaith Iaur (Old Púkel-land)</location_name>
+		<lattitude>387</lattitude>
+		<longitude>562</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nan Curunír (wizard's vale)</location_name>
+		<lattitude>466</lattitude>
+		<longitude>675</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Wellinghall (hall beneath the spring)</location_name>
+		<lattitude>464</lattitude>
+		<longitude>695</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Derndingle</location_name>
+		<lattitude>456</lattitude>
+		<longitude>700</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dol Baran (brown hill)</location_name>
+		<lattitude>434</lattitude>
+		<longitude>662</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Gap of Rohan</location_name>
+		<lattitude>425</lattitude>
+		<longitude>662</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Thrihyrne</location_name>
+		<lattitude>417</lattitude>
+		<longitude>679</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Adorn</location_name>
+		<lattitude>400</lattitude>
+		<longitude>650</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Harrowdale (temple valley)</location_name>
+		<lattitude>400</lattitude>
+		<longitude>683</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Starkhorn (spiked peak)</location_name>
+		<lattitude>400</lattitude>
+		<longitude>689</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Helm's Deep (Hornburg)</location_name>
+		<lattitude>412</lattitude>
+		<longitude>679</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Edoras (the courts)</location_name>
+		<lattitude>393</lattitude>
+		<longitude>716</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ered Nimrais (The White Mountains) [12.5k ft]</location_name>
+		<lattitude>375</lattitude>
+		<longitude>675</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Lefnui (fifth river)</location_name>
+		<lattitude>354</lattitude>
+		<longitude>612</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Pinnath Gelin (Green Hills)</location_name>
+		<lattitude>318</lattitude>
+		<longitude>643</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Anfalas (long shore) (Langstrand)</location_name>
+		<lattitude>296</lattitude>
+		<longitude>625</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Cobas Haven</location_name>
+		<lattitude>293</lattitude>
+		<longitude>716</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Calenhir</location_name>
+		<lattitude>318</lattitude>
+		<longitude>712</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Morthond (Blackroot)</location_name>
+		<lattitude>337</lattitude>
+		<longitude>704</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tarlang's Neck</location_name>
+		<lattitude>343</lattitude>
+		<longitude>725</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dwimorberg (The Haunted Mountain)</location_name>
+		<lattitude>375</lattitude>
+		<longitude>725</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Bay of Belfalas</location_name>
+		<lattitude>256</lattitude>
+		<longitude>662</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Gondorian ships</location_name>
+		<lattitude>175</lattitude>
+		<longitude>687</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Gondor (Stoningland) (South-kingdom)</location_name>
+		<lattitude>350</lattitude>
+		<longitude>675</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Corsairs' ships</location_name>
+		<lattitude>81</lattitude>
+		<longitude>675</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Forodwaith (Northern Waste)</location_name>
+		<lattitude>856</lattitude>
+		<longitude>750</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dwarves (Khazad)</location_name>
+		<lattitude>800</lattitude>
+		<longitude>750</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Framsburg</location_name>
+		<lattitude>741</lattitude>
+		<longitude>766</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Firth of Drengist (narrow firth)</location_name>
+		<lattitude>733</lattitude>
+		<longitude>67</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Langwell (well of the long river)</location_name>
+		<lattitude>746</lattitude>
+		<longitude>750</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Greylin (grey torrent)</location_name>
+		<lattitude>758</lattitude>
+		<longitude>779</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Forest River</location_name>
+		<lattitude>737</lattitude>
+		<longitude>818</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Langflood (long flooding river) (Anduin)</location_name>
+		<lattitude>725</lattitude>
+		<longitude>775</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Wargs</location_name>
+		<lattitude>705</lattitude>
+		<longitude>737</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Rhimdath (rush down) (Rhibdath) (Rhibdad)</location_name>
+		<lattitude>712</lattitude>
+		<longitude>762</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Forest Gate</location_name>
+		<lattitude>712</lattitude>
+		<longitude>787</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Elf-path</location_name>
+		<lattitude>703</lattitude>
+		<longitude>837</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Enchanted River</location_name>
+		<lattitude>700</lattitude>
+		<longitude>865</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Beornings</location_name>
+		<lattitude>787</lattitude>
+		<longitude>800</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Beorn's Hall</location_name>
+		<lattitude>679</lattitude>
+		<longitude>796</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Eagles' Eyrie (The Great Shelf)</location_name>
+		<lattitude>790</lattitude>
+		<longitude>737</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Great Eagles</location_name>
+		<lattitude>683</lattitude>
+		<longitude>750</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>High Pass (Cirith Forn en Andrath) (Pass of Imladris)</location_name>
+		<lattitude>662</lattitude>
+		<longitude>750</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Rivendell (Imladris) (Last Homely House) (First Homely House) (Karningul)</location_name>
+		<lattitude>658</lattitude>
+		<longitude>718</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Carrock</location_name>
+		<lattitude>679</lattitude>
+		<longitude>785</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Rhosgobel (brown fenced homestead)</location_name>
+		<lattitude>605</lattitude>
+		<longitude>829</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Ninglor (Gladden) (golden water)</location_name>
+		<lattitude>614</lattitude>
+		<longitude>775</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Celebdil (Silvertine) (Zirakzigil)</location_name>
+		<lattitude>587</lattitude>
+		<longitude>737</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Fanuidhol (Cloudyhead) (Bundushathûr)</location_name>
+		<lattitude>579</lattitude>
+		<longitude>750</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Redhorn Pass</location_name>
+		<lattitude>562</lattitude>
+		<longitude>712</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Nimrodel (river of the elf of the white cave)</location_name>
+		<lattitude>546</lattitude>
+		<longitude>725</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lórien (Lothlórien) (Dwimordene) (Golden Wood) (Hidden Land) (land of the valley of singing gold) (Laurelindórenan) (Lindórinand) (Lórinand)</location_name>
+		<lattitude>550</lattitude>
+		<longitude>750</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dimrill Dale (Azanulbizar) (shadowed streams) (Nanduhirion)</location_name>
+		<lattitude>562</lattitude>
+		<longitude>725</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mirrormere (Kheled-zâram)</location_name>
+		<lattitude>562</lattitude>
+		<longitude>721</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Narrows of the Forest</location_name>
+		<lattitude>586</lattitude>
+		<longitude>856</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Caras Galadhon (fortress of trees)</location_name>
+		<lattitude>534</lattitude>
+		<longitude>758</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Celebrant (Silverlode) (Kibil-nâla)</location_name>
+		<lattitude>534</lattitude>
+		<longitude>750</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Anduin (The Great River) (long river) (Langflood)</location_name>
+		<lattitude>512</lattitude>
+		<longitude>779</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Limlight (Limlaith) (Limlich) (Limliht) (Limlint)</location_name>
+		<lattitude>500</lattitude>
+		<longitude>762</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Field of Celebrant</location_name>
+		<lattitude>500</lattitude>
+		<longitude>787</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>North Undeep</location_name>
+		<lattitude>479</lattitude>
+		<longitude>804</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>South Undeep</location_name>
+		<lattitude>466</lattitude>
+		<longitude>815</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Wold</location_name>
+		<lattitude>465</lattitude>
+		<longitude>785</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Huorns</location_name>
+		<lattitude>460</lattitude>
+		<longitude>750</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Fangorn (Entwood) (Aldalóm) (Ambaróna) (East End) (Tauremorna)</location_name>
+		<lattitude>480</lattitude>
+		<longitude>725</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Spiders</location_name>
+		<lattitude>512</lattitude>
+		<longitude>862</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Rohan (horse-land) (Kingdom of the Rohirrim) (Riddermark) (Rochan) (Rochand) (Rochann)</location_name>
+		<lattitude>437</lattitude>
+		<longitude>725</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Westemnet</location_name>
+		<lattitude>425</lattitude>
+		<longitude>731</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Entwade</location_name>
+		<lattitude>416</lattitude>
+		<longitude>741</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Snowbourn (snow stream)</location_name>
+		<lattitude>400</lattitude>
+		<longitude>750</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dunharrow (hillside temple) (Dúnharg)</location_name>
+		<lattitude>381</lattitude>
+		<longitude>725</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Írensaga (iron saw)</location_name>
+		<lattitude>387</lattitude>
+		<longitude>737</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Folde</location_name>
+		<lattitude>383</lattitude>
+		<longitude>746</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Westfold</location_name>
+		<lattitude>412</lattitude>
+		<longitude>712</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Stone of Erech</location_name>
+		<lattitude>366</lattitude>
+		<longitude>731</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Great West Road</location_name>
+		<lattitude>375</lattitude>
+		<longitude>775</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Firien Wood (holy mountain wood) (Firienholt) (Halifirien Wood) (Whispering Wood) (Wood of Anwar) (Eryn Fuir) (North Wood) (Everholt)</location_name>
+		<lattitude>356</lattitude>
+		<longitude>793</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lamedon</location_name>
+		<lattitude>348</lattitude>
+		<longitude>756</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Anórien (Sun Land)</location_name>
+		<lattitude>364</lattitude>
+		<longitude>825</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Eastemnet</location_name>
+		<lattitude>425</lattitude>
+		<longitude>787</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Downs</location_name>
+		<lattitude>437</lattitude>
+		<longitude>787</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Entwash (Onodló) (flooding river of the ents)</location_name>
+		<lattitude>437</lattitude>
+		<longitude>760</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mouths of Entwash</location_name>
+		<lattitude>381</lattitude>
+		<longitude>825</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Cormallen (ring of gold)</location_name>
+		<lattitude>358</lattitude>
+		<longitude>862</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Cair Andros (Ship of Long-foam)</location_name>
+		<lattitude>356</lattitude>
+		<longitude>883</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Drúadan Forest</location_name>
+		<lattitude>346</lattitude>
+		<longitude>862</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>East Wall of Rohan</location_name>
+		<lattitude>437</lattitude>
+		<longitude>814</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Argonath (Pillars of the Kings)</location_name>
+		<lattitude>416</lattitude>
+		<longitude>821</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Amon Hen (Hill of the Eye) (Hill of Sight)</location_name>
+		<lattitude>404</lattitude>
+		<longitude>814</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nen Hithoel (mist-cool water)</location_name>
+		<lattitude>408</lattitude>
+		<longitude>821</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Emyn Muil (drear hills)</location_name>
+		<lattitude>431</lattitude>
+		<longitude>837</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Sarn Gebir (stone spikes) (The Rapids)</location_name>
+		<lattitude>418</lattitude>
+		<longitude>421</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Amon Lhaw (Hill of Hearing)</location_name>
+		<lattitude>404</lattitude>
+		<longitude>828</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dol Amroth (Headland of Amroth)</location_name>
+		<lattitude>289</lattitude>
+		<longitude>707</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Hills of Tarnost</location_name>
+		<lattitude>284</lattitude>
+		<longitude>758</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dor-en-Ernil (Land of the Prince)</location_name>
+		<lattitude>275</lattitude>
+		<longitude>769</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Linhir (fair stream)</location_name>
+		<lattitude>262</lattitude>
+		<longitude>796</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Ciril</location_name>
+		<lattitude>337</lattitude>
+		<longitude>758</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Calembel</location_name>
+		<lattitude>325</lattitude>
+		<longitude>775</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ethring</location_name>
+		<lattitude>316</lattitude>
+		<longitude>800</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tarnost</location_name>
+		<lattitude>308</lattitude>
+		<longitude>773</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Gilrain (star-wanderer)</location_name>
+		<lattitude>287</lattitude>
+		<longitude>806</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lebennin (land of five streams)</location_name>
+		<lattitude>300</lattitude>
+		<longitude>825</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Serni (shingles)</location_name>
+		<lattitude>287</lattitude>
+		<longitude>827</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ethir Anduin (Mouths of Anduin)</location_name>
+		<lattitude>241</lattitude>
+		<longitude>800</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Pelargir (garth of royal ships)</location_name>
+		<lattitude>274</lattitude>
+		<longitude>854</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Celos</location_name>
+		<lattitude>312</lattitude>
+		<longitude>840</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tumladen (steep-sided flat valley)</location_name>
+		<lattitude>318</lattitude>
+		<longitude>843</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Stonewain Valley (stone wagon)</location_name>
+		<lattitude>339</lattitude>
+		<longitude>853</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Sirith (flowing)</location_name>
+		<lattitude>287</lattitude>
+		<longitude>848</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>South Road</location_name>
+		<lattitude>293</lattitude>
+		<longitude>868</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Erui (alone)</location_name>
+		<lattitude>306</lattitude>
+		<longitude>881</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lossarnach (flowery vale)</location_name>
+		<lattitude>316</lattitude>
+		<longitude>860</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Belfalas</location_name>
+		<lattitude>246</lattitude>
+		<longitude>741</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Harondor (South Gondor)</location_name>
+		<lattitude>200</lattitude>
+		<longitude>825</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Poros (boundary)</location_name>
+		<lattitude>237</lattitude>
+		<longitude>864</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Far Harad</location_name>
+		<lattitude>62</lattitude>
+		<longitude>787</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Cold-Drakes</location_name>
+		<lattitude>825</lattitude>
+		<longitude>862</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ered Mithrin (Grey Mountains)</location_name>
+		<lattitude>800</lattitude>
+		<longitude>837</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Long-worms</location_name>
+		<lattitude>796</lattitude>
+		<longitude>900</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Withered Heath</location_name>
+		<lattitude>771</lattitude>
+		<longitude>906</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Wood-elves (Tawarwaith)</location_name>
+		<lattitude>750</lattitude>
+		<longitude>887</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Erebor (The Lonely Mountain) (Mountain Kingdom) [4k ft]</location_name>
+		<lattitude>737</lattitude>
+		<longitude>912</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dale (valley)</location_name>
+		<lattitude>725</lattitude>
+		<longitude>919</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Esgaroth (reed lake) (Lake-town)</location_name>
+		<lattitude>708</lattitude>
+		<longitude>908</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Long Lake</location_name>
+		<lattitude>706</lattitude>
+		<longitude>910</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mountains of Mirkwood (Emyn-nu-Fuin) (Emyn Duir)</location_name>
+		<lattitude>681</lattitude>
+		<longitude>875</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Old Forest Road</location_name>
+		<lattitude>662</lattitude>
+		<longitude>862</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mirkwood (Greenwood) (Eryn Lasgalen) (Taur-e-Ndaedelos)</location_name>
+		<lattitude>650</lattitude>
+		<longitude>862</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>East Bight</location_name>
+		<lattitude>587</lattitude>
+		<longitude>887</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Celduin (Running)</location_name>
+		<lattitude>631</lattitude>
+		<longitude>967</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Rhovanion (Wilderland)</location_name>
+		<lattitude>537</lattitude>
+		<longitude>925</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Brown Lands (Entwives last seen)</location_name>
+		<lattitude>475</lattitude>
+		<longitude>887</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dagorlad (Battle Plain)</location_name>
+		<lattitude>431</lattitude>
+		<longitude>956</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Cirith Gorgor (Haunted Pass)</location_name>
+		<lattitude>389</lattitude>
+		<longitude>931</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Noman-lands</location_name>
+		<lattitude>406</lattitude>
+		<longitude>887</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Slag-hills</location_name>
+		<lattitude>400</lattitude>
+		<longitude>900</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>North Ithilien (Moon-land)</location_name>
+		<lattitude>381</lattitude>
+		<longitude>875</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Udûn (dark pit)</location_name>
+		<lattitude>385</lattitude>
+		<longitude>937</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Isenmouthe (Carach Angren)</location_name>
+		<lattitude>379</lattitude>
+		<longitude>945</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Morgai (black fence)</location_name>
+		<lattitude>362</lattitude>
+		<longitude>925</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Emyn Arnen</location_name>
+		<lattitude>323</lattitude>
+		<longitude>893</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ephel Duath (Fence of Shadow) (Mountains of Shadow) (East-mountains) [slightly shorter than Orodruin]</location_name>
+		<lattitude>300</lattitude>
+		<longitude>931</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nurn (sad land)</location_name>
+		<lattitude>287</lattitude>
+		<longitude>975</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Plateau of Gorgoroth (place of great dread)</location_name>
+		<lattitude>321</lattitude>
+		<longitude>985</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Osgiliath (fortress of the host of stars) (Old Gondor)</location_name>
+		<lattitude>335</lattitude>
+		<longitude>887</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Cross-roads</location_name>
+		<lattitude>341</lattitude>
+		<longitude>898</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Orodruin (Amon Amarth) (Mount Doom) [4.5k ft]</location_name>
+		<lattitude>362</lattitude>
+		<longitude>975</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Sauron's Road</location_name>
+		<lattitude>358</lattitude>
+		<longitude>967</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>South Ithilien (Moon-land)</location_name>
+		<lattitude>275</lattitude>
+		<longitude>887</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Harad Road</location_name>
+		<lattitude>231</lattitude>
+		<longitude>881</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Harnen (south water)</location_name>
+		<lattitude>187</lattitude>
+		<longitude>912</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Haradrim (south-people) Southrons)</location_name>
+		<lattitude>150</lattitude>
+		<longitude>875</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lithlad (ash plain)</location_name>
+		<lattitude>287</lattitude>
+		<longitude>1029</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Iron Hills</location_name>
+		<lattitude>718</lattitude>
+		<longitude>1025</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Carnen (Redwater)</location_name>
+		<lattitude>687</lattitude>
+		<longitude>1025</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Rhûn (east)</location_name>
+		<lattitude>612</lattitude>
+		<longitude>1037</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dorwinion (Young-land Country) (land of wines)</location_name>
+		<lattitude>568</lattitude>
+		<longitude>1058</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Sea of Rhûn (Eastern Sea)</location_name>
+		<lattitude>537</lattitude>
+		<longitude>1137</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ered Lithui (Ash Mountains)</location_name>
+		<lattitude>381</lattitude>
+		<longitude>1050</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mordor (Black Land) (Land of Shadow) (Nameless Land)</location_name>
+		<lattitude>318</lattitude>
+		<longitude>1068</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Sea of Núrnen (Lake Núrnen)</location_name>
+		<lattitude>271</lattitude>
+		<longitude>1068</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Orcs (Goblins) (Glamhoth) (Yrch)</location_name>
+		<lattitude>250</lattitude>
+		<longitude>1100</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Near Harad</location_name>
+		<lattitude>196</lattitude>
+		<longitude>1043</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mûmakil (Oliphaunts)</location_name>
+		<lattitude>158</lattitude>
+		<longitude>1140</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Haradwaith</location_name>
+		<lattitude>137</lattitude>
+		<longitude>1031</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Were-worms</location_name>
+		<lattitude>25</lattitude>
+		<longitude>1237</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Variags (Men of Khand)</location_name>
+		<lattitude>125</lattitude>
+		<longitude>1212</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Khand</location_name>
+		<lattitude>193</lattitude>
+		<longitude>1200</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Winged Creatures (Hell-hawks) (Fell beasts)</location_name>
+		<lattitude>362</lattitude>
+		<longitude>1200</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Orocarni (Red Mountains) (Mountains of the East)</location_name>
+		<lattitude>787</lattitude>
+		<longitude>1237</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Eastfold</location_name>
+		<lattitude>375</lattitude>
+		<longitude>756</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>River Ringló</location_name>
+		<lattitude>314</lattitude>
+		<longitude>775</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Caves of the Forgotten</location_name>
+		<lattitude>369</lattitude>
+		<longitude>69</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Aglarond (Glittering Caves) (Glæmscrafu)</location_name>
+		<lattitude>406</lattitude>
+		<longitude>681</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Menegroth (Thousand Caves) (Elven-halls)</location_name>
+		<lattitude>676</lattitude>
+		<longitude>221</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nargothrond (underground fortress on River Narog)</location_name>
+		<lattitude>646</lattitude>
+		<longitude>117</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Caverns of Narog</location_name>
+		<lattitude>641</lattitude>
+		<longitude>104</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Angband (iron prison)</location_name>
+		<lattitude>808</lattitude>
+		<longitude>230</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Shelob's Lair (Torech Ungol)</location_name>
+		<lattitude>350</lattitude>
+		<longitude>920</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Sammath Naur (Chambers of Fire)</location_name>
+		<lattitude>366</lattitude>
+		<longitude>983</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Henneth Annûn (Window of the Sunset) (Window on the West)</location_name>
+		<lattitude>356</lattitude>
+		<longitude>892</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Belegost (Gabilgathol) (Mickleburg)</location_name>
+		<lattitude>671</lattitude>
+		<longitude>356</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nogrod (Tumunzahar) (Hollowbold)</location_name>
+		<lattitude>632</lattitude>
+		<longitude>372</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ungoliant's Lair</location_name>
+		<lattitude>273</lattitude>
+		<longitude>79</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Thranduil's Halls (Woodland Realm)</location_name>
+		<lattitude>716</lattitude>
+		<longitude>887</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Goblin-town "Front Porch" (west)</location_name>
+		<lattitude>671</lattitude>
+		<longitude>721</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Goblin-town “Back Door” (east) (Goblin-gate)</location_name>
+		<lattitude>674</lattitude>
+		<longitude>739</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dimrill Gate (The Great Gates) (East-gate of Moria)</location_name>
+		<lattitude>571</lattitude>
+		<longitude>717</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Troll-hole</location_name>
+		<lattitude>650</lattitude>
+		<longitude>682</longitude>
+		<legend_code>at Trollshaws</legend_code>
+	</location>
+	<location>
+		<location_name>Caves of Androth (long caves)</location_name>
+		<lattitude>746</lattitude>
+		<longitude>115</longitude>
+		<legend_code>at Mithrim</legend_code>
+	</location>
+	<location>
+		<location_name>Dain's Halls</location_name>
+		<lattitude>762</lattitude>
+		<longitude>841</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mount Gundabad</location_name>
+		<lattitude>790</lattitude>
+		<longitude>685</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ford of Brithiach (gravel crossing)</location_name>
+		<lattitude>704</lattitude>
+		<longitude>162</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ford of Bruinen (loudwater)</location_name>
+		<lattitude>650</lattitude>
+		<longitude>712</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ford of the Carrock</location_name>
+		<lattitude>679</lattitude>
+		<longitude>791</longitude>
+		<legend_code>E of Carrock</legend_code>
+	</location>
+	<location>
+		<location_name>Old Ford</location_name>
+		<lattitude>660</lattitude>
+		<longitude>793</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Sarn Athrad (stone crossing)</location_name>
+		<lattitude>631</lattitude>
+		<longitude>314</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Fords of Anduin (Osgiliath ruins)</location_name>
+		<lattitude>335</lattitude>
+		<longitude>889</longitude>
+		<legend_code>Osgiliath's ruins made Anduin shallow</legend_code>
+	</location>
+	<location>
+		<location_name>Fords of Aros (Arossiach) (bloody ford)</location_name>
+		<lattitude>702</lattitude>
+		<longitude>241</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Fords of Isen (Athrad Angren)</location_name>
+		<lattitude>425</lattitude>
+		<longitude>678</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Fords of Poros</location_name>
+		<lattitude>253</lattitude>
+		<longitude>890</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Sarn Ford (stony ford)</location_name>
+		<lattitude>604</lattitude>
+		<longitude>533</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Gladden Fields (Loeg Ningloron)</location_name>
+		<lattitude>608</lattitude>
+		<longitude>787</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Midgewater Marshes</location_name>
+		<lattitude>654</lattitude>
+		<longitude>579</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Marshes of Nevrast</location_name>
+		<lattitude>703</lattitude>
+		<longitude>75</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Swanfleet (Nin-in-Eilph) (Great Fens) (Swan Waterlands)</location_name>
+		<lattitude>556</lattitude>
+		<longitude>612</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Fen of Serech</location_name>
+		<lattitude>746</lattitude>
+		<longitude>167</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Rushock Bog (rush-bed)</location_name>
+		<lattitude>654</lattitude>
+		<longitude>493</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dead Marshes</location_name>
+		<lattitude>425</lattitude>
+		<longitude>883</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Fens of Sirion (Aelin-uial) (Twilight Meres) (Twilit Meres)</location_name>
+		<lattitude>642</lattitude>
+		<longitude>175</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nindalf (field of water) (Wetwang) </location_name>
+		<lattitude>387</lattitude>
+		<longitude>856</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Long Marshes</location_name>
+		<lattitude>705</lattitude>
+		<longitude>904</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Fenmarch (marsh borderland)</location_name>
+		<lattitude>375</lattitude>
+		<longitude>796</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Overbourn Marshes</location_name>
+		<lattitude>629</lattitude>
+		<longitude>535</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lisgardh (Land of Reeds)</location_name>
+		<lattitude>568</lattitude>
+		<longitude>162</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Minas Tirith (City of the Kings) (Mundburg) (Stone-city) (Tower of Guard) (White Tower)</location_name>
+		<lattitude>331</lattitude>
+		<longitude>873</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Weathertop (Amon Sûl)</location_name>
+		<lattitude>654</lattitude>
+		<longitude>607</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Avallónë (close to Valinor)</location_name>
+		<lattitude>362</lattitude>
+		<longitude>89</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Cirith Ungol (Cirith Dúath)</location_name>
+		<lattitude>350</lattitude>
+		<longitude>925</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Eldaliéva (Mindon) (Tower of Ingwë) (Tower of the Elves)</location_name>
+		<lattitude>366</lattitude>
+		<longitude>72</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Isengard (iron enclosure) (Orthanc) (Angrenost)</location_name>
+		<lattitude>467</lattitude>
+		<longitude>665</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Gondolin (Hidden City) (Hidden Realm) (Hidden Rock) (Ondolindë) (Rock of the Music of Water)</location_name>
+		<lattitude>725</lattitude>
+		<longitude>171</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Minas Morgul (tower of black sorcery) (Minas Ithil) (Dead City) (Moontower)</location_name>
+		<lattitude>343</lattitude>
+		<longitude>908</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Barad-dûr (Dark Tower) (Lugbúrz)</location_name>
+		<lattitude>362</lattitude>
+		<longitude>1012</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Durthang (dark oppression)</location_name>
+		<lattitude>385</lattitude>
+		<longitude>927</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Morannon (Black Gate)</location_name>
+		<lattitude>393</lattitude>
+		<longitude>931</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Narchost (bitter-biting fort) (west Tower of Teeth)</location_name>
+		<lattitude>396</lattitude>
+		<longitude>927</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Carchost (fang fort) (east Tower of Teeth)</location_name>
+		<lattitude>400</lattitude>
+		<longitude>940</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Elostirion (walled watchtower of the elves)</location_name>
+		<lattitude>631</lattitude>
+		<longitude>430</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dol Guldur (hill of dark magic) (Amon Lanc)</location_name>
+		<lattitude>543</lattitude>
+		<longitude>821</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Utumno (subterranean) (Udûn)</location_name>
+		<lattitude>806</lattitude>
+		<longitude>437</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Carn Dûm (Witch-king of Angmar)</location_name>
+		<lattitude>804</lattitude>
+		<longitude>565</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Umbar (City of the Corsairs)</location_name>
+		<lattitude>135</lattitude>
+		<longitude>781</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Halls of Mandos (Halls of Awaiting) (Halls of Waiting) (Houses of the Dead) (Timeless Halls)</location_name>
+		<lattitude>405</lattitude>
+		<longitude>44</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Halls of Nienna</location_name>
+		<lattitude>399</lattitude>
+		<longitude>42</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Gardens of Lórien (Gardens of Irmo) (Gardens of Valinor) [conjectural]</location_name>
+		<lattitude>340</lattitude>
+		<longitude>50</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Alqualondë (Haven of the Swans)</location_name>
+		<lattitude>380</lattitude>
+		<longitude>70</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Eldalondë (elf-haven)</location_name>
+		<lattitude>100</lattitude>
+		<longitude>81</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Edhellond (Elf-haven)</location_name>
+		<lattitude>298</lattitude>
+		<longitude>723</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Haven of Umbar</location_name>
+		<lattitude>129</lattitude>
+		<longitude>780</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Lond Daer (Lond Daer Enedh) (Great Haven) (Great Middle Haven) (New Haven) (Vinyalondë)</location_name>
+		<lattitude>464</lattitude>
+		<longitude>514</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Havens of Sirion</location_name>
+		<lattitude>566</lattitude>
+		<longitude>148</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Grey Havens (Mithlond)</location_name>
+		<lattitude>648</lattitude>
+		<longitude>406</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Brithombar (homestead on gravelly river)</location_name>
+		<lattitude>646</lattitude>
+		<longitude>35</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Eglarest (ravine of the Eglor)</location_name>
+		<lattitude>633</lattitude>
+		<longitude>70</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mering Stream</location_name>
+		<lattitude>372</lattitude>
+		<longitude>803</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Tomb of Elendil (The Secret of the Halifirien)</location_name>
+		<lattitude>353</lattitude>
+		<longitude>800</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Rath Dínen (Houses of the Dead) (The Silent Street) (The Tombs)</location_name>
+		<lattitude>334</lattitude>
+		<longitude>863</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Noirinan (Valley of the Tombs)</location_name>
+		<lattitude>104</lattitude>
+		<longitude>115</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Barrow-downs (Tyrn Gorthad) (The Downlands)</location_name>
+		<lattitude>637</lattitude>
+		<longitude>555</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Haudh-en-Arwen (Ladybarrow of Brethil)</location_name>
+		<lattitude>687</lattitude>
+		<longitude>162</longitude>
+		<legend_code>right of Haudh-en-Elleth</legend_code>
+	</location>
+	<location>
+		<location_name>Haudh in Gwanûr (mound of the twin brothers)</location_name>
+		<lattitude>258</lattitude>
+		<longitude>896</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Haudh-en-Elleth (Mound of the Elf-maid)</location_name>
+		<lattitude>687</lattitude>
+		<longitude>145</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Haudh-en-Nirnaeth (Great Mound) (Haudh-en-Ndengin) (Hill of Slain) (Hill of Tears)</location_name>
+		<lattitude>757</lattitude>
+		<longitude>227</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Stone of the Hapless (Haudh-en-Morwen) (Tol Morwen) (Grave of the Children of Húrin) (Sarch nia Hîn Húrin)</location_name>
+		<lattitude>697</lattitude>
+		<longitude>139</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Balin's Tomb (Chamber of Mazarbul)</location_name>
+		<lattitude>579</lattitude>
+		<longitude>717</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Barrowfield</location_name>
+		<lattitude>393</lattitude>
+		<longitude>722</longitude>
+		<legend_code>at Edoras</legend_code>
+	</location>
+	<location>
+		<location_name>Cerin Amroth (mound of Amroth)</location_name>
+		<lattitude>546</lattitude>
+		<longitude>766</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Mounds of Mundburg</location_name>
+		<lattitude>330</lattitude>
+		<longitude>879</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle Pit</location_name>
+		<lattitude>640</lattitude>
+		<longitude>525</longitude>
+		<legend_code>in the Shire</legend_code>
+	</location>
+	<location>
+		<location_name>Fingolfin's Cairn</location_name>
+		<lattitude>735</lattitude>
+		<longitude>173</longitude>
+		<legend_code>near Gondolin</legend_code>
+	</location>
+	<location>
+		<location_name>Death Down</location_name>
+		<lattitude>408</lattitude>
+		<longitude>684</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Snowmane's Howe</location_name>
+		<lattitude>322</lattitude>
+		<longitude>868</longitude>
+		<legend_code>(bottom one)</legend_code>
+	</location>
+	<location>
+		<location_name>Falls of Ivrin</location_name>
+		<lattitude>695</lattitude>
+		<longitude>110</longitude>
+		<legend_code>barely downstream of Eithel Ivrin</legend_code>
+	</location>
+	<location>
+		<location_name>Falls of Rauros (roaring spray)</location_name>
+		<lattitude>402</lattitude>
+		<longitude>824</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Falls of Sirion</location_name>
+		<lattitude>630</lattitude>
+		<longitude>158</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Curtain of Henneth Annûn</location_name>
+		<lattitude>356</lattitude>
+		<longitude>892</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Stair Falls (Gate-stream)</location_name>
+		<lattitude>548</lattitude>
+		<longitude>683</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Dimrost (The Rainy Stair)</location_name>
+		<lattitude>690</lattitude>
+		<longitude>139</longitude>
+		<legend_code>under Teiglin (Taeglin) bridge. </legend_code>
+	</location>
+	<location>
+		<location_name>Lanthir Lamath (waterfall of echoing voices)</location_name>
+		<lattitude>546</lattitude>
+		<longitude>364</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Elendil Stone palantír (Seeing-stone of Emyn Beraid) [moved from Elostirion to Aman]</location_name>
+		<lattitude>637</lattitude>
+		<longitude>430</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Amon Sûl Stone palantír [lost in Forochel Bay]</location_name>
+		<lattitude>662</lattitude>
+		<longitude>607</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Annúminas Stone palantír [moved to Fornost, lost in Forochel Bay]</location_name>
+		<lattitude>691</lattitude>
+		<longitude>493</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Master Stone palantír [Osgiliath, lost in Anduin]</location_name>
+		<lattitude>334</lattitude>
+		<longitude>890</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Anor-stone palantír (Stone of Arnor) (Stone of Minas Tirith) [at Minas Tirith, but permanently engraved with Denethor's handprints ]</location_name>
+		<lattitude>340</lattitude>
+		<longitude>875</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Ithil-stone palantír [Minas Ithil, Nazgûl moved it to Barad-dur]</location_name>
+		<lattitude>352</lattitude>
+		<longitude>911</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Orthanc-stone palantír [Orthanc, Aragorn moved it to Minas Tirith, still usable]</location_name>
+		<lattitude>481</lattitude>
+		<longitude>668</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Silmaril 1 (in heavens w/ Earendil)</location_name>
+		<lattitude>466</lattitude>
+		<longitude>55</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Silmaril 2 (Maedros cast into fiery chasm)</location_name>
+		<lattitude>803</lattitude>
+		<longitude>350</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Silmaril 3 (Maglor cast into sea)</location_name>
+		<lattitude>560</lattitude>
+		<longitude>85</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of Azanulbizar (vale of dim streams) (Battle of Nanduhirion) (Battle of the Mines of Moria)</location_name>
+		<lattitude>560</lattitude>
+		<longitude>742</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of Bywater</location_name>
+		<lattitude>641</lattitude>
+		<longitude>520</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of Dagorlad (battle plain) (The Great Battle)</location_name>
+		<lattitude>448</lattitude>
+		<longitude>956</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of Dale</location_name>
+		<lattitude>725</lattitude>
+		<longitude>911</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of Five Armies</location_name>
+		<lattitude>723</lattitude>
+		<longitude>931</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of Fornost</location_name>
+		<lattitude>708</lattitude>
+		<longitude>579</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of Greenfields</location_name>
+		<lattitude>671</lattitude>
+		<longitude>525</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of the Camp (placed halfway between the fronts)</location_name>
+		<lattitude>312</lattitude>
+		<longitude>893</longitude>
+		<legend_code>near Emyn Arnen</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of the Crossings of Erui</location_name>
+		<lattitude>310</lattitude>
+		<longitude>868</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of the Field of Celebrant</location_name>
+		<lattitude>505</lattitude>
+		<longitude>766</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of the Gwathló</location_name>
+		<lattitude>537</lattitude>
+		<longitude>602</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of the Haven (The Kinslaying)</location_name>
+		<lattitude>380</lattitude>
+		<longitude>70</longitude>
+		<legend_code>at Alqualondë</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of the Hornburg (Helm's Deep)</location_name>
+		<lattitude>412</lattitude>
+		<longitude>679</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of the Peak (Endless Stair)</location_name>
+		<lattitude>603</lattitude>
+		<longitude>737</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of the Pelennor Fields (Battle of the Field of Gondor)</location_name>
+		<lattitude>322</lattitude>
+		<longitude>875</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of the Plains</location_name>
+		<lattitude>221</lattitude>
+		<longitude>904</longitude>
+		<legend_code>in Harondor</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of the Powers (War of the Powers)</location_name>
+		<lattitude>798</lattitude>
+		<longitude>435</longitude>
+		<legend_code>at Utumno</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of Tumhalad</location_name>
+		<lattitude>651</lattitude>
+		<longitude>118</longitude>
+		<legend_code>at Nargothrond</legend_code>
+	</location>
+	<location>
+		<location_name>Battles of the Fords of Isen 1 &amp; 2</location_name>
+		<lattitude>425</lattitude>
+		<longitude>678</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Siege of Pelargir</location_name>
+		<lattitude>281</lattitude>
+		<longitude>836</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>War of the Great Jewels (War of the Jewels) (Wars of Beleriand)</location_name>
+		<lattitude>809</lattitude>
+		<longitude>216</longitude>
+		<legend_code>at Angband</legend_code>
+	</location>
+	<location>
+		<location_name>First Battle (War of Beleriand) [no alternative name]</location_name>
+		<lattitude>662</lattitude>
+		<longitude>255</longitude>
+		<legend_code>plains E of Doriath</legend_code>
+	</location>
+	<location>
+		<location_name>Battle-under-Stars (Dagor-nuin-Giliath) (Second Battle)</location_name>
+		<lattitude>741</lattitude>
+		<longitude>91</longitude>
+		<legend_code>at Dor-lómin</legend_code>
+	</location>
+	<location>
+		<location_name>Dagor Aglareb (The Glorious Battle) (Third Battle)</location_name>
+		<lattitude>705</lattitude>
+		<longitude>308</longitude>
+		<legend_code>s of Maglor's Gap</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of Sudden Flame (Dagor Bragollach) (Ruin of Beleriand) (Fourth Battle)</location_name>
+		<lattitude>748</lattitude>
+		<longitude>293</longitude>
+		<legend_code>n of Lothlann</legend_code>
+	</location>
+	<location>
+		<location_name>Battle of Unnumbered Tears (Nirnaeth Arnoediad) (Fifth Battle)</location_name>
+		<lattitude>779</lattitude>
+		<longitude>321</longitude>
+		<legend_code>ne Ard-galen</legend_code>
+	</location>
+	<location>
+		<location_name>War of Wrath (The Great Battle) (Sixth Battle)</location_name>
+		<lattitude>781</lattitude>
+		<longitude>226</longitude>
+		<legend_code>e of Thangorodrim</legend_code>
+	</location>
+	<location>
+		<location_name>War of the Ring</location_name>
+		<lattitude>403</lattitude>
+		<longitude>931</longitude>
+		<legend_code>at Morannon</legend_code>
+	</location>
+	<location>
+		<location_name>Amon Dîn Beacon</location_name>
+		<lattitude>346</lattitude>
+		<longitude>875</longitude>
+		<legend_code>(beacon 1)</legend_code>
+	</location>
+	<location>
+		<location_name>Eilenach Beacon</location_name>
+		<lattitude>345</lattitude>
+		<longitude>866</longitude>
+		<legend_code>(beacon 2)</legend_code>
+	</location>
+	<location>
+		<location_name>Nardol Beacon</location_name>
+		<lattitude>346</lattitude>
+		<longitude>846</longitude>
+		<legend_code>(beacon 3)</legend_code>
+	</location>
+	<location>
+		<location_name>Eralas Beacon</location_name>
+		<lattitude>351</lattitude>
+		<longitude>829</longitude>
+		<legend_code>(beacon 4)</legend_code>
+	</location>
+	<location>
+		<location_name>Min-Rimmon Beacon</location_name>
+		<lattitude>353</lattitude>
+		<longitude>813</longitude>
+		<legend_code>(beacon 5)</legend_code>
+	</location>
+	<location>
+		<location_name>Calenhad Beacon</location_name>
+		<lattitude>354</lattitude>
+		<longitude>804</longitude>
+		<legend_code>(beacon 6)</legend_code>
+	</location>
+	<location>
+		<location_name>Halifirien Beacon</location_name>
+		<lattitude>356</lattitude>
+		<longitude>795</longitude>
+		<legend_code>(beacon 7)</legend_code>
+	</location>
+	<location>
+		<location_name>There was Eru</location_name>
+		<lattitude>887</lattitude>
+		<longitude>50</longitude>
+		<legend_code>Quote- top #01</legend_code>
+	</location>
+	<location>
+		<location_name>Eä!</location_name>
+		<lattitude>887</lattitude>
+		<longitude>116</longitude>
+		<legend_code>Quote- top #02</legend_code>
+	</location>
+	<location>
+		<location_name>Cuivienen</location_name>
+		<lattitude>887</lattitude>
+		<longitude>175</longitude>
+		<legend_code>Quote- top #03</legend_code>
+	</location>
+	<location>
+		<location_name>sap poured forth</location_name>
+		<lattitude>887</lattitude>
+		<longitude>300</longitude>
+		<legend_code>Quote- top #04</legend_code>
+	</location>
+	<location>
+		<location_name>Oath of Feanor</location_name>
+		<lattitude>887</lattitude>
+		<longitude>425</longitude>
+		<legend_code>Quote- top #05</legend_code>
+	</location>
+	<location>
+		<location_name>hope of the Noldor</location_name>
+		<lattitude>887</lattitude>
+		<longitude>550</longitude>
+		<legend_code>Quote- top #06</legend_code>
+	</location>
+	<location>
+		<location_name>And Morgoth came</location_name>
+		<lattitude>887</lattitude>
+		<longitude>687</longitude>
+		<legend_code>Quote- top #07</legend_code>
+	</location>
+	<location>
+		<location_name>Lúthien your daughter</location_name>
+		<lattitude>887</lattitude>
+		<longitude>850</longitude>
+		<legend_code>Quote- top #08</legend_code>
+	</location>
+	<location>
+		<location_name>Eärendil was a mariner</location_name>
+		<lattitude>887</lattitude>
+		<longitude>1050</longitude>
+		<legend_code>Quote- top #09</legend_code>
+	</location>
+	<location>
+		<location_name>Ata lante</location_name>
+		<lattitude>887</lattitude>
+		<longitude>1187</longitude>
+		<legend_code>Quote- top #10</legend_code>
+	</location>
+	<location>
+		<location_name>Istari</location_name>
+		<lattitude>887</lattitude>
+		<longitude>1246</longitude>
+		<legend_code>Quote- top #11</legend_code>
+	</location>
+	<location>
+		<location_name>Five feet high the door</location_name>
+		<lattitude>800</lattitude>
+		<longitude>1275</longitude>
+		<legend_code>Quote- right #01</legend_code>
+	</location>
+	<location>
+		<location_name>All that is gold does not glitter</location_name>
+		<lattitude>562</lattitude>
+		<longitude>1275</longitude>
+		<legend_code>Quote- right #02</legend_code>
+	</location>
+	<location>
+		<location_name>All we have to decide</location_name>
+		<lattitude>325</lattitude>
+		<longitude>1275</longitude>
+		<legend_code>Quote- right #03</legend_code>
+	</location>
+	<location>
+		<location_name>shall prove but mine instrument</location_name>
+		<lattitude>100</lattitude>
+		<longitude>1275</longitude>
+		<legend_code>Quote- right #04</legend_code>
+	</location>
+	<location>
+		<location_name>Illuin and Ormal</location_name>
+		<lattitude>62</lattitude>
+		<longitude>0</longitude>
+		<legend_code>Quote- left #01</legend_code>
+	</location>
+	<location>
+		<location_name>worst of all his deeds</location_name>
+		<lattitude>250</lattitude>
+		<longitude>0</longitude>
+		<legend_code>Quote- left #02</legend_code>
+	</location>
+	<location>
+		<location_name>watchful peace</location_name>
+		<lattitude>400</lattitude>
+		<longitude>0</longitude>
+		<legend_code>Quote- left #03</legend_code>
+	</location>
+	<location>
+		<location_name>Long Winter</location_name>
+		<lattitude>500</lattitude>
+		<longitude>0</longitude>
+		<legend_code>Quote- left #04</legend_code>
+	</location>
+	<location>
+		<location_name>eleventy-one</location_name>
+		<lattitude>587</lattitude>
+		<longitude>0</longitude>
+		<legend_code>Quote- left #05</legend_code>
+	</location>
+	<location>
+		<location_name>You cannot pass!</location_name>
+		<lattitude>700</lattitude>
+		<longitude>0</longitude>
+		<legend_code>Quote- left #06</legend_code>
+	</location>
+	<location>
+		<location_name>There stood Helm</location_name>
+		<lattitude>825</lattitude>
+		<longitude>0</longitude>
+		<legend_code>Quote- left #07</legend_code>
+	</location>
+	<location>
+		<location_name>Hey! Come merry dol!</location_name>
+		<lattitude>0</lattitude>
+		<longitude>75</longitude>
+		<legend_code>Quote- btm #01</legend_code>
+	</location>
+	<location>
+		<location_name>The way is shut</location_name>
+		<lattitude>0</lattitude>
+		<longitude>200</longitude>
+		<legend_code>Quote- btm #02</legend_code>
+	</location>
+	<location>
+		<location_name>Aiya Eärendil Elenion Ancalima</location_name>
+		<lattitude>0</lattitude>
+		<longitude>362</longitude>
+		<legend_code>Quote- btm #03</legend_code>
+	</location>
+	<location>
+		<location_name>no living man am I</location_name>
+		<lattitude>0</lattitude>
+		<longitude>550</longitude>
+		<legend_code>Quote- btm #04</legend_code>
+	</location>
+	<location>
+		<location_name>King Elessar wedded Arwen Undómiel</location_name>
+		<lattitude>0</lattitude>
+		<longitude>762</longitude>
+		<legend_code>Quote- btm #05</legend_code>
+	</location>
+	<location>
+		<location_name>Chad Bornholdt</location_name>
+		<lattitude>0</lattitude>
+		<longitude>975</longitude>
+		<legend_code>Quote- btm #06</legend_code>
+	</location>
+	<location>
+		<location_name>Anzu Fernándi</location_name>
+		<lattitude>0</lattitude>
+		<longitude>1100</longitude>
+		<legend_code>Quote- btm #07</legend_code>
+	</location>
+	<location>
+		<location_name>Fiona Jallings</location_name>
+		<lattitude>0</lattitude>
+		<longitude>1212</longitude>
+		<legend_code>Quote- btm #08</legend_code>
+	</location>
+	<location>
+		<location_name>Amon Obel</location_name>
+		<lattitude>0</lattitude>
+		<longitude>0</longitude>
+		<legend_code>Ephel Brandir sits on top</legend_code>
+	</location>
+	<location>
+		<location_name>Nen Girith</location_name>
+		<lattitude>0</lattitude>
+		<longitude>0</longitude>
+		<legend_code>Bridge over Celebros</legend_code>
+	</location>
+	<location>
+		<location_name>Celebros</location_name>
+		<lattitude>0</lattitude>
+		<longitude>0</longitude>
+		<legend_code>in Brethil</legend_code>
+	</location>
+	<location>
+		<location_name>Bar-erib</location_name>
+		<lattitude>0</lattitude>
+		<longitude>0</longitude>
+		<legend_code>Near Nargothrond</legend_code>
+	</location>
+	<location>
+		<location_name>Lostladen, Desert of</location_name>
+		<lattitude>0</lattitude>
+		<longitude>0</longitude>
+		<legend_code>0</legend_code>
+	</location>
+	<location>
+		<location_name>Nargil Pass (Narghil)</location_name>
+		<lattitude>0</lattitude>
+		<longitude>0</longitude>
+		<legend_code>0</legend_code>
+	</location>
+</mapping_test>
