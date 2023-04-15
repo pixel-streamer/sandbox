@@ -83,6 +83,7 @@ function setupStageForInteraction() {
     bigCanvas.setAttribute("width", w);
     bigCanvas.setAttribute("height", h);
     stage = bigCanvas;
+    // stage = new createjs.Stage("big_stage",{transparent:true});
     stage = new createjs.Stage("big_stage");
     stage.setBounds(0, 0, w, h);
     stageBounds = stage.getBounds();
@@ -605,7 +606,6 @@ function handle_ImageLoadComplete(e) {
     var mapContainer = new createjs.Container();
 
     mapContainer.addChild(mapPiece);
-    image_content.addChild(mapContainer);
 
     var cities = e.target.getResult("cities").querySelectorAll("location");
     var towns = [];
@@ -616,10 +616,12 @@ function handle_ImageLoadComplete(e) {
 
     var citySVG = document.createElementNS(cityNS, "svg");
     citySVG.setAttributeNS(null, "viewBox", "0 0 13124 9600");
+    // citySVG.setAttributeNS(null, "fill-opacity", "0");
     // citySVG.setAttributeNS(null, "width", "13124");
     // citySVG.setAttributeNS(null, "height", "9600");
 
     var cityG = document.createElementNS(cityNS, "g");
+    // cityG.setAttributeNS(null, "fill-opacity", "0");
     var cityRectW = 32;
     var cityRectH = 32;
     cities.forEach(function (param2) {
@@ -664,6 +666,7 @@ function handle_ImageLoadComplete(e) {
         var rec = document.createElementNS(cityNS, "rect");
         var rectX = parseInt(latitude * 10);
         var rectY = parseInt(longitude * 10);
+        // rec.setAttributeNS(null, "fill-opacity", "1");
         rec.setAttributeNS(null, "x", rectX);
         rec.setAttributeNS(null, "y", rectY);
         rec.setAttributeNS(null, "width", cityRectW);
@@ -675,33 +678,27 @@ function handle_ImageLoadComplete(e) {
         var textEl = document.createElementNS(cityNS, "text");
         textEl.textContent = location_first_part;
 
-        // textEl.setAttributeNS(
-        //     null,
-        //     "x",
-        //     parseInt(
-        //         latitude * 10 +
-        //             cityRectW +
-        //             getTextWidth3(location_first_part, 16) / 2
-        //     )
-        // );
-
         var textWNumber = parseFloat(
             location_first_part.split().slice().toString().length * fontSize
         );
-
-        console.log(textWNumber);
+        //console.log(textWNumber);
         textEl.setAttributeNS(null, "x", rectX);
-
-        textEl.setAttributeNS(null, "y", parseInt(rectY + cityRectH +cityRectH/2));
+        // textEl.setAttributeNS(null, "fill-opacity", "1");
+        textEl.setAttributeNS(
+            null,
+            "y",
+            parseInt(rectY + cityRectH + cityRectH / 2)
+        );
         textEl.setAttributeNS(null, "fill", "#000000");
 
         cityG.appendChild(textEl);
     });
-    console.log(towns.join("\n"));
+    // console.log(towns.join("\n"));
 
     citySVG.appendChild(cityG);
+    image_content.addChild(mapContainer);
+    document.querySelector("#testCanvas").prepend(citySVG);
 
-    document.body.appendChild(citySVG);
     return;
 
     var cardsImg = new createjs.Bitmap(e.target.getResult("all_cards")).image;
