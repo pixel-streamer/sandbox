@@ -173,6 +173,21 @@ border-radius: 3px;
                 color: #101820;
             }
         </style>
+        <style>
+            .city_box {
+                /*
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                */
+                position: relative;
+                display: block;
+                left: 0;
+                top: 0;
+                height: 9600px;
+                width: 13124px;
+            }
+        </style>
     </head>
     <body>
         <div id="progress"></div>
@@ -191,6 +206,45 @@ border-radius: 3px;
         <script src="./scripts/font-loading_module.js"></script>
         <script src="./scripts/fischer-yates-shuffle.js"></script>
         <script src="./scripts/cards_load.js"></script>
+
         <!-- <script src="./scripts/cards_load_func.js"></script> -->
+        <!-- <script>
+            //  prevent keypress f12
+            document.onkeypress = function (event) {
+                event = event || window.event;
+                if (event.keyCode == 123) {
+                    return false;
+                }
+            };
+            document.onmousedown = function (event) {
+                event = event || window.event;
+                if (event.keyCode == 123) {
+                    return false;
+                }
+            };
+            document.onkeydown = function (event) {
+                event = event || window.event;
+                if (event.keyCode == 123) {
+                    return false;
+                }
+            };
+            // end prevent key press
+            //prevent context menu from opening
+            if (document.addEventListener) {
+                document.addEventListener(
+                    "contextmenu",
+                    function (e) {
+                        console.log("You've tried to open context menu"); //here you draw your own menu
+                        e.preventDefault();
+                    },
+                    false
+                );
+            } else {
+                document.attachEvent("oncontextmenu", function () {
+                    alert("You've tried to open context menu");
+                    window.event.returnValue = false;
+                });
+            }// end prevent context menu
+        </script> -->
     </body>
 </html>

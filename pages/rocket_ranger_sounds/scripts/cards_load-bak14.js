@@ -532,8 +532,7 @@ function playGame() {
     // gameLogic();
 }
 
-// let fontSize = 32;
-let fontSize = 64;
+let fontSize = 32;
 
 function handle_ImageLoadComplete(e) {
     console.log("██: : :handle_ImageLoadComplete: : : █ò█");
@@ -614,11 +613,16 @@ function handle_ImageLoadComplete(e) {
 
     var createCities = createCitiesMap(e);
 
-    var fsBiggest = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
+    var fsBiggest = resizeToKnownDimensions(
+        citiesMapW,
+        citiesMapH,
+        w,
+        h
+    );
     containerScaleX = fsBiggest.scaleRatio;
     containerScaleY = fsBiggest.scaleRatio;
-    mapContainer.scaleX = containerScaleX * 1.33;
-    mapContainer.scaleY = containerScaleY * 1.33;
+    mapContainer.scaleX = containerScaleX*1.32;
+    mapContainer.scaleY = containerScaleY*1.32;
     createCities.scaleX = containerScaleX;
     createCities.scaleY = containerScaleY;
     image_content.addChild(mapContainer);
@@ -1652,7 +1656,7 @@ function gameLogic() {
 
     */
 }
-
+  
 function createCitiesMap(e) {
     var citiesContainer = new createjs.Container();
     var cities = e.target.getResult("cities").querySelectorAll("location");
@@ -1668,8 +1672,8 @@ function createCitiesMap(e) {
     citySVG.setBounds(0, 0, citiesMapW, citiesMapH);
 
     var cityG = new createjs.Container();
-    var cityRectW = 32 * 3;
-    var cityRectH = 32 * 3;
+    var cityRectW = 32;
+    var cityRectH = 32;
 
     cities.forEach(function (param2) {
         var hasParens = false;
@@ -1744,10 +1748,6 @@ function createCitiesMap(e) {
         textEl.y = parseInt(rectY + cityRectH + cityRectH / 2);
 
         cityG.addChild(textEl);
-
-        rec.addEventListener("click", function () {
-            console.log(" rec.name: ", rec.name);
-        });
     });
     // console.log(towns.join("\n"));
 

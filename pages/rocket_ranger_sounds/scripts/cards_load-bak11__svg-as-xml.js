@@ -532,8 +532,7 @@ function playGame() {
     // gameLogic();
 }
 
-// let fontSize = 32;
-let fontSize = 64;
+let fontSize = 8;
 
 function handle_ImageLoadComplete(e) {
     console.log("██: : :handle_ImageLoadComplete: : : █ò█");
@@ -577,7 +576,6 @@ function handle_ImageLoadComplete(e) {
 
     var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
     var mapPiece = new createjs.Bitmap();
-    var mapContainer = new createjs.Container();
     loadedMap.snapToPixel = true;
     mapPiece = loadedMap.clone();
     //TODO: update the canvas with the part of the image that has loaded as a background...
@@ -605,24 +603,147 @@ function handle_ImageLoadComplete(e) {
     scroll distance toward bl (drag)
 
     */
-    var citiesMapW = 13124;
-    var citiesMapH = 9600;
-    mapPiece.cache(0, 0, citiesMapW, citiesMapH);
+    mapPiece.cache(0, 0, 320, 240);
+    var mapContainer = new createjs.Container();
+
     mapContainer.addChild(mapPiece);
 
-    //var citySVGBox = createSVGMap(e);
+    var cities = e.target.getResult("cities").querySelectorAll("location");
+    var towns = [];
 
-    var createCities = createCitiesMap(e);
+    var insideParenRE = /(?:\()(?:.*?)(?:\))/gm;
 
-    var fsBiggest = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
-    containerScaleX = fsBiggest.scaleRatio;
-    containerScaleY = fsBiggest.scaleRatio;
-    mapContainer.scaleX = containerScaleX * 1.33;
-    mapContainer.scaleY = containerScaleY * 1.33;
-    createCities.scaleX = containerScaleX;
-    createCities.scaleY = containerScaleY;
+    var cityNS = "http://www.w3.org/2000/svg";
+
+    var citySVGBox = document.createElementNS(cityNS, "div");
+    citySVGBox.setAttributeNS(null, "class", "city_box");
+    citySVGBox.setAttributeNS(null, "id", "city_box");
+    var citySVG = document.createElementNS(cityNS, "svg");
+    citySVG.setAttributeNS(null, "version", "1.1");
+    citySVG.setAttributeNS(null, "viewBox", "0 0 13124 9600");
+    // citySVG.setAttributeNS(null, "fill-opacity", "0");
+    // citySVG.setAttributeNS(null, "width", "13124");
+    // citySVG.setAttributeNS(null, "height", "9600");
+    //citySVGBox.appendChild(citySVG);
+
+    var cityG = document.createElementNS(cityNS, "g");
+    // cityG.setAttributeNS(null, "fill-opacity", "0");
+    var cityRectW = 32;
+    var cityRectH = 32;
+    cities.forEach(function (param2) {
+        var hasParens = false;
+        var parenLocation = 0;
+        var location_name =
+            param2.getElementsByTagName("location_name")[0].firstChild.data;
+        /*
+        <root>
+            <location>
+                <location_name>Tol-in-Gaurhoth (Isle of Werewolves) (Sauron's Isle) (Tol Sirion)</location_name>
+                <lattitude>731</lattitude>
+                <longitude>159</longitude>
+                <legend_code>0</legend_code>
+            </location>
+        </root>
+        */
+        parenLocation = location_name.indexOf("(");
+        if (!(parenLocation === -1)) {
+            hasParens = true;
+        }
+        if (hasParens) {
+            //  var location_first_part = location_name.substring(0, parenLocation);
+            // var location_first_part = location_name.matchAll(insideParenRE).split(" ")[0];
+            var location_first_part =
+                location_name.substring(0, parenLocation).trim() +
+                "\n" +
+                location_name.match(insideParenRE).join("\n");
+
+            // location_first_part//
+        } else {
+            var location_first_part = location_name.trim();
+        }
+
+        var latitude =
+            param2.getElementsByTagName("lattitude")[0].firstChild.data;
+        var longitude =
+            param2.getElementsByTagName("longitude")[0].firstChild.data;
+
+        location_first_part = location_first_part.trim();
+        towns.push(location_first_part);
+        towns.push(latitude);
+        towns.push(longitude);
+
+        // var rec = document.createElementNS(cityNS, "rect");
+        var rec = document.createElementNS(cityNS, "rect");
+        var rectX = parseInt(latitude * 10);
+        var rectY = parseInt(longitude * 10);
+
+        rec.setAttributeNS(null, "x", rectX);
+        rec.setAttributeNS(null, "y", rectY);
+        rec.setAttributeNS(null, "width", cityRectW);
+        rec.setAttributeNS(null, "height", cityRectH);
+        rec.setAttributeNS(null, "fill", "#450067");
+        //rec.setAttributeNS(null, "title", location_first_part);
+        rec.setAttributeNS(null, "aria-label", location_first_part);
+        cityG.appendChild(rec);
+
+        var textEl = document.createElementNS(cityNS, "text");
+        textEl.textContent = location_first_part;
+
+        var textWNumber = parseFloat(
+            location_first_part.split().slice().toString().length * fontSize
+        );
+        //console.log(textWNumber);
+        textEl.setAttributeNS(null, "x", rectX);
+        textEl.setAttributeNS(
+            null,
+            "y",
+            parseInt(rectY + cityRectH + cityRectH / 2)
+        );
+        textEl.setAttributeNS(null, "fill", "#000000");
+
+        cityG.appendChild(textEl);
+    });
+    // console.log(towns.join("\n"));
+
+    citySVG.appendChild(cityG);
+
+    // document.querySelector("#testCanvas").appendChild(citySVG);
+    var cityCanvasIMG = new Image();
+    var cityCanvas = document.createElement("canvas");
+    var cityCanvasCtx = cityCanvas.getContext("2d");
+
+    cityCanvasIMG.addEventListener("load", function () {
+        console.log("hey.................. you there");
+        //cityNS
+        cityCanvas.setAttribute("width", cityCanvasIMG.naturalWidth);
+        cityCanvas.setAttribute("height", cityCanvasIMG.naturalHeight);
+        cityCanvasCtx.drawImage(cityCanvasIMG, 0, 0);
+        // cityCanvasIMG.setAttribute("width", cityCanvasIMG.naturalWidth);
+        // cityCanvasIMG.setAttribute("height", cityCanvasIMG.naturalHeight);
+    });
+    document.querySelector("#testCanvas").appendChild(cityCanvasIMG);
+
+    citySVGBox.appendChild(citySVG.cloneNode(true));
+    //document.body.appendChild(cityCanvasIMG);
+    //document.body.appendChild(citySVGBox);
+
+    /*
+        //from :https://stackoverflow.com/questions/1495822/replacing-nbsp-from-javascript-dom-text-node
+        //textNode.nodeValue = replaceNbsps(textNode.nodeValue);
+        // towns.push(replaceNbsps(location_first_part));
+        
+        var replacementNBSP = /\&nbsp\;/i;
+        towns.push(location_first_part.replace(replacementNBSP, " "));
+    */
+
+    //cityCanvasIMG.src = "data:image/svg+xml;base64," + window.btoa(citySVGBox.innerHTML);
+
+    console.log("this is the inner html: ", citySVGBox.innerHTML);
+    cityCanvasIMG.src =
+        "data:image/svg+xml;base64," +
+        window.btoa(unescape(encodeURIComponent(citySVGBox.innerHTML)));
+    //btoa(unescape(encodeURIComponent(str)));
     image_content.addChild(mapContainer);
-    image_content.addChild(createCities);
 
     return;
 
@@ -1653,106 +1774,7 @@ function gameLogic() {
     */
 }
 
-function createCitiesMap(e) {
-    var citiesContainer = new createjs.Container();
-    var cities = e.target.getResult("cities").querySelectorAll("location");
-    var towns = [];
-    var citiesMapW = 13124;
-    var citiesMapH = 9600;
-    var insideParenRE = /(?:\()(?:.*?)(?:\))/gm;
-    var cityNS = "http://www.w3.org/2000/svg";
-    var citySVGBox = citiesContainer;
-
-    var citySVG = new createjs.Container();
-
-    citySVG.setBounds(0, 0, citiesMapW, citiesMapH);
-
-    var cityG = new createjs.Container();
-    var cityRectW = 32 * 3;
-    var cityRectH = 32 * 3;
-
-    cities.forEach(function (param2) {
-        var hasParens = false;
-        var parenLocation = 0;
-        var location_name =
-            param2.getElementsByTagName("location_name")[0].firstChild.data;
-        /*
-        <root>
-            <location>
-                <location_name>Tol-in-Gaurhoth (Isle of Werewolves) (Sauron's Isle) (Tol Sirion)</location_name>
-                <lattitude>731</lattitude>
-                <longitude>159</longitude>
-                <legend_code>0</legend_code>
-            </location>
-        </root>
-        */
-        parenLocation = location_name.indexOf("(");
-        if (!(parenLocation === -1)) {
-            hasParens = true;
-        }
-        if (hasParens) {
-            //  var location_first_part = location_name.substring(0, parenLocation);
-            // var location_first_part = location_name.matchAll(insideParenRE).split(" ")[0];
-            var location_first_part =
-                location_name.substring(0, parenLocation).trim() +
-                "\n" +
-                location_name.match(insideParenRE).join("\n");
-
-            // location_first_part//
-        } else {
-            var location_first_part = location_name.trim();
-        }
-
-        var latitude =
-            param2.getElementsByTagName("lattitude")[0].firstChild.data;
-        var longitude =
-            param2.getElementsByTagName("longitude")[0].firstChild.data;
-
-        location_first_part = location_first_part.trim();
-        towns.push(location_first_part);
-        towns.push(latitude);
-        towns.push(longitude);
-
-        //TODO:REVERSED x, y CONFIRM
-        //TODO:(Ys seem to be oriented north, rather than south)
-        //TODO:ie, IronHills are SOUTHeast, rather than NORTHEAST of MountainsofMirkwood
-        var rectY = parseInt(latitude * 10 * -1 + parseInt(citiesMapH - 700));
-        var rectX = parseInt(longitude * 10);
-
-        var rec = new createjs.Shape();
-        rec.graphics.beginStroke("#450067");
-        rec.graphics.beginFill("#450067");
-        rec.graphics.drawRect(rectX, rectY, cityRectW, cityRectH);
-
-        // TODO: have a look at coloring a bitmap thru code:
-        // from: https://stackoverflow.com/questions/40717868/easeljs-using-bitmap-for-filling-rectangle
-
-        rec.name = location_first_part;
-        cityG.addChild(rec);
-
-        var textEl = new createjs.Text(
-            location_first_part,
-            +fontSize + "px " + "American Uncial MN",
-            "#000000"
-        );
-
-        // var textWNumber = parseFloat(
-        //     location_first_part.split().slice().toString().length * fontSize
-        // );
-        // console.log(textWNumber);
-        textEl.x = rectX;
-        textEl.y = parseInt(rectY + cityRectH + cityRectH / 2);
-
-        cityG.addChild(textEl);
-
-        rec.addEventListener("click", function () {
-            console.log(" rec.name: ", rec.name);
-        });
-    });
-    // console.log(towns.join("\n"));
-
-    citySVG.addChild(cityG);
-    citySVGBox.addChild(citySVG);
-
-    return citiesContainer;
+function replaceNbsps(str) {
+    var re = new RegExp(String.fromCharCode(160), "g");
+    return str.replace(re, " ");
 }

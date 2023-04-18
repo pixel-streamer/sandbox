@@ -532,8 +532,7 @@ function playGame() {
     // gameLogic();
 }
 
-// let fontSize = 32;
-let fontSize = 64;
+let fontSize = 32;
 
 function handle_ImageLoadComplete(e) {
     console.log("██: : :handle_ImageLoadComplete: : : █ò█");
@@ -614,11 +613,16 @@ function handle_ImageLoadComplete(e) {
 
     var createCities = createCitiesMap(e);
 
-    var fsBiggest = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
+    var fsBiggest = resizeToKnownDimensions(
+        citiesMapW,
+        citiesMapH,
+        w,
+        h
+    );
     containerScaleX = fsBiggest.scaleRatio;
     containerScaleY = fsBiggest.scaleRatio;
-    mapContainer.scaleX = containerScaleX * 1.33;
-    mapContainer.scaleY = containerScaleY * 1.33;
+    mapContainer.scaleX = containerScaleX*1.32;
+    mapContainer.scaleY = containerScaleY*1.32;
     createCities.scaleX = containerScaleX;
     createCities.scaleY = containerScaleY;
     image_content.addChild(mapContainer);
@@ -1653,6 +1657,157 @@ function gameLogic() {
     */
 }
 
+// function createSVGMap(e) {
+//     var cities = e.target.getResult("cities").querySelectorAll("location");
+//     var towns = [];
+//     var citiesMapW = 13124;
+//     var citiesMapH = 9600;
+
+//     var insideParenRE = /(?:\()(?:.*?)(?:\))/gm;
+
+//     var cityNS = "http://www.w3.org/2000/svg";
+
+//     var citySVGBox = document.createElement("div");
+//     citySVGBox.setAttribute("class", "city_box");
+//     citySVGBox.setAttribute("id", "city_box");
+
+//     document.body.appendChild(citySVGBox);
+
+//     var citySVG = document.createElementNS(cityNS, "svg");
+//     citySVG.setAttributeNS(null, "version", "1.1");
+
+//     // citySVG.setAttributeNS(cityNS, "xmlns", "http://www.w3.org/2000/svg");
+//     citySVG.setAttributeNS(
+//         null,
+//         "viewBox",
+//         "0 0 " + citiesMapW + " " + citiesMapH
+//     );
+//     citySVG.setAttributeNS(null, "width", citiesMapW);
+//     citySVG.setAttributeNS(null, "height", citiesMapH);
+//     //citySVG.setAttributeNS(null, "xml:lang", "en");
+//     citySVGBox.appendChild(citySVG);
+
+//     // console.log(attribNodeCITYns);
+//     // citySVG.setAttributeNodeNS(attribNodeCITYns.cloneNode(true));
+
+//     var cityG = document.createElementNS(cityNS, "g");
+//     // cityG.setAttributeNS(null, "fill-opacity", "0");
+//     var cityRectW = 32;
+//     var cityRectH = 32;
+//     cities.forEach(function (param2) {
+//         var hasParens = false;
+//         var parenLocation = 0;
+//         var location_name =
+//             param2.getElementsByTagName("location_name")[0].firstChild.data;
+//         /*
+//         <root>
+//             <location>
+//                 <location_name>Tol-in-Gaurhoth (Isle of Werewolves) (Sauron's Isle) (Tol Sirion)</location_name>
+//                 <lattitude>731</lattitude>
+//                 <longitude>159</longitude>
+//                 <legend_code>0</legend_code>
+//             </location>
+//         </root>
+//         */
+//         parenLocation = location_name.indexOf("(");
+//         if (!(parenLocation === -1)) {
+//             hasParens = true;
+//         }
+//         if (hasParens) {
+//             //  var location_first_part = location_name.substring(0, parenLocation);
+//             // var location_first_part = location_name.matchAll(insideParenRE).split(" ")[0];
+//             var location_first_part =
+//                 location_name.substring(0, parenLocation).trim() +
+//                 "\n" +
+//                 location_name.match(insideParenRE).join("\n");
+
+//             // location_first_part//
+//         } else {
+//             var location_first_part = location_name.trim();
+//         }
+
+//         var latitude =
+//             param2.getElementsByTagName("lattitude")[0].firstChild.data;
+//         var longitude =
+//             param2.getElementsByTagName("longitude")[0].firstChild.data;
+
+//         location_first_part = location_first_part.trim();
+//         towns.push(location_first_part);
+//         towns.push(latitude);
+//         towns.push(longitude);
+
+//         // var rec = document.createElementNS(cityNS, "rect");
+//         var rec = document.createElementNS(cityNS, "rect");
+
+//         //TODO:REVERSED x, y CONFIRM
+//         //TODO:(Ys seem to be oriented north, rather than south)
+//         //TODO:ie, IronHills are SOUTHeast, rather than NORTHEAST of MountainsofMirkwood
+//         var rectY = parseInt(latitude * 10 * -1 + parseInt(citiesMapH - 700));
+//         var rectX = parseInt(longitude * 10);
+
+//         rec.setAttributeNS(null, "x", rectX);
+//         rec.setAttributeNS(null, "y", rectY);
+//         rec.setAttributeNS(null, "width", cityRectW);
+//         rec.setAttributeNS(null, "height", cityRectH);
+//         rec.setAttributeNS(null, "fill", "#450067");
+//         //rec.setAttributeNS(null, "title", location_first_part);
+//         rec.setAttributeNS(null, "aria-label", location_first_part);
+//         cityG.appendChild(rec);
+
+//         var textEl = document.createElementNS(cityNS, "text");
+//         textEl.textContent = location_first_part;
+
+//         // var textWNumber = parseFloat(
+//         //     location_first_part.split().slice().toString().length * fontSize
+//         // );
+//         // console.log(textWNumber);
+//         textEl.setAttributeNS(null, "font-size", fontSize + "px");
+//         textEl.setAttributeNS(null, "x", rectX);
+//         textEl.setAttributeNS(
+//             null,
+//             "y",
+//             parseInt(rectY + cityRectH + cityRectH / 2)
+//         );
+//         //textEl.setAttributeNS(null, "font-family", "Dwarf Runes-2");
+//         // textEl.setAttributeNS(null, "font-family", "Greifswalder Tengwar");
+//         // textEl.setAttributeNS(null, "font-family", "Half-Elven 3D Regular");
+//         //textEl.setAttributeNS(null, "font-family", "Half-Elven 3D Italic");
+//         //textEl.setAttributeNS(null, "font-family", "Half-Elven Leftalic");
+//         //textEl.setAttributeNS(null, "font-family", "Tengwar Eldamar Alt");
+//         //textEl.setAttributeNS(null, "font-family", "Tengwar Eldamar");  //chad's calligraphy
+//         //textEl.setAttributeNS(null, "font-family", "Tengwar Annatar");
+//         //textEl.setAttributeNS(null, "font-family", "Tengwar Annatar Bold");
+//         //textEl.setAttributeNS(null, "font-family", "Tengwar Annatar Bold Italic");
+//         //textEl.setAttributeNS(null, "font-family", "Tengwar Annatar Italic"); //try font-style italic
+//         //textEl.setAttributeNS(null, "font-family", "Valmaric Eldamar");
+//         textEl.setAttributeNS(null, "font-family", "American Uncial MN"); //maybe more
+//         //textEl.setAttributeNS(null, "font-family", "Angerthas");
+//         //textEl.setAttributeNS(null, "font-family", "AnironC Bold");  //try font-style bold
+//         //textEl.setAttributeNS(null, "font-family", "AnironC"); //maybe
+//         //textEl.setAttributeNS(null, "font-family", "Aniron Bold");   //try font-style bold
+//         //textEl.setAttributeNS(null, "font-family", "Aniron"); // maybe
+//         //textEl.setAttributeNS(null, "font-family", "Angerthas Moria");
+//         //textEl.setAttributeNS(null, "font-family", "Dwarf Runes");
+//         //textEl.setAttributeNS(null, "font-family", "Dwarf Runes-1");
+//         textEl.setAttributeNS(null, "fill", "#000000");
+
+//         cityG.appendChild(textEl);
+//     });
+//     // console.log(towns.join("\n"));
+
+//     citySVG.appendChild(cityG);
+//     citySVGBox.appendChild(citySVG);
+
+//     /*
+//         cityCanvasIMG.src =
+//         // "data:image/svg+xml;base64," +
+//         "data:image/svg+xml;" +
+//         "base64," +
+//         // "charset=utf-8," +
+//         window.btoa(unescape(encodeURIComponent(citySVGBox.innerHTML)));
+// */
+// }
+
 function createCitiesMap(e) {
     var citiesContainer = new createjs.Container();
     var cities = e.target.getResult("cities").querySelectorAll("location");
@@ -1668,8 +1823,8 @@ function createCitiesMap(e) {
     citySVG.setBounds(0, 0, citiesMapW, citiesMapH);
 
     var cityG = new createjs.Container();
-    var cityRectW = 32 * 3;
-    var cityRectH = 32 * 3;
+    var cityRectW = 32;
+    var cityRectH = 32;
 
     cities.forEach(function (param2) {
         var hasParens = false;
@@ -1744,10 +1899,6 @@ function createCitiesMap(e) {
         textEl.y = parseInt(rectY + cityRectH + cityRectH / 2);
 
         cityG.addChild(textEl);
-
-        rec.addEventListener("click", function () {
-            console.log(" rec.name: ", rec.name);
-        });
     });
     // console.log(towns.join("\n"));
 
