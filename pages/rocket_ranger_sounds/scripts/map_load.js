@@ -433,7 +433,8 @@ function createCitiesMap(e) {
         cityG.addChild(textEl);
 
         rec.addEventListener("click", function () {
-            console.log(" rec.name: ", rec.name);
+            //console.log(" rec.name: ", rec.name);
+            outputTextClip.updateText (rec.name);
         });
     });
     // console.log(towns.join("\n"));
