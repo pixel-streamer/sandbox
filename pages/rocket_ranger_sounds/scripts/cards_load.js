@@ -32,35 +32,6 @@ ResizeObserver.unobserve()
 // loadGoogleFonts inside font-loading_module.js
 window.addEventListener("load", loadGoogleFonts);
 /* 
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ FONT LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-*/
-// import { loadGoogleFonts }
-// import "font-loading_module.js";
-
-let fontLoader;
-function loadFonts(config) {
-    fontLoader = new createjs.FontLoader(config, true);
-    fontLoader.on("complete", handleFontLoad);
-    fontLoader.load();
-}
-
-const fontload_evt = new CustomEvent("fontload_evtStr", {
-    detail: { msg: ":::fontloaded, now setup stage" },
-});
-
-function handleFontLoad(e) {
-    fontsHaveLoaded = true;
-    window.dispatchEvent(fontload_evt);
-}
-
-window.addEventListener("fontload_evtStr", setupStageForInteraction);
-
-/* 
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF FONT LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-*/
-/* 
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ STAGE SETUP FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
@@ -116,7 +87,15 @@ function setupStageForInteraction() {
 function tick(event) {
     stage.update(event);
 }
-
+/* 
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ FONT LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+*/
+window.addEventListener("fontload_evtStr", setupStageForInteraction);
+/* 
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF FONT LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF STAGE SETUP FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -581,7 +560,9 @@ function handle_ImageLoadComplete(e) {
     console.log(allCards[12]);
     console.log(allCards[12].indexNum);
 
-    var loadedMap = new createjs.Bitmap(e.target.getResult("interface_sm"));
+    var loadedMapSm = new createjs.Bitmap(e.target.getResult("interface_sm"));
+    // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
+    var loadedMap = loadedMapSm;
     var mapPiece = new createjs.Bitmap();
     var mapContainer = new createjs.Container();
     loadedMap.snapToPixel = true;
@@ -633,8 +614,6 @@ function handle_ImageLoadComplete(e) {
     );
     var MapContainerScaleX = fsMapDims.scaleRatio;
     var MapContainerScaleY = fsMapDims.scaleRatio;
-    // mapContainer.scaleX = containerScaleX * 1.36;
-    // mapContainer.scaleY = containerScaleY * 1.36;
 
     var fsCitiesDims = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
     var fsCitiesScaleX = fsCitiesDims.scaleRatio;
@@ -642,11 +621,19 @@ function handle_ImageLoadComplete(e) {
     mapContainer.scaleX = MapContainerScaleX;
     mapContainer.scaleY = MapContainerScaleY;
 
-    createCities.scaleX = fsCitiesScaleX;
-    createCities.scaleY = fsCitiesScaleY;
+    // full-size image scale adjustment
+    // mapContainer.scaleX = fsCitiesScaleX * 1.36;
+    // mapContainer.scaleY = fsCitiesScaleY * 1.36;
+
+    createCities.scaleX = fsCitiesScaleX * 0.995;
+    createCities.scaleY = fsCitiesScaleY * 0.995;
     image_content.addChild(mapContainer);
     image_content.addChild(createCities);
 
+    // createCities.scaleX will be a factor in sizing the final locations.
+    //however, the final numbers should be output in two places:
+    // an interim location (with calculations)
+    // and a "final" location that will house the output locations without squirreling the data
     return;
 
     var cardsImg = new createjs.Bitmap(e.target.getResult("all_cards")).image;

@@ -245,3 +245,24 @@ function createLongGoogleFontLinkHref() {
 /*
 export { loadGoogleFonts };
 */
+
+
+/******************************************   this will have to adapt per-project */
+// import { loadGoogleFonts }
+// import "font-loading_module.js";
+
+let fontLoader;
+function loadFonts(config) {
+    fontLoader = new createjs.FontLoader(config, true);
+    fontLoader.on("complete", handleFontLoad);
+    fontLoader.load();
+}
+
+const fontload_evt = new CustomEvent("fontload_evtStr", {
+    detail: { msg: ":::fontloaded, now setup stage" },
+});
+
+function handleFontLoad(e) {
+    fontsHaveLoaded = true;
+    window.dispatchEvent(fontload_evt);
+}
