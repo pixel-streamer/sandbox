@@ -516,6 +516,12 @@ function playGame() {
                 type: createjs.Types.IMAGE,
             },
             {
+                src: "./assets/overlapped-small.jpg",
+                id: "interface_sm",
+                crossOrigin: true,
+                type: createjs.Types.IMAGE,
+            },
+            {
                 src: "./assets/overlapped-original-sized.jpg",
                 id: "interface_img",
                 crossOrigin: true,
@@ -575,7 +581,7 @@ function handle_ImageLoadComplete(e) {
     console.log(allCards[12]);
     console.log(allCards[12].indexNum);
 
-    var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
+    var loadedMap = new createjs.Bitmap(e.target.getResult("interface_sm"));
     var mapPiece = new createjs.Bitmap();
     var mapContainer = new createjs.Container();
     loadedMap.snapToPixel = true;
@@ -617,8 +623,8 @@ function handle_ImageLoadComplete(e) {
     var fsBiggest = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
     containerScaleX = fsBiggest.scaleRatio;
     containerScaleY = fsBiggest.scaleRatio;
-    mapContainer.scaleX = containerScaleX * 1.33;
-    mapContainer.scaleY = containerScaleY * 1.33;
+    mapContainer.scaleX = containerScaleX * 1.36;
+    mapContainer.scaleY = containerScaleY * 1.36;
     createCities.scaleX = containerScaleX;
     createCities.scaleY = containerScaleY;
     image_content.addChild(mapContainer);
@@ -1716,8 +1722,8 @@ function createCitiesMap(e) {
         //TODO:REVERSED x, y CONFIRM
         //TODO:(Ys seem to be oriented north, rather than south)
         //TODO:ie, IronHills are SOUTHeast, rather than NORTHEAST of MountainsofMirkwood
-        var rectY = parseInt(latitude * 10 * -1 + parseInt(citiesMapH - 700));
-        var rectX = parseInt(longitude * 10);
+        var rectY = parseInt(latitude * 10 * -1 + parseInt(citiesMapH - 400));
+        var rectX = parseInt(longitude * 10) + 400;
 
         var rec = new createjs.Shape();
         rec.graphics.beginStroke("#450067");
