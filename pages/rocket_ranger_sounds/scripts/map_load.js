@@ -352,7 +352,7 @@ function handle_ImageLoadComplete(e) {
                 " target: " + " ",
                 e.target,
                 " target name: " + " " + e.target.name,
-                // " target.parent: " + " " + e.target.parent.name,
+                " target.parent: " + " " + e.target.parent.parent.name,
                 " x: " + " " + e.target.x,
                 " y: " + " " + e.target.y,
                 " clicked here: " + " " + e.stageX,
@@ -361,10 +361,10 @@ function handle_ImageLoadComplete(e) {
                 e.target.getBounds()
             );
 
-            createjs.Tween.get(e.target, {
-                loop: true,
-                override: true,
-            }).to({ rotation: "-360" }, 18000);
+            // createjs.Tween.get(e.target.parent.parent, {
+            //     loop: true,
+            //     override: true,
+            // }).to({ rotation: "-360" }, 12000);
 
             // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
 
@@ -482,10 +482,11 @@ function createCitiesMap(e) {
         cityText.addChild(textEl);
         cityContainer.addChild(city);
         cityContainer.addChild(cityText);
+        cityContainer.name = "finally";
 
-        console.log("cityContainer.regX: ", cityContainer.regX);
-        cityContainer.localToGlobal(rectX, rectY);
-        
+        // console.log("cityContainer.regX: ", cityContainer.getBounds());
+       // stage.globalToLocal(rectX, rectY,cityContainer);
+
         //slot.globalToLocal(stage.mouseX, stage.mouseY);
         cityG.addChild(cityContainer);
 
