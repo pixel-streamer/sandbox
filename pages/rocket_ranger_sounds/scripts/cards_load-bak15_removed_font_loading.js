@@ -28,7 +28,13 @@ var stage,
     bigCanvas = document.querySelector(".full_size_canvas"),
     generalPadding = 16,
     largeText = 0;
-  
+
+let nofullhover;
+//RESIZE VARIABLES
+let resizeObserver,
+    delay = 250,
+    timeout;
+
 let screenLog = document.querySelector("#screen-log");
 /*
 ResizeObserver.disconnect()
@@ -76,7 +82,8 @@ function setupStageForInteraction() {
 
     ticker = createjs.Ticker;
     ticker.timingMode = ticker.RAF_SYNCHED;
-    ticker.addEventListener("tick", tick); 
+    ticker.addEventListener("tick", tick);
+    //nofullhover = window.matchMedia("(hover:none), (hover:on-demand)").matches;
     interactive_content = new createjs.Container();
     interactive_content.name = "interactive_content";
 
@@ -112,10 +119,6 @@ window.addEventListener("fontload_evtStr", setupStageForInteraction);
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ RESIZE FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
-//RESIZE VARIABLES
-let resizeObserver,
-    delay = 250,
-    timeout;
 
 resizeObserver = new ResizeObserver((entries) => {});
 resizeObserver.observe(document.querySelector("#testCanvas"));
@@ -293,7 +296,81 @@ class InteractiveText extends createjs.Text {
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
+/* 
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ UTILITY FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+*/
 
+function getRandomHexNum() {
+    // get a random hex value for the color of something:
+    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+function getGoldenRatio(num) {
+    /*
+    sin(54°) = φ/2
+
+    Golden ratio formula is ϕ = 1 + (1/ϕ). ϕ is also equal to 2 × sin (54°)
+    If we take any two successive Fibonacci Numbers, their ratio is very close
+    to the value 1.618 (Golden ratio).  cos(36°)*2
+    From en.wikipedia.org/wiki/Golden_ratio#Alternative_forms :
+    "These correspond to the fact that the length of the diagonal of a regular
+    pentagon is φ times the length of its side" 
+    */
+    return parseFloat(num / 1.618).toPrecision(3);
+}
+
+function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
+    var containerAspect = constraintW / constraintH;
+
+    var fullW = contentW;
+    var fullH = contentH;
+
+    var aspect = fullW / fullH;
+    var imageAspect;
+
+    var fullMax = Math.max(fullW, fullH);
+    var fullMin = Math.min(fullW, fullH);
+
+    var contentMax = Math.max(constraintW, constraintH);
+    var contentMin = Math.min(constraintW, constraintH);
+
+    let newScaleRatio;
+
+    imageAspect = aspect <= 1 ? "portrait" : "landscape";
+
+    if (aspect < 1 || aspect === 1) {
+        //use contentMin/fullMax
+        newScaleRatio = contentMin / fullMax;
+        contentW = fullW * newScaleRatio;
+        contentH = fullH * newScaleRatio;
+    } else if (aspect > 1) {
+        //use contentMax/fullMax unless the containerAspect is greater than aspect
+        var greater = Math.max(aspect, containerAspect);
+        if (greater === aspect) {
+            //console.log("greater.... ASPECT!");
+            newScaleRatio = contentMax / fullMax;
+            contentW = fullW * newScaleRatio;
+            contentH = fullH * newScaleRatio;
+        } else {
+            //console.log("greater.... CONTAINERASPECT!");
+            newScaleRatio = contentMin / fullMin;
+            contentW = fullW * newScaleRatio;
+            contentH = fullH * newScaleRatio;
+        }
+    }
+    return {
+        imageAspect: imageAspect,
+        aspect: containerAspect,
+        scaleRatio: newScaleRatio,
+        newW: contentW,
+        newH: contentH,
+    };
+}
+/* 
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF UTILITY FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
 
 /* 
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ CLASSES FOR SNAP UI ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
