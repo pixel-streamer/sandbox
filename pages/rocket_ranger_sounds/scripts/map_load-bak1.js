@@ -2,21 +2,12 @@
 functional specifications: (Configuration and tasks)
 
 load images
-    large image √
-    small image √
+    large image
+    small image
 
-load xml data √
+load xml data
 
-overlay xml data containers on images √
-
-each rectangle within the group displays readout of its title. update within the screen area
-
-freely move the rectangle to another spot
-
-update both readouts for the zoom as rectangle is moved, and user isn't subjected to old feedback
-
-task:
-"zoom" on layer, so that manipulation of the rectangle below the magnification can be moved
+overlay xml data containers on images
 
 resize: 
     re-jigger the layout when the phone turns (v2)
@@ -200,11 +191,12 @@ function addStartupText() {
         { once: true }
     );
 }
-
+ 
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
+ 
 
 var outputTextClip;
 
@@ -294,8 +286,7 @@ function handle_ImageLoadComplete(e) {
     var mapContainer = new createjs.Container();
     loadedMap.snapToPixel = true;
     mapPiece = loadedMap.clone();
-    // update the canvas with the part of the image that has loaded as a background...
-    //overlay the smaller image (scaled) on the larger one, like a magnifying glass
+    //TODO: update the canvas with the part of the image that has loaded as a background...
 
     var citiesMapW = 13124;
     var citiesMapH = 9600;
