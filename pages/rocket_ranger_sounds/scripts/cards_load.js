@@ -487,7 +487,7 @@ function setupGame() {
         { once: true }
     );
     outputTextClip = new InteractiveText(
-        "card name appears here",
+        "name appears here",
         stageBounds.width / 2,
         stageBounds.height - 65,
         "#FFCC00"
@@ -613,20 +613,37 @@ function handle_ImageLoadComplete(e) {
     */
     var citiesMapW = 13124;
     var citiesMapH = 9600;
-    mapPiece.cache(0, 0, citiesMapW, citiesMapH);
+    mapPiece.cache(
+        0,
+        0,
+        Math.min(loadedMap.image.naturalWidth, citiesMapW),
+        Math.min(loadedMap.image.naturalHeight, citiesMapH)
+    );
     mapContainer.addChild(mapPiece);
 
     //var citySVGBox = createSVGMap(e);
 
     var createCities = createCitiesMap(e);
 
-    var fsBiggest = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
-    containerScaleX = fsBiggest.scaleRatio;
-    containerScaleY = fsBiggest.scaleRatio;
-    mapContainer.scaleX = containerScaleX * 1.36;
-    mapContainer.scaleY = containerScaleY * 1.36;
-    createCities.scaleX = containerScaleX;
-    createCities.scaleY = containerScaleY;
+    var fsMapDims = resizeToKnownDimensions(
+        loadedMap.image.naturalWidth,
+        loadedMap.image.naturalHeight,
+        w,
+        h
+    );
+    var MapContainerScaleX = fsMapDims.scaleRatio;
+    var MapContainerScaleY = fsMapDims.scaleRatio;
+    // mapContainer.scaleX = containerScaleX * 1.36;
+    // mapContainer.scaleY = containerScaleY * 1.36;
+
+    var fsCitiesDims = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
+    var fsCitiesScaleX = fsCitiesDims.scaleRatio;
+    var fsCitiesScaleY = fsCitiesDims.scaleRatio;
+    mapContainer.scaleX = MapContainerScaleX;
+    mapContainer.scaleY = MapContainerScaleY;
+
+    createCities.scaleX = fsCitiesScaleX;
+    createCities.scaleY = fsCitiesScaleY;
     image_content.addChild(mapContainer);
     image_content.addChild(createCities);
 
@@ -1719,9 +1736,8 @@ function createCitiesMap(e) {
         towns.push(latitude);
         towns.push(longitude);
 
-        //TODO:REVERSED x, y CONFIRM
-        //TODO:(Ys seem to be oriented north, rather than south)
-        //TODO:ie, IronHills are SOUTHeast, rather than NORTHEAST of MountainsofMirkwood
+        // original Ys seem to be oriented north, rather than south)
+        // ie, IronHills are SOUTHeast, rather than NORTHEAST of MountainsofMirkwood
         var rectY = parseInt(latitude * 10 * -1 + parseInt(citiesMapH - 400));
         var rectX = parseInt(longitude * 10) + 400;
 
