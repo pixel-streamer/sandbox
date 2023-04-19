@@ -1,4 +1,3 @@
-
 /* 
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ UTILITY FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -164,7 +163,36 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
         newH: contentH,
     };
 }
+
+/*------------ only in createjs --------------------*/
+function getGlobalBounds(child) {
+    //from https://stackoverflow.com/questions/49516938/createjs-global-gettransformedbounds
+    // this must only work on bitmaps?
+    //if (child.image.width) {
+        var tl = child.localToGlobal(0, 0);
+        var tr = child.localToGlobal(child.image.width, 0);
+        var br = child.localToGlobal(child.image.width, child.image.height);
+        var bl = child.localToGlobal(0, child.image.height);
+    // } else {
+    //     var tl = child.localToGlobal(0, 0);
+    //     var tr = child.localToGlobal(child.width, 0);
+    //     var br = child.localToGlobal(child.width, child.height);
+    //     var bl = child.localToGlobal(0, child.height);
+    // }
+   
+    var minX = Math.min(tl.x, tr.x, br.x, bl.x);
+    var maxX = Math.max(tl.x, tr.x, br.x, bl.x);
+    var minY = Math.min(tl.y, tr.y, br.y, bl.y);
+    var maxY = Math.max(tl.y, tr.y, br.y, bl.y);
+
+    return new createjs.Rectangle(minX, minY, maxX - minX, maxY - minY);
+}
+
+//----- example https://jsfiddle.net/2kr23/58/
+/*------------ end only in createjs --------------------*/
 /* 
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF UTILITY FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
+  // TODO: have a look at coloring a bitmap thru code:
+        // from: https://stackoverflow.com/questions/40717868/easeljs-using-bitmap-for-filling-rectangle

@@ -18,6 +18,14 @@ update both readouts for the zoom as rectangle is moved, and user isn't subjecte
 task:
 "zoom" on layer, so that manipulation of the rectangle below the magnification can be moved
 
+track mouse (or tap)
+
+expand area around tap to view what's in the zoom area.
+    click for zoom, click without of the zoom area to close zoom?
+
+    the center of the rectangle is going to have to be the epicenter of the container for the city,
+    so that when the city rectangle is moved, all things are relative to only that city.
+
 resize: 
     re-jigger the layout when the phone turns (v2)
 */
@@ -282,7 +290,8 @@ function playGame() {
 }
 
 // let fontSize = 32;
-let fontSize = 64;
+//let fontSize = 64;
+let fontSize = 75;
 
 function handle_ImageLoadComplete(e) {
     console.log("██: : :handle_ImageLoadComplete: : : ██");
@@ -309,7 +318,7 @@ function handle_ImageLoadComplete(e) {
 
     //var citySVGBox = createSVGMap(e);
 
-    var createCities = createCitiesMap(e);
+    var createdCities = createCitiesMap(e);
 
     var fsMapDims = resizeToKnownDimensions(
         loadedMap.image.naturalWidth,
@@ -330,12 +339,41 @@ function handle_ImageLoadComplete(e) {
     // mapContainer.scaleX = fsCitiesScaleX * 1.36;
     // mapContainer.scaleY = fsCitiesScaleY * 1.36;
 
-    createCities.scaleX = fsCitiesScaleX * 0.995;
-    createCities.scaleY = fsCitiesScaleY * 0.995;
+    createdCities.scaleX = fsCitiesScaleX * 0.995;
+    createdCities.scaleY = fsCitiesScaleY * 0.995;
     image_content.addChild(mapContainer);
-    image_content.addChild(createCities);
+    image_content.addChild(createdCities);
 
-    // createCities.scaleX will be a factor in sizing the final locations.
+    createdCities.addEventListener("click", function (e) {
+        // var clickedCity = e.target.constructor.prototype ;
+        var typeName = e.target.constructor.name;
+        if (typeName === "Shape") {
+            console.log(
+                " target: " + " ",
+                e.target,
+                " target name: " + " " + e.target.name,
+                // " target.parent: " + " " + e.target.parent.name,
+                " x: " + " " + e.target.x,
+                " y: " + " " + e.target.y,
+                " clicked here: " + " " + e.stageX,
+                +" " + e.stageY,
+                " getGlobalBounds: " + " ",
+                e.target.getBounds()
+            );
+
+            createjs.Tween.get(e.target, {
+                loop: true,
+                override: true,
+            }).to({ rotation: "-360" }, 18000);
+
+            // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
+
+            outputTextClip.updateText(
+                stage.mouseX + ", " + stage.mouseY + " " + e.target.name
+            );
+        }
+    });
+    // createdCities.scaleX will be a factor in sizing the final locations.
     //however, the final numbers should be output in two places:
     // an interim location (with calculations)
     // and a "final" location that will house the output locations without squirreling the data
@@ -360,6 +398,9 @@ function createCitiesMap(e) {
     var cityRectH = 32 * 3;
 
     cities.forEach(function (param2) {
+        var cityContainer = new createjs.Container();
+        var city = new createjs.Container();
+        var cityText = new createjs.Container();
         var hasParens = false;
         var parenLocation = 0;
         var location_name =
@@ -407,15 +448,21 @@ function createCitiesMap(e) {
         var rectX = parseInt(longitude * 10) + 400;
 
         var rec = new createjs.Shape();
+        var regX_loc = cityRectW / 2;
+        var regY_loc = cityRectH / 2;
         rec.graphics.beginStroke("#450067");
         rec.graphics.beginFill("#450067");
         rec.graphics.drawRect(rectX, rectY, cityRectW, cityRectH);
-
-        // TODO: have a look at coloring a bitmap thru code:
-        // from: https://stackoverflow.com/questions/40717868/easeljs-using-bitmap-for-filling-rectangle
+        rec.setBounds(rectX, rectY, cityRectW, cityRectH);
+        rec.regX = regX_loc;
+        rec.regY = regY_loc;
+        rec["city_info"] = {
+            xPos: rectX,
+            yPos: rectY,
+            city_details: location_first_part,
+        };
 
         rec.name = location_first_part;
-        cityG.addChild(rec);
 
         var textEl = new createjs.Text(
             location_first_part,
@@ -430,12 +477,33 @@ function createCitiesMap(e) {
         textEl.x = rectX;
         textEl.y = parseInt(rectY + cityRectH + cityRectH / 2);
 
-        cityG.addChild(textEl);
+        city.addChild(rec);
+        city.name = "city";
+        cityText.addChild(textEl);
+        cityContainer.addChild(city);
+        cityContainer.addChild(cityText);
 
-        rec.addEventListener("click", function () {
-            //console.log(" rec.name: ", rec.name);
-            outputTextClip.updateText (rec.name);
-        });
+        console.log("cityContainer.regX: ", cityContainer.regX);
+        cityContainer.localToGlobal(rectX, rectY);
+        
+        //slot.globalToLocal(stage.mouseX, stage.mouseY);
+        cityG.addChild(cityContainer);
+
+        /*  rec.addEventListener("click", function (e) {
+            console.log(
+                " rec.name: ",
+                rec.name,
+                rec.parent.name,
+                rec.x,
+                rec.y
+                //getGlobalBounds(this)
+            );
+            activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
+            outputTextClip.updateText(
+                stage.mouseX + ", " + stage.mouseY + " " + rec.name
+            );
+            //circle.y = stage.mouseY;
+        }); */
     });
     // console.log(towns.join("\n"));
 
@@ -443,4 +511,8 @@ function createCitiesMap(e) {
     citySVGBox.addChild(citySVG);
 
     return citiesContainer;
+}
+
+function activateZoomer(e, clickX, clickY, targetLocX, targetLocY) {
+    console.log(e, clickX, clickY, targetLocX, targetLocY);
 }
