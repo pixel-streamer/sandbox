@@ -1,35 +1,3 @@
-/*
-functional specifications: (Configuration and tasks)
-
-load images
-    large image √
-    small image √
-
-load xml data √
-
-overlay xml data containers on images √
-
-each rectangle within the group displays readout of its title. update within the screen area
-
-freely move the rectangle to another spot
-
-update both readouts for the zoom as rectangle is moved, and user isn't subjected to old feedback
-
-task:
-"zoom" on layer, so that manipulation of the rectangle below the magnification can be moved
-
-track mouse (or tap)
-
-expand area around tap to view what's in the zoom area.
-    click for zoom, click without of the zoom area to close zoom?
-
-    the center of the rectangle is going to have to be the epicenter of the container for the city,
-    so that when the city rectangle is moved, all things are relative to only that city.
-
-resize: 
-    re-jigger the layout when the phone turns (v2)
-*/
-
 var stage,
     stageBounds,
     importantVideo,
@@ -291,75 +259,127 @@ function playGame() {
 
 // let fontSize = 32;
 //let fontSize = 64;
-let fontSize = 75;
+let fontSize = 32;
 
 function handle_ImageLoadComplete(e) {
     console.log("██: : :handle_ImageLoadComplete: : : ██");
+    var centerCrosshair = new createjs.Shape();
+    centerCrosshair.graphics
+        .setStrokeStyle(2)
+        .beginStroke("#FFCC00")
+        .moveTo(5, 0)
+        .lineTo(5, 10)
+        .moveTo(0, 5)
+        .lineTo(10, 5)
+        .endStroke();
 
-    var loadedMapSm = new createjs.Bitmap(e.target.getResult("interface_sm"));
-    // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
-    var loadedMap = loadedMapSm;
-    var mapPiece = new createjs.Bitmap();
-    var mapContainer = new createjs.Container();
+    var citiesMapW = 640;
+    var citiesMapH = 480;
+    var loadedMap = new createjs.Bitmap(e.target.getResult("interface_sm"));
     loadedMap.snapToPixel = true;
+    var mapPiece = new createjs.Bitmap();
     mapPiece = loadedMap.clone();
-    // update the canvas with the part of the image that has loaded as a background...
-    //overlay the smaller image (scaled) on the larger one, like a magnifying glass
-
-    var citiesMapW = 13124;
-    var citiesMapH = 9600;
     mapPiece.cache(
         0,
         0,
         Math.min(loadedMap.image.naturalWidth, citiesMapW),
         Math.min(loadedMap.image.naturalHeight, citiesMapH)
     );
-    mapContainer.addChild(mapPiece);
 
-    //var citySVGBox = createSVGMap(e);
+    var cityRectW = 32;
+    var cityRectH = 32;
+    var cityG = new createjs.Container();
+    var cityContainer = new createjs.Container();
+    var city = new createjs.Container();
+    var cityText = new createjs.Container();
+    var location_name = "State of Denial";
 
-    var createdCities = createCitiesMap(e);
+    var location_first_part = "look at what I can do";
 
-    var fsMapDims = resizeToKnownDimensions(
-        loadedMap.image.naturalWidth,
-        loadedMap.image.naturalHeight,
-        w,
-        h
+    var latitude = 1;
+    var longitude = 2;
+
+    var rectX = parseInt(longitude * 10) + 400;
+    var rectY = parseInt(latitude * 10 * -1 + parseInt(citiesMapH - 400));
+
+    var rec = new createjs.Shape();
+
+    rec.graphics.beginStroke("#450067");
+    rec.graphics.beginFill("#450067");
+    rec.graphics.drawRect(0, 0, cityRectW, cityRectH);
+    rec.setBounds(0, 0, cityRectW, cityRectH);
+
+    rec["city_info"] = {
+        xPos: rectX,
+        yPos: rectY,
+        city_details: location_first_part,
+    };
+
+    rec.name = location_first_part;
+
+    var textEl = new createjs.Text(
+        location_first_part,
+        +fontSize + "px " + "American Uncial MN",
+        "#FFCC00"
     );
-    var MapContainerScaleX = fsMapDims.scaleRatio;
-    var MapContainerScaleY = fsMapDims.scaleRatio;
 
-    var fsCitiesDims = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
-    var fsCitiesScaleX = fsCitiesDims.scaleRatio;
-    var fsCitiesScaleY = fsCitiesDims.scaleRatio;
-    mapContainer.scaleX = MapContainerScaleX;
-    mapContainer.scaleY = MapContainerScaleY;
+    textEl.x = 0;
+    textEl.y = parseInt(cityRectH + cityRectH / 2);
+    textEl.regX = 0;
+    textEl.regY = 0;
 
-    // full-size image scale adjustment
-    // mapContainer.scaleX = fsCitiesScaleX * 1.36;
-    // mapContainer.scaleY = fsCitiesScaleY * 1.36;
+    city.name = "city";
+    cityContainer.name = location_name;
 
-    createdCities.scaleX = fsCitiesScaleX * 0.995;
-    createdCities.scaleY = fsCitiesScaleY * 0.995;
-    image_content.addChild(mapContainer);
-    image_content.addChild(createdCities);
+    var textRec = new createjs.Shape();
+    textRec.graphics.beginStroke("#450067");
+    textRec.graphics.beginFill("#450067");
+    textRec.graphics.drawRect(
+        0,
+        0,
+        textEl.getBounds().width,
+        textEl.getBounds().height
+    );
 
-    createdCities.addEventListener("click", function (e) {
-        // var clickedCity = e.target.constructor.prototype ;
+    textEl.name = "this is the location name: ---- ";
+
+    textRec.x = 0;
+    textRec.y = textEl.getBounds().height + textEl.getBounds().height / 7;
+
+    cityText.addChild(textRec);
+    cityText.addChild(textEl);
+
+    cityContainer.name = "city_container";
+    cityText.name = "city_text";
+    cityContainer.addChild(city);
+    cityContainer.addChild(cityText); 
+    cityContainer.x = 0;
+    cityContainer.y = 0; 
+    cityContainer.regX = cityRectW / 2;
+    cityContainer.regY = cityRectH / 2; 
+    cityContainer.x = rec["city_info"].xPos;
+    cityContainer.y = rec["city_info"].yPos;
+    city.addChild(rec);
+
+    cityG.addChild(cityContainer);
+
+    image_content.addChild(mapPiece);
+    image_content.addChild(cityG);
+    image_content.addChild(centerCrosshair);
+
+    console.log('rec["city_info"]:', rec["city_info"]);
+
+    centerCrosshair.setBounds(0, 0, 10, 10);
+    centerCrosshair.x =
+        rec["city_info"].xPos - centerCrosshair.getBounds().width / 2;
+    centerCrosshair.y =
+        rec["city_info"].yPos - centerCrosshair.getBounds().height / 2;
+
+    cityContainer.addEventListener("click", function (e) {
         var typeName = e.target.constructor.name;
+        console.log("e.target.parent.parent: ", e.target.parent.name);
         if (typeName === "Shape") {
-            console.log(
-                " target: " + " ",
-                e.target,
-                " x: " + " " + e.target.city_info.xPos,
-                " y: " + " " + e.target.city_info.yPos,
-                " clicked stage x: " + " " + e.stageX,
-                ",y: " + e.stageY,
-                " getGlobalBounds: " + " ",
-                e.target.getBounds()
-            );
-
-            createjs.Tween.get(e.target.parent.parent, {
+            createjs.Tween.get(cityContainer, {
                 loop: true,
                 override: true,
             })
@@ -369,142 +389,19 @@ function handle_ImageLoadComplete(e) {
                 .to({ rotation: "-360" }, 1200)
                 .call(tweenComplete);
 
-            // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
-
             outputTextClip.updateText(
-                //stage.mouseX + ", " + stage.mouseY + " " + e.target.name
-                e.target.city_info.xPos + ", " + e.target.city_info.yPos + " " + e.target.name
+                stage.mouseX +
+                    ", " +
+                    stage.mouseY +
+                    " " +
+                    e.target.parent.parent.name
             );
         }
     });
-    // createdCities.scaleX will be a factor in sizing the final locations.
-    //however, the final numbers should be output in two places:
-    // an interim location (with calculations)
-    // and a "final" location that will house the output locations without squirreling the data
 }
+
 function tweenComplete() {
-    //  do nothing
-}
-
-function createCitiesMap(e) {
-    var citiesContainer = new createjs.Container();
-    var cities = e.target.getResult("cities").querySelectorAll("location");
-    var towns = [];
-    var citiesMapW = 13124;
-    var citiesMapH = 9600;
-    var insideParenRE = /(?:\()(?:.*?)(?:\))/gm;
-    var cityNS = "http://www.w3.org/2000/svg";
-    var citySVGBox = citiesContainer;
-
-    var citySVG = new createjs.Container();
-
-    citySVG.setBounds(0, 0, citiesMapW, citiesMapH);
-
-    var cityG = new createjs.Container();
-    var cityRectW = 32 * 3;
-    var cityRectH = 32 * 3;
-
-    cities.forEach(function (param2) {
-        var cityContainer = new createjs.Container();
-        var city = new createjs.Container();
-        var cityText = new createjs.Container();
-        var hasParens = false;
-        var parenLocation = 0;
-        var location_name =
-            param2.getElementsByTagName("location_name")[0].firstChild.data;
-        /*
-        <root>
-            <location>
-                <location_name>Tol-in-Gaurhoth (Isle of Werewolves) (Sauron's Isle) (Tol Sirion)</location_name>
-                <lattitude>731</lattitude>
-                <longitude>159</longitude>
-                <legend_code>0</legend_code>
-            </location>
-        </root>
-        */
-        parenLocation = location_name.indexOf("(");
-        if (!(parenLocation === -1)) {
-            hasParens = true;
-        }
-        if (hasParens) {
-            //  var location_first_part = location_name.substring(0, parenLocation);
-            // var location_first_part = location_name.matchAll(insideParenRE).split(" ")[0];
-            var location_first_part =
-                location_name.substring(0, parenLocation).trim() +
-                "\n" +
-                location_name.match(insideParenRE).join("\n");
-
-            // location_first_part//
-        } else {
-            var location_first_part = location_name.trim();
-        }
-
-        var latitude =
-            param2.getElementsByTagName("lattitude")[0].firstChild.data;
-        var longitude =
-            param2.getElementsByTagName("longitude")[0].firstChild.data;
-
-        location_first_part = location_first_part.trim();
-        towns.push(location_first_part);
-        towns.push(latitude);
-        towns.push(longitude);
-
-        // original Ys seem to be oriented north, rather than south)
-        // ie, IronHills are SOUTHeast, rather than NORTHEAST of MountainsofMirkwood
-        var rectY = parseInt(latitude * 10 * -1 + parseInt(citiesMapH - 400));
-        var rectX = parseInt(longitude * 10) + 400;
-
-        var rec = new createjs.Shape();
-        var regX_loc = cityRectW / 2;
-        var regY_loc = cityRectH / 2;
-        rec.graphics.beginStroke("#450067");
-        rec.graphics.beginFill("#450067");
-        rec.graphics.drawRect(0, 0, cityRectW, cityRectH);
-        rec.setBounds(0, 0, cityRectW, cityRectH);
-
-        rec["city_info"] = {
-            xPos: rectX,
-            yPos: rectY,
-            city_details: location_first_part,
-        };
-
-        rec.name = location_first_part;
-
-        var textEl = new createjs.Text(
-            location_first_part,
-            +fontSize + "px " + "American Uncial MN",
-            "#000000"
-        );
-
-        // var textWNumber = parseFloat(
-        //     location_first_part.split().slice().toString().length * fontSize
-        // );
-        // console.log(textWNumber);
-        textEl.x = 0;
-        textEl.y = parseInt(0 + cityRectH + cityRectH / 2);
-
-        city.addChild(rec);
-        city.name = "city";
-        cityText.addChild(textEl);
-        cityContainer.addChild(city);
-        cityContainer.addChild(cityText);
-        cityContainer.name = "finally";
-
-        cityContainer.x = 0;
-        cityContainer.y = 0;
-        cityContainer.regX = regX_loc;
-        cityContainer.regY = regY_loc;
-        cityContainer.x = rec["city_info"].xPos;
-        cityContainer.y = rec["city_info"].yPos;
-
-        cityG.addChild(cityContainer);
-    });
-    // console.log(towns.join("\n"));
-
-    citySVG.addChild(cityG);
-    citySVGBox.addChild(citySVG);
-
-    return citiesContainer;
+    //do something?
 }
 
 function activateZoomer(e, clickX, clickY, targetLocX, targetLocY) {
