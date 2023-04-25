@@ -373,7 +373,11 @@ function handle_ImageLoadComplete(e) {
 
             outputTextClip.updateText(
                 //stage.mouseX + ", " + stage.mouseY + " " + e.target.name
-                e.target.city_info.xPos + ", " + e.target.city_info.yPos + " " + e.target.name
+                e.target.city_info.xPos +
+                    ", " +
+                    e.target.city_info.yPos +
+                    " " +
+                    e.target.name
             );
         }
     });
@@ -479,9 +483,13 @@ function createCitiesMap(e) {
         // var textWNumber = parseFloat(
         //     location_first_part.split().slice().toString().length * fontSize
         // );
-        // console.log(textWNumber);
-        textEl.x = 0;
-        textEl.y = parseInt(0 + cityRectH + cityRectH / 2);
+
+        // textEl.x = cityRectW / 2;
+        textEl.regX = textEl.getMetrics().width / 2;
+        // textEl.regX = textEl.getTransformedBounds().width / 2;
+        // textEl.y = parseInt(0 + cityRectH + cityRectH / 2);
+        textEl.regY = textEl.getMetrics().height / 2;
+        // textEl.regY = textEl.getTransformedBounds().height / 2;
 
         city.addChild(rec);
         city.name = "city";
