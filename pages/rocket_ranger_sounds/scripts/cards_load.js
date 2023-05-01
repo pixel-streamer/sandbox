@@ -317,7 +317,8 @@ function setupGame() {
 function playGame() {
     console.log("playGame");
     fileLoader = new createjs.LoadQueue(true);
-    fileLoader.on("complete", handle_ImageLoadComplete);
+//  fileLoader.on("complete", handle_ImageLoadComplete);
+    fileLoader.on("complete", handle_MapLoadComplete);
 
     // fileLoader.loadFile(
     //     {
