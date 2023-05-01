@@ -1,113 +1,3 @@
-function handle_OLD_MAP_LOAD(e) {
-    console.log("██: : :handle_ImageLoadComplete: : : ██");
-
-    var loadedMapSm = new createjs.Bitmap(e.target.getResult("interface_sm"));
-    // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
-    var loadedMap = loadedMapSm;
-    var mapPiece = new createjs.Bitmap();
-    var mapContainer = new createjs.Container();
-    loadedMap.snapToPixel = true;
-    mapPiece = loadedMap.clone();
-    // update the canvas with the part of the image that has loaded as a background...
-    //overlay the smaller image (scaled) on the larger one, like a magnifying glass
-
-    var citiesMapW = 13124;
-    var citiesMapH = 9600;
-    mapPiece.cache(
-        0,
-        0,
-        Math.min(loadedMap.image.naturalWidth, citiesMapW),
-        Math.min(loadedMap.image.naturalHeight, citiesMapH)
-    );
-    mapContainer.addChild(mapPiece);
-
-    //var citySVGBox = createSVGMap(e);
-
-    var createdCities = createCitiesMap(e);
-
-    var fsMapDims = resizeToKnownDimensions(
-        loadedMap.image.naturalWidth,
-        loadedMap.image.naturalHeight,
-        w,
-        h
-    );
-    var MapContainerScaleX = fsMapDims.scaleRatio;
-    var MapContainerScaleY = fsMapDims.scaleRatio;
-
-    var fsCitiesDims = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
-    var fsCitiesScaleX = fsCitiesDims.scaleRatio;
-    var fsCitiesScaleY = fsCitiesDims.scaleRatio;
-
-    // var ZoomMap   = mapContainer.bitmapCache;
-    var ZoomMap = mapPiece.clone();
-
-    //ZoomMap.cache(0,0,320,240,1);
-
-    mapContainer.scaleX = MapContainerScaleX;
-    mapContainer.scaleY = MapContainerScaleY;
-
-    // full-size image scale adjustment
-    // mapContainer.scaleX = fsCitiesScaleX * 1.36;
-    // mapContainer.scaleY = fsCitiesScaleY * 1.36;
-
-    createdCities.scaleX = fsCitiesScaleX * 0.995;
-    createdCities.scaleY = fsCitiesScaleY * 0.995;
-    //image_content.addChild(mapContainer);
-  
-
-    createdCities.addEventListener("click", function (e) {
-        // var clickedCity = e.target.constructor.prototype ;
-        var typeName = e.target.constructor.name;
-        if (typeName === "Shape") {
-            console.log(
-                " target: " + " ",
-                e.target,
-                " x: " + " " + e.target.city_info.xPos,
-                " y: " + " " + e.target.city_info.yPos,
-                " clicked stage x: " + " " + e.stageX,
-                ",y: " + e.stageY,
-                " getGlobalBounds: " + " ",
-                e.target.getBounds()
-            );
-
-            createjs.Tween.get(e.target.parent.parent, {
-                loop: true,
-                override: true,
-            })
-                //.wait(500)
-                // .to({alpha:0, visible:false}, 1000)
-                // .to({ cityContainer, rotation: "-360" }, 1200)
-                .to({ rotation: "-360" }, 1200)
-                .call(tweenComplete);
-
-            // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
-
-            outputTextClip.updateText(
-                //stage.mouseX + ", " + stage.mouseY + " " + e.target.name
-                e.target.city_info.xPos +
-                    ", " +
-                    e.target.city_info.yPos +
-                    " " +
-                    e.target.name
-            );
-        }
-    });
-    // createdCities.scaleX will be a factor in sizing the final locations.
-    //however, the final numbers should be output in two places:
-    // an interim location (with calculations)
-    // and a "final" location that will house the output locations without squirreling the data
-
-    /*
-    TODO: zoom parts:
-    display cache of rectangle below at normal size....
-    */
- 
-    image_content.addChild(createdCities);
-    // mapContainer.alpha = 0;
-    //createdCities.alpha = 0;
-   // image_content.addChild(ZoomMap);
-}
-
 function handle_CardGame(e) {
     console.log("██: : :handle_ImageLoadComplete: : : █ò█");
     var cardsNames = {};
@@ -222,7 +112,7 @@ function handle_CardGame(e) {
     //however, the final numbers should be output in two places:
     // an interim location (with calculations)
     // and a "final" location that will house the output locations without squirreling the data
-    //return;
+//return;
 
     var cardsImg = new createjs.Bitmap(e.target.getResult("all_cards")).image;
     cardsImg.snapToPixel = true;
@@ -361,6 +251,9 @@ function handle_CardGame(e) {
     // image_content.addChild(cardDeckContainer);
     // displaySingleCard(getSuitCode("hearts"));
 }
+function tweenComplete() {
+    //  do nothing
+}
 
 function createCitiesMap(e) {
     var citiesContainer = new createjs.Container();
@@ -463,8 +356,4 @@ function createCitiesMap(e) {
     citySVGBox.addChild(citySVG);
 
     return citiesContainer;
-}
-
-function tweenComplete() {
-    //  do nothing
 }
