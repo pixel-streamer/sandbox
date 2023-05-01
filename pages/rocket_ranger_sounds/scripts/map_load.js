@@ -52,7 +52,6 @@ function handle_OLD_MAP_LOAD(e) {
 
     createdCities.scaleX = fsCitiesScaleX * 0.995;
     createdCities.scaleY = fsCitiesScaleY * 0.995;
-    //image_content.addChild(mapContainer);
 
     createdCities.addEventListener("click", function (e) {
         // var clickedCity = e.target.constructor.prototype ;
@@ -82,15 +81,16 @@ function handle_OLD_MAP_LOAD(e) {
     // an interim location (with calculations)
     // and a "final" location that will house the output locations without squirreling the data
 
+    image_content.addChild(mapContainer);
     /*
     TODO: zoom parts:
     display cache of rectangle below at normal size....
     */
 
+    //  image_content.addChild(ZoomMap);
     image_content.addChild(createdCities);
     // mapContainer.alpha = 0;
     //createdCities.alpha = 0;
-    // image_content.addChild(ZoomMap);
 }
 
 function handle_CardGame(e) {
@@ -361,11 +361,11 @@ function createCitiesMap(e) {
 
     citySVG.setBounds(0, 0, citiesMapW, citiesMapH);
 
-    var cityG = new createjs.Container();
     var cityRectW = 32 * 3;
     var cityRectH = 32 * 3;
 
     cities.forEach(function (param2) {
+        var cityG = new createjs.Container();
         var hasParens = false;
         var parenLocation = 0;
         var location_name =
@@ -409,13 +409,19 @@ function createCitiesMap(e) {
 
         // original Ys seem to be oriented north, rather than south)
         // ie, IronHills are SOUTHeast, rather than NORTHEAST of MountainsofMirkwood
-        var rectY = parseInt(latitude * 10 * -1 + parseInt(citiesMapH - 400));
-        var rectX = parseInt(longitude * 10) + 400;
+        var rectX = parseInt(longitude * 10) + 220;
+        var rectY = parseInt(latitude * 10 * -1 + parseInt(citiesMapH - 600));
 
         var rec = new createjs.Shape();
         rec.graphics.beginStroke("#450067");
         rec.graphics.beginFill("#450067");
-        rec.graphics.drawRect(rectX, rectY, cityRectW, cityRectH);
+        rec.graphics.drawRect(0, 0, cityRectW, cityRectH);
+
+        rec.regX = cityRectW / 2;
+        rec.regY = cityRectH / 2;
+
+        rec.x = rectX;
+        rec.y = rectY;
 
         // TODO: have a look at coloring a bitmap thru code:
         // from: https://stackoverflow.com/questions/40717868/easeljs-using-bitmap-for-filling-rectangle
@@ -435,22 +441,20 @@ function createCitiesMap(e) {
             "#000000"
         );
 
-        // var textWNumber = parseFloat(
-        //     location_first_part.split().slice().toString().length * fontSize
-        // );
-        // console.log(textWNumber);
         textEl.x = rectX;
         textEl.y = parseInt(rectY + cityRectH + cityRectH / 2);
-
+        cityG.name = "city_group";
         cityG.addChild(textEl);
 
-        // rec.addEventListener("click", function () {
-        //     console.log(" rec.name: ", rec.name);
-        // });
-    });
-    // console.log(towns.join("\n"));
+        cityG.regX = rectX;
+        cityG.regY = rectY;
 
-    citySVG.addChild(cityG);
+        cityG.x = rectX;
+        cityG.y = rectY;
+
+        citySVG.addChild(cityG);
+    });
+
     citySVGBox.addChild(citySVG);
 
     return citiesContainer;
