@@ -53,37 +53,21 @@ function handle_OLD_MAP_LOAD(e) {
     createdCities.scaleX = fsCitiesScaleX * 0.995;
     createdCities.scaleY = fsCitiesScaleY * 0.995;
     //image_content.addChild(mapContainer);
-  
 
     createdCities.addEventListener("click", function (e) {
         // var clickedCity = e.target.constructor.prototype ;
         var typeName = e.target.constructor.name;
+        console.log("e.target.parent: ", e.target.parent);
+        console.log("typeName: ", typeName);
         if (typeName === "Shape") {
-            console.log(
-                " target: " + " ",
-                e.target,
-                " x: " + " " + e.target.city_info.xPos,
-                " y: " + " " + e.target.city_info.yPos,
-                " clicked stage x: " + " " + e.stageX,
-                ",y: " + e.stageY,
-                " getGlobalBounds: " + " ",
-                e.target.getBounds()
-            );
-
-            createjs.Tween.get(e.target.parent.parent, {
+            createjs.Tween.get(e.target.parent, {
                 loop: true,
                 override: true,
             })
-                //.wait(500)
-                // .to({alpha:0, visible:false}, 1000)
-                // .to({ cityContainer, rotation: "-360" }, 1200)
                 .to({ rotation: "-360" }, 1200)
                 .call(tweenComplete);
 
-            // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
-
             outputTextClip.updateText(
-                //stage.mouseX + ", " + stage.mouseY + " " + e.target.name
                 e.target.city_info.xPos +
                     ", " +
                     e.target.city_info.yPos +
@@ -91,6 +75,7 @@ function handle_OLD_MAP_LOAD(e) {
                     e.target.name
             );
         }
+        // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
     });
     // createdCities.scaleX will be a factor in sizing the final locations.
     //however, the final numbers should be output in two places:
@@ -101,11 +86,11 @@ function handle_OLD_MAP_LOAD(e) {
     TODO: zoom parts:
     display cache of rectangle below at normal size....
     */
- 
+
     image_content.addChild(createdCities);
     // mapContainer.alpha = 0;
     //createdCities.alpha = 0;
-   // image_content.addChild(ZoomMap);
+    // image_content.addChild(ZoomMap);
 }
 
 function handle_CardGame(e) {
@@ -436,6 +421,12 @@ function createCitiesMap(e) {
         // from: https://stackoverflow.com/questions/40717868/easeljs-using-bitmap-for-filling-rectangle
 
         rec.name = location_first_part;
+        rec.city_info = {
+            xPos: rectX,
+            yPos: rectY,
+            name: location_first_part,
+        };
+
         cityG.addChild(rec);
 
         var textEl = new createjs.Text(
@@ -453,9 +444,9 @@ function createCitiesMap(e) {
 
         cityG.addChild(textEl);
 
-        rec.addEventListener("click", function () {
-            console.log(" rec.name: ", rec.name);
-        });
+        // rec.addEventListener("click", function () {
+        //     console.log(" rec.name: ", rec.name);
+        // });
     });
     // console.log(towns.join("\n"));
 
