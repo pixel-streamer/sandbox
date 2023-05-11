@@ -63,8 +63,9 @@ function setupStageForInteraction() {
     init();
     bigCanvas.setAttribute("width", w);
     bigCanvas.setAttribute("height", h);
+    bigCanvas.getContext("2d").imageSmoothingEnabled = false;
     stage = bigCanvas;
-    // stage = new createjs.Stage("big_stage",{transparent:true});
+    // stage = new createjs.StageGL("big_stage",{transparent:true});
     stage = new createjs.Stage("big_stage");
     stage.setBounds(0, 0, w, h);
 
@@ -240,9 +241,8 @@ function loadAssets() {
     console.log("playGame");
     fileLoader = new createjs.LoadQueue(true);
     // fileLoader.on("complete", handle_CardGame);
-    // fileLoader.on("complete", handle_OLD_MAP_LOAD);
-    fileLoader.on("complete", handle_pixelArtLoad);
-
+     fileLoader.on("complete", handle_OLD_MAP_LOAD);
+    
     // fileLoader.loadFile(
     //     {
     //         src: "../images/sprites/cards_sprite.png",
@@ -261,7 +261,7 @@ function loadAssets() {
             },
             {
                 src: "./assets/map_whole.png",
-                id: "interface_img",
+                id: "map",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
             },
@@ -273,16 +273,10 @@ function loadAssets() {
             },
             {
                 src: "./assets/assets_atlas_3.png",
-                id: "burger",
+                id: "beef",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
             },
-            // {
-            //     src: "./assets/blinky-pixels.png",
-            //     id: "blinky",
-            //     crossOrigin: true,
-            //     type: createjs.Types.IMAGE,
-            // },
         ],
     });
     // gameLogic();

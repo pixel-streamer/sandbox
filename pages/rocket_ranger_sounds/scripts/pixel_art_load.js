@@ -20,9 +20,9 @@ function handle_pixelArtLoad(e) {
 
     var bitmapButton = loadedMapSm;
 
-    container.addChild(loadedMapSm).set({ x: 0, y: 0, scale:.25 });
+    container.addChild(loadedMapSm).set({ x: 0, y: 0, scale: 1 });
     // stage.addChild(container.set({ x: -640, y: -850, scale:1 }));
-     stage.addChild(container.set({ x: 0, y: 0, scale:4 }));
+    stage.addChild(container.set({ x: 0, y: 0, scale: 4 }));
 
     return;
     // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
@@ -131,7 +131,11 @@ function setStage() {
     // bigCanvas.setAttribute("height", 1100);
     bigCanvas.setAttribute("width", w);
     bigCanvas.setAttribute("height", h);
-    stage = new createjs.StageGL(bigCanvas, { transparent: true });
+    //toggle OFF image smoothing when dealing with pixel art.
+    //another option: use the StageGL --- but it has limitations of Sprites on all things
+    bigCanvas.getContext("2d").imageSmoothingEnabled = false;
+    // stage = new createjs.StageGL(bigCanvas, { transparent: true });
+    stage = new createjs.Stage(bigCanvas, { transparent: true });
     stage.setBounds(0, 0, w, h);
     stage.snapToPixel = true;
     stage.snapToPixelsEnabled = true;

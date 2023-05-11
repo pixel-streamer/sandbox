@@ -3,10 +3,10 @@ function handle_OLD_MAP_LOAD(e) {
 
     // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
     // var loadedMap = e.target.getResult("interface_img");
-    var loadedMap = e.target.getResult("burger");
+    var loadedMap = e.target.getResult("map");
     // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
 
-    var mapPiece = new createjs.Bitmap(loadedMap);
+    var map = new createjs.Bitmap(loadedMap);
     var mapContainer = new createjs.Container();
     var zoomContainer = new createjs.Container();
     var zoomMover = new createjs.Container();
@@ -19,8 +19,6 @@ function handle_OLD_MAP_LOAD(e) {
 
     var citiesMapW = loadedMap.naturalWidth * 2 * 0.67; //  ? Why? I don't know
     var citiesMapH = loadedMap.naturalHeight * 2 * 0.67;
-
-    mapContainer.addChild(mapPiece);
 
     //var citySVGBox = createSVGMap(e);
 
@@ -105,7 +103,10 @@ function handle_OLD_MAP_LOAD(e) {
     // an interim location (with calculations)
     // and a "final" location that will house the output locations without squirreling the data
 
-    image_content.addChild(mapContainer);
+    //image_content.addChild(mapContainer);
+
+    mapContainer.addChild(map); 
+    image_content.addChild(mapContainer); 
     image_content.addChild(createdCities);
 
     /*
@@ -125,6 +126,7 @@ function handle_OLD_MAP_LOAD(e) {
     zoomContainerBMP.y = 0;
 
     var zoomFrame = new createjs.Shape();
+    var zoomBackground = new createjs.Shape();
 
     zoomFrame.graphics.beginStroke("#FF0000");
     zoomFrame.graphics.setStrokeStyle(
@@ -141,6 +143,9 @@ function handle_OLD_MAP_LOAD(e) {
         zoomFrameH
     );
 
+    zoomBackground.graphics.beginFill("#FFFFFF");
+    zoomBackground.graphics.drawRect(0, 0, zoomFrameW, zoomFrameH);
+
     /*
 setStrokeStyle(width, "butt", "miter", 10, true)
 setStrokeStyle(width, caps, joints, miterLimit, ignoreScale)
@@ -151,6 +156,7 @@ width Number
 [ignoreScale=false] Boolean optional
 */
 
+    zoomContainer.addChild(zoomBackground);
     zoomContainer.addChild(zoomContainerBMP);
     zoomContainer.addChild(zoomedCities);
     zoomContainer.addChild(zoomFrame);
@@ -172,7 +178,6 @@ width Number
     zoomButton.activate().addEventListener(
         "click",
         function () {
-            console.log("clicked me one time!");
             // zoomButton.activate().visible = false;
             // zoomButton.activate().mouseEnabled = false;
             zoomContainer.visible = !zoomContainer.visible;
@@ -191,7 +196,6 @@ function createCitiesMap(e, mapW, mapH) {
     var citiesMapH = mapH;
     var insideParenRE = /(?:\()(?:.*?)(?:\))/gm;
     var cityNS = "http://www.w3.org/2000/svg";
-    var citySVGBox = citiesContainer;
 
     var citySVG = new createjs.Container();
 
@@ -291,7 +295,7 @@ function createCitiesMap(e, mapW, mapH) {
         citySVG.addChild(cityG);
     });
 
-    citySVGBox.addChild(citySVG);
+    citiesContainer.addChild(citySVG);
 
     return citiesContainer;
 }
