@@ -1,33 +1,44 @@
 function handle_OLD_MAP_LOAD(e) {
     console.log("██: : :handle_ImageLoadComplete: : : ██");
 
-    var loadedMapSm = new createjs.Bitmap(e.target.getResult("interface_sm"));
     // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
-    var loadedMap = loadedMapSm;
-    var mapPiece = new createjs.Bitmap();
+    // var loadedMap = e.target.getResult("interface_img");
+    var loadedMap = e.target.getResult("burger");
+    // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
+
+    var mapPiece = new createjs.Bitmap(loadedMap);
     var mapContainer = new createjs.Container();
-    loadedMap.snapToPixel = true;
-    mapPiece = loadedMap.clone();
+    var zoomContainer = new createjs.Container();
+    var zoomMover = new createjs.Container();
+
     // update the canvas with the part of the image that has loaded as a background...
     //overlay the smaller image (scaled) on the larger one, like a magnifying glass
 
-    var citiesMapW = 13124;
-    var citiesMapH = 9600;
-    mapPiece.cache(
-        0,
-        0,
-        Math.min(loadedMap.image.naturalWidth, citiesMapW),
-        Math.min(loadedMap.image.naturalHeight, citiesMapH)
-    );
+    // var citiesMapW = 13124;
+    // var citiesMapH = 9600;
+
+    var citiesMapW = loadedMap.naturalWidth * 2 * 0.67; //  ? Why? I don't know
+    var citiesMapH = loadedMap.naturalHeight * 2 * 0.67;
+
     mapContainer.addChild(mapPiece);
 
     //var citySVGBox = createSVGMap(e);
 
-    var createdCities = createCitiesMap(e);
+    var createdCities = createCitiesMap(
+        e,
+        loadedMap.naturalWidth,
+        loadedMap.naturalHeight
+    );
+
+    var zoomedCities = createCitiesMap(
+        e,
+        loadedMap.naturalWidth,
+        loadedMap.naturalHeight
+    );
 
     var fsMapDims = resizeToKnownDimensions(
-        loadedMap.image.naturalWidth,
-        loadedMap.image.naturalHeight,
+        loadedMap.naturalWidth,
+        loadedMap.naturalHeight,
         w,
         h
     );
@@ -37,11 +48,6 @@ function handle_OLD_MAP_LOAD(e) {
     var fsCitiesDims = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
     var fsCitiesScaleX = fsCitiesDims.scaleRatio;
     var fsCitiesScaleY = fsCitiesDims.scaleRatio;
-
-    // var ZoomMap   = mapContainer.bitmapCache;
-    var ZoomMap = mapPiece.clone();
-
-    //ZoomMap.cache(0,0,320,240,1);
 
     mapContainer.scaleX = MapContainerScaleX;
     mapContainer.scaleY = MapContainerScaleY;
@@ -76,283 +82,113 @@ function handle_OLD_MAP_LOAD(e) {
         }
         // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
     });
+
+    zoomedCities.addEventListener("click", function (e) {
+        // var clickedCity = e.target.constructor.prototype ;
+        var typeName = e.target.constructor.name;
+        console.log("e.target.parent: ", e.target.parent);
+        console.log("typeName: ", typeName);
+        if (typeName === "Shape") {
+            outputTextClip.updateText(
+                e.target.city_info.xPos +
+                    ", " +
+                    e.target.city_info.yPos +
+                    " " +
+                    e.target.name
+            );
+        }
+        // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
+    });
+
     // createdCities.scaleX will be a factor in sizing the final locations.
     //however, the final numbers should be output in two places:
     // an interim location (with calculations)
     // and a "final" location that will house the output locations without squirreling the data
 
     image_content.addChild(mapContainer);
+    image_content.addChild(createdCities);
+
     /*
     TODO: zoom parts:
     display cache of rectangle below at normal size....
     */
 
-    //  image_content.addChild(ZoomMap);
-    image_content.addChild(createdCities);
-    // mapContainer.alpha = 0;
-    //createdCities.alpha = 0;
-}
+    var zoomFrameW = 320;
+    var zoomFrameH = 256;
+    var zoomFrameLineW = 6;
 
-function handle_CardGame(e) {
-    console.log("██: : :handle_ImageLoadComplete: : : █ò█");
-    var cardsNames = {};
-    cardsNames.animations = {};
-    allCards = makeRegularDeck();
+    var zoomContainerBMP = new createjs.Bitmap(loadedMap);
+    zoomContainerBMP.cache(0, 0, zoomFrameW, zoomFrameH);
+    zoomContainerBMP.regX = 0;
+    zoomContainerBMP.regY = 0;
+    zoomContainerBMP.x = 0;
+    zoomContainerBMP.y = 0;
 
-    allCards.forEach(function (poppedCard, popped_index) {
-        // console.log(poppedCard.suit);
-        if (poppedCard.suit !== null && poppedCard.suit !== undefined) {
-            poppedCard["symbol"] = getSuitCode(poppedCard.suit);
-        } else {
-            //   poppedCard["symbol"] = null;
-            //playing card back expected...  https://graphemica.com/1F0A0
-            poppedCard["symbol"] = "&#127136";
-            poppedCard["symbol"] = String.fromCharCode("1F0A0");
-        }
+    var zoomFrame = new createjs.Shape();
 
-        if (popped_index === 0) {
-            cardsNames.animations[poppedCard.short_name] = [
-                0,
-                popped_index + 1,
-            ];
-        }
-        if (popped_index > 0) {
-            cardsNames.animations[poppedCard.short_name] = [
-                popped_index,
-                popped_index + 1,
-            ];
-        }
-        return allCards;
-        // run: [0, 56,"all",.2],
-    });
-
-    //console.log(allCards);
-
-    //allCards = kShuffle(allCards);
-    // TODO: uses card backs, and doesn't work!
-    console.log(allCards[12]);
-    console.log(allCards[12].indexNum);
-
-    var loadedMapSm = new createjs.Bitmap(e.target.getResult("interface_sm"));
-    // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
-    var loadedMap = loadedMapSm;
-    var mapPiece = new createjs.Bitmap();
-    var mapContainer = new createjs.Container();
-    loadedMap.snapToPixel = true;
-    mapPiece = loadedMap.clone();
-    //TODO: update the canvas with the part of the image that has loaded as a background...
+    zoomFrame.graphics.beginStroke("#FF0000");
+    zoomFrame.graphics.setStrokeStyle(
+        zoomFrameLineW,
+        "butt",
+        "miter",
+        10,
+        true
+    );
+    zoomFrame.graphics.drawRect(
+        zoomFrameLineW / 2,
+        zoomFrameLineW / 2,
+        zoomFrameW,
+        zoomFrameH
+    );
 
     /*
-    
-    using:
-    direction vector
-    
-    map image abs. top bound
-    map image abs. right bound
-    map image abs. bottom bound
-    map image abs. left bound
-     
-    screen top bound
-    screen right bound
-    screen bottom bound
-    screen left bound
+setStrokeStyle(width, "butt", "miter", 10, true)
+setStrokeStyle(width, caps, joints, miterLimit, ignoreScale)
+width Number
+[caps="butt"] String optional
+[joints="miter"] String optional
+[miterLimit=10] Number optional
+[ignoreScale=false] Boolean optional
+*/
 
-    variable percentage of overlap?
+    zoomContainer.addChild(zoomContainerBMP);
+    zoomContainer.addChild(zoomedCities);
+    zoomContainer.addChild(zoomFrame);
+    zoomContainer.addChild(zoomMover);
 
-    scroll distance toward tr (drag)
-    scroll distance toward tl (drag)
-    scroll distance toward br (drag)
-    scroll distance toward bl (drag)
+    zoomContainer.visible = false;
+    zoomContainer.mouseEnabled = false;
 
-    */
-    var citiesMapW = 13124;
-    var citiesMapH = 9600;
-    mapPiece.cache(
-        0,
-        0,
-        Math.min(loadedMap.image.naturalWidth, citiesMapW),
-        Math.min(loadedMap.image.naturalHeight, citiesMapH)
+    image_content.addChild(zoomContainer);
+
+    image_content.addChild(zoomButton);
+
+    var zoomButton = new InteractiveText(
+        "start zoom",
+        stageBounds.width / 2,
+        stageBounds.height / 2,
+        "#FFCC00"
     );
-    mapContainer.addChild(mapPiece);
-
-    //var citySVGBox = createSVGMap(e);
-
-    var createCities = createCitiesMap(e);
-
-    var fsMapDims = resizeToKnownDimensions(
-        loadedMap.image.naturalWidth,
-        loadedMap.image.naturalHeight,
-        w,
-        h
-    );
-    var MapContainerScaleX = fsMapDims.scaleRatio;
-    var MapContainerScaleY = fsMapDims.scaleRatio;
-
-    var fsCitiesDims = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
-    var fsCitiesScaleX = fsCitiesDims.scaleRatio;
-    var fsCitiesScaleY = fsCitiesDims.scaleRatio;
-    mapContainer.scaleX = MapContainerScaleX;
-    mapContainer.scaleY = MapContainerScaleY;
-
-    // full-size image scale adjustment
-    // mapContainer.scaleX = fsCitiesScaleX * 1.36;
-    // mapContainer.scaleY = fsCitiesScaleY * 1.36;
-
-    createCities.scaleX = fsCitiesScaleX * 0.995;
-    createCities.scaleY = fsCitiesScaleY * 0.995;
-    image_content.addChild(mapContainer);
-    image_content.addChild(createCities);
-
-    // createCities.scaleX will be a factor in sizing the final locations.
-    //however, the final numbers should be output in two places:
-    // an interim location (with calculations)
-    // and a "final" location that will house the output locations without squirreling the data
-    //return;
-
-    var cardsImg = new createjs.Bitmap(e.target.getResult("all_cards")).image;
-    cardsImg.snapToPixel = true;
-    var data = new createjs.SpriteSheet({
-        images: [cardsImg],
-        frames: {
-            margin: 2,
-            x: 0,
-            y: 0,
-            width: 96, //for the 1280 one
-            height: 138, //for the 1280 one
-            count: 56, //for the 1280 one
-            regX: 2.5, //for the 1280 one
-            regY: 2.5, //for the 1280 one
-            spacing: 2, //for the 1280 one
-            // width: 71 ,
-            // height: 103,
-            // count: 56,
-            // regX: 0,
-            // regY: 0,
-            // spacing: 2.67,
-            /*  width: 67.55,
-            height: 97,
-            count: 56,
-            regX: 0,
-            regY: 0,
-            spacing: 2.19, */
-        },
-        animations: cardsNames.animations,
-    });
-    cardsAll = new createjs.Sprite(data);
-    cardsAll.stop();
-    //cardsAll.play();
-    var cardDeckContainer = new createjs.Container();
-    var cardContainer = new createjs.Container();
-
-    let xC = 0;
-    let yC = 0;
-    var y_Pos = 0;
-    var x_Pos = 0;
-    let xW = cardsAll.spriteSheet.getFrameBounds(0).width;
-    let yH = cardsAll.spriteSheet.getFrameBounds(0).height;
-    let xS = 2;
-    let yS = 2;
-
-    allCards.forEach(function (arrMember, arrIdx) {
-        if (arrIdx < 52 || arrIdx > 53) {
-            let flipped = false;
-            if (arrIdx % 13 === 0) {
-                x_Pos = xS;
-                y_Pos = yC * yH + yC * yS;
-                yC++;
-                xC = 0;
-            }
-            var another = cardsAll.clone();
-            another.gotoAndStop(another.spriteSheet.getAnimations()[arrIdx]);
-
-            another.addEventListener("click", function () {
-                if (!flipped) {
-                    another.gotoAndStop(
-                        another.spriteSheet.getAnimations()[53]
-                    );
-                } else {
-                    another.gotoAndStop(
-                        another.spriteSheet.getAnimations()[arrIdx]
-                    );
-                }
-                flipped = !flipped;
-
-                //TODO: fix the reference to the corrected (and selected) menu
-                //        console.log("arrMember:::", arrMember.indexNum[50]);
-
-                outputTextClip.updateText(
-                    allCards[arrIdx]["suit"] !== undefined
-                        ? allCards[arrIdx]["name"] +
-                              " of " +
-                              allCards[arrIdx]["symbol"]
-                        : allCards[arrIdx]["ink_color"] +
-                              " " +
-                              allCards[arrIdx]["name"]
-                );
-            });
-            x_Pos = xC * xW;
-
-            let binaryChoicePart = Math.floor(
-                (Math.random() * 1000).toPrecision(3)
-            );
-            let binaryChoice = binaryChoicePart % 2;
-
-            another.rotation =
-                binaryChoice === 0
-                    ? Math.random() * 1.5
-                    : Math.random() * (1.5 * -1);
-            another.regX = 0;
-            another.regY = 0;
-            another.x = x_Pos + xS * xC;
-            another.y = y_Pos + yS * yC;
-            // console.log(
-            //     another.spriteSheet.getFilterBounds(another.spriteSheet)
-            // );
-            // another.hitTest(another.x, another.y);
-            // console.log(another.hitTest(another.x, another.y));
-
-            cardContainer.addChild(another);
-            xC++;
+    zoomButton.activate().addEventListener(
+        "click",
+        function () {
+            console.log("clicked me one time!");
+            // zoomButton.activate().visible = false;
+            // zoomButton.activate().mouseEnabled = false;
+            zoomContainer.visible = !zoomContainer.visible;
+            zoomContainer.mouseEnabled = !zoomContainer.mouseEnabled;
+            console.log("do something zoomy");
         }
-    });
-
-    cardDeckContainer.addChild(cardsAll);
-    var cardCounter = 0;
-    cardDeckContainer.addEventListener("click", function () {
-        //console.log(cardsAll.spriteSheet.getAnimations()[cardCounter % 56]);
-        cardCounter++;
-        cardsAll.gotoAndStop(
-            cardsAll.spriteSheet.getAnimations()[cardCounter % 56] //mod loops without having to reset
-        );
-        outputTextClip.updateText(
-            cardsAll.spriteSheet.getAnimations()[cardCounter % 56]["name"]
-        );
-    });
-
-    var fsBiggest = resizeToKnownDimensions(
-        cardsImg.width,
-        cardsImg.height,
-        w,
-        h
+        //{ once: true }
     );
-    cardDeckContainer.scaleX = fsBiggest.scaleRatio;
-    cardDeckContainer.scaleY = fsBiggest.scaleRatio;
-
-    cardContainer.scaleX = fsBiggest.scaleRatio;
-    cardContainer.scaleY = fsBiggest.scaleRatio;
-
-    //  image_content.addChild(cardContainer);
-
-    // image_content.addChild(cardDeckContainer);
-    // displaySingleCard(getSuitCode("hearts"));
 }
 
-function createCitiesMap(e) {
+function createCitiesMap(e, mapW, mapH) {
     var citiesContainer = new createjs.Container();
     var cities = e.target.getResult("cities").querySelectorAll("location");
     var towns = [];
-    var citiesMapW = 13124;
-    var citiesMapH = 9600;
+    var citiesMapW = mapW;
+    var citiesMapH = mapH;
     var insideParenRE = /(?:\()(?:.*?)(?:\))/gm;
     var cityNS = "http://www.w3.org/2000/svg";
     var citySVGBox = citiesContainer;

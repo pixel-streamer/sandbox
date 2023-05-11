@@ -67,6 +67,7 @@ function setupStageForInteraction() {
     // stage = new createjs.Stage("big_stage",{transparent:true});
     stage = new createjs.Stage("big_stage");
     stage.setBounds(0, 0, w, h);
+
     stageBounds = stage.getBounds();
 
     startup_content = new createjs.Container();
@@ -88,7 +89,7 @@ function setupStageForInteraction() {
     stage.addChildAt(subject_content);
     stage.addChildAt(image_content);
     stage.addChild(interactive_content);
-
+    stage.snapToPixel = true;
     addStartupText();
 }
 
@@ -102,6 +103,14 @@ function tick(event) {
 /* 
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ FONT LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+*/
+
+/*  // load in google fonts through the manifest... (cleaner.)
+queue.loadManifest(
+    [
+        { src: "https://fonts.googleapis.com/css?family=Press+Start+2P", type: "fontcss" }
+    ]
+);
 */
 window.addEventListener("fontload_evtStr", setupStageForInteraction);
 /* 
@@ -197,7 +206,6 @@ function addStartupText() {
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
 
-
 var outputTextClip;
 function setupGame() {
     console.log("setupGame");
@@ -228,12 +236,13 @@ function setupGame() {
     );
 }
 
-function playGame() {
+function loadAssets() {
     console.log("playGame");
     fileLoader = new createjs.LoadQueue(true);
-    // fileLoader.on("complete", handle_CardGame); 
-     fileLoader.on("complete", handle_OLD_MAP_LOAD);
- 
+    // fileLoader.on("complete", handle_CardGame);
+    // fileLoader.on("complete", handle_OLD_MAP_LOAD);
+    fileLoader.on("complete", handle_pixelArtLoad);
+
     // fileLoader.loadFile(
     //     {
     //         src: "../images/sprites/cards_sprite.png",
@@ -251,13 +260,7 @@ function playGame() {
                 type: createjs.Types.IMAGE,
             },
             {
-                src: "./assets/overlapped-small.jpg",
-                id: "interface_sm",
-                crossOrigin: true,
-                type: createjs.Types.IMAGE,
-            },
-            {
-                src: "./assets/overlapped-original-sized.jpg",
+                src: "./assets/map_whole.png",
                 id: "interface_img",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
@@ -268,9 +271,25 @@ function playGame() {
                 crossOrigin: true,
                 type: createjs.Types.XML,
             },
+            {
+                src: "./assets/assets_atlas_3.png",
+                id: "burger",
+                crossOrigin: true,
+                type: createjs.Types.IMAGE,
+            },
+            // {
+            //     src: "./assets/blinky-pixels.png",
+            //     id: "blinky",
+            //     crossOrigin: true,
+            //     type: createjs.Types.IMAGE,
+            // },
         ],
     });
     // gameLogic();
+}
+
+function playGame() {
+    loadAssets();
 }
 
 // let fontSize = 32;
@@ -1163,4 +1182,258 @@ function gameLogic() {
 
 
     */
+}
+
+function handle_CardGame(e) {
+    console.log("██: : :handle_ImageLoadComplete: : : █ò█");
+    var cardsNames = {};
+    cardsNames.animations = {};
+    allCards = makeRegularDeck();
+
+    allCards.forEach(function (poppedCard, popped_index) {
+        // console.log(poppedCard.suit);
+        if (poppedCard.suit !== null && poppedCard.suit !== undefined) {
+            poppedCard["symbol"] = getSuitCode(poppedCard.suit);
+        } else {
+            //   poppedCard["symbol"] = null;
+            //playing card back expected...  https://graphemica.com/1F0A0
+            poppedCard["symbol"] = "&#127136";
+            poppedCard["symbol"] = String.fromCharCode("1F0A0");
+        }
+
+        if (popped_index === 0) {
+            cardsNames.animations[poppedCard.short_name] = [
+                0,
+                popped_index + 1,
+            ];
+        }
+        if (popped_index > 0) {
+            cardsNames.animations[poppedCard.short_name] = [
+                popped_index,
+                popped_index + 1,
+            ];
+        }
+        return allCards;
+        // run: [0, 56,"all",.2],
+    });
+
+    //console.log(allCards);
+
+    //allCards = kShuffle(allCards);
+    // TODO: uses card backs, and doesn't work!
+    console.log(allCards[12]);
+    console.log(allCards[12].indexNum);
+
+    var loadedMapSm = new createjs.Bitmap(e.target.getResult("interface_sm"));
+    // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
+    var loadedMap = loadedMapSm;
+    var mapPiece = new createjs.Bitmap();
+    var mapContainer = new createjs.Container();
+    loadedMap.snapToPixel = true;
+    mapPiece = loadedMap.clone();
+    //TODO: update the canvas with the part of the image that has loaded as a background...
+
+    /*
+    
+    using:
+    direction vector
+    
+    map image abs. top bound
+    map image abs. right bound
+    map image abs. bottom bound
+    map image abs. left bound
+     
+    screen top bound
+    screen right bound
+    screen bottom bound
+    screen left bound
+
+    variable percentage of overlap?
+
+    scroll distance toward tr (drag)
+    scroll distance toward tl (drag)
+    scroll distance toward br (drag)
+    scroll distance toward bl (drag)
+
+    */
+    var citiesMapW = 13124;
+    var citiesMapH = 9600;
+    mapPiece.cache(
+        0,
+        0,
+        Math.min(loadedMap.image.naturalWidth, citiesMapW),
+        Math.min(loadedMap.image.naturalHeight, citiesMapH)
+    );
+    mapContainer.addChild(mapPiece);
+
+    //var citySVGBox = createSVGMap(e);
+
+    var createCities = createCitiesMap(e);
+
+    var fsMapDims = resizeToKnownDimensions(
+        loadedMap.image.naturalWidth,
+        loadedMap.image.naturalHeight,
+        w,
+        h
+    );
+    var MapContainerScaleX = fsMapDims.scaleRatio;
+    var MapContainerScaleY = fsMapDims.scaleRatio;
+
+    var fsCitiesDims = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
+    var fsCitiesScaleX = fsCitiesDims.scaleRatio;
+    var fsCitiesScaleY = fsCitiesDims.scaleRatio;
+    mapContainer.scaleX = MapContainerScaleX;
+    mapContainer.scaleY = MapContainerScaleY;
+
+    // full-size image scale adjustment
+    // mapContainer.scaleX = fsCitiesScaleX * 1.36;
+    // mapContainer.scaleY = fsCitiesScaleY * 1.36;
+
+    createCities.scaleX = fsCitiesScaleX * 0.995;
+    createCities.scaleY = fsCitiesScaleY * 0.995;
+    image_content.addChild(mapContainer);
+    image_content.addChild(createCities);
+
+    // createCities.scaleX will be a factor in sizing the final locations.
+    //however, the final numbers should be output in two places:
+    // an interim location (with calculations)
+    // and a "final" location that will house the output locations without squirreling the data
+    //return;
+
+    var cardsImg = new createjs.Bitmap(e.target.getResult("all_cards")).image;
+    cardsImg.snapToPixel = true;
+    var data = new createjs.SpriteSheet({
+        images: [cardsImg],
+        frames: {
+            margin: 2,
+            x: 0,
+            y: 0,
+            width: 96, //for the 1280 one
+            height: 138, //for the 1280 one
+            count: 56, //for the 1280 one
+            regX: 2.5, //for the 1280 one
+            regY: 2.5, //for the 1280 one
+            spacing: 2, //for the 1280 one
+            // width: 71 ,
+            // height: 103,
+            // count: 56,
+            // regX: 0,
+            // regY: 0,
+            // spacing: 2.67,
+            /*  width: 67.55,
+            height: 97,
+            count: 56,
+            regX: 0,
+            regY: 0,
+            spacing: 2.19, */
+        },
+        animations: cardsNames.animations,
+    });
+    cardsAll = new createjs.Sprite(data);
+    cardsAll.stop();
+    //cardsAll.play();
+    var cardDeckContainer = new createjs.Container();
+    var cardContainer = new createjs.Container();
+
+    let xC = 0;
+    let yC = 0;
+    var y_Pos = 0;
+    var x_Pos = 0;
+    let xW = cardsAll.spriteSheet.getFrameBounds(0).width;
+    let yH = cardsAll.spriteSheet.getFrameBounds(0).height;
+    let xS = 2;
+    let yS = 2;
+
+    allCards.forEach(function (arrMember, arrIdx) {
+        if (arrIdx < 52 || arrIdx > 53) {
+            let flipped = false;
+            if (arrIdx % 13 === 0) {
+                x_Pos = xS;
+                y_Pos = yC * yH + yC * yS;
+                yC++;
+                xC = 0;
+            }
+            var another = cardsAll.clone();
+            another.gotoAndStop(another.spriteSheet.getAnimations()[arrIdx]);
+
+            another.addEventListener("click", function () {
+                if (!flipped) {
+                    another.gotoAndStop(
+                        another.spriteSheet.getAnimations()[53]
+                    );
+                } else {
+                    another.gotoAndStop(
+                        another.spriteSheet.getAnimations()[arrIdx]
+                    );
+                }
+                flipped = !flipped;
+
+                //TODO: fix the reference to the corrected (and selected) menu
+                //        console.log("arrMember:::", arrMember.indexNum[50]);
+
+                outputTextClip.updateText(
+                    allCards[arrIdx]["suit"] !== undefined
+                        ? allCards[arrIdx]["name"] +
+                              " of " +
+                              allCards[arrIdx]["symbol"]
+                        : allCards[arrIdx]["ink_color"] +
+                              " " +
+                              allCards[arrIdx]["name"]
+                );
+            });
+            x_Pos = xC * xW;
+
+            let binaryChoicePart = Math.floor(
+                (Math.random() * 1000).toPrecision(3)
+            );
+            let binaryChoice = binaryChoicePart % 2;
+
+            another.rotation =
+                binaryChoice === 0
+                    ? Math.random() * 1.5
+                    : Math.random() * (1.5 * -1);
+            another.regX = 0;
+            another.regY = 0;
+            another.x = x_Pos + xS * xC;
+            another.y = y_Pos + yS * yC;
+            // console.log(
+            //     another.spriteSheet.getFilterBounds(another.spriteSheet)
+            // );
+            // another.hitTest(another.x, another.y);
+            // console.log(another.hitTest(another.x, another.y));
+
+            cardContainer.addChild(another);
+            xC++;
+        }
+    });
+
+    cardDeckContainer.addChild(cardsAll);
+    var cardCounter = 0;
+    cardDeckContainer.addEventListener("click", function () {
+        //console.log(cardsAll.spriteSheet.getAnimations()[cardCounter % 56]);
+        cardCounter++;
+        cardsAll.gotoAndStop(
+            cardsAll.spriteSheet.getAnimations()[cardCounter % 56] //mod loops without having to reset
+        );
+        outputTextClip.updateText(
+            cardsAll.spriteSheet.getAnimations()[cardCounter % 56]["name"]
+        );
+    });
+
+    var fsBiggest = resizeToKnownDimensions(
+        cardsImg.width,
+        cardsImg.height,
+        w,
+        h
+    );
+    cardDeckContainer.scaleX = fsBiggest.scaleRatio;
+    cardDeckContainer.scaleY = fsBiggest.scaleRatio;
+
+    cardContainer.scaleX = fsBiggest.scaleRatio;
+    cardContainer.scaleY = fsBiggest.scaleRatio;
+
+    //  image_content.addChild(cardContainer);
+
+    // image_content.addChild(cardDeckContainer);
+    // displaySingleCard(getSuitCode("hearts"));
 }

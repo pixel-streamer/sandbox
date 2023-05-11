@@ -16,18 +16,18 @@ class InteractiveText extends createjs.Text {
         this.lineHeight = parseInt(largeText * 1.125);
         this.gamePlayText;
         this._fontCol = fillCol;
-        // this._fontChoice = "16px 'Press Start 2P'";
-        this._fontChoice = "32px 'Rum Raisin'";
-        this._fontChoice = "24px 'Press Start 2P'";
-        this._fontChoice = "24px 'Mystery Quest'";
-        //this.fontFamily = "Press Start 2P";
-        this.fontFamily = "Mystery Quest";
+        this._fontChoice = "16px 'Press Start 2P'";
+        //this._fontChoice = "32px 'Rum Raisin'";
+        //this._fontChoice = "24px 'Press Start 2P'";
+        //this._fontChoice = "24px 'Mystery Quest'";
+        this.fontFamily = "Press Start 2P";
+        //this.fontFamily = "Mystery Quest";
         // this.fontFamily = "Rum Raisin";
         // this.fontFamily = fontLoader.getItem("Press Start 2P");
         // this.fontFamily = fontLoader._faces("Press Start 2P");
 
-        console.log(" largeText: ", largeText);
-        console.log(" this.fontFamily: ", this.fontFamily);
+        //console.log(" largeText: ", largeText);
+        //console.log(" this.fontFamily: ", this.fontFamily);
         //  this._fontChoice =  (largeText + "px " + this.fontFamily) ;
         console.log("  this._fontChoice  : ", this._fontChoice);
         this.interactiveTextHitArea = new createjs.Container();
@@ -169,17 +169,17 @@ function getGlobalBounds(child) {
     //from https://stackoverflow.com/questions/49516938/createjs-global-gettransformedbounds
     // this must only work on bitmaps?
     //if (child.image.width) {
-        var tl = child.localToGlobal(0, 0);
-        var tr = child.localToGlobal(child.image.width, 0);
-        var br = child.localToGlobal(child.image.width, child.image.height);
-        var bl = child.localToGlobal(0, child.image.height);
+    var tl = child.localToGlobal(0, 0);
+    var tr = child.localToGlobal(child.image.width, 0);
+    var br = child.localToGlobal(child.image.width, child.image.height);
+    var bl = child.localToGlobal(0, child.image.height);
     // } else {
     //     var tl = child.localToGlobal(0, 0);
     //     var tr = child.localToGlobal(child.width, 0);
     //     var br = child.localToGlobal(child.width, child.height);
     //     var bl = child.localToGlobal(0, child.height);
     // }
-   
+
     var minX = Math.min(tl.x, tr.x, br.x, bl.x);
     var maxX = Math.max(tl.x, tr.x, br.x, bl.x);
     var minY = Math.min(tl.y, tr.y, br.y, bl.y);
@@ -194,5 +194,5 @@ function getGlobalBounds(child) {
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF UTILITY FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
-  // TODO: have a look at coloring a bitmap thru code:
-        // from: https://stackoverflow.com/questions/40717868/easeljs-using-bitmap-for-filling-rectangle
+// TODO: have a look at coloring a bitmap thru code:
+// from: https://stackoverflow.com/questions/40717868/easeljs-using-bitmap-for-filling-rectangle

@@ -1,0 +1,134 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            testing pixel snapping from
+            https://jsfiddle.net/lannymcnie/qk1gs3xt/
+        </title>
+    </head>
+    <body>
+        <canvas id="canvas" width="800" height="600"></canvas>
+        <script src="https://code.createjs.com/createjs-2015.05.21.combined.js"></script>
+        <script>
+            //from  https://jsfiddle.net/lannymcnie/qk1gs3xt/
+            var stage = new createjs.Stage("canvas");
+            stage.enableMouseOver();
+            createjs.Ticker.on("tick", tick);
+
+            // Create draggable shape
+            var s = new createjs.Shape();
+            s.graphics.f("rgba(255,0,0,0.5)").s("#000").ss(3).dc(0, 0, 25);
+            s.set({ x: 100, y: 100 });
+            s.on("pressmove", handleDrag);
+            s.cursor = "pointer";
+            stage.addChild(s);
+
+            // Make hit points
+            var points = [];
+            for (var i = 0; i < 10; i++) {
+                var p = new createjs.Shape();
+                p.graphics.f("#000").dc(0, 0, 3);
+                p.set({
+                    x: (Math.random() * 400) | 0,
+                    y: (Math.random() * 400) | 0,
+                });
+                stage.addChild(p);
+                points.push(p);
+            }
+
+            function handleDrag(event) {
+                var neighbour, // what we want to snap to
+                    dist, // The current distance to our snap partner
+                    snapDistance = 20; // How close to be to snap
+                for (var i = 0, l = points.length; i < l; i++) {
+                    var p = points[i];
+
+                    // Determine the distance from the mouse position to the point
+                    var diffX = Math.abs(event.stageX - p.x);
+                    var diffY = Math.abs(event.stageY - p.y);
+                    var d = Math.sqrt(diffX * diffX + diffY * diffY);
+
+                    // If the current point is closeEnough and the closest (so far)
+                    // Then choose it to snap to.
+                    var closest =
+                        d < snapDistance && (dist == null || d < dist);
+                    if (closest) {
+                        neighbour = p;
+                        dist = d;
+                    }
+                    // Continue to check others (don't break) in case something is closer.
+                }
+
+                // If there is a close neighbour, snap to it.
+                if (neighbour) {
+                    s.x = neighbour.x;
+                    s.y = neighbour.y;
+
+                    // Otherwise snap to the mouse
+                } else {
+                    s.x = event.stageX;
+                    s.y = event.stageY;
+                }
+            }
+
+            function tick(event) {
+                stage.update(event);
+            }
+        </script>
+
+        <h2>
+            the answer from the page:
+            https://stackoverflow.com/questions/30726835/easeljs-snap-to-grid
+        </h2>
+
+        <pre>
+            Answer
+            Sorted by:
+            4
+
+            This is pretty straightforward:
+
+                Loop over each point, and get the distance to the mouse
+                If the item is closer than the others, set the object to its position
+                Otherwise snap to the mouse instead
+
+            Here is a quick sample with the latest EaselJS: http://jsfiddle.net/lannymcnie/qk1gs3xt/
+
+            The distance check looks like this:
+
+            // Determine the distance from the mouse position to the point
+            var diffX = Math.abs(event.stageX - p.x);
+            var diffY = Math.abs(event.stageY - p.y); 
+            var d = Math.sqrt(diffX*diffX + diffY*diffY);        
+
+            // If the current point is closeEnough and the closest (so far)
+            // Then choose it to snap to.
+            var closest = (d < snapDistance && (dist == null || d < dist));
+            if (closest) {
+                neighbour = p;          
+            }
+
+            And the snap is super simple:
+
+            // If there is a close neighbour, snap to it. 
+            if (neighbour) {
+                s.x = neighbour.x;
+                s.y = neighbour.y;
+
+            // Otherwise snap to the mouse
+            } else {
+                s.x = event.stageX;
+                s.y = event.stageY;
+            }
+
+            Hope that helps!
+           
+            answered Jun 9, 2015 at 20:49
+            [Lanny's user avatar]
+            Lanny
+        </pre>
+    </body>
+</html>
+
+<!-- https://jsfiddle.net/lannymcnie/qk1gs3xt/ -->
