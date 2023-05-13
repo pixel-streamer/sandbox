@@ -282,6 +282,7 @@ width Number
     zoomContainer.on("mousedown", function (evt) {
         //this.parent.addChild(this);
         this.offset = { x: this.x - evt.stageX, y: this.y - evt.stageY };
+        this.location = this.globalToLocal(this.x, this.y);
     });
 
     // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
@@ -294,6 +295,7 @@ width Number
         // console.log("this.offset.x: ", this.offset.x);
         // console.log("zoomContainer.x: ", zoomContainer.x);
         // console.log("\n");
+        console.log(this.location);
         zoomContainerBMP.cache(
             this.offset.x * -1,
             this.offset.y * -1,
