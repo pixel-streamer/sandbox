@@ -97,7 +97,7 @@ function setupStageForInteraction() {
     createjs.Touch.enable(stage);
 
     // enabled mouse over / out events
-    stage.enableMouseOver(15); //changes (lessens -- under 30) the frequency of updates per second
+  //  stage.enableMouseOver(15); //changes (lessens -- under 30) the frequency of updates per second
     // stage.mouseMoveOutside = true; // keep tracking the mouse even when it leaves the canvas
     stage.mouseMoveOutside = false; // keep tracking the mouse even when it leaves the canvas
     addStartupText();

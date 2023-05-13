@@ -180,7 +180,7 @@ width Number
 
     zoomContainer.addChild(zoomBackground);
     zoomContainer.addChild(zoomContainerBMP);
-    zoomContainer.addChild(zoomedCityContainer);
+    //  zoomContainer.addChild(zoomedCityContainer);
     zoomContainer.addChild(zoomFrame);
     zoomContainer.addChild(zoomMover);
 
@@ -282,26 +282,29 @@ width Number
     zoomContainer.on("mousedown", function (evt) {
         //this.parent.addChild(this);
         this.offset = { x: this.x - evt.stageX, y: this.y - evt.stageY };
-        // zoomContainerBMP.release();
-        zoomContainerBMP.cache(
-            this.x - zoomFrameW,
-            this.y - zoomFrameH,
-            this.offset.x + zoomFrameW,
-            this.offset.y + zoomFrameH
-        );
     });
 
     // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
     zoomContainer.on("pressmove", function (evt) {
         this.x = evt.stageX + this.offset.x;
         this.y = evt.stageY + this.offset.y;
-        // zoomContainerBMP.release();
+        // console.log("this.x:", this.x);
+        // console.log("evt.stageX: ", evt.stageX);
+        // console.log("evt.stageX + zoomFrameW: ", evt.stageX + zoomFrameW);
+        // console.log("this.offset.x: ", this.offset.x);
+        // console.log("zoomContainer.x: ", zoomContainer.x);
+        // console.log("\n");
         zoomContainerBMP.cache(
-            this.x - zoomFrameW,
-            this.y - zoomFrameH,
-            this.offset.x + zoomFrameW,
-            this.offset.y + zoomFrameH
+            this.offset.x * -1,
+            this.offset.y * -1,
+            this.offset.x * -1 + zoomFrameW,
+            this.offset.y * -1 + zoomFrameH
         );
+        zoomContainerBMP.updateCache();
+        /* 
+         evt.stageX * (1 / MapContainerScaleX),
+        */
+
         // indicate that the stage should be updated on the next tick:
         update = true;
     });
@@ -450,4 +453,123 @@ function createCitiesMap(e, citiesContainer, mapW, mapH) {
 
 function tweenComplete() {
     //  do nothing
+}
+
+/*██████████████████████████████████████████████████████████████████████████████ */
+/*██████████████████████████████████████████████████████████████████████████████ */
+/*██████████████████████████████████████████████████████████████████████████████ */
+/*██████████████████████████████████████████████████████████████████████████████ */
+/*██████████████████████████████████████████████████████████████████████████████ */
+function zipZoom() {
+    var canvas = document.getElementById("myCanvas");
+    var stage = new createjs.Stage("myCanvas");
+    console.log("stage.scaleX: ", stage.scaleX);
+    console.log("stage.scaleY: ", stage.scaleY);
+
+    function addCircle(r, x, y) {
+        var g = new createjs.Graphics()
+            .beginFill("#ff0000")
+            .drawCircle(0, 0, r);
+        var s = new createjs.Shape(g);
+        s.x = x;
+        s.y = y;
+
+        s.on("pressmove", function (ev) {
+            var localpos = stage.globalToLocal(ev.stageX, ev.stageY);
+            s.x = localpos.x;
+            s.y = localpos.y;
+            stage.update();
+        });
+
+        stage.addChild(s);
+        stage.update();
+    }
+
+    // create a rectangle 'background' Shape object to cover the stage (to allow for capturing mouse drags on anything except other shapes).
+    bg = new createjs.Shape();
+    bg.graphics
+        .beginFill("LightGray")
+        .drawRect(10, 10, stage.canvas.width - 20, stage.canvas.height - 20); //deliberately smaller for debugging purposes (easier to see if it moves).
+    bg.x = 0;
+    bg.y = 0;
+    stage.addChild(bg);
+    stage.update();
+
+    //create a rectangle frame to represent the position of the stage.
+    stageborder = new createjs.Shape();
+    stageborder.graphics
+        .beginStroke("Black")
+        .drawRect(0, 0, stage.canvas.width, stage.canvas.height);
+    stageborder.x = 0;
+    stageborder.y = 0;
+    stage.addChild(stageborder);
+    stage.update();
+
+    // MOUSEWHEEL ZOOM LISTENER - anywhere on canvas.
+    var factor;
+    canvas.addEventListener("wheel", function (e) {
+        if (Math.max(-1, Math.min(1, e.wheelDelta || -e.detail)) > 0) {
+            factor = 1.1;
+        } else {
+            factor = 1 / 1.1;
+        }
+
+        var local = stage.globalToLocal(stage.mouseX, stage.mouseY);
+        stage.regX = local.x;
+        stage.regY = local.y;
+        stage.x = stage.mouseX;
+        stage.y = stage.mouseY;
+
+        stage.scaleX = stage.scaleX * factor;
+        stage.scaleY = stage.scaleY * factor;
+
+        //re-size the 'background' shape to be the same as the canvas size.
+        bg.graphics.command.w = bg.graphics.command.w / factor;
+        bg.graphics.command.h = bg.graphics.command.h / factor;
+        console.log("cover width is ", bg.graphics.command.w);
+
+        // re-position the 'background' shape to it's original position of (0,0) in the global space.
+        var localzero = stage.globalToLocal(0, 0);
+
+        bg.x = localzero.x;
+        bg.y = localzero.y;
+
+        stage.update();
+    });
+
+    // listener to add circles to the canvas.
+    canvas.addEventListener("dblclick", function () {
+        var localpos = stage.globalToLocal(stage.mouseX, stage.mouseY);
+        addCircle(10, localpos.x, localpos.y);
+    });
+
+    bg.addEventListener("mousedown", function (ev1) {
+        // purpose of this listener is to be able to capture drag events on the 'background' to pan the whole stage.
+        // it needs to be a separate 'shape' object (rather than the stage itself), so that it doesn't fire when other shape objects are drag-moved around on the stage.
+
+        // get the initial positions of the stage, background, and mousedown.
+        var mousedownPos0 = { x: ev1.stageX, y: ev1.stageY };
+        var stagePos0 = { x: stage.x, y: stage.y };
+        var bgPos0 = { x: bg.x, y: bg.y };
+
+        bg.addEventListener("pressmove", function (ev2) {
+            //logic is to pan the stage, which will automatically pan all of it's children (shapes).
+            // except we want the 'background' shape to stay where it is, so we need to offset it in the opposite direction to the stage movement so that it stays where it is.
+            stageDelta = {
+                x: ev2.stageX - mousedownPos0.x,
+                y: ev2.stageY - mousedownPos0.y,
+            };
+
+            //adjust the stage position
+            stage.x = stagePos0.x + stageDelta.x;
+            stage.y = stagePos0.y + stageDelta.y;
+
+            // return the 'background' shape to global(0,0), so that it doesn't move with the stage.
+            var localzero = stage.globalToLocal(0, 0);
+            bg.x = localzero.x;
+            bg.y = localzero.y;
+
+            stage.update();
+        });
+    });
 }
