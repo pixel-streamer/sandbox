@@ -276,13 +276,49 @@ width Number
     zoomButton.getInstance().y = stageBounds.height - 64;
 
     // zoomContainer.x = 120;
-    zoomContainerBMP.cache(0, 0, -800, zoomFrameH);
+    zoomContainer.cursor = "pointer";
+    // zoomContainer.addEventListener("click", dragZoom);
 
-    zoomContainer.addEventListener("click", dragZoom);
+    zoomContainer.on("mousedown", function (evt) {
+        //this.parent.addChild(this);
+        this.offset = { x: this.x - evt.stageX, y: this.y - evt.stageY };
+        // zoomContainerBMP.release();
+        zoomContainerBMP.cache(
+            this.x - zoomFrameW,
+            this.y - zoomFrameH,
+            this.offset.x + zoomFrameW,
+            this.offset.y + zoomFrameH
+        );
+    });
+
+    // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
+    zoomContainer.on("pressmove", function (evt) {
+        this.x = evt.stageX + this.offset.x;
+        this.y = evt.stageY + this.offset.y;
+        // zoomContainerBMP.release();
+        zoomContainerBMP.cache(
+            this.x - zoomFrameW,
+            this.y - zoomFrameH,
+            this.offset.x + zoomFrameW,
+            this.offset.y + zoomFrameH
+        );
+        // indicate that the stage should be updated on the next tick:
+        update = true;
+    });
+
+    zoomContainer.on("rollover", function (evt) {
+        // this.scale = this.originalScale * 1.2;
+        // update = true;
+    });
+
+    zoomContainer.on("rollout", function (evt) {
+        //  this.scale = this.originalScale;
+        // update = true;
+    });
 }
 
 function dragZoom(e) {
-    console.log(e.target.parent!==undefined);
+    console.log(e.target.parent !== undefined);
 }
 
 function moveZoom(e) {

@@ -27,7 +27,8 @@ var stage,
     h = parseInt(getComputedStyle(bigArea).height),
     bigCanvas = document.querySelector(".full_size_canvas"),
     generalPadding = 16,
-    largeText = 0;
+    largeText = 0,
+    update = true;
 
 let screenLog = document.querySelector("#screen-log");
 /*
@@ -91,10 +92,25 @@ function setupStageForInteraction() {
     stage.addChildAt(image_content);
     stage.addChild(interactive_content);
     stage.snapToPixel = true;
+
+    // enable touch interactions if supported on the current device:
+    createjs.Touch.enable(stage);
+
+    // enabled mouse over / out events
+    stage.enableMouseOver(15); //changes (lessens -- under 30) the frequency of updates per second
+    // stage.mouseMoveOutside = true; // keep tracking the mouse even when it leaves the canvas
+    stage.mouseMoveOutside = false; // keep tracking the mouse even when it leaves the canvas
     addStartupText();
 }
-
+function stop() {
+    ticker.removeEventListener("tick", tick);
+}
 function tick(event) {
+    // this set makes it so the stage only re-renders when an event handler indicates a change has happened.
+    if (update) {
+        update = false; // only update once
+        stage.update(event);
+    }
     stage.update(event);
 }
 /* 
@@ -264,7 +280,7 @@ function loadAssets() {
                 id: "map",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
-            }, 
+            },
             {
                 src: "./assets/pan-arrow.png",
                 id: "arrow",
