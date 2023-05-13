@@ -241,8 +241,8 @@ function loadAssets() {
     console.log("playGame");
     fileLoader = new createjs.LoadQueue(true);
     // fileLoader.on("complete", handle_CardGame);
-     fileLoader.on("complete", handle_OLD_MAP_LOAD);
-    
+    fileLoader.on("complete", handle_OLD_MAP_LOAD);
+
     // fileLoader.loadFile(
     //     {
     //         src: "../images/sprites/cards_sprite.png",
@@ -264,6 +264,12 @@ function loadAssets() {
                 id: "map",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
+            }, 
+            {
+                src: "./assets/pan-arrow.png",
+                id: "arrow",
+                crossOrigin: true,
+                type: createjs.Types.IMAGE,
             },
             {
                 src: "./assets/legend-data-pass1_copy.xml",
@@ -271,12 +277,12 @@ function loadAssets() {
                 crossOrigin: true,
                 type: createjs.Types.XML,
             },
-            {
+            /*    {
                 src: "./assets/assets_atlas_3.png",
                 id: "beef",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
-            },
+            }, */
         ],
     });
     // gameLogic();

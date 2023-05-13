@@ -4,6 +4,8 @@ function handle_OLD_MAP_LOAD(e) {
     // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
     // var loadedMap = e.target.getResult("interface_img");
     var loadedMap = e.target.getResult("map");
+    var loadedArrow = new createjs.Bitmap(e.target.getResult("arrow"));
+
     // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
 
     var map = new createjs.Bitmap(loadedMap);
@@ -17,23 +19,22 @@ function handle_OLD_MAP_LOAD(e) {
     // var citiesMapW = 13124;
     // var citiesMapH = 9600;
 
-    var citiesMapW = loadedMap.naturalWidth * 2 * 0.67; //  ? Why? I don't know
-    var citiesMapH = loadedMap.naturalHeight * 2 * 0.67;
-
-    //var citySVGBox = createSVGMap(e);
-
+    var citiesContainer = new createjs.Container();
     var createdCities = createCitiesMap(
         e,
+        citiesContainer,
         loadedMap.naturalWidth,
         loadedMap.naturalHeight
     );
-
+    var zoomedCityContainer = new createjs.Container();
     var zoomedCities = createCitiesMap(
         e,
+        zoomedCityContainer,
         loadedMap.naturalWidth,
         loadedMap.naturalHeight
     );
 
+    // full-size image scale adjustment
     var fsMapDims = resizeToKnownDimensions(
         loadedMap.naturalWidth,
         loadedMap.naturalHeight,
@@ -42,22 +43,13 @@ function handle_OLD_MAP_LOAD(e) {
     );
     var MapContainerScaleX = fsMapDims.scaleRatio;
     var MapContainerScaleY = fsMapDims.scaleRatio;
-
-    var fsCitiesDims = resizeToKnownDimensions(citiesMapW, citiesMapH, w, h);
-    var fsCitiesScaleX = fsCitiesDims.scaleRatio;
-    var fsCitiesScaleY = fsCitiesDims.scaleRatio;
-
     mapContainer.scaleX = MapContainerScaleX;
     mapContainer.scaleY = MapContainerScaleY;
+    //cities get the same scale?
+    // citiesContainer.scaleX = MapContainerScaleX;
+    // citiesContainer.scaleY = MapContainerScaleY;
 
-    // full-size image scale adjustment
-    // mapContainer.scaleX = fsCitiesScaleX * 1.36;
-    // mapContainer.scaleY = fsCitiesScaleY * 1.36;
-
-    createdCities.scaleX = fsCitiesScaleX * 0.995;
-    createdCities.scaleY = fsCitiesScaleY * 0.995;
-
-    createdCities.addEventListener("click", function (e) {
+    citiesContainer.addEventListener("click", function (e) {
         // var clickedCity = e.target.constructor.prototype ;
         var typeName = e.target.constructor.name;
         console.log("e.target.parent: ", e.target.parent);
@@ -81,12 +73,36 @@ function handle_OLD_MAP_LOAD(e) {
         // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
     });
 
-    zoomedCities.addEventListener("click", function (e) {
+    /*  zoomedCityContainer.addEventListener("click", function (e) {
         // var clickedCity = e.target.constructor.prototype ;
         var typeName = e.target.constructor.name;
         console.log("e.target.parent: ", e.target.parent);
         console.log("typeName: ", typeName);
         if (typeName === "Shape") {
+            outputTextClip.updateText(
+                e.target.city_info.xPos +
+                    ", " +
+                    e.target.city_info.yPos +
+                    " " +
+                    e.target.name
+            );
+        }
+        // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
+    }); */
+
+    zoomedCityContainer.addEventListener("click", function (e) {
+        // var clickedCity = e.target.constructor.prototype ;
+        var typeName = e.target.constructor.name;
+        console.log("e.target.parent: ", e.target.parent);
+        console.log("typeName: ", typeName);
+        if (typeName === "Shape") {
+            createjs.Tween.get(e.target.parent, {
+                loop: true,
+                override: true,
+            })
+                .to({ rotation: "-360" }, 1200)
+                .call(tweenComplete);
+
             outputTextClip.updateText(
                 e.target.city_info.xPos +
                     ", " +
@@ -105,9 +121,9 @@ function handle_OLD_MAP_LOAD(e) {
 
     //image_content.addChild(mapContainer);
 
-    mapContainer.addChild(map); 
-    image_content.addChild(mapContainer); 
-    image_content.addChild(createdCities);
+    mapContainer.addChild(map);
+    mapContainer.addChild(citiesContainer);
+    image_content.addChild(mapContainer);
 
     /*
     TODO: zoom parts:
@@ -142,6 +158,12 @@ function handle_OLD_MAP_LOAD(e) {
         zoomFrameW,
         zoomFrameH
     );
+    zoomFrame.setBounds(
+        zoomFrameLineW / 2,
+        zoomFrameLineW / 2,
+        zoomFrameW,
+        zoomFrameH
+    );
 
     zoomBackground.graphics.beginFill("#FFFFFF");
     zoomBackground.graphics.drawRect(0, 0, zoomFrameW, zoomFrameH);
@@ -158,16 +180,76 @@ width Number
 
     zoomContainer.addChild(zoomBackground);
     zoomContainer.addChild(zoomContainerBMP);
-    zoomContainer.addChild(zoomedCities);
+    zoomContainer.addChild(zoomedCityContainer);
     zoomContainer.addChild(zoomFrame);
     zoomContainer.addChild(zoomMover);
 
     zoomContainer.visible = false;
     zoomContainer.mouseEnabled = false;
 
-    image_content.addChild(zoomContainer);
+    var zoomFrameButtonsContainer = new createjs.Container();
+    var zoomFrameButtonContainer = new createjs.Container();
+    var zoomFrameButton = new createjs.Shape(); //left side
+    var zoomFrameButtonClickTarget = new createjs.Shape(); //left side
 
-    image_content.addChild(zoomButton);
+    zoomFrameButton.graphics.beginFill("#FF0000");
+    zoomFrameButton.graphics.drawRect(0, 0, 32, 64);
+    zoomFrameButton.setBounds(0, 0, 32, 64);
+    zoomFrameButton.regX = zoomFrameLineW / 2;
+    zoomFrameButton.regY = zoomFrameButton.getBounds().height / 2;
+    zoomFrameButton.x = zoomFrameLineW / 2;
+    zoomFrameButton.y = zoomFrame.getBounds().height / 2;
+
+    zoomFrameButtonClickTarget.graphics.beginFill("rgba(0,0,0,0)");
+    zoomFrameButtonClickTarget.graphics.drawRect(0, 0, 32, 64);
+    zoomFrameButtonClickTarget.setBounds(0, 0, 32, 64);
+    zoomFrameButtonClickTarget.regX = zoomFrameLineW / 2;
+    zoomFrameButtonClickTarget.regY = zoomFrameButton.getBounds().height / 2;
+    zoomFrameButtonClickTarget.x = zoomFrameLineW / 2;
+    zoomFrameButtonClickTarget.y = zoomFrame.getBounds().height / 2;
+
+    loadedArrow.scaleX = 0.5;
+    loadedArrow.scaleY = 0.5;
+    loadedArrow.regX = loadedArrow.image.naturalWidth / 2;
+    loadedArrow.regY = loadedArrow.image.naturalHeight / 2;
+    loadedArrow.x =
+        zoomFrameButton.getBounds().width / 2 - zoomFrameButton.x / 2;
+    loadedArrow.y = zoomFrameButton.getBounds().height + zoomFrameButton.y / 2;
+    loadedArrow.mouseEnabled = false;
+
+    zoomFrameButtonContainer.addChild(zoomFrameButton);
+    zoomFrameButtonContainer.addChild(loadedArrow);
+    zoomFrameButtonContainer.addChild(zoomFrameButtonClickTarget);
+    zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer);
+    var button1BoundName = moveZoom.bind("right");
+    zoomFrameButtonContainer.addEventListener("click", button1BoundName);
+
+    var zoomFrameButton2 = zoomFrameButtonContainer.clone(true); //top side
+    zoomFrameButton2.x =
+        zoomFrame.getBounds().width - zoomFrameButton.getBounds().height / 2;
+    zoomFrameButton2.y = 0;
+    zoomFrameButton2.rotation = 90;
+    zoomFrameButtonsContainer.addChild(zoomFrameButton2);
+    var button2BoundName = moveZoom.bind("down");
+    zoomFrameButton2.addEventListener("click", button2BoundName);
+
+    var zoomFrameButton3 = zoomFrameButtonContainer.clone(true); //right side
+    zoomFrameButton3.x = zoomFrame.getBounds().width;
+    zoomFrameButton3.y = zoomFrame.getBounds().height;
+    zoomFrameButton3.rotation = 180;
+    zoomFrameButtonsContainer.addChild(zoomFrameButton3);
+    var button3BoundName = moveZoom.bind("left");
+    zoomFrameButton3.addEventListener("click", button3BoundName);
+
+    var zoomFrameButton4 = zoomFrameButtonContainer.clone(true);
+    zoomFrameButton4.rotation = -90;
+    zoomFrameButton4.x =
+        (zoomFrame.getBounds().width - zoomFrameButton.getBounds().height) / 4 -
+        zoomFrameButton.getBounds().height / 2;
+    zoomFrameButton4.y = zoomFrame.getBounds().height;
+    zoomFrameButtonsContainer.addChild(zoomFrameButton4);
+    var button4BoundName = moveZoom.bind("up");
+    zoomFrameButton4.addEventListener("click", button4BoundName);
 
     var zoomButton = new InteractiveText(
         "start zoom",
@@ -175,7 +257,7 @@ width Number
         stageBounds.height / 2,
         "#FFCC00"
     );
-    zoomButton.activate().addEventListener(
+    zoomButton.getInstance().addEventListener(
         "click",
         function () {
             // zoomButton.activate().visible = false;
@@ -186,10 +268,40 @@ width Number
         }
         //{ once: true }
     );
+
+    zoomContainer.addChild(zoomFrameButtonsContainer);
+    image_content.addChild(zoomButton);
+    image_content.addChild(zoomContainer);
+
+    zoomButton.getInstance().y = stageBounds.height - 64;
+
+    // zoomContainer.x = 120;
+    zoomContainerBMP.cache(0, 0, -800, zoomFrameH);
+
+    zoomContainer.addEventListener("click", dragZoom);
 }
 
-function createCitiesMap(e, mapW, mapH) {
-    var citiesContainer = new createjs.Container();
+function dragZoom(e) {
+    console.log(e.target.parent!==undefined);
+}
+
+function moveZoom(e) {
+    console.log(e.target.textContent);
+    if (this == "up") {
+        e.target.parent.parent.parent.y -= 10;
+    }
+    if (this == "down") {
+        e.target.parent.parent.parent.y += 10;
+    }
+    if (this == "right") {
+        e.target.parent.parent.parent.x += 10;
+    }
+    if (this == "left") {
+        e.target.parent.parent.parent.x -= 10;
+    }
+}
+
+function createCitiesMap(e, citiesContainer, mapW, mapH) {
     var cities = e.target.getResult("cities").querySelectorAll("location");
     var towns = [];
     var citiesMapW = mapW;

@@ -4,7 +4,7 @@
 */
 
 class InteractiveText extends createjs.Text {
-    //this is a really crappy, fast class... use the other one.
+    //this is a really crappy, fast class... use the other one (where?).
     constructor(interactivePhrase, atXPos, atYPos, fillCol) {
         super();
         this.userText_xPos = atXPos;
@@ -37,20 +37,19 @@ class InteractiveText extends createjs.Text {
             interactivePhrase,
             this._fontChoice,
             this._fontCol
-        );
+        ).set({ lineHeight: this.lineHeight });
         //:rolleyes: lineheight isn't a percentage of the font.
-        this.gamePlayText.set({ lineHeight: this.lineHeight });
         var textMetrics = this.gamePlayText.getMetrics();
         var textW = textMetrics.width;
         var textH = textMetrics.height;
-        this.gamePlayText.x = 8;
-        this.gamePlayText.y = 8;
+        // this.gamePlayText.x = 8;
+        // this.gamePlayText.y = 8;
 
         this.interactiveTextMask.graphics
             .beginFill("rgba(0,0,0,.3)")
             .drawRect(0, 0, textW + 16, textH + 16)
-            .endFill();
-
+           // .endFill();
+        this.interactiveTextMask.setBounds(0, 0, textW + 16, textH + 16);
         this.interactiveTextHitArea.regX = 0;
         this.interactiveTextHitArea.regY = 0;
 
@@ -64,6 +63,14 @@ class InteractiveText extends createjs.Text {
             this.userText_yPos -
             this.interactiveTextHitArea.getBounds().height / 2;
 
+        this.textInfo = {
+            font: this._fontChoice,
+            textInfo: this.gamePlayText.getMetrics(),
+            textSize: largeText,
+            lineHeight: this.lineHeight,
+            hitAreaW: this.interactiveTextHitArea.getBounds().width,
+            hitAreaH: this.interactiveTextHitArea.getBounds().height,
+        };
         // handle_SoundsRegistry();
         interactive_content.addChild(this.interactiveTextHitArea);
     }
@@ -94,6 +101,13 @@ class InteractiveText extends createjs.Text {
     };
     activate = function () {
         return this.interactiveTextHitArea;
+    };
+    getInstance = function () {
+        //duplicate of "activate"
+        return this.interactiveTextHitArea;
+    };
+    getTextInfo = function () {
+        return this.textInfo;
     };
 }
 
