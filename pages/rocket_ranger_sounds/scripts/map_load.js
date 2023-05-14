@@ -281,47 +281,43 @@ width Number
 
     zoomContainer.on("mousedown", function (evt) {
         //this.parent.addChild(this);
+
         this.offset = { x: this.x - evt.stageX, y: this.y - evt.stageY };
     });
 
     // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
     zoomContainer.on("pressmove", function (evt) {
-        // this.MapGlobal = this.globalToLocal(
-        //     evt.stageX + this.offset.x,
-        //     evt.stageY + this.offset.y
-        // );
-        this.MapGlobal = this.localToGlobal(
-            evt.stageX + this.offset.x,
-            evt.stageY + this.offset.y
+        this.movedLoc = {
+            x: evt.stageX + this.offset.x,
+            y: evt.stageY + this.offset.y,
+        };
+        // this.x = evt.stageX + this.offset.x;
+        // this.y = evt.stageY + this.offset.y;
+        this.MappedLocal = this.globalToLocal(
+            this.x - zoomFrameW,
+            this.y - zoomFrameH
+        );
+        this.MappedZoom = this.globalToLocal(
+            zoomFrameW + this.x,
+            zoomFrameH +this.y
         );
 
-        this.x = evt.stageX + this.offset.x;
-        this.y = evt.stageY + this.offset.y;
-        // console.log("this.x:", this.x);
-        // console.log("evt.stageX: ", evt.stageX);
-        // console.log("evt.stageX + zoomFrameW: ", evt.stageX + zoomFrameW);
-        // console.log("this.offset.x: ", this.offset.x);
-        // console.log("zoomContainer.x: ", zoomContainer.x);
+        // console.log("global: ", this.movedLoc);
         // console.log("\n");
 
-        console.log("global: ", this.MapGlobal);
-        console.log("\n");
-
-        // zoomContainerBMP.cache(
-        //     evt.stageX - zoomFrameW,
-        //     evt.stageY - zoomFrameH,
-        //     evt.stageX + zoomFrameW,
-        //     evt.stageY + zoomFrameH
-        // );
         zoomContainerBMP.cache(
-            this.x + this.MapGlobal.x,
-            this.y + this.MapGlobal.y,
-            this.x + this.MapGlobal.x - zoomFrameW,
-            this.y + this.MapGlobal.y - zoomFrameH
+            this.x,
+            this.y,
+            this.MappedZoom.x,
+            this.MappedZoom.y
         );
+        this.x = this.movedLoc.x;
+        this.y = this.movedLoc.y;
+        zoomContainerBMP.regX = this.x;
+        zoomContainerBMP.regY = this.y;
         // zoomContainerBMP.updateCache();
         /* 
-         evt.stageX * (1 / MapContainerScaleX),
+         evt.stageX ,
         */
 
         // indicate that the stage should be updated on the next tick:
