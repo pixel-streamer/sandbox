@@ -282,11 +282,12 @@ width Number
     zoomContainer.on("mousedown", function (evt) {
         //this.parent.addChild(this);
         this.offset = { x: this.x - evt.stageX, y: this.y - evt.stageY };
-        this.location = this.globalToLocal(this.x, this.y);
     });
 
     // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
     zoomContainer.on("pressmove", function (evt) {
+        this.MapGLocation = this.globalToLocal(evt.stageX, evt.stageY);
+        this.MapLocLocation = this.localToGlobal(evt.stageX, evt.stageY);
         this.x = evt.stageX + this.offset.x;
         this.y = evt.stageY + this.offset.y;
         // console.log("this.x:", this.x);
@@ -295,12 +296,21 @@ width Number
         // console.log("this.offset.x: ", this.offset.x);
         // console.log("zoomContainer.x: ", zoomContainer.x);
         // console.log("\n");
-        console.log(this.location);
+
+        console.log(this.MapGLocation);
+        console.log(this.MapLocLocation);
+
+        // zoomContainerBMP.cache(
+        //     evt.stageX - zoomFrameW,
+        //     evt.stageY - zoomFrameH,
+        //     evt.stageX + zoomFrameW,
+        //     evt.stageY + zoomFrameH
+        // );
         zoomContainerBMP.cache(
-            this.offset.x * -1,
-            this.offset.y * -1,
-            this.offset.x * -1 + zoomFrameW,
-            this.offset.y * -1 + zoomFrameH
+            this.MapLocLocation.x + this.offset.x,
+            this.MapLocLocation.y + this.offset.y,
+            this.x + zoomFrameW,
+            this.y + zoomFrameH
         );
         zoomContainerBMP.updateCache();
         /* 
