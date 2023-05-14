@@ -286,8 +286,15 @@ width Number
 
     // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
     zoomContainer.on("pressmove", function (evt) {
-        this.MapGLocation = this.globalToLocal(evt.stageX, evt.stageY);
-        this.MapLocLocation = this.localToGlobal(evt.stageX, evt.stageY);
+        // this.MapGlobal = this.globalToLocal(
+        //     evt.stageX + this.offset.x,
+        //     evt.stageY + this.offset.y
+        // );
+        this.MapGlobal = this.localToGlobal(
+            evt.stageX + this.offset.x,
+            evt.stageY + this.offset.y
+        );
+
         this.x = evt.stageX + this.offset.x;
         this.y = evt.stageY + this.offset.y;
         // console.log("this.x:", this.x);
@@ -297,8 +304,8 @@ width Number
         // console.log("zoomContainer.x: ", zoomContainer.x);
         // console.log("\n");
 
-        console.log(this.MapGLocation);
-        console.log(this.MapLocLocation);
+        console.log("global: ", this.MapGlobal);
+        console.log("\n");
 
         // zoomContainerBMP.cache(
         //     evt.stageX - zoomFrameW,
@@ -307,12 +314,12 @@ width Number
         //     evt.stageY + zoomFrameH
         // );
         zoomContainerBMP.cache(
-            this.MapLocLocation.x + this.offset.x,
-            this.MapLocLocation.y + this.offset.y,
-            this.x + zoomFrameW,
-            this.y + zoomFrameH
+            this.x + this.MapGlobal.x,
+            this.y + this.MapGlobal.y,
+            this.x + this.MapGlobal.x - zoomFrameW,
+            this.y + this.MapGlobal.y - zoomFrameH
         );
-        zoomContainerBMP.updateCache();
+        // zoomContainerBMP.updateCache();
         /* 
          evt.stageX * (1 / MapContainerScaleX),
         */
