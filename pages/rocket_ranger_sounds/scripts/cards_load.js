@@ -97,9 +97,9 @@ function setupStageForInteraction() {
     createjs.Touch.enable(stage);
 
     // enabled mouse over / out events
-  //  stage.enableMouseOver(15); //changes (lessens -- under 30) the frequency of updates per second
+    //stage.enableMouseOver(25); //changes (lessens -- under 30) the frequency of updates per second
     // stage.mouseMoveOutside = true; // keep tracking the mouse even when it leaves the canvas
-    stage.mouseMoveOutside = false; 
+    stage.mouseMoveOutside = false;
     addStartupText();
 }
 function stop() {
@@ -172,7 +172,7 @@ function init() {
 */
 function addStartupText() {
     console.log("addStartupText");
-    var nextLargerTextSize = getGoldenRatio(w) * 0.04;
+  /*   var nextLargerTextSize = getGoldenRatio(w) * 0.04;
     var largerTextContainer = new createjs.Container();
 
     var largerText = new createjs.Text(
@@ -215,7 +215,9 @@ function addStartupText() {
             window.dispatchEvent(gameSetup_evt);
         },
         { once: true }
-    );
+    ); */
+
+    window.dispatchEvent(gameSetup_evt);
 }
 
 /* 
@@ -226,7 +228,7 @@ function addStartupText() {
 var outputTextClip;
 function setupGame() {
     console.log("setupGame");
-    var phraseAsStr = "Welcome to Cards.\n\t\t\tLet's Play.";
+   /*  var phraseAsStr = "Welcome to Cards.\n\t\t\tLet's Play.";
 
     var phrase2 = new InteractiveText(
         phraseAsStr,
@@ -245,12 +247,14 @@ function setupGame() {
         { once: true }
     );
     outputTextClip = new InteractiveText(
-        "name appears here",
+        "city name appears here",
         stageBounds.width / 2,
         stageBounds.height - 65,
         "#FFCC00"
         // ).mouseEnabled=false;  //using this throws error...
-    );
+    ); */
+
+    window.dispatchEvent(gamePlay_evt);
 }
 
 function loadAssets() {

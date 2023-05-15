@@ -20,7 +20,7 @@ function handle_OLD_MAP_LOAD(e) {
     // var citiesMapH = 9600;
 
     var citiesContainer = new createjs.Container();
-    var createdCities = createCitiesMap(
+    createCitiesMap(
         e,
         citiesContainer,
         loadedMap.naturalWidth,
@@ -282,14 +282,15 @@ width Number
     image_content.addChild(zoomButton);
     image_content.addChild(zoomContainer);
 
-    zoomButton.getInstance().y = stageBounds.height - 64;
+    zoomButton.getInstance().y = zoomButton.getTextInfo().hitAreaH / 8;
+    zoomButton.getInstance().x =
+        stageBounds.width -
+        zoomButton.getTextInfo().hitAreaW -
+        zoomButton.getTextInfo().hitAreaW / 8;
 
-    // zoomContainer.x = 120;
     zoomContainer.cursor = "pointer";
-    // zoomContainer.addEventListener("click", dragZoom);
 
     zoomContainer.on("mousedown", function (evt) {
-        //this.parent.addChild(this); 
         this.offset = { x: this.x - evt.stageX, y: this.y - evt.stageY };
     });
 
@@ -301,7 +302,7 @@ width Number
         };
 
         this.MappedLoc = this.globalToLocal(this.movedLoc.x, this.movedLoc.y);
-       
+
         this.MappedZoom = this.globalToLocal(
             zoomFrameW + this.x,
             zoomFrameH + this.y
@@ -319,7 +320,7 @@ width Number
         //sync the movement of the cached bmp
         zoomContainerBMP.regX = this.x * (1 / MapContainerScaleX);
         zoomContainerBMP.regY = this.y * (1 / MapContainerScaleY);
-
+        stage.update();
         // indicate that the stage should be updated on the next tick:
         //update = true;
     });
