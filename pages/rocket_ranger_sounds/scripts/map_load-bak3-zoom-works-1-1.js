@@ -132,9 +132,6 @@ function handle_OLD_MAP_LOAD(e) {
 
     var zoomFrameW = 320;
     var zoomFrameH = 256;
-
-    var zoomFrameBtnW = zoomFrameW / 10;
-    var zoomFrameBtnH = zoomFrameH / 4;
     var zoomFrameLineW = 6;
 
     var zoomContainerBMP = new createjs.Bitmap(loadedMap);
@@ -183,8 +180,7 @@ width Number
 
     zoomContainer.addChild(zoomBackground);
     zoomContainer.addChild(zoomContainerBMP);
-    // these cities shouldn't be here-- they should map to the image, and stick with that
-    //zoomContainer.addChild(zoomedCityContainer);
+    //  zoomContainer.addChild(zoomedCityContainer);
     zoomContainer.addChild(zoomFrame);
     zoomContainer.addChild(zoomMover);
 
@@ -197,21 +193,16 @@ width Number
     var zoomFrameButtonClickTarget = new createjs.Shape(); //left side
 
     zoomFrameButton.graphics.beginFill("#FF0000");
-    zoomFrameButton.graphics.drawRect(0, 0, zoomFrameBtnW, zoomFrameBtnH);
-    zoomFrameButton.setBounds(0, 0, zoomFrameBtnW, zoomFrameBtnH);
+    zoomFrameButton.graphics.drawRect(0, 0, 32, 64);
+    zoomFrameButton.setBounds(0, 0, 32, 64);
     zoomFrameButton.regX = zoomFrameLineW / 2;
     zoomFrameButton.regY = zoomFrameButton.getBounds().height / 2;
     zoomFrameButton.x = zoomFrameLineW / 2;
     zoomFrameButton.y = zoomFrame.getBounds().height / 2;
 
     zoomFrameButtonClickTarget.graphics.beginFill("rgba(0,0,0,0)");
-    zoomFrameButtonClickTarget.graphics.drawRect(
-        0,
-        0,
-        zoomFrameBtnW,
-        zoomFrameBtnH
-    );
-    zoomFrameButtonClickTarget.setBounds(0, 0, zoomFrameBtnW, zoomFrameBtnH);
+    zoomFrameButtonClickTarget.graphics.drawRect(0, 0, 32, 64);
+    zoomFrameButtonClickTarget.setBounds(0, 0, 32, 64);
     zoomFrameButtonClickTarget.regX = zoomFrameLineW / 2;
     zoomFrameButtonClickTarget.regY = zoomFrameButton.getBounds().height / 2;
     zoomFrameButtonClickTarget.x = zoomFrameLineW / 2;
@@ -289,7 +280,8 @@ width Number
     // zoomContainer.addEventListener("click", dragZoom);
 
     zoomContainer.on("mousedown", function (evt) {
-        //this.parent.addChild(this); 
+        //this.parent.addChild(this);
+
         this.offset = { x: this.x - evt.stageX, y: this.y - evt.stageY };
     });
 
@@ -299,29 +291,37 @@ width Number
             x: evt.stageX + this.offset.x,
             y: evt.stageY + this.offset.y,
         };
-
-        this.MappedLoc = this.globalToLocal(this.movedLoc.x, this.movedLoc.y);
-       
+        // this.x = evt.stageX + this.offset.x;
+        // this.y = evt.stageY + this.offset.y;
+        this.MappedLocal = this.globalToLocal(
+            this.x - zoomFrameW,
+            this.y - zoomFrameH
+        );
         this.MappedZoom = this.globalToLocal(
             zoomFrameW + this.x,
-            zoomFrameH + this.y
+            zoomFrameH +this.y
         );
 
-        //   * (1 / MapContainerScaleX) --- this is the scale of the original map
+        // console.log("global: ", this.movedLoc);
+        // console.log("\n");
+
         zoomContainerBMP.cache(
-            this.movedLoc.x * (1 / MapContainerScaleX),
-            this.movedLoc.y * (1 / MapContainerScaleY),
+            this.x,
+            this.y,
             this.MappedZoom.x,
             this.MappedZoom.y
         );
         this.x = this.movedLoc.x;
         this.y = this.movedLoc.y;
-        //sync the movement of the cached bmp
-        zoomContainerBMP.regX = this.x * (1 / MapContainerScaleX);
-        zoomContainerBMP.regY = this.y * (1 / MapContainerScaleY);
+        zoomContainerBMP.regX = this.x;
+        zoomContainerBMP.regY = this.y;
+        // zoomContainerBMP.updateCache();
+        /* 
+         evt.stageX ,
+        */
 
         // indicate that the stage should be updated on the next tick:
-        //update = true;
+        update = true;
     });
 
     zoomContainer.on("rollover", function (evt) {
