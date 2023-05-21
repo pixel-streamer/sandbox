@@ -1,0 +1,49 @@
+html {
+  font-size: 16px;
+}
+body {
+  font-size: 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+body h1 {
+  font-size: 120%;
+}
+#megaball_numbers > div img {
+  max-width: 100%;
+}
+#megaball_numbers > div {
+  max-width: 64px;
+}
+.pick_class {
+  position: relative;
+  display: inline-block;
+}
+#lotto_balls_alphanumeric {
+  min-width: calc(6 * 96px);
+}
+#lotto_result {
+  min-width: calc(6 * 96px);
+}
+#tattle {
+  font-size: 1.53rem;
+}
+#button_home button {
+  background: #fff;
+  padding: 18px 44px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #0a1f8f;
+  /*   border: 1px solid #5db2ff; */
+  letter-spacing: 3px;
+  color: #0a1f8f;
+  /*  color: #5db2ff; */
+  text-transform: uppercase;
+  margin-top: 2rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+::selection {
+  background: #5db2ff;
+  color: #fff;
+  text-shadow: none;
+}
