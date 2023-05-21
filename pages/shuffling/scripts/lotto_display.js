@@ -112,7 +112,7 @@ function handler_beginContentLoad(event) {
   preloader.loadManifest({
     manifest: [
       {
-        src: "./../../shuffling/lotto_w_fills.svg", 
+        src: "../shuffling/lotto_w_fills.svg",
         id: "lotto_svg",
         crossOrigin: true,
         type: createjs.Types.SVG,
@@ -291,9 +291,9 @@ function getGoodData(param) {
       pStr = pMem.toUpperCase();
     }
     if (pIndex < 5) {
-      pName = "#" + "gold__" + pStr; 
+      pName = "#" + "gold__" + pStr;
     } else if (pIndex === 5) {
-      pName = "#" + "blue__" + pStr; 
+      pName = "#" + "blue__" + pStr;
     }
 
     var groupG = document.createElementNS(xmlns, "g");
