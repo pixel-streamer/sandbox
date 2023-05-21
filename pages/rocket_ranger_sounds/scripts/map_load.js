@@ -1,10 +1,46 @@
+var outputTextClip;
+
 function handle_OLD_MAP_LOAD(e) {
+    /*
+    var phraseAsStr = "Welcome to Cards.\n\t\t\tLet's Play.";
+
+    var phrase2 = new InteractiveText(
+        phraseAsStr,
+        stageBounds.width / 2,
+        stageBounds.height / 2,
+        "#FFCC00"
+    );
+    phrase2.activate().addEventListener(
+        "click",
+        function () {
+            console.log("clicked me one time!");
+            phrase2.activate().visible = false;
+            phrase2.activate().mouseEnabled = false;
+            window.dispatchEvent(gamePlay_evt);
+        },
+        { once: true }
+    );
+   */
+    outputTextClip = new InteractiveText(
+        "city name appears here",
+        stageBounds.width - 210,
+        stageBounds.height - 65,
+        //needs to update with the current object, and set the text in a subsequent function
+        // stageBounds.width - outputTextClip.getTextInfo.hitAreaW,
+        // stageBounds.height - outputTextClip.getTextInfo.hitAreaH,
+        "#FFCC00"
+        // ).mouseEnabled=false;  //using this throws error...
+    );
+
     console.log("██: : :handle_ImageLoadComplete: : : ██");
 
     // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
     // var loadedMap = e.target.getResult("interface_img");
     var loadedMap = e.target.getResult("map");
-    var loadedArrow = new createjs.Bitmap(e.target.getResult("arrow"));
+  
+    var loadedArrow = new createjs.Bitmap(e.target.getResult("arrow")); 
+     var magGlass = e.target.getResult("map");
+    var magGlass = new createjs.Bitmap(e.target.getResult("magnify"));
 
     // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
 
@@ -27,12 +63,6 @@ function handle_OLD_MAP_LOAD(e) {
         loadedMap.naturalHeight
     );
     var zoomedCityContainer = new createjs.Container();
-    var zoomedCities = createCitiesMap(
-        e,
-        zoomedCityContainer,
-        loadedMap.naturalWidth,
-        loadedMap.naturalHeight
-    );
 
     // full-size image scale adjustment
     var fsMapDims = resizeToKnownDimensions(
@@ -43,54 +73,12 @@ function handle_OLD_MAP_LOAD(e) {
     );
     var MapContainerScaleX = fsMapDims.scaleRatio;
     var MapContainerScaleY = fsMapDims.scaleRatio;
-    mapContainer.scaleX = MapContainerScaleX;
-    mapContainer.scaleY = MapContainerScaleY;
+
     //cities get the same scale?
     // citiesContainer.scaleX = MapContainerScaleX;
     // citiesContainer.scaleY = MapContainerScaleY;
 
     citiesContainer.addEventListener("click", function (e) {
-        // var clickedCity = e.target.constructor.prototype ;
-        var typeName = e.target.constructor.name;
-        console.log("e.target.parent: ", e.target.parent);
-        console.log("typeName: ", typeName);
-        if (typeName === "Shape") {
-            createjs.Tween.get(e.target.parent, {
-                loop: true,
-                override: true,
-            })
-                .to({ rotation: "-360" }, 1200)
-                .call(tweenComplete);
-
-            outputTextClip.updateText(
-                e.target.city_info.xPos +
-                    ", " +
-                    e.target.city_info.yPos +
-                    " " +
-                    e.target.name
-            );
-        }
-        // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
-    });
-
-    /*  zoomedCityContainer.addEventListener("click", function (e) {
-        // var clickedCity = e.target.constructor.prototype ;
-        var typeName = e.target.constructor.name;
-        console.log("e.target.parent: ", e.target.parent);
-        console.log("typeName: ", typeName);
-        if (typeName === "Shape") {
-            outputTextClip.updateText(
-                e.target.city_info.xPos +
-                    ", " +
-                    e.target.city_info.yPos +
-                    " " +
-                    e.target.name
-            );
-        }
-        // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
-    }); */
-
-    zoomedCityContainer.addEventListener("click", function (e) {
         // var clickedCity = e.target.constructor.prototype ;
         var typeName = e.target.constructor.name;
         console.log("e.target.parent: ", e.target.parent);
@@ -123,21 +111,28 @@ function handle_OLD_MAP_LOAD(e) {
 
     mapContainer.addChild(map);
     mapContainer.addChild(citiesContainer);
+    mapContainer.cache(0, 0, loadedMap.naturalWidth, loadedMap.naturalHeight);
+    mapContainer.scaleX = MapContainerScaleX;
+    mapContainer.scaleY = MapContainerScaleY;
     image_content.addChild(mapContainer);
-
+  
+    interactive_content.addChild(outputTextClip);
     /*
     TODO: zoom parts:
     display cache of rectangle below at normal size....
     */
 
-    var zoomFrameW = 320;
-    var zoomFrameH = 256;
+    var zoomFrameW = parseInt(256);
+    var zoomFrameH = parseInt(256 * 0.75);
 
-    var zoomFrameBtnW = zoomFrameW / 10;
-    var zoomFrameBtnH = zoomFrameH / 4;
+    var zoomFrameBtnW = zoomFrameW / 6;
+    var zoomFrameBtnH = zoomFrameH / 2;
     var zoomFrameLineW = 6;
 
-    var zoomContainerBMP = new createjs.Bitmap(loadedMap);
+    var zoomContainerBMP = new createjs.Bitmap(mapContainer.cacheCanvas);
+    // var zoomContainerBMP = new createjs.Bitmap();
+    // zoomContainerBMP.cacheCanvas = mapContainer.cacheCanvas;
+    // zoomContainerBMP.bitmapCache = zoomContainerBMP.bitmapCache;
     zoomContainerBMP.cache(0, 0, zoomFrameW, zoomFrameH);
     zoomContainerBMP.regX = 0;
     zoomContainerBMP.regY = 0;
@@ -214,7 +209,7 @@ width Number
     zoomFrameButtonClickTarget.setBounds(0, 0, zoomFrameBtnW, zoomFrameBtnH);
     zoomFrameButtonClickTarget.regX = zoomFrameLineW / 2;
     zoomFrameButtonClickTarget.regY = zoomFrameButton.getBounds().height / 2;
-    zoomFrameButtonClickTarget.x = zoomFrameLineW / 2;
+    zoomFrameButtonClickTarget.x = zoomFrameLineW * 2;
     zoomFrameButtonClickTarget.y = zoomFrame.getBounds().height / 2;
 
     loadedArrow.scaleX = 0.5;
@@ -223,11 +218,13 @@ width Number
     loadedArrow.regY = loadedArrow.image.naturalHeight / 2;
     loadedArrow.x =
         zoomFrameButton.getBounds().width / 2 - zoomFrameButton.x / 2;
-    loadedArrow.y = zoomFrameButton.getBounds().height + zoomFrameButton.y / 2;
+    loadedArrow.y =
+        zoomFrameButton.getBounds().height / 2 + zoomFrameButton.y / 2;
     loadedArrow.mouseEnabled = false;
 
     zoomFrameButtonContainer.addChild(zoomFrameButton);
     zoomFrameButtonContainer.addChild(loadedArrow);
+  
     zoomFrameButtonContainer.addChild(zoomFrameButtonClickTarget);
     zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer);
     var button1BoundName = moveZoom.bind("right");
@@ -235,7 +232,9 @@ width Number
 
     var zoomFrameButton2 = zoomFrameButtonContainer.clone(true); //top side
     zoomFrameButton2.x =
-        zoomFrame.getBounds().width - zoomFrameButton.getBounds().height / 2;
+        zoomFrameButton.getBounds().width / 2 +
+        zoomFrame.getBounds().width -
+        zoomFrameButton.getBounds().height / 2;
     zoomFrameButton2.y = 0;
     zoomFrameButton2.rotation = 90;
     zoomFrameButtonsContainer.addChild(zoomFrameButton2);
@@ -250,15 +249,38 @@ width Number
     var button3BoundName = moveZoom.bind("left");
     zoomFrameButton3.addEventListener("click", button3BoundName);
 
-    var zoomFrameButton4 = zoomFrameButtonContainer.clone(true);
+    var zoomFrameButton4 = zoomFrameButtonContainer.clone(true); //bottom side
     zoomFrameButton4.rotation = -90;
-    zoomFrameButton4.x =
-        (zoomFrame.getBounds().width - zoomFrameButton.getBounds().height) / 4 -
-        zoomFrameButton.getBounds().height / 2;
+    zoomFrameButton4.x = zoomFrameButton.getBounds().width - zoomFrameLineW;
     zoomFrameButton4.y = zoomFrame.getBounds().height;
     zoomFrameButtonsContainer.addChild(zoomFrameButton4);
     var button4BoundName = moveZoom.bind("up");
     zoomFrameButton4.addEventListener("click", button4BoundName);
+
+    zoomFrameButtonContainer.addChild(magGlass);
+    var zoomLockBtn = new InteractiveText(
+        "zoom\nlock",
+        stageBounds.width / 2,
+        stageBounds.height / 2,
+        "#FFCC00"
+    );
+    zoomLockBtn.getInstance().addEventListener("click", function () {
+        // zoomButton.activate().visible = false;
+        // zoomButton.activate().mouseEnabled = false;
+        zoomContainer.mouseEnabled = !zoomContainer.mouseEnabled;
+        if (zoomContainer.mouseEnabled) {
+            zoomLockBtn.updateText("zoom\nlock");
+            zoomContainer.mouseEnabled = true;
+        } else {
+            zoomLockBtn.updateText("zoom\nunlock");
+        }
+    });
+    zoomLockBtn.getInstance().x =
+        stageBounds.width -
+        zoomLockBtn.getTextInfo().hitAreaW -
+        zoomLockBtn.getTextInfo().hitAreaW / 8 -
+        fontSize * 0.29;
+    zoomLockBtn.getInstance().y = zoomLockBtn.getTextInfo().hitAreaH + 20;
 
     var zoomButton = new InteractiveText(
         "start zoom",
@@ -269,11 +291,15 @@ width Number
     zoomButton.getInstance().addEventListener(
         "click",
         function () {
-            // zoomButton.activate().visible = false;
-            // zoomButton.activate().mouseEnabled = false;
             zoomContainer.visible = !zoomContainer.visible;
             zoomContainer.mouseEnabled = !zoomContainer.mouseEnabled;
-            console.log("do something zoomy");
+            if (zoomContainer.visible) {
+                zoomButton.updateText("end zoom");
+                zoomContainer.mouseEnabled = true;
+            } else {
+                zoomButton.updateText("start zoom");
+                zoomLockBtn.updateText("zoom\nlock");
+            }
         }
         //{ once: true }
     );
@@ -307,7 +333,8 @@ width Number
             zoomFrameW + this.x,
             zoomFrameH + this.y
         );
-
+        // zoomContainerBMP.cacheCanvas = mapContainer.cacheCanvas;
+        // zoomContainerBMP.bitmapCache = zoomContainerBMP.bitmapCache;
         //   * (1 / MapContainerScaleX) --- this is the scale of the original map
         zoomContainerBMP.cache(
             this.movedLoc.x * (1 / MapContainerScaleX),
@@ -320,9 +347,16 @@ width Number
         //sync the movement of the cached bmp
         zoomContainerBMP.regX = this.x * (1 / MapContainerScaleX);
         zoomContainerBMP.regY = this.y * (1 / MapContainerScaleY);
-        stage.update();
+        // stage.update();
         // indicate that the stage should be updated on the next tick:
         //update = true;
+
+        // console.log("x: " + Math.abs(this.x) > zoomFrameW);
+        console.log(
+            "Math.abs(this.x) > parseInt(zoomFrameW / 2): ",
+                Math.abs(this.x) >=
+                parseInt(zoomFrameW / 2)
+        );
     });
 
     zoomContainer.on("rollover", function (evt) {
@@ -334,6 +368,9 @@ width Number
         //  this.scale = this.originalScale;
         // update = true;
     });
+
+    image_content.snapToPixel = true;
+    zoomContainer.snapToPixel = true; 
 }
 
 function dragZoom(e) {
@@ -341,7 +378,15 @@ function dragZoom(e) {
 }
 
 function moveZoom(e) {
-    console.log(e.target.textContent);
+    console.log("e.target.textContent: ", e.target.textContent);
+    var movedLoc = {
+        x: e.stageX + e.target.parent.parent.parent.offset.x,
+        y: e.stageY + e.target.parent.parent.parent.offset.y,
+    };
+    // e.target.parent.parent.parent.x = movedLoc.x;
+    // e.target.parent.parent.parent.y = movedLoc.y;
+    console.log("movedLoc.x, movedLoc.y: ", movedLoc.x, movedLoc.y);
+
     if (this == "up") {
         e.target.parent.parent.parent.y -= 10;
     }
@@ -368,10 +413,17 @@ function createCitiesMap(e, citiesContainer, mapW, mapH) {
 
     citySVG.setBounds(0, 0, citiesMapW, citiesMapH);
 
-    var cityRectW = 32 * 3;
-    var cityRectH = 32 * 3;
+    var cityRectW = 32;
+
+    var cityRectH = 32;
+
+    var cityRectHalfW = cityRectW / 2;
 
     cities.forEach(function (param2) {
+        // var rectangleColor = "#450067";
+        var rectangleColor = "#450067";
+        var strokeColor = "#00FF00";
+        var townTextColor = "#450067";
         var cityG = new createjs.Container();
         var hasParens = false;
         var parenLocation = 0;
@@ -398,7 +450,6 @@ function createCitiesMap(e, citiesContainer, mapW, mapH) {
                 location_name.substring(0, parenLocation).trim() +
                 "\n" +
                 location_name.match(insideParenRE).join("\n");
-
             // location_first_part//
         } else {
             var location_first_part = location_name.trim();
@@ -420,8 +471,8 @@ function createCitiesMap(e, citiesContainer, mapW, mapH) {
         var rectY = parseInt(latitude * 10 * -1 + parseInt(citiesMapH - 600));
 
         var rec = new createjs.Shape();
-        rec.graphics.beginStroke("#450067");
-        rec.graphics.beginFill("#450067");
+        rec.graphics.beginStroke(strokeColor);
+        rec.graphics.beginFill(rectangleColor);
         rec.graphics.drawRect(0, 0, cityRectW, cityRectH);
 
         rec.regX = cityRectW / 2;
@@ -444,12 +495,12 @@ function createCitiesMap(e, citiesContainer, mapW, mapH) {
 
         var textEl = new createjs.Text(
             location_first_part,
-            +fontSize + "px " + "American Uncial MN",
-            "#000000"
+            +fontSize * 0.67 + "px " + "American Uncial MN",
+            townTextColor
         );
 
-        textEl.x = rectX;
-        textEl.y = parseInt(rectY + cityRectH + cityRectH / 2);
+        textEl.x = rectX + cityRectW - fontSize * 0.333 + 16;
+        textEl.y = parseInt(rectY - cityRectHalfW);
         cityG.name = "city_group";
         cityG.addChild(textEl);
 
@@ -458,6 +509,8 @@ function createCitiesMap(e, citiesContainer, mapW, mapH) {
 
         cityG.x = rectX;
         cityG.y = rectY;
+
+        rec.compositeOperation = "difference";
 
         citySVG.addChild(cityG);
     });

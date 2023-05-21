@@ -29,7 +29,7 @@ class InteractiveText extends createjs.Text {
         //console.log(" largeText: ", largeText);
         //console.log(" this.fontFamily: ", this.fontFamily);
         //  this._fontChoice =  (largeText + "px " + this.fontFamily) ;
-        console.log("  this._fontChoice  : ", this._fontChoice);
+        //console.log("  this._fontChoice  : ", this._fontChoice);
         this.interactiveTextHitArea = new createjs.Container();
         this.interactiveTextMask = new createjs.Shape();
 
@@ -92,12 +92,12 @@ class InteractiveText extends createjs.Text {
             .beginFill("rgba(0,0,0,.3)")
             .drawRect(0, 0, textW + 16, textH + 16)
             .endFill();
-        this.interactiveTextHitArea.x =
-            this.userText_xPos -
-            this.interactiveTextHitArea.getBounds().width / 2;
-        this.interactiveTextHitArea.y =
-            this.userText_yPos -
-            this.interactiveTextHitArea.getBounds().height / 2;
+        // this.interactiveTextHitArea.x =
+        //     this.userText_xPos -
+        //     this.interactiveTextHitArea.getBounds().width / 2;
+        // this.interactiveTextHitArea.y =
+        //     this.userText_yPos -
+        //     this.interactiveTextHitArea.getBounds().height / 2;
     };
     activate = function () {
         return this.interactiveTextHitArea;

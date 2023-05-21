@@ -20,6 +20,7 @@ var stage,
     ticker,
     subject_content,
     image_content,
+    interactive_content,
     startup_content,
     fileLoader,
     bigArea = document.querySelector("#testCanvas"),
@@ -172,7 +173,7 @@ function init() {
 */
 function addStartupText() {
     console.log("addStartupText");
-  /*   var nextLargerTextSize = getGoldenRatio(w) * 0.04;
+    /*   var nextLargerTextSize = getGoldenRatio(w) * 0.04;
     var largerTextContainer = new createjs.Container();
 
     var largerText = new createjs.Text(
@@ -225,10 +226,10 @@ function addStartupText() {
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
 
-var outputTextClip;
+// var outputTextClip;
 function setupGame() {
     console.log("setupGame");
-   /*  var phraseAsStr = "Welcome to Cards.\n\t\t\tLet's Play.";
+    /*  var phraseAsStr = "Welcome to Cards.\n\t\t\tLet's Play.";
 
     var phrase2 = new InteractiveText(
         phraseAsStr,
@@ -288,6 +289,12 @@ function loadAssets() {
             {
                 src: "./assets/pan-arrow.png",
                 id: "arrow",
+                crossOrigin: true,
+                type: createjs.Types.IMAGE,
+            },
+            {
+                src: "./assets/mag_glass.png",
+                id: "magnify",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
             },
@@ -1276,6 +1283,7 @@ function handle_CardGame(e) {
     scroll distance toward bl (drag)
 
     */
+    /* 
     var citiesMapW = 13124;
     var citiesMapH = 9600;
     mapPiece.cache(
@@ -1313,7 +1321,7 @@ function handle_CardGame(e) {
     createCities.scaleY = fsCitiesScaleY * 0.995;
     image_content.addChild(mapContainer);
     image_content.addChild(createCities);
-
+*/
     // createCities.scaleX will be a factor in sizing the final locations.
     //however, the final numbers should be output in two places:
     // an interim location (with calculations)
