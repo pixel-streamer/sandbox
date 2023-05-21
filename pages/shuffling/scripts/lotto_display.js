@@ -112,7 +112,7 @@ function handler_beginContentLoad(event) {
   preloader.loadManifest({
     manifest: [
       {
-        src: "../lotto_w_fills.svg",
+        src: "./../../shuffling/lotto_w_fills.svg", 
         id: "lotto_svg",
         crossOrigin: true,
         type: createjs.Types.SVG,
