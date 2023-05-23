@@ -23,21 +23,26 @@ function handle_OLD_MAP_LOAD(e) {
    */
     var mapInGlass = e.target.getResult("map");
 
-    console.log(mapInGlass);
     var box = new createjs.Shape();
+    box.graphics.beginLinearGradientFill(
+        ["#000000", "rgba(0, 0, 0, 0)"],
+        [0, 1],
+        0,
+        0,
+        100,
+        100
+    );
 
-    var bigRect = new createjs.Rectangle(
-            0,
-            0,
-            mapInGlass.naturalWidth / 2,
-            mapInGlass.naturalHeight / 2
-        ),
-        p = new createjs.Point(320, -200),
-        mx = new createjs.Matrix2D(),
-        box = new createjs.Shape();
+    var rect = new createjs.Rectangle(0, 0, 100, 100);
+    var bigRect =   new createjs.Rectangle(0, 0, 320, 256);
+    var newScale = 1,
+        scale = 1;
+    var p = new createjs.Point(125, 125);
+    var mx = new createjs.Matrix2D();
 
     var bmp = new createjs.Bitmap(mapInGlass);
 
+    var box = new createjs.Shape();
     box.graphics.beginLinearGradientFill(
         ["#000000", "rgba(0, 0, 0, 0)"],
         [0, 1],
@@ -47,7 +52,7 @@ function handle_OLD_MAP_LOAD(e) {
         bigRect.height
     );
     mx.translate(p.x, p.y);
-    mx.scale(0.15, 0.15);
+    mx.scale(0.3, 0.3);
     mx.rotate(45);
 
     /* 

@@ -199,6 +199,43 @@ border-radius: 3px;
         </style>
     </head>
     <body>
+        <pre>
+            Tiny API
+                The Graphics class also includes a "tiny API", which is one or two-letter methods
+                that are shortcuts for all of the Graphics methods. These methods are great for
+                creating compact instructions, and is used by the Toolkit for CreateJS to
+                generate readable code. All tiny methods are marked as protected, so you can 
+                view them by enabling protected descriptions in the docs.
+            
+                        Tiny                    Method
+                        mt                      moveTo
+                        a/at                    arc / arcTo
+                        qt                      quadraticCurveTo (also curveTo)
+                        cp                      closePath
+                        f                       beginFill
+                        rf                      beginRadialGradientFill
+                        ef                      endFill
+                        s                       beginStroke
+                        rs                      beginRadialGradientStroke
+                        es                      endStroke
+                        rr                      drawRoundRect
+                        dc                      drawCircle
+                        dp                      drawPolyStar
+                        lt                      lineTo
+                        bt                      bezierCurveTo
+                        r                       rect
+                        c                       clear
+                        lf                      beginLinearGradientFill
+                        bf                      beginBitmapFill
+                        ss / sd                 setStrokeStyle / setStrokeDash
+                        ls                      beginLinearGradientStroke
+                        bs                      beginBitmapStroke
+                        dr                      drawRect
+                        rc                      drawRoundRectComplex
+                        de                      drawEllipse
+                        p                       decodePath
+            
+            </pre> 
         <div id="progress"></div>
         <div id="gallery"></div>
         <noscript>
@@ -218,7 +255,7 @@ border-radius: 3px;
 
         <script src="./scripts/cards_load.js"></script>
         <script src="./scripts/snap_ui.js"></script>
-        <script src="./scripts/map_load.js"></script>
+        <script src="./scripts/map_load.js?454447788"></script>
         <!-- <script src="./scripts/init_card_game.js"></script>  -->
         <!-- <script src="./scripts/cards_load_func.js"></script> -->
         <!-- <script>
@@ -259,6 +296,5 @@ border-radius: 3px;
                 });
             }// end prevent context menu
         </script> -->
-
     </body>
 </html>
