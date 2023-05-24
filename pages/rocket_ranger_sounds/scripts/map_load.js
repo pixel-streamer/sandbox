@@ -22,9 +22,8 @@ function handle_OLD_MAP_LOAD(e) {
     );
    */
     var mapInGlass = e.target.getResult("map");
-
-    console.log(mapInGlass);
-    var box = new createjs.Shape();
+    var gradient = e.target.getResult("gradient");
+    var wallpaper = e.target.getResult("wallpaper");
 
     var bigRect = new createjs.Rectangle(
             0,
@@ -32,23 +31,25 @@ function handle_OLD_MAP_LOAD(e) {
             mapInGlass.naturalWidth / 2,
             mapInGlass.naturalHeight / 2
         ),
-        p = new createjs.Point(320, -200),
-        mx = new createjs.Matrix2D(),
-        box = new createjs.Shape();
+        p = new createjs.Point(0, 0),
+        mx = new createjs.Matrix2D();
 
-    var bmp = new createjs.Bitmap(mapInGlass);
+    // var alphaBox = new createjs.Shape();
+    var alphaBox = new createjs.Bitmap(gradient);
+    var maskedMap = new createjs.Bitmap(mapInGlass);
+    var wallpaperMask = new createjs.Bitmap(wallpaper);
 
-    box.graphics.beginLinearGradientFill(
-        ["#000000", "rgba(0, 0, 0, 0)"],
-        [0, 1],
-        bigRect.x,
-        bigRect.y,
-        bigRect.width,
-        bigRect.height
-    );
+    // alphaBox.graphics.beginLinearGradientFill(
+    //     ["#000000", "rgba(0, 0, 0, 0)"],
+    //     [0, 1],
+    //     bigRect.x,
+    //     bigRect.y,
+    //     bigRect.width,
+    //     bigRect.height
+    // );
     mx.translate(p.x, p.y);
-    mx.scale(0.15, 0.15);
-    mx.rotate(45);
+    mx.scale(0.33, 0.33);
+    // mx.rotate(22.5);
 
     /* 
         var pos = new createjs.Point();
@@ -57,18 +58,64 @@ function handle_OLD_MAP_LOAD(e) {
         })
     */
     // mask of the whole gradient
-    box.graphics.drawRect(bigRect.x, bigRect.y, bigRect.width, bigRect.height);
-    box.cache(bigRect.x, bigRect.y, bigRect.width, bigRect.height); //this mask x,y must be in tandem with above
-    box.transformMatrix = mx;
+    // alphaBox.graphics.drawRect(
+    //     bigRect.x,
+    //     bigRect.y,
+    //     bigRect.width,
+    //     bigRect.height
+    // );
 
-    bmp.filters = [new createjs.AlphaMaskFilter(box.cacheCanvas)];
-    bmp.cache(bigRect.x, bigRect.y, bigRect.width, bigRect.height);
-    bmp.transformMatrix = mx;
+    //this mask x,y must be in tandem with above
+    alphaBox.cache(bigRect.x, bigRect.y, bigRect.width, bigRect.height);
+    alphaBox.transformMatrix = mx;
 
-    image_content.addChild(bmp);
+    // maskedMap.filters = [new createjs.AlphaMaskFilter(alphaBox.cacheCanvas)];
+    // maskedMap.cache(bigRect.x, bigRect.y, bigRect.width, bigRect.height);
+
+    // var filter = new createjs.ThresholdFilter(
+    //     0x80,
+    //     0x80,
+    //     0x80,
+    //     0xffffff,
+    //     0xffcc00
+    // );
+
+    var wallPaperFilter = new createjs.ThresholdFilter(
+        0x80,
+        0x80,
+        0x80,
+        0xffffff,
+        0x450067
+    );
+
+    wallpaperMask.filters = [wallPaperFilter];
+    wallpaperMask.cache(
+        0,
+        0,
+        wallpaperMask.image.naturalWidth,
+        wallpaperMask.image.naturalHeight
+    );
+
+    image_content.addChild(wallpaperMask);
+    image_content.snapToPixel = true;
+    return;
+    var filter = new createjs.ThresholdFilter(
+        0x80,
+        0x80,
+        0x80,
+        0xffffff,
+        0x00bcff
+    );
+    //   alphaBox.filters = [filter];
+    // var alphaFilter = new createjs.AlphaMaskFilter(alphaBox.cacheCanvas);
+    maskedMap.filters = [filter];
+    maskedMap.cache(bigRect.x, bigRect.y, bigRect.width, bigRect.height);
+
+    maskedMap.transformMatrix = mx;
+
+    image_content.addChild(maskedMap);
     image_content.snapToPixel = true;
 
-    return;
     outputTextClip = new InteractiveText(
         "city name appears here",
         stageBounds.width - 210,
