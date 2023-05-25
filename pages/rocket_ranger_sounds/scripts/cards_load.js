@@ -303,20 +303,8 @@ function loadAssets() {
                 id: "cities",
                 crossOrigin: true,
                 type: createjs.Types.XML,
-            },
-               {
-                src: "./assets/foggy_forest_sm.png",
-                id: "forest",
-                crossOrigin: true,
-                type: createjs.Types.IMAGE,
-            },
-               {
-                src: "./assets/gradient.png",
-                id: "gradient",
-                crossOrigin: true,
-                type: createjs.Types.IMAGE,
-            },
-               {
+            },  
+            {
                 src: "./assets/wallpaper.png",
                 id: "wallpaper",
                 crossOrigin: true,
