@@ -281,6 +281,12 @@ function loadAssets() {
                 type: createjs.Types.IMAGE,
             },
             {
+                src: "./assets/legend-data-pass1_copy.xml",
+                id: "cities",
+                crossOrigin: true,
+                type: createjs.Types.XML,
+            },
+            {
                 src: "./assets/map_whole.png",
                 id: "map",
                 crossOrigin: true,
@@ -298,18 +304,13 @@ function loadAssets() {
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
             },
-            {
-                src: "./assets/legend-data-pass1_copy.xml",
-                id: "cities",
-                crossOrigin: true,
-                type: createjs.Types.XML,
-            },  
-            {
+
+          /*   {
                 src: "./assets/wallpaper.png",
                 id: "wallpaper",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
-            },
+            }, */
         ],
     });
     // gameLogic();
