@@ -28,7 +28,7 @@ function handle_OLD_MAP_LOAD(e) {
 
     var loadedArrow = new createjs.Bitmap(e.target.getResult("arrow"));
 
-    //  var magGlass = new createjs.Bitmap(e.target.getResult("icons"));
+    var magGlass = new createjs.Bitmap(e.target.getResult("icons"));
 
     let icons = {
         images: [e.target.getResult("icons")],
@@ -198,7 +198,6 @@ function handle_OLD_MAP_LOAD(e) {
     var zoomFrameBtnW = zoomFrameW / 6;
     var zoomFrameBtnH = zoomFrameH / 2;
     var zoomFrameLineW = 6;
-    var zoomFrameLineH = zoomFrameLineW;
 
     var zoomContainerBMP = new createjs.Bitmap(mapContainer.cacheCanvas);
     // var zoomContainerBMP = new createjs.Bitmap();
@@ -249,6 +248,8 @@ width Number
 
     zoomContainer.addChild(zoomBackground);
     zoomContainer.addChild(zoomContainerBMP);
+    // these cities shouldn't be here-- they should map to the image, and stick with that
+    //zoomContainer.addChild(zoomedCityContainer);
     zoomContainer.addChild(zoomFrame);
     zoomContainer.addChild(zoomMover);
 
@@ -256,50 +257,74 @@ width Number
     zoomContainer.mouseEnabled = false;
 
     var zoomFrameButtonsContainer = new createjs.Container();
-    var zoomFrameButtonContainer0 = new createjs.Container();
-    var zoomFrameButtonContainer1 = new createjs.Container();
-    var zoomFrameButtonContainer2 = new createjs.Container();
-    var zoomFrameButtonContainer3 = new createjs.Container();
-    var zoomFrameButtonContainer4 = new createjs.Container();
+    var zoomFrameButtonContainer = new createjs.Container();
 
-    var zoomFrameW = zoomFrame.getBounds().width;
-    var zoomFrameH = zoomFrame.getBounds().height;
-    var btnW = left_icon.getBounds().width;
-    var btnH = left_icon.getBounds().height;
+    var zoomFrameButton = new createjs.Shape(); //left side
+    var zoomFrameButtonClickTarget = new createjs.Shape(); //left side
+    zoomFrameButton.graphics.beginFill("#FF0000");
+    zoomFrameButton.graphics.drawRect(0, 0, zoomFrameBtnW, zoomFrameBtnH);
+    zoomFrameButton.setBounds(0, 0, zoomFrameBtnW, zoomFrameBtnH);
+    zoomFrameButton.regX = zoomFrameLineW / 2;
+    zoomFrameButton.regY = zoomFrameButton.getBounds().height / 2;
+    zoomFrameButton.x = zoomFrameLineW / 2;
+    zoomFrameButton.y = zoomFrame.getBounds().height / 2;
 
-    left_icon.x = 0 - zoomFrameLineW / 2;
-    left_icon.y = 0 + zoomFrameH / 2 - zoomFrameLineW / 2 - btnH / 2;
-    var leftBound = moveZoom.bind("left");
-    zoomFrameButtonContainer1.addChild(left_icon);
-    zoomFrameButtonContainer1.addEventListener("click", leftBound);
-    zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer1);
+    zoomFrameButtonClickTarget.graphics.beginFill("rgba(0,0,0,0)");
+    zoomFrameButtonClickTarget.graphics.drawRect(
+        0,
+        0,
+        zoomFrameBtnW,
+        zoomFrameBtnH
+    );
+    zoomFrameButtonClickTarget.setBounds(0, 0, zoomFrameBtnW, zoomFrameBtnH);
+    zoomFrameButtonClickTarget.regX = zoomFrameLineW / 2;
+    zoomFrameButtonClickTarget.regY = zoomFrameButton.getBounds().height / 2;
+    zoomFrameButtonClickTarget.x = zoomFrameLineW * 2;
+    zoomFrameButtonClickTarget.y = zoomFrame.getBounds().height / 2;
 
-    right_icon.x = zoomFrameW - zoomFrameLineW / 2 - btnW / 2;
-    right_icon.y = zoomFrameH / 2 - zoomFrameLineH / 2 - btnH / 2;
-    var rightBound = moveZoom.bind("right");
-    zoomFrameButtonContainer2.addChild(right_icon);
-    zoomFrameButtonContainer2.addEventListener("click", rightBound);
-    zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer2);
+    left_icon.x = zoomFrameButton.getBounds().width / 2 - zoomFrameButton.x / 2;
+    left_icon.y =
+        zoomFrameButton.getBounds().height / 2 + zoomFrameButton.y / 2;
+    left_icon.mouseEnabled = false;
 
-    bottom_icon.x = zoomFrameW / 2 - zoomFrameLineW / 2 - btnW / 2;
-    bottom_icon.y = zoomFrameH - zoomFrameLineH / 2 - btnH / 2;
-    var bottomBound = moveZoom.bind("down");
-    zoomFrameButtonContainer3.addChild(bottom_icon);
-    zoomFrameButtonContainer3.addEventListener("click", bottomBound);
-    zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer3);
+    zoomFrameButtonContainer.addChild(zoomFrameButton);
+    zoomFrameButtonContainer.addChild(left_icon);
 
-    top_icon.x = zoomFrameW / 2 - zoomFrameLineW / 2 - btnW / 2;
-    top_icon.y = zoomFrameLineH / 2 - zoomFrameLineH / 2 - btnH / 2;
-    var topBound = moveZoom.bind("up");
-    zoomFrameButtonContainer4.addChild(top_icon);
-    zoomFrameButtonContainer4.addEventListener("click", topBound);
-    zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer4);
+    zoomFrameButtonContainer.addChild(zoomFrameButtonClickTarget);
+    zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer);
+    var button1BoundName = moveZoom.bind("right");
+    zoomFrameButtonContainer.addEventListener("click", button1BoundName);
 
-    zoomFrameButtonContainer0.addChild(mag_glass);
-    mag_glass.x = zoomFrameButtonContainer0.x - btnW / 2;
-    mag_glass.y = zoomFrameButtonContainer0.y - btnH / 2;
-    mag_glass.mouseEnabled=false;
-    zoomFrameButtonContainer1.addChild(zoomFrameButtonContainer0);
+    var zoomFrameButton2 = zoomFrameButtonContainer.clone(true); //top side
+    zoomFrameButton2.x =
+        zoomFrameButton.getBounds().width / 2 +
+        zoomFrame.getBounds().width -
+        zoomFrameButton.getBounds().height / 2;
+    zoomFrameButton2.y = 0;
+    zoomFrameButton2.rotation = 90;
+    zoomFrameButtonsContainer.addChild(zoomFrameButton2);
+    var button2BoundName = moveZoom.bind("down");
+    zoomFrameButton2.addEventListener("click", button2BoundName);
+
+    var zoomFrameButton3 = zoomFrameButtonContainer.clone(true); //right side
+    zoomFrameButton3.x = zoomFrame.getBounds().width;
+    zoomFrameButton3.y = zoomFrame.getBounds().height;
+    zoomFrameButton3.rotation = 180;
+    zoomFrameButtonsContainer.addChild(zoomFrameButton3);
+    var button3BoundName = moveZoom.bind("left");
+    zoomFrameButton3.addEventListener("click", button3BoundName);
+
+    var zoomFrameButton4 = zoomFrameButtonContainer.clone(true); //bottom side
+    zoomFrameButton4.rotation = -90;
+    zoomFrameButton4.x = zoomFrameButton.getBounds().width - zoomFrameLineW;
+    zoomFrameButton4.y = zoomFrame.getBounds().height;
+    zoomFrameButtonsContainer.addChild(zoomFrameButton4);
+    var button4BoundName = moveZoom.bind("up");
+    zoomFrameButton4.addEventListener("click", button4BoundName);
+
+    zoomFrameButtonContainer.addChild(magGlass);
+    magGlass.x = zoomFrameButtonContainer.x - magGlass.image.naturalWidth / 4;
+    magGlass.y = zoomFrameButtonContainer.y - magGlass.image.naturalHeight / 4;
 
     var zoomLockBtn = new InteractiveText(
         "zoom\nlock",
@@ -394,10 +419,10 @@ width Number
         // indicate that the stage should be updated on the next tick:
         //update = true;
 
-        // console.log(
-        //     "Math.abs(this.x) > parseInt(zoomFrameW / 2): ",
-        //     Math.abs(this.x) >= parseInt(zoomFrameW / 2)
-        // );
+        console.log(
+            "Math.abs(this.x) > parseInt(zoomFrameW / 2): ",
+            Math.abs(this.x) >= parseInt(zoomFrameW / 2)
+        );
     });
 
     zoomContainer.on("rollover", function (evt) {
@@ -434,11 +459,11 @@ function moveZoom(e) {
     if (this == "down") {
         e.target.parent.parent.parent.y += 10;
     }
-    if (this == "left") {
-        e.target.parent.parent.parent.x -= 10;
-    }
     if (this == "right") {
         e.target.parent.parent.parent.x += 10;
+    }
+    if (this == "left") {
+        e.target.parent.parent.parent.x -= 10;
     }
 }
 

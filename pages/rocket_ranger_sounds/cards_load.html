@@ -7,8 +7,8 @@
         <title>Loading svg cards for fragment access</title>
 
         <script src="./scripts/createjs.min.js"></script>
-         <!-- <script src="./scripts/easeljs.min.js"></script> -->
-        <script src="./scripts/tweenjs.min.js"></script> 
+        <!-- <script src="./scripts/easeljs.min.js"></script> -->
+        <script src="./scripts/tweenjs.min.js"></script>
         <script src="./scripts/preloadjs.min.js"></script>
         <script src="./scripts/soundjs.min.js"></script>
         <!-- <script src="./scripts/easeljs-NEXT.combined.js"></script>  -->
@@ -70,8 +70,6 @@
                 position: relative;
             }
         </style>
-
-
 
         <!-- <style>
             canvas {
@@ -202,6 +200,15 @@ border-radius: 3px;
         </style>
     </head>
     <body>
+        <div id="progress"></div>
+        <div id="gallery"></div>
+        <noscript>
+            (this site requires javascript to be enabled, so that the interface
+            can be constructed around the data you see here)
+        </noscript>
+        <div id="testCanvas" class="fulldisplay cleared_top">
+            <canvas id="big_stage" class="full_size_canvas"></canvas>
+        </div>
         <pre>
             Tiny API
                 The Graphics class also includes a "tiny API", which is one or two-letter methods
@@ -238,17 +245,8 @@ border-radius: 3px;
                         de                      drawEllipse
                         p                       decodePath
             
-            </pre> 
-        <div id="progress"></div>
-        <div id="gallery"></div>
-        <noscript>
-            (this site requires javascript to be enabled, so that the interface
-            can be constructed around the data you see here)
-        </noscript>
-        <div id="testCanvas" class="fulldisplay cleared_top">
-            <canvas id="big_stage" class="full_size_canvas"></canvas>
-        </div>
-
+            </pre
+        >
         <div id="screen-log"></div>
         <div class="hidden"></div>
 

@@ -47,8 +47,8 @@ class InteractiveText extends createjs.Text {
 
         this.interactiveTextMask.graphics
             .beginFill("rgba(0,0,0,.3)")
-            .drawRect(0, 0, textW + 16, textH + 16)
-           // .endFill();
+            .drawRect(0, 0, textW + 16, textH + 16);
+        // .endFill();
         this.interactiveTextMask.setBounds(0, 0, textW + 16, textH + 16);
         this.interactiveTextHitArea.regX = 0;
         this.interactiveTextHitArea.regY = 0;
@@ -111,6 +111,55 @@ class InteractiveText extends createjs.Text {
     };
 }
 
+class DomText {
+    //this is a really crappy, fast class... use the other one (where?).
+    constructor(interactivePhrase, atXPos, atYPos, fillCol) {
+        this.gamePlayText;
+        this._fontCol = fillCol;
+        this._fontChoice = "16px 'Press Start 2P'";
+        this.fontFamily = "Press Start 2P";
+
+        this.interactiveDom = document.createElement("p");
+        this.gamePlayText = document.createTextNode(interactivePhrase);
+        this.interactiveDom.appendChild(this.gamePlayText);
+
+        this.textW = parseInt(
+            this.gamePlayText.toString().split("").length * 16
+        );
+        this.textH = this.textW;
+
+        interactive_content.addChild(
+            new createjs.DOMElement(this.interactiveDom)
+        );
+        //this object will return incorrect data.
+        this.textInfo = {
+            font: this._fontChoice,
+            textInfo: {
+                width: 16 * interactivePhrase.toString().split("").length,
+                height:16
+            },
+            textSize: undefined,
+            lineHeight: undefined,
+            hitAreaW: undefined,
+            hitAreaH: undefined,
+        };
+    }
+    updateText = function (param) {
+        this.gamePlayText = document.createTextNode(param);
+        this.interactiveDom.innerHTML = "";
+        this.interactiveDom.appendChild(this.gamePlayText);
+    };
+    activate = function () {
+        return this.interactiveTextHitArea;
+    };
+    getInstance = function () {
+        //duplicate of "activate"
+        return this.interactiveTextHitArea;
+    };
+    getTextInfo = function () {
+        return this.textInfo;
+    };
+}
 function getRandomHexNum() {
     // get a random hex value for the color of something:
     return "#" + Math.floor(Math.random() * 16777215).toString(16);

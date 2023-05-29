@@ -1,18 +1,89 @@
 var outputTextClip;
 
 function handle_OLD_MAP_LOAD(e) {
-    // outputTextClip = new InteractiveText(
-    //     "city name appears here",
-    //     stageBounds.width - 210,
-    //     stageBounds.height - 65,
-    //     //needs to update with the current object, and set the text in a subsequent function
-    //     // stageBounds.width - outputTextClip.getTextInfo.hitAreaW,
-    //     // stageBounds.height - outputTextClip.getTextInfo.hitAreaH,
-    //     "#FFCC00"
-    //     // ).mouseEnabled=false;  //using this throws error...
+    /*
+    var phraseAsStr = "Welcome to Cards.\n\t\t\tLet's Play.";
+
+    var phrase2 = new InteractiveText(
+        phraseAsStr,
+        stageBounds.width / 2,
+        stageBounds.height / 2,
+        "#FFCC00"
+    );
+    phrase2.activate().addEventListener(
+        "click",
+        function () {
+            console.log("clicked me one time!");
+            phrase2.activate().visible = false;
+            phrase2.activate().mouseEnabled = false;
+            window.dispatchEvent(gamePlay_evt);
+        },
+        { once: true }
+    );
+   */
+    //var mapInGlass = e.target.getResult("map");
+    // var wallpaper = e.target.getResult("wallpaper");
+
+   /*  var bigRect = new createjs.Rectangle(
+            0,
+            0,
+            mapInGlass.naturalWidth   ,
+            mapInGlass.naturalHeight 
+        ),
+        p = new createjs.Point(0, 0),
+        mx = new createjs.Matrix2D();
+
+    var alphaBox = new createjs.Shape();
+    var maskedMap = new createjs.Bitmap(mapInGlass);
+    // var wallpaperMask = new createjs.Bitmap(wallpaper);
+
+    alphaBox.graphics.beginLinearGradientFill(
+        ["#000000", "rgba(0, 0, 0, 0)"],
+        [0, 1],
+        bigRect.x,
+        bigRect.y,
+        bigRect.width,
+        bigRect.height
+    );
+    // mx.translate(p.x, p.y);
+    // mx.scale(0.33, 0.33);
+    // mx.rotate(22.5);
+
+     
+        // var pos = new createjs.Point();
+        // stage.on("stagemousedown", function(event) {
+        //     pos.setValues(event.stageX, event.stageY);
+        // })
+  
+    // mask of the whole gradient
+    alphaBox.graphics.drawRect(
+        bigRect.x,
+        bigRect.y,
+        bigRect.width,
+        bigRect.height
+    );
+
+    //this mask x,y must be in tandem with above
+    alphaBox.cache(bigRect.x, bigRect.y, bigRect.width, bigRect.height);
+    alphaBox.transformMatrix = mx;
+
+    // var wallPaperFilter = new createjs.ThresholdFilter(
+    //     0x80,
+    //     0x80,
+    //     0x80,
+    //     0xffffff,
+    //     0x450067
     // );
 
-    outputTextClip = new DomText(
+    var alphaFilter = new createjs.AlphaMaskFilter(alphaBox.cacheCanvas);
+    maskedMap.filters = [alphaFilter];
+    maskedMap.cache(bigRect.x, bigRect.y, bigRect.width, bigRect.height);
+
+    maskedMap.transformMatrix = mx;
+
+    image_content.addChild(maskedMap);
+ */
+    outputTextClip = new InteractiveText(
         "city name appears here",
         stageBounds.width - 210,
         stageBounds.height - 65,
@@ -20,43 +91,20 @@ function handle_OLD_MAP_LOAD(e) {
         // stageBounds.width - outputTextClip.getTextInfo.hitAreaW,
         // stageBounds.height - outputTextClip.getTextInfo.hitAreaH,
         "#FFCC00"
-    ).mouseEnabled = false; //using this throws error...
+        // ).mouseEnabled=false;  //using this throws error...
+    );
 
     console.log("██: : :handle_ImageLoadComplete: : : ██");
 
+    // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
+    // var loadedMap = e.target.getResult("interface_img");
     var loadedMap = e.target.getResult("map");
 
     var loadedArrow = new createjs.Bitmap(e.target.getResult("arrow"));
+  //  var magGlass = e.target.getResult("map");
+    var magGlass = new createjs.Bitmap(e.target.getResult("magnify"));
 
-    //  var magGlass = new createjs.Bitmap(e.target.getResult("icons"));
-
-    let icons = {
-        images: [e.target.getResult("icons")],
-        frames: {
-            numFrames: 5,
-            width: 32,
-            height: 32,
-            regX: 0,
-            regY: 0,
-            spacing: 0,
-            margin: 0,
-        },
-        animations: {
-            magnifying_glass: [0, 0, "magnifying_glass"],
-            top: [2, 2, "top"],
-            right: [3, 3, "right"],
-            bottom: [4, 4, "bottom"],
-            left: [1, 1, "left"],
-        },
-    };
-
-    var spriteSheetIcons = new createjs.SpriteSheet(icons);
-
-    var mag_glass = new createjs.Sprite(spriteSheetIcons, "magnifying_glass");
-    var top_icon = new createjs.Sprite(spriteSheetIcons, "top");
-    var right_icon = new createjs.Sprite(spriteSheetIcons, "right");
-    var bottom_icon = new createjs.Sprite(spriteSheetIcons, "bottom");
-    var left_icon = new createjs.Sprite(spriteSheetIcons, "left");
+    // var loadedMap = new createjs.Bitmap(e.target.getResult("interface_img"));
 
     var map = new createjs.Bitmap(loadedMap);
     var mapContainer = new createjs.Container();
@@ -69,60 +117,6 @@ function handle_OLD_MAP_LOAD(e) {
     // var citiesMapW = 13124;
     // var citiesMapH = 9600;
 
-    // var bigRect = new createjs.Rectangle(
-    //         0,
-    //         0,
-    //         // map.image.naturalWidth,
-    //         // map.image.naturalHeight
-    //         map.image.naturalWidth / 6,
-    //         map.image.naturalHeight / 6
-    //     ),
-    //     p = new createjs.Point(0, 0),
-    //     mx = new createjs.Matrix2D();
-
-    // var alphaBox = new createjs.Shape();
-
-    //this can be omitted if the container will be filled, and simply clipped.
-    // alphaBox.graphics.beginLinearGradientFill(
-    //     ["#000000", "rgba(0, 0, 0, 0)"],
-    //     [0, 1],
-    //     bigRect.x,
-    //     bigRect.y,
-    //     bigRect.width,
-    //     bigRect.height
-    // );
-
-    // mx.translate(p.x, p.y);
-    // mx.scale(0.33, 0.33);
-    // mx.rotate(22.5);
-
-    // var pos = new createjs.Point();
-    // stage.on("stagemousedown", function(event) {
-    //     pos.setValues(event.stageX, event.stageY);
-    // })
-
-    // mask of the whole gradient-- this one is "filled (solid)"
-    // alphaBox.graphics
-    //     .beginFill("#FF0000")
-    //     .drawRect(bigRect.x, bigRect.y, bigRect.width, bigRect.height)
-    //     .endFill();
-
-    //this one has a gradient, because it has no "fill"
-    // alphaBox.graphics.drawRect(
-    //     bigRect.x,
-    //     bigRect.y,
-    //     bigRect.width,
-    //     bigRect.height
-    // );
-    // alphaBox.cache(bigRect.x, bigRect.y, bigRect.width, bigRect.height);
-    // var maskedMap = map;
-    // var alphaFilter = new createjs.AlphaMaskFilter(alphaBox.cacheCanvas);
-    // maskedMap.filters = [alphaFilter];
-    // //this mask x,y must be in tandem with above
-    // maskedMap.cache(bigRect.x, bigRect.y, bigRect.width, bigRect.height);
-
-    // alphaBox.transformMatrix = maskedMap.transformMatrix = mx;
-
     var citiesContainer = new createjs.Container();
     createCitiesMap(
         e,
@@ -130,8 +124,7 @@ function handle_OLD_MAP_LOAD(e) {
         loadedMap.naturalWidth,
         loadedMap.naturalHeight
     );
-
-    // var zoomedCityContainer = new createjs.Container();
+    var zoomedCityContainer = new createjs.Container();
 
     // full-size image scale adjustment
     var fsMapDims = resizeToKnownDimensions(
@@ -185,20 +178,18 @@ function handle_OLD_MAP_LOAD(e) {
     mapContainer.scaleY = MapContainerScaleY;
     image_content.addChild(mapContainer);
 
-    //interactive_content.addChild(outputTextClip);
-
+    interactive_content.addChild(outputTextClip);
     /*
     TODO: zoom parts:
     display cache of rectangle below at normal size....
     */
-
+  
     var zoomFrameW = parseInt(256);
     var zoomFrameH = parseInt(256 * 0.75);
 
     var zoomFrameBtnW = zoomFrameW / 6;
     var zoomFrameBtnH = zoomFrameH / 2;
     var zoomFrameLineW = 6;
-    var zoomFrameLineH = zoomFrameLineW;
 
     var zoomContainerBMP = new createjs.Bitmap(mapContainer.cacheCanvas);
     // var zoomContainerBMP = new createjs.Bitmap();
@@ -209,7 +200,7 @@ function handle_OLD_MAP_LOAD(e) {
     zoomContainerBMP.regY = 0;
     zoomContainerBMP.x = 0;
     zoomContainerBMP.y = 0;
-
+    
     var zoomFrame = new createjs.Shape();
     var zoomBackground = new createjs.Shape();
 
@@ -233,10 +224,10 @@ function handle_OLD_MAP_LOAD(e) {
         zoomFrameW,
         zoomFrameH
     );
-
+    
     zoomBackground.graphics.beginFill("#FFFFFF");
     zoomBackground.graphics.drawRect(0, 0, zoomFrameW, zoomFrameH);
-
+    
     /*
 setStrokeStyle(width, "butt", "miter", 10, true)
 setStrokeStyle(width, caps, joints, miterLimit, ignoreScale)
@@ -249,6 +240,8 @@ width Number
 
     zoomContainer.addChild(zoomBackground);
     zoomContainer.addChild(zoomContainerBMP);
+    // these cities shouldn't be here-- they should map to the image, and stick with that
+    //zoomContainer.addChild(zoomedCityContainer);
     zoomContainer.addChild(zoomFrame);
     zoomContainer.addChild(zoomMover);
 
@@ -256,50 +249,79 @@ width Number
     zoomContainer.mouseEnabled = false;
 
     var zoomFrameButtonsContainer = new createjs.Container();
-    var zoomFrameButtonContainer0 = new createjs.Container();
-    var zoomFrameButtonContainer1 = new createjs.Container();
-    var zoomFrameButtonContainer2 = new createjs.Container();
-    var zoomFrameButtonContainer3 = new createjs.Container();
-    var zoomFrameButtonContainer4 = new createjs.Container();
+    var zoomFrameButtonContainer = new createjs.Container();
+    var zoomFrameButton = new createjs.Shape(); //left side
+    var zoomFrameButtonClickTarget = new createjs.Shape(); //left side
+  
+    zoomFrameButton.graphics.beginFill("#FF0000");
+    zoomFrameButton.graphics.drawRect(0, 0, zoomFrameBtnW, zoomFrameBtnH);
+    zoomFrameButton.setBounds(0, 0, zoomFrameBtnW, zoomFrameBtnH);
+    zoomFrameButton.regX = zoomFrameLineW / 2;
+    zoomFrameButton.regY = zoomFrameButton.getBounds().height / 2;
+    zoomFrameButton.x = zoomFrameLineW / 2;
+    zoomFrameButton.y = zoomFrame.getBounds().height / 2;
+   
+    zoomFrameButtonClickTarget.graphics.beginFill("rgba(0,0,0,0)");
+    zoomFrameButtonClickTarget.graphics.drawRect(
+        0,
+        0,
+        zoomFrameBtnW,
+        zoomFrameBtnH
+    );
+    zoomFrameButtonClickTarget.setBounds(0, 0, zoomFrameBtnW, zoomFrameBtnH);
+    zoomFrameButtonClickTarget.regX = zoomFrameLineW / 2;
+    zoomFrameButtonClickTarget.regY = zoomFrameButton.getBounds().height / 2;
+    zoomFrameButtonClickTarget.x = zoomFrameLineW * 2;
+    zoomFrameButtonClickTarget.y = zoomFrame.getBounds().height / 2;
+ 
+    loadedArrow.scaleX = 0.5;
+    loadedArrow.scaleY = 0.5;
+    loadedArrow.regX = loadedArrow.image.naturalWidth / 2;
+    loadedArrow.regY = loadedArrow.image.naturalHeight / 2;
+    loadedArrow.x =
+        zoomFrameButton.getBounds().width / 2 - zoomFrameButton.x / 2;
+    loadedArrow.y =
+        zoomFrameButton.getBounds().height / 2 + zoomFrameButton.y / 2;
+    loadedArrow.mouseEnabled = false;
+  
+    zoomFrameButtonContainer.addChild(zoomFrameButton);
+    zoomFrameButtonContainer.addChild(loadedArrow);
+  
+    zoomFrameButtonContainer.addChild(zoomFrameButtonClickTarget);
+    zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer);
+    var button1BoundName = moveZoom.bind("right");
+    zoomFrameButtonContainer.addEventListener("click", button1BoundName);
+   
+    var zoomFrameButton2 = zoomFrameButtonContainer.clone(true); //top side
+    zoomFrameButton2.x =
+        zoomFrameButton.getBounds().width / 2 +
+        zoomFrame.getBounds().width -
+        zoomFrameButton.getBounds().height / 2;
+    zoomFrameButton2.y = 0;
+    zoomFrameButton2.rotation = 90;
+    zoomFrameButtonsContainer.addChild(zoomFrameButton2);
+    var button2BoundName = moveZoom.bind("down");
+    zoomFrameButton2.addEventListener("click", button2BoundName);
+   
+    var zoomFrameButton3 = zoomFrameButtonContainer.clone(true); //right side
+    zoomFrameButton3.x = zoomFrame.getBounds().width;
+    zoomFrameButton3.y = zoomFrame.getBounds().height;
+    zoomFrameButton3.rotation = 180;
+    zoomFrameButtonsContainer.addChild(zoomFrameButton3);
+    var button3BoundName = moveZoom.bind("left");
+    zoomFrameButton3.addEventListener("click", button3BoundName);
 
-    var zoomFrameW = zoomFrame.getBounds().width;
-    var zoomFrameH = zoomFrame.getBounds().height;
-    var btnW = left_icon.getBounds().width;
-    var btnH = left_icon.getBounds().height;
+    var zoomFrameButton4 = zoomFrameButtonContainer.clone(true); //bottom side
+    zoomFrameButton4.rotation = -90;
+    zoomFrameButton4.x = zoomFrameButton.getBounds().width - zoomFrameLineW;
+    zoomFrameButton4.y = zoomFrame.getBounds().height;
+    zoomFrameButtonsContainer.addChild(zoomFrameButton4);
+    var button4BoundName = moveZoom.bind("up");
+    zoomFrameButton4.addEventListener("click", button4BoundName);
 
-    left_icon.x = 0 - zoomFrameLineW / 2;
-    left_icon.y = 0 + zoomFrameH / 2 - zoomFrameLineW / 2 - btnH / 2;
-    var leftBound = moveZoom.bind("left");
-    zoomFrameButtonContainer1.addChild(left_icon);
-    zoomFrameButtonContainer1.addEventListener("click", leftBound);
-    zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer1);
-
-    right_icon.x = zoomFrameW - zoomFrameLineW / 2 - btnW / 2;
-    right_icon.y = zoomFrameH / 2 - zoomFrameLineH / 2 - btnH / 2;
-    var rightBound = moveZoom.bind("right");
-    zoomFrameButtonContainer2.addChild(right_icon);
-    zoomFrameButtonContainer2.addEventListener("click", rightBound);
-    zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer2);
-
-    bottom_icon.x = zoomFrameW / 2 - zoomFrameLineW / 2 - btnW / 2;
-    bottom_icon.y = zoomFrameH - zoomFrameLineH / 2 - btnH / 2;
-    var bottomBound = moveZoom.bind("down");
-    zoomFrameButtonContainer3.addChild(bottom_icon);
-    zoomFrameButtonContainer3.addEventListener("click", bottomBound);
-    zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer3);
-
-    top_icon.x = zoomFrameW / 2 - zoomFrameLineW / 2 - btnW / 2;
-    top_icon.y = zoomFrameLineH / 2 - zoomFrameLineH / 2 - btnH / 2;
-    var topBound = moveZoom.bind("up");
-    zoomFrameButtonContainer4.addChild(top_icon);
-    zoomFrameButtonContainer4.addEventListener("click", topBound);
-    zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer4);
-
-    zoomFrameButtonContainer0.addChild(mag_glass);
-    mag_glass.x = zoomFrameButtonContainer0.x - btnW / 2;
-    mag_glass.y = zoomFrameButtonContainer0.y - btnH / 2;
-    mag_glass.mouseEnabled=false;
-    zoomFrameButtonContainer1.addChild(zoomFrameButtonContainer0);
+    zoomFrameButtonContainer.addChild(magGlass);
+    magGlass.x = zoomFrameButtonContainer.x - magGlass.image.naturalWidth / 4;
+    magGlass.y = zoomFrameButtonContainer.y - magGlass.image.naturalHeight / 4;
 
     var zoomLockBtn = new InteractiveText(
         "zoom\nlock",
@@ -394,10 +416,11 @@ width Number
         // indicate that the stage should be updated on the next tick:
         //update = true;
 
-        // console.log(
-        //     "Math.abs(this.x) > parseInt(zoomFrameW / 2): ",
-        //     Math.abs(this.x) >= parseInt(zoomFrameW / 2)
-        // );
+        // console.log("x: " + Math.abs(this.x) > zoomFrameW);
+        console.log(
+            "Math.abs(this.x) > parseInt(zoomFrameW / 2): ",
+            Math.abs(this.x) >= parseInt(zoomFrameW / 2)
+        );
     });
 
     zoomContainer.on("rollover", function (evt) {
@@ -434,11 +457,11 @@ function moveZoom(e) {
     if (this == "down") {
         e.target.parent.parent.parent.y += 10;
     }
-    if (this == "left") {
-        e.target.parent.parent.parent.x -= 10;
-    }
     if (this == "right") {
         e.target.parent.parent.parent.x += 10;
+    }
+    if (this == "left") {
+        e.target.parent.parent.parent.x -= 10;
     }
 }
 

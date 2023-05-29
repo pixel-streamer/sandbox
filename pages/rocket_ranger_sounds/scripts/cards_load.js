@@ -299,8 +299,8 @@ function loadAssets() {
                 type: createjs.Types.IMAGE,
             },
             {
-                src: "./assets/mag_glass.png",
-                id: "magnify",
+                src: "./assets/icon_sheet.png",
+                id: "icons",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
             },
