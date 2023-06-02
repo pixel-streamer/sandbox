@@ -123,9 +123,8 @@ function handle_OLD_MAP_LOAD(e) {
 
     // alphaBox.transformMatrix = maskedMap.transformMatrix = mx;
 
-
-var citiesContainer = new createjs.Container();
-/*createCitiesMap(
+    var citiesContainer = new createjs.Container();
+    /*createCitiesMap(
 e,
 citiesContainer,
 loadedMap.naturalWidth,
@@ -197,29 +196,11 @@ loadedMap.naturalHeight
     var zoomFrameW = parseInt(256);
     var zoomFrameH = parseInt(256 * 0.75);
 
-    var zoomFrameBtnW = zoomFrameW / 6;
-    var zoomFrameBtnH = zoomFrameH / 2;
+    var zoomFrameBtnW = 32;
+    var zoomFrameBtnH = 32;
     var zoomFrameLineW = 6;
     var zoomFrameLineH = zoomFrameLineW;
-
-    var tPoint = new SmartPoint(0, 0, "top_center");
-    var rPoint = new SmartPoint(0, 0, "right_center");
-    var bPoint = new SmartPoint(0, 0, "bottom_center");
-    var lPoint = new SmartPoint(0, 0, "left_center");
-    var lPoint2 = new SmartPoint(0, 0);
-    var v1 = new SmartVector(2, 3, 4, "v1");
-    var v2 = new SmartVector(5, 6, 7, "v2");
-
-    console.log(
-        tPoint,
-        rPoint,
-        bPoint,
-        lPoint,
-        lPoint2,
-        v1,
-        v1.crossProduct(v2)
-    );
-    
+  
     var zoomContainerBMP = new createjs.Bitmap(mapContainer.cacheCanvas);
     // var zoomContainerBMP = new createjs.Bitmap();
     // zoomContainerBMP.cacheCanvas = mapContainer.cacheCanvas;
@@ -287,29 +268,50 @@ width Number
     var btnW = left_icon.getBounds().width;
     var btnH = left_icon.getBounds().height;
 
-    left_icon.x = 0 - zoomFrameLineW / 2;
-    left_icon.y = 0 + zoomFrameH / 2 - zoomFrameLineW / 2 - btnH / 2;
+    var tPoint = new SmartPoint(
+        (zoomFrameW - btnW) / 2,
+        zoomFrameLineH / 2 - zoomFrameLineH / 2 - btnH / 2,
+        "top_center"
+    );
+    var rPoint = new SmartPoint(
+        zoomFrameW - btnW / 2,
+        zoomFrameH / 2 - zoomFrameLineH / 2 - btnW / 2,
+        "right_center"
+    );
+    var bPoint = new SmartPoint(
+        (zoomFrameW - btnH) / 2 + zoomFrameLineW / 2,
+        zoomFrameH - zoomFrameLineH / 2 - btnH / 2,
+        "bottom_center"
+    );
+    var lPoint = new SmartPoint(
+        zoomFrameLineW - btnW / 2,
+        zoomFrameH / 2 - zoomFrameLineW / 2 - btnW / 2,
+        "left_center"
+    );
+
+    left_icon.x = lPoint.x;
+    left_icon.y = lPoint.y;
     var leftBound = moveZoom.bind("left");
     zoomFrameButtonContainer1.addChild(left_icon);
     zoomFrameButtonContainer1.addEventListener("click", leftBound);
     zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer1);
 
-    right_icon.x = zoomFrameW - zoomFrameLineW / 2 - btnW / 2;
-    right_icon.y = zoomFrameH / 2 - zoomFrameLineH / 2 - btnH / 2;
+    right_icon.x = rPoint.x;
+    right_icon.y = rPoint.y;
     var rightBound = moveZoom.bind("right");
     zoomFrameButtonContainer2.addChild(right_icon);
     zoomFrameButtonContainer2.addEventListener("click", rightBound);
     zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer2);
 
-    bottom_icon.x = zoomFrameW / 2 - zoomFrameLineW / 2 - btnW / 2;
-    bottom_icon.y = zoomFrameH - zoomFrameLineH / 2 - btnH / 2;
+    bottom_icon.x = bPoint.x;
+    bottom_icon.y = bPoint.y;
     var bottomBound = moveZoom.bind("down");
     zoomFrameButtonContainer3.addChild(bottom_icon);
     zoomFrameButtonContainer3.addEventListener("click", bottomBound);
     zoomFrameButtonsContainer.addChild(zoomFrameButtonContainer3);
 
-    top_icon.x = zoomFrameW / 2 - zoomFrameLineW / 2 - btnW / 2;
-    top_icon.y = zoomFrameLineH / 2 - zoomFrameLineH / 2 - btnH / 2;
+    top_icon.x = tPoint.x;
+    top_icon.y = tPoint.y;
     var topBound = moveZoom.bind("up");
     zoomFrameButtonContainer4.addChild(top_icon);
     zoomFrameButtonContainer4.addEventListener("click", topBound);
