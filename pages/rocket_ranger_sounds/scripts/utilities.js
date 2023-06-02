@@ -111,6 +111,208 @@ class InteractiveText extends createjs.Text {
     };
 }
 
+class SmartPoint extends createjs.Point {
+    constructor(x, y, pointName) {
+        super(x, y);
+        // new createjs.Point(0, 0)
+        this.delta = null;
+        this.name = pointName || undefined;
+    }
+}
+class SmartVector extends createjs.Point {
+    /* 
+    //from:
+    https://math.stackexchange.com/questions/645672/what-is-the-difference-between-a-point-and-a-vector
+ For a course like vector calculus, it is important to keep a good distinction between
+ points and vectors. Points correspond to vectors that start at the origin,
+ but we may need vectors that start at other points.
+
+For example, given three points A
+, B, and C in 3D space, we may want to find the equation of the plane that spans them,
+ If we just knew the normal vector n⃗  of the plane, we could write the equation directly
+ as n⃗ ⋅(x,y,z)=n⃗ ⋅A. So we need to find that normal n⃗ . To do that, we compute the
+ cross product of the vectors AB→ and AC→. If we computed the cross product of A and C
+
+instead (pretending they are vectors in standard position), we could not get the right
+normal vector.
+
+For example, if A=(1,0,0)
+, B=(0,1,0), and C=(0,0,1), the normal vector of the corresponding plane would not be
+parallel to any coordinate axis. But if we take any two of A, B, and C and compute a
+cross product, we will get a vector parallel to one of the coordinate axes.  
+    */
+    constructor(x, y, z, vectorName) {
+        super(x, y);
+        this.z = z || null;
+        this.vector = null;
+        this.delta = null;
+        this.magnitude = null; //A vector has magnitude (length)
+        this.direction = null; //and direction
+        this.normal = undefined;
+        this.name = vectorName || undefined;
+    }
+    crossProduct(bx, by, bz) { 
+        /* 
+            from   https://www.mathsisfun.com/algebra/vectors-cross-product.html
+            The Cross Product a × b of two vectors is
+            another vector that is at right angles to both:
+
+            cross product
+            And it all happens in 3 dimensions!
+
+            The magnitude (length) of the cross product equals the area
+            of a parallelogram with vectors a and b for sides:
+            https://www.mathsisfun.com/algebra/images/cross-product-area.svg
+
+            The cross product (blue) is:
+
+                zero in length when vectors a and b point in the same, or opposite,
+                direction reaches maximum length when vectors a and b are at right
+                angles
+
+            And it can point one way or the other!
+
+            So how do we calculate it?
+
+            We can calculate the Cross Product this way:
+
+                    cross product with angle and unit vector
+
+                    a × b = |a| |b| sin(θ) n
+
+                    |a| is the magnitude (length) of vector a
+                    |b| is the magnitude (length) of vector b
+                    θ is the angle between a and b
+                    n is the unit vector at right angles to both a and b
+
+            So the length is: the length of "a" times the length of "b" times
+            the sine of the angle between "a" and "b",
+
+            Then we multiply by the vector "n" so it heads in the correct direction
+            (at right angles to both a and b).
+
+            OR we can calculate it this way:
+
+            cross product components
+
+            When a and b start at the origin point (0,0,0), the Cross Product will end at:
+
+                    Cx = AyBz − AzBy
+                    Cy = AzBx − AxBz
+                    Cz = AxBy − AyBx
+
+            https://www.mathsisfun.com/algebra/images/cross-product-components.svg
+
+
+            Example: The cross product of a = (2,3,4) and b = (5,6,7)
+
+                Cx = AyBz − AzBy = 3×7 − 4×6 = −3
+                Cy = AzBx − AxBz = 4×5 − 2×7 = 6
+                Cz = AxBy − AyBx = 2×6 − 3×5 = −3
+
+            Answer: A × B = (−3,6,−3)
+
+        */
+        if (bx.x) {
+            //assume a vector has been passed in
+            console.log("crossProduct::: ", bx.x, bx.y, bx.z);
+            console.log("this members::: ", this.x, this.y, this.z);
+            if (bx.name !== undefined) {
+                //if the second vector has a name
+                return new SmartVector(
+                    parseFloat(this.y * bx.z - this.z * bx.y),
+                    parseFloat(this.z * bx.x - this.x * bx.z),
+                    parseFloat(this.x * bx.y - this.y * bx.x),
+                    this.name !== undefined
+                        ? this.name + "-" + "cross_product" + "-" + bx.name
+                        : "cross_product" + "-" + bx.name
+                );
+            } else {
+                //oh well, there isn't a name for the second vector
+                return new SmartVector(
+                    parseFloat(this.y * bx.z - this.z * bx.y),
+                    parseFloat(this.z * bx.x - this.x * bx.z),
+                    parseFloat(this.x * bx.y - this.y * bx.x),
+                    this.name !== undefined
+                        ? this.name + "-" + "cross_product" + ""
+                        : "cross_product" + "--2"
+                );
+            }
+        } else {
+            console.log("crossProduct::: ", bx, by, bz);
+            console.log("this members::: ", this.x, this.y, this.z);
+            return new SmartVector(
+                parseFloat(this.y * bz - this.z * by),
+                parseFloat(this.z * bx - this.x * bz),
+                parseFloat(this.x * by - this.y * bx),
+                this.name !== undefined
+                    ? this.name + "-" + "cross_product"
+                    : "cross_product"
+            );
+        }
+    }
+    findNormal() {
+        //TODO: get the correct function for calculation of the normal
+        //this is BOGUS:
+        /*
+            this.normal = new SmartVector(1, 1, 1, "normal");
+            return this.normal;
+        */
+        return null;
+    }
+    dotProduct(bx, by, bz) {
+        /* 
+            https://www.mathsisfun.com/algebra/vectors-dot-product.html
+            (with three inputs-- found it after I'd made it for two-- x and y)
+        */
+        /*
+            from 
+            https://www.mathsisfun.com/algebra/vectors-cross-product.html
+            Dot Product
+
+            The Cross Product gives a vector answer,
+            and is sometimes called the vector product.
+
+            But there is also the Dot Product which gives a scalar
+            (ordinary number) answer, and is sometimes called the scalar product.
+
+
+            ------
+
+            a · b = |a| × |b| × cos(θ)
+            a · b = 10 × 13 × cos(59.5°)
+            a · b = 10 × 13 × 0.5075...
+            a · b = 65.98... = 66 (rounded)
+
+            OR
+
+            a · b = ax × bx + ay × by
+            a · b = -6 × 5 + 8 × 12
+            a · b = -30 + 96
+            a · b = 66
+
+            OR WHEN THREE:
+            We have 3 dimensions, so don't forget the z-components:
+
+            a · b = ax × bx + ay × by + az × bz
+            a · b = 9 × 4 + 2 × 8 + 7 × 10
+            a · b = 36 + 16 + 70
+            a · b = 122
+        */
+        if (bx.x) {
+            //assume a vector has been passed in
+            console.log("crossProduct::: ", bx.x, bx.y, bx.z);
+            console.log("this members::: ", this.x, this.y, this.z);
+            //if the second vector has a name
+            return parseFloat(this.x * bx.x + this.y * bx.y);
+        } else {
+            console.log("crossProduct::: ", bx, by, bz);
+            console.log("this members::: ", this.x, this.y, this.z);
+            return parseFloat(this.x * bx + this.y * by);
+        }
+    }
+}
+
 class DomText {
     //this is a really crappy, fast class... use the other one (where?).
     constructor(interactivePhrase, atXPos, atYPos, fillCol) {
@@ -136,7 +338,7 @@ class DomText {
             font: this._fontChoice,
             textInfo: {
                 width: 16 * interactivePhrase.toString().split("").length,
-                height:16
+                height: 16,
             },
             textSize: undefined,
             lineHeight: undefined,
