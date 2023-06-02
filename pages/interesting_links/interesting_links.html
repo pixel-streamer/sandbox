@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Some interesting links found on the internet</title>
+        <style>
+            body {
+                font: normal normal 16px/125% "Arial", sans-serif;
+                font-size: 1em;
+                min-width: 320px;
+            }
+            .headline {
+                font-size: 120%;
+                line-height: 120%;
+                font-style: normal;
+            }
+            .href {
+                color: #2558cc;
+                text-decoration: none;
+            }
+            .href:hover {
+                text-decoration: underline;
+            }
+            .main {
+                display: flex;
+                flex-direction: column;
+                box-sizing: border-box;
+                padding: min(4vw, 4rem);
+            }
+            .listing_house {
+                display: inherit;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .listing_house ul {
+                display: inline-flex;
+                justify-content: space-between;
+                /* flex-direction: column; */
+                flex-wrap: wrap;
+                flex-grow: 1;
+                flex-basis: 50%;
+                flex-shrink: 1;
+            }
+            .listing_house li {
+                /* flex-basis: 50%; */
+                /* flex-grow: 1; */
+                /* flex-shrink: 1; */
+                margin: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <div class="listing_house">
+                <h1 class="headline">
+                    Some interesting links found on the internet
+                </h1>
+                <ul>
+                    <li>
+                        <a
+                            href="https://www.youtube.com/embed/rlqS-kd9kmA"
+                            class="href"
+                            target="_blank"
+                            >IT HAPPENED! Elon Musk FINALLY Tested Neuralink On
+                            Humans! (it doesn't really flesh that out, but it
+                            does have a good demo of what's been done up until
+                            now. (Feb 2023)</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.youtube.com/embed/Gqdo57uky4o"
+                            class="href"
+                            target="_blank"
+                            >Elon Musk Reveals New Details About Neuralink, His
+                            Brain Implant Technology
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
