@@ -123,13 +123,15 @@ function handle_OLD_MAP_LOAD(e) {
 
     // alphaBox.transformMatrix = maskedMap.transformMatrix = mx;
 
-    var citiesContainer = new createjs.Container();
-    createCitiesMap(
-        e,
-        citiesContainer,
-        loadedMap.naturalWidth,
-        loadedMap.naturalHeight
-    );
+
+var citiesContainer = new createjs.Container();
+/*createCitiesMap(
+e,
+citiesContainer,
+loadedMap.naturalWidth,
+loadedMap.naturalHeight
+);
+*/
 
     // var zoomedCityContainer = new createjs.Container();
 
@@ -217,7 +219,7 @@ function handle_OLD_MAP_LOAD(e) {
         v1,
         v1.crossProduct(v2)
     );
-    return;
+    
     var zoomContainerBMP = new createjs.Bitmap(mapContainer.cacheCanvas);
     // var zoomContainerBMP = new createjs.Bitmap();
     // zoomContainerBMP.cacheCanvas = mapContainer.cacheCanvas;

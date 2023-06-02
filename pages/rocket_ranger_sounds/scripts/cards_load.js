@@ -286,8 +286,14 @@ function loadAssets() {
                 crossOrigin: true,
                 type: createjs.Types.XML,
             },
-            {
+            /*  {
                 src: "./assets/map_whole.png",
+                id: "map",
+                crossOrigin: true,
+                type: createjs.Types.IMAGE,
+            }, */
+            {
+                src: "./assets/icon_sheet.png",
                 id: "map",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
@@ -305,7 +311,7 @@ function loadAssets() {
                 type: createjs.Types.IMAGE,
             },
 
-          /*   {
+            /*   {
                 src: "./assets/wallpaper.png",
                 id: "wallpaper",
                 crossOrigin: true,
