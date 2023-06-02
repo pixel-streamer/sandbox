@@ -200,6 +200,24 @@ function handle_OLD_MAP_LOAD(e) {
     var zoomFrameLineW = 6;
     var zoomFrameLineH = zoomFrameLineW;
 
+    var tPoint = new SmartPoint(0, 0, "top_center");
+    var rPoint = new SmartPoint(0, 0, "right_center");
+    var bPoint = new SmartPoint(0, 0, "bottom_center");
+    var lPoint = new SmartPoint(0, 0, "left_center");
+    var lPoint2 = new SmartPoint(0, 0);
+    var v1 = new SmartVector(2, 3, 4, "v1");
+    var v2 = new SmartVector(5, 6, 7, "v2");
+
+    console.log(
+        tPoint,
+        rPoint,
+        bPoint,
+        lPoint,
+        lPoint2,
+        v1,
+        v1.crossProduct(v2)
+    );
+    return;
     var zoomContainerBMP = new createjs.Bitmap(mapContainer.cacheCanvas);
     // var zoomContainerBMP = new createjs.Bitmap();
     // zoomContainerBMP.cacheCanvas = mapContainer.cacheCanvas;
@@ -298,7 +316,7 @@ width Number
     zoomFrameButtonContainer0.addChild(mag_glass);
     mag_glass.x = zoomFrameButtonContainer0.x - btnW / 2;
     mag_glass.y = zoomFrameButtonContainer0.y - btnH / 2;
-    mag_glass.mouseEnabled=false;
+    mag_glass.mouseEnabled = false;
     zoomFrameButtonContainer1.addChild(zoomFrameButtonContainer0);
 
     var zoomLockBtn = new InteractiveText(
