@@ -151,9 +151,20 @@ function init() {
 
     setEventListeners();
 }
-
 function tick(event) {
-    fpsText.text = createjs.Ticker.getMeasuredFPS().toFixed(2);
+    // this set makes it so the stage only re-renders when an event handler indicates a change has happened.
+    /*  if (update) {
+      update = false; // only update once
+      stage.update(event);
+  } */
+    stage.update(event);
+    drawAll(event)
+}
+
+ 
+function drawAll(event) {
+    // fpsText.text = createjs.Ticker.getMeasuredFPS().toFixed(2);
+    fpsText.text = createjs.Ticker.getMeasuredFPS().toFixed(0);
 
     if (
         inputs.moveForwards ||
@@ -211,7 +222,7 @@ function tick(event) {
     world.scaleX = world.scaleY = zoomLevel;
 
     //stage.update(event);
-}
+} 
 
 var rotateCamera = true;
 var zoomLevel = 1;
@@ -244,6 +255,7 @@ function setEventListeners() {
         function (event) {
             event.preventDefault();
             var keyName = keyMappings[event.which];
+            // console.log("down " + keyName);
             if (keyName != undefined) {
                 inputs[keyName] = true;
             }
@@ -256,6 +268,7 @@ function setEventListeners() {
         function (event) {
             event.preventDefault();
             var keyName = keyMappings[event.which];
+            // console.log("up " + keyName);
             if (keyName != undefined) {
                 inputs[keyName] = false;
             }
@@ -272,6 +285,7 @@ function setEventListeners() {
             var min = 0.1,
                 max = 5;
             zoomLevel = Math.min(Math.max(min, zoomLevel), max);
+            console.log("wheel " + zoomLevel);
         },
         true
     );
