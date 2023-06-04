@@ -286,18 +286,18 @@ function loadAssets() {
                 crossOrigin: true,
                 type: createjs.Types.XML,
             },
-            /*  {
+            {
+                src: "./scripts/All_Sorted_Driving_Tunez.xml",
+                id: "albums",
+                crossOrigin: true,
+                type: createjs.Types.XML,
+            }, 
+            {
                 src: "./assets/map_whole.png",
                 id: "map",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
-            }, */
-            {
-                src: "./assets/icon_sheet.png",
-                id: "map",
-                crossOrigin: true,
-                type: createjs.Types.IMAGE,
-            },
+            }, 
             {
                 src: "./assets/pan-arrow.png",
                 id: "arrow",

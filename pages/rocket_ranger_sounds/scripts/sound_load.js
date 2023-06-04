@@ -1,5 +1,65 @@
 var outputTextClip;
 
+function handle_SoundsRegistryDynamic(soundID, soundFileName) {
+    createjs.Sound.registerSound(soundFileName, soundID);
+}
+
+var soundWillPlay = false;
+/* var videoWillPlay = true;
+function handle_VideoControls() {
+    var instance = importantVideo;
+
+    switch (videoWillPlay) {
+        case true:
+            videoWillPlay = false;
+            instance.play();
+            break;
+        case false:
+            videoWillPlay = true;
+            instance.pause();
+            break;
+        default:
+            break;
+    }
+} */
+
+function handle_SoundControls(soundID) {
+    var instance = createjs.Sound.play(soundID, {
+        interrupt: createjs.Sound.INTERRUPT_ANY,
+        //interrupt: createjs.Sound.INTERRUPT_NONE,
+        //loop: -1,
+    });
+    // console.log(" ▌▌▌ ▌▌▌ ▌▌▌ ", instance);
+
+    switch (soundWillPlay) {
+        case true:
+            soundWillPlay = false;
+            instance.play();
+            var soundWillPlay = false;
+            // console.log(
+            //     "╘╘╘╝╘▌▌▌playSound" + "paused? (true) ▌",
+            //     instance.getPaused()
+            // );
+            break;
+        case false:
+            soundWillPlay = true;
+            instance.setPaused(true);
+            var soundWillPlay = true;
+            // console.log(
+            //     "╘╘╘╝╘▌▌▌playSound" + "paused? (false) ▌",
+            //     instance.getPaused()
+            // );
+            break;
+        default:
+            break;
+    }
+    // createjs.Sound.play("pop", {
+    //     // interrupt: createjs.Sound.INTERRUPT_ANY,
+    //     interrupt: createjs.Sound.INTERRUPT_NONE,
+    //     loop: -1,
+    // });
+}
+
 function handle_OLD_MAP_LOAD(e) {
     // outputTextClip = new InteractiveText(
     //     "city name appears here",
@@ -11,6 +71,46 @@ function handle_OLD_MAP_LOAD(e) {
     //     "#FFCC00"
     //     // ).mouseEnabled=false;  //using this throws error...
     // );
+    var zoomLockBtn = new InteractiveText(
+        "mp3-listen",
+        stageBounds.width / 2,
+        stageBounds.height / 2,
+        "#FFCC00"
+    );
+    zoomLockBtn.getInstance().addEventListener("click", function () {
+        // handle_VideoControls();
+        handle_SoundControls("sound_0");
+        // zoomButton.activate().visible = false;
+        // zoomButton.activate().mouseEnabled = false;
+    });
+
+    interactive_content.addChild(zoomLockBtn);
+    var loadedAlbums = e.target.getResult("albums");
+    var arr = loadedAlbums.getElementsByTagName("media");
+    var arrArray = [];
+
+    // for (var ii = 0; ii < arr.length; ii++) {
+    for (var ii = 0; ii < 3; ii++) {
+        var albumDetails = {};
+        albumDetails.id = "sound_" + ii;
+        albumDetails.songFileLocation = arr.item(ii).getAttribute("src");
+        //from within the loading arr....
+        handle_SoundControls(albumDetails.id);
+        handle_SoundsRegistryDynamic(
+            albumDetails.id,
+            albumDetails.songFileLocation
+        );
+        console.log(
+            "albumDetails.id: ",
+            albumDetails.id,
+            " albumDetails.songFileLocation: ",
+            albumDetails.songFileLocation
+        );
+        arrArray.push(albumDetails);
+    }
+    // console.log(arrArray);
+
+    return;
 
     outputTextClip = new DomText(
         "city name appears here",
@@ -391,30 +491,19 @@ width Number
             x: evt.stageX + this.offset.x,
             y: evt.stageY + this.offset.y,
         };
-        this.zoomPoint = new SmartPoint(
-            evt.stageX + this.offset.x,
-            evt.stageY + this.offset.y,
-            "zoom_point"
-        );
+
         this.MappedLoc = this.globalToLocal(this.movedLoc.x, this.movedLoc.y);
 
         this.MappedZoom = this.globalToLocal(
-            zoomFrameW + this.x  ,
-            zoomFrameH + this.y  
+            zoomFrameW + this.x,
+            zoomFrameH + this.y
         );
         // zoomContainerBMP.cacheCanvas = mapContainer.cacheCanvas;
         // zoomContainerBMP.bitmapCache = zoomContainerBMP.bitmapCache;
         //   * (1 / MapContainerScaleX) --- this is the scale of the original map
-        // zoomContainerBMP.cache(
-        //     this.movedLoc.x * (1 / MapContainerScaleX),
-        //     this.movedLoc.y * (1 / MapContainerScaleY),
-        //     this.MappedZoom.x,
-        //     this.MappedZoom.y
-        // );
-
         zoomContainerBMP.cache(
-            this.movedLoc.x * (1 / MapContainerScaleX)-32,
-            this.movedLoc.y * (1 / MapContainerScaleY)-32,
+            this.movedLoc.x * (1 / MapContainerScaleX),
+            this.movedLoc.y * (1 / MapContainerScaleY),
             this.MappedZoom.x,
             this.MappedZoom.y
         );
@@ -423,8 +512,14 @@ width Number
         //sync the movement of the cached bmp
         zoomContainerBMP.regX = this.x * (1 / MapContainerScaleX);
         zoomContainerBMP.regY = this.y * (1 / MapContainerScaleY);
+        // stage.update();
         // indicate that the stage should be updated on the next tick:
         //update = true;
+
+        // console.log(
+        //     "Math.abs(this.x) > parseInt(zoomFrameW / 2): ",
+        //     Math.abs(this.x) >= parseInt(zoomFrameW / 2)
+        // );
     });
 
     zoomContainer.on("rollover", function (evt) {
