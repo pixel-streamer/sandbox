@@ -285,7 +285,7 @@ function setEventListeners() {
             var min = 0.1,
                 max = 5;
             zoomLevel = Math.min(Math.max(min, zoomLevel), max);
-            console.log("wheel " + zoomLevel);
+            // console.log("wheel " + zoomLevel);
         },
         true
     );

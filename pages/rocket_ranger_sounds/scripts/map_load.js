@@ -399,8 +399,8 @@ width Number
         this.MappedLoc = this.globalToLocal(this.movedLoc.x, this.movedLoc.y);
 
         this.MappedZoom = this.globalToLocal(
-            zoomFrameW + this.x  ,
-            zoomFrameH + this.y  
+            zoomFrameW + this.x,
+            zoomFrameH + this.y
         );
         // zoomContainerBMP.cacheCanvas = mapContainer.cacheCanvas;
         // zoomContainerBMP.bitmapCache = zoomContainerBMP.bitmapCache;
@@ -413,8 +413,8 @@ width Number
         // );
 
         zoomContainerBMP.cache(
-            this.movedLoc.x * (1 / MapContainerScaleX)-32,
-            this.movedLoc.y * (1 / MapContainerScaleY)-32,
+            this.movedLoc.x * (1 / MapContainerScaleX),
+            this.movedLoc.y * (1 / MapContainerScaleY),
             this.MappedZoom.x,
             this.MappedZoom.y
         );
