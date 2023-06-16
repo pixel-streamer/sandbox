@@ -112,11 +112,12 @@ class InteractiveText extends createjs.Text {
 }
 
 class SmartPoint extends createjs.Point {
-    constructor(x, y, pointName) {
+    constructor(x, y, pointName, textStr) {
         super(x, y);
         // new createjs.Point(0, 0)
         this.delta = null;
         this.name = pointName || undefined;
+        this.someText = textStr;
     }
 }
 class SmartVector extends createjs.Point {
@@ -151,7 +152,7 @@ cross product, we will get a vector parallel to one of the coordinate axes.
         this.normal = undefined;
         this.name = vectorName || undefined;
     }
-    crossProduct(bx, by, bz) { 
+    crossProduct(bx, by, bz) {
         /* 
             from   https://www.mathsisfun.com/algebra/vectors-cross-product.html
             The Cross Product a × b of two vectors is
@@ -429,6 +430,107 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
     };
 }
 
+/*----------------------- to store items: */
+
+/*sessionStorage.setItem("months", JSON.stringify(months));
+
+
+for the string version back: 
+sessionStorage.getItem("months")
+*/
+
+class JSONsessionStore /* implements Web Storage API */ {
+    constructor() {
+        this.session = sessionStorage; //sets a reference for now.
+        this.keyName;
+        this.vanillaValue;
+    }
+    setItem(keyName, vanillaValue) {
+        this.keyName = keyName;
+        this.vanillaValue = JSON.stringify(vanillaValue);
+        this.session.setItem(this.keyName, this.vanillaValue);
+    }
+    getItem(keyName) {
+        return JSON.parse(this.session.getItem(keyName.toString()));
+    }
+    destroy(keyName) {
+        // Remove saved data from sessionStorage
+        this.session.removeItem(keyName);
+    }
+    clearAll() {
+        this.session.clear();
+    }
+}
+
+/* Object.defineProperty(JSONsessionStore.prototype, "key", {
+    get: function () {
+        //sessionStorage.getItem("key");
+        return JSON.parse(this.session.getItem(key));
+    },
+    set: function (param) {
+        this.key = param;
+        console.log("trying to set key to ", param);
+        this.session.setItem(this.key, param);
+    },
+    configurable: true,
+}); */
+
+/*----------------------- END to store items: ------------------------*/
+
+/*----------------------- EXAMPLE OBJECT STORAGE: --------------------- 
+Object.defineProperty(SimpleGallery.prototype, "pageName", {
+    get: function () { 
+        return pageName;
+    },
+    set: function (param) {
+        pageName = param;
+    },
+    configurable: true,
+});
+ --------------------- END EXAMPLE OBJECT STORAGE: -------------------*/
+
+/*----------------------- to log function names: ----------------------*/
+//log functions here don't work with creatjs stringify (whah)
+/* function getCallerFunctionName(callerObj) {
+    var str = callerObj + "\n" + "";
+    for (var i in this) {
+        if (callerObj == this[i]) {
+            return i.toString();
+        }
+    }
+}
+
+function logBegin() {
+    var calledBy = getCallerFunctionName(arguments.callee.caller);
+    var beginString = ":\t has begun";
+    var statString =
+        calledBy +
+        beginString +
+        "," +
+        JSON.stringify(arguments.callee.caller.arguments);
+   // console.log(statString);
+    //specific to this one project:
+    var screenLogText = document.createTextNode(statString);
+    screen_log.appendChild(screenLogText);
+    screen_log.appendChild(document.createElement("br"));
+    return statString;
+}
+
+function logEnd() {
+    var calledBy = getCallerFunctionName(arguments.callee.caller);
+    var endingString = ":\t has ended";
+    //TODO: look up using JSON.stringify and transmuting the objects from there.
+    var statString = calledBy + endingString + " ";
+ 
+    //specific to this one project:
+    var screenLogText = document.createTextNode(statString);
+    screen_log.appendChild(screenLogText);
+    screen_log.appendChild(document.createElement("br"));
+    return statString;
+} */
+
+/*----------------------- END to log function names: */
+
 /*------------ only in createjs --------------------*/
 function getGlobalBounds(child) {
     //from https://stackoverflow.com/questions/49516938/createjs-global-gettransformedbounds
@@ -452,7 +554,6 @@ function getGlobalBounds(child) {
 
     return new createjs.Rectangle(minX, minY, maxX - minX, maxY - minY);
 }
-
 //----- example https://jsfiddle.net/2kr23/58/
 /*------------ end only in createjs --------------------*/
 /* 
@@ -461,3 +562,89 @@ function getGlobalBounds(child) {
 */
 // TODO: have a look at coloring a bitmap thru code:
 // from: https://stackoverflow.com/questions/40717868/easeljs-using-bitmap-for-filling-rectangle
+
+/* 
+///from here: 
+// https://stackoverflow.com/questions/29667877/easeljs-domelement-issue-with-devicepixelratio
+//this extends DOMElement so that it can be scaled.
+
+var DOMElement = function (htmlElement) {
+    this.DOMElement_constructor(htmlElement);
+
+    this.globalScale = CanvasUtils.getScale();
+
+    this.acceleratedCompositing = Modernizr.csstransforms3d;
+};
+var p = createjs.extend(DOMElement, createjs.DOMElement);
+
+///
+ //@override
+ // //Overrides default createjs DOMElement.
+ // //overrides _handleDrawEnd
+ //Sets 3d transform (translateZ)
+ //
+p._handleDrawEnd = function (evt) {
+    var o = this.htmlElement;
+    if (!o) {
+        return;
+    }
+    var style = o.style;
+
+    var props = this.getConcatenatedDisplayProps(this._props),
+        mtx = props.matrix;
+
+    // use display instead of visibility
+    var display = props.visible ? "" : "none";
+    if (display != style.display) {
+        style.display = display;
+    }
+    if (!props.visible) {
+        return;
+    }
+
+    var oldProps = this._oldProps,
+        oldMtx = oldProps && oldProps.matrix;
+    var n = 10000; // precision
+
+    if (!oldMtx || !oldMtx.equals(mtx)) {
+        var str = "";
+
+        if (this.acceleratedCompositing) {
+            str += "translateZ(0)";
+        }
+
+        str +=
+            "matrix(" +
+            ((mtx.a * n) | 0) / n / this.globalScale +
+            "," +
+            ((mtx.b * n) | 0) / n +
+            "," +
+            ((mtx.c * n) | 0) / n +
+            "," +
+            ((mtx.d * n) | 0) / n / this.globalScale +
+            "," +
+            ((mtx.tx + 0.5) | 0) / this.globalScale;
+
+        style.transform =
+            style.WebkitTransform =
+            style.OTransform =
+            style.msTransform =
+                str + "," + ((mtx.ty + 0.5) | 0) / this.globalScale + ")";
+
+        style.MozTransform =
+            str + "px," + ((mtx.ty + 0.5) | 0) / this.globalScale + "px)";
+
+        if (!oldProps) {
+            oldProps = this._oldProps = new createjs.DisplayProps(true, NaN);
+        }
+        oldProps.matrix.copy(mtx);
+    }
+
+    if (oldProps.alpha != props.alpha) {
+        style.opacity = "" + ((props.alpha * n) | 0) / n;
+        oldProps.alpha = props.alpha;
+    }
+};
+
+createjs.DOMElement = createjs.promote(DOMElement, "DOMElement");
+ */

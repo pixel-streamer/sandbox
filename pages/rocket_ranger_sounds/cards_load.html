@@ -7,11 +7,11 @@
         <title>Loading svg cards for fragment access</title>
 
         <script src="./scripts/createjs.min.js"></script>
-        <script src="./scripts/easeljs.min.js"></script> 
+        <script src="./scripts/easeljs.min.js"></script>
         <script src="./scripts/tweenjs.min.js"></script>
         <script src="./scripts/preloadjs.min.js"></script>
         <script src="./scripts/soundjs.min.js"></script>
-        <script src="./scripts/easeljs-NEXT.combined.js"></script> 
+        <script src="./scripts/easeljs-NEXT.combined.js"></script>
         <script src="./scripts/fischer-yates-shuffle.js"></script>
         <!-- <script src="./../../libs/1.0.0/ThresholdFilter.js"></script> -->
         <style>
@@ -122,7 +122,8 @@ border-radius: 3px;
                 height: auto;
                 object-fit: contain;
             }
-            #big_stage {
+
+            #testCanvas canvas {
                 image-rendering: crisp-edges;
             }
 
@@ -198,6 +199,25 @@ border-radius: 3px;
                 width: 13124px;
             }
         </style>
+        <style>
+            /* #dom_elements {
+                display: none;
+                opacity: 1; 
+            } */
+            #dom_elements {
+                width: 100%;
+                height: 100%;
+            }
+            .no_select {
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            .pos_ab {
+                position: absolute;
+                z-index: -1;
+            }
+        </style>
     </head>
     <body>
         <div id="progress"></div>
@@ -207,10 +227,12 @@ border-radius: 3px;
             can be constructed around the data you see here)
         </noscript>
         <div id="testCanvas" class="fulldisplay cleared_top">
+            <div id="dom_elements" class="pos_ab"></div>
+            <canvas id="ghost_canvas" class="full_size_canvas pos_ab"></canvas>
             <canvas id="big_stage" class="full_size_canvas"></canvas>
         </div>
-        <div style="display:none;">
-              <pre>
+        <div style="display: none">
+            <pre>
             Tiny API
                 The Graphics class also includes a "tiny API", which is one or two-letter methods
                 that are shortcuts for all of the Graphics methods. These methods are great for
@@ -246,20 +268,18 @@ border-radius: 3px;
                         de                      drawEllipse
                         p                       decodePath
             
-            </pre
-        >
+            </pre>
         </div>
-      
+
         <div id="screen-log"></div>
         <div class="hidden"></div>
 
-        
         <script src="./scripts/font-loading_module.js"></script>
         <!-- <script src="./scripts/fischer-yates-shuffle.js"></script> -->
-        <script src="./scripts/utilities.js"></script> 
+        <script src="./scripts/utilities.js"></script>
         <script src="./scripts/cards_load.js"></script>
         <!-- <script src="./scripts/snap_ui.js"></script> -->
-        <script src="./scripts/map_load.js"></script> 
+        <script src="./scripts/map_load.js"></script>
 
         <!-- <script src="./scripts/init_card_game.js"></script>  -->
         <!-- <script src="./scripts/cards_load_func.js"></script> -->

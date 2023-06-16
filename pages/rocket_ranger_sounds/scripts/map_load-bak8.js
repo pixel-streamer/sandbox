@@ -1,34 +1,34 @@
 var outputTextClip;
-var domElementHome = document.querySelector("#dom_elements");
 
 function name_report(param) {
-    // console.log("icon_choice: ", param);
+    console.log("icon_choice: ", param);
 }
 
 function icon_clickHandler(e) {
     //discovery of shape branch, then:
     var icon_choice = e.target.name.toLowerCase();
+    //  console.log("icon_choice: ", icon_choice);
 
     switch (icon_choice) {
         case "top":
-            // console.log(" go up ");
+            console.log(" go up ");
             name_report(icon_choice);
             break;
         case "bottom":
-            // console.log(" go down ");
+            console.log(" go down ");
             name_report(icon_choice);
             break;
         case "left":
-            // console.log(" go left ");
+            console.log(" go left ");
             name_report(icon_choice);
             break;
         case "right":
             //go right
-            // console.log(" go right ");
+            console.log(" go right ");
             name_report(icon_choice);
             break;
         default:
-            // console.log("icon_choice: ", icon_choice);
+            console.log("icon_choice: ", icon_choice);
             break;
     }
 }
@@ -61,6 +61,8 @@ function handle_OLD_MAP_LOAD(e) {
     var loadedMap = e.target.getResult("map");
 
     var loadedArrow = new createjs.Bitmap(e.target.getResult("arrow"));
+
+    //  var magGlass = new createjs.Bitmap(e.target.getResult("icons"));
 
     let icons = {
         images: [e.target.getResult("icons")],
@@ -231,46 +233,8 @@ loadedMap.naturalHeight
     mapContainer.scaleY = MapContainerScaleY;
     image_content.addChild(mapContainer);
 
-    // var someText = new createjs.Text("thing here", "16px Arial", "#FFCC00");
-
-    var someTextContainer = new createjs.Container();
-    // var someTextClickStopper = new createjs.Shape();
-    // someTextClickStopper.graphics.drawRect(0, 0, 32, 32);
-    var someText = document.createElement("p");
-    var someTextProper = document.createTextNode("this is DOMElement text.");
-    var domElementTextFormat = "";
-    // domElementTextFormat += "selectable:none; ";
-    domElementTextFormat += "color: #450067; ";
-    domElementTextFormat += "font:normal normal 10px/125% 'Press Start 2P'; ";
-    domElementTextFormat += "position:absolute; ";
-    domElementTextFormat += "top:0; ";
-    domElementTextFormat += "left:0; ";
-    domElementTextFormat += "z-index: 12000; ";
-    domElementTextFormat += "opacity: 1; ";
-    someText.appendChild(someTextProper);
-    someText.setAttribute("style", domElementTextFormat);
-    someText.setAttribute("class", "no_select");
-
-    domElementHome.appendChild(someText);
-    var someTextDOM = new createjs.DOMElement(someText);
-
-    var ghostLayer = ghostStage.getChildByName("ghostLayer");
-    ghostLayer.addChild(someTextDOM);
-
-    var someTextDOMbmp = new createjs.Bitmap(someTextDOM);
-    //    someTextDOMbmp = someTextDOMbmp.cache(0, 0, w, h);
-
-    // console.log("██ cCanvas:", someTextDOMbmp);
+    //interactive_content.addChild(outputTextClip);
  
-    someTextDOM.rotation = -45;
-    someTextDOM.x = 88;
-    someTextDOM.y = 150;
-    image_content.addChild(someTextDOM);
-
-    // stage.alpha = 0;
-
-    //  interactive_content.addChild(outputTextClip);
-
     //something is wrong with the outputtextclip as it is.
     /*
     TODO: zoom parts:
@@ -798,11 +762,9 @@ function zipZoom() {
         });
     });
 }
-
-/* //testing how to store objects in the session queue:
 //test util:
-screenLog("testing util begin and end function");
-screenLog("something", { response: "thing" });
+console.log("testing util begin and end function");
+showImg("something", { response: "thing" });
 
 var JSONsesh = new JSONsessionStore();
 // JSONsesh.months =;
@@ -821,12 +783,15 @@ var months = [
     "December",
 ];
 JSONsesh.setItem("months", months);
+console.log("::: JSONsesh.getItem('months') :::", JSONsesh.getItem("months"));
 
-screenLog("::: JSONsesh.getItem('months') :::", JSONsesh.getItem("months"));
-
-function screenLog(param) {
-    logBegin(); //from utilities
+function showImg(param) {
+    beginFunction(); //from utilities
     //fadeIn(mc);
-    logEnd(); //from utilities
+    endFunction(); //from utilities
 }
- */
+function thanks(param) {
+    beginFunction(); //from utilities
+    //fadeIn(mc);
+    endFunction(); //from utilities
+}

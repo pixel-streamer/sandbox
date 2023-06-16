@@ -14,6 +14,7 @@ resize:
 */
 
 var stage,
+    ghostStage,
     stageBounds,
     importantVideo,
     fontsHaveLoaded = false,
@@ -26,12 +27,12 @@ var stage,
     bigArea = document.querySelector("#testCanvas"),
     w = parseInt(getComputedStyle(bigArea).width),
     h = parseInt(getComputedStyle(bigArea).height),
-    bigCanvas = document.querySelector(".full_size_canvas"),
+    bigCanvas = document.querySelector("#big_stage"),
     generalPadding = 16,
     largeText = 0,
     update = true;
 
-let screenLog = document.querySelector("#screen-log");
+let screen_log = document.querySelector("#screen-log");
 /*
 ResizeObserver.disconnect()
     Unobserves all observed Element targets of a particular observer.
@@ -70,6 +71,24 @@ function setupStageForInteraction() {
     // stage = new createjs.StageGL("big_stage",{transparent:true});
     stage = new createjs.Stage("big_stage");
     stage.setBounds(0, 0, w, h);
+
+    // establish a place to add and capture DOMElements so
+    // that I can use them on the one true stage.
+
+    ghostCanvas = document.querySelector("#ghost_canvas");
+    ghostCanvas.setAttribute("width", w);
+    ghostCanvas.setAttribute("height", h);
+    ghostCanvas.getContext("2d").imageSmoothingEnabled = false;
+    ghostStage = new createjs.Stage(ghostCanvas);
+    ghostStage.setBounds(0, 0, w, h);
+    ghostStage.snapToPixel = true;
+
+    var ghostContainer = new createjs.Container();
+    ghostContainer.setBounds(0, 0, w, h);
+    ghostContainer.name = "ghostLayer";
+    ghostStage.addChild(ghostContainer);
+
+    stage.nextStage = ghostStage;
 
     stageBounds = stage.getBounds();
 
@@ -153,6 +172,7 @@ window.addEventListener("resize", function () {
 });
 
 function handle_Redraw() {
+    //ensure this draw captures both canvases.
     // console.log(
     //     "▄▄▄▄▄▄▄▄▄handle_Redraw▄▄▄▄▄▄▄▄",
     //     "find a way to add something to all corners of the stage, and re-dim that sucker"
@@ -291,13 +311,13 @@ function loadAssets() {
                 id: "albums",
                 crossOrigin: true,
                 type: createjs.Types.XML,
-            }, 
+            },
             {
                 src: "./assets/map_whole.png",
                 id: "map",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
-            }, 
+            },
             {
                 src: "./assets/pan-arrow.png",
                 id: "arrow",

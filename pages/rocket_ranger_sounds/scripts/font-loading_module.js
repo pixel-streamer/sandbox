@@ -29,7 +29,7 @@ function loadGoogleFonts() {
 }
 
 function createLongGoogleFontLinkHref() {
-   // console.log("■·::: createLongGoogleFontLinkHref :::·■");
+    // console.log("■·::: createLongGoogleFontLinkHref :::·■");
     var fontFamilyArr = [
         "Press Start 2P",
         "Barlow",
@@ -51,13 +51,13 @@ function createLongGoogleFontLinkHref() {
         "Noto Sans",
         "Roboto Slab",
         "Source Code Pro",
-        "Fredoka One", 
+        "Fredoka One",
         "Bungee",
         // "Alfa Slab One",
         // "Special Elite",
         // "Passion One",
         // "Squada One",
-        // "Black Ops One", 
+        // "Black Ops One",
         // "Racing Sans One",
         // "Changa One",
         // "Graduate",
@@ -89,7 +89,7 @@ function createLongGoogleFontLinkHref() {
         // "Kumar One",
         // "Chicle",
         // "Nosifer",
-         "Mystery Quest",
+        "Mystery Quest",
         // "Stint Ultra Expanded",
         // "Flavors",
         // "Girassol",
@@ -223,7 +223,10 @@ function createLongGoogleFontLinkHref() {
         .join("|");
 
     linkAttrib += crushableString;
-    //console.log(linkAttrib);
+
+    //TODO: break out screen Log into a "testing" utils
+    //screenLog(fontFamilyArr);
+
     return linkAttrib;
 }
 
@@ -245,7 +248,6 @@ function createLongGoogleFontLinkHref() {
 /*
 export { loadGoogleFonts };
 */
-
 
 /******************************************   this will have to adapt per-project */
 // import { loadGoogleFonts }
