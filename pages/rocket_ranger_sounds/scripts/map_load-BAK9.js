@@ -231,13 +231,53 @@ loadedMap.naturalHeight
     mapContainer.scaleY = MapContainerScaleY;
     image_content.addChild(mapContainer);
 
-    var someText = new createjs.Text(
-        "thing here",
-        "12px 'Press Start 2P'",
-        "#FFCC00"
-    );
+    // var someText = new createjs.Text("thing here", "16px Arial", "#FFCC00");
 
-    image_content.addChild(someText);
+    var someTextContainer = new createjs.Container();
+    // var someTextClickStopper = new createjs.Shape();
+    // someTextClickStopper.graphics.drawRect(0, 0, 32, 32);
+    var someText = document.createElement("p");
+    var someTextProper = document.createTextNode("this is DOMElement text.");
+    var domElementTextFormat = "";
+    // domElementTextFormat += "selectable:none; ";
+    domElementTextFormat += "color: #450067; ";
+    domElementTextFormat += "font:normal normal 10px/125% 'Press Start 2P'; ";
+    domElementTextFormat += "position:absolute; ";
+    domElementTextFormat += "top:0; ";
+    domElementTextFormat += "left:0; ";
+    domElementTextFormat += "z-index: 12000; ";
+    domElementTextFormat += "opacity: 1; ";
+    someText.appendChild(someTextProper);
+    someText.setAttribute("style", domElementTextFormat);
+    someText.setAttribute("class", "no_select");
+
+    domElementHome.appendChild(someText);
+    var someTextDOM = new createjs.DOMElement(someText);
+
+    var ghostLayer = ghostStage.getChildByName("ghostLayer");
+    ghostLayer.addChild(someTextDOM); 
+    ghostLayer.cache(0, 0, w, h);
+/* 
+ATTEMPTS WITH THE GHOSTLAYER FAILED. 
+
+THEY WERE DEPENDENT ON ASSUMED CACHE METHODS OF THE DOMElement class THAT ENDED
+UP BEING NON-APPLICABLE TO THAT CONSTRUCT.
+
+THE GOAL WAS TO HAVE A BITMAP REPRESENTATION OF WHAT WAS IN THE DOMelement TO USE LATER
+ON DOWN THE LINE
+*/
+  /*   var someTextDOMbmp = new createjs.Bitmap();
+    someTextDOMbmp.cache(0, 0, w, h);
+
+    console.log("██ cCanvas:", someTextDOMbmp);
+
+    someTextDOMbmp.rotation = -45;
+    someTextDOMbmp.x = 88;
+    someTextDOMbmp.y = 150;
+    image_content.addChild(someTextDOMbmp);
+ */
+    stage.alpha = 0;
+
     //  interactive_content.addChild(outputTextClip);
 
     //something is wrong with the outputtextclip as it is.
@@ -511,7 +551,6 @@ function moveZoom(e) {
     // e.target.parent.parent.parent.x = movedLoc.x;
     // e.target.parent.parent.parent.y = movedLoc.y;
     console.log("movedLoc.x, movedLoc.y: ", movedLoc.x, movedLoc.y);
-    console.log(" need to update the bmp movement too ");
 
     if (this == "up") {
         e.target.parent.parent.parent.y -= 10;

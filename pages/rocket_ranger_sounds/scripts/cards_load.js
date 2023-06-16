@@ -13,8 +13,7 @@ resize:
     re-jigger the layout when the phone turns (v2)
 */
 
-var stage,
-    ghostStage,
+var stage, 
     stageBounds,
     importantVideo,
     fontsHaveLoaded = false,
@@ -71,25 +70,7 @@ function setupStageForInteraction() {
     // stage = new createjs.StageGL("big_stage",{transparent:true});
     stage = new createjs.Stage("big_stage");
     stage.setBounds(0, 0, w, h);
-
-    // establish a place to add and capture DOMElements so
-    // that I can use them on the one true stage.
-
-    ghostCanvas = document.querySelector("#ghost_canvas");
-    ghostCanvas.setAttribute("width", w);
-    ghostCanvas.setAttribute("height", h);
-    ghostCanvas.getContext("2d").imageSmoothingEnabled = false;
-    ghostStage = new createjs.Stage(ghostCanvas);
-    ghostStage.setBounds(0, 0, w, h);
-    ghostStage.snapToPixel = true;
-
-    var ghostContainer = new createjs.Container();
-    ghostContainer.setBounds(0, 0, w, h);
-    ghostContainer.name = "ghostLayer";
-    ghostStage.addChild(ghostContainer);
-
-    stage.nextStage = ghostStage;
-
+ 
     stageBounds = stage.getBounds();
 
     startup_content = new createjs.Container();
