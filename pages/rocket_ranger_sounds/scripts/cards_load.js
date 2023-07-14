@@ -287,14 +287,20 @@ function loadAssets() {
                 crossOrigin: true,
                 type: createjs.Types.XML,
             },
-            {
+               {
+                src: "./scripts/chef_data_layout.xml",
+                id: "food",
+                crossOrigin: true,
+                type: createjs.Types.XML,
+            },  
+          /*   {
                 src: "./scripts/All_Sorted_Driving_Tunez.xml",
                 id: "albums",
                 crossOrigin: true,
                 type: createjs.Types.XML,
-            },
+            }, */
             {
-                src: "./assets/map_whole.png",
+                src: "./assets/map_whole.jpg",
                 id: "map",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
@@ -1199,6 +1205,66 @@ function makeRegularDeck() {
     });
     // console.log("deck.forEach::: ", deck);
 
+
+    /*
+"numeric_value","short_name","name","designation","suit","suit_color","ink_color","indexNum"
+"1","S-A","ace","a","spades","black","various","0"
+"2","S-2","two","02","spades","black","various","1"
+"3","S-3","three","03","spades","black","various","2"
+"4","S-4","four","04","spades","black","various","3"
+"5","S-5","five","05","spades","black","various","4"
+"6","S-6","six","06","spades","black","various","5"
+"7","S-7","seven","07","spades","black","various","6"
+"8","S-8","eight","08","spades","black","various","7"
+"9","S-9","nine","09","spades","black","various","8"
+"10","S-10","ten","10","spades","black","various","9"
+"11","S-J","jack","j","spades","black","various","10"
+"12","S-Q","queen","q","spades","black","various","11"
+"13","S-K","king","k","spades","black","various","12"
+"1","H-A","ace","a","hearts","red","various","13"
+"2","H-2","two","02","hearts","red","various","14"
+"3","H-3","three","03","hearts","red","various","15"
+"4","H-4","four","04","hearts","red","various","16"
+"5","H-5","five","05","hearts","red","various","17"
+"6","H-6","six","06","hearts","red","various","18"
+"7","H-7","seven","07","hearts","red","various","19"
+"8","H-8","eight","08","hearts","red","various","20"
+"9","H-9","nine","09","hearts","red","various","21"
+"10","H-10","ten","10","hearts","red","various","22"
+"11","H-J","jack","j","hearts","red","various","23"
+"12","H-Q","queen","q","hearts","red","various","24"
+"13","H-K","king","k","hearts","red","various","25"
+"1","D-A","ace","a","diamonds","red","various","26"
+"2","D-2","two","02","diamonds","red","various","27"
+"3","D-3","three","03","diamonds","red","various","28"
+"4","D-4","four","04","diamonds","red","various","29"
+"5","D-5","five","05","diamonds","red","various","30"
+"6","D-6","six","06","diamonds","red","various","31"
+"7","D-7","seven","07","diamonds","red","various","32"
+"8","D-8","eight","08","diamonds","red","various","33"
+"9","D-9","nine","09","diamonds","red","various","34"
+"10","D-10","ten","10","diamonds","red","various","35"
+"11","D-J","jack","j","diamonds","red","various","36"
+"12","D-Q","queen","q","diamonds","red","various","37"
+"13","D-K","king","k","diamonds","red","various","38"
+"1","C-A","ace","a","clubs","black","various","39"
+"2","C-2","two","02","clubs","black","various","40"
+"3","C-3","three","03","clubs","black","various","41"
+"4","C-4","four","04","clubs","black","various","42"
+"5","C-5","five","05","clubs","black","various","43"
+"6","C-6","six","06","clubs","black","various","44"
+"7","C-7","seven","07","clubs","black","various","45"
+"8","C-8","eight","08","clubs","black","various","46"
+"9","C-9","nine","09","clubs","black","various","47"
+"10","C-10","ten","10","clubs","black","various","48"
+"11","C-J","jack","j","clubs","black","various","49"
+"12","C-Q","queen","q","clubs","black","various","50"
+"13","C-K","king","k","clubs","black","various","51"
+"null","R-BACK","card_back","back","null","null","red","52"
+"null","R-BACK2","card_back2","back","null","null","red","53"
+"15","J-R","joker","joker_red","null","red","red","54"
+"16","J-B","joker","joker_black","null","black","black","55"
+    */
     return deck;
 }
 
