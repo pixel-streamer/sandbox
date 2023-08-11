@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="web,design,html5,portfolio,sound,xml" />
+        <title>Loading svg cards for fragment access</title>
+
+        <script src="./scripts/createjs.min.js"></script>
+        <script src="./scripts/easeljs.min.js"></script>
+        <script src="./scripts/tweenjs.min.js"></script>
+        <script src="./scripts/preloadjs.min.js"></script>
+        <script src="./scripts/soundjs.min.js"></script>
+        <script src="./scripts/easeljs-NEXT.combined.js"></script>
+        <style>
+            .traditional_border {
+                border: 1px solid #ffcc00;
+            }
+        </style>
+
+        <style>
+            /* reset: *************************************** */
+            * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+                border: 2px solid transparent;
+            }
+            /* ********************************************** */
+            ol,
+            ul {
+                padding: 1rem;
+                margin: 1rem;
+            }
+            html {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            html,
+            body {
+                min-width: 300px;
+                min-height: 320px;
+            }
+            body {
+                font: normal normal 16px/125% sans-serif;
+                /* font-family: "Nunito", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important; */
+                background: #a49d9b;
+
+                height: 100%;
+                width: 100%;
+                color: #443d3b;
+                position: relative;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                /* overflow: hidden; */
+            }
+
+            .fulldisplay {
+                position: absolute;
+                /* position: relative; */
+                top: 0;
+                left: 0;
+                /* width: 99.9%; */
+                width: calc(100vw - 24px);
+                height: calc(100vh - 24px);
+                margin: auto;
+                margin-top: -8px;
+                /* background-color: blueviolet; */
+                /* background-color: #a49d9b; */
+                background-color: #458067;
+                z-index: -400000;
+                overflow: hidden;
+            }
+
+            .cleared_top {
+                z-index: 99999;
+                clear: both;
+                position: relative;
+            }
+        </style>
+
+        <!-- <style>
+            canvas {
+                image-rendering: optimizeSpeed; /* Older versions of FF          */
+                image-rendering: -moz-crisp-edges; /* FF 6.0+                       */
+                image-rendering: -webkit-optimize-contrast; /* Safari                        */
+                image-rendering: -o-crisp-edges; /* OS X & Windows Opera (12.02+) */
+                /*  image-rendering: pixelated; Awesome future-browsers       */
+                image-rendering: crisp-edges;
+                -ms-interpolation-mode: nearest-neighbor; /* IE                            */
+            }
+        </style> -->
+
+        <style>
+            /* 
+        this to be externalized.
+        */
+            .custom_lightbox_modal {
+                background-color: rgba(0, 0, 0, 0.42);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 999999;
+            }
+            .custom_lightbox_window {
+                /* background-color: rgba(0, 127, 255, 1); */
+                border: 1px solid transparent;
+                position: fixed;
+                top: 4vw;
+                left: 4vw;
+                right: 4vw;
+                bottom: 4vw;
+                display: flex;
+                justify-content: center;
+                min-width: 320px;
+            }
+            /* .custom_lightbox_window:hover {
+border: 1px solid white;
+} */
+
+            /* #light_box_window img:hover {
+border: 0.25rem solid rgba(255, 255, 255, 0.3);
+cursor: pointer;
+border-radius: 3px;
+} */
+            .custom_lightbox_modal #light_box_window img {
+                max-width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+
+            #testCanvas canvas {
+                image-rendering: crisp-edges;
+            }
+
+            .suppressed {
+                display: none;
+            }
+
+            /* flex-grow: 1; */
+            /* max-width: 100%; */
+            /* max-height: 100%; */
+            /* min-width: 33vw; */
+            /* min-height: 33vh; */
+            /* height: 100vh; */
+            /*  display: flex;
+        align-content: center;
+        justify-content: center;
+        flex-shrink: 1;
+        align-self: center;
+        object-fit: cover; */
+
+            .spotlight_box {
+                display: flex;
+                align-content: center;
+                justify-content: center;
+                flex-grow: 1;
+                flex-shrink: 1;
+                max-width: 100%;
+                max-height: 100%;
+                min-width: 33vw;
+                min-height: 33vh;
+                height: 100vh;
+                align-self: center;
+            }
+        </style>
+        <style>
+            .aesprite_palette_1 {
+                color: #f0f0dc;
+            }
+            .aesprite_palette_2 {
+                color: #fac800;
+            }
+            .aesprite_palette_3 {
+                color: #10c840;
+            }
+            .aesprite_palette_4 {
+                color: #00a0c8;
+            }
+            .aesprite_palette_5 {
+                color: #d24040;
+            }
+            .aesprite_palette_6 {
+                color: #a06e46;
+            }
+            .aesprite_palette_7 {
+                color: #736464;
+            }
+            .aesprite_palette_8 {
+                color: #101820;
+            }
+        </style>
+        <style>
+            .city_box {
+                /*
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                */
+                position: relative;
+                display: block;
+                left: 0;
+                top: 0;
+                height: 9600px;
+                width: 13124px;
+            }
+        </style>
+        <style>
+            /* #dom_elements {
+                display: none;
+                opacity: 1; 
+            } */
+            #dom_elements {
+                width: 100%;
+                height: 100%;
+            }
+            .no_select {
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            .pos_ab {
+                position: absolute;
+                z-index: -1;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="progress"></div>
+        <div id="gallery"></div>
+        <div id="testCanvas" class="fulldisplay cleared_top">
+            <canvas id="big_stage" class="full_size_canvas"></canvas>
+        </div>
+
+        <div id="screen-log"></div>
+
+        <script src="./scripts/font-loading_module.js"></script>
+        <script src="./scripts/utilities.js"></script>
+        <script src="./scripts/vector_masks.js"></script>
+    </body>
+</html>
