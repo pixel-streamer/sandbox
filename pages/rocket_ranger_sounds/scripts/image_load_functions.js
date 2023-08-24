@@ -12,7 +12,7 @@ function loadAssets() {
     fileLoader.loadManifest({
         manifest: [
             {
-                src: "./assets/map_whole.jpg",
+                src: "./assets/map_whole-sm.jpg",
                 id: "map",
                 crossOrigin: true,
                 type: createjs.Types.IMAGE,
