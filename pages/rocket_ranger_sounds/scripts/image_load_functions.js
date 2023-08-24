@@ -12,6 +12,7 @@ function loadAssets() {
     fileLoader.loadManifest({
         manifest: [
             {
+                // already loaded-- see if this helps.
                 src: "./assets/map_whole-sm.jpg",
                 id: "map",
                 crossOrigin: true,
