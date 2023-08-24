@@ -60,8 +60,6 @@ function handle_OLD_MAP_LOAD(e) {
 
     console.log("██: : :handle_ImageLoadComplete: : : ██");
 
-    var loadedMap = e.target.getResult("map");
-
     var loadedArrow = new createjs.Bitmap(e.target.getResult("arrow"));
 
     let icons = {
@@ -104,7 +102,17 @@ function handle_OLD_MAP_LOAD(e) {
     bottom_icon.addEventListener("click", icon_clickHandler);
     left_icon.addEventListener("click", icon_clickHandler);
 
-    var map = new createjs.Bitmap(loadedMap);
+    var loadedMap;
+    var map;
+
+    if (!big_mapIsLoaded) {
+        loadedMap = e.target.getResult("map");
+        map = new createjs.Bitmap(loadedMap);
+    } else {
+        loadedMap = new createjs.Bitmap(big_map);
+        map = loadedMap;
+    }
+
     var mapContainer = new createjs.Container();
     var zoomContainer = new createjs.Container();
     var zoomMover = new createjs.Container();
@@ -169,22 +177,24 @@ function handle_OLD_MAP_LOAD(e) {
 
     // alphaBox.transformMatrix = maskedMap.transformMatrix = mx;
 
+    var lodW;
+    var lodH;
+    if (big_mapIsLoaded) {
+        lodW = loadedMap.image.naturalWidth;
+        lodH = loadedMap.image.naturalHeight;
+        console.log(" lodW,lodH ", lodW, lodH);
+    } else {
+        lodW = loadedMap.naturalWidth;
+        lodH = loadedMap.naturalHeight;
+        console.log(" lodW,lodH ", lodW, lodH);
+    }
+
     var citiesContainer = new createjs.Container();
 
-    createCitiesMap(
-        e,
-        citiesContainer,
-        loadedMap.naturalWidth,
-        loadedMap.naturalHeight
-    );
+    createCitiesMap(e, citiesContainer, lodW, lodH);
 
     // full-size image scale adjustment
-    var fsMapDims = resizeToKnownDimensions(
-        loadedMap.naturalWidth,
-        loadedMap.naturalHeight,
-        w,
-        h
-    );
+    var fsMapDims = resizeToKnownDimensions(lodW, lodH, w, h);
     var MapContainerScaleX = fsMapDims.scaleRatio;
     var MapContainerScaleY = fsMapDims.scaleRatio;
 
@@ -221,14 +231,9 @@ function handle_OLD_MAP_LOAD(e) {
     // an interim location (with calculations)
     // and a "final" location that will house the output locations without squirreling the data
 
-    //image_content.addChild(mapContainer);
-
     mapContainer.addChild(map);
     mapContainer.addChild(citiesContainer);
-    mapContainer.cache(0, 0, loadedMap.naturalWidth, loadedMap.naturalHeight);
-    mapContainer.scaleX = MapContainerScaleX;
-    mapContainer.scaleY = MapContainerScaleY;
-    image_content.addChild(mapContainer);
+    mapContainer.cache(0, 0, lodW, lodH);
 
     var someText = new createjs.Text(
         "thing here",
@@ -236,6 +241,9 @@ function handle_OLD_MAP_LOAD(e) {
         "#FFCC00"
     );
 
+    mapContainer.scaleX = MapContainerScaleX;
+    mapContainer.scaleY = MapContainerScaleY;
+    image_content.addChild(mapContainer);
     image_content.addChild(someText);
     //  interactive_content.addChild(outputTextClip);
 
