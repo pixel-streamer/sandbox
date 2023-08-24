@@ -5,8 +5,9 @@
 
 class InteractiveText extends createjs.Text {
     //this is a really crappy, fast class... use the other one (where?).
-    constructor(interactivePhrase, atXPos, atYPos, fillCol) {
+    constructor(interactivePhrase, atXPos, atYPos, fillCol, addWhere) {
         super();
+        this.domContainer = addWhere || null;
         this.userText_xPos = atXPos;
         this.userText_yPos = atYPos;
         // largeText = getGoldenRatio(w) * 0.085;
@@ -72,8 +73,16 @@ class InteractiveText extends createjs.Text {
             hitAreaH: this.interactiveTextHitArea.getBounds().height,
         };
         // handle_SoundsRegistry();
-        interactive_content.addChild(this.interactiveTextHitArea);
+        this.addToDom();
     }
+    addToDom = function () {
+        if (this.domContainer === null) {
+            //add to a pre-determined container
+            interactive_content.addChild(this.interactiveTextHitArea);
+        } else {
+            this.domContainer.addChild(this.interactiveTextHitArea);
+        }
+    };
     updateText = function (param) {
         // this.gamePlayText.font = this._fontChoice;
         // this.gamePlayText.text = param;
@@ -314,8 +323,11 @@ cross product, we will get a vector parallel to one of the coordinate axes.
     }
 }
 
+
+
 class DomText {
     //this is a really crappy, fast class... use the other one (where?).
+    // assumes that the interactive_content layer from the main stage is available.
     constructor(interactivePhrase, atXPos, atYPos, fillCol) {
         this.gamePlayText;
         this._fontCol = fillCol;
@@ -363,6 +375,7 @@ class DomText {
         return this.textInfo;
     };
 }
+
 function getRandomHexNum() {
     // get a random hex value for the color of something:
     return "#" + Math.floor(Math.random() * 16777215).toString(16);

@@ -1,218 +1,3 @@
-var stage,
-    stageBounds,
-    importantVideo,
-    fontsHaveLoaded = false,
-    ticker,
-    subject_content,
-    image_content,
-    interactive_content,
-    startup_content,
-    fileLoader,
-    bigArea = document.querySelector("#testCanvas"),
-    w = parseInt(getComputedStyle(bigArea).width),
-    h = parseInt(getComputedStyle(bigArea).height),
-    bigCanvas = document.querySelector("#big_stage"),
-    generalPadding = 16,
-    largeText = 0,
-    update = true;
-
-/*
-using createjs, 
-create a single webpage
-displays photographic details within sections
-based on selection
-or the visited url  (make use of: URLSearchParams)
-
-when visiting the web page, it has channels based on the url location
-
-visit a location in the following categories:
-
-
-*/
-
-// let fontSize = 32;
-let fontSize = 64;
-
-let screen_log = document.querySelector("#screen-log");
-
-// loadGoogleFonts inside font-loading_module.js
-window.addEventListener("load", loadGoogleFonts);
-/* 
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ STAGE SETUP FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-*/
-const startup_evt = new CustomEvent("startup_evtStr", {
-    detail: { msg: ":::startup began, now setup stage" },
-});
-window.addEventListener("startup_evtStr", addStartupText);
-
-const gameSetup_evt = new CustomEvent("gameSetup_evtStr", {
-    detail: { msg: ":::startup began, now setup stage" },
-});
-window.addEventListener("gameSetup_evtStr", setupGame);
-
-const gamePlay_evt = new CustomEvent("gamePlay_evtStr", {
-    detail: { msg: ":::startup began, now setup stage" },
-});
-window.addEventListener("gamePlay_evtStr", playGame);
-
-function setupStageForInteraction() {
-    init();
-    bigCanvas.setAttribute("width", w);
-    bigCanvas.setAttribute("height", h);
-    bigCanvas.getContext("2d").imageSmoothingEnabled = false;
-    stage = bigCanvas;
-    // stage = new createjs.StageGL("big_stage",{transparent:true});
-    stage = new createjs.Stage("big_stage");
-    stage.setBounds(0, 0, w, h);
-
-    stageBounds = stage.getBounds();
-
-    startup_content = new createjs.Container();
-    startup_content.name = "startup_content";
-
-    stage.addChild(startup_content);
-
-    ticker = createjs.Ticker;
-    ticker.timingMode = ticker.RAF_SYNCHED;
-    ticker.addEventListener("tick", tick);
-    interactive_content = new createjs.Container();
-    interactive_content.name = "interactive_content";
-
-    image_content = new createjs.Container();
-    image_content.name = "image_content";
-
-    subject_content = new createjs.Container();
-    subject_content.name = "subject_content";
-    stage.addChildAt(subject_content);
-    stage.addChildAt(image_content);
-    stage.addChild(interactive_content);
-    stage.snapToPixel = true;
-
-    // enable touch interactions if supported on the current device:
-    createjs.Touch.enable(stage);
-    stage.mouseMoveOutside = false;
-    addStartupText();
-}
-function stop() {
-    ticker.removeEventListener("tick", tick);
-}
-function tick(event) {
-    // this set makes it so the stage only re-renders when an event handler indicates a change has happened.
-    if (update) {
-        update = false; // only update once
-        stage.update(event);
-    }
-    stage.update(event);
-}
-/* 
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF STAGE SETUP FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-*/
-/* 
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ FONT LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-*/
-
-/*  // load in google fonts through the manifest... (cleaner.)
-queue.loadManifest(
-    [
-        { src: "https://fonts.googleapis.com/css?family=Press+Start+2P", type: "fontcss" }
-    ]
-);
-*/
-window.addEventListener("fontload_evtStr", setupStageForInteraction);
-/* 
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF FONT LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-*/
-/* 
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ RESIZE FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-*/
-//RESIZE VARIABLES
-let resizeObserver,
-    delay = 250,
-    timeout;
-
-resizeObserver = new ResizeObserver((entries) => {});
-resizeObserver.observe(document.querySelector("#testCanvas"));
-window.addEventListener("resize", function () {
-    clearTimeout(timeout);
-    timeout = setTimeout(handle_Redraw, delay);
-    return;
-});
-
-function handle_Redraw() {
-    //ensure this draw captures both canvases.
-    // console.log(
-    //     "▄▄▄▄▄▄▄▄▄handle_Redraw▄▄▄▄▄▄▄▄",
-    //     "find a way to add something to all corners of the stage, and re-dim that sucker"
-    // );
-}
-/* 
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF RESIZE FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-*/
-
-function init() {
-    // console.log("▄▄▄▄▄▄▄▄▄init▄▄▄▄▄▄▄▄");
-}
-
-/* 
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-*/
-function addStartupText() {
-    console.log("addStartupText");
-    window.dispatchEvent(gameSetup_evt);
-}
-
-/* 
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-*/
-
-// var outputTextClip;
-function setupGame() {
-    console.log("setupGame");
-    window.dispatchEvent(gamePlay_evt);
-}
-
-function loadAssets() {
-    //TODO: file load
-    console.log("playGame", "loadAssets");
-    fileLoader = new createjs.LoadQueue(true);
-    fileLoader.on("complete", handle_OLD_MAP_LOAD);
-
-    fileLoader.loadManifest({
-        manifest: [
-            {
-                src: "./assets/legend-data-pass1_copy.xml",
-                id: "cities",
-                crossOrigin: true,
-                type: createjs.Types.XML,
-            },
-            {
-                src: "./assets/map_whole.jpg",
-                id: "map",
-                crossOrigin: true,
-                type: createjs.Types.IMAGE,
-            },
-            {
-                src: "./assets/icon_sheet.png",
-                id: "icons",
-                crossOrigin: true,
-                type: createjs.Types.IMAGE,
-            },
-        ],
-    });
-}
-
-function playGame() {
-    loadAssets();
-}
-
 /*
  ******************************************************************
  ******************************************************************
@@ -220,18 +5,18 @@ function playGame() {
  */
 
 function handle_OLD_MAP_LOAD(e) {
-    // outputTextClip = new InteractiveText(
-    //     "city name appears here",
-    //     stageBounds.width - 210,
-    //     stageBounds.height - 65,
-    //     //needs to update with the current object, and set the text in a subsequent function
-    //     // stageBounds.width - outputTextClip.getTextInfo.hitAreaW,
-    //     // stageBounds.height - outputTextClip.getTextInfo.hitAreaH,
-    //     "#FFCC00"
-    //     // ).mouseEnabled=false;  //using this throws error...
-    // );
+    outputTextClip = new InteractiveText(
+        "city name appears here",
+        stageBounds.width - 210,
+        stageBounds.height - 65,
+        //needs to update with the current object, and set the text in a subsequent function
+        // stageBounds.width - outputTextClip.getTextInfo.hitAreaW,
+        // stageBounds.height - outputTextClip.getTextInfo.hitAreaH,
+        "#FFCC00"
+        // ).mouseEnabled=false;  //using this throws error...
+    );
 
-    outputTextClip = new DomText(
+    /*     outputTextClip = new DomText(
         "city name appears here",
         stageBounds.width - 210,
         stageBounds.height - 65,
@@ -240,9 +25,9 @@ function handle_OLD_MAP_LOAD(e) {
         // stageBounds.height - outputTextClip.getTextInfo.hitAreaH,
         "#FFCC00"
         // ).mouseEnabled = false; //using this throws error...
-    );
+    ); */
 
-    /*  
+    /*  TODO: display XML locations for the city data:
  
  // e.target.getResult("food").getElementsByTagName("location_name")[0].firstChild.data
 
@@ -681,7 +466,7 @@ function handle_OLD_MAP_LOAD(e) {
         // update = true;
     }); */
 
-    /**************************************  XML LOCATIONS */
+    /**************************************  XML LOCATIONS *********************/
     var showXMLlocations = new InteractiveText(
         "show XML locations",
         stageBounds.width / 2,
@@ -692,144 +477,11 @@ function handle_OLD_MAP_LOAD(e) {
         stageBounds.width - showXMLlocations.getInstance().getBounds().width;
     showXMLlocations.getInstance().y =
         stageBounds.height - showXMLlocations.getInstance().getBounds().height;
-    showXMLlocations.getInstance().addEventListener("click", function () {
-        //    handle this with a DOMElement (because of interaction)
-        //tasks:
-        //toggle UI for xml engagement visible/not
-        //show UI for xml engagement
-        //      UI for xml engagement should have a "close" button?
-        //      UI for xml engagement should have a "copy" button
-        //      UI for xml engagement should have a "paste" button
-        //      UI for xml engagement should have a "save" button  -- xml to session store
-        //      UI for xml engagement on paste, should compare to current xml?
-        //                  complications?
-        //  UI for engagement shouldn't need to be continually viewed (but why?)
-        //build UI for engagement when map loads & createCities is run.
-        // ??  disable button for UI engagement UNTIL cities are built (can this happen?)
-        //
-    });
-    /**************************************  END XML LOCATIONS */
 
-    image_content.snapToPixel = true;
-    zoomContainer.snapToPixel = true;
-}
-function updateZoomedCache(e) {
-    console.log("updateZoomedCache");
-}
+    showXMLlocations.getInstance().addEventListener("click", showXMLlocales);
 
-function dragZoom(evt) {
-    // console.log(" evt.target.parent : ", evt.target.parent);
-    // console.log(evt.target.typeName );
-    // console.log(evt.target.name);
-
-    var zWin = evt.target.parent;
-
-    if (zWin.name == "zoomContainer") {
-        var zFrame = zWin.getChildByName("zoomFrame");
-        var zoomFrameW = zFrame.getBounds().width;
-        var zoomFrameH = zFrame.getBounds().height;
-
-        var zoomContainerBMP = zWin.getChildByName("map_cache");
-
-        var MapContainerScaleX = zoomContainerBMP.city_info.MapContainerScaleX;
-        var MapContainerScaleY = zoomContainerBMP.city_info.MapContainerScaleY;
-
-        var scaledW = 1 / MapContainerScaleX;
-        var scaledH = 1 / MapContainerScaleY;
-        //var fsMapDims = zoomContainerBMP.city_info.fsMapDims;
-
-        this.movedLoc = {
-            x: evt.stageX + this.offset.x,
-            y: evt.stageY + this.offset.y,
-        };
-        this.zoomPoint = new SmartPoint(
-            evt.stageX + this.offset.x,
-            evt.stageY + this.offset.y,
-            "zoom_point"
-        );
-        this.MappedLoc = this.globalToLocal(this.movedLoc.x, this.movedLoc.y);
-
-        this.MappedZoom = this.globalToLocal(
-            zoomFrameW + this.x,
-            zoomFrameH + this.y
-        );
-        // zoomContainerBMP.cacheCanvas = mapContainer.cacheCanvas;
-        // zoomContainerBMP.bitmapCache = zoomContainerBMP.bitmapCache;
-        //   * (1 / MapContainerScaleX) --- this is the scale of the original map
-
-        zoomContainerBMP.cache(
-            this.movedLoc.x / MapContainerScaleX,
-            this.movedLoc.y / MapContainerScaleY,
-            zoomFrameW,
-            zoomFrameH
-        );
-
-        this.x = this.movedLoc.x;
-        this.y = this.movedLoc.y;
-
-        //sync the movement of the cached bmp
-        zoomContainerBMP.regX = this.x * (1 / MapContainerScaleX);
-        zoomContainerBMP.regY = this.y * (1 / MapContainerScaleY);
-        // indicate that the stage should be updated on the next tick:
-        // stage.update();
-    }
-}
-
-function moveZoom(e) {
-    var zWin = e.target.parent.parent.parent;
-
-    if (e.target.parent.parent.parent.name == "zoomContainer") {
-        var zFrame = zWin.getChildByName("zoomFrame");
-        var zoomFrameW = zFrame.getBounds().width;
-        var zoomFrameH = zFrame.getBounds().height;
-
-        var zoomContainerBMP = zWin.getChildByName("map_cache");
-
-        var MapContainerScaleX = zoomContainerBMP.city_info.MapContainerScaleX;
-        var MapContainerScaleY = zoomContainerBMP.city_info.MapContainerScaleY;
-        // console.log("MapContainerScaleX", MapContainerScaleX);
-        //these are backward? They shouldn't be dirivitive? of 1
-        var scaledW = MapContainerScaleX;
-        var scaledH = MapContainerScaleY;
-
-        if (this == "up") {
-            zWin.y -= 10;
-        }
-        if (this == "down") {
-            zWin.y += 10;
-        }
-        if (this == "left") {
-            zWin.x -= 10;
-        }
-        if (this == "right") {
-            zWin.x += 10;
-        }
-
-        this.movedLoc = {
-            x: zWin.x,
-            y: zWin.y,
-        };
-
-        console.log("x: ", this.movedLoc.x);
-
-        zoomContainerBMP.cache(
-            zWin.x / MapContainerScaleX,
-            zWin.y / MapContainerScaleY,
-            zoomFrameW,
-            zoomFrameH
-        );
-
-        zoomContainerBMP.regX = this.movedLoc.x * (1 / MapContainerScaleX);
-        zoomContainerBMP.regY = this.movedLoc.y * (1 / MapContainerScaleY);
-
-        // zWin.x += 10;
-        // zWin.y += 10;
-
-        // zoomContainerBMP.regX = this.movedLoc.x * (1 / MapContainerScaleX);
-        // zoomContainerBMP.regY = this.movedLoc.x * (1 / MapContainerScaleY);
-        // zoomContainerBMP.regX = this.movedLoc.x / MapContainerScaleX;
-        // zoomContainerBMP.regY = this.movedLoc.x / MapContainerScaleY;
-    }
+    // image_content.snapToPixel = true;
+    // zoomContainer.snapToPixel = true;
 }
 
 function createCitiesMap(e, citiesContainer, mapW, mapH) {
@@ -949,124 +601,6 @@ function createCitiesMap(e, citiesContainer, mapW, mapH) {
     citiesContainer.addChild(citySVG);
 
     return citiesContainer;
-}
-
-function tweenComplete() {
-    //  do nothing
-}
-
-/*██████████████████████████████████████████████████████████████████████████████ */
-/*██████████████████████████████████████████████████████████████████████████████ */
-/*██████████████████████████████████████████████████████████████████████████████ */
-/*██████████████████████████████████████████████████████████████████████████████ */
-/*██████████████████████████████████████████████████████████████████████████████ */
-function zipZoom() {
-    var canvas = document.getElementById("myCanvas");
-    var stage = new createjs.Stage("myCanvas");
-    console.log("stage.scaleX: ", stage.scaleX);
-    console.log("stage.scaleY: ", stage.scaleY);
-
-    function addCircle(r, x, y) {
-        var g = new createjs.Graphics()
-            .beginFill("#ff0000")
-            .drawCircle(0, 0, r);
-        var s = new createjs.Shape(g);
-        s.x = x;
-        s.y = y;
-
-        s.on("pressmove", function (ev) {
-            var localpos = stage.globalToLocal(ev.stageX, ev.stageY);
-            s.x = localpos.x;
-            s.y = localpos.y;
-            stage.update();
-        });
-
-        stage.addChild(s);
-        stage.update();
-    }
-
-    // create a rectangle 'background' Shape object to cover the stage
-    // (to allow for capturing mouse drags on anything except other shapes).
-    bg = new createjs.Shape();
-    bg.graphics
-        .beginFill("LightGray")
-        .drawRect(10, 10, stage.canvas.width - 20, stage.canvas.height - 20);
-    //deliberately smaller for debugging purposes (easier to see if it moves).
-    bg.x = 0;
-    bg.y = 0;
-    stage.addChild(bg);
-    stage.update();
-
-    //create a rectangle frame to represent the position of the stage.
-    stageborder = new createjs.Shape();
-    stageborder.graphics
-        .beginStroke("Black")
-        .drawRect(0, 0, stage.canvas.width, stage.canvas.height);
-    stageborder.x = 0;
-    stageborder.y = 0;
-    stage.addChild(stageborder);
-    stage.update();
-
-    // MOUSEWHEEL ZOOM LISTENER - anywhere on canvas.
-    var factor;
-    canvas.addEventListener("wheel", function (e) {
-        if (Math.max(-1, Math.min(1, e.wheelDelta || -e.detail)) > 0) {
-            factor = 1.1;
-        } else {
-            factor = 1 / 1.1;
-        }
-
-        var local = stage.globalToLocal(stage.mouseX, stage.mouseY);
-        stage.regX = local.x;
-        stage.regY = local.y;
-        stage.x = stage.mouseX;
-        stage.y = stage.mouseY;
-
-        stage.scaleX = stage.scaleX * factor;
-        stage.scaleY = stage.scaleY * factor;
-
-        bg.graphics.command.w = bg.graphics.command.w / factor;
-        bg.graphics.command.h = bg.graphics.command.h / factor;
-        console.log("cover width is ", bg.graphics.command.w);
-
-        var localzero = stage.globalToLocal(0, 0);
-
-        bg.x = localzero.x;
-        bg.y = localzero.y;
-
-        stage.update();
-    });
-
-    canvas.addEventListener("dblclick", function () {
-        var localpos = stage.globalToLocal(stage.mouseX, stage.mouseY);
-        addCircle(10, localpos.x, localpos.y);
-    });
-
-    bg.addEventListener("mousedown", function (ev1) {
-        var mousedownPos0 = { x: ev1.stageX, y: ev1.stageY };
-        var stagePos0 = { x: stage.x, y: stage.y };
-        var bgPos0 = { x: bg.x, y: bg.y };
-
-        bg.addEventListener("pressmove", function (ev2) {
-            stageDelta = {
-                x: ev2.stageX - mousedownPos0.x,
-                y: ev2.stageY - mousedownPos0.y,
-            };
-            stage.x = stagePos0.x + stageDelta.x;
-            stage.y = stagePos0.y + stageDelta.y;
-
-            var localzero = stage.globalToLocal(0, 0);
-            bg.x = localzero.x;
-            bg.y = localzero.y;
-
-            stage.update();
-        });
-    });
-}
-
-function reportName(theName) {
-    console.log("█████████████ name_report");
-    console.log(theName);
 }
 
 function icon_clickHandler(e) {

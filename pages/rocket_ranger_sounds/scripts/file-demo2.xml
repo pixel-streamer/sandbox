@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter [
+<!ELEMENT chapter (title,subtitle,para+)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT subtitle (CDATA)>
+<!ELEMENT para (#PCDATA)>
+]>
+<chapter><title>Chapter 1</title>
+<subtitle><![CDATA[A study in obfuscation]]></subtitle>
+  <para>More unexpert, I boast not: them let those</para>
+  <para>Contrive who need, or when they need, not now.</para>
+  <para>For while they sit contriving, shall the rest,</para>
+  <para>Millions that stand in Arms, and longing wait</para>
+</chapter>

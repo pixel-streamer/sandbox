@@ -1,3 +1,28 @@
+/* 
+general map notations, regarding map size:
+13124
+9600
+
+general limit?
+width * height ≤ 3 * 1024 * 1024
+
+3,145,728
+
+4374 (/3)
+3200
+ 
+10000
+7073
+ 
+Canvas element is the worst restriction...affects the legacy tile source where there is only 
+one tile.
+
+"JPEG images can be up to 32 megapixels"
+
+"The maximum size for a canvas element is 3 megapixels for devices with less than 256 MB RAM 
+and 5 megapixels for devices with greater or equal than 256 MB RAM."
+*/
+
 var outputTextClip;
 var domElementHome = document.querySelector("#dom_elements");
 
@@ -56,6 +81,33 @@ function handle_OLD_MAP_LOAD(e) {
         // ).mouseEnabled = false; //using this throws error...
     );
 
+    // e.target.getResult("food").getElementsByTagName("location_name")[0].firstChild.data
+
+    var bigFoodStr = e.target
+        .getResult("food")
+        .getElementsByTagName("food")[0].textContent;
+
+    // bigFoodStr = bigFoodStr.replace(/\\n/g, "*");
+    // bigFoodStr = bigFoodStr.replace("*", "");
+    // bigFoodStr = bigFoodStr.replace(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "@");
+    // var bigFoodArr = bigFoodStr.split("*"); //.join("").split(",");
+    // console.log(bigFoodArr);
+
+    var objArr = JSON.stringify(bigFoodStr);
+    //if the data is only a string...
+    objArr = JSON.parse(objArr)
+        .replace(/\n/g, "@")
+        .split("@")
+        .join(",")
+        .replace(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/g, "@")
+        .split("@");
+
+    //take out the empties...  (they are the % 25th cell in the csv)
+    // objArr = objArr.filter((word) => word.length > 0);
+
+    // buildXMLOutput(objArr);
+    //buildTable(objArr);
+     
     console.log("██: : :handle_ImageLoadComplete: : : ██");
 
     var loadedMap = e.target.getResult("map");
@@ -90,11 +142,11 @@ function handle_OLD_MAP_LOAD(e) {
     var bottom_icon = new createjs.Sprite(spriteSheetIcons, "bottom");
     var left_icon = new createjs.Sprite(spriteSheetIcons, "left");
 
-    mag_glass.name = "mag_glass";
-    top_icon.name = "top";
-    right_icon.name = "right";
-    bottom_icon.name = "bottom";
-    left_icon.name = "left";
+    mag_glass.name = "icon_mag_glass";
+    top_icon.name = "icon_top";
+    right_icon.name = "icon_right";
+    bottom_icon.name = "icon_bottom";
+    left_icon.name = "icon_left";
 
     mag_glass.addEventListener("click", icon_clickHandler);
     top_icon.addEventListener("click", icon_clickHandler);
@@ -255,6 +307,8 @@ loadedMap.naturalHeight
     var zoomFrameLineH = zoomFrameLineW;
 
     var zoomContainerBMP = new createjs.Bitmap(mapContainer.cacheCanvas);
+
+    console.log(zoomContainerBMP)
     // var zoomContainerBMP = new createjs.Bitmap();
     // zoomContainerBMP.cacheCanvas = mapContainer.cacheCanvas;
     // zoomContainerBMP.bitmapCache = zoomContainerBMP.bitmapCache;
@@ -263,6 +317,14 @@ loadedMap.naturalHeight
     zoomContainerBMP.regY = 0;
     zoomContainerBMP.x = 0;
     zoomContainerBMP.y = 0;
+    zoomContainerBMP.name = "map_cache";
+    zoomContainerBMP.city_info = {};
+    zoomContainerBMP.city_info.MapContainerScaleX = MapContainerScaleX;
+    zoomContainerBMP.city_info.MapContainerScaleY = MapContainerScaleY;
+    zoomContainerBMP.city_info.fsMapDims = fsMapDims;
+    zoomContainerBMP.city_info.origDims = {};
+    zoomContainerBMP.city_info.origDims.w = zoomFrameW;
+    zoomContainerBMP.city_info.origDims.h = zoomFrameH;
 
     var zoomFrame = new createjs.Shape();
     var zoomBackground = new createjs.Shape();
@@ -300,7 +362,8 @@ width Number
 [miterLimit=10] Number optional
 [ignoreScale=false] Boolean optional
 */
-
+    zoomFrame.name = "zoomFrame";
+    zoomContainer.name = "zoomContainer";
     zoomContainer.addChild(zoomBackground);
     zoomContainer.addChild(zoomContainerBMP);
     zoomContainer.addChild(zoomFrame);
@@ -318,6 +381,7 @@ width Number
 
     var zoomFrameW = zoomFrame.getBounds().width;
     var zoomFrameH = zoomFrame.getBounds().height;
+
     var btnW = left_icon.getBounds().width;
     var btnH = left_icon.getBounds().height;
 
@@ -386,6 +450,7 @@ width Number
         stageBounds.height / 2,
         "#FFCC00"
     );
+
     zoomLockBtn.getInstance().addEventListener("click", function () {
         // zoomButton.activate().visible = false;
         // zoomButton.activate().mouseEnabled = false;
@@ -443,7 +508,76 @@ width Number
     });
 
     // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
-    zoomContainer.on("pressmove", function (evt) {
+    zoomContainer.on("pressmove", dragZoom);
+
+    /*   zoomContainer.on("rollover", function (evt) {
+        // this.scale = this.originalScale * 1.2;
+        // update = true;
+    });
+
+    zoomContainer.on("rollout", function (evt) {
+        //  this.scale = this.originalScale;
+        // update = true;
+    }); */
+
+    /**************************************  XML LOCATIONS */
+    var showXMLlocations = new InteractiveText(
+        "show XML locations",
+        stageBounds.width / 2,
+        stageBounds.height / 2,
+        "#FFCC00"
+    );
+    showXMLlocations.getInstance().x =
+        stageBounds.width - showXMLlocations.getInstance().getBounds().width;
+    showXMLlocations.getInstance().y =
+        stageBounds.height - showXMLlocations.getInstance().getBounds().height;
+    showXMLlocations.getInstance().addEventListener("click", function () {
+        //    handle this with a DOMElement (because of interaction)
+        //tasks:
+        //toggle UI for xml engagement visible/not
+        //show UI for xml engagement
+        //      UI for xml engagement should have a "close" button?
+        //      UI for xml engagement should have a "copy" button
+        //      UI for xml engagement should have a "paste" button
+        //      UI for xml engagement should have a "save" button  -- xml to session store
+        //      UI for xml engagement on paste, should compare to current xml?
+        //                  complications?
+        //  UI for engagement shouldn't need to be continually viewed (but why?)
+        //build UI for engagement when map loads & createCities is run.
+        // ??  disable button for UI engagement UNTIL cities are built (can this happen?)
+        //
+    });
+    /**************************************  END XML LOCATIONS */
+
+    image_content.snapToPixel = true;
+    zoomContainer.snapToPixel = true;
+}
+
+function updateZoomedCache(e) {
+    console.log("updateZoomedCache");
+}
+
+function dragZoom(evt) {
+    // console.log(" evt.target.parent : ", evt.target.parent);
+    // console.log(evt.target.typeName );
+    // console.log(evt.target.name);
+
+    var zWin = evt.target.parent;
+
+    if (zWin.name == "zoomContainer") {
+        var zFrame = zWin.getChildByName("zoomFrame");
+        var zoomFrameW = zFrame.getBounds().width;
+        var zoomFrameH = zFrame.getBounds().height;
+
+        var zoomContainerBMP = zWin.getChildByName("map_cache");
+
+        var MapContainerScaleX = zoomContainerBMP.city_info.MapContainerScaleX;
+        var MapContainerScaleY = zoomContainerBMP.city_info.MapContainerScaleY;
+
+        var scaledW = 1 / MapContainerScaleX;
+        var scaledH = 1 / MapContainerScaleY;
+        //var fsMapDims = zoomContainerBMP.city_info.fsMapDims;
+
         this.movedLoc = {
             x: evt.stageX + this.offset.x,
             y: evt.stageY + this.offset.y,
@@ -462,68 +596,84 @@ width Number
         // zoomContainerBMP.cacheCanvas = mapContainer.cacheCanvas;
         // zoomContainerBMP.bitmapCache = zoomContainerBMP.bitmapCache;
         //   * (1 / MapContainerScaleX) --- this is the scale of the original map
-        // zoomContainerBMP.cache(
-        //     this.movedLoc.x * (1 / MapContainerScaleX),
-        //     this.movedLoc.y * (1 / MapContainerScaleY),
-        //     this.MappedZoom.x,
-        //     this.MappedZoom.y
-        // );
 
         zoomContainerBMP.cache(
-            this.movedLoc.x * (1 / MapContainerScaleX),
-            this.movedLoc.y * (1 / MapContainerScaleY),
-            this.MappedZoom.x,
-            this.MappedZoom.y
+            this.movedLoc.x / MapContainerScaleX,
+            this.movedLoc.y / MapContainerScaleY,
+            zoomFrameW,
+            zoomFrameH
         );
+
         this.x = this.movedLoc.x;
         this.y = this.movedLoc.y;
+
         //sync the movement of the cached bmp
         zoomContainerBMP.regX = this.x * (1 / MapContainerScaleX);
         zoomContainerBMP.regY = this.y * (1 / MapContainerScaleY);
         // indicate that the stage should be updated on the next tick:
-        //update = true;
-    });
-
-    zoomContainer.on("rollover", function (evt) {
-        // this.scale = this.originalScale * 1.2;
-        // update = true;
-    });
-
-    zoomContainer.on("rollout", function (evt) {
-        //  this.scale = this.originalScale;
-        // update = true;
-    });
-
-    image_content.snapToPixel = true;
-    zoomContainer.snapToPixel = true;
-}
-
-function dragZoom(e) {
-    console.log(e.target.parent !== undefined);
+        // stage.update();
+    }
 }
 
 function moveZoom(e) {
-    console.log("e.target.textContent: ", e.target.textContent);
-    var movedLoc = {
-        x: e.stageX + e.target.parent.parent.parent.offset.x,
-        y: e.stageY + e.target.parent.parent.parent.offset.y,
-    };
-    // e.target.parent.parent.parent.x = movedLoc.x;
-    // e.target.parent.parent.parent.y = movedLoc.y;
-    console.log("movedLoc.x, movedLoc.y: ", movedLoc.x, movedLoc.y);
-    console.log(" need to update the bmp movement too ");
+    var evt = e;
 
-    if (this == "up") {
-        e.target.parent.parent.parent.y -= 10;
-    }
-    if (this == "down") {
-        e.target.parent.parent.parent.y += 10;
-    }
-    if (this == "left") {
-        e.target.parent.parent.parent.x -= 10;
-    }
-    if (this == "right") {
-        e.target.parent.parent.parent.x += 10;
+    var zWin = e.target.parent.parent.parent;
+    if (e.target.parent.parent.parent.name == "zoomContainer") {
+        var zFrame = zWin.getChildByName("zoomFrame");
+        var zoomFrameW = zFrame.getBounds().width;
+        var zoomFrameH = zFrame.getBounds().height;
+
+        var zoomContainerBMP = zWin.getChildByName("map_cache");
+
+        var MapContainerScaleX = zoomContainerBMP.city_info.MapContainerScaleX;
+        var MapContainerScaleY = zoomContainerBMP.city_info.MapContainerScaleY;
+        console.log("MapContainerScaleX", MapContainerScaleX);
+        //these are backward? They shouldn't be dirivitive? of 1
+        var scaledW = MapContainerScaleX;
+        var scaledH = MapContainerScaleY;
+        //var fsMapDims = zoomContainerBMP.city_info.fsMapDims;
+
+        // this.movedLoc = {
+        //     x: zWin.x,
+        //     y: zWin.y,
+        // };
+        this.movedLoc = { x: zWin.x + 10, y: zWin.y + 10 };
+
+        // if (this == "up") {
+        //     e.target.parent.parent.parent.y -= 10;
+        // }
+        // if (this == "down") {
+        //     e.target.parent.parent.parent.y += 10;
+        // }
+        // if (this == "left") {
+        //     e.target.parent.parent.parent.x -= 10;
+        // }
+        // if (this == "right") {
+        //     e.target.parent.parent.parent.x += 10;
+        // }
+
+        console.log(" this.movedLoc", this.movedLoc);
+        console.log("zWin.x", zWin.x);
+        console.log(
+            "  this.movedLoc.x / MapContainerScaleX",
+            this.movedLoc.x / MapContainerScaleX
+        );
+
+        zoomContainerBMP.cache(
+            this.movedLoc.x / MapContainerScaleX,
+            this.movedLoc.y / MapContainerScaleY,
+            zoomFrameW,
+            zoomFrameH
+        );
+
+        // zWin.x += 10;
+        // zWin.y += 10;
+
+        // zoomContainerBMP.regX = this.movedLoc.x * (1 / MapContainerScaleX);
+        // zoomContainerBMP.regY = this.movedLoc.x * (1 / MapContainerScaleY);
+        // zoomContainerBMP.regX = this.movedLoc.x / MapContainerScaleX;
+        // zoomContainerBMP.regY = this.movedLoc.x / MapContainerScaleY;
     }
 }
 
@@ -800,3 +950,265 @@ function screenLog(param) {
     logEnd(); //from utilities
 }
  */
+
+function buildXMLOutput(arr) {
+    var customColors = getRandomColorStyles(25);
+    console.log(customColors);
+    var innerF_addToDOM = function (where, el) {
+        where.appendChild(el);
+    };
+
+    //custom JSON to xml:
+    //create the new XML:
+    //<?xml version="1.0" encoding="UTF-8"?>
+    /*
+xmlns = "http://www.w3.org/2000/svg"
+
+xmlDoc.createCDATASection(newtext);
+
+<!DOCTYPE root [
+	<!ELEMENT root (firstChild,firstChildSiblings+)>
+	<!ELEMENT firstChild (#PCDATA)>
+	<!ELEMENT firstChildSiblings (#PCDATA)>
+]>
+
+<!DOCTYPE chapter [
+<!ELEMENT chapter (title,subtitle,para+)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT subtitle (CDATA)>
+<!ELEMENT para (#PCDATA)>
+]>
+
+The following example source document conforms to the above DTD.
+
+<chapter><title>Chapter 1</title>
+<subtitle><![CDATA[A study in obfuscation]]></subtitle>
+  <para>More unexpert, I boast not: them let those</para>
+  <para>Contrive who need, or when they need, not now.</para>
+  <para>For while they sit contriving, shall the rest,</para>
+  <para>Millions that stand in Arms, and longing wait</para>
+</chapter>
+
+
+    */
+
+    /*
+https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createDocumentType
+*/
+    // var bogusNS= "https://www.w3.org/2000/mapinfo";
+    var bogusNS = "https://www.w3.org/";
+    var newXMLDocType = document.implementation.createDocumentType(
+        // "xml:xml",
+        "mapinfo",
+        "map",
+        "[" + "<!ELEMENT map (*)>" + "]" + ""
+    );
+    var domXML = document.implementation.createDocument(
+        bogusNS,
+        null,
+        newXMLDocType
+    );
+
+    var newXMLProcInstr = domXML.createProcessingInstruction(
+        "xml",
+        'version="1.0" encoding="UTF-8"'
+    );
+    domXML.insertBefore(newXMLProcInstr, domXML.firstChild);
+
+    var newObj = {};
+    var newHeaderArr = [];
+    var newArr = [];
+    if (arr[0] === "") {
+        newArr = arr.slice(1);
+    }
+    var bigTableContainer = document.createDocumentFragment();
+    var bigTable = document.createElement("table");
+    var bigTableBody = document.createElement("tbody");
+    var memElROW = document.createElement("tr");
+    var el1;
+    var line2;
+    innerF_addToDOM(bigTableBody, memElROW);
+    newArr.forEach(function (member, index) {
+        if (index === 0) {
+            el1 = domXML.createElementNS(bogusNS, "map");
+            var line1 = domXML.createCDATASection(
+                "this contains all the content for the map"
+            );
+            el1.appendChild(line1);
+            domXML.appendChild(el1);
+            line2 = domXML.createElementNS(bogusNS, "Ingredients");
+        }
+        if (index < 25) {
+            var stub = member.toString().replace(/\"/g, "").replace(/\s/g, "_");
+            newHeaderArr.push(stub);
+            newObj[stub] = stub;
+            var el2 = domXML.createElementNS(bogusNS, stub);
+            var lineOthers = domXML.createCDATASection(
+                member.toString().replace(/\"/g, "")
+            );
+            el2.appendChild(lineOthers);
+            console.log("TODO: █: line2: ", "TODO:" + line2);
+            line2.appendChild(el2);
+
+            if (index === 25) {
+                el1.appendChild(line2);
+            }
+        }
+
+        if (index % 25 == 0) {
+            memElROW = document.createElement("tr");
+            innerF_addToDOM(bigTableBody, memElROW);
+            member = member.toString().replace(/\"/g, "");
+
+            var newIngredient = domXML.createElementNS(bogusNS, "Ingredients");
+            var el3 = domXML.createElementNS(bogusNS, newHeaderArr[index % 25]);
+            var lineOthers3 = domXML.createCDATASection(
+                member.toString().replace(/\"/g, "")
+            );
+            el3.appendChild(lineOthers3);
+            newIngredient.appendChild(el3);
+            el1.appendChild(newIngredient);
+        }
+        var memEl;
+        memEl = document.createElement("td");
+        if (index < 25) {
+            memEl.setAttribute(
+                "style",
+                "background-color:" + customColors[index]
+            );
+        } else {
+            memEl.setAttribute(
+                "style",
+                "background-color:" + customColors[index % 25]
+            );
+        }
+        memEl.setAttribute("class", "traditional_border");
+        var memText = document.createTextNode(member.toString());
+        memEl.appendChild(memText);
+        innerF_addToDOM(memElROW, memEl);
+
+        var el4 = domXML.createElementNS(bogusNS, newHeaderArr[index % 25]);
+        var lineOthers4 = domXML.createCDATASection(member.toString());
+        el4.appendChild(lineOthers4);
+        el1.appendChild(el4);
+    });
+    innerF_addToDOM(bigTable, bigTableBody);
+    innerF_addToDOM(bigTableContainer, bigTable);
+    innerF_addToDOM(document.body, bigTableContainer);
+    bigTable.setAttribute("class", "traditional_border");
+    console.log(newObj);
+    console.log(domXML);
+
+    var s = new XMLSerializer();
+    var str = s.serializeToString(domXML);
+
+    var parser;
+    var xmlDoc;
+
+    if (window.DOMParser) {
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(str, "text/xml");
+    } // Internet Explorer
+    else {
+        xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+        xmlDoc.async = false;
+        xmlDoc.loadXML(str);
+    }
+
+    console.log(str);
+    console.log(xmlDoc);
+}
+
+function getRGBColorStyle() {
+    var col;
+
+    var firstPart = parseInt(Math.random() * 255);
+    firstPart = firstPart < 10 ? "0" + firstPart : firstPart;
+
+    var secondPart = parseInt(Math.random() * 255);
+    secondPart = secondPart < 10 ? "0" + secondPart : secondPart;
+
+    var thirdPart = parseInt(Math.random() * 255);
+    thirdPart = thirdPart < 10 ? "0" + thirdPart : thirdPart;
+
+    return (col =
+        "rgba(" + firstPart + "," + secondPart + "," + thirdPart + ",.2);");
+}
+
+function getHexColorStyle() {
+    var col;
+
+    var firstPart = parseInt(Math.random() * 255);
+    firstPart =
+        firstPart < 10 ? "0" + firstPart.toString(16) : firstPart.toString(16);
+    firstPart = firstPart.length === 1 ? "0" + firstPart : firstPart;
+
+    var secondPart = parseInt(Math.random() * 255);
+    secondPart =
+        secondPart < 10
+            ? "0" + secondPart.toString(16)
+            : secondPart.toString(16);
+    secondPart = secondPart.length === 1 ? "0" + secondPart : secondPart;
+
+    var thirdPart = parseInt(Math.random() * 255);
+    thirdPart =
+        thirdPart < 10 ? "0" + thirdPart.toString(16) : thirdPart.toString(16);
+    thirdPart = thirdPart.length === 1 ? "0" + thirdPart : thirdPart;
+
+    return (col = "#" + firstPart + secondPart + thirdPart + ";");
+}
+
+function getRandomColorStyles(howMany) {
+    var arr = [];
+    for (var i = 0; i < howMany; i++) {
+        // arr.push(getHexColorStyle());
+        arr.push(getRGBColorStyle());
+    }
+    return arr;
+}
+
+function buildTable(arr) {
+    var customColors = getRandomColorStyles(25);
+    console.log(customColors);
+    var innerF_addToDOM = function (where, el) {
+        where.appendChild(el);
+    };
+
+    var newArr = [];
+    if (arr[0] === "") {
+        newArr = arr.slice(1);
+    }
+    var bigTableContainer = document.createDocumentFragment();
+    var bigTable = document.createElement("table");
+    var bigTableBody = document.createElement("tbody");
+    var memElROW = document.createElement("tr");
+    innerF_addToDOM(bigTableBody, memElROW);
+    newArr.forEach(function (member, index) {
+        if (index % 25 == 0) {
+            memElROW = document.createElement("tr");
+            innerF_addToDOM(bigTableBody, memElROW);
+            member = member.toString().replace(/\"/g, "");
+        }
+        var memEl;
+        memEl = document.createElement("td");
+        if (index < 25) {
+            memEl.setAttribute(
+                "style",
+                "background-color:" + customColors[index]
+            );
+        } else {
+            memEl.setAttribute(
+                "style",
+                "background-color:" + customColors[index % 25]
+            );
+        }
+        memEl.setAttribute("class", "traditional_border");
+        var memText = document.createTextNode(member.toString());
+        memEl.appendChild(memText);
+        innerF_addToDOM(memElROW, memEl);
+    });
+    innerF_addToDOM(bigTable, bigTableBody);
+    innerF_addToDOM(bigTableContainer, bigTable);
+    innerF_addToDOM(document.body, bigTableContainer);
+    bigTable.setAttribute("class", "traditional_border");
+}

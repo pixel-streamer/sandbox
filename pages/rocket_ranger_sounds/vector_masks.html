@@ -230,6 +230,22 @@ border-radius: 3px;
                 z-index: -1;
             }
         </style>
+        <style>
+            button {
+                background: #fff;
+                padding: 18px 44px;
+                font-size: 14px;
+                font-weight: bold;
+                border: 1px solid #0a1f8f;
+                letter-spacing: 3px;
+                color: #0a1f8f;
+                text-transform: uppercase;
+                margin-top: 1rem;
+                margin-right: auto;
+                margin-bottom: 1rem;
+                margin-left: 1rem;
+            }
+        </style>
     </head>
     <body>
         <div id="progress"></div>
@@ -238,9 +254,18 @@ border-radius: 3px;
             <canvas id="big_stage" class="full_size_canvas"></canvas>
         </div>
 
+        <div id="xml_locations"></div>
         <div id="screen-log"></div>
 
+        <script src="./scripts/zooming_functions.js"></script>
+        <script src="./scripts/image_load_functions.js"></script>
+        <script src="./scripts/xml_interaction.js"></script>
+        <script src="./scripts/stage_setup.js"></script>
+        <script src="./scripts/resize_functions.js"></script>
         <script src="./scripts/font-loading_module.js"></script>
+
+        <script src="./scripts/wrap_up.js"></script>
+
         <script src="./scripts/utilities.js"></script>
         <script src="./scripts/vector_masks.js"></script>
     </body>

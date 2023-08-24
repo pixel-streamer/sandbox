@@ -11,6 +11,8 @@ function handleFontLoad(){
 	console.log("::: handleFontLoad :::");
 }
 */
+// loadGoogleFonts inside font-loading_module.js
+window.addEventListener("load", loadGoogleFonts);
 
 function loadGoogleFonts() {
     //console.log("■·::: loadGoogleFonts :::·■");
@@ -32,27 +34,27 @@ function createLongGoogleFontLinkHref() {
     // console.log("■·::: createLongGoogleFontLinkHref :::·■");
     var fontFamilyArr = [
         "Press Start 2P",
-        "Barlow",
-        "Barlow ExtraBold",
-        "Barlow Semi Condensed",
-        "Luckiest Guy",
-        "Rum Raisin",
-        "Slackey",
-        "Smokum",
-        "Irish Grover",
-        "Oswald",
-        "Roboto",
-        "Montserrat",
-        "Open Sans",
-        "Source Sans Pro",
-        "Roboto Condensed",
-        "Roboto Mono",
-        "Raleway",
-        "Noto Sans",
-        "Roboto Slab",
-        "Source Code Pro",
-        "Fredoka One",
-        "Bungee",
+        // "Barlow",
+        // "Barlow ExtraBold",
+        // "Barlow Semi Condensed",
+        // "Luckiest Guy",
+        // "Rum Raisin",
+        // "Slackey",
+        // "Smokum",
+        // "Irish Grover",
+        // "Oswald",
+        // "Roboto",
+        // "Montserrat",
+        // "Open Sans",
+        // "Source Sans Pro",
+        // "Roboto Condensed",
+        // "Roboto Mono",
+        // "Raleway",
+        // "Noto Sans",
+        // "Roboto Slab",
+        // "Source Code Pro",
+        // "Fredoka One",
+        // "Bungee",
         // "Alfa Slab One",
         // "Special Elite",
         // "Passion One",
@@ -268,3 +270,21 @@ function handleFontLoad(e) {
     fontsHaveLoaded = true;
     window.dispatchEvent(fontload_evt);
 }
+
+/* 
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ FONT LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+*/
+
+/*  // load in google fonts through the manifest... (cleaner.)
+queue.loadManifest(
+    [
+        { src: "https://fonts.googleapis.com/css?family=Press+Start+2P", type: "fontcss" }
+    ]
+);
+*/
+window.addEventListener("fontload_evtStr", setupStageForInteraction);
+/* 
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF FONT LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
