@@ -3,29 +3,25 @@
  ******************************************************************
  ******************************************************************
  */
+var outputTextClip;
+var layoutLatResultY = 0;
+var buttonDynamics = {};
+
+buttonDynamics.textContent = "♠BTN♠";
+buttonDynamics.txtSize = 10;
+buttonDynamics.fontFamily = "Arial";
+buttonDynamics.textColor = "#FFFFFF";
+buttonDynamics.fillColor = "#00A0FF";
+buttonDynamics.fillOpacity = 100;
+buttonDynamics.outlined = true;
+buttonDynamics.outlineW = 2;
+buttonDynamics.outlineColor = "#00A0FF";
+buttonDynamics.outlineHiLiteColor = "#BADA55";
+buttonDynamics.textAlign = "center";
 
 function handle_OLD_MAP_LOAD(e) {
-    outputTextClip = new InteractiveText(
-        "city name appears here",
-        stageBounds.width - 210,
-        stageBounds.height - 65,
-        //needs to update with the current object, and set the text in a subsequent function
-        // stageBounds.width - outputTextClip.getTextInfo.hitAreaW,
-        // stageBounds.height - outputTextClip.getTextInfo.hitAreaH,
-        "#FFCC00"
-        // ).mouseEnabled=false;  //using this throws error...
-    );
-
-    /*     outputTextClip = new DomText(
-        "city name appears here",
-        stageBounds.width - 210,
-        stageBounds.height - 65,
-        //needs to update with the current object, and set the text in a subsequent function
-        // stageBounds.width - outputTextClip.getTextInfo.hitAreaW,
-        // stageBounds.height - outputTextClip.getTextInfo.hitAreaH,
-        "#FFCC00"
-        // ).mouseEnabled = false; //using this throws error...
-    ); */
+    //use PageTextClip from the SlideGallery.js
+    // interactivePhrase, atXPos, atYPos, fillCol, addWhere
 
     /*  TODO: display XML locations for the city data:
  
@@ -96,11 +92,11 @@ function handle_OLD_MAP_LOAD(e) {
     bottom_icon.name = "icon_bottom";
     left_icon.name = "icon_left";
 
-    mag_glass.addEventListener("click", icon_clickHandler);
-    top_icon.addEventListener("click", icon_clickHandler);
-    right_icon.addEventListener("click", icon_clickHandler);
-    bottom_icon.addEventListener("click", icon_clickHandler);
-    left_icon.addEventListener("click", icon_clickHandler);
+    // mag_glass.addEventListener("click", icon_clickHandler);
+    // top_icon.addEventListener("click", icon_clickHandler);
+    // right_icon.addEventListener("click", icon_clickHandler);
+    // bottom_icon.addEventListener("click", icon_clickHandler);
+    // left_icon.addEventListener("click", icon_clickHandler);
 
     var loadedMap;
     var map;
@@ -116,7 +112,7 @@ function handle_OLD_MAP_LOAD(e) {
     var mapContainer = new createjs.Container();
     var zoomContainer = new createjs.Container();
     var zoomMover = new createjs.Container();
-
+    /* 
     // update the canvas with the part of the image that has loaded as a background...
     //overlay the smaller image (scaled) on the larger one, like a magnifying glass
 
@@ -175,10 +171,38 @@ function handle_OLD_MAP_LOAD(e) {
     // //this mask x,y must be in tandem with above
     // maskedMap.cache(bigRect.x, bigRect.y, bigRect.width, bigRect.height);
 
-    // alphaBox.transformMatrix = maskedMap.transformMatrix = mx;
+    // alphaBox.transformMatrix = maskedMap.transformMatrix = mx; 
+    */
+    outputTextClip = new MapPageButton(
+        "city name appears here",
+        buttonDynamics.txtSize,
+        buttonDynamics.fontFamily,
+        buttonDynamics.textColor,
+        buttonDynamics.fillColor,
+        buttonDynamics.fillOpacity,
+        buttonDynamics.outlined,
+        buttonDynamics.outlineW,
+        buttonDynamics.outlineColor,
+        buttonDynamics.outlineHiLiteColor
+        // "center"
+    );
+    outputTextClip.setText("city name appears here");
+    // console.log(outputTextClip);
+
+    /*     outputTextClip = new DomText(
+        "city name appears here",
+        stageBounds.width - 210,
+        stageBounds.height - 65,
+        //needs to update with the current object, and set the text in a subsequent function
+        // stageBounds.width - outputTextClip.getTextInfo.hitAreaW,
+        // stageBounds.height - outputTextClip.getTextInfo.hitAreaH,
+        "#FFCC00"
+        // ).mouseEnabled = false; //using this throws error...
+    ); */
 
     var lodW;
     var lodH;
+
     if (big_mapIsLoaded) {
         lodW = loadedMap.image.naturalWidth;
         lodH = loadedMap.image.naturalHeight;
@@ -203,25 +227,36 @@ function handle_OLD_MAP_LOAD(e) {
     // citiesContainer.scaleY = MapContainerScaleY;
 
     citiesContainer.addEventListener("click", function (e) {
-        // var clickedCity = e.target.constructor.prototype ;
-        var typeName = e.target.constructor.name;
-        console.log("e.target.parent: ", e.target.parent);
-        console.log("typeName: ", typeName);
-        if (typeName === "Shape") {
-            createjs.Tween.get(e.target.parent, {
-                loop: true,
-                override: true,
-            })
-                .to({ rotation: "-360" }, 1200)
-                .call(tweenComplete);
+        var clickedOn = e.target.parent.parent;
+        var clickedKid = clickedOn.children[0];
+        // console.log(clickedOn);
+        // console.log(clickedKid);
+        if (e.target.constructor.name === "Shape") {
+            // TODO: find the correct "button" that was clicked on!
+            // createjs.Tween.get(outputTextClip.getInstanceContainer(), {
+            //     loop: true,
+            //     override: true,
+            // })
+            //     .to({ rotation: "-360" }, 1200)
+            //     .call(tweenComplete);
 
-            outputTextClip.updateText(
-                e.target.city_info.xPos +
-                    ", " +
-                    e.target.city_info.yPos +
-                    " " +
-                    e.target.name
+            outputTextClip.setText(
+                clickedKid.city_info.xPos + ", " + clickedKid.city_info.yPos + " " + clickedKid.name
             );
+
+            var oldY = layoutLatResultY;
+            if (
+                outputTextClip.getInstanceContainer().y + outputTextClip.getInstanceContainer().getBounds().height >
+                stageBounds.height
+            ) {
+                var newY =
+                    outputTextClip.getInstanceContainer().y - outputTextClip.getInstanceContainer().getBounds().height;
+                outputTextClip.getInstanceContainer().y = (newY + oldY) / 2;
+            } else {
+                outputTextClip.getInstanceContainer().y = oldY;
+            }
+        } else {
+            return false;
         }
         // activateZoomer(e, stage.mouseX, stage.mouseY, rec.x, rec.y);
     });
@@ -235,16 +270,45 @@ function handle_OLD_MAP_LOAD(e) {
     mapContainer.addChild(citiesContainer);
     mapContainer.cache(0, 0, lodW, lodH);
 
-    var someText = new createjs.Text(
-        "thing here",
-        "12px 'Press Start 2P'",
-        "#FFCC00"
+    // var someText = new PageTextClip(
+    //     // (textContent, txtSize, fontFamily, textColor)  // ?? "12px 'Press Start 2P'",
+    //     "things here",
+    //     "8",
+    //     "'Press Start 2P'",
+    //     "#FFCC00"
+    // );
+    /*
+    var someText = new MapPageButton(
+        "things here",
+        buttonDynamics.txtSize,
+        buttonDynamics.fontFamily,
+        buttonDynamics.textColor,
+        buttonDynamics.fillColor,
+        // buttonDynamics.fillOpacity,
+        65,
+        buttonDynamics.outlined,
+        buttonDynamics.outlineW,
+        buttonDynamics.outlineColor,
+        buttonDynamics.outlineHiLiteColor,
+        buttonDynamics.textAlign
     );
+
+    someText.getInstanceContainer().x = 16;
+    someText.getInstanceContainer().y = 16;
+*/
+    // layoutLatResultY = stageBounds.height - stageBounds.height / 6.33;
+    // layoutLatResultY = showXMLlocations.getInstanceContainer().x;
+    layoutLatResultY = outputTextClip.getInstanceContainer().getBounds().height + 125;
+
+    outputTextClip.getInstanceContainer().x =
+        stageBounds.width - outputTextClip.getInstanceContainer().getBounds().width;
+    outputTextClip.getInstanceContainer().y = layoutLatResultY;
 
     mapContainer.scaleX = MapContainerScaleX;
     mapContainer.scaleY = MapContainerScaleY;
     image_content.addChild(mapContainer);
-    image_content.addChild(someText);
+    // image_content.addChild(someText.getInstanceContainer());
+    image_content.addChild(outputTextClip.getInstanceContainer());
     //  interactive_content.addChild(outputTextClip);
 
     //something is wrong with the outputtextclip as it is.
@@ -285,25 +349,9 @@ function handle_OLD_MAP_LOAD(e) {
     var zoomBackground = new createjs.Shape();
 
     zoomFrame.graphics.beginStroke("#FF0000");
-    zoomFrame.graphics.setStrokeStyle(
-        zoomFrameLineW,
-        "butt",
-        "miter",
-        10,
-        true
-    );
-    zoomFrame.graphics.drawRect(
-        zoomFrameLineW / 2,
-        zoomFrameLineW / 2,
-        zoomFrameW,
-        zoomFrameH
-    );
-    zoomFrame.setBounds(
-        zoomFrameLineW / 2,
-        zoomFrameLineW / 2,
-        zoomFrameW,
-        zoomFrameH
-    );
+    zoomFrame.graphics.setStrokeStyle(zoomFrameLineW, "butt", "miter", 10, true);
+    zoomFrame.graphics.drawRect(zoomFrameLineW / 2, zoomFrameLineW / 2, zoomFrameW, zoomFrameH);
+    zoomFrame.setBounds(zoomFrameLineW / 2, zoomFrameLineW / 2, zoomFrameW, zoomFrameH);
 
     zoomBackground.graphics.beginFill("#FFFFFF");
     zoomBackground.graphics.drawRect(0, 0, zoomFrameW, zoomFrameH);
@@ -399,61 +447,85 @@ function handle_OLD_MAP_LOAD(e) {
     mag_glass.mouseEnabled = false;
     zoomFrameButtonContainer1.addChild(zoomFrameButtonContainer0);
 
-    var zoomLockBtn = new InteractiveText(
+    var zoomLockBtn = new MapPageButton(
         "zoom\nlock",
-        stageBounds.width / 2,
-        stageBounds.height / 2,
-        "#FFCC00"
+        buttonDynamics.txtSize,
+        buttonDynamics.fontFamily,
+        buttonDynamics.textColor,
+        buttonDynamics.fillColor,
+        // buttonDynamics.fillOpacity,
+        65,
+        buttonDynamics.outlined,
+        buttonDynamics.outlineW,
+        buttonDynamics.outlineColor,
+        buttonDynamics.outlineHiLiteColor,
+        buttonDynamics.textAlign
     );
 
-    zoomLockBtn.getInstance().addEventListener("click", function () {
+    zoomLockBtn.getInstanceContainer().x = stageBounds.width / 2;
+    zoomLockBtn.y = 65;
+
+    zoomLockBtn.getInstanceContainer().addEventListener("click", function () {
         zoomContainer.mouseEnabled = !zoomContainer.mouseEnabled;
         if (zoomContainer.mouseEnabled) {
-            zoomLockBtn.updateText("zoom\nlock");
+            zoomLockBtn.setText("zoom\nlock");
             zoomContainer.mouseEnabled = true;
         } else {
-            zoomLockBtn.updateText("zoom\nunlock");
+            zoomLockBtn.setText("zoom\nunlock");
         }
     });
 
-    zoomLockBtn.getInstance().x =
+    zoomLockBtn.getInstanceContainer().x =
         stageBounds.width -
-        zoomLockBtn.getTextInfo().hitAreaW -
-        zoomLockBtn.getTextInfo().hitAreaW / 8 -
+        zoomLockBtn.getInstanceContainer().getBounds().width -
+        zoomLockBtn.getInstanceContainer().getBounds().width / 8 -
         fontSize * 0.29;
-    zoomLockBtn.getInstance().y = zoomLockBtn.getTextInfo().hitAreaH + 20;
+    zoomLockBtn.getInstanceContainer().y = zoomLockBtn.getInstanceContainer().getBounds().height + 20;
 
-    var zoomButton = new InteractiveText(
+    var zoomButton = new MapPageButton(
         "start zoom",
-        stageBounds.width / 2,
-        stageBounds.height / 2,
-        "#FFCC00"
+        buttonDynamics.txtSize,
+        buttonDynamics.fontFamily,
+        buttonDynamics.textColor,
+        buttonDynamics.fillColor,
+        // buttonDynamics.fillOpacity,
+        65,
+        buttonDynamics.outlined,
+        buttonDynamics.outlineW,
+        buttonDynamics.outlineColor,
+        buttonDynamics.outlineHiLiteColor,
+        buttonDynamics.textAlign
     );
-    zoomButton.getInstance().addEventListener(
+
+    zoomButton.getInstanceContainer().x = stageBounds.width / 2;
+    zoomButton.getInstanceContainer().y = stageBounds.height / 2;
+
+    zoomButton.getInstanceContainer().addEventListener(
         "click",
         function () {
             zoomContainer.visible = !zoomContainer.visible;
             zoomContainer.mouseEnabled = !zoomContainer.mouseEnabled;
             if (zoomContainer.visible) {
-                zoomButton.updateText("end zoom");
+                zoomButton.setText("end zoom");
                 zoomContainer.mouseEnabled = true;
             } else {
-                zoomButton.updateText("start zoom");
-                zoomLockBtn.updateText("zoom\nlock");
+                zoomButton.setText("start zoom");
+                zoomLockBtn.setText("zoom\nlock");
             }
         }
         //{ once: true }
     );
 
     zoomContainer.addChild(zoomFrameButtonsContainer);
-    image_content.addChild(zoomButton);
+    image_content.addChild(zoomButton.getInstanceContainer());
+    image_content.addChild(zoomLockBtn.getInstanceContainer());
     image_content.addChild(zoomContainer);
 
-    zoomButton.getInstance().y = zoomButton.getTextInfo().hitAreaH / 8;
-    zoomButton.getInstance().x =
+    zoomButton.getInstanceContainer().y = zoomButton.getInstanceContainer().getBounds().height / 8;
+    zoomButton.getInstanceContainer().x =
         stageBounds.width -
-        zoomButton.getTextInfo().hitAreaW -
-        zoomButton.getTextInfo().hitAreaW / 8;
+        zoomButton.getInstanceContainer().getBounds().width -
+        zoomButton.getInstanceContainer().getBounds().width / 8;
 
     zoomContainer.cursor = "pointer";
 
@@ -475,21 +547,55 @@ function handle_OLD_MAP_LOAD(e) {
     }); */
 
     /**************************************  XML LOCATIONS *********************/
-    var showXMLlocations = new InteractiveText(
-        "show XML locations",
-        stageBounds.width / 2,
-        stageBounds.height / 2,
-        "#FFCC00"
-    );
-    showXMLlocations.getInstance().x =
-        stageBounds.width - showXMLlocations.getInstance().getBounds().width;
-    showXMLlocations.getInstance().y =
-        stageBounds.height - showXMLlocations.getInstance().getBounds().height;
 
-    showXMLlocations.getInstance().addEventListener("click", showXMLlocales);
+    var showXMLlocations = new MapPageButton(
+        // (textContent, txtSize, fontFamily, textColor)  // ?? "12px 'Press Start 2P'",
+        "show XML locations",
+        buttonDynamics.txtSize,
+        buttonDynamics.fontFamily,
+        buttonDynamics.textColor,
+        buttonDynamics.fillColor,
+        // buttonDynamics.fillOpacity,
+        65,
+        buttonDynamics.outlined,
+        buttonDynamics.outlineW,
+        buttonDynamics.outlineColor,
+        buttonDynamics.outlineHiLiteColor,
+        "center"
+    );
+
+    showXMLlocations.setText(" show XML locations ");
+
+    showXMLlocations.getInstanceContainer().x = zoomLockBtn.getInstanceContainer().x - 48;
+    showXMLlocations.getInstanceContainer().y =
+        zoomLockBtn.getInstanceContainer().y + zoomLockBtn.getLabelHeight() + 32;
+
+    showXMLlocations.getInstanceContainer().addEventListener("click", showXMLlocales);
 
     // image_content.snapToPixel = true;
     // zoomContainer.snapToPixel = true;
+
+    // w, h, x, y, fillColor, fillOpacity, sides, size
+    //rotation tweaks the shape to rotate it
+    var numSides = 8;
+    var rotation = Math.degrees(Math.radians(45)); //45 is good for rectangles
+    // var dinky = new DrawnShape(45, 120, 65, 120, "#FF00FF", 100, numSides, 10 / 2, rotation);
+    var dinky = new DrawnShape(50, 120, 0, 0, "#FF00FF", 100, numSides, 10, rotation);
+
+    var sq = new createjs.Shape();
+    sq.graphics.clear().beginFill("#450067").drawRect(25, 25, 10, 10).endFill();
+    sq.setBounds(0, 0, 10, 10);
+    sq.regX = 0;
+    sq.regY = 0;
+    sq.x = 1;
+    sq.y = 1;
+
+    dinky.x = 20;
+    dinky.y = 20;
+
+    image_content.addChild(sq);
+    image_content.addChild(dinky);
+    image_content.addChild(showXMLlocations.getInstanceContainer());
 }
 
 function createCitiesMap(e, citiesContainer, mapW, mapH) {
@@ -518,8 +624,7 @@ function createCitiesMap(e, citiesContainer, mapW, mapH) {
         var cityG = new createjs.Container();
         var hasParens = false;
         var parenLocation = 0;
-        var location_name =
-            param2.getElementsByTagName("location_name")[0].firstChild.data;
+        var location_name = param2.getElementsByTagName("location_name")[0].firstChild.data;
         /*
         <root>
             <location>
@@ -538,18 +643,14 @@ function createCitiesMap(e, citiesContainer, mapW, mapH) {
             //  var location_first_part = location_name.substring(0, parenLocation);
             // var location_first_part = location_name.matchAll(insideParenRE).split(" ")[0];
             var location_first_part =
-                location_name.substring(0, parenLocation).trim() +
-                "\n" +
-                location_name.match(insideParenRE).join("\n");
+                location_name.substring(0, parenLocation).trim() + "\n" + location_name.match(insideParenRE).join("\n");
             // location_first_part//
         } else {
             var location_first_part = location_name.trim();
         }
 
-        var latitude =
-            param2.getElementsByTagName("lattitude")[0].firstChild.data;
-        var longitude =
-            param2.getElementsByTagName("longitude")[0].firstChild.data;
+        var latitude = param2.getElementsByTagName("lattitude")[0].firstChild.data;
+        var longitude = param2.getElementsByTagName("longitude")[0].firstChild.data;
 
         location_first_part = location_first_part.trim();
         towns.push(location_first_part);
@@ -584,16 +685,34 @@ function createCitiesMap(e, citiesContainer, mapW, mapH) {
 
         cityG.addChild(rec);
 
-        var textEl = new createjs.Text(
+        // var textEl = new PageTextClip(
+        //     location_first_part,
+        //     fontSize * 0.67,
+        //     "American Uncial MN",
+        //     townTextColor,
+        //     "left"
+        // );
+
+        var textEl = new MapPageButton(
             location_first_part,
-            +fontSize * 0.67 + "px " + "American Uncial MN",
-            townTextColor
+            fontSize * 0.67 * 0.67,
+            "American Uncial MN",
+            buttonDynamics.textColor,
+            // buttonDynamics.fillColor,
+            "#222288",
+            // buttonDynamics.fillOpacity,
+            65,
+            buttonDynamics.outlined,
+            buttonDynamics.outlineW,
+            buttonDynamics.outlineColor,
+            buttonDynamics.outlineHiLiteColor,
+            "center"
         );
 
-        textEl.x = rectX + cityRectW - fontSize * 0.333 + 16;
-        textEl.y = parseInt(rectY - cityRectHalfW);
+        textEl.getInstanceContainer().x = parseInt(rectX + cityRectW - fontSize * 0.333 + 8);
+        textEl.getInstanceContainer().y = parseInt(rectY - cityRectHalfW);
         cityG.name = "city_group";
-        cityG.addChild(textEl);
+        cityG.addChild(textEl.getInstanceContainer());
 
         cityG.regX = rectX;
         cityG.regY = rectY;
@@ -604,6 +723,8 @@ function createCitiesMap(e, citiesContainer, mapW, mapH) {
         rec.compositeOperation = "difference";
 
         citySVG.addChild(cityG);
+
+        // TODO: update the xml location when changed
     });
 
     citiesContainer.addChild(citySVG);

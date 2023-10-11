@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<renders url="./images/fullsize/3d_renders">
+	<image
+			alt="00"
+			title="basketball render"
+			src="basketball.png">basketball render</image>
+	<image
+			alt="01"
+			title="a kid's bed"
+			src="bed.jpg">a kid's bed</image>
+	<image
+			alt="02"
+			title="a set of binoculars"
+			src="binocular.jpg">a set of binoculars</image>
+	<image
+			alt="03"
+			title="an old coke bottle render"
+			src="bottle.jpg">an old coke bottle render</image>
+	<image
+			alt="04"
+			title="compound bow"
+			src="bow0001.jpg">compound bow</image>
+	<image
+			alt="05"
+			title="a caduceus staff"
+			src="caduceus.jpg">a caduceus staff</image>
+	<image
+			alt="06"
+			title="chess pieces"
+			src="chess-pieces.jpg">chess pieces</image>
+	<image
+			alt="07"
+			title="coke bottle render"
+			src="coke-bottle-render.png">coke bottle render</image>
+	<image
+			alt="08"
+			title="happy easter"
+			src="easter.jpg">happy easter</image>
+	<image
+			alt="09"
+			title="happy halloween"
+			src="haphalloween.jpg">happy halloween</image>
+	<image
+			alt="10"
+			title="jar of fortunes"
+			src="jar.jpg" />
+	<image
+			alt="11"
+			title="pencils flying at your face"
+			src="pencils.jpg">pencils flying at your face</image>
+	<image
+			alt="12"
+			title="pickles on a plate"
+			src="pickles.jpg">pickles on a plate</image>
+	<image
+			alt="13"
+			title="powerpoint slide 1"
+			src="pwrpnt_1.jpg">powerpoint slide 1</image>
+	<image
+			alt="14"
+			title="powerpoint slide 2"
+			src="pwrpnt_2.jpg">powerpoint slide 2</image>
+	<image
+			alt="15"
+			title="powerpoint slide 3"
+			src="pwrpnt_3.jpg">powerpoint slide 3</image>
+	<image
+			alt="16"
+			title="reflections test with pencils in cups"
+			src="ref_test.jpg">reflections test</image>
+	<image
+			alt="17"
+			title="royal essence candles"
+			src="royal-essence.jpg">royal essence candles</image>
+	<image
+			alt="18"
+			title="temple POV render"
+			src="temple.jpg">temple POV render</image>
+	<image
+			alt="19"
+			title="toolkit watermark small"
+			src="toolkit3-watermarksm.jpg">toolkit watermark small</image>
+<!-- 	<image
+			alt="20"
+			title="childhood toys render as .gif"
+			src="toys.gif">childhood toys render as .gif</image> -->
+	<image
+			alt="21"
+			title="childhood toys render"
+			src="toys.jpg">childhood toys render</image>
+</renders>

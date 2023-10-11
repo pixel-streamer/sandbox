@@ -3,7 +3,10 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 */
 
-class InteractiveText extends createjs.Text {
+
+//use PageTextClip from the SlideGallery.js
+//(textContent, txtSize, fontFamily, textColor)
+/* class InteractiveText extends createjs.Text {
     //this is a really crappy, fast class... use the other one (where?).
     constructor(interactivePhrase, atXPos, atYPos, fillCol, addWhere) {
         super();
@@ -119,6 +122,7 @@ class InteractiveText extends createjs.Text {
         return this.textInfo;
     };
 }
+ */
 
 class SmartPoint extends createjs.Point {
     constructor(x, y, pointName, textStr) {
@@ -323,8 +327,6 @@ cross product, we will get a vector parallel to one of the coordinate axes.
     }
 }
 
-
-
 class DomText {
     //this is a really crappy, fast class... use the other one (where?).
     // assumes that the interactive_content layer from the main stage is available.
@@ -442,6 +444,57 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
         newH: contentH,
     };
 }
+
+/*-----------------------------------------*/
+
+function outputHexFromRGBStr(rgb2Hex) {
+    /* rgba(69, 0, 103,1); */
+    var tempStr = "";
+    /* for some reason I couldn't do the two operations on the same line? */
+    tempStr = rgb2Hex.substr(rgb2Hex.indexOf("("), rgb2Hex.length);
+    tempStr = tempStr.substr(1, tempStr.lastIndexOf(")") - 1);
+    //convert to array temporarily
+    tempStr = tempStr.split(",");
+
+    var tempRcolorHex = parseInt(tempStr[0].toString(), 10).toString(16);
+    var tempGcolorHex = parseInt(tempStr[1].toString(), 10).toString(16);
+    var tempBcolorHex = parseInt(tempStr[2].toString(), 10).toString(16);
+
+    tempRcolorHex.toString().length < 2
+        ? (tempRcolorHex = "0" + tempRcolorHex)
+        : tempRcolorHex;
+    tempGcolorHex.toString().length < 2
+        ? (tempGcolorHex = "0" + tempGcolorHex)
+        : tempGcolorHex;
+    tempBcolorHex.toString().length < 2
+        ? (tempBcolorHex = "0" + tempBcolorHex)
+        : tempBcolorHex;
+
+    var colorVal = "";
+    colorVal = "#" + tempRcolorHex + tempGcolorHex + tempBcolorHex;
+
+    //console.log("colorVal: ", colorVal);
+    return colorVal;
+}
+
+function outputRGBFromHexStr(hex2RBG) {
+    //chop off the first char "#"
+    var new_hex=hex2RBG.substr(1)
+    var colorVal = "";
+    colorVal =
+        "rgba(" +
+        parseInt(new_hex.substr(0, 2), 16) +
+        ", " +
+        parseInt(new_hex.substr(2, 2), 16) +
+        ", " +
+        parseInt(new_hex.substr(4, 2), 16) +
+        ",1);";
+
+    // console.log(colorVal);
+    return colorVal;
+}
+
+/*-----------------------------------------*/
 
 /*----------------------- to store items: */
 
