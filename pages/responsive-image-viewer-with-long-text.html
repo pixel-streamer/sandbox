@@ -1,76 +1,73 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Responsive FullSize Image With Details and Caption.</title>
-    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto|Hammersmith+One|Lexend+Deca"
-    />
+    <head>
+        <meta charset="UTF-8" />
+        <title>Responsive FullSize Image With Details and Caption.</title>
+        <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Hammersmith+One|Lexend+Deca" />
 
-    <style>
-      /* 
+        <style>
+            /* 
 reset:
 */
-      * {
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0;
-        /* border: 2px solid transparent; */
-      }
-      /* ********************************************** */
-      /*  * {
+            * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+                /* border: 2px solid transparent; */
+            }
+            /* ********************************************** */
+            /*  * {
         box-sizing: border-box;
         line-height: 100%;
       } */
 
-      html {
-        height: 1px;
-        position: relative;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        font-size: 16px;
-        font-size: 1rem;
-        font-size: 100%;
-      }
+            html {
+                height: 1px;
+                position: relative;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                font-size: 16px;
+                font-size: 1rem;
+                font-size: 100%;
+            }
 
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        position: relative;
-        background: #a49d9b;
-        /*  background: #606060;  */
-        /*  background: #008080;  */
-      }
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                position: relative;
+                background: #a49d9b;
+                /*  background: #606060;  */
+                /*  background: #008080;  */
+            }
 
-      img {
-        max-width: 100%;
-        /* width: 100%; */
-        height: auto;
-      }
+            img {
+                max-width: 100%;
+                /* width: 100%; */
+                height: auto;
+            }
 
-      p {
-        margin: 0;
-        padding: 0;
-        margin-bottom: 0.5rem;
-        font-family: "Roboto", sans-serif;
-        line-height: 112%;
-      }
+            p {
+                margin: 0;
+                padding: 0;
+                margin-bottom: 0.5rem;
+                font-family: "Roboto", sans-serif;
+                line-height: 112%;
+            }
 
-      h1 {
-        font-family: "Lexend Deca", sans-serif;
-        font-size: 150%;
-        line-height: 120%;
-        min-width: 200px;
-      }
+            h1 {
+                font-family: "Lexend Deca", sans-serif;
+                font-size: 150%;
+                line-height: 120%;
+                min-width: 200px;
+            }
 
-      .img_box {
-        /*
+            .img_box {
+                /*
         display: flex;
         flex-basis: 35%;
         flex-direction: column;
@@ -82,22 +79,22 @@ reset:
         margin: 0;
         */
 
-        margin-right: 2rem;
-        float: left;
-      }
+                margin-right: 2rem;
+                float: left;
+            }
 
-      .text_box {
-        background: rgba(255, 255, 255, 0.75);
-        /*
+            .text_box {
+                background: rgba(255, 255, 255, 0.75);
+                /*
         border-top: 1px solid rgb(140, 104, 61);
         border-left: 1px solid rgb(140, 104, 61);
         border-bottom: 2px solid rgb(104, 57, 0);
         border-right: 2px solid rgb(104, 57, 0);
         */
-        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.42);
-        border-radius: 0.25rem;
-        padding: 2rem;
-        /*
+                box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.42);
+                border-radius: 0.25rem;
+                padding: 2rem;
+                /*
         display: flex;
         flex-basis: 35%;
         align-content: center;
@@ -109,223 +106,238 @@ reset:
         max-width: 640px;
         margin: 0;
         */
-        margin: 1rem;
-        float: right;
-      }
+                margin: 1rem;
+                float: right;
+            }
 
-      .slide_holder img {
-        border-radius: 0.25rem;
-        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.42);
-      }
+            .slide_holder img {
+                border-radius: 0.25rem;
+                box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.42);
+            }
 
-      .slide_holder img.primary_detail {
-        max-height: 300px;
-        /*
+            .slide_holder img.primary_detail {
+                max-height: 300px;
+                /*
         780 px
         450 px
         */
-      }
-      .slide_holder img.secondary_detail {
-        max-height: 148px;
-      }
+            }
+            .slide_holder img.secondary_detail {
+                max-height: 148px;
+            }
 
-      .slide_holder {
-        display: flex;
-        flex-basis: 100%;
-        align-self: center;
-        justify-content: center;
-        padding: 0.5rem;
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-wrap: wrap;
-        max-width: 100%;
-        float: none;
-      }
+            .slide_holder {
+                display: flex;
+                flex-basis: 100%;
+                align-self: center;
+                justify-content: center;
+                padding: 0.5rem;
+                flex-grow: 1;
+                flex-shrink: 1;
+                flex-wrap: wrap;
+                max-width: 100%;
+                float: none;
+            }
 
-      .pages_bar {
-        display: flex;
-        flex-basis: 100%;
-        justify-content: center;
-        /*
-        padding: 0.5rem;
-        */
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-wrap: nowrap;
-        max-width: 100%;
-        flex-direction: row;
-        position: relative;
-        max-height: 100px;
-        bottom: -0.5rem;
-        margin-bottom: 0.5rem;
-      }
+            .pages_bar {
+                display: flex;
+                flex-basis: 30vw;
 
-      .page_of {
-      }
+                flex-wrap: nowrap;
+                align-items: center;
+                margin-bottom: 0.5rem;
+            }
+            .page_of {
+            }
 
-      .page_count {
-      }
+            .page_count {
+            }
 
-      .page_display {
-        display: flex;
-        flex-basis: 100px;
-        align-self: center;
-        justify-content: center;
-        padding: 0.5rem;
-        flex-grow: 0;
-        flex-shrink: 0;
-        flex-wrap: nowrap;
-        max-width: 100%;
-      }
+            .page_display {
+                display: flex;
+                padding: 0.5rem;
+                flex-grow: 1;
+                flex-shrink: 1;
+                flex-wrap: nowrap;
+            }
+            /* .page_display * {
+                border: 1px solid red;
+            } */
+            .page_display p {
+                margin-bottom: 0; /*-- helps center the text vertically (FF) ---*/
+                flex-basis: 3rem;
+                flex-grow: 1;
+                flex-shrink: 1;
+                text-indent: 0; 
+                text-align: center;
+                padding: 0.5rem;
+            }
+            /* 
+            .page_of::before {
+                content: "|\00A0\00A0\00A0";
+            } */
 
-      .page_display p {
-        margin-bottom: 0;
-        flex-basis: 3rem;
-        flex-grow: 1;
-        flex-shrink: 1;
-        /*
-        padding: 0.5rem;
-        */
-      }
-
-      .page_of::before {
-        content: "|\00A0\00A0\00A0";
-      }
-
-      .header {
-        min-height: 6rem;
-        padding: 1rem;
-        border: 1px solid #101010;
-        border-top-style: none;
-        border-right-style: none;
-        border-left-style: none;
-        background: rgba(0, 0, 0, 0.3);
-        /*
+            .header {
+                min-height: 6rem;
+                padding: 1rem;
+                border: 1px solid #101010;
+                border-top-style: none;
+                border-right-style: none;
+                border-left-style: none;
+                background: rgba(0, 0, 0, 0.3);
+                /*
         background: #404040;
         */
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        flex-grow: 1;
-        flex-shrink: 1;
-        color: #ffffff;
-        margin-bottom: 0.5rem;
-      }
+                display: flex;
+                flex-wrap: nowrap;
+                /* justify-content: flex-start; */
+                justify-content: center;
+                flex-grow: 1;
+                flex-shrink: 1;
+                color: #ffffff;
+                margin-bottom: 0.5rem;
+                font-size: 150%;
+            }
 
-      .header h1 {
-        margin-left: 1rem;
-        font-family: "Hammersmith One", sans-serif;
-        font-size: 150%;
-      }
+            .header h1 {
+                margin-left: 1rem;
+                font-family: "Hammersmith One", sans-serif;
+                /* max-width: calc(100vw - 1rem); */
+                font-size: max(calc(100vw * 0.03), 1rem);
+            }
 
-      .header img {
-        max-height: 3.5rem;
-        border-radius: 0.25rem;
-        padding: 0;
-        margin: 0;
-      }
+            .header img {
+                max-height: 3.5rem;
+                border-radius: 0.25rem;
+                padding: 0;
+                margin: 0;
+            }
 
-      .header .logo_button {
-        background: transparent;
-        border: 1px solid transparent;
-        border-top-style: none;
-        border-right-style: none;
-        border-bottom-style: none;
-        border-left-style: none;
-        flex-basis: 4rem;
-        min-width: 4rem;
-        padding: 0;
-        margin: 0;
-      }
+            .header .logo_button {
+                background: transparent;
+                border: 1px solid transparent;
+                border-top-style: none;
+                border-right-style: none;
+                border-bottom-style: none;
+                border-left-style: none;
+                flex-basis: 4rem;
+                min-width: 4rem;
+                padding: 0;
+                margin: 0;
+            }
 
-      .main_content {
-      }
+            .main_content {
+            }
 
-      .btn_prev,
-      .btn_next {
-        background: rgba(255, 255, 255, 0.75);
-        /*
+            .btn_prev,
+            .btn_next {
+                background: rgba(255, 255, 255, 0.75);
+                /*
         border-top: 1px solid rgb(140, 104, 61);
         border-left: 1px solid rgb(140, 104, 61);
         border-bottom: 2px solid rgb(104, 57, 0);
         border-right: 2px solid rgb(104, 57, 0);
         */
-        border: 1px solid transparent;
-        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-        padding: 0.5rem 1rem 0.5rem 1rem;
-        border-radius: 0.25rem;
-        max-height: 3rem;
-        min-height: 2.5rem;
-        font-family: "Roboto", sans-serif;
-        /*
+                border: 1px solid transparent;
+                box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+                padding: 0.5rem 1rem 0.5rem 1rem;
+                border-radius: 0.25rem;
+                /* max-height: max(6rem, calc(100vw * 0.1)); */
+                /* max-height: 6rem; */
+                /* min-height: 2.5rem; */
+                /* min-height: calc(100vw * 0.1);  */
+                font-family: "Roboto", sans-serif;
+                /*
         font-weight: bold;
         */
-      }
+            }
 
-      .btn_prev:active,
-      .btn_next:active {
-        box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.42);
-      }
-      .fullsize_display {
-        display: flex;
-        z-index: 20;
-        background-color: rgba(64, 64, 64, 0.5);
-        align-items: center;
-        justify-content: center;
-        position: fixed;
-        align-self: center;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-      }
-      .hidden {
-        opacity: 0;
-        display: none;
-      }
-	 .thumb_link:hover{
-        cursor: pointer;
-      }
-    </style>
-  </head>
+            .btn_prev:active,
+            .btn_next:active {
+                box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.42);
+                background: rgba(255, 252, 0, 0.5);
+            }
+            .fullsize_display {
+                display: flex;
+                z-index: 20;
+                background-color: rgba(64, 64, 64, 0.5);
+                align-items: center;
+                justify-content: center;
+                position: fixed;
+                align-self: center;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+            .hidden {
+                opacity: 0;
+                display: none;
+            }
+            .thumb_link:hover {
+                cursor: pointer;
+            }
+        </style>
 
-  <!-- 
+        <style>
+            .comfortable_break:after {
+                content: "should be a more link here... ";
+                text-overflow: calc(auto);
+                color: aqua;
+                /* display: inline-block; */
+            }
+            h1 {
+                margin-bottom: 1rem;
+            }
+            p {
+                text-indent: 2rem;
+            }
+            .logo_button + h1 {
+                vertical-align: middle;
+            }
+        </style>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+            }
+        </style>
+    </head>
+
+    <!-- 
     needs a way to corral content into sections, and reset (if you know how) the content to
     show all of my work. subsets of work should be contained by an xml list
     loaded only once.
   -->
 
-  <body>
-    <div class="header">
-      <button class="logo_button" type="image">
-        <img
-          src="https://placekitten.com/128/128"
-          alt="logo with paint brushes"
-          title="van wyck portraits : home"
-        />
-        <!--
+    <body>
+        <div class="header">
+            <button class="logo_button" type="image">
+                <img
+                    src="https://placekitten.com/128/128"
+                    alt="logo with paint brushes"
+                    title="van wyck portraits : home"
+                />
+                <!--
 			<img
 				src="https://www.placecage.com/128/128"
 				alt="logo with paint brushes"
 				title="van wyck portraits : home"
 			/>
 		-->
-      </button>
-      <h1>
-        Welcome to index pages. Your home for pages that are continually
-        indexed.
-      </h1>
-    </div>
-    <div class="main_content">
-      <div class="slide_holder">
-        <div class="text_box">
-          <div class="img_box">
-            <img
-              link="https://placekitten.com/640/402"
-              class="primary_detail thumb_link"
-              src="https://placekitten.com/640/402"
-            />
-            <!--  <img
+            </button>
+            <h1>Welcome to index pages. Your home for pages that are continually indexed.</h1>
+        </div>
+        <div class="main_content">
+            <div class="slide_holder">
+                <div class="text_box">
+                    <div class="img_box">
+                        <img
+                            link="https://placekitten.com/640/402"
+                            class="primary_detail thumb_link"
+                            src="https://placekitten.com/640/402"
+                        />
+                        <!--  <img
               class="secondary_detail"
               src="https://placekitten.com/320/200"
             />
@@ -334,28 +346,27 @@ reset:
               src="https://placekitten.com/321/201"
             />
            <img src="https://www.placecage.com/gif/640/402" /> -->
-          </div>
+                    </div>
 
-          <h1>Titles of stuff that are very, very, long indeed.</h1>
-          <p>
-            Words of things &amp; more Words of things &amp; more Words of
-            things &amp; more Words of things &amp; more Words of things &amp;
-            more Words of things &amp; more Words of things &amp; more
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate
-            velit esse molestie consequat, vel illum dolore eu feugiat nulla
-            facilisis at vero eros et accumsan et iusto odio dignissim qui
-            blandit praesent luptatum zzril delenit augue duis dolore te feugait
-            nulla facilisi.Epsum factorial non deposit quid pro quo hic escorol.
-            Olypian quarrels et gorilla congolium sic ad nauseum. Souvlaki
-            ignitus carborundum e pluribus unum. Defacto lingo est igpay
-            atinlay. Marquee selectus non provisio incongruous
-            <!--  feline nolo contendre. Gratuitous octopus niacin,
+                    <h1>Titles of stuff that are very, very, long indeed.</h1>
+                    <p>
+                        Words of things &amp; more Words of things &amp; more Words of things &amp; more Words of things
+                        &amp; more Words of things &amp; more Words of things &amp; more Words of things &amp; more
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                        tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
+                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                        Duis autem vel eum iriure dolor in <span class="comfortable_break"> </span>hendrerit in
+                        vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero
+                        eros et accumsan et iusto odio dignissim qui blandit praesent.
+                    </p>
+                    <p>
+                        luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Epsum factorial non deposit
+                        quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Souvlaki ignitus
+                        carborundum e pluribus unum. Defacto lingo est igpay atinlay. Marquee selectus non provisio
+                        incongruous
+                        <!--  feline nolo contendre. Gratuitous octopus niacin,
               sodium glutimate. Quote meon an estimate et non interruptus stadium.
               Sic tempus fugit esperanto hiccup estrogen. Glorious baklava ex librus
               hup hey ad infinitum. Non sequitur condominium facile et geranium incognito.
@@ -391,106 +402,107 @@ reset:
               Marquee selectus non provisio incongruous feline nolo contendre Olypian quarrels
               et gorilla congolium sic ad nauseum. Souvlaki ignitus carborundum e pluribus unum.Li.
             -->
-          </p>
-          <p>
-            Words of things &amp; more Words of things &amp; more Words of
-            things &amp; more Words of things &amp; more Words of things &amp;
-            more Words of things &amp; more Words of things &amp; more
-          </p>
-          <!--     <p>Words of things Again. supposing it's different this time Words of things Again. supposing it's
+                    </p>
+                    <p>
+                        Words of things &amp; more Words of things &amp; more Words of things &amp; more Words of things
+                        &amp; more Words of things &amp; more Words of things &amp; more Words of things &amp; more
+                    </p>
+                    <!--     <p>Words of things Again. supposing it's different this time Words of things Again. supposing it's
                     different this time Words of things Again. supposing it's different this time </p>
                 <p>Words of things And.... again. Yet, it wasn't different. Words of things And.... again. Yet, it
                     wasn't different. Words of things And.... again. Yet, it wasn't different. </p>  -->
+                </div>
+                <div class="pages_bar">
+                    <div class="page_display">
+                        <!-- <div><button class="btn_prev">PREV</button></div> -->
+                        <button class="btn_prev">PREV</button>
+                        <p class="page_count">118</p>
+                        <p class="split">|</p>
+                        <p class="page_of">120</p>
+                        <!-- <div><button class="btn_next">NEXT</button></div> -->
+                        <button class="btn_next">NEXT</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="pages_bar">
-          <div><button class="btn_prev">PREV</button></div>
-          <div class="page_display">
-            <p class="page_count">118</p>
-            <p class="page_of">120</p>
-          </div>
-          <div><button class="btn_next">NEXT</button></div>
-        </div>
-      </div>
-    </div>
-    <script>
-      /*  function goHome() {
+        <script>
+            /*  function goHome() {
         window.location.href = "./index.html";
       }
       var home_logo = document.querySelector(".logo_button");
       home_logo.addEventListener("click", goHome); */
 
-      function handleFSClick(e) {
-        console.log("handleFSClick");
-        var target = document.querySelector("#fsdisplay");
-        var fsDisplay = target;
-        var fsDisplayCSS = fsDisplay.classList;
+            function handleFSClick(e) {
+                console.log("handleFSClick");
+                var target = document.querySelector("#fsdisplay");
+                var fsDisplay = target;
+                var fsDisplayCSS = fsDisplay.classList;
 
-        if (!fsDisplayCSS.value.match("visible")) {
-          fsDisplayCSS.value += " hidden";
-        } else if (fsDisplayCSS.value.match("hidden")) {
-          fsDisplayCSS.value.replace("hidden", "visible");
-        }
-      }
+                if (!fsDisplayCSS.value.match("visible")) {
+                    fsDisplayCSS.value += " hidden";
+                } else if (fsDisplayCSS.value.match("hidden")) {
+                    fsDisplayCSS.value.replace("hidden", "visible");
+                }
+            }
 
-      function buildFullSizeDisplay(link_param) {
-        console.log(" link: ", link_param);
-        var fsDisplay = document.querySelector(".fullsize_display");
-        if (fsDisplay == null || fsDisplay == undefined) {
-          var docfrag = document.createDocumentFragment();
-          var el = document.createElement("div");
-          el.setAttribute("class", "fullsize_display");
-          el.setAttribute("id", "fsdisplay");
-          var fsContainer = document.createElement("div");
-          fsContainer.setAttribute("class", "fullsize");
-          el.appendChild(fsContainer);
-          docfrag.appendChild(el);
-          var img = new Image();
-          img.addEventListener("load", function (e) {
-            console.log(e);
-            fsContainer.appendChild(img);
-            document.body.appendChild(docfrag);
-            el.onclick = handleFSClick;
-          });
-          img.src = link_param;
-        } else {
-          fsDisplay.innerHTML = "";
-          fsDisplay.setAttribute("class", "fullsize_display");
-          var fsContainer2 = document.createElement("div");
-          fsContainer2.setAttribute("class", "fullsize");
-          fsDisplay.appendChild(fsContainer2);
+            function buildFullSizeDisplay(link_param) {
+                console.log(" link: ", link_param);
+                var fsDisplay = document.querySelector(".fullsize_display");
+                if (fsDisplay == null || fsDisplay == undefined) {
+                    var docfrag = document.createDocumentFragment();
+                    var el = document.createElement("div");
+                    el.setAttribute("class", "fullsize_display");
+                    el.setAttribute("id", "fsdisplay");
+                    var fsContainer = document.createElement("div");
+                    fsContainer.setAttribute("class", "fullsize");
+                    el.appendChild(fsContainer);
+                    docfrag.appendChild(el);
+                    var img = new Image();
+                    img.addEventListener("load", function (e) {
+                        console.log(e);
+                        fsContainer.appendChild(img);
+                        document.body.appendChild(docfrag);
+                        el.onclick = handleFSClick;
+                    });
+                    img.src = link_param;
+                } else {
+                    fsDisplay.innerHTML = "";
+                    fsDisplay.setAttribute("class", "fullsize_display");
+                    var fsContainer2 = document.createElement("div");
+                    fsContainer2.setAttribute("class", "fullsize");
+                    fsDisplay.appendChild(fsContainer2);
 
-          var img = new Image();
-          img.addEventListener("load", function (e) {
-            console.log(e);
-            fsContainer2.appendChild(img);
-          });
-          img.src = link_param;
-        }
-      }
+                    var img = new Image();
+                    img.addEventListener("load", function (e) {
+                        console.log(e);
+                        fsContainer2.appendChild(img);
+                    });
+                    img.src = link_param;
+                }
+            }
 
-      function handleThumbClick(e) {
-        /*  set the target to the correct target    */
-        e = e || window.event;
-        var target = e.target || e.srcElement;
-        var targetFullsize =
-          target.getAttribute("link") || target.parentNode.getAttribute("link");
-        //  alert(targetFullsize);
-        e.preventDefault();
-        buildFullSizeDisplay(targetFullsize);
-      }
+            function handleThumbClick(e) {
+                /*  set the target to the correct target    */
+                e = e || window.event;
+                var target = e.target || e.srcElement;
+                var targetFullsize = target.getAttribute("link") || target.parentNode.getAttribute("link");
+                //  alert(targetFullsize);
+                e.preventDefault();
+                buildFullSizeDisplay(targetFullsize);
+            }
 
-      function hookUpThumbnails() {
-        var thumbnails = document.querySelectorAll(".thumb_link");
-        thumbnails.forEach(function (item, index) {
-          item.addEventListener("click", handleThumbClick);
-        });
+            function hookUpThumbnails() {
+                var thumbnails = document.querySelectorAll(".thumb_link");
+                thumbnails.forEach(function (item, index) {
+                    item.addEventListener("click", handleThumbClick);
+                });
 
-        // setupMoreCaptions();
-      }
+                // setupMoreCaptions();
+            }
 
-      window.addEventListener("DOMContentLoaded", hookUpThumbnails);
- 
-/*
+            window.addEventListener("DOMContentLoaded", hookUpThumbnails);
+
+            /*
     function setupMoreCaptions() {
         var allScs = document.querySelectorAll(".short_caption");
         allScs.forEach(function (item, index) {
@@ -522,6 +534,6 @@ reset:
         }
       }
 */
-    </script>
-  </body>
+        </script>
+    </body>
 </html>

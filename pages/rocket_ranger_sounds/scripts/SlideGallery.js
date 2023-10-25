@@ -142,8 +142,8 @@ class DrawnShape extends createjs.Container {
         }
 
         this.instanceShape.setBounds(0, 0, size, size);
-        this.instanceShape.x = Xcenter*2;
-        this.instanceShape.y = Ycenter*2;
+        this.instanceShape.x = Xcenter * 2;
+        this.instanceShape.y = Ycenter * 2;
 
         this.instanceShape.rotation = degrees;
         this.instanceShape.graphics.endFill();
@@ -181,14 +181,6 @@ class DrawnShape extends createjs.Container {
     }
 }
 
-Math.radians = function (degrees) {
-    return (degrees * Math.PI) / 180;
-};
-// Convert from radians to degrees.
-Math.degrees = function (radians) {
-    return (radians * 180) / Math.PI;
-};
-
 class StrokedShape extends DrawnShape {
     constructor(w, h, fillColor, fillOpacity, strokeW, strokeOpacity) {
         super(w, h, fillColor, fillOpacity);
@@ -212,53 +204,6 @@ class StrokedShape extends DrawnShape {
             .endFill();
         this.strokedShape.setBounds(0, 0, w || this.w, h || this.h);
     }
-}
-
-function buildUI() {
-    console.log("::::buildUI caller::::", arguments.callee.caller.name);
-
-    return;
-
-    // <div id="main">
-    //     <div class="thumbnail_area">
-    //       <a class="thumb_nav_arrow left" href="#"> </a>
-    //       <div class="content"></div>
-    //       <a class="thumb_nav_arrow right" href="#"> </a>
-    //     </div>
-    //     <div class="display_area">
-    //       <canvas id="fullSizeDisplay" width="640" height="480"></canvas>
-    //     </div>
-    //   </div>
-
-    var uiFrag = document.createDocumentFragment();
-
-    var main = document.createElement("div");
-    main.setAttribute("id", "main");
-    var thumbnail_area = document.createElement("div");
-    thumbnail_area.setAttribute("id", "thumbnail_area");
-    var content = document.createElement("div");
-    var aLeft = document.createElement("a");
-    var aRight = document.createElement("a");
-    var display_area = document.createElement("div");
-    var fullSizeDisplay = document.createElement("canvas");
-    display_area.setAttribute("class", "display_area");
-    content.setAttribute("class", "content");
-    fullSizeDisplay.setAttribute("id", "fullSizeDisplay");
-    fullSizeDisplay.setAttribute("width", "640");
-    fullSizeDisplay.setAttribute("height", "480");
-    aLeft.setAttribute("class", "thumb_nav_arrow left");
-    aLeft.setAttribute("href", "#");
-    aRight.setAttribute("class", "thumb_nav_arrow right");
-    aRight.setAttribute("href", "#");
-
-    thumbnail_area.appendChild(aLeft);
-    thumbnail_area.appendChild(content);
-    thumbnail_area.appendChild(aRight);
-    main.appendChild(thumbnail_area);
-    display_area.appendChild(fullSizeDisplay);
-    main.appendChild(display_area);
-    uiFrag.appendChild(main);
-    document.querySelector("#gallery").appendChild(uiFrag);
 }
 
 class PageTextClip extends createjs.Text {
@@ -759,6 +704,126 @@ class SkinnedButton extends createjs.Container {
     }
 }
 
+class SkinnedIcon extends createjs.Container {
+    //VERY similar to the SkinnedButton, but takes w, h for dims
+    constructor(fillImgPath, w, h) {
+        super();
+        // this.instanceContainer = new createjs.Container();
+        this.instanceContainer = this;
+        this.instanceContainer.name = "skinned_container";
+        this.instanceShape = new createjs.Shape();
+        this.instanceShape.name = "skinned_shape";
+        this.fillImagePath = fillImgPath;
+        this.fill_img = null;
+        //TODO: remove dependency on config for thumb widths/height
+        this.w = w;
+        this.h = h;
+        this.outlineColorOriginal = null; // "#FF00FF"
+        this.instanceContainer.addChild(this.instanceShape);
+        this.dimW = 0;
+        this.dimH = 0;
+        this.drawButtonHolder();
+    }
+    reStroke(newColor) {
+        // is this fullsize currently in view?
+        // if not, unStroke;
+        // console.log("this is reStroke!");
+        if (newColor === null) {
+            this.unStroke();
+        } else {
+            this.outlineColor = newColor;
+            this.drawButtonHolder();
+        }
+    }
+    unStroke() {
+        // console.log("this is unstroke!");
+        this.outlineColor = null;
+        this.drawButtonHolder();
+    }
+    setSeen(param) {
+        this.currentSeen = param;
+    }
+    getSeen() {
+        return this.currentSeen;
+    }
+    isSeen() {
+        // console.log("this: is seen?", galleryCFG._outlineHighlightColor);
+        if (this.currentSeen === true) {
+            this.setSeen(false);
+            this.reStroke(galleryCFG._outlineHighlightColor || "#FFFF00");
+        } else {
+            this.setSeen(false);
+            this.unStroke();
+        }
+    }
+    getInstance() {
+        return this.instanceShape;
+    }
+    getFillImg() {
+        return this.fill_img;
+    }
+    getNaturalWidth() {
+        return this.getFillImg().image.naturalWidth;
+    }
+    getNaturalHeight() {
+        return this.getFillImg().image.naturalHeight;
+    }
+    getInstanceContainer() {
+        return this.instanceContainer;
+    }
+    getSRC() {
+        return this.fillImagePath;
+    }
+    drawButtonHolder() {
+        // this.setLabelWidth();
+        // this.setLabelHeight();
+
+        // galleryCFG._thumbW
+        // galleryCFG._thumbH
+        // galleryCFG._thumbNailMax
+
+        var bitmap = new createjs.Bitmap(this.fillImagePath);
+        var _skinButton = this;
+        bitmap.image.onload = function () {
+            // stage.update();
+
+            // var bmpPayload = reporter.bind(bitmap);
+            // window.dispatchEvent(new Event("imgLoad_evt"));
+
+            var scaled = resizeToKnownDimensions(
+                bitmap.image.naturalWidth,
+                bitmap.image.naturalHeight,
+                _skinButton.w,
+                _skinButton.h
+            );
+            _skinButton.fill_img = bitmap;
+            bitmap.scaleX = scaled.scaleRatio;
+            bitmap.scaleY = scaled.scaleRatio;
+            _skinButton.getInstanceContainer().addChild(_skinButton.fill_img);
+            window.dispatchEvent(
+                new CustomEvent("imgLoad_evtStr", {
+                    // detail: { name: "John" },
+                    detail: _skinButton,
+                })
+            );
+        };
+        // var fill_img = new createjs.Bitmap(this.fillImagePath);
+        var fill_img = bitmap;
+        this.fill_img = fill_img;
+
+        this.instanceShape.graphics
+            .clear()
+            .beginStroke(this.outlineColor)
+            // .setStrokeStyle(this.outlineW) //.setStrokeStyle(4, "round", "bevel", "round") .setStrokeDash([5,5,10,10])
+            .setStrokeStyle(this.outlineW || 2, "round", "bevel", "round")
+            .beginBitmapFill(fill_img)
+            .drawRect(0, 0, this.w, this.h)
+            .endFill();
+
+        this.instanceShape.setBounds(0, 0, this.w, this.h);
+    }
+}
+
 class Icon extends createjs.Container {
     constructor(iconImg) {
         super();
@@ -1020,3 +1085,56 @@ Object.defineProperty(SimpleImage.prototype, "_imageOnDisplay", {
     },
     configurable: true,
 });
+Math.radians = function (degrees) {
+    return (degrees * Math.PI) / 180;
+};
+// Convert from radians to degrees.
+Math.degrees = function (radians) {
+    return (radians * 180) / Math.PI;
+};
+function buildUI() {
+    console.log("::::buildUI caller::::", arguments.callee.caller.name);
+
+    return;
+
+    // <div id="main">
+    //     <div class="thumbnail_area">
+    //       <a class="thumb_nav_arrow left" href="#"> </a>
+    //       <div class="content"></div>
+    //       <a class="thumb_nav_arrow right" href="#"> </a>
+    //     </div>
+    //     <div class="display_area">
+    //       <canvas id="fullSizeDisplay" width="640" height="480"></canvas>
+    //     </div>
+    //   </div>
+
+    var uiFrag = document.createDocumentFragment();
+
+    var main = document.createElement("div");
+    main.setAttribute("id", "main");
+    var thumbnail_area = document.createElement("div");
+    thumbnail_area.setAttribute("id", "thumbnail_area");
+    var content = document.createElement("div");
+    var aLeft = document.createElement("a");
+    var aRight = document.createElement("a");
+    var display_area = document.createElement("div");
+    var fullSizeDisplay = document.createElement("canvas");
+    display_area.setAttribute("class", "display_area");
+    content.setAttribute("class", "content");
+    fullSizeDisplay.setAttribute("id", "fullSizeDisplay");
+    fullSizeDisplay.setAttribute("width", "640");
+    fullSizeDisplay.setAttribute("height", "480");
+    aLeft.setAttribute("class", "thumb_nav_arrow left");
+    aLeft.setAttribute("href", "#");
+    aRight.setAttribute("class", "thumb_nav_arrow right");
+    aRight.setAttribute("href", "#");
+
+    thumbnail_area.appendChild(aLeft);
+    thumbnail_area.appendChild(content);
+    thumbnail_area.appendChild(aRight);
+    main.appendChild(thumbnail_area);
+    display_area.appendChild(fullSizeDisplay);
+    main.appendChild(display_area);
+    uiFrag.appendChild(main);
+    document.querySelector("#gallery").appendChild(uiFrag);
+}

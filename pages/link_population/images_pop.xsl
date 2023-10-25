@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:myNS="http://devedge.netscape.com/2002/de">
+	xmlns:myNS="http://devedge.netscape.com/2002/en">
 	<!-- with help from this page, the myNS namespace did the trick for FF:
 	https://developer.mozilla.org/en-US/docs/Web/API/XSLTProcessor/Generating_HTML
 	 -->

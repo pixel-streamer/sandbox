@@ -270,6 +270,8 @@ function handleFontLoad(e) {
     fontsHaveLoaded = true;
     window.dispatchEvent(fontload_evt);
 }
+// listen for the type, the string!: 
+//window.addEventListener("fontload_evtStr", setupStageForInteraction);
 
 /* 
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ FONT LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀

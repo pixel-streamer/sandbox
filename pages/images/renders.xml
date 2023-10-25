@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<renders url="./images/fullsize/3d_renders">
+<renders
+		url="./images/fullsize/3d_renders"
+		thumbnails="./images/thumbs"><!-- if thumbsrc attribute is empty, assume -t.png in program. -->
 	<image
 			alt="00"
 			title="basketball render"
@@ -12,7 +14,7 @@
 			alt="02"
 			title="a set of binoculars"
 			src="binocular.jpg">a set of binoculars</image>
-	<image
+<!--	<image
 			alt="03"
 			title="an old coke bottle render"
 			src="bottle.jpg">an old coke bottle render</image>
@@ -80,12 +82,10 @@
 			alt="19"
 			title="toolkit watermark small"
 			src="toolkit3-watermarksm.jpg">toolkit watermark small</image>
-<!-- 	<image
-			alt="20"
-			title="childhood toys render as .gif"
-			src="toys.gif">childhood toys render as .gif</image> -->
 	<image
-			alt="21"
+			alt="20"
 			title="childhood toys render"
-			src="toys.jpg">childhood toys render</image>
+			src="toys.jpg"
+			thumbsrc="toys.gif"
+			>childhood toys render</image> -->
 </renders>
