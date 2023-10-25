@@ -166,7 +166,7 @@ class BMP extends createjs.LoadQueue {
         console.log(progress + " % Loaded");
         this.indicator_bar.scaleX = this.instance.progress;
     }
-    loadComplete(param, e) {
+    loadComplete(param, e) { 
         //hide indicator:
         this.indicator.visible=false;
         // console.log(":::::loadComplete);
