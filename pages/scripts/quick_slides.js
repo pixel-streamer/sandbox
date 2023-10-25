@@ -156,7 +156,7 @@ class BMP extends createjs.LoadQueue {
         return false;
     }
     handleFileLoad(e) {
-        this.indicator.visible=true;
+        this.indicator.visible = true;
         // console.log(":::::handleFileLoad);
     }
     handleFileProgress(e) {
@@ -166,9 +166,9 @@ class BMP extends createjs.LoadQueue {
         console.log(progress + " % Loaded");
         this.indicator_bar.scaleX = this.instance.progress;
     }
-    loadComplete(param, e) { 
+    loadComplete(param, e) {
         //hide indicator:
-        this.indicator.visible=false;
+        this.indicator.visible = false;
         // console.log(":::::loadComplete);
         // console.log(":::::loadComplete", "█this", this, "█e", e, "█param", param);
         // console.log(":::::loadComplete", this.getBMP());
@@ -183,7 +183,7 @@ class BMP extends createjs.LoadQueue {
         } else {
             this._bmp = param;
         }
- 
+
         // if (this._poppedLater === true) {
         //     // console.log(":::::loadComplete -->  this._poppedLater ", this.getBMP());
         //     // return this.getBMP();
@@ -468,7 +468,7 @@ function loadAssets() {
     fileLoader.loadManifest({
         manifest: [
             {
-                src: window.location.search + "./images/renders.xml",
+                src: window.location.search + "./images/renders.xml", 
                 id: "renders",
                 crossOrigin: true,
                 type: createjs.Types.XML,
@@ -579,7 +579,7 @@ function tweenComplete() {
     subject_content.addChild(BMPContainer);
 }
 
-function handle_OLD_MAP_LOAD(e) {
+function handle_OLD_MAP_LOAD(e) { 
     console.log(":::handle_ImageLoadComplete:::");
     stage.snapToPixel = true;
 
@@ -625,7 +625,7 @@ function handle_OLD_MAP_LOAD(e) {
         loadedSliders.push(thisImgPayload);
     }
     packLoadArray();
-}
+} 
 
 /* function handleThumbLoad(e) {
     console.log(":::handleThumbLoad:::");
