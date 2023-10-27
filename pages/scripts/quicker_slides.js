@@ -82,10 +82,10 @@ class MyEventTarget extends EventTarget {
 
 // class BMP extends createjs.Bitmap {
 class BMP extends createjs.LoadQueue {
-    constructor(src, bmpContainer, tw, th, callbackTrigger, callbackData, callbackFunc) {
+    constructor(src, bmpContainer, destX, destY, tw, th, callbackTrigger, callbackData, callbackFunc) {
         // THIS BMP LOADER IS DEFINITELY FOR ONLY A SINGLE IMAGE.
-        // super();
-        super(true);
+        super();
+        // super(true);
         /* 
         from: 
         https://medium.com/@walpolea/loading-cors-enabled-images-with-createjs-e5308ad53f33
@@ -95,6 +95,8 @@ class BMP extends createjs.LoadQueue {
         this._loaded = false;
         this._w = tw;
         this._h = th;
+        this._destX = destX;
+        this._destY = destY;
         this._src = src;
         this._progress = 0;
         this.instance = this;
@@ -169,7 +171,6 @@ this._bmp.image.addEventListener("load", thisBound); */
         // this.progressText.text = (Math.floor(this.instance.progress * 100) | 0) + " % Loaded";
         this._progress = Math.ceil(this.instance.progress * 100) | 0;
         // console.log(progress + " % Loaded");
-        stage.update();
     }
     loadComplete(param, e) {
         this._progress = Math.floor(this.instance.progress * 100) | 0;
@@ -264,7 +265,10 @@ this._bmp.image.addEventListener("load", thisBound); */
         var boundObj = this.callbackData;
         var callbackFunc = this.callbackFunc;
         var binded = callbackFunc.bind(boundObj);
+        this.home.x = this._destX;
+        this.home.y = this._destY;
         this.home.addEventListener(this.callbackTrigger, binded);
+        stage.update();
     }
 }
 
@@ -273,7 +277,7 @@ function showFullSize(e, param) {
 
     var fsBoundsW = w - thumbW;
     var fsBoundsH = h - thumbH;
-    var fbBMP = new BMP();
+
     var FSDisplayContainer = new createjs.Container();
     var FSDisplay = new createjs.Container();
     var FSDisplayShape = new createjs.Shape();
@@ -283,14 +287,38 @@ function showFullSize(e, param) {
     FSDisplayContainer.setBounds(0, 0, fsBoundsW, fsBoundsH);
     FSDisplay.setBounds(0, 0, fsBoundsW, fsBoundsH);
     FSDisplayContainer.addChild(FSDisplay);
-    FSDisplay.x = (w - FSDisplay.getBounds().width) / 2;
-    FSDisplay.y = (h - FSDisplay.getBounds().height) / 2;
-    subject_content.addChild(FSDisplay);
-    thumbBMP = new BMP(this.fullSizeImage, FSDisplay, fsBoundsW, fsBoundsH, "click", FSDisplayContainer, hideFullSize);
+    FSDisplayContainer.x = (w - FSDisplay.getBounds().width) / 2;
+    FSDisplayContainer.y = (h - FSDisplay.getBounds().height) / 2;
+    interactive_content.addChild(FSDisplay);
+
+    var fsBMPConfig = {
+        fsURL: this.fullSizeImage,
+        fsDestinationContainer: FSDisplay,
+        fsDestinationX: (w - FSDisplay.getBounds().width) / 2,
+        fsDestinationY: (h - FSDisplay.getBounds().height) / 2,
+        fsDestinationW: fsBoundsW,
+        fsDestinationH: fsBoundsH,
+        fsInteractionType: "click",
+        fsInteractionContainer: FSDisplayContainer,
+        fsHandler: hideFullSize,
+    };
+    var fsBMP = new BMP(
+        fsBMPConfig.fsURL,
+        fsBMPConfig.fsDestinationContainer,
+        fsBMPConfig.fsDestinationX,
+        fsBMPConfig.fsDestinationY,
+        fsBMPConfig.fsDestinationW,
+        fsBMPConfig.fsDestinationH,
+        fsBMPConfig.fsInteractionType,
+        fsBMPConfig.fsInteractionContainer,
+        fsBMPConfig.fsHandler
+    );
 }
 
 function hideFullSize(e, param) {
     console.log("e", e, "param", param, "this", this);
+    // e.currentTarget.visible = false;
+    e.currentTarget.removeAllChildren();
 }
 
 // class SingleFileLoader extends createjs.LoadQueue {
@@ -815,18 +843,34 @@ function packLoadArray() {
         var boundObj = { fullSizeImage: loadedSliders[i].fullURL, ID: loadedSliders[i].targetID };
         var boundFunc = showFullSize.bind(boundObj);
         // need to make slider objects at this Point  , and start with the rectangles that represent the thumbnails
-        thumbBMP = new BMP(
-            window.location.search +
+
+        var thmBMPConfig = {
+            thmURL:
+                window.location.search +
                 loadedSliders[i].thisThumbsUrl +
                 "/" +
                 loadedSliders[i].imgSrc.substring(0, loadedSliders[i].imgSrc.lastIndexOf(".")) +
                 "-t.png",
-            thumbBMP,
-            thumbW,
-            thumbH,
-            "click",
-            boundObj,
-            boundFunc
+            thmDestinationContainer: thumbBMP,
+            thmDestinationX: (i % gridXCount) * (thumbW + generalPadding * 0.67),
+            thmDestinationY: gridYCount + generalPadding,
+            thmDestinationW: thumbW,
+            thmDestinationH: thumbH,
+            thmInteractionType: "click",
+            thmInteractionContainer: boundObj,
+            thmHandler: boundFunc,
+        };
+
+        var thumbBMP = new BMP(
+            thmBMPConfig.thmURL,
+            thmBMPConfig.thmDestinationContainer,
+            thmBMPConfig.thmDestinationX,
+            thmBMPConfig.thmDestinationY,
+            thmBMPConfig.thmDestinationW,
+            thmBMPConfig.thmDestinationH,
+            thmBMPConfig.thmInteractionType,
+            thmBMPConfig.thmInteractionContainer,
+            thmBMPConfig.thmHandler
         );
 
         // loadedSliders[i].thumbLoader.loadFile({
