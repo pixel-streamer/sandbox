@@ -118,6 +118,9 @@ class BMP extends createjs.LoadQueue {
             this.isPopulatedLater = true; // user expects to populate item in UI after load process.
         }
         this.indicator = new createjs.Container();
+        this.indicatorText = new createjs.Text("loading:", "8px Arial", "#ffcc00");
+        this.indicatorText.x = this._destX;
+        this.indicatorText.y = this._destY;
         this.indicator_bar = new createjs.Shape();
         this.indicator_bar.graphics;
         //  this.indicator_bar.graphics.beginStroke("#FF0000");
@@ -128,6 +131,7 @@ class BMP extends createjs.LoadQueue {
         this.indicator_bar.scaleX = 0;
         this.indicator.addChild(this.indicator_bar);
         this.container.addChild(this.indicator);
+        this.container.addChild(this.indicatorText);
 
         this.loadFile(this._src);
         this._bmp = new createjs.Bitmap(this._src);
@@ -170,6 +174,7 @@ this._bmp.image.addEventListener("load", thisBound); */
         // console.log(":::::handleFileProgress);
         // this.progressText.text = (Math.floor(this.instance.progress * 100) | 0) + " % Loaded";
         this._progress = Math.ceil(this.instance.progress * 100) | 0;
+        this.indicatorText.text = this._progress + " % Loaded";
         // console.log(progress + " % Loaded");
     }
     loadComplete(param, e) {
@@ -283,9 +288,9 @@ function showFullSize(e, param) {
     var FSDisplayShape = new createjs.Shape();
     FSDisplayShape.graphics.beginFill("rgba(69, 0, 103,.25)").drawRect(0, 0, fsBoundsW, fsBoundsH).endFill();
     FSDisplayShape.setBounds(0, 0, fsBoundsW, fsBoundsH);
-    FSDisplay.addChild(FSDisplayShape);
     FSDisplayContainer.setBounds(0, 0, fsBoundsW, fsBoundsH);
     FSDisplay.setBounds(0, 0, fsBoundsW, fsBoundsH);
+    FSDisplay.addChild(FSDisplayShape);
     FSDisplayContainer.addChild(FSDisplay);
     FSDisplayContainer.x = (w - FSDisplay.getBounds().width) / 2;
     FSDisplayContainer.y = (h - FSDisplay.getBounds().height) / 2;
