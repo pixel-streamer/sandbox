@@ -10,7 +10,15 @@ window.addEventListener("cardflip_evt_evtStr", cardEventHandler);
 // // imageLoaded_evt
 window.addEventListener("imageLoaded_evt_evtStr", imageLoadedHandler);
 
-var lastY = 0;
+var lastY = 0,
+    gridY = 0,
+    gridX = 0,
+    gridXCount = 0,
+    gridYCount = 0,
+    thumbW,
+    thumbH,
+    generalPadding = 0,
+    title;
 
 function imageLoadedHandler(e) {
     console.log("::: ◄►◄ image has loaded :::", e.detail.deetContainer);
@@ -70,29 +78,30 @@ class MyEventTarget extends EventTarget {
 
 // class BMP extends createjs.Bitmap {
 class BMP extends createjs.LoadQueue {
-    constructor(src, bmpContainer, param2) {
+    constructor(src, bmpContainer, tw, th, callback) {
         // super();
         super(true);
+        this._w = tw;
+        this._h = th;
         this._src = src;
         this.instance = this;
         this.isPopulatedLater = false;
-        this.callback = param2 || null;
-        this.container = bmpContainer;
+        this.callback = callback || null;
+        this.home = bmpContainer;
+        this.container = new createjs.Container();
+
         if (bmpContainer === undefined || null) {
-            this.container = new createjs.Container();
+            this.home = new createjs.Container();
         }
         if (bmpContainer === null) {
+            this.home = new createjs.Container();
             this.isPopulatedLater = true; // user expects to populate item in UI after load process.
         }
-        //create loading bar indicator
-
         this.indicator = new createjs.Container();
-
         this.indicator_bar = new createjs.Shape();
         this.indicator_bar.graphics;
-
-        // zoomFrame.graphics.beginStroke("#FF0000");
-        // zoomFrame.graphics.setStrokeStyle(2, "butt", "miter", 10, true);
+        //  this.indicator_bar.graphics.beginStroke("#FF0000");
+        //  this.indicator_bar.graphics.setStrokeStyle(2, "butt", "miter", 10, true);
         this.indicator_bar.graphics.beginFill("#450067");
         this.indicator_bar.graphics.drawRect(0, 0, w, 4);
         this.indicator.setBounds(0, 0, w, 4);
@@ -101,31 +110,10 @@ class BMP extends createjs.LoadQueue {
         // this.container.addChild(this.indicator);
         interactive_content.addChild(this.indicator);
 
-        //indicator color
-
-        // if (this.callback !== null) {
-        //     //    WHAT KIND OF THING IS IT??
-        //     // TODO: THIS NEEDS WORK-- TYPEOF ISN'T RIGHT
-        //     // if (this.callback === typeof (this.callback === "function")) {
-        //     //     this.image.addEventListener("load", this.loadBMP);
-        //     // }
-        // }
-
-        // THIS NEEDS TO BE "IF SRC IS 200, OR SOMETHING, AS USER WOULD EXPECT BMP TO LOAD BY ID"
-        // MAYBE NEED "PLAIN BMP class"
-        /* ***** -- if SRC=== 200 */
         this.loadFile(this._src);
         this._bmp = new createjs.Bitmap(this._src);
-        var thisBound = this.loadComplete.bind(this, this._bmp);
+        var thisBound = this.loadComplete.bind(this.instance, this._bmp);
         this._bmp.image.addEventListener("load", thisBound);
-        /* ***** -- END if SRC=== 200 */
-
-        // HOW CAN THIS BE LOCALIZED, SO THAT CREATED OBJECTS FIRE OFF THE EVENTS?
-        this.imageLoaded_evt = new CustomEvent("imageLoaded_evt_evtStr", {
-            detail: { msg: ":::imageLoaded_evt dispatched" },
-        });
-        // imageLoaded_evt
-        this.instance.addEventListener("imageLoaded_evt_evtStr", imageLoadedHandler);
 
         /*     
             // ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ EVENTTARGET 
@@ -162,54 +150,72 @@ class BMP extends createjs.LoadQueue {
     handleFileProgress(e) {
         // console.log(":::::handleFileProgress);
         // this.progressText.text = (Math.floor(this.instance.progress * 100) | 0) + " % Loaded";
-        var progress = Math.floor(this.instance.progress * 100) | 0;
-        console.log(progress + " % Loaded");
+        var progress = Math.ceil(this.instance.progress * 100) | 0;
+        // console.log(progress + " % Loaded");
         this.indicator_bar.scaleX = this.instance.progress;
     }
     loadComplete(param, e) {
-        //hide indicator:
-        this.indicator.visible = false;
-        // console.log(":::::loadComplete);
-        // console.log(":::::loadComplete", "█this", this, "█e", e, "█param", param);
-        // console.log(":::::loadComplete", this.getBMP());
-
-        // console.log(typeof param === "object");
-        // console.log( param instanceof Object );
-
-        //checks if draw (on display object VS event)
-        if (param.constructor.prototype.draw == undefined) {
-            //an event is present, and the BITMAP needs to be assigned.
-            this._bmp = new createjs.Bitmap(this._src);
-        } else {
-            this._bmp = param;
+        var progress = Math.floor(this.instance.progress * 100) | 0;
+        if (progress === 100) {
+            //hide indicator:
+            this.indicator.visible = false;
+            //checks if draw (on display object VS event)
+            if (param.constructor.prototype.draw == undefined) {
+                //an event is present, and the BITMAP needs to be assigned.
+                this._bmp = new createjs.Bitmap(this._src);
+                this.checkIsPoppedLater();
+            } else {
+                this._bmp = param;
+                this.checkIsPoppedLater();
+            }
         }
-
-        // if (this._poppedLater === true) {
-        //     // console.log(":::::loadComplete -->  this._poppedLater ", this.getBMP());
-        //     // return this.getBMP();
-        // } else {
-        //     this.container.addChild(this.getBMP());
-        // }
-        // this.container.addChild(this._bmp);
-        this.popBMP();
+        return this._bmp;
     }
     loadError(e) {
-        // console.log(":::::loadError);
+        console.log(":::::loadError");
+    }
+    checkIsPoppedLater() {
+        if (this.isPopulatedLater === true) {
+            var imgLoadEvent = new CustomEvent("imageLoaded_evt_evtStr", {
+                detail: {
+                    msg: ":::Thumbnail image has loaded ",
+                    deetContainer: this,
+                },
+            });
+            // this.instance.addEventListener("imageLoaded_evt_evtStr", imageLoadedHandler);
+            window.dispatchEvent(imgLoadEvent);
+        } else {
+            this.popBMP();
+        }
     }
     // loadBMP() {
-    //     console.log("◘◘◘ BMP ○•○•○•○•◘◘◘ loaded ", this._src, this.callback);
+    //
     //     this.instance = new createjs.Bitmap(this._src);
-    //     // this.callback();
     // }
     popBMP() {
-        var imgLoadEvent = new CustomEvent("imageLoaded_evt_evtStr", {
-            detail: {
-                msg: ":::Thumbnail image has loaded ",
-                deetContainer: this,
-            },
-        });
-        // this.instance.addEventListener("imageLoaded_evt_evtStr", imageLoadedHandler);
-        window.dispatchEvent(imgLoadEvent);
+        // console.log("◘◘◘ BMP ○•○•○•○•◘◘◘ loaded ", this._src, this._bmp);
+        this.containerShape = new createjs.Shape();
+        this.container.addChild(this.containerShape);
+        // this.containerShape.graphics
+        //     .beginBitmapFill(this.getBMP())
+        //     // .drawRect(0, 0, this.getBMP().getBounds().width, this.getBMP().getBounds().height)
+        //     .drawRect(0, 0, this._w, this._h)
+        //     ;
+
+        var charlie = this.getBMP().image;
+
+        var figuredScale = resizeToKnownDimensions(charlie.naturalWidth, charlie.naturalHeight, this._w, this._h);
+
+        this.containerShape.graphics
+            // .beginBitmapFill(charlie, "no-repeat")
+            .beginBitmapFill(charlie)
+            .drawRect(0, 0, charlie.naturalWidth, charlie.naturalHeight)
+            .endFill();
+        this.containerShape.scaleX = figuredScale.scaleRatio;
+        this.containerShape.scaleY = figuredScale.scaleRatio;
+        this.container.setBounds(0, 0, figuredScale.scaleRatio, figuredScale.scaleRatio);
+        this.home.setBounds(0, 0, figuredScale.scaleRatio, figuredScale.scaleRatio);
+        this.home.addChild(this.container);
     }
 }
 
@@ -582,19 +588,30 @@ function tweenComplete() {
 function handle_OLD_MAP_LOAD(e) {
     console.log(":::handle_ImageLoadComplete:::");
     stage.snapToPixel = true;
-    var renderUrl = e.target.getResult("renders").firstChild.attributes.url.value;
-    var thumbsUrl = e.target.getResult("renders").firstChild.attributes.thumbnails.value;
-    var smallList = e.target.getResult("renders").getElementsByTagName("image");
+    var renders = e.target.getResult("renders");
+    var renderUrl = renders.firstChild.attributes.url.value;
+    var thumbsUrl = renders.firstChild.attributes.thumbnails.value;
+    title = renders.firstChild.attributes.title.value;
+    var smallList = renders.getElementsByTagName("image");
+    var thumbnailConfig = renders.getElementsByTagName("thumb_config")[0];
+    var general_config = e.target.getResult("renders").getElementsByTagName("general_config")[0];
+    generalPadding = parseInt(general_config.attributes.padding.value);
+
+    thumbW = parseInt(thumbnailConfig.attributes.w.value);
+    thumbH = parseInt(thumbnailConfig.attributes.h.value);
+
     var smallListArr = [];
 
     for (var i = 0; i < smallList.length; i++) {
         smallListArr.push(smallList[i].attributes.src.value);
-        var thumbLoc =
-            window.location.search +
-            thumbsUrl +
-            "/" +
-            smallList[i].attributes.src.value.substring(0, smallList[i].attributes.src.value.lastIndexOf(".")) +
-            "-t.png";
+
+        // var thumbLoc =
+        //     window.location.search +
+        //     thumbsUrl +
+        //     "/" +
+        //     smallList[i].attributes.src.value.substring(0, smallList[i].attributes.src.value.lastIndexOf(".")) +
+        //     "-t.png";
+        var thumbLoc = window.location.search + thumbsUrl + "/" + smallList[i].attributes.thumbsrc.value;
 
         var thumbnailConfig = {
             prefersXHR: true, //singleLoaderConfig.prefersXHR;
@@ -669,12 +686,10 @@ function handle_OLD_MAP_LOAD(e) {
 }
  */
 
-function popBMPs(bmp) {
-    stage.addChild(bmp);
-}
-
 function packLoadArray() {
-    console.log(":::packLoadArray:::");
+    console.log(":::packLoadArray:::", loadedSliders.length);
+
+    var thumbsGalleryContainer = new createjs.Container();
 
     for (var i = 0; i < loadedSliders.length; i++) {
         // thumbLoader is now the "thumbnailConfig"-- but the singleFileLoader instance needs to be made.
@@ -690,19 +705,49 @@ function packLoadArray() {
         //         "-t.png"
         // );
 
-        var thumbBMP;
+        gridXCount = parseInt((w - (thumbW + generalPadding * 2)) / thumbW);
 
-        //cardflip_evt_evtStr
-        // thumbBMP.addEventListener("imageLoaded_evt", imageLoadedHandler);
+        var thumbBMP, thumbBMPContainer, thumbBMPStandin, thumbBMPStandinShape;
+        thumbBMPContainer = new createjs.Container();
+        thumbBMP = new createjs.Container();
+        thumbBMPStandin = new createjs.Container();
+        thumbBMPStandinShape = new createjs.Shape();
+        thumbBMPStandinShape.graphics.beginFill("rgba(0,0,0,.25)").drawRect(0, 0, thumbW, thumbH);
+        thumbBMPStandinShape.setBounds(0, 0, thumbW, thumbH);
+        thumbBMPStandin.addChild(thumbBMPStandinShape);
+        thumbBMP.addChild(thumbBMPStandin);
+
+        // TODO: can't do anymore -- missing two thumbnails!
+
+        thumbBMPContainer.addChild(thumbBMP);
+        thumbsGalleryContainer.addChild(thumbBMPContainer);
+        thumbBMP.x = (i % gridXCount) * (thumbW + generalPadding * 0.67);
+
+        if (gridX > gridXCount - 1) {
+            gridX = 1;
+            gridYCount += thumbH + generalPadding * 0.67;
+        } else {
+            gridX++;
+        }
+        thumbBMP.y = gridYCount + generalPadding;
+
+        // need to make slider objects at this Point  , and start with the rectangles that represent the thumbnails
         thumbBMP = new BMP(
             window.location.search +
                 loadedSliders[i].thisThumbsUrl +
                 "/" +
                 loadedSliders[i].imgSrc.substring(0, loadedSliders[i].imgSrc.lastIndexOf(".")) +
                 "-t.png",
-            null,
+            thumbBMP,
+            thumbW,
+            thumbH,
             null
         );
+        /* 
+        //cardflip_evt_evtStr
+        thumbBMP.addEventListener("imageLoaded_evt", imageLoadedHandler);
+       
+      */
         // thumbBMP.addEventListener("click", function () {
         //     console.log("clicked on ", thumbBMP.getBMP());
         // });
@@ -717,4 +762,9 @@ function packLoadArray() {
         //         "-t.png",
         // });
     }
+
+    thumbsGalleryContainer.x = (w - thumbsGalleryContainer.getBounds().width) / 2;
+    // thumbsGalleryContainer.y= (h - thumbsGalleryContainer.getBounds().height) / 2;
+    thumbsGalleryContainer.y = 65;
+    interactive_content.addChild(thumbsGalleryContainer);
 }
