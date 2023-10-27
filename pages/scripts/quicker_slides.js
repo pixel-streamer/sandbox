@@ -107,6 +107,7 @@ class BMP extends createjs.LoadQueue {
         this.callbackData = callbackData;
         this.callbackFunc = callbackFunc;
         this.home = bmpContainer;
+        this.home.visible = false;
 
         this.container = new createjs.Container();
 
@@ -167,6 +168,7 @@ this._bmp.image.addEventListener("load", thisBound); */
     //     return this.instance;
     // }
     handleFileLoad(e) {
+        this.home.visible = true;
         this.indicator.visible = true;
         // console.log(":::::handleFileLoad);
     }
@@ -603,7 +605,6 @@ function loadAssets() {
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
- 
 
 function showLoaded() {
     // console.log("showLoaded ");
@@ -645,7 +646,7 @@ function isLastID(param) {
 }
 
 function tweenComplete() {
-    console.log(this)
+    // console.log(this);
     //  createjs.Tween.get(this.target).to({ alpha: 0, visible: false }, 135).call(tweenComplete);
 }
 
@@ -846,10 +847,10 @@ function packLoadArray() {
         //         "-t.png",
         // });
     }
-
+    thumbsGalleryContainer.setBounds(0, 0, w - thumbW, h - thumbH);
     thumbsGalleryContainer.x = (w - thumbsGalleryContainer.getBounds().width) / 2;
-    // thumbsGalleryContainer.y= (h - thumbsGalleryContainer.getBounds().height) / 2;
-    thumbsGalleryContainer.y = 65 + generalPadding;
+    thumbsGalleryContainer.y = (h - thumbsGalleryContainer.getBounds().height) / 2;
+    thumbsGalleryContainer.y += 65 + generalPadding;
 
     titleContainer.setBounds(0, 0, titleText.getMetrics().width, titleText.getMetrics().height);
     titleContainer.x = (w - titleContainer.getBounds().width) / 2;
