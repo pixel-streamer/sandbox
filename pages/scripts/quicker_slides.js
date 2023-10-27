@@ -119,8 +119,8 @@ class BMP extends createjs.LoadQueue {
         }
         this.indicator = new createjs.Container();
         this.indicatorText = new createjs.Text("loading:", "8px Arial", "#ffcc00");
-        this.indicatorText.x = this._destX;
-        this.indicatorText.y = this._destY;
+        // this.indicatorText.x = this._destX;
+        // this.indicatorText.y = this._destY;
         this.indicator_bar = new createjs.Shape();
         this.indicator_bar.graphics;
         //  this.indicator_bar.graphics.beginStroke("#FF0000");
