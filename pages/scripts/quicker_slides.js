@@ -79,11 +79,14 @@ class MyEventTarget extends EventTarget {
 // class BMP extends createjs.Bitmap {
 class BMP extends createjs.LoadQueue {
     constructor(src, bmpContainer, tw, th, callback) {
+        // THIS BMP LOADER IS DEFINITELY FOR ONLY A SINGLE IMAGE.
         // super();
         super(true);
+        this._loaded = false;
         this._w = tw;
         this._h = th;
         this._src = src;
+        this._progress = 0;
         this.instance = this;
         this.isPopulatedLater = false;
         this.callback = callback || null;
@@ -103,12 +106,11 @@ class BMP extends createjs.LoadQueue {
         //  this.indicator_bar.graphics.beginStroke("#FF0000");
         //  this.indicator_bar.graphics.setStrokeStyle(2, "butt", "miter", 10, true);
         this.indicator_bar.graphics.beginFill("#450067");
-        this.indicator_bar.graphics.drawRect(0, 0, w, 4);
-        this.indicator.setBounds(0, 0, w, 4);
+        this.indicator_bar.graphics.drawRect(0, 0, this._w, 12);
+        this.indicator.setBounds(0, 0, this._w, 12);
         this.indicator_bar.scaleX = 0;
         this.indicator.addChild(this.indicator_bar);
-        // this.container.addChild(this.indicator);
-        interactive_content.addChild(this.indicator);
+        this.container.addChild(this.indicator);
 
         this.loadFile(this._src);
         this._bmp = new createjs.Bitmap(this._src);
@@ -150,15 +152,13 @@ class BMP extends createjs.LoadQueue {
     handleFileProgress(e) {
         // console.log(":::::handleFileProgress);
         // this.progressText.text = (Math.floor(this.instance.progress * 100) | 0) + " % Loaded";
-        var progress = Math.ceil(this.instance.progress * 100) | 0;
+        this._progress = Math.ceil(this.instance.progress * 100) | 0;
         // console.log(progress + " % Loaded");
-        this.indicator_bar.scaleX = this.instance.progress;
+        this.indicator_bar.stage.update();
     }
     loadComplete(param, e) {
-        var progress = Math.floor(this.instance.progress * 100) | 0;
-        if (progress === 100) {
-            //hide indicator:
-            this.indicator.visible = false;
+        this._progress = Math.floor(this.instance.progress * 100) | 0;
+        if (this._progress === 100) {
             //checks if draw (on display object VS event)
             if (param.constructor.prototype.draw == undefined) {
                 //an event is present, and the BITMAP needs to be assigned.
@@ -188,11 +188,17 @@ class BMP extends createjs.LoadQueue {
             this.popBMP();
         }
     }
-    // loadBMP() {
-    //
+    // loadBMP() { 
     //     this.instance = new createjs.Bitmap(this._src);
     // }
     popBMP() {
+        // if (this._progress === 100) {
+        //     this._loaded = true;
+        //     //hide indicator:
+        //     this.indicator.visible = false;
+        //     this.indicator_bar.visible = false;
+        // }
+
         // console.log("◘◘◘ BMP ○•○•○•○•◘◘◘ loaded ", this._src, this._bmp);
         this.containerShape = new createjs.Shape();
         this.container.addChild(this.containerShape);
@@ -216,6 +222,7 @@ class BMP extends createjs.LoadQueue {
         this.container.setBounds(0, 0, figuredScale.scaleRatio, figuredScale.scaleRatio);
         this.home.setBounds(0, 0, figuredScale.scaleRatio, figuredScale.scaleRatio);
         this.home.addChild(this.container);
+        this._loaded = true;
     }
 }
 
