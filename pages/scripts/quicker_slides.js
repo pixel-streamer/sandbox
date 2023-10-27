@@ -213,12 +213,12 @@ this._bmp.image.addEventListener("load", thisBound); */
     //     this.instance = new createjs.Bitmap(this._src);
     // }
     popBMP() {
-        // if (this._progress === 100) {
-        //     this._loaded = true;
-        //     //hide indicator:
-        //     this.indicator.visible = false;
-        //     this.indicator_bar.visible = false;
-        // }
+        if (this._progress === 100) {
+            this._loaded = true;
+            //hide indicator:
+            this.indicator.visible = false;
+            this.indicator_bar.visible = false;
+        }
 
         // console.log("◘◘◘ BMP ○•○•○•○•◘◘◘ loaded ", this._src, this._bmp);
         this.containerShape = new createjs.Shape();
@@ -273,7 +273,16 @@ this._bmp.image.addEventListener("load", thisBound); */
         this.home.x = this._destX;
         this.home.y = this._destY;
         this.home.addEventListener(this.callbackTrigger, binded);
-        stage.update();
+        this.home.filters = [new createjs.ColorFilter(0, 0, 0, 1, "r(255), r(0), r(255), 1")];
+
+        var newBoundToComplete = {
+            target: this.home,
+            fsURL: boundObj,
+        };
+
+        var completeBound = tweenComplete.bind(newBoundToComplete);
+
+        createjs.Tween.get(this.home).to({ alpha: 100, visible: true }, 135).call(completeBound);
     }
 }
 
@@ -594,22 +603,7 @@ function loadAssets() {
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 */
-
-function toggleHidden(e) {
-    var sendTarget = this.target;
-    var sendBMPURL = this.fullSize;
-    var newBoundToComplete = {
-        target: sendTarget,
-        fsURL: sendBMPURL,
-    };
-
-    var completeBound = tweenComplete.bind(newBoundToComplete);
-
-    createjs.Tween.get(this.target)
-
-        .to({ alpha: 0, visible: false }, 135)
-        .call(completeBound);
-}
+ 
 
 function showLoaded() {
     // console.log("showLoaded ");
@@ -651,45 +645,8 @@ function isLastID(param) {
 }
 
 function tweenComplete() {
-    var wBounds = parseInt(w - 64);
-    var hBounds = parseInt(h - 64);
-    isLastID(this.target);
-    var BMPContainer = new createjs.Container();
-
-    var FSIMGConfig = {
-        prefersXHR: true, //singleLoaderConfig.prefersXHR;
-        /* load a single file! */ manifestList: this.fsURL, //singleLoaderConfig.manifestList;
-        singleID: this.fsURL, //singleLoaderConfig.singleID;
-        loadedProgressContainerScope: BMPContainer, //singleLoaderConfig.loadedProgressContainerScope;
-        textX: 0, //singleLoaderConfig.textX;
-        textY: 0, //singleLoaderConfig.textY;
-        finalW: 0, //singleLoaderConfig.finalW
-        finalH: 0, //singleLoaderConfig.finalH
-        finalX: 0, //singleLoaderConfig.finalX
-        finalY: 0, //singleLoaderConfig.finalY
-    };
-
-    var fullSizeFileLoader = new SingleFileLoader(FSIMGConfig);
-    subject_content.addChild(BMPContainer);
-    var fsBMP = fullSizeFileLoader.getBMP();
-
-    console.log(fsBMP);
-
-    return fullSizeFileLoader;
-
-    var fsBMP = new SkinnedIcon(this.fsURL, wBounds, hBounds);
-
-    var newDims = resizeToKnownDimensions(fsBMP.getNaturalWidth(), fsBMP.getNaturalHeight(), wBounds, hBounds);
-
-    fsBMP.getInstanceContainer().scaleX = newDims.scaleRatio;
-    fsBMP.getInstanceContainer().scaleY = newDims.scaleRatio;
-    BMPContainer.addChild(fsBMP.getInstanceContainer());
-    BMPContainer.setBounds(0, 0, wBounds, hBounds);
-
-    BMPContainer.x = (BMPContainer.getBounds().width - w) / 2;
-    BMPContainer.y = (BMPContainer.getBounds().height - h) / 2;
-
-    subject_content.addChild(BMPContainer);
+    console.log(this)
+    //  createjs.Tween.get(this.target).to({ alpha: 0, visible: false }, 135).call(tweenComplete);
 }
 
 function handle_OLD_MAP_LOAD(e) {
