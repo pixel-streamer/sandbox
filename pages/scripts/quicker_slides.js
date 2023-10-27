@@ -127,11 +127,22 @@ class BMP extends createjs.LoadQueue {
         this.instance.on("progress", this.handleFileProgress);
         this.instance.on("complete", this.loadComplete);
         this.instance.on("error", this.loadError);
+        // this.instance.on("initialize", this.initializeMe);
+        // this.on("initialize", this._updateXHR, this)
+        /* 
+          this.instance.on("initialize", this.loadError);
+        this.on("initialize", this._updateXHR, this)
+        */
     }
     getBMP() {
         return this._bmp;
     }
-
+    // init(e) {
+    //     return init();
+    // }
+    // initializeMe(e) {
+    //     console.log("\tinitializeMe");
+    // }
     handleFileLoad(e) {
         console.log("\thandleFileLoad");
     }
@@ -177,15 +188,23 @@ class BMP extends createjs.LoadQueue {
         }
     }
     popBMP() {
-        console.log(":::::◘ ○•○ popBMP ♥♥♥ ", this._src);
+        // console.log(":::::◘ ○•○ popBMP ♥♥♥ ", this._src);
+        // for (var str in this) {
+        //     if (typeof this[str] === "function") {
+        //         console.log(str, " in ", this[str]);
+        //     }
+        // }
+
+        if (this.loaded && this.progress === 1) console.log("♥", this.loaded && this.progress === 1);
+
         if (this._progress === 100) {
             this._loaded = true;
             //hide indicator:
             this.indicator.visible = false;
             this.indicator_bar.visible = false;
-        } 
+        }
         this.containerShape = new createjs.Shape();
-        this.container.addChild(this.containerShape);  
+        this.container.addChild(this.containerShape);
         var charlie = this.getBMP().image;
         this._imgNatW = charlie.naturalWidth;
         this._imgNatH = charlie.naturalHeight;
@@ -212,9 +231,9 @@ class BMP extends createjs.LoadQueue {
             parseInt(this._imgNatH * figuredScale.scaleRatio)
         );
         this.containerShape.scaleX = figuredScale.scaleRatio;
-        this.containerShape.scaleY = figuredScale.scaleRatio; 
+        this.containerShape.scaleY = figuredScale.scaleRatio;
         this.container.x = 0;
-        this.container.y = 0;  
+        this.container.y = 0;
         this.home.addChild(this.container);
         var boundObj = this.callbackData;
         var callbackFunc = this.callbackFunc;
@@ -236,9 +255,9 @@ class BMP extends createjs.LoadQueue {
 }
 
 function showFullSize(e, param) {
-    //called from BMP, with args payload of fullsize img src 
+    //called from BMP, with args payload of fullsize img src
     var fsBoundsW = w - thumbW;
-    var fsBoundsH = h - thumbH; 
+    var fsBoundsH = h - thumbH;
     var FSDisplayContainer = new createjs.Container();
     var FSDisplay = new createjs.Container();
     var FSDisplayShape = new createjs.Shape();
