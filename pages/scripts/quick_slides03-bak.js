@@ -107,21 +107,39 @@ class BMP extends createjs.LoadQueue {
         this.callbackData = callbackData;
         this.callbackFunc = callbackFunc;
         this.home = bmpContainer;
+        this.home.visible = false;
 
-        this.container = new createjs.Container();
+        this.container = new createjs.Container(); 
         this.indicator = new createjs.Container();
-        this.indicatorText = new createjs.Text("loading:", "8px Arial", "#ffcc00");
+        this.indicatorText = new createjs.Text("loading:", "8px Arial", "#ffcc00");  
         this.indicator_bar = new createjs.Shape();
-        this.indicator_bar.graphics;
+        this.indicator_bar.graphics; 
         this.indicator_bar.graphics.beginFill("#450067");
         this.indicator_bar.graphics.drawRect(0, 0, this._w, 12);
         this.indicator.setBounds(0, 0, this._w, 12);
         this.indicator_bar.scaleX = 0;
         this.indicator.addChild(this.indicator_bar);
         this.container.addChild(this.indicator);
-        this.container.addChild(this.indicatorText);
+        this.container.addChild(this.indicatorText); 
         this.loadFile(this._src);
         this._bmp = new createjs.Bitmap(this._src);
+       
+        /*     
+            // ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ EVENTTARGET 
+            let myEventTarget = new MyEventTarget(5);
+            let value = myEventTarget.secret; // === 5
+
+            console.log(value);
+            myEventTarget.addEventListener("foo", (e) => {
+            myEventTarget._secret = e.detail;
+            });
+
+            let event = new CustomEvent("foo", { detail: 7 });
+            myEventTarget.dispatchEvent(event);
+            let newValue = myEventTarget.secret; // === 7
+            console.log(newValue);
+            // ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ END EVENTTARGET USAGE
+        */
 
         this.instance.on("fileload", this.handleFileLoad);
         this.instance.on("progress", this.handleFileProgress);
@@ -131,25 +149,27 @@ class BMP extends createjs.LoadQueue {
     getBMP() {
         return this._bmp;
     }
-
+    // getInstance() {
+    //     return this.instance;
+    // }
     handleFileLoad(e) {
-        console.log("\thandleFileLoad");
+        this.home.visible = true;
+        this.indicator.visible = true;
+        // console.log(":::::handleFileLoad);
     }
     handleFileProgress(e) {
+        // console.log(":::::handleFileProgress);
         // this.progressText.text = (Math.floor(this.instance.progress * 100) | 0) + " % Loaded";
         this._progress = Math.ceil(this.instance.progress * 100) | 0;
-        console.log("\thandleFileProgress", this._progress + " % Loaded");
         this.indicatorText.text = this._progress + " % Loaded";
+        // console.log(progress + " % Loaded");
     }
     loadComplete(param, e) {
-        this._progress = Math.floor(this.instance.progress * 100) | 0;
-        console.log("\t☺ loadComplete", this._progress + " % Loaded");
         this._progress = Math.floor(this.instance.progress * 100) | 0;
         if (this._progress === 100) {
             //checks if draw (on display object VS event)
             if (param.constructor.prototype.draw == undefined) {
                 //an event is present, and the BITMAP needs to be assigned.
-
                 this._bmp = new createjs.Bitmap(this._src);
                 this.checkIsPoppedLater();
             } else {
@@ -163,29 +183,39 @@ class BMP extends createjs.LoadQueue {
         console.log(":::::loadError");
     }
     checkIsPoppedLater() {
-        console.log("\tcheckIsPoppedLater ");
         if (this.isPopulatedLater === true) {
-            /*  var imgLoadEvent = new CustomEvent("imageLoaded_evt_evtStr", {
+            var imgLoadEvent = new CustomEvent("imageLoaded_evt_evtStr", {
                 detail: {
                     msg: ":::Thumbnail image has loaded ",
                     deetContainer: this,
                 },
-            }); 
-            window.dispatchEvent(imgLoadEvent); */
+            });
+            // this.instance.addEventListener("imageLoaded_evt_evtStr", imageLoadedHandler);
+            window.dispatchEvent(imgLoadEvent);
         } else {
             this.popBMP();
         }
     }
+    // loadBMP() {
+    //     this.instance = new createjs.Bitmap(this._src);
+    // }
     popBMP() {
-        console.log(":::::◘ ○•○ popBMP ♥♥♥ ", this._src);
         if (this._progress === 100) {
             this._loaded = true;
             //hide indicator:
             this.indicator.visible = false;
             this.indicator_bar.visible = false;
-        } 
+        }
+
+        // console.log("◘◘◘ BMP ○•○•○•○•◘◘◘ loaded ", this._src, this._bmp);
         this.containerShape = new createjs.Shape();
-        this.container.addChild(this.containerShape);  
+        this.container.addChild(this.containerShape);
+        // this.containerShape.graphics
+        //     .beginBitmapFill(this.getBMP())
+        //     // .drawRect(0, 0, this.getBMP().getBounds().width, this.getBMP().getBounds().height)
+        //     .drawRect(0, 0, this._w, this._h)
+        //     ;
+
         var charlie = this.getBMP().image;
         this._imgNatW = charlie.naturalWidth;
         this._imgNatH = charlie.naturalHeight;
@@ -212,9 +242,17 @@ class BMP extends createjs.LoadQueue {
             parseInt(this._imgNatH * figuredScale.scaleRatio)
         );
         this.containerShape.scaleX = figuredScale.scaleRatio;
-        this.containerShape.scaleY = figuredScale.scaleRatio; 
+        this.containerShape.scaleY = figuredScale.scaleRatio;
+
+        // this.container.x = (this.home.getBounds().width - this.container.getBounds().width) / 2;
+        // this.container.y = (this.home.getBounds().height - this.container.getBounds().height) / 2;
+
         this.container.x = 0;
-        this.container.y = 0;  
+        this.container.y = 0;
+
+        // console.log(this.home.getBounds().width, this.home.getBounds().height);
+        // console.log(this.home.getBounds().width, this.home.getBounds().height);
+
         this.home.addChild(this.container);
         var boundObj = this.callbackData;
         var callbackFunc = this.callbackFunc;
@@ -236,9 +274,11 @@ class BMP extends createjs.LoadQueue {
 }
 
 function showFullSize(e, param) {
-    //called from BMP, with args payload of fullsize img src 
+    //called from BMP, with args payload of fullsize img src
+
     var fsBoundsW = w - thumbW;
-    var fsBoundsH = h - thumbH; 
+    var fsBoundsH = h - thumbH;
+
     var FSDisplayContainer = new createjs.Container();
     var FSDisplay = new createjs.Container();
     var FSDisplayShape = new createjs.Shape();
@@ -277,8 +317,7 @@ function showFullSize(e, param) {
 }
 
 function hideFullSize(e, param) {
-    console.log("\t hideFullSize");
-    // console.log("e", e, "param", param, "this", this);
+    console.log("e", e, "param", param, "this", this);
     // e.currentTarget.visible = false;
     e.currentTarget.removeAllChildren();
 }

@@ -30,24 +30,25 @@
 			thumbsrc="bottle-t.png">an old coke bottle render</image>
 	<image
 			alt="04"
+			title="coke bottle render"
+			src="coke-bottle-render.png"
+			thumbsrc="coke-bottle-render-t.png">coke bottle render</image>
+	<image
+			alt="05"
 			title="compound bow"
 			src="bow0001.jpg"
 			thumbsrc="bow0001-t.png">compound bow</image>
 	<image
-			alt="05"
+			alt="06"
 			title="a caduceus staff"
 			src="caduceus.jpg"
 			thumbsrc="caduceus-t.png">a caduceus staff</image>
 	<image
-			alt="06"
+			alt="07"
 			title="chess pieces"
 			src="chess-pieces.jpg"
 			thumbsrc="chess-pieces-t.png">chess pieces</image>
-	<image
-			alt="07"
-			title="coke bottle render"
-			src="coke-bottle-render.png"
-			thumbsrc="coke-bottle-render-t.png">coke bottle render</image>
+
 	<image
 			alt="08"
 			title="happy easter"
@@ -113,5 +114,5 @@
 			title="childhood toys render"
 			src="toys.jpg"
 			thumbsrc="toys.gif">childhood toys render</image>
-<!-- -->
+	<!-- -->
 </renders>
