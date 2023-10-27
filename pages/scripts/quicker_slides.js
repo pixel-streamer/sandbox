@@ -59,12 +59,15 @@ function cardEventHandler(e) {
     }
 }
 
+/*
 class imgLoadEvent extends Event {
     constructor() {
         super();
     }
 }
+*/
 
+/*
 class MyEventTarget extends EventTarget {
     constructor(mySecret) {
         super();
@@ -74,14 +77,21 @@ class MyEventTarget extends EventTarget {
     get secret() {
         return this._secret;
     }
-}
+} 
+*/
 
 // class BMP extends createjs.Bitmap {
 class BMP extends createjs.LoadQueue {
-    constructor(src, bmpContainer, tw, th, callback) {
+    constructor(src, bmpContainer, tw, th, callbackTrigger, callback) {
         // THIS BMP LOADER IS DEFINITELY FOR ONLY A SINGLE IMAGE.
         // super();
-        super(true);
+        // super(true);
+        /* 
+        from: 
+        https://medium.com/@walpolea/loading-cors-enabled-images-with-createjs-e5308ad53f33
+        var loadItem = new createjs.LoadItem().set({src:url, crossOrigin:"Anonymous"});
+        */
+        super(true, null, true);
         this._loaded = false;
         this._w = tw;
         this._h = th;
@@ -89,7 +99,8 @@ class BMP extends createjs.LoadQueue {
         this._progress = 0;
         this.instance = this;
         this.isPopulatedLater = false;
-        this.callback = callback || null;
+        this.callbackTrigger = callbackTrigger;
+        this.callback = callback;
         this.home = bmpContainer;
         this.container = new createjs.Container();
 
@@ -114,8 +125,8 @@ class BMP extends createjs.LoadQueue {
 
         this.loadFile(this._src);
         this._bmp = new createjs.Bitmap(this._src);
-        var thisBound = this.loadComplete.bind(this.instance, this._bmp);
-        this._bmp.image.addEventListener("load", thisBound);
+        /*    var thisBound = this.loadComplete.bind(this.getInstance(), this.getBMP());
+this._bmp.image.addEventListener("load", thisBound); */
 
         /*     
             // ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ EVENTTARGET 
@@ -142,9 +153,9 @@ class BMP extends createjs.LoadQueue {
     getBMP() {
         return this._bmp;
     }
-    getID() {
-        return false;
-    }
+    // getInstance() {
+    //     return this.instance;
+    // }
     handleFileLoad(e) {
         this.indicator.visible = true;
         // console.log(":::::handleFileLoad);
@@ -154,7 +165,7 @@ class BMP extends createjs.LoadQueue {
         // this.progressText.text = (Math.floor(this.instance.progress * 100) | 0) + " % Loaded";
         this._progress = Math.ceil(this.instance.progress * 100) | 0;
         // console.log(progress + " % Loaded");
-        this.indicator_bar.stage.update();
+        stage.update();
     }
     loadComplete(param, e) {
         this._progress = Math.floor(this.instance.progress * 100) | 0;
@@ -188,7 +199,7 @@ class BMP extends createjs.LoadQueue {
             this.popBMP();
         }
     }
-    // loadBMP() { 
+    // loadBMP() {
     //     this.instance = new createjs.Bitmap(this._src);
     // }
     popBMP() {
@@ -222,7 +233,10 @@ class BMP extends createjs.LoadQueue {
         this.container.setBounds(0, 0, figuredScale.scaleRatio, figuredScale.scaleRatio);
         this.home.setBounds(0, 0, figuredScale.scaleRatio, figuredScale.scaleRatio);
         this.home.addChild(this.container);
-        this._loaded = true;
+        var boundObj = this.callback;
+        this.home.addEventListener(this.callbackTrigger, function (e) {
+            console.log(boundObj);
+        });
     }
 }
 
@@ -696,23 +710,28 @@ function handle_OLD_MAP_LOAD(e) {
 function packLoadArray() {
     console.log(":::packLoadArray:::", loadedSliders.length);
 
+    var titleContainer = new createjs.Container();
+    var titleText = new createjs.Text(title, "72px Arial", "#00CCFF");
+    titleContainer.addChild(titleText);
     var thumbsGalleryContainer = new createjs.Container();
 
     for (var i = 0; i < loadedSliders.length; i++) {
+        /*
         // thumbLoader is now the "thumbnailConfig"-- but the singleFileLoader instance needs to be made.
-        // var singleFileLoader;
-        // singleFileLoader = new SingleFileLoader();
-        // this.bmp = new BMP(this.getRaw(), boundThang);
-        // console.log(
-        //     "SRC: ",
-        //     window.location.search +
-        //         loadedSliders[i].thisThumbsUrl +
-        //         "/" +
-        //         loadedSliders[i].imgSrc.substring(0, loadedSliders[i].imgSrc.lastIndexOf(".")) +
-        //         "-t.png"
-        // );
+        var singleFileLoader;
+        singleFileLoader = new SingleFileLoader();
+        this.bmp = new BMP(this.getRaw(), boundThang);
+        console.log(
+            "SRC: ",
+            window.location.search +
+                loadedSliders[i].thisThumbsUrl +
+                "/" +
+                loadedSliders[i].imgSrc.substring(0, loadedSliders[i].imgSrc.lastIndexOf(".")) +
+                "-t.png"
+        ); 
+        */
 
-        gridXCount = parseInt((w - (thumbW + generalPadding * 2)) / thumbW);
+        gridXCount = parseInt((w - (thumbW + generalPadding * 4)) / thumbW);
 
         var thumbBMP, thumbBMPContainer, thumbBMPStandin, thumbBMPStandinShape;
         thumbBMPContainer = new createjs.Container();
@@ -738,6 +757,7 @@ function packLoadArray() {
         }
         thumbBMP.y = gridYCount + generalPadding;
 
+        var boundObj = { fullSizeImage: loadedSliders[i].fullURL, ID: loadedSliders[i].targetID };
         // need to make slider objects at this Point  , and start with the rectangles that represent the thumbnails
         thumbBMP = new BMP(
             window.location.search +
@@ -748,16 +768,10 @@ function packLoadArray() {
             thumbBMP,
             thumbW,
             thumbH,
-            null
+            "click",
+            boundObj
         );
-        /* 
-        //cardflip_evt_evtStr
-        thumbBMP.addEventListener("imageLoaded_evt", imageLoadedHandler);
-       
-      */
-        // thumbBMP.addEventListener("click", function () {
-        //     console.log("clicked on ", thumbBMP.getBMP());
-        // });
+
         // loadedSliders[i].thumbLoader.loadFile({
         //     id: loadedSliders[i].targetID,
         //     crossOrigin: true,
@@ -772,6 +786,12 @@ function packLoadArray() {
 
     thumbsGalleryContainer.x = (w - thumbsGalleryContainer.getBounds().width) / 2;
     // thumbsGalleryContainer.y= (h - thumbsGalleryContainer.getBounds().height) / 2;
-    thumbsGalleryContainer.y = 65;
+    thumbsGalleryContainer.y = 65 + generalPadding;
+
+    titleContainer.setBounds(0, 0, titleText.getMetrics().width, titleText.getMetrics().height);
+    titleContainer.x = (w - titleContainer.getBounds().width) / 2;
+    titleContainer.y = generalPadding;
+    interactive_content.addChild(titleContainer);
+
     interactive_content.addChild(thumbsGalleryContainer);
 }
