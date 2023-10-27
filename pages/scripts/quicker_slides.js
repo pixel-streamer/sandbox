@@ -82,26 +82,30 @@ class MyEventTarget extends EventTarget {
 
 // class BMP extends createjs.Bitmap {
 class BMP extends createjs.LoadQueue {
-    constructor(src, bmpContainer, tw, th, callbackTrigger, callback) {
+    constructor(src, bmpContainer, tw, th, callbackTrigger, callbackData, callbackFunc) {
         // THIS BMP LOADER IS DEFINITELY FOR ONLY A SINGLE IMAGE.
         // super();
-        // super(true);
+        super(true);
         /* 
         from: 
         https://medium.com/@walpolea/loading-cors-enabled-images-with-createjs-e5308ad53f33
         var loadItem = new createjs.LoadItem().set({src:url, crossOrigin:"Anonymous"});
         */
-        super(true, null, true);
+        // super(true, null, true);
         this._loaded = false;
         this._w = tw;
         this._h = th;
         this._src = src;
         this._progress = 0;
         this.instance = this;
+        this._imgNatW = 0;
+        this._imgNatH = 0;
         this.isPopulatedLater = false;
         this.callbackTrigger = callbackTrigger;
-        this.callback = callback;
+        this.callbackData = callbackData;
+        this.callbackFunc = callbackFunc;
         this.home = bmpContainer;
+
         this.container = new createjs.Container();
 
         if (bmpContainer === undefined || null) {
@@ -220,24 +224,73 @@ this._bmp.image.addEventListener("load", thisBound); */
         //     ;
 
         var charlie = this.getBMP().image;
+        this._imgNatW = charlie.naturalWidth;
+        this._imgNatH = charlie.naturalHeight;
 
-        var figuredScale = resizeToKnownDimensions(charlie.naturalWidth, charlie.naturalHeight, this._w, this._h);
+        var figuredScale = resizeToKnownDimensions(this._imgNatW, this._imgNatH, this._w, this._h);
 
         this.containerShape.graphics
             // .beginBitmapFill(charlie, "no-repeat")
             .beginBitmapFill(charlie)
-            .drawRect(0, 0, charlie.naturalWidth, charlie.naturalHeight)
+            .drawRect(0, 0, this._imgNatW, this._imgNatH)
             .endFill();
+
+        this.containerShape.setBounds(
+            0,
+            0,
+            parseInt(this._imgNatW * figuredScale.scaleRatio),
+            parseInt(this._imgNatH * figuredScale.scaleRatio)
+        );
+
+        this.container.setBounds(
+            0,
+            0,
+            parseInt(this._imgNatW * figuredScale.scaleRatio),
+            parseInt(this._imgNatH * figuredScale.scaleRatio)
+        );
         this.containerShape.scaleX = figuredScale.scaleRatio;
         this.containerShape.scaleY = figuredScale.scaleRatio;
-        this.container.setBounds(0, 0, figuredScale.scaleRatio, figuredScale.scaleRatio);
-        this.home.setBounds(0, 0, figuredScale.scaleRatio, figuredScale.scaleRatio);
+
+        // this.container.x = (this.home.getBounds().width - this.container.getBounds().width) / 2;
+        // this.container.y = (this.home.getBounds().height - this.container.getBounds().height) / 2;
+
+        this.container.x = 0;
+        this.container.y = 0;
+
+        // console.log(this.home.getBounds().width, this.home.getBounds().height);
+        // console.log(this.home.getBounds().width, this.home.getBounds().height);
+
         this.home.addChild(this.container);
-        var boundObj = this.callback;
-        this.home.addEventListener(this.callbackTrigger, function (e) {
-            console.log(boundObj);
-        });
+        var boundObj = this.callbackData;
+        var callbackFunc = this.callbackFunc;
+        var binded = callbackFunc.bind(boundObj);
+        this.home.addEventListener(this.callbackTrigger, binded);
     }
+}
+
+function showFullSize(e, param) {
+    //called from BMP, with args payload of fullsize img src
+
+    var fsBoundsW = w - thumbW;
+    var fsBoundsH = h - thumbH;
+    var fbBMP = new BMP();
+    var FSDisplayContainer = new createjs.Container();
+    var FSDisplay = new createjs.Container();
+    var FSDisplayShape = new createjs.Shape();
+    FSDisplayShape.graphics.beginFill("rgba(69, 0, 103,.25)").drawRect(0, 0, fsBoundsW, fsBoundsH).endFill();
+    FSDisplayShape.setBounds(0, 0, fsBoundsW, fsBoundsH);
+    FSDisplay.addChild(FSDisplayShape);
+    FSDisplayContainer.setBounds(0, 0, fsBoundsW, fsBoundsH);
+    FSDisplay.setBounds(0, 0, fsBoundsW, fsBoundsH);
+    FSDisplayContainer.addChild(FSDisplay);
+    FSDisplay.x = (w - FSDisplay.getBounds().width) / 2;
+    FSDisplay.y = (h - FSDisplay.getBounds().height) / 2;
+    subject_content.addChild(FSDisplay);
+    thumbBMP = new BMP(this.fullSizeImage, FSDisplay, fsBoundsW, fsBoundsH, "click", FSDisplayContainer, hideFullSize);
+}
+
+function hideFullSize(e, param) {
+    console.log("e", e, "param", param, "this", this);
 }
 
 // class SingleFileLoader extends createjs.LoadQueue {
@@ -739,7 +792,9 @@ function packLoadArray() {
         thumbBMPStandin = new createjs.Container();
         thumbBMPStandinShape = new createjs.Shape();
         thumbBMPStandinShape.graphics.beginFill("rgba(0,0,0,.25)").drawRect(0, 0, thumbW, thumbH);
+        thumbBMPStandin.setBounds(0, 0, thumbW, thumbH);
         thumbBMPStandinShape.setBounds(0, 0, thumbW, thumbH);
+        thumbBMP.setBounds(0, 0, thumbW, thumbH);
         thumbBMPStandin.addChild(thumbBMPStandinShape);
         thumbBMP.addChild(thumbBMPStandin);
 
@@ -758,6 +813,7 @@ function packLoadArray() {
         thumbBMP.y = gridYCount + generalPadding;
 
         var boundObj = { fullSizeImage: loadedSliders[i].fullURL, ID: loadedSliders[i].targetID };
+        var boundFunc = showFullSize.bind(boundObj);
         // need to make slider objects at this Point  , and start with the rectangles that represent the thumbnails
         thumbBMP = new BMP(
             window.location.search +
@@ -769,7 +825,8 @@ function packLoadArray() {
             thumbW,
             thumbH,
             "click",
-            boundObj
+            boundObj,
+            boundFunc
         );
 
         // loadedSliders[i].thumbLoader.loadFile({
