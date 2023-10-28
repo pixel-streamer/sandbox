@@ -144,7 +144,7 @@ class BMP extends createjs.LoadQueue {
     //     console.log("\tinitializeMe");
     // }
     handleFileLoad(e) {
-        console.log("\thandleFileLoad");
+        // console.log("\thandleFileLoad");
     }
     handleFileProgress(e) {
         // this.progressText.text = (Math.floor(this.instance.progress * 100) | 0) + " % Loaded";
@@ -172,7 +172,7 @@ class BMP extends createjs.LoadQueue {
         console.log(":::::loadError");
     }
     checkIsPoppedLater() {
-        console.log("\tcheckIsPoppedLater ");
+        // console.log("\tcheckIsPoppedLater ");
         this.popBMP();
         // if (this.isPopulatedLater === true) {
         //     /*  var imgLoadEvent = new CustomEvent("imageLoaded_evt_evtStr", {
@@ -233,21 +233,25 @@ class BMP extends createjs.LoadQueue {
         var boundObj = this.callbackData;
         var callbackFunc = this.callbackFunc;
         var binded = callbackFunc.bind(boundObj);
+        // this.home.x = this._destX;
+        // this.home.y = this._destY;
+       
+        this._bmp.regX  = (this.home.getBounds().width - this._bmp.getBounds().width) / 2;
+        this._bmp.regY = (this.home.getBounds().height - this._bmp.getBounds().height) / 2;
+        this.container.scaleX = figuredScale.scaleRatio;
+        this.container.scaleY = figuredScale.scaleRatio; 
         this.home.x = this._destX;
         this.home.y = this._destY;
-        this.container.scaleX = figuredScale.scaleRatio;
-        this.container.scaleY = figuredScale.scaleRatio;
         this.home.addEventListener(this.callbackTrigger, binded);
         this.home.filters = [new createjs.ColorFilter(0, 0, 0, 1, "r(255), r(0), r(255), 1")];
 
-        var newBoundToComplete = {
-            target: this.home,
-            fsURL: boundObj,
-        };
+        // var newBoundToComplete = {
+        //     target: this.home,
+        //     fsURL: boundObj,
+        // };
 
-        var completeBound = tweenComplete.bind(newBoundToComplete);
-
-        createjs.Tween.get(this.home).to({ alpha: 100, visible: true }, 135).call(completeBound);
+        // var completeBound = tweenComplete.bind(newBoundToComplete);
+        // createjs.Tween.get(this.home).to({ alpha: 100, visible: true }, 135).call(completeBound);
     }
 }
 
@@ -737,7 +741,7 @@ function packLoadArray() {
         ); 
         */
 
-        gridXCount = parseInt((w - (thumbW + generalPadding * 4)) / thumbW);
+        gridXCount = parseInt((w - generalPadding * 2) / (thumbW + generalPadding));
 
         var thumbBMP, thumbBMPContainer, thumbBMPStandin, thumbBMPStandinShape;
         thumbBMPContainer = new createjs.Container();
@@ -755,11 +759,11 @@ function packLoadArray() {
 
         thumbBMPContainer.addChild(thumbBMP);
         thumbsGalleryContainer.addChild(thumbBMPContainer);
-        thumbBMP.x = (i % gridXCount) * (thumbW + generalPadding * 0.67);
+        thumbBMP.x = (i % gridXCount) * (thumbW + generalPadding);
 
         if (gridX > gridXCount - 1) {
             gridX = 1;
-            gridYCount += thumbH + generalPadding * 0.67;
+            gridYCount += thumbH + generalPadding;
         } else {
             gridX++;
         }
@@ -810,8 +814,8 @@ function packLoadArray() {
         // });
     }
     thumbsGalleryContainer.setBounds(0, 0, w - thumbW, h - thumbH);
-    thumbsGalleryContainer.x = (w - thumbsGalleryContainer.getBounds().width) / 2;
-    thumbsGalleryContainer.y = (h - thumbsGalleryContainer.getBounds().height) / 2;
+    thumbsGalleryContainer.x = (w - thumbsGalleryContainer.getBounds().width + generalPadding * 2) / 2;
+    thumbsGalleryContainer.y = (h - thumbsGalleryContainer.getBounds().height + generalPadding * 2) / 2;
     thumbsGalleryContainer.y += 65 + generalPadding;
 
     titleContainer.setBounds(0, 0, titleText.getMetrics().width, titleText.getMetrics().height);
