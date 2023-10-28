@@ -149,60 +149,55 @@ class BMP extends createjs.LoadQueue {
     handleFileProgress(e) {
         // this.progressText.text = (Math.floor(this.instance.progress * 100) | 0) + " % Loaded";
         this._progress = Math.ceil(this.instance.progress * 100) | 0;
-        console.log("\thandleFileProgress", this._progress + " % Loaded");
+        // console.log("\thandleFileProgress", this._progress + " % Loaded");
         this.indicatorText.text = this._progress + " % Loaded";
     }
     loadComplete(param, e) {
+        // console.log("\t☺ loadComplete", this._progress + " % Loaded");
         this._progress = Math.floor(this.instance.progress * 100) | 0;
-        console.log("\t☺ loadComplete", this._progress + " % Loaded");
-        this._progress = Math.floor(this.instance.progress * 100) | 0;
-        if (this._progress === 100) {
-            //checks if draw (on display object VS event)
-            if (param.constructor.prototype.draw == undefined) {
-                //an event is present, and the BITMAP needs to be assigned.
-
-                this._bmp = new createjs.Bitmap(this._src);
-                this.checkIsPoppedLater();
-            } else {
-                this._bmp = param;
-                this.checkIsPoppedLater();
-            }
+        // if (this._progress === 100) {
+        //checks if draw (on display object VS event)
+        if (param.constructor.prototype.draw == undefined) {
+            //an event is present, and the BITMAP needs to be assigned.
+            this._bmp = new createjs.Bitmap(this._src);
+            this.checkIsPoppedLater();
+        } else {
+            this._bmp = param;
+            this.checkIsPoppedLater();
         }
-        return this._bmp;
+        // }
+        // return this._bmp;
     }
     loadError(e) {
         console.log(":::::loadError");
     }
     checkIsPoppedLater() {
         console.log("\tcheckIsPoppedLater ");
-        if (this.isPopulatedLater === true) {
-            /*  var imgLoadEvent = new CustomEvent("imageLoaded_evt_evtStr", {
-                detail: {
-                    msg: ":::Thumbnail image has loaded ",
-                    deetContainer: this,
-                },
-            }); 
-            window.dispatchEvent(imgLoadEvent); */
-        } else {
-            this.popBMP();
-        }
+        this.popBMP();
+        // if (this.isPopulatedLater === true) {
+        //     /*  var imgLoadEvent = new CustomEvent("imageLoaded_evt_evtStr", {
+        //         detail: {
+        //             msg: ":::Thumbnail image has loaded ",
+        //             deetContainer: this,
+        //         },
+        //     });
+        //     window.dispatchEvent(imgLoadEvent); */
+        // } else {
+
+        // }
     }
     popBMP() {
         // console.log(":::::◘ ○•○ popBMP ♥♥♥ ", this._src);
-        // for (var str in this) {
-        //     if (typeof this[str] === "function") {
-        //         console.log(str, " in ", this[str]);
-        //     }
+
+        // if (this.loaded && this.progress === 1) console.log("♥", this.loaded && this.progress === 1);
+
+        // if (this._progress === 100) {
+        this._loaded = true;
+        //hide indicator:
+        // this.indicatorText.visible = false;
+        this.indicator.visible = false;
+        this.indicator_bar.visible = false;
         // }
-
-        if (this.loaded && this.progress === 1) console.log("♥", this.loaded && this.progress === 1);
-
-        if (this._progress === 100) {
-            this._loaded = true;
-            //hide indicator:
-            this.indicator.visible = false;
-            this.indicator_bar.visible = false;
-        }
         this.containerShape = new createjs.Shape();
         this.container.addChild(this.containerShape);
         var charlie = this.getBMP().image;
@@ -214,15 +209,15 @@ class BMP extends createjs.LoadQueue {
         this.containerShape.graphics
             // .beginBitmapFill(charlie, "no-repeat")
             .beginBitmapFill(charlie)
-            .drawRect(0, 0, this._imgNatW, this._imgNatH)
+            .drawRect(0, 0, parseInt(this._imgNatW), parseInt(this._imgNatH))
             .endFill();
 
-        this.containerShape.setBounds(
-            0,
-            0,
-            parseInt(this._imgNatW * figuredScale.scaleRatio),
-            parseInt(this._imgNatH * figuredScale.scaleRatio)
-        );
+        // this.containerShape.setBounds(
+        //     0,
+        //     0,
+        //     parseInt(this._imgNatW * figuredScale.scaleRatio),
+        //     parseInt(this._imgNatH * figuredScale.scaleRatio)
+        // );
 
         this.container.setBounds(
             0,
@@ -230,8 +225,8 @@ class BMP extends createjs.LoadQueue {
             parseInt(this._imgNatW * figuredScale.scaleRatio),
             parseInt(this._imgNatH * figuredScale.scaleRatio)
         );
-        this.containerShape.scaleX = figuredScale.scaleRatio;
-        this.containerShape.scaleY = figuredScale.scaleRatio;
+        this.container.scaleX = figuredScale.scaleRatio;
+        this.container.scaleY = figuredScale.scaleRatio;
         this.container.x = 0;
         this.container.y = 0;
         this.home.addChild(this.container);
@@ -240,6 +235,8 @@ class BMP extends createjs.LoadQueue {
         var binded = callbackFunc.bind(boundObj);
         this.home.x = this._destX;
         this.home.y = this._destY;
+        this.container.scaleX = figuredScale.scaleRatio;
+        this.container.scaleY = figuredScale.scaleRatio;
         this.home.addEventListener(this.callbackTrigger, binded);
         this.home.filters = [new createjs.ColorFilter(0, 0, 0, 1, "r(255), r(0), r(255), 1")];
 
@@ -265,17 +262,17 @@ function showFullSize(e, param) {
     FSDisplayShape.setBounds(0, 0, fsBoundsW, fsBoundsH);
     FSDisplayContainer.setBounds(0, 0, fsBoundsW, fsBoundsH);
     FSDisplay.setBounds(0, 0, fsBoundsW, fsBoundsH);
+    FSDisplayContainer.x = (w - FSDisplayShape.getBounds().width) / 2;
+    FSDisplayContainer.y = (h - FSDisplayShape.getBounds().height) / 2;
     FSDisplay.addChild(FSDisplayShape);
     FSDisplayContainer.addChild(FSDisplay);
-    FSDisplayContainer.x = (w - FSDisplay.getBounds().width) / 2;
-    FSDisplayContainer.y = (h - FSDisplay.getBounds().height) / 2;
     interactive_content.addChild(FSDisplay);
 
     var fsBMPConfig = {
         fsURL: this.fullSizeImage,
         fsDestinationContainer: FSDisplay,
-        fsDestinationX: (w - FSDisplay.getBounds().width) / 2,
-        fsDestinationY: (h - FSDisplay.getBounds().height) / 2,
+        fsDestinationX: (w - FSDisplayShape.getBounds().width) / 2,
+        fsDestinationY: (h - FSDisplayShape.getBounds().height) / 2,
         fsDestinationW: fsBoundsW,
         fsDestinationH: fsBoundsH,
         fsInteractionType: "click",
