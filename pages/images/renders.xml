@@ -22,95 +22,100 @@
 			alt="02"
 			title="a set of binoculars"
 			src="binocular.jpg"
-			thumbsrc="binocular-t.png">a set of binoculars</image>
+			thumbsrc="binocular-t.gif">a set of binoculars</image>
 	<image
 			alt="03"
+			title="a set of binoculars"
+			src="binoculars.png"
+			thumbsrc="binocular-t.png">a set of binoculars</image>
+	<image
+			alt="04"
 			title="an old coke bottle render"
 			src="bottle.jpg"
 			thumbsrc="bottle-t.png">an old coke bottle render</image>
 	<image
-			alt="04"
+			alt="05"
 			title="coke bottle render"
 			src="coke-bottle-render.png"
 			thumbsrc="coke-bottle-render-t.png">coke bottle render</image>
 	<image
-			alt="05"
+			alt="06"
 			title="compound bow"
 			src="bow0001.jpg"
 			thumbsrc="bow0001-t.png">compound bow</image>
 	<image
-			alt="06"
+			alt="07"
 			title="a caduceus staff"
 			src="caduceus.jpg"
 			thumbsrc="caduceus-t.png">a caduceus staff</image>
 	<image
-			alt="07"
+			alt="08"
 			title="chess pieces"
 			src="chess-pieces.jpg"
 			thumbsrc="chess-pieces-t.png">chess pieces</image>
 
 	<image
-			alt="08"
+			alt="09"
 			title="happy easter"
 			src="easter.jpg"
 			thumbsrc="easter-t.png">happy easter</image>
 	<image
-			alt="09"
+			alt="10"
 			title="happy halloween"
 			src="haphalloween.jpg"
 			thumbsrc="haphalloween-t.png">happy halloween</image>
 	<image
-			alt="10"
+			alt="11"
 			title="jar of fortunes"
 			src="jar.jpg"
 			thumbsrc="jar-t.png" />
 	<image
-			alt="11"
+			alt="12"
 			title="pencils flying at your face"
 			src="pencils.jpg"
 			thumbsrc="pencils-t.png">pencils flying at your face</image>
 	<image
-			alt="12"
+			alt="13"
 			title="pickles on a plate"
 			src="pickles.jpg"
 			thumbsrc="pickles-t.png">pickles on a plate</image>
 	<image
-			alt="13"
+			alt="14"
 			title="powerpoint slide 1"
 			src="pwrpnt_1.jpg"
 			thumbsrc="pwrpnt_1-t.png">powerpoint slide 1</image>
 	<image
-			alt="14"
+			alt="15"
 			title="powerpoint slide 2"
 			src="pwrpnt_2.jpg"
 			thumbsrc="pwrpnt_2-t.png">powerpoint slide 2</image>
 	<image
-			alt="15"
+			alt="16"
 			title="powerpoint slide 3"
 			src="pwrpnt_3.jpg"
 			thumbsrc="pwrpnt_3-t.png">powerpoint slide 3</image>
 	<image
-			alt="16"
+			alt="17"
 			title="reflections test with pencils in cups"
 			src="ref_test.jpg"
 			thumbsrc="ref_test-t.png">reflections test</image>
 	<image
-			alt="17"
+			alt="18"
 			title="royal essence candles"
 			src="royal-essence.jpg"
 			thumbsrc="royal-essence-t.png">royal essence candles</image>
 	<image
-			alt="18"
+			alt="19"
 			title="temple POV render"
 			src="temple.jpg"
 			thumbsrc="temple-t.png">temple POV render</image>
 	<image
-			alt="19"
+			alt="20"
 			title="toolkit watermark small"
 			src="toolkit3-watermarksm.jpg"
 			thumbsrc="toolkit3-watermarksm-t.png">toolkit watermark small</image>
 	<image
-			alt="20"
+			alt="21"
 			title="childhood toys render"
 			src="toys.jpg"
 			thumbsrc="toys-t.png">childhood toys render</image>

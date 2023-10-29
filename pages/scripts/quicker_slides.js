@@ -106,6 +106,7 @@ class BMP extends createjs.LoadQueue {
 
         this.loaderContainer.scaleX = smaller.scaleRatio;
         this.loaderContainer.scaleY = smaller.scaleRatio;
+
         this.home.addChild(this.loaderContainer);
         this.loaderContainer.x = this._destX;
         this.loaderContainer.y = this._destY;
@@ -229,7 +230,12 @@ function handle_OLD_MAP_LOAD(e) {
 }
 
 function hideFS(e) {
-    console.log("::: hideFS ::: ", e.target, this);
+    // console.log("::: hideFS ::: ", e.target, this);
+    var completeBound = tweenComplete.bind(e.target);
+    createjs.Tween.get(e.target).to({ alpha: 0, visible: false }, 135).call(completeBound);
+}
+function tweenComplete(e) {
+    console.log("::: tweenComplete ::: ", e, e.target, this);
     interactive_content.removeAllChildren();
 }
 function report(e) {
