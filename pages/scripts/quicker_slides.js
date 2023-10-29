@@ -2,13 +2,14 @@ const cardflip_evt = new CustomEvent("cardflip_evt_evtStr", {
     detail: { msg: ":::flip card" },
 });
 window.addEventListener("cardflip_evt_evtStr", cardEventHandler);
+function cardEventHandler(e) {
+    console.log("cardflip_evt was dispatched.... ", e.detail);
+}
 
-// // HOW CAN THIS BE LOCALIZED, SO THAT CREATED OBJECTS FIRE OFF THE EVENTS?
-// const imageLoaded_evt = new CustomEvent("imageLoaded_evt_evtStr", {
-//     detail: { msg: ":::imageLoaded_evt dispatched" },
-// });
-// // imageLoaded_evt
 window.addEventListener("imageLoaded_evt_evtStr", imageLoadedHandler);
+function imageLoadedHandler(e) {
+    console.log("::: ◄►imageLoaded_evt_evtStr :::", e.detail);
+}
 
 var lastY = 0,
     gridY = 0,
@@ -20,79 +21,11 @@ var lastY = 0,
     generalPadding = 0,
     title;
 
-function imageLoadedHandler(e) {
-    console.log("::: ◄►◄ image has loaded :::", e.detail.deetContainer);
-    var thumbshome = new createjs.Container();
-    thumbshome.addChild(e.detail.deetContainer.getBMP());
-    interactive_content.addChild(thumbshome);
-    return;
-    thumbBMP.x = 0;
-    thumbBMP.y += lastY;
-    lastY = thumbBMP.y;
-}
-
-function cardEventHandler(e) {
-    // console.log("cardflip_evt was dispatched.... ", e.detail);
-    // console.log("cardflip_evt was dispatched.... ", e.detail.deetContainer.getID());
-    for (var i = 0; i < loadedSliders.length; i++) {
-        if (loadedSliders[i].thumbLoader.getInstance().getID() === e.detail.deets) {
-            var BMPContainer = new createjs.Container();
-            var FSIMGConfig = {
-                prefersXHR: true, //singleLoaderConfig.prefersXHR;
-                /* load a single file! */ manifestList: loadedSliders[i].fullURL, //singleLoaderConfig.manifestList;
-                singleID: loadedSliders[i].fullURL, //singleLoaderConfig.singleID;
-                loadedProgressContainerScope: BMPContainer, //singleLoaderConfig.loadedProgressContainerScope;
-                textX: 0, //singleLoaderConfig.textX;
-                textY: 0, //singleLoaderConfig.textY;
-                finalW: 0, //singleLoaderConfig.finalW
-                finalH: 0, //singleLoaderConfig.finalH
-                finalX: 0, //singleLoaderConfig.finalX
-                finalY: 0, //singleLoaderConfig.finalY
-                fullURL: loadedSliders[i].fullURL, //singleLoaderConfig.fullURL
-                thumbURL: loadedSliders[i].fullURL, //singleLoaderConfig.thumbURL
-            };
-            e.detail.thumbBMP.addEventListener("click", function () {
-                return new SingleFileLoader(FSIMGConfig);
-            });
-            subject_content.addChild(BMPContainer);
-        }
-    }
-}
-
-/*
-class imgLoadEvent extends Event {
-    constructor() {
-        super();
-    }
-}
-*/
-
-/*
-class MyEventTarget extends EventTarget {
-    constructor(mySecret) {
-        super();
-        this._secret = mySecret;
-    }
-
-    get secret() {
-        return this._secret;
-    }
-} 
-*/
-
 // class BMP extends createjs.Bitmap {
 class BMP extends createjs.LoadQueue {
     constructor(src, bmpContainer, destX, destY, tw, th, callbackTrigger, callbackData, callbackFunc) {
         // THIS BMP LOADER IS DEFINITELY FOR ONLY A SINGLE IMAGE.
-        super();
-        // super(true);
-        /* 
-        from: 
-        https://medium.com/@walpolea/loading-cors-enabled-images-with-createjs-e5308ad53f33
-        var loadItem = new createjs.LoadItem().set({src:url, crossOrigin:"Anonymous"});
-        */
-        // super(true, null, true);
-        this._loaded = false;
+        super(true);
         this._w = tw;
         this._h = th;
         this._destX = destX;
@@ -100,6 +33,7 @@ class BMP extends createjs.LoadQueue {
         this._src = src;
         this._progress = 0;
         this.instance = this;
+        this._loadedIMG = null;
         this._imgNatW = 0;
         this._imgNatH = 0;
         this.isPopulatedLater = false;
@@ -107,447 +41,103 @@ class BMP extends createjs.LoadQueue {
         this.callbackData = callbackData;
         this.callbackFunc = callbackFunc;
         this.home = bmpContainer;
-
+        this.loaderContainer = new createjs.Container();
         this.container = new createjs.Container();
         this.indicator = new createjs.Container();
-        this.indicatorText = new createjs.Text("loading:", "8px Arial", "#ffcc00");
         this.indicator_bar = new createjs.Shape();
-        this.indicator_bar.graphics;
-        this.indicator_bar.graphics.beginFill("#450067");
-        this.indicator_bar.graphics.drawRect(0, 0, this._w, 12);
-        this.indicator.setBounds(0, 0, this._w, 12);
-        this.indicator_bar.scaleX = 0;
+        // this.indicatorText = new createjs.Text("loading:", "8px Arial", "#ffcc00");
         this.indicator.addChild(this.indicator_bar);
         this.container.addChild(this.indicator);
-        this.container.addChild(this.indicatorText);
+        this.loaderContainer.addChild(this.container);
+        this.home.addChild(this.loaderContainer);
+        // this.home.addChild(this.indicatorText);
+        this.indicator_bar.graphics.beginFill("#450067").drawRect(0, 0, this._w, 6);
+        this.indicator.setBounds(0, 0, this._w, 6);
+        this.indicator_bar.scaleX = 0;
         this.loadFile(this._src);
-        this._bmp = new createjs.Bitmap(this._src);
-
+        // this._bmp = new createjs.Bitmap(this._src);
         this.instance.on("fileload", this.handleFileLoad);
         this.instance.on("progress", this.handleFileProgress);
         this.instance.on("complete", this.loadComplete);
         this.instance.on("error", this.loadError);
-        // this.instance.on("initialize", this.initializeMe);
-        // this.on("initialize", this._updateXHR, this)
-        /* 
-          this.instance.on("initialize", this.loadError);
-        this.on("initialize", this._updateXHR, this)
-        */
+        var boundObj = this.callbackData;
+        var callbackFunc = this.callbackFunc;
+        var binded = callbackFunc.bind(boundObj);
+        this.container.addEventListener(this.callbackTrigger, binded);
     }
     getBMP() {
         return this._bmp;
     }
-    // init(e) {
-    //     return init();
-    // }
-    // initializeMe(e) {
-    //     console.log("\tinitializeMe");
-    // }
     handleFileLoad(e) {
-        // console.log("\thandleFileLoad");
+        // console.log(this._src.substring(this._src.lastIndexOf("/") + 1));
     }
     handleFileProgress(e) {
-        // this.progressText.text = (Math.floor(this.instance.progress * 100) | 0) + " % Loaded";
-        this._progress = Math.ceil(this.instance.progress * 100) | 0;
+        this._progress = (this.instance.progress * 100) | 0;
         // console.log("\thandleFileProgress", this._progress + " % Loaded");
-        this.indicatorText.text = this._progress + " % Loaded";
+        this.indicator_bar.scaleX = this.instance.progress;
+        // console.log(" this._progress", this._progress);
+        // this.indicatorText.text = this._progress + " % Loaded";
+        stage.update();
     }
-    loadComplete(param, e) {
+    loadComplete(e) {
         // console.log("\t☺ loadComplete", this._progress + " % Loaded");
-        this._progress = Math.floor(this.instance.progress * 100) | 0;
-        // if (this._progress === 100) {
-        //checks if draw (on display object VS event)
-        if (param.constructor.prototype.draw == undefined) {
-            //an event is present, and the BITMAP needs to be assigned.
-            this._bmp = new createjs.Bitmap(this._src);
-            this.checkIsPoppedLater();
-        } else {
-            this._bmp = param;
-            this.checkIsPoppedLater();
-        }
-        // }
-        // return this._bmp;
+        this._progress = (this.instance.progress * 100) | 0;
+        this.indicator.visible = false;
+        this.popBMP();
     }
     loadError(e) {
         console.log(":::::loadError");
     }
-    checkIsPoppedLater() {
-        // console.log("\tcheckIsPoppedLater ");
-        this.popBMP();
-        // if (this.isPopulatedLater === true) {
-        //     /*  var imgLoadEvent = new CustomEvent("imageLoaded_evt_evtStr", {
-        //         detail: {
-        //             msg: ":::Thumbnail image has loaded ",
-        //             deetContainer: this,
-        //         },
-        //     });
-        //     window.dispatchEvent(imgLoadEvent); */
-        // } else {
-
-        // }
-    }
     popBMP() {
-        // console.log(":::::◘ ○•○ popBMP ♥♥♥ ", this._src);
+        // console.log(":::::popBMP", this._src);
+        this._loadedIMG = this.getResult(this._src);
+        this._imgNatW = this._loadedIMG.naturalWidth;
+        this._imgNatH = this._loadedIMG.naturalHeight;
+        var smaller = resizeToKnownDimensions(this._imgNatW, this._imgNatH, this._w, this._h);
+        // console.log(this._imgNatW, this._imgNatH);
+        this._bmp = new createjs.Bitmap(this._loadedIMG);
+        // console.log(this._imgNatW, this._imgNatH);
+        // console.log(this._imgNatW * smaller.scaleRatio + "," + this._imgNatH * smaller.scaleRatio);
 
-        // if (this.loaded && this.progress === 1) console.log("♥", this.loaded && this.progress === 1);
+        this.container.addChild(this._bmp);
+        // this.container.x = (this.loaderContainer.getBounds().width - this.container.getBounds().width) / 2;
+        // this.container.y =
+        //     (this.loaderContainer.getBounds().height - this.container.getBounds().height) / 2;
 
-        // if (this._progress === 100) {
-        this._loaded = true;
-        //hide indicator:
-        // this.indicatorText.visible = false;
-        this.indicator.visible = false;
-        this.indicator_bar.visible = false;
-        // }
-        this.containerShape = new createjs.Shape();
-        this.container.addChild(this.containerShape);
-        var charlie = this.getBMP().image;
-        this._imgNatW = charlie.naturalWidth;
-        this._imgNatH = charlie.naturalHeight;
+        this.loaderContainer.scaleX = smaller.scaleRatio;
+        this.loaderContainer.scaleY = smaller.scaleRatio;
+        this.home.addChild(this.loaderContainer);
+        this.loaderContainer.x = this._destX;
+        this.loaderContainer.y = this._destY;
 
-        var figuredScale = resizeToKnownDimensions(this._imgNatW, this._imgNatH, this._w, this._h);
-
-        this.containerShape.graphics
-            // .beginBitmapFill(charlie, "no-repeat")
-            .beginBitmapFill(charlie)
-            .drawRect(0, 0, parseInt(this._imgNatW), parseInt(this._imgNatH))
-            .endFill();
-
-        // this.containerShape.setBounds(
-        //     0,
-        //     0,
-        //     parseInt(this._imgNatW * figuredScale.scaleRatio),
-        //     parseInt(this._imgNatH * figuredScale.scaleRatio)
-        // );
-
-        this.container.setBounds(
-            0,
-            0,
-            parseInt(this._imgNatW * figuredScale.scaleRatio),
-            parseInt(this._imgNatH * figuredScale.scaleRatio)
-        );
-        this.container.scaleX = figuredScale.scaleRatio;
-        this.container.scaleY = figuredScale.scaleRatio;
-        this.container.x = 0;
-        this.container.y = 0;
-        this.home.addChild(this.container);
-        var boundObj = this.callbackData;
-        var callbackFunc = this.callbackFunc;
-        var binded = callbackFunc.bind(boundObj);
-        // this.home.x = this._destX;
-        // this.home.y = this._destY;
-       
-        this._bmp.regX  = (this.home.getBounds().width - this._bmp.getBounds().width) / 2;
-        this._bmp.regY = (this.home.getBounds().height - this._bmp.getBounds().height) / 2;
-        this.container.scaleX = figuredScale.scaleRatio;
-        this.container.scaleY = figuredScale.scaleRatio; 
-        this.home.x = this._destX;
-        this.home.y = this._destY;
-        this.home.addEventListener(this.callbackTrigger, binded);
-        this.home.filters = [new createjs.ColorFilter(0, 0, 0, 1, "r(255), r(0), r(255), 1")];
-
-        // var newBoundToComplete = {
-        //     target: this.home,
-        //     fsURL: boundObj,
-        // };
-
-        // var completeBound = tweenComplete.bind(newBoundToComplete);
-        // createjs.Tween.get(this.home).to({ alpha: 100, visible: true }, 135).call(completeBound);
+        // console.log(this._destX, this._destY);
+        this.home.x = (w - this.home.getBounds().width) / 2;
+        this.home.y = (h - this.home.getBounds().height) / 2;
+        // this.home.x = (this._w - this.home.getBounds().width) / 2;
+        // this.home.y = (this._h - this.home.getBounds().height) / 2;
     }
 }
-
-function showFullSize(e, param) {
-    //called from BMP, with args payload of fullsize img src
-    var fsBoundsW = w - thumbW;
-    var fsBoundsH = h - thumbH;
-    var FSDisplayContainer = new createjs.Container();
-    var FSDisplay = new createjs.Container();
-    var FSDisplayShape = new createjs.Shape();
-    FSDisplayShape.graphics.beginFill("rgba(69, 0, 103,.25)").drawRect(0, 0, fsBoundsW, fsBoundsH).endFill();
-    FSDisplayShape.setBounds(0, 0, fsBoundsW, fsBoundsH);
-    FSDisplayContainer.setBounds(0, 0, fsBoundsW, fsBoundsH);
-    FSDisplay.setBounds(0, 0, fsBoundsW, fsBoundsH);
-    FSDisplayContainer.x = (w - FSDisplayShape.getBounds().width) / 2;
-    FSDisplayContainer.y = (h - FSDisplayShape.getBounds().height) / 2;
-    FSDisplay.addChild(FSDisplayShape);
-    FSDisplayContainer.addChild(FSDisplay);
-    interactive_content.addChild(FSDisplay);
-
-    var fsBMPConfig = {
-        fsURL: this.fullSizeImage,
-        fsDestinationContainer: FSDisplay,
-        fsDestinationX: (w - FSDisplayShape.getBounds().width) / 2,
-        fsDestinationY: (h - FSDisplayShape.getBounds().height) / 2,
-        fsDestinationW: fsBoundsW,
-        fsDestinationH: fsBoundsH,
-        fsInteractionType: "click",
-        fsInteractionContainer: FSDisplayContainer,
-        fsHandler: hideFullSize,
-    };
-    var fsBMP = new BMP(
-        fsBMPConfig.fsURL,
-        fsBMPConfig.fsDestinationContainer,
-        fsBMPConfig.fsDestinationX,
-        fsBMPConfig.fsDestinationY,
-        fsBMPConfig.fsDestinationW,
-        fsBMPConfig.fsDestinationH,
-        fsBMPConfig.fsInteractionType,
-        fsBMPConfig.fsInteractionContainer,
-        fsBMPConfig.fsHandler
-    );
-}
-
-function hideFullSize(e, param) {
-    console.log("\t hideFullSize");
-    // console.log("e", e, "param", param, "this", this);
-    // e.currentTarget.visible = false;
-    e.currentTarget.removeAllChildren();
-}
-
-// class SingleFileLoader extends createjs.LoadQueue {
-//     constructor(singleLoaderConfig) {
-//         super(singleLoaderConfig.prefersXHR);
-//         this.prefersXHR = singleLoaderConfig.prefersXHR;
-//         this.fullURL = singleLoaderConfig.fullURL;
-//         this.thumbURL = singleLoaderConfig.thumbURL;
-//         this.singleID = singleLoaderConfig.singleID;
-//         this.loadedProgressContainerScope = singleLoaderConfig.loadedProgressContainerScope;
-//         this.textX = singleLoaderConfig.textX;
-//         this.textY = singleLoaderConfig.textY;
-//         singleLoaderConfig.finalW === undefined || null
-//             ? (this.finalW = singleLoaderConfig.finalW)
-//             : (this.finalW = singleLoaderConfig.finalW = 0);
-//         singleLoaderConfig.finalH === undefined || null
-//             ? (this.finalH = singleLoaderConfig.finalH)
-//             : (this.finalH = singleLoaderConfig.finalH = 0);
-//         singleLoaderConfig.finalX === undefined || null ? (this.finalX = singleLoaderConfig.finalX) : (this.finalX = 0);
-//         singleLoaderConfig.finalY === undefined || null ? (this.finalY = singleLoaderConfig.finalY) : (this.finalY = 0);
-
-//         this._thumbnail = false;
-//         var anInstanceContainer = new createjs.Container();
-//         this.home = anInstanceContainer;
-
-//         this.loadedProgressContainerScope.addChild(this.home);
-//         this.loadedProgressContainerScope.addChild(this.home);
-//         this.instance = this;
-//         this.name = this.setName(this.singleID);
-//         // this.bmp = null;
-
-//         this.instance.on("fileload", this.handleFileLoad);
-//         this.instance.on("progress", this.handleFileProgress);
-//         this.instance.on("complete", this.loadComplete);
-//         this.instance.on("error", this.loadError);
-
-//         if (this.progressText === undefined || null) {
-//             var anInstanceTextContainer = new createjs.Container();
-//             this.textContainer = anInstanceTextContainer;
-//             this.progressText = new createjs.Text("LOADING:0123456789%", "16px 'Press Start 2P'", "#FFCC00");
-//             this.textContainer.x = this.textX;
-//             this.textContainer.y = this.textY;
-//             this.textContainer.addChild(this.progressText);
-//             this.home.addChild(this.textContainer);
-//         } else {
-//             this.textContainer.visible = true;
-//         }
-
-//         this.progressText.text = "";
-
-//         if (typeof singleLoaderConfig.manifestList === "string") {
-//             // if (
-//             //     singleLoaderConfig.manifestList === "" ||
-//             //     singleLoaderConfig.manifestList === undefined ||
-//             //     singleLoaderConfig.manifestList === null
-//             // ) {
-//             //     this._thumbnail = true;
-//             //     this.manifestList = this.singleID;
-//             // } else {
-//             //     this._thumbnail = false;
-//             //     this.manifestList = singleLoaderConfig.manifestList;
-//             //     // console.log(
-//             //     //     "○○○" + " this.manifestList :",
-//             //     //     this.singleID || this.manifestList,
-//             //     //     "○○○",
-//             //     //     this.manifestList,
-//             //     //     "○○○",
-//             //     //     typeof this.manifestList,
-//             //     //     "○○○",
-//             //     //     this.progressText
-//             //     // );
-//             //     // var sList = new createjs.LoadQueue(true);
-//             //     this.instance.loadFile(this.manifestList);
-//             // }
-//             this.manifestList = this.singleID;
-//             // this.manifestList = singleLoaderConfig.manifestList;
-//             // console.log(this.manifestList);
-//             this.instance.loadFile(this.manifestList);
-//         }
-//     }
-//     getInstance() {
-//         return this.instance;
-//     }
-//     stuffRaw(param) {
-//         this._raw = param;
-//     }
-//     getRaw() {
-//         return this._raw;
-//     }
-//     handleFileLoad(event) {
-//         console.log("::: handleFileLoad :::");
-//         /*    if (event.result.naturalWidth > 0) {
-//             this.getBMP();
-//         } */
-//     }
-//     handleFileProgress(event) {
-//         this.progressText.text = (Math.floor(this.instance.progress * 100) | 0) + " % Loaded";
-//     }
-//     loadComplete(event) {
-//         /*
-//             console.log(
-//                 "::: LOAD COMPLETE :::",
-//                 "this.manifestList,",
-//                 this.manifestList,
-//                 " this.singleID,",
-//                 this.singleID,
-//                 this.manifestList === this.singleID
-//             );
-//         */
-//         var boundThang = this.continuedComplete.bind(this);
-
-//         return;
-//         this.bmp = new BMP(this.getRaw(), boundThang);
-//         /*
-//             if (this.manifestList === this.singleID) {
-//             this.stuffRaw(event.target.getResult(event.target.singleID));
-//             // this.setBMP(this.getRaw());
-
-//             this.bmp = new BMP(this.getRaw(), boundThang);
-//             // this.bmp = new createjs.Bitmap(this.getRaw());
-//             // this.bmp.image.addEventListener("load", function () {
-//             //     console.log("onload");
-//             //     boundThang;
-//             //     stage.update();
-//             // });
-//             // this.bmp.image.onload = function () {
-//             //     console.log("onload");
-//             //     boundThang;
-//             //     stage.update();
-//             // };
-//         } */
-//     }
-//     getBMP() {
-//         return this.bmp;
-//     }
-//     continuedComplete() {
-//         console.log(" loaded •○•○•○•");
-
-//         this.getTextContainer().visible = false;
-
-//         var wBounds = parseInt(w - 64);
-//         var hBounds = parseInt(h - 64);
-
-//         var BMPContainer = new createjs.Container();
-
-//         if (this._thumbnail === true) {
-//             var fsBMP = this.getBMP();
-//             // console.log(" thumb has loaded ", this.getID());
-//             fsBMP = new createjs.Bitmap(this.getRaw());
-//             var fsBMPimg = fsBMP.image;
-
-//             BMPContainer.addChild(fsBMP);
-//             BMPContainer.setBounds(0, 0, fsBMP.getBounds().width, fsBMP.getBounds().height);
-//             BMPContainer.x = (w - fsBMP.getBounds().width) / 2;
-//             BMPContainer.y = (h - fsBMP.getBounds().height) / 2;
-//             subject_content.addChild(BMPContainer);
-
-//             var cE = new CustomEvent("cardflip_evt_evtStr", {
-//                 detail: {
-//                     msg: ":::Thumbnail image has loaded ",
-//                     deets: this.getID(),
-//                     thumbBMP: fsBMP,
-//                     deetContainer: this,
-//                 },
-//             });
-
-//             window.dispatchEvent(cE);
-//         } else {
-//             console.log(" fullsize image has loaded ");
-//             console.log(this.getRaw());
-//             console.log(this.getID());
-
-//             var fsBMP = new createjs.Bitmap(this.getRaw());
-//             var fsBMPimg = fsBMP.image.naturalWidth;
-
-//             var newDims = resizeToKnownDimensions(fsBMPimg.naturalWidth, fsBMPimg.naturalHeight, wBounds, hBounds);
-
-//             // console.log(fsBMPimg.naturalWidth, newDims.scaleRatio, newDims);
-
-//             BMPContainer.addChild(fsBMP);
-//             BMPContainer.scaleX = newDims.scaleRatio;
-//             BMPContainer.scaleY = newDims.scaleRatio;
-
-//             BMPContainer.setBounds(
-//                 0,
-//                 0,
-//                 fsBMP.getBounds().width * newDims.scaleRatio,
-//                 fsBMP.getBounds().height * newDims.scaleRatio
-//             );
-//             BMPContainer.x = (w - fsBMP.getBounds().width) / 2;
-//             BMPContainer.y = (h - fsBMP.getBounds().height) / 2;
-//             subject_content.addChild(BMPContainer);
-
-//             // window.dispatchEvent(
-//             //     new CustomEvent("cardflip_evt_evtStr", {
-//             //         detail: {
-//             //             msg: ":::Fullsize image has loaded",
-//             //         },
-//             //     })
-//             // );
-//         }
-//     }
-
-//     setName(param) {
-//         this.name = param;
-//     }
-//     getName() {
-//         return this.name;
-//     }
-//     getContainer() {
-//         return this.home;
-//     }
-//     getLoader() {
-//         return this.instance;
-//     }
-//     loadError(evt) {
-//         // text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-//         // text-shadow: 1px 1px 0px white, 0 0 0 blue, 0 0 0 blue;
-//         console.log(
-//             "%cError!",
-//             "color: red; background: #661111; font-size: 2rem; padding:1rem; border:3px solid #cdcdcd; text-shadow: 2px 0px 0px white, 0px 2px 0px white, -2px 0px 0px white, 0px -2px 0px white; box-sizing: content-box; ",
-//             evt.title,
-//             evt.data.src + ": didn't load as expected"
-//         );
-//     }
-//     getTextContainer() {
-//         return this.textContainer;
-//     }
-//     getID() {
-//         return this.singleID;
-//     }
-// }
 
 /*
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-*/
+     ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     */
 var big_map;
 var big_mapIsLoaded = false;
 var fileLoader;
 var loadedSliders = [];
+// var cCanvas=document.querySelector("#testCanvas canvas")
 
 function playGame() {
     loadAssets();
 }
 
 function loadAssets() {
+    var context = stage.canvas.getContext("2d");
+
+    context.imageSmoothingEnabled = context.webkitImageSmoothingEnabled = context.mozImageSmoothingEnabled = true;
+    // stage.snapToPixel = true;
+    console.log("stage", context);
     console.log("playGame", "loadAssets");
 
     fileLoader = new createjs.LoadQueue(true);
@@ -568,57 +158,13 @@ function loadAssets() {
 }
 
 /*
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-*/
-
-function showLoaded() {
-    // console.log("showLoaded ");
-    for (var i = 0; i < loadedSliders.length; i++) {
-        var bmp = loadedSliders[i].thumbLoader.getBMP();
-        bmp.visible = true;
-        bmp.alpha = 1;
-        console.log("Σ Σ SHOW THIS! Σ Σ", bmp);
-    }
-}
-
-function isLastID(param) {
-    // console.log("isLastID ");
-    var slidesAreAllOff = true;
-    for (var i = 0; i < loadedSliders.length; i++) {
-        // console.log(
-        //     param.name,
-        //     loadedSliders[i].thumbLoader.getID(),
-        //     param.name === loadedSliders[i].thumbLoader.getID()
-        // );
-        // console.log(
-        //     "☻☻",
-        //     loadedSliders[i].thumbLoader.getBMP().visible,
-        //     // loadedSliders[i].thumbLoader.instance.getResult(loadedSliders[i].thumbLoader.instance.getID())
-        // );
-        if (param.name === loadedSliders[i].thumbLoader.getID()) {
-            loadedSliders[i].thumbLoader.getBMP().visible = false;
-        }
-        if (loadedSliders[i].thumbLoader.getBMP().visible) {
-            slidesAreAllOff = false;
-        }
-        if (i === parseInt(loadedSliders.length - 1)) {
-            if (slidesAreAllOff === true) {
-                console.log("ΣΣΣΣΣΣ SLIDES ARE ALL HIDDEN ΣΣΣΣΣΣΣ");
-                showLoaded();
-            }
-        }
-    }
-}
-
-function tweenComplete() {
-    // console.log(this);
-    //  createjs.Tween.get(this.target).to({ alpha: 0, visible: false }, 135).call(tweenComplete);
-}
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+     */
 
 function handle_OLD_MAP_LOAD(e) {
-    console.log(":::handle_ImageLoadComplete:::");
-    stage.snapToPixel = true;
+    console.log(":::handle_OLD_MAP_LOAD:::");
+    var smallListArr = [];
     var renders = e.target.getResult("renders");
     var renderUrl = renders.firstChild.attributes.url.value;
     var thumbsUrl = renders.firstChild.attributes.thumbnails.value;
@@ -627,201 +173,91 @@ function handle_OLD_MAP_LOAD(e) {
     var thumbnailConfig = renders.getElementsByTagName("thumb_config")[0];
     var general_config = e.target.getResult("renders").getElementsByTagName("general_config")[0];
     generalPadding = parseInt(general_config.attributes.padding.value);
-
     thumbW = parseInt(thumbnailConfig.attributes.w.value);
     thumbH = parseInt(thumbnailConfig.attributes.h.value);
+    var paddedTW = parseInt(thumbW + generalPadding);
+    var paddedTH = parseInt(thumbH + generalPadding);
+    var gridXCount = parseInt((w - generalPadding) / paddedTW);
 
-    var smallListArr = [];
+    var bmpContainer = new createjs.Container();
+    var bmpContainerBG = new createjs.Shape();
+
+    bmpContainerBG.graphics
+        .beginFill("rgba(0, 128, 255,.25)")
+        .drawRect(
+            0,
+            0,
+            paddedTW * gridXCount - generalPadding,
+            parseInt(Math.ceil(smallList.length / gridXCount) * paddedTH - generalPadding * 1)
+        )
+        .endFill();
+    bmpContainer.addChild(bmpContainerBG);
 
     for (var i = 0; i < smallList.length; i++) {
-        smallListArr.push(smallList[i].attributes.src.value);
-
-        // var thumbLoc =
-        //     window.location.search +
-        //     thumbsUrl +
-        //     "/" +
-        //     smallList[i].attributes.src.value.substring(0, smallList[i].attributes.src.value.lastIndexOf(".")) +
-        //     "-t.png";
-        var thumbLoc = window.location.search + thumbsUrl + "/" + smallList[i].attributes.thumbsrc.value;
-
-        var thumbnailConfig = {
-            prefersXHR: true, //singleLoaderConfig.prefersXHR;
-            manifestList: "", //singleLoaderConfig.manifestList;
-            singleID: smallList[i].attributes.title.value, //singleLoaderConfig.singleID;
-            loadedProgressContainerScope: subject_content, //singleLoaderConfig.loadedProgressContainerScope;
-            textX: 0, //singleLoaderConfig.textX;
-            textY: i * 20, //singleLoaderConfig.textY;
-            finalW: 0, //singleLoaderConfig.finalW
-            finalH: 0, //singleLoaderConfig.finalH
-            finalX: 0, //singleLoaderConfig.finalX
-            finalY: 0, //singleLoaderConfig.finalY
-            fullURL: window.location.search + renderUrl + "/" + smallListArr[i], //singleLoaderConfig.fullURL
-            thumbURL: thumbLoc, //singleLoaderConfig.thumbURL
+        var bmpConfig = {
+            src: window.location.search + thumbsUrl + "/" + smallList[i].attributes.thumbsrc.value,
+            bmpContainer: bmpContainer,
+            destX: (i % gridXCount) * paddedTW,
+            destY: gridY * paddedTH,
+            tw: thumbW,
+            th: thumbH,
+            callbackTrigger: "click",
+            callbackData: {
+                fsURL: window.location.search + renderUrl + "/" + smallList[i].attributes.src.value,
+                fsTitle: smallList[i].attributes.title.value,
+            },
+            callbackFunc: report,
         };
-
-        var thisImgPayload = {
-            fullURL: window.location.search + renderUrl + "/" + smallListArr[i],
-            targetID: smallList[i].attributes.title.value,
-            imgSrc: smallList[i].attributes.src.value,
-            message: "this loaded: " + i + " █",
-            thumbLoader: thumbnailConfig,
-            thisThumbsUrl: thumbsUrl,
-            thisThumbLoc: thumbLoc,
-        };
-
-        loadedSliders.push(thisImgPayload);
-    }
-    packLoadArray();
-}
-
-/* function handleThumbLoad(e) {
-    console.log(":::handleThumbLoad:::");
-    var wBounds = parseInt(w - 128);
-    var hBounds = parseInt(h - 128);
-    return;
-
-    e.target.setBMP(e.target.getResult(this.targetID));
-
-    var loadedImg = e.target.getBMP();
-    loadedImg.name = this.targetID;
-    var loadedContainer = new createjs.Container();
-
-    console.log("loadedImg.image", loadedImg.image);
-
-    if (loadedImg.image.naturalWidth > wBounds || loadedImg.image.naturalHeight > hBounds) {
-        var newDims = resizeToKnownDimensions(
-            loadedImg.image.naturalWidth,
-            loadedImg.image.naturalHeight,
-            wBounds,
-            hBounds
+        new BMP(
+            bmpConfig.src,
+            bmpConfig.bmpContainer,
+            bmpConfig.destX,
+            bmpConfig.destY,
+            bmpConfig.tw,
+            bmpConfig.th,
+            bmpConfig.callbackTrigger,
+            bmpConfig.callbackData,
+            bmpConfig.callbackFunc
         );
-
-        loadedImg.scaleX = newDims.scaleRatio;
-        loadedImg.scaleY = newDims.scaleRatio;
-        loadedContainer.setBounds(0, 0, newDims.newW, newDims.newH);
-    } else {
-        loadedContainer.setBounds(0, 0, loadedImg.image.naturalWidth, loadedImg.image.naturalHeight);
-    }
-
-    loadedContainer.addChild(loadedImg);
-
-    loadedImg.x = (w - loadedContainer.getBounds().width) / 2;
-    loadedImg.y = (h - loadedContainer.getBounds().height) / 2;
-
-    var fsURL = this.fullURL;
-
-    var boundBmp = toggleHidden.bind({ target: e.target.getBMP(), fullSize: fsURL });
-    loadedImg.addEventListener("click", boundBmp);
-
-    interactive_content.addChild(loadedImg);
-}
- */
-
-function packLoadArray() {
-    console.log(":::packLoadArray:::", loadedSliders.length);
-
-    var titleContainer = new createjs.Container();
-    var titleText = new createjs.Text(title, "72px Arial", "#00CCFF");
-    titleContainer.addChild(titleText);
-    var thumbsGalleryContainer = new createjs.Container();
-
-    for (var i = 0; i < loadedSliders.length; i++) {
-        /*
-        // thumbLoader is now the "thumbnailConfig"-- but the singleFileLoader instance needs to be made.
-        var singleFileLoader;
-        singleFileLoader = new SingleFileLoader();
-        this.bmp = new BMP(this.getRaw(), boundThang);
-        console.log(
-            "SRC: ",
-            window.location.search +
-                loadedSliders[i].thisThumbsUrl +
-                "/" +
-                loadedSliders[i].imgSrc.substring(0, loadedSliders[i].imgSrc.lastIndexOf(".")) +
-                "-t.png"
-        ); 
-        */
-
-        gridXCount = parseInt((w - generalPadding * 2) / (thumbW + generalPadding));
-
-        var thumbBMP, thumbBMPContainer, thumbBMPStandin, thumbBMPStandinShape;
-        thumbBMPContainer = new createjs.Container();
-        thumbBMP = new createjs.Container();
-        thumbBMPStandin = new createjs.Container();
-        thumbBMPStandinShape = new createjs.Shape();
-        thumbBMPStandinShape.graphics.beginFill("rgba(0,0,0,.25)").drawRect(0, 0, thumbW, thumbH);
-        thumbBMPStandin.setBounds(0, 0, thumbW, thumbH);
-        thumbBMPStandinShape.setBounds(0, 0, thumbW, thumbH);
-        thumbBMP.setBounds(0, 0, thumbW, thumbH);
-        thumbBMPStandin.addChild(thumbBMPStandinShape);
-        thumbBMP.addChild(thumbBMPStandin);
-
-        // TODO: can't do anymore -- missing two thumbnails!
-
-        thumbBMPContainer.addChild(thumbBMP);
-        thumbsGalleryContainer.addChild(thumbBMPContainer);
-        thumbBMP.x = (i % gridXCount) * (thumbW + generalPadding);
-
+        gridX += 1;
         if (gridX > gridXCount - 1) {
-            gridX = 1;
-            gridYCount += thumbH + generalPadding;
-        } else {
-            gridX++;
+            gridY += 1;
+            gridX = 0;
         }
-        thumbBMP.y = gridYCount + generalPadding;
-
-        var boundObj = { fullSizeImage: loadedSliders[i].fullURL, ID: loadedSliders[i].targetID };
-        var boundFunc = showFullSize.bind(boundObj);
-        // need to make slider objects at this Point  , and start with the rectangles that represent the thumbnails
-
-        var thmBMPConfig = {
-            thmURL:
-                window.location.search +
-                loadedSliders[i].thisThumbsUrl +
-                "/" +
-                loadedSliders[i].imgSrc.substring(0, loadedSliders[i].imgSrc.lastIndexOf(".")) +
-                "-t.png",
-            thmDestinationContainer: thumbBMP,
-            thmDestinationX: (i % gridXCount) * (thumbW + generalPadding * 0.67),
-            thmDestinationY: gridYCount + generalPadding,
-            thmDestinationW: thumbW,
-            thmDestinationH: thumbH,
-            thmInteractionType: "click",
-            thmInteractionContainer: boundObj,
-            thmHandler: boundFunc,
-        };
-
-        var thumbBMP = new BMP(
-            thmBMPConfig.thmURL,
-            thmBMPConfig.thmDestinationContainer,
-            thmBMPConfig.thmDestinationX,
-            thmBMPConfig.thmDestinationY,
-            thmBMPConfig.thmDestinationW,
-            thmBMPConfig.thmDestinationH,
-            thmBMPConfig.thmInteractionType,
-            thmBMPConfig.thmInteractionContainer,
-            thmBMPConfig.thmHandler
-        );
-
-        // loadedSliders[i].thumbLoader.loadFile({
-        //     id: loadedSliders[i].targetID,
-        //     crossOrigin: true,
-        //     src:
-        //         window.location.search +
-        //         loadedSliders[i].thisThumbsUrl +
-        //         "/" +
-        //         loadedSliders[i].imgSrc.substring(0, loadedSliders[i].imgSrc.lastIndexOf(".")) +
-        //         "-t.png",
-        // });
     }
-    thumbsGalleryContainer.setBounds(0, 0, w - thumbW, h - thumbH);
-    thumbsGalleryContainer.x = (w - thumbsGalleryContainer.getBounds().width + generalPadding * 2) / 2;
-    thumbsGalleryContainer.y = (h - thumbsGalleryContainer.getBounds().height + generalPadding * 2) / 2;
-    thumbsGalleryContainer.y += 65 + generalPadding;
+    subject_content.addChild(bmpContainer);
+}
 
-    titleContainer.setBounds(0, 0, titleText.getMetrics().width, titleText.getMetrics().height);
-    titleContainer.x = (w - titleContainer.getBounds().width) / 2;
-    titleContainer.y = generalPadding;
-    interactive_content.addChild(titleContainer);
+function hideFS(e) {
+    console.log("::: hideFS ::: ", e.target, this);
+    interactive_content.removeAllChildren();
+}
+function report(e) {
+    // full image src and title passed in as scope ("this")
+    //  console.log("::: report ::: ", e.target, this);
+    var fsContainer = new createjs.Container();
+    interactive_content.addChild(fsContainer);
+    var fsConfig = {
+        src: this.fsURL,
+        bmpContainer: fsContainer,
+        destX: 0,
+        destY: 0,
+        tw: w - generalPadding * 2,
+        th: h - generalPadding * 2,
+        callbackTrigger: "click",
+        callbackData: this.fsTitle,
+        callbackFunc: hideFS,
+    };
 
-    interactive_content.addChild(thumbsGalleryContainer);
+    var fsDisplay = new BMP(
+        fsConfig.src,
+        fsConfig.bmpContainer,
+        fsConfig.destX,
+        fsConfig.destY,
+        fsConfig.tw,
+        fsConfig.th,
+        fsConfig.callbackTrigger,
+        fsConfig.callbackData,
+        fsConfig.callbackFunc
+    );
 }
