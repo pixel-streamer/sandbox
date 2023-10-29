@@ -388,7 +388,7 @@ function getGoldenRatio(num) {
     return parseFloat(num / 1.618).toPrecision(3);
 }
 
-function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH, enlarge) {
+function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
     var containerAspect = constraintW / constraintH;
 
     var fullW = contentW;
@@ -397,45 +397,87 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH, e
     var aspect = fullW / fullH;
     var imageAspect;
 
+    var fullMax = Math.max(fullW, fullH);
+    var fullMin = Math.min(fullW, fullH);
+
+    var contentMax = Math.max(constraintW, constraintH);
+    var contentMin = Math.min(constraintW, constraintH);
+
     let newScaleRatio;
 
     imageAspect = aspect <= 1 ? "portrait" : "landscape";
 
-    newScaleRatio = contentH / contentW;
+    /*
+     if (aspect < 1 || aspect === 1) {
+        //use contentMin/fullMax
+        newScaleRatio = contentMin / fullMax;
+        contentW = fullW * newScaleRatio;
+        contentH = fullH * newScaleRatio;
+    } else if (aspect > 1) {
+        //use contentMax/fullMax unless the containerAspect is greater than aspect
+        var greater = Math.max(aspect, containerAspect);
+        if (greater === aspect) {
+            console.log("greater.... ASPECT!",aspect);
+            newScaleRatio = contentMax / fullMax;
+            contentW = fullW * newScaleRatio;
+            contentH = fullH * newScaleRatio;
+        } else {
+            console.log("greater.... CONTAINERASPECT!",containerAspect);
+            newScaleRatio = contentMin / fullMin;
+            contentW = fullW * newScaleRatio;
+            contentH = fullH * newScaleRatio;
+        }
+    } 
+    */
 
+    newScaleRatio = contentH / contentW;
+     
     contentW = fullW * newScaleRatio;
     contentH = fullH * newScaleRatio;
 
-    //could use some touch-up? still needs to be put through the whole battery
     if (fullW === fullH) {
         if (contentW > constraintW) {
-            // console.log("yeah, its ◘..SAME..◘");
+            console.log("yeah, its ◘..SAME..◘");
             newScaleRatio = constraintW / fullW;
             contentW = fullW * newScaleRatio;
             contentH = fullH * newScaleRatio;
         }
-    } else {
+    } 
+    else {
         if (contentW > constraintW) {
-            // console.log("yeah, its ◄◄..BIGGER..►► (than constraint)");
+            console.log("yeah, its ◄◄..BIGGER..►►");
             newScaleRatio = constraintW / fullW;
             contentW = fullW * newScaleRatio;
             contentH = fullH * newScaleRatio;
         }
-        if (contentH > constraintH) {
-            // console.log(" ██STILL██ ◄◄..BIGGER..►► (than constraint)");
+        if (contentH> constraintH) {
+             console.log(" ██STILL██ ◄◄..BIGGER..►►");
             newScaleRatio = constraintH / fullH;
             contentW = fullW * newScaleRatio;
             contentH = fullH * newScaleRatio;
         }
     }
-    var result;
-    result = {
+
+    var result = {
         imageAspect: imageAspect,
         aspect: containerAspect,
         scaleRatio: newScaleRatio,
         newW: contentW,
         newH: contentH,
     };
+
+    console.log(
+        "contentW",
+        contentW,
+        "contentH",
+        contentH,
+        "constraintW",
+        constraintW,
+        "constraintH",
+        constraintH,
+        result
+    );
+
     return result;
 }
 

@@ -119,5 +119,15 @@
 			title="childhood toys render"
 			src="toys.jpg"
 			thumbsrc="toys-t.png">childhood toys render</image>
+	<image
+			alt="22"
+			title="software wizard scheduling"
+			src="../software_wizard_art/wizard-schedule.jpg"
+			thumbsrc="wizard-schedule-t.gif">software wizard scheduling</image>
+	<image
+			alt="23"
+			title="software wizard scheduling"
+			src="../illustrations/frogcol.gif"
+			thumbsrc="frogcol-t.png">watercolor frog</image>
 	<!---->
 </renders>

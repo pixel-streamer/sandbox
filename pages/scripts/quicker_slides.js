@@ -1,26 +1,3 @@
-const cardflip_evt = new CustomEvent("cardflip_evt_evtStr", {
-    detail: { msg: ":::flip card" },
-});
-window.addEventListener("cardflip_evt_evtStr", cardEventHandler);
-function cardEventHandler(e) {
-    console.log("cardflip_evt was dispatched.... ", e.detail);
-}
-
-window.addEventListener("imageLoaded_evt_evtStr", imageLoadedHandler);
-function imageLoadedHandler(e) {
-    console.log("::: ◄►imageLoaded_evt_evtStr :::", e.detail);
-}
-
-var lastY = 0,
-    gridY = 0,
-    gridX = 0,
-    gridXCount = 0,
-    gridYCount = 0,
-    thumbW,
-    thumbH,
-    generalPadding = 0,
-    title;
-
 // class BMP extends createjs.Bitmap {
 class BMP extends createjs.LoadQueue {
     constructor(src, bmpContainer, destX, destY, tw, th, callbackTrigger, callbackData, callbackFunc) {
@@ -93,19 +70,28 @@ class BMP extends createjs.LoadQueue {
         this._loadedIMG = this.getResult(this._src);
         this._imgNatW = this._loadedIMG.naturalWidth;
         this._imgNatH = this._loadedIMG.naturalHeight;
-        var smaller = resizeToKnownDimensions(this._imgNatW, this._imgNatH, this._w, this._h);
+        var smaller = 0;
+        if (this._w >= w) {
+            console.log("too wide, make smaller", this._imgNatW);
+            smaller = resizeToKnownDimensions(this._imgNatW, this._imgNatH, w, h, true);
+        } else {
+            smaller = resizeToKnownDimensions(this._imgNatW, this._imgNatH, this._w, this._h, true);
+        }
+
         // console.log(this._imgNatW, this._imgNatH);
         this._bmp = new createjs.Bitmap(this._loadedIMG);
         // console.log(this._imgNatW, this._imgNatH);
         // console.log(this._imgNatW * smaller.scaleRatio + "," + this._imgNatH * smaller.scaleRatio);
 
         this.container.addChild(this._bmp);
-        // this.container.x = (this.loaderContainer.getBounds().width - this.container.getBounds().width) / 2;
-        // this.container.y =
-        //     (this.loaderContainer.getBounds().height - this.container.getBounds().height) / 2;
+        this.container.x = (this.loaderContainer.getBounds().width - this.container.getBounds().width) / 2;
+        this.container.y =
+            (this.loaderContainer.getBounds().height - this.container.getBounds().height) / 2;
 
         this.loaderContainer.scaleX = smaller.scaleRatio;
         this.loaderContainer.scaleY = smaller.scaleRatio;
+
+        // console.log("smaller.scaleRatio", smaller.scaleRatio, this._imgNatW * smaller.scaleRatio);
 
         this.home.addChild(this.loaderContainer);
         this.loaderContainer.x = this._destX;
@@ -114,10 +100,31 @@ class BMP extends createjs.LoadQueue {
         // console.log(this._destX, this._destY);
         this.home.x = (w - this.home.getBounds().width) / 2;
         this.home.y = (h - this.home.getBounds().height) / 2;
-        // this.home.x = (this._w - this.home.getBounds().width) / 2;
-        // this.home.y = (this._h - this.home.getBounds().height) / 2;
     }
 }
+
+const cardflip_evt = new CustomEvent("cardflip_evt_evtStr", {
+    detail: { msg: ":::flip card" },
+});
+window.addEventListener("cardflip_evt_evtStr", cardEventHandler);
+function cardEventHandler(e) {
+    console.log("cardflip_evt was dispatched.... ", e.detail);
+}
+
+window.addEventListener("imageLoaded_evt_evtStr", imageLoadedHandler);
+function imageLoadedHandler(e) {
+    console.log("::: ◄►imageLoaded_evt_evtStr :::", e.detail);
+}
+
+var lastY = 0,
+    gridY = 0,
+    gridX = 0,
+    gridXCount = 0,
+    gridYCount = 0,
+    thumbW,
+    thumbH,
+    generalPadding = 0,
+    title;
 
 /*
      ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -138,8 +145,8 @@ function loadAssets() {
 
     context.imageSmoothingEnabled = context.webkitImageSmoothingEnabled = context.mozImageSmoothingEnabled = true;
     // stage.snapToPixel = true;
-    console.log("stage", context);
-    console.log("playGame", "loadAssets");
+    // console.log("stage", context);
+    // console.log("playGame", "loadAssets");
 
     fileLoader = new createjs.LoadQueue(true);
     fileLoader.on("complete", handle_OLD_MAP_LOAD);
@@ -173,7 +180,7 @@ function handle_OLD_MAP_LOAD(e) {
     var smallList = renders.getElementsByTagName("image");
     var thumbnailConfig = renders.getElementsByTagName("thumb_config")[0];
     var general_config = e.target.getResult("renders").getElementsByTagName("general_config")[0];
-    generalPadding = parseInt(general_config.attributes.padding.value);
+    generalPadding = parseInt(general_config.attributes.padding.value) * 0.67;
     thumbW = parseInt(thumbnailConfig.attributes.w.value);
     thumbH = parseInt(thumbnailConfig.attributes.h.value);
     var paddedTW = parseInt(thumbW + generalPadding);
@@ -207,7 +214,7 @@ function handle_OLD_MAP_LOAD(e) {
                 fsURL: window.location.search + renderUrl + "/" + smallList[i].attributes.src.value,
                 fsTitle: smallList[i].attributes.title.value,
             },
-            callbackFunc: report,
+            callbackFunc: populateFullSize,
         };
         new BMP(
             bmpConfig.src,
@@ -235,21 +242,30 @@ function hideFS(e) {
     createjs.Tween.get(e.target).to({ alpha: 0, visible: false }, 135).call(completeBound);
 }
 function tweenComplete(e) {
-    console.log("::: tweenComplete ::: ", e, e.target, this);
+    // console.log("::: tweenComplete ::: ", e, e.target, this);
     interactive_content.removeAllChildren();
 }
-function report(e) {
+function populateFullSize(e) {
     // full image src and title passed in as scope ("this")
-    //  console.log("::: report ::: ", e.target, this);
+    //   console.log("::: populateFullSize ::: ", e.target, this);
     var fsContainer = new createjs.Container();
+
+    var targW = w - generalPadding * 2;
+    var targH = h - generalPadding * 2;
+
+    // var fsContainerBG = new createjs.Shape();
+    // fsContainerBG.graphics.beginFill("rgba(128, 0, 255,.25)").drawRect(0, 0, targW, targH).endFill();
+    // fsContainerBG.setBounds(0, 0, targW, targH);
+    // fsContainer.addChild(fsContainerBG);
+
     interactive_content.addChild(fsContainer);
     var fsConfig = {
         src: this.fsURL,
         bmpContainer: fsContainer,
         destX: 0,
         destY: 0,
-        tw: w - generalPadding * 2,
-        th: h - generalPadding * 2,
+        tw: targW,
+        th: targH,
         callbackTrigger: "click",
         callbackData: this.fsTitle,
         callbackFunc: hideFS,
