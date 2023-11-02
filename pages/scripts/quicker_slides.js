@@ -22,17 +22,15 @@ class BMP extends createjs.LoadQueue {
         this.container = new createjs.Container();
         this.indicator = new createjs.Container();
         this.indicator_bar = new createjs.Shape();
-        // this.indicatorText = new createjs.Text("loading:", "8px Arial", "#ffcc00");
         this.indicator.addChild(this.indicator_bar);
         this.container.addChild(this.indicator);
         this.loaderContainer.addChild(this.container);
         this.home.addChild(this.loaderContainer);
-        // this.home.addChild(this.indicatorText);
         this.indicator_bar.graphics.beginFill("#450067").drawRect(0, 0, this._w, 6);
         this.indicator.setBounds(0, 0, this._w, 6);
         this.indicator_bar.scaleX = 0;
         this.loadFile(this._src);
-        // this._bmp = new createjs.Bitmap(this._src);
+        this.container.setBounds(0, 0, this._w, this._h);
         this.instance.on("fileload", this.handleFileLoad);
         this.instance.on("progress", this.handleFileProgress);
         this.instance.on("complete", this.loadComplete);
@@ -52,8 +50,6 @@ class BMP extends createjs.LoadQueue {
         this._progress = (this.instance.progress * 100) | 0;
         // console.log("\thandleFileProgress", this._progress + " % Loaded");
         this.indicator_bar.scaleX = this.instance.progress;
-        // console.log(" this._progress", this._progress);
-        // this.indicatorText.text = this._progress + " % Loaded";
         stage.update();
     }
     loadComplete(e) {
@@ -72,35 +68,20 @@ class BMP extends createjs.LoadQueue {
         this._imgNatH = this._loadedIMG.naturalHeight;
         var smaller = 0;
         if (this._w >= w) {
-            console.log("too wide, make smaller", this._imgNatW);
             smaller = resizeToKnownDimensions(this._imgNatW, this._imgNatH, w, h, true);
         } else {
             smaller = resizeToKnownDimensions(this._imgNatW, this._imgNatH, this._w, this._h, true);
         }
-
-        // console.log(this._imgNatW, this._imgNatH);
         this._bmp = new createjs.Bitmap(this._loadedIMG);
-
-        // console.log(this._imgNatW * smaller.scaleRatio + "," + this._imgNatH * smaller.scaleRatio);
-
         this.container.addChild(this._bmp);
-
         this._bmp.scaleX = smaller.scaleRatio;
         this._bmp.scaleY = smaller.scaleRatio;
         this._bmp.setBounds(0, 0, this._imgNatW * smaller.scaleRatio, this._imgNatH * smaller.scaleRatio);
-
         this._bmp.x = (this._w - this._bmp.getBounds().width) / 2;
         this._bmp.y = (this._h - this._bmp.getBounds().height) / 2;
-
-        this.container.setBounds(0, 0, this._w, this._h);
-
-        // console.log("smaller.scaleRatio", smaller.scaleRatio, this._imgNatW * smaller.scaleRatio);
-
         this.home.addChild(this.loaderContainer);
         this.loaderContainer.x = this._destX;
         this.loaderContainer.y = this._destY;
-
-        // console.log(this._destX, this._destY);
         this.home.x = (w - this.home.getBounds().width) / 2;
         this.home.y = (h - this.home.getBounds().height) / 2;
     }
@@ -191,7 +172,7 @@ function handle_THUMBNAIL_POPULATE(e) {
     var gridXCount = parseInt((w - generalPadding) / paddedTW);
 
     var bmpContainer = new createjs.Container();
-    // var bmpContainerBG = new createjs.Shape(); 
+    // var bmpContainerBG = new createjs.Shape();
     // bmpContainerBG.graphics
     //     .beginFill("rgba(0, 128, 255,.25)")
     //     .drawRect(
