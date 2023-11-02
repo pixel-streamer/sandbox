@@ -415,6 +415,13 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
     contentH = contentH * newScaleRatio;
     if (imageAspect === constraintAspect) {
         //DO NOTHING
+        if (contentW > constraintW || contentH > constraintH) {
+            // console.log(" ██STILL██ ◄◄..BIGGER..►► (than constraint)");
+            newCMax = Math.max(contentW, contentH);
+            newScaleRatio = constraintMin / contentMax;
+            contentW = fullW * newScaleRatio;
+            contentH = fullH * newScaleRatio;
+        }
     } else {
         if (contentW > constraintW || contentH > constraintH) {
             // console.log(" ██STILL██ ◄◄..BIGGER..►► (than constraint)");

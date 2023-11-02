@@ -85,12 +85,6 @@ class BMP extends createjs.LoadQueue {
 
         this.container.addChild(this._bmp);
 
-        // this.container.x = (this.loaderContainer.getBounds().width - this.container.getBounds().width) / 2;
-        // this.container.y = (this.loaderContainer.getBounds().height - this.container.getBounds().height) / 2;
-
-        // this.loaderContainer.scaleX = smaller.scaleRatio;
-        // this.loaderContainer.scaleY = smaller.scaleRatio;
-
         this._bmp.scaleX = smaller.scaleRatio;
         this._bmp.scaleY = smaller.scaleRatio;
         this._bmp.setBounds(0, 0, this._imgNatW * smaller.scaleRatio, this._imgNatH * smaller.scaleRatio);
@@ -158,7 +152,7 @@ function loadAssets() {
     // console.log("playGame", "loadAssets");
 
     fileLoader = new createjs.LoadQueue(true);
-    fileLoader.on("complete", handle_OLD_MAP_LOAD);
+    fileLoader.on("complete", handle_THUMBNAIL_POPULATE);
 
     big_map = document.querySelector("#big_map");
 
@@ -179,8 +173,8 @@ function loadAssets() {
      ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ END OF IMAGE LOAD FUNCTIONS ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
      */
 
-function handle_OLD_MAP_LOAD(e) {
-    console.log(":::handle_OLD_MAP_LOAD:::");
+function handle_THUMBNAIL_POPULATE(e) {
+    console.log(":::handle_THUMBNAIL_POPULATE:::");
     var smallListArr = [];
     var renders = e.target.getResult("renders");
     var renderUrl = renders.firstChild.attributes.url.value;
@@ -197,18 +191,17 @@ function handle_OLD_MAP_LOAD(e) {
     var gridXCount = parseInt((w - generalPadding) / paddedTW);
 
     var bmpContainer = new createjs.Container();
-    var bmpContainerBG = new createjs.Shape();
-
-    bmpContainerBG.graphics
-        .beginFill("rgba(0, 128, 255,.25)")
-        .drawRect(
-            0,
-            0,
-            paddedTW * gridXCount - generalPadding,
-            parseInt(Math.ceil(smallList.length / gridXCount) * paddedTH - generalPadding * 1)
-        )
-        .endFill();
-    bmpContainer.addChild(bmpContainerBG);
+    // var bmpContainerBG = new createjs.Shape(); 
+    // bmpContainerBG.graphics
+    //     .beginFill("rgba(0, 128, 255,.25)")
+    //     .drawRect(
+    //         0,
+    //         0,
+    //         paddedTW * gridXCount - generalPadding,
+    //         parseInt(Math.ceil(smallList.length / gridXCount) * paddedTH - generalPadding * 1)
+    //     )
+    //     .endFill();
+    // bmpContainer.addChild(bmpContainerBG);
 
     for (var i = 0; i < smallList.length; i++) {
         var bmpConfig = {
@@ -266,6 +259,8 @@ function populateFullSize(e) {
     // fsContainerBG.graphics.beginFill("rgba(128, 0, 255,.25)").drawRect(0, 0, targW, targH).endFill();
     // fsContainerBG.setBounds(0, 0, targW, targH);
     // fsContainer.addChild(fsContainerBG);
+
+    tweenComplete(); //--hides any displayed fullsize
 
     interactive_content.addChild(fsContainer);
     var fsConfig = {
