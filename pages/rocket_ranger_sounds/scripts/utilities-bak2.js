@@ -392,16 +392,17 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
     var containerAspect = constraintW / constraintH,
         fullW = contentW,
         fullH = contentH,
-        aspect = contentW / contentH,
+        aspect = fullW / fullH,
         imageAspect,
         constraintRatio = constraintW / constraintH,
         constraintAspect,
         newScaleRatio,
-        contentMax,
+        fullMax,
+        newCMax,
         constraintMin,
         constraintMax;
 
-    contentMax = Math.max(contentW, contentH);
+    fullMax = Math.max(fullW, fullH);
     constraintMax = Math.max(constraintW, constraintH);
     constraintMin = Math.min(constraintW, constraintH);
 
@@ -410,22 +411,89 @@ function resizeToKnownDimensions(contentW, contentH, constraintW, constraintH) {
     aspect === 1 ? (imageAspect = "square") : (imageAspect = imageAspect);
     constraintRatio === 1 ? (constraintAspect = "square") : (constraintAspect = constraintAspect);
 
-    newScaleRatio = constraintMax / contentMax;
-    contentW = contentW * newScaleRatio;
-    contentH = contentH * newScaleRatio;
+    newScaleRatio = constraintMax / fullMax;
+    contentW = fullW * newScaleRatio;
+    contentH = fullH * newScaleRatio;
     if (imageAspect === constraintAspect) {
         //DO NOTHING
     } else {
         if (contentW > constraintW || contentH > constraintH) {
             // console.log(" ██STILL██ ◄◄..BIGGER..►► (than constraint)");
             newCMax = Math.max(contentW, contentH);
-            newScaleRatio = constraintMin / contentMax;
+            newScaleRatio = constraintMin / fullMax;
             contentW = fullW * newScaleRatio;
             contentH = fullH * newScaleRatio;
         }
     }
 
+    /* 
+    // newCMax = Math.max(contentW, contentH);
+
+    // if (newCMax < constraintMax) {
+    //     newScaleRatio = newCMax / constraintMax;
+    //     contentW = fullW * newScaleRatio;
+    //     contentH = fullH * newScaleRatio;
+    // }
+
+      if (fullW === fullH) {
+        if (contentW > constraintW) {
+            console.log("yeah, its ◘..SAME..◘");
+            newScaleRatio = constraintW / fullW;
+            contentW = fullW * newScaleRatio;
+            contentH = fullH * newScaleRatio;
+        }
+        if (contentH > constraintH) { 
+            console.log("yeah, its ◘..height is larger than constraint..◘");
+            newScaleRatio = constraintH / fullH;
+            contentW = fullW * newScaleRatio;
+            contentH = fullH * newScaleRatio;
+        }
+    } 
+    else {
+        if (contentW > constraintW) {
+            console.log("yeah, its ◄◄..BIGGER..►► (than constraint)");
+            newScaleRatio = constraintW / fullW;
+            contentW = fullW * newScaleRatio;
+            contentH = fullH * newScaleRatio;
+        }
+        if (contentH > constraintH) {
+            console.log(" ██STILL██ ◄◄..BIGGER..►► (than constraint)");
+            newScaleRatio = constraintH / fullH;
+            contentW = fullW * newScaleRatio;
+            contentH = fullH * newScaleRatio;
+        }
+    } */
     var result;
+
+    // if (contentW > constraintW || contentH > constraintH) {
+    // console.log("yeah boss, it's still ΦTOO BIG↑ ");
+    switch (imageAspect) {
+        case "square":
+            // console.log("imageAspect █..square..█");
+            break;
+        case "portrait":
+            // console.log("imageAspect ▓..portrait..▓");
+            break;
+        case "landscape":
+            // console.log("imageAspect ╔===╗..landscape..╔===╗");
+            break;
+        default:
+            break;
+    }
+    switch (constraintAspect) {
+        case "square":
+            // console.log("constraintAspect █..square..█");
+            break;
+        case "portrait":
+            // console.log("constraintAspect ▓..portrait..▓");
+            break;
+        case "landscape":
+            // console.log("constraintAspect ╔===╗..landscape..╔===╗");
+            break;
+        default:
+            break;
+    }
+    // }
 
     result = {
         imageAspect: imageAspect,

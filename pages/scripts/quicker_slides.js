@@ -80,16 +80,25 @@ class BMP extends createjs.LoadQueue {
 
         // console.log(this._imgNatW, this._imgNatH);
         this._bmp = new createjs.Bitmap(this._loadedIMG);
-        // console.log(this._imgNatW, this._imgNatH);
+
         // console.log(this._imgNatW * smaller.scaleRatio + "," + this._imgNatH * smaller.scaleRatio);
 
         this.container.addChild(this._bmp);
-        this.container.x = (this.loaderContainer.getBounds().width - this.container.getBounds().width) / 2;
-        this.container.y =
-            (this.loaderContainer.getBounds().height - this.container.getBounds().height) / 2;
 
-        this.loaderContainer.scaleX = smaller.scaleRatio;
-        this.loaderContainer.scaleY = smaller.scaleRatio;
+        // this.container.x = (this.loaderContainer.getBounds().width - this.container.getBounds().width) / 2;
+        // this.container.y = (this.loaderContainer.getBounds().height - this.container.getBounds().height) / 2;
+
+        // this.loaderContainer.scaleX = smaller.scaleRatio;
+        // this.loaderContainer.scaleY = smaller.scaleRatio;
+
+        this._bmp.scaleX = smaller.scaleRatio;
+        this._bmp.scaleY = smaller.scaleRatio;
+        this._bmp.setBounds(0, 0, this._imgNatW * smaller.scaleRatio, this._imgNatH * smaller.scaleRatio);
+
+        this._bmp.x = (this._w - this._bmp.getBounds().width) / 2;
+        this._bmp.y = (this._h - this._bmp.getBounds().height) / 2;
+
+        this.container.setBounds(0, 0, this._w, this._h);
 
         // console.log("smaller.scaleRatio", smaller.scaleRatio, this._imgNatW * smaller.scaleRatio);
 
