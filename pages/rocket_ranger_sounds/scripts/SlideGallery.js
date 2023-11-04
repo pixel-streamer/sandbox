@@ -1085,6 +1085,95 @@ Object.defineProperty(SimpleImage.prototype, "_imageOnDisplay", {
     },
     configurable: true,
 });
+
+// class BMP SHOULD EXTEND createjs.Bitmap, BUT NO PROGRESS METER THAT WAY
+class BMP extends createjs.LoadQueue {
+    constructor(src, bmpContainer, destX, destY, tw, th, callbackTrigger, callbackData, callbackFunc) {
+        // THIS BMP LOADER IS DEFINITELY FOR ONLY A SINGLE IMAGE.
+        super(true);
+        this._w = tw;
+        this._h = th;
+        this._destX = destX;
+        this._destY = destY;
+        this._src = src;
+        this._progress = 0;
+        this.instance = this;
+        this._loadedIMG = null;
+        this._imgNatW = 0;
+        this._imgNatH = 0;
+        this.isPopulatedLater = false;
+        this.callbackTrigger = callbackTrigger;
+        this.callbackData = callbackData;
+        this.callbackFunc = callbackFunc;
+        this.home = bmpContainer;
+        this.loaderContainer = new createjs.Container();
+        this.container = new createjs.Container();
+        this.indicator = new createjs.Container();
+        this.indicator_bar = new createjs.Shape();
+        this.indicator.addChild(this.indicator_bar);
+        this.container.addChild(this.indicator);
+        this.loaderContainer.addChild(this.container);
+        this.home.addChild(this.loaderContainer);
+        this.indicator_bar.graphics.beginFill("#450067").drawRect(0, 0, this._w, 6);
+        this.indicator.setBounds(0, 0, this._w, 6);
+        this.indicator_bar.scaleX = 0;
+        this.loadFile(this._src);
+        this.container.setBounds(0, 0, this._w, this._h);
+        this.instance.on("fileload", this.handleFileLoad);
+        this.instance.on("progress", this.handleFileProgress);
+        this.instance.on("complete", this.loadComplete);
+        this.instance.on("error", this.loadError);
+        var boundObj = this.callbackData;
+        var callbackFunc = this.callbackFunc;
+        var binded = callbackFunc.bind(boundObj);
+        this.container.addEventListener(this.callbackTrigger, binded);
+    }
+    getBMP() {
+        return this._bmp;
+    }
+    handleFileLoad(e) {
+        // console.log(this._src.substring(this._src.lastIndexOf("/") + 1));
+    }
+    handleFileProgress(e) {
+        this._progress = (this.instance.progress * 100) | 0;
+        // console.log("\thandleFileProgress", this._progress + " % Loaded");
+        this.indicator_bar.scaleX = this.instance.progress;
+        stage.update();
+    }
+    loadComplete(e) {
+        // console.log("\t☺ loadComplete", this._progress + " % Loaded");
+        this._progress = (this.instance.progress * 100) | 0;
+        this.indicator.visible = false;
+        this.popBMP();
+    }
+    loadError(e) {
+        console.log(":::::loadError");
+    }
+    popBMP() {
+        // console.log(":::::popBMP", this._src);
+        this._loadedIMG = this.getResult(this._src);
+        this._imgNatW = this._loadedIMG.naturalWidth;
+        this._imgNatH = this._loadedIMG.naturalHeight;
+        var smaller = 0;
+        if (this._w >= w) {
+            smaller = resizeToKnownDimensions(this._imgNatW, this._imgNatH, w, h, true);
+        } else {
+            smaller = resizeToKnownDimensions(this._imgNatW, this._imgNatH, this._w, this._h, true);
+        }
+        this._bmp = new createjs.Bitmap(this._loadedIMG);
+        this.container.addChild(this._bmp);
+        this._bmp.scaleX = smaller.scaleRatio;
+        this._bmp.scaleY = smaller.scaleRatio;
+        this._bmp.setBounds(0, 0, this._imgNatW * smaller.scaleRatio, this._imgNatH * smaller.scaleRatio);
+        this._bmp.x = (this._w - this._bmp.getBounds().width) / 2;
+        this._bmp.y = (this._h - this._bmp.getBounds().height) / 2;
+        this.home.addChild(this.loaderContainer);
+        this.loaderContainer.x = this._destX;
+        this.loaderContainer.y = this._destY;
+        this.home.x = (w - this.home.getBounds().width) / 2;
+        this.home.y = (h - this.home.getBounds().height) / 2;
+    }
+}
 Math.radians = function (degrees) {
     return (degrees * Math.PI) / 180;
 };
@@ -1138,91 +1227,3 @@ function buildUI() {
     uiFrag.appendChild(main);
     document.querySelector("#gallery").appendChild(uiFrag);
 }
-// class BMP SHOULD EXTEND createjs.Bitmap, BUT NO PROGRESS METER THAT WAY
-    class BMP extends createjs.LoadQueue {
-        constructor(src, bmpContainer, destX, destY, tw, th, callbackTrigger, callbackData, callbackFunc) {
-            // THIS BMP LOADER IS DEFINITELY FOR ONLY A SINGLE IMAGE.
-            super(true);
-            this._w = tw;
-            this._h = th;
-            this._destX = destX;
-            this._destY = destY;
-            this._src = src;
-            this._progress = 0;
-            this.instance = this;
-            this._loadedIMG = null;
-            this._imgNatW = 0;
-            this._imgNatH = 0;
-            this.isPopulatedLater = false;
-            this.callbackTrigger = callbackTrigger;
-            this.callbackData = callbackData;
-            this.callbackFunc = callbackFunc;
-            this.home = bmpContainer;
-            this.loaderContainer = new createjs.Container();
-            this.container = new createjs.Container();
-            this.indicator = new createjs.Container();
-            this.indicator_bar = new createjs.Shape();
-            this.indicator.addChild(this.indicator_bar);
-            this.container.addChild(this.indicator);
-            this.loaderContainer.addChild(this.container);
-            this.home.addChild(this.loaderContainer);
-            this.indicator_bar.graphics.beginFill("#450067").drawRect(0, 0, this._w, 6);
-            this.indicator.setBounds(0, 0, this._w, 6);
-            this.indicator_bar.scaleX = 0;
-            this.loadFile(this._src);
-            this.container.setBounds(0, 0, this._w, this._h);
-            this.instance.on("fileload", this.handleFileLoad);
-            this.instance.on("progress", this.handleFileProgress);
-            this.instance.on("complete", this.loadComplete);
-            this.instance.on("error", this.loadError);
-            var boundObj = this.callbackData;
-            var callbackFunc = this.callbackFunc;
-            var binded = callbackFunc.bind(boundObj);
-            this.container.addEventListener(this.callbackTrigger, binded);
-        }
-        getBMP() {
-            return this._bmp;
-        }
-        handleFileLoad(e) {
-            // console.log(this._src.substring(this._src.lastIndexOf("/") + 1));
-        }
-        handleFileProgress(e) {
-            this._progress = (this.instance.progress * 100) | 0;
-            // console.log("\thandleFileProgress", this._progress + " % Loaded");
-            this.indicator_bar.scaleX = this.instance.progress;
-            stage.update();
-        }
-        loadComplete(e) {
-            // console.log("\t☺ loadComplete", this._progress + " % Loaded");
-            this._progress = (this.instance.progress * 100) | 0;
-            this.indicator.visible = false;
-            this.popBMP();
-        }
-        loadError(e) {
-            console.log(":::::loadError");
-        }
-        popBMP() {
-            // console.log(":::::popBMP", this._src);
-            this._loadedIMG = this.getResult(this._src);
-            this._imgNatW = this._loadedIMG.naturalWidth;
-            this._imgNatH = this._loadedIMG.naturalHeight;
-            var smaller = 0;
-            if (this._w >= w) {
-                smaller = resizeToKnownDimensions(this._imgNatW, this._imgNatH, w, h, true);
-            } else {
-                smaller = resizeToKnownDimensions(this._imgNatW, this._imgNatH, this._w, this._h, true);
-            }
-            this._bmp = new createjs.Bitmap(this._loadedIMG);
-            this.container.addChild(this._bmp);
-            this._bmp.scaleX = smaller.scaleRatio;
-            this._bmp.scaleY = smaller.scaleRatio;
-            this._bmp.setBounds(0, 0, this._imgNatW * smaller.scaleRatio, this._imgNatH * smaller.scaleRatio);
-            this._bmp.x = (this._w - this._bmp.getBounds().width) / 2;
-            this._bmp.y = (this._h - this._bmp.getBounds().height) / 2;
-            this.home.addChild(this.loaderContainer);
-            this.loaderContainer.x = this._destX;
-            this.loaderContainer.y = this._destY;
-            this.home.x = (w - this.home.getBounds().width) / 2;
-            this.home.y = (h - this.home.getBounds().height) / 2;
-        }
-    }
