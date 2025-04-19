@@ -1,0 +1,220 @@
+html {
+	font: normal normal 16px/150% "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+h1 {
+	line-height: 90%;
+	margin: 0 0 0.5em 0;
+	padding: 0;
+}
+h2 {
+	line-height: 90%;
+	margin: 0 0 0.5em 0;
+	padding: 0;
+}
+h3 {
+	line-height: 90%;
+	margin: 0 0 0.5em 0;
+	padding: 0;
+}
+h4 {
+	line-height: 90%;
+	margin: 0 0 0.5em 0;
+	padding: 0;
+}
+h5:before {
+	color: red;
+	display: block; /* \n doesn't work, and nobody has the time...  */
+	content: "if this isn't a caption heading, you may want to resize up.";
+}
+h5 {
+	line-height: 90%;
+	margin: 0 0 0.5em 0;
+	padding: 0;
+}
+h6:before {
+	color: red;
+	display: block; /* \n doesn't work, and nobody has the time...  */
+	content: "if this isn't a footnote heading, you may want to resize two up (h4).";
+}
+h6 {
+	line-height: 90%;
+	margin: 0 0 0.5em 0;
+	padding: 0;
+}
+body {
+	font: 1em inherit;
+} 
+.headline {
+	font-size: 1.3em;
+	font-style: normal;
+	text-align: left;
+}
+.href {
+	color: #2558cc;
+}
+.listing_house {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+div.main ol li {
+	margin-bottom: 1em;
+}
+body {
+	/* display: flex; */ /* flex-direction: row; */
+}
+div.main {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+}
+.href {
+	display: flex;
+	justify-content: space-between;
+}
+.video_link a span {
+	position: relative;
+	display: inline-flex;
+	flex-direction: row;
+	flex-basis: 100%;
+	justify-content: space-between;
+}
+.video_link a span::after {
+}
+.video_link a span img {
+	margin-left: 1em;
+	display: block;
+}
+.video_link a span img::after {
+	content: " ";
+	display: block;
+	width: 100%;
+	float: none;
+	clear: both;
+}
+div.link {
+	margin-bottom: 1em;
+}
+div.link img {
+	max-width: 10vw;
+	min-width: 125px;
+	float: left;
+	margin-right: 1em;
+}
+
+div.video_link {
+	margin-bottom: 1em;
+	text-transform: uppercase;
+	/* flex-direction: row; */
+}
+div.video_link img {
+	max-width: 10vw;
+	min-width: 125px;
+}
+@media (min-width: 960px) {
+	/* //nothing with screen size bigger than 960px*/
+	div.main {
+		margin: auto;
+		width: 90vw;
+		max-width: 1280px;
+		max-height: 100%;
+	}
+}
+@media (min-width: 640px) {
+	/*//nothing with screen size smaller than 960px*/
+	div.main {
+		margin: auto;
+		width: 65vw;
+	}
+}
+
+hr,
+.page_break {
+	width: 100%;
+	margin-bottom: 3px;
+	border: 3px solid #e6e5e5;
+}
+hr {
+	width: calc(100% - 2em);
+}
+.frag_list_pos {
+	/* set  in script below */
+	position: relative;
+}
+.frag_list {
+	/* set  in script below */
+	background: rgba(0, 0, 0, 0.85);
+	position: absolute;
+	left: 0;
+	right: 0;
+
+	display: flex;
+	flex-direction: column;
+	max-width: 85vw;
+}
+.frag_list a {
+	flex-basis: 125px;
+	margin-bottom: 1em;
+	color: #ffffff !important;
+}
+.frag_list a span {
+	display: block;
+	flex-basis: 1vw;
+}
+.frag_list h3 {
+	color: #ffffff !important;
+}
+.hidden {
+	display: none;
+}
+p.quoted {
+	box-sizing: content-box;
+	padding: 1px;
+	padding-left: 3em;
+	padding-right: 3em;
+	max-width: 80%;
+	margin: auto;
+	/* clear: both; */
+	margin-bottom: 2em;
+}
+p.quoted .quote_attrib {
+	float: right;
+}
+p.quoted .quote_attrib::after {
+	content: " ";
+	clear: both;
+}
+.link img {
+	max-width: 250px;
+	max-height: 250px;
+}
+.link p::after,
+p.quoted::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#cloud_area.anchor_tags,
+.frag_list {
+	z-index: 43633576;
+}
+.inset_img_container {
+	display: inline;
+	float: left;
+}
+.inset_img_container::before {
+	content: "";
+	display: inline-block;
+	clear: both;
+}
+.inset_img_container::after {
+	display: inline-block;
+	content: "";
+	clear: both;
+}
+a.inset_img_container {
+	text-decoration: none;
+}

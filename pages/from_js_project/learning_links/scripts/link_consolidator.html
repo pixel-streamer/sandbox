@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Link_Consolidator</title> 
+		<script src="./link_consolidator_script.js"></script>
+		  <!-- <script src="./learning_links_script.js"></script>  -->
+		<style> 
+            dialog {
+                /* background: #450067; */
+                text-align: center;
+                background: transparent;
+                color: white;
+                font-style: normal;
+                font-weight: bold;
+                border: 3px solid #ffc400;
+                border-radius: 1em;
+                width: calc(100vw - 12%);
+                height: calc(100vh - 12%);
+                /* overflow: auto; */
+                /* padding: 5%; */
+                /* box-sizing: border-box; */
+            }
+
+            .main button{
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+
+            dialog::backdrop {
+                background:var(--whole_bg_url);
+                /* background-image:var(--whole_bg_url); */
+                /* background: url("https://placecats.com/neo_banana/800/800%22"); */
+                backdrop-filter: blur(6px) saturate(20%);
+            }
+            .dialog_button {
+                margin: 1em;
+                margin-top: 1em;
+            }
+            #user_input {
+                max-width: 88cqw;
+                /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries */
+            }
+		</style>
+	</head>
+	<body>
+		<div
+			id="link_consolidator"
+			class="main">
+			<div id="input_area"></div>
+			<div id="output_area"></div>
+
+			<dialog
+				class="main_dialog"
+				id="main_dialog">
+				<form method="dialog">
+					<p>
+						<label>
+							Favorite animal:
+							<select>
+								<option value="default">Choose…</option>
+								<option>Brine shrimp</option>
+								<option>Red panda</option>
+								<option>Spider monkey</option>
+							</select>
+						</label>
+					</p>
+					<!-- <div>
+                        <button id="cancel" type="reset">Cancel</button>
+                        <button id="submit" type="submit">Confirm</button>
+                      </div> -->
+				</form>
+			</dialog>
+
+			<button id="updateDetails">Click To Enter Data</button>
+			<!-- <button id="verify_results">Verify Results</button> -->
+		</div>
+		<img
+			id="dialog_bg"
+			src="https://placecats.com/neo_banana/800/800%22"
+			alt="placed kitten"
+			style="display: none;" />
+	</body>
+</html>

@@ -1,0 +1,81 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Format Links for Learning Utilities</title>
+
+		<link
+			rel="stylesheet"
+			href="./styles/learning_link_styles.css" />
+		<script src="./scripts/learning_links_script.js"></script>
+	</head>
+	<body>
+		<a
+			href="./__index_learning_links.html"
+			class="link">
+			Go Back To Listings
+		</a>
+		<div
+			id="main"
+			class="main utils">
+			<p>
+				drag a link from the net (or youtube) into the area indicated below, and this will generate html (video_link
+				div) below.
+			</p>
+			<div>
+				<button id="btn_reset">RESET INTERFACE?</button>
+			</div>
+
+			<div>
+				<input
+					type="text"
+					id="link_description"
+					placeholder="anchor description content" />
+				<label for="link_description">TextContent</label>
+			</div>
+
+			<div>
+				<input
+					type="text"
+					id="link_title"
+					placeholder="link title" />
+				<label for="link_title">Title</label>
+			</div>
+
+			<div>
+				<input
+					type="text"
+					id="link_img_src"
+					placeholder="link image source" />
+				<label for="link_img_src">Image Source</label>
+			</div>
+
+			<label for="page_link">Drop Link Here:</label>
+			<textarea
+				id="page_link"
+				name="page_link"
+				cols="30"
+				rows="3"
+				placeholder="drop a link here. (it's assumed this is a youtube link with a valid v= option, or embed)"></textarea>
+
+			<textarea
+				id="output_link"
+				name="output_link"
+				cols="30"
+				rows="4"
+				placeholder="here's the output as html text."></textarea>
+
+			<div id="output_area"></div>
+			<textarea
+				id="output_accumulation_area"
+				name="output_accumulation_area"
+				cols="30"
+				rows="10"
+				placeholder="all the accumulated output text as formatted"></textarea>
+		</div>
+
+		<div id="console_log"></div>
+	</body>
+</html>

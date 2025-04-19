@@ -1,0 +1,388 @@
+/* @import url("https://fonts.googleapis.com/css?family=Micro+5&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css?family=Pixelify+Sans&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css?family=Silkscreen&display=swap");  */
+/* @import url("https://fonts.googleapis.com/css?family=VT323&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css?family=DotGothic16&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css?family=Jersey+10&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css?family=Tiny5&display=swap");  */
+@import url("https://fonts.googleapis.com/css?family=Khand&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Handjet&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Oswald&display=swap");
+
+/* @import url("./OLD-learning_link_styles.css"); */
+
+/* Micro 5 --retro feel, font-styles more difficult to discern*/
+/* Pixelify Sans --nice, youthful, feminine, font-styles more difficult to discern */
+/* Press Start 2P --monospace font, large letters, bold is hard to discern.*/
+/* Silkscreen -domineering all-caps, bold is hard to discern.*/
+/* Handjet - narrow, "light" feel, font-styles very discernible*/
+/* VT323 -- overall bold but retro feel, font-styles more difficult to discern*/
+/* DotGothic16 -- sloppy; spacing is inconsistent*/
+/* Jersey 10 -- futuristic, compact, font-styles more difficult to discern */
+/* Tiny5 -- fat, compact, cell-phone-looking font. You can easily discern font-styles*/
+
+/*
+#placeholder_comments {
+background: url("https://placecats.com/neo_banana/100/100%22");
+background: url("https://lumiere-a.akamaihd.net/v1/images/sa_pixar_virtualbg_coco_16x9_9ccd7110.jpeg");
+}
+*/
+
+/* learning links styles */
+
+/* 
+!!!!!!!!!!!!!!!!! MAIN PAGE HAS IN-LINE STYLES WITH NOTE
+*/
+
+/*BELOW ARE STYLES FROM THE MODULAR PAGE THING-- THEY SHOULD OVERRIDE PREVIOUS ONES JUST FINE,
+-- BUT-- THEY DON'T */
+
+:root {
+	--whole_bg_url: "";
+	--bg_color: #450067;
+	--bg_color: #220033;
+	/* --bg_color: #FFFFFF;   */
+	--bold_font_color: #ffffff;
+	--emphasis_font_color: #ffbb00;
+	--link_font_color: #00aaffff;
+	--link_visited_font_color: #ff7b00ff;
+	--link_hover_font_color: #00ffffff;
+	--link_active_font_color: #ffe100ff;
+	--font_sizing: max(24px, min(2.1vh, 2.1vw));
+	--main_font_color: #d1bfb7;
+	--selection_font_color: color-mix(in srgb, var(--main_font_color) 0%, var(--bold_font_color) 100%);
+	--selection_bg_color: color-mix(in srgb, #ff7b00 25%, transparent);
+	--max_bg_size: min(1200px, min(calc(200vh), calc(175vw)));
+	--main_padding: 1em min(12vh, 12vw) 0;
+	--main_line_height: max(30px, 125%);
+	--heading_line_height: max(36px, 110%);
+}
+
+html {
+	height: 100%;
+	height: 1px;
+	min-height: 100vh;
+	box-sizing: border-box;
+	padding: 0%;
+	object-fit: unset;
+	image-rendering: pixelated;
+	font: 1px/100% normal normal sans-serif;
+	font-size: 1em;
+	font-size: var(--font_sizing);
+	font-family: "Micro 5";
+	font-family: "Pixelify Sans";
+	font-family: "Press Start 2P";
+	font-family: "Silkscreen";
+	font-family: "Oswald";
+	font-family: "Khand";
+	font-family: "Handjet";
+
+	/* font-family: "Teko"; */
+	/* font-family: "Russo One"; */
+	/* font-family: "Jersey 10";  */
+	/* font-family: "Tiny5"; */
+	/* font-family: "DotGothic16"; */
+	/* font-family: "VT323";  */
+	/* only letter spacing with the pixel fonts */
+	letter-spacing: 0.01cqmax;
+	line-height: var(--main_line_height);
+	/* image-rendering: -webkit-optimize-contrast; */
+	/* image-rendering: crisp-edges; */
+	margin: 0;
+	padding: 0;
+	background: var(--bg_color);
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+body {
+	justify-self: center;
+	position: relative;
+	height: inherit;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	color: var(--main_font_color);
+}
+body::selection {
+	color: var(--selection_font_color);
+	background-color: var(--selection_bg_color);
+}
+#main {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	padding: var(--main_padding);
+	box-sizing: content-box;
+	z-index: 0;
+}
+.tagging_system {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	padding: var(--main_padding);
+	box-sizing: content-box;
+	z-index: 0;
+	text-align: center;
+	margin: auto;
+}
+#background {
+	position: absolute;
+	height: inherit;
+	height: max(100%, 100vh);
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: inherit;
+	background: var(--bg_color) var(--whole_bg_url) no-repeat scroll 50% 0% / cover padding-box border-box;
+	/* background: var(--bg_color) var(--whole_bg_url) no-repeat scroll 50% 50% / cover padding-box border-box; */
+	/* background: var(--bg_color) var(--whole_bg_url) no-repeat scroll 50% 50% / contain padding-box border-box; */
+	/* background: var(--bg_color) var(--whole_bg_url) repeat scroll 50% 0% / contain padding-box border-box; */
+	/* background: var(--bg_color) var(--whole_bg_url) repeat scroll 50% 50% padding-box border-box; */
+	background: var(--bg_color) var(--whole_bg_url) repeat scroll 50% 0% / cover padding-box border-box;
+	background-size: var(--max_bg_size);
+	opacity: 0.3;
+	filter: alpha(opacity=30);
+	order: 33;
+	z-index: -3333;
+	/* background-size: 30%; */
+}
+
+#input_area,
+#output_area {
+	/* order: -1; */
+	z-index: 999;
+	position: static;
+}
+
+a {
+	color: var(--link_font_color);
+}
+a:visited {
+	color: var(--link_visited_font_color);
+	text-decoration: none;
+}
+a:hover {
+	color: var(--link_hover_font_color);
+}
+a:active {
+	color: var(--link_active_font_color);
+}
+em,
+i {
+	color: var(--emphasis_font_color);
+}
+b,
+strong {
+	color: var(--bold_font_color);
+}
+a em,
+a i {
+	color: inherit;
+}
+a b,
+a strong {
+	color: inherit;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	line-height: var(--heading_line_height);
+	text-wrap: balance;
+}
+p {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 1em;
+	text-wrap: pretty;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+/*-- END STYLES FROM THE MODULAR PAGE THING-- */
+
+.bottom_link {
+	clear: both;
+	display: table-cell;
+	justify-self: end;
+}
+
+pre {
+	max-width: 100vw;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	font-size: max(100%, calc(100% - 20%));
+}
+.link img,
+.href img {
+	 width:  min(125px, 100%); 
+	 flex-basis: 100%;
+}
+
+.href {
+	display: flex;
+	justify-content: space-between;
+	flex-basis: 100vw ;
+}
+
+
+.video_link a span {
+	position: relative;
+	display: inline-flex;
+	flex-direction: row;
+	flex-basis: 100%;
+	justify-content: space-between;
+}
+.video_link a span::after {
+}
+.video_link a span img {
+	/* margin: auto; */
+	/* margin-left: 1em; */
+	/* display: block; */
+}
+.video_link a span img::after {
+	content: " ";
+	display: block;
+	width: 100%;
+	float: none;
+	clear: both;
+}
+
+hr,
+.page_break {
+	width: 100%;
+	margin-bottom: 3px;
+	border: 3px solid #e6e5e5;
+}
+hr {
+	width: calc(100% - 2em);
+}
+.frag_list_pos {
+	/* set  in script below */
+	position: relative;
+}
+.frag_list {
+	/* set  in script below */
+	background: rgba(0, 0, 0, 0.85);
+	position: absolute;
+	left: 0;
+	right: 0;
+
+	display: flex;
+	flex-direction: column;
+	max-width: 85vw;
+}
+.frag_list a {
+	flex-basis: 125px;
+	margin-bottom: 1em;
+	color: #ffffff !important;
+}
+.frag_list a span {
+	display: block;
+	/* flex-basis: 1vw; */
+}
+.frag_list h3 {
+	color: #ffffff !important;
+}
+#cloud_area.anchor_tags,
+.frag_list {
+	z-index: 43633576;
+}
+.hidden {
+	display: none;
+}
+p.quoted {
+	box-sizing: content-box;
+	padding: 1px;
+	padding-left: 3em;
+	padding-right: 3em;
+	max-width: 80%;
+	margin: auto;
+	/* clear: both; */
+	margin-bottom: 2em;
+}
+p.quoted .quote_attrib {
+	float: right;
+}
+p.quoted .quote_attrib::after {
+	content: " ";
+	clear: both;
+}
+.link img {
+	max-width: 250px;
+	max-height: 250px;
+}
+.link p::after,
+p.quoted::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+div.video_link {
+	margin-bottom: 1em;
+	text-transform: uppercase;
+	/* flex-direction: row; */
+}
+div.video_link img {
+	max-width: min(125px, 100%); 
+}
+
+.rating_1 span:before {
+	content: "\2605";
+}
+.rating_2 span:before {
+	content: "\2605\2605";
+}
+.rating_3 span:before {
+	content: "\2605\2605\2605";
+}
+.rating_4 span:before {
+	content: "\2605\2605\2605\2605";
+}
+.rating_5 span:before {
+	content: "\2605\2605\2605\2605\2605";
+}
+
+/* UTILITIES PAGE ONLY --- */
+.utils input {
+	height: 4em;
+	width: 45vw;
+	text-align: right;
+	margin-bottom: .5em;
+	margin-right: .5em;
+}
+.utils textarea{
+	display: block;
+	max-width: 100%;
+	margin-bottom: .5em;
+}
+
+.utils #output_link {
+	color: #006bd6;
+}
+.utils #link_img_src {
+	color: #a400d6;
+}
+.utils #output_accumulation_area {
+	color: #00cc32;
+}
+.utils #interaction_area{
+	display: flex;
+	flex-direction: column;
+}
+
+/* --- UTILITIES PAGE ONLY */

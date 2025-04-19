@@ -1,0 +1,4803 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Blender Asset information</title>
+		<link
+			rel="stylesheet"
+			href="../styles/learning_link_styles.css" />
+		<script src="../scripts/learning_links_script.js"></script>
+	</head>
+	<body>
+		<div class="tagging_system">
+			<h4>the tagging system: enter a term here and javascript makes links to anchors with the same text</h4>
+
+			<span
+				id="cloud_area"
+				class="anchor_tags">
+				<!-- UV, sculpture,geometry nodes,geo nodes,grease pencil,modeling,procedural,texture,animation,topology, -->
+			</span>
+		</div>
+		<div
+			id="main"
+			class="main">
+			<h1>Blender learning</h1>
+			<p>Nothing out there in 3D is dirt simple.</p>
+			<p>Just break your learning tasks into chunks.</p>
+			<ul>
+				<li>Textures</li>
+				<li>Modeling</li>
+				<li>Rendering</li>
+				<li>Lighting</li>
+				<li>Animation</li>
+				<li>Sculpting</li>
+				<li>NLA</li>
+			</ul>
+			<ol>
+				<li>
+					<!-- 1) -->
+					I’d suggest starting with texture tutorials so you can learn how to apply pbr textures (there are a lot
+					of free pbr textures). At first, stick with cycles mode, and get familiar with how textures interact with
+					environmental lighting. This will be important versus how things look using EEVEE.
+				</li>
+				<li>
+					<!-- 2) -->
+					Then start modeling a few simple things, and apply your downloaded textures.
+				</li>
+				<li>
+					<!-- 3) -->
+					rendering. Learn about samples. Learn what cycles mode is, and how it compares to EEVEE. Your textures
+					have to be set up differently for taking advantage of EEVEE’s speed. This will branch into learning about
+					lighting and shadows and how they work compared to cycles
+				</li>
+				<li>
+					<!-- 4) -->
+					Then learn some 3-point lighting techniques. This will teach you things to have your models looking
+					decent.
+				</li>
+				<li>
+					<!-- 5) -->
+					Then learn to rig up an armature for animation. Doesn’t have to be complex. This will spawn into learning
+					about weight mapping. Weight mapping will open doors into dynamic painting and other effects for later.
+				</li>
+				<li>
+					<!-- 6) -->
+					Your sculpting can come at any time during modeling, but you should pursue learning to model a general
+					shape and add later details. This will lead to retopo modeling or modeling for better topology, or
+					polygon/edge flow. Learning to remesh may be appropriate at this stage.
+				</li>
+				<li>
+					<!-- 7) -->
+					NLA non-linear animation. Building an animation up from smaller poses that can be saved as simple actions
+					and combined for later use.
+				</li>
+			</ol>
+			<p>
+				Blender has the biggest toolset for learning that is out there right now. It can be daunting, but not if you
+				break up your learning tasks into a syllabus of sorts
+			</p>
+			<hr class="page_break" />
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/zV3mhvWpppM"
+					target="_blank"
+					class="href">
+					<span>
+						5 Topology Tips That Will Get You HIRED - YouTube
+						<img
+							src="https://i.ytimg.com/vi/zV3mhvWpppM/hqdefault.jpg"
+							alt=" 5 Topology Tips That Will Get You HIRED - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href=" https://www.youtube.com/embed/4B-Qs24WnbQ"
+					target="_blank"
+					class="href">
+					<span>
+						ALL THINGS (I know) Light Decays in Blender - YouTube
+						<img
+							src="https://i.ytimg.com/vi/4B-Qs24WnbQ/hqdefault.jpg"
+							alt=" ALL THINGS (I know) Light Decays in Blender - YouTube " />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/qVmXPV3bgS4">
+					<span>
+						Animation Library Tutorial - How To Make and Re-Use Animation Assets
+						<img
+							src="https://i.ytimg.com/vi/qVmXPV3bgS4/hqdefault.jpg"
+							alt="Animation Library Tutorial - How To Make and Re-Use Animation Assets"
+							title="Animation Library Tutorial - How To Make and Re-Use Animation Assets" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/8bhygxZWOJE">
+					<span>
+						Library override, assets and linked objects, part 3
+						<img
+							src="https://i.ytimg.com/vi/8bhygxZWOJE/hqdefault.jpg"
+							alt="Library override, assets and linked objects, part 3"
+							title="Library override, assets and linked objects, part 3" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/PIWrg1euBro"
+					target="_blank"
+					class="href">
+					<span>
+						How to use Blender Asset Browser! - YouTube
+						<img
+							src="https://i.ytimg.com/vi/PIWrg1euBro/hqdefault.jpg"
+							alt=" How to use Blender Asset Browser! - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/xU2c0FVVeQM"
+					target="_blank"
+					class="href">
+					<span>
+						How to Use Blender's New Asset Browser (Tutorial) - YouTube
+						<img
+							src="https://i.ytimg.com/vi/xU2c0FVVeQM/hqdefault.jpg"
+							alt=" How to Use Blender's New Asset Browser (Tutorial) - YouTube " />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/s29h6WaeTIg">
+					<span>
+						Using Assets or Linked Files
+						<img
+							src="https://i.ytimg.com/vi/s29h6WaeTIg/hqdefault.jpg"
+							alt="Using Assets or Linked Files"
+							title="Using Assets or Linked Files" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/SA3wr6Q6tQU"
+					target="_blank"
+					class="href">
+					<span>
+						Western-inspired Scene - Using the Asset Manager Blender Tutorial - Part 6 - YouTube
+						<img
+							src="https://i.ytimg.com/vi/SA3wr6Q6tQU/hqdefault.jpg"
+							alt=" Western-inspired Scene - Using the Asset Manager Blender Tutorial - Part 6 - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/XH6Ql5oFn-M"
+					target="_blank"
+					class="href">
+					<span>
+						How to use Blender Asset Browser Blender for Archviz - YouTube
+						<img
+							src="https://i.ytimg.com/vi/XH6Ql5oFn-M/hqdefault.jpg"
+							alt=" How to use Blender Asset Browser Blender for Archviz - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/cbzBt60dhY8"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Asset Browser: all you need to know (and then some!)
+						<img
+							src="https://i.ytimg.com/vi/cbzBt60dhY8/hqdefault.jpg"
+							alt="Blender Asset Browser: all you need to know (and then some!)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.google.com/search?client=firefox-b-1-d&q=using+blender+AND+link+AND+asset"
+					target="_blank"
+					class="href">
+					using blender AND link AND asset
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/rUa1milHsOo"
+					target="_blank"
+					class="href">
+					<span>
+						Animation Library in Blender 3.5 (Asset Browser HACK!) - YouTube
+						<img
+							src="https://i.ytimg.com/vi/rUa1milHsOo/hqdefault.jpg"
+							alt=" Animation Library in Blender 3.5 (Asset Browser HACK!) - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blenderartists.org/t/asset-manager-how-do-you-use-it/1458446"
+					target="_blank"
+					class="href">
+					Asset manager - how do you use it - General Forums _ Blender and CG Discussions - Blender Artists
+					Community
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/cofgu519xJ0"
+					target="_blank"
+					class="href">
+					<span>
+						Blender - Asset Browser Tutorial - YouTube
+						<img
+							src="https://i.ytimg.com/vi/cofgu519xJ0/hqdefault.jpg"
+							alt=" Blender - Asset Browser Tutorial - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.google.com/search?client=firefox-b-1-d&q=blender+AND+asset+AND+usage#ip=1"
+					target="_blank"
+					class="href">
+					blender AND asset AND usage - Google Search
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/estz5OFTK-s">
+					<span>
+						How i use my Animation Library to Save HOURS
+						<img
+							src="https://i.ytimg.com/vi/estz5OFTK-s/hqdefault.jpg"
+							alt="How i use my Animation Library to Save HOURS"
+							title="How i use my Animation Library to Save HOURS" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.maketecheasier.com/green-screen-visual-effects/"
+					target="_blank"
+					class="href">
+					How to Add greenscreen Visual Effects with Blender
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/O3gLBhC353Y"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Procedural Nodes [LEVEL 1 - FULL COURSE] - 50 mins greenscreen
+						<img
+							src="https://i.ytimg.com/vi/O3gLBhC353Y/hqdefault.jpg"
+							alt="Blender Procedural Nodes [LEVEL 1 - FULL COURSE] - 50 mins greenscreen" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.hollywoodcamerawork.com/green-screen-plates.html"
+					target="_blank"
+					class="href">
+					free greenscreen library at Hollywood Camerawork
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.maketecheasier.com/green-screen-visual-effects/"
+					target="_blank"
+					class="href">
+					<span>
+						greenscreen in blender
+						<img
+							src="https://cdn.hollywoodcamerawork.com/images/areas/vfxfordirectors/embassyshootout.jpg"
+							alt="green screening in blender" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.hollywoodcamerawork.com/green-screen-plates.html"
+					target="_blank"
+					class="href">
+					<span>
+						a place to get greenscreen plates for compositing tests
+						<img
+							src="https://cdn.hollywoodcamerawork.com/images/frame/header_logo.png"
+							alt="a place to get greenscreen plates for compositing tests" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/34023/how-to-blur-background-image"
+					target="_blank"
+					class="href">
+					How to blur background image? in blender cycles?
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/43977/composite-blur-effect-cut-off-at-edges-with-transparent-background"
+					target="_blank"
+					class="href">
+					Composite blur effect cut off at edges with transparent background
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/xGPZHfmSFdo"
+					target="_blank"
+					class="href">
+					<span>
+						Expand your toon shaders by using the compositor - YouTube
+						<img
+							src="https://i.ytimg.com/vi/xGPZHfmSFdo/hqdefault.jpg"
+							alt="Expand your toon shaders by using the compositor - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/wJ1gm0InkYw"
+					target="_blank"
+					class="href">
+					<span>
+						Anime in Blender - transparent materials, freestyle and NPR tricks
+						<img
+							src="https://i.ytimg.com/vi/wJ1gm0InkYw/hqdefault.jpg"
+							alt="Anime in Blender - transparent materials, freestyle and NPR tricks" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/XUredxyRLB0"
+					target="_blank"
+					class="href">
+					<span>
+						Painted Anime Cel Shadows in Blender [EEVEE] - Comfee Tutorial
+						<img
+							src="https://i.ytimg.com/vi/XUredxyRLB0/hqdefault.jpg"
+							alt="Painted Anime Cel Shadows in Blender [EEVEE] - Comfee Tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/faz3oSuDivE"
+					target="_blank"
+					class="href">
+					<span>
+						Quick Anime toon shader effects, NPR - Blender tutorial
+						<img
+							src="https://i.ytimg.com/vi/faz3oSuDivE/hqdefault.jpg"
+							alt="Quick toon shader effects, NPR - Blender tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/2ZR5XIjBmho"
+					target="_blank"
+					class="href">
+					<span>
+						Tutorial: Procedural hatching and manga shaders for EEVEE Blender
+						<img
+							src="https://i.ytimg.com/vi/2ZR5XIjBmho/hqdefault.jpg"
+							alt="Tutorial: Procedural hatching and manga shaders for EEVEE Blender" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/zeiy-rqb894"
+					target="_blank"
+					class="href">
+					<span>
+						Making High-Dynamic-Range Studio Map in Autodesk Maya Arnold
+						<img
+							src="https://i.ytimg.com/vi/zeiy-rqb894/hqdefault.jpg"
+							alt="Making HDR Studio Map in Autodesk Maya Arnold" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/-f2HXGtVUpo"
+					target="_blank"
+					class="href">
+					<span>
+						Spherical Coordinates in the node editor
+						<img
+							src="https://i.ytimg.com/vi/-f2HXGtVUpo/hqdefault.jpg"
+							alt="Spherical Coordinates in the node editor" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/zthvZvw-yJE"
+					target="_blank"
+					class="href">
+					<span>
+						Polyfjord: Rendering 2D Icons as 3D Objects in Blender
+
+						<img
+							src="https://i.ytimg.com/vi/zthvZvw-yJE/hqdefault.jpg"
+							alt="Polyfjord: Rendering 2D Icons as 3D Objects in Blender" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/34002/glow-effect-invisible-on-transparent-background/43327"
+					target="_blank"
+					class="href">
+					glow effect invisible on transparent
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.howtogeek.com/59634/remove-backgrounds-automatically-with-a-free-photoshop-action/"
+					target="_blank"
+					class="href">
+					Remove Backgrounds Automatically with a Free Photoshop Action
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/184613/how-do-i-make-a-hollow-sphere/184650"
+					target="_blank"
+					class="href">
+					How do I make a hollow sphere? (exploded view, simple.)
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/15355/resources-for-blender/15361"
+					target="_blank"
+					class="href">
+					Resources for Blender - Blender Stack Exchange
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/C4UM57HAt0E"
+					target="_blank"
+					class="href">
+					<span>
+						Blender’s AMAZING (not so new) feature! Cycles Light Nodes in 5 minutes - YouTube
+						<img
+							src="https://i.ytimg.com/vi/C4UM57HAt0E/hqdefault.jpg"
+							alt=" Blender’s AMAZING (not so new) feature! Cycles Light Nodes in 5 minutes - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/t4tP2W4oe4M"
+					target="_blank"
+					class="href">
+					<span>
+						Creating A Western Scene In Blender. 01 Modular Buildings - Walls and Beams - YouTube
+						<img
+							src="https://i.ytimg.com/vi/t4tP2W4oe4M/hqdefault.jpg"
+							alt=" Creating A Western Scene In Blender. 01 Modular Buildings - Walls and Beams - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/fmwH4mT030o"
+					target="_blank"
+					class="href">
+					<span>
+						Creating A Western Scene In Blender. 02 Modular Buildings - Porches and Walkways - YouTube
+						<img
+							src="https://i.ytimg.com/vi/fmwH4mT030o/hqdefault.jpg"
+							alt=" Creating A Western Scene In Blender. 02 Modular Buildings - Porches and Walkways - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/LIgMB_RIX8o"
+					target="_blank"
+					class="href">
+					<span>
+						Creating A Western Scene In Blender. 03 Modular Buildings - Roofs - YouTube
+						<img
+							src="https://i.ytimg.com/vi/LIgMB_RIX8o/hqdefault.jpg"
+							alt=" Creating A Western Scene In Blender. 03 Modular Buildings - Roofs - YouTube " />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>Libraries</h2>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Ghl_glWr8xk">
+					<span>
+						Everything you need to know about linking and library override
+						<img
+							src="https://i.ytimg.com/vi/Ghl_glWr8xk/hqdefault.jpg"
+							alt="Everything you need to know about linking and library override"
+							title="Everything you need to know about linking and library override" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/sTUwCpxbpQ4"
+					target="_blank"
+					class="href">
+					<span>
+						Linking & Override (2020 / B3D 2.83)
+						<img
+							src="https://i.ytimg.com/vi/sTUwCpxbpQ4/hqdefault.jpg"
+							alt="Linking & override (2020 / B3D 2.83)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/XzGhRXsf1mE">
+					<span>
+						Stop Append, use LINK and override
+						<img
+							src="https://i.ytimg.com/vi/XzGhRXsf1mE/hqdefault.jpg"
+							alt="Stop Append, use LINK and override"
+							title="Stop Append, use LINK and override" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Y0hqFsGC2eo">
+					<span>
+						Fixing Library override
+						<img
+							src="https://i.ytimg.com/vi/Y0hqFsGC2eo/hqdefault.jpg"
+							alt="Fixing Library override"
+							title="Fixing Library override" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/nujaW-qNoRk"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Tutorial: Actually Using Library override!
+						<img
+							src="https://i.ytimg.com/vi/nujaW-qNoRk/hqdefault.jpg"
+							alt="Blender Tutorial: Actually Using Library override!" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/_vAvz-YChzE">
+					<span>
+						Link Characters with Library Override
+						<img
+							src="https://i.ytimg.com/vi/_vAvz-YChzE/hqdefault.jpg"
+							alt="Link Characters with Library Override"
+							title="Link Characters with Library Override" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/ic1Hnlf4lew">
+					<span>
+						A Simple Way to Control a Rig with Properties (override)
+						<img
+							src="https://i.ytimg.com/vi/ic1Hnlf4lew/hqdefault.jpg"
+							alt="A Simple Way to Control a Rig with Properties (override)"
+							title="A Simple Way to Control a Rig with Properties (override)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/vefcotkddL4">
+					<span>
+						linking: Unlocking the true power of Linked Files
+						<img
+							src="https://i.ytimg.com/vi/vefcotkddL4/hqdefault.jpg"
+							alt="Unlocking the true power of Linked Files"
+							title="Unlocking the true power of Linked Files" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/7ho73nfgvy0"
+					target="_blank"
+					class="href">
+					<span>
+						Edit Linked Libraries, wonderful hidden feature
+						<img
+							src="https://i.ytimg.com/vi/7ho73nfgvy0/hqdefault.jpg"
+							alt="Edit Linked Libraries, wonderful hidden feature " />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/knt1dbuG8zg"
+					target="_blank"
+					class="href">
+					<span>
+						How I organize my files - Blender, Photography, and Video - YouTube
+						<img
+							src="https://i.ytimg.com/vi/knt1dbuG8zg/hqdefault.jpg"
+							alt=" How I organize my files - Blender, Photography, and Video - YouTube " />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>Modular Parts</h2>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/playlist?list=PLwsLTsfA_ukeUA_B-h3955xnd_7VK0u-v"
+					target="_blank"
+					class="href">
+					<span>
+						Western Scene - YouTube
+						<img
+							src="https://i.ytimg.com/vi/t4tP2W4oe4M/hqdefault.jpg"
+							alt=" Western Scene - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/mghbVF0SOI8"
+					target="_blank"
+					class="href">
+					<span>
+						Western-inspired Balcony Blender Tutorial - Part 4 - YouTube
+						<img
+							src="https://i.ytimg.com/vi/mghbVF0SOI8/hqdefault.jpg"
+							alt=" Western-inspired Balcony Blender Tutorial - Part 4 - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/DXpSc_V4H1g"
+					target="_blank"
+					class="href">
+					<span>
+						Western-inspired Doors & Windows Blender Tutorial - Part 5 - YouTube
+						<img
+							src="https://i.ytimg.com/vi/DXpSc_V4H1g/hqdefault.jpg"
+							alt=" Western-inspired Doors & Windows Blender Tutorial - Part 5 - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/yYxzZbnnzuU"
+					target="_blank"
+					class="href">
+					<span>
+						Western-inspired Scene - Addressing Issues and Modular Building Timelapse Blender - Part 7 - YouTube
+						<img
+							src="https://i.ytimg.com/vi/yYxzZbnnzuU/hqdefault.jpg"
+							alt=" Western-inspired Scene - Addressing Issues and Modular Building Timelapse Blender - Part 7 - YouTube " />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>Procedural Textures</h2>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Gut7GJaaaSg">
+					<span>
+						Make procedural materials
+						<img
+							src="https://i.ytimg.com/vi/Gut7GJaaaSg/hqdefault.jpg"
+							alt="Make procedural materials"
+							title="Make procedural materials" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/m44yiaJHAlQ">
+					<span>
+						Make procedural materials Part 2
+						<img
+							src="https://i.ytimg.com/vi/m44yiaJHAlQ/hqdefault.jpg"
+							alt="Make procedural materials Part 2"
+							title="Make procedural materials Part 2" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/YRKIAdMYcr0"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Tutorial - Creating Realistic Procedural Brushed Metal
+						<img
+							src="https://i.ytimg.com/vi/YRKIAdMYcr0/hqdefault.jpg"
+							alt="Blender Tutorial - Creating Realistic Procedural Brushed Metal" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/91UDQnrZMqA"
+					target="_blank"
+					class="href">
+					<span>
+						Everything about the MixRGB Node - Getting Started with Blender Nodes
+						<img
+							src="https://i.ytimg.com/vi/91UDQnrZMqA/hqdefault.jpg"
+							alt="Everything about the MixRGB Node - Getting Started with Blender Nodes" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/IHmN8V4Yqwk"
+					target="_blank"
+					class="href">
+					<span>
+						How to Make a Blur Node in Blender!
+						<img
+							src="https://i.ytimg.com/vi/IHmN8V4Yqwk/hqdefault.jpg"
+							alt="How to Make a Blur Node in Blender!" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/l0whu3494_c"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Scratched Plastic (Blender Tutorial)
+						<img
+							src="https://i.ytimg.com/vi/l0whu3494_c/hqdefault.jpg"
+							alt="Procedural Scratched Plastic (Blender Tutorial)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/e4BhdrFDHkQ"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Tutorial - Procedural Scratches
+						<img
+							src="https://i.ytimg.com/vi/e4BhdrFDHkQ/hqdefault.jpg"
+							alt="Blender Tutorial - Procedural Scratches" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/SYslucCSnPI"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Quick Tips - Pointiness Value
+						<img
+							src="https://i.ytimg.com/vi/SYslucCSnPI/hqdefault.jpg"
+							alt="Blender Quick Tips - Pointiness Value" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/XkxbBwpuVKo"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Weathering and Wear with Blender 2.9 - Blender Shader Node Tutorial
+						<img
+							src="https://i.ytimg.com/vi/XkxbBwpuVKo/hqdefault.jpg"
+							alt="Procedural Weathering and Wear with Blender 2.9 - Blender Shader Node Tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/6mbo474uhOA"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Tutorial: How to Make a Grungy Metal Material?
+						<img
+							src="https://i.ytimg.com/vi/6mbo474uhOA/hqdefault.jpg"
+							alt="Blender Tutorial: How to Make a Grungy Metal Material?" />
+					</span>
+				</a>
+				<br />
+				<a
+					href="https://www.blendswap.com/blend/4195"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Tutorial: How to Make a Grungy Metal Material? using a blendswap antique drill
+						<img
+							style="max-width: 320px"
+							src="https://blendswap.com/static/blendImages/2012/01/blend_23870/frank_the_smith_drill_press_clay_cyc_sized_big_997c069819aad2f190be5e5ec30fae66d24c9b6b.jpg"
+							alt="frank the smith drill press" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/8od3pGdiRG8"
+					target="_blank"
+					class="href">
+					<span>
+						Understanding Texture Coordinates - Getting Started with Blender Nodes
+						<img
+							src="https://i.ytimg.com/vi/8od3pGdiRG8/hqdefault.jpg"
+							alt=" Understanding Texture Coordinates - Getting Started with Blender Nodes " />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/ZHQ1rnCqc0c">
+					<span>
+						ULTIMATE GUIDE to texture coordinates in blender #1
+						<img
+							src="https://i.ytimg.com/vi/ZHQ1rnCqc0c/hqdefault.jpg"
+							alt="ULTIMATE GUIDE to texture coordinates in blender #1"
+							title="ULTIMATE GUIDE to texture coordinates in blender #1" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/QxQBWR7sntI"
+					target="_blank"
+					class="href">
+					<span>
+						Herringbone and the Compositor - Getting Started with Blender Nodes
+						<img
+							src="https://i.ytimg.com/vi/QxQBWR7sntI/hqdefault.jpg"
+							alt=" Herringbone and the Compositor - Getting Started with Blender Nodes " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/iZNsTr36rog"
+					target="_blank"
+					class="href">
+					<span>
+						Introduction to Procedural Textures - Getting started with Blender Nodes Part 1
+
+						<img
+							src="https://i.ytimg.com/vi/iZNsTr36rog/hqdefault.jpg"
+							alt=" Introduction to Procedural Textures - Getting started with Blender Nodes Part 1 " />
+					</span>
+				</a>
+				<pre>
+ (drawing circles, triangles and hearts with math in Blender) 
+          *even showing a mathematic formula for making a pretty heart. 
+          (I'd bet there was a way to do a star combining 5 triangles, and
+          adding them in a circular manner) see part 3</pre
+				>
+			</div>
+			<div class="video_link rating_5">
+				<a
+					href="https://www.youtube.com/embed/nm3QRLe846M"
+					target="_blank"
+					class="href">
+					<span>
+						Randomness and Tiling - Getting started with Blender Nodes Part 2
+
+						<img
+							src="https://i.ytimg.com/vi/nm3QRLe846M/hqdefault.jpg"
+							alt=" Randomness and Tiling - Getting started with Blender Nodes Part 2 " />
+					</span>
+				</a>
+				<pre>
+          he sets up a huge group node that makes a tile generator using the
+          shapes from the first video.
+          
+          It's a gate system, that lets you chose the parameters for tile
+          grout, background color, shape color, and
+          grout thickness as well as a seed value for how the shapes will
+          rotate. Highly recommend.
+          
+          see 13:31 for the gate set up.
+                      </pre
+				>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/TsivpRAxvLg"
+					target="_blank"
+					class="href">
+					<span>
+						Radial Arrays - Getting started with Blender Nodes Part 3
+						<img
+							src="https://i.ytimg.com/vi/TsivpRAxvLg/hqdefault.jpg"
+							alt=" Radial Arrays - Getting started with Blender Nodes Part 3 " />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/mLRqhcPIjg8"
+					target="_blank"
+					class="href">
+					<span>
+						Hexagonal Tiles - Getting started with Blender Nodes Part 5
+
+						<img
+							src="https://i.ytimg.com/vi/mLRqhcPIjg8/hqdefault.jpg"
+							alt=" Hexagonal Tiles - Getting started with Blender Nodes Part 5 " />
+					</span>
+				</a>
+				<pre>
+          similar to the tile generator in video 2, but with hexagonal tiles.
+          see minute 4 for the node tree to generate hexagons.
+          
+          very versatile. But there may be an issue in his workflow, as it
+          compares to mine. He likes have random input on the output side
+          of the final group node? I'll have to watch this again toward
+          the end to get a feel for just what he has come up with. 
+          
+          sand grass stone snow
+        </pre
+				>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/YWbs0vdvMEg"
+					target="_blank"
+					class="href">
+					<span>
+						Shape Generator - Getting started with Blender Nodes Part 6
+
+						<img
+							src="https://i.ytimg.com/vi/YWbs0vdvMEg/hqdefault.jpg"
+							alt=" Shape Generator - Getting started with Blender Nodes Part 6 " />
+					</span>
+				</a>
+				<pre>
+          revisiting the hexagonal shape, but making it configurable to the
+          number of sides, from 3 to infinity. 
+           more explanations of the reasons behind the node group choices.
+        </pre
+				>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/ve3TXCuwoKo"
+					target="_blank"
+					class="href">
+					<span>
+						The End of Tiling Repetition! - Getting started with Blender Nodes
+						<img
+							src="https://i.ytimg.com/vi/ve3TXCuwoKo/hqdefault.jpg"
+							alt=" The End of Tiling Repetition! - Getting started with Blender Nodes " />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/cBoYiQtxbuQ"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Nodes (part 79) - 9 Wave Texture Patterns with little effort.
+						<img
+							src="https://i.ytimg.com/vi/cBoYiQtxbuQ/hqdefault.jpg"
+							alt="Procedural Nodes (part 79) - 9 Wave Texture Patterns" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/BTHK4ed2mEI"
+					target="_blank"
+					class="href">
+					<span>
+						Creating a normal map from a procedural texture
+
+						<img
+							src="https://i.ytimg.com/vi/BTHK4ed2mEI/hqdefault.jpg"
+							alt="Creating a normal map from a procedural texture" />
+					</span>
+				</a>
+				<pre>(generating a normal map from a general texture)</pre>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/yEe52hRuFCA"
+					target="_blank"
+					class="href">
+					<span>
+						How to Increase Strength of Normal Maps with UV coordinates.
+						<img
+							src="https://i.ytimg.com/vi/yEe52hRuFCA/hqdefault.jpg"
+							alt="How to Increase Strength of Normal Maps with UV coordinates" />
+					</span>
+				</a>
+				<pre>
+How to Increase Strength of Normal Maps (Blender Tutorial) - YouTube
+
+rgb is xyz, but that's not very useful when dealing with 
+normal map/ UV? coordinates.
+
+RGB needs to be converted to XYZ, first by
+
+taking the R or G or B value going
+	from 0 to 1 and 
+	change it to -1 to 1
+	
+		first vector math 
+		multiply the val by 2
+		the subtract 1
+		
+	To convert back to 0 to 1....
+	
+	(vector math)
+	
+		add 1
+		divide by 2
+		
+converting XYZ (cartesian coordinates)
+to 
+Spherical coordinates (something better used in UV)
+
+X,Y,Z becomes theta,phi
+
+Theta is the angle that controls how far the vector is rotated down 
+around (away from the Z axis in the X direction)
+imagine rotating clock-wise around the Y axis to go further in the X
+direction. The Z X spherical quadrant would be a change in theta. (to 90 degrees)
+
+phi denotes the rotation around the Z axis, maps to y, and goes to 
+360 degrees.
+
+so how can we caculate phi?
+
+we only concern ourselves with the ground (0,0) plane intersection
+of the ZX quadrant.
+
+		phi = atan(y,x)  (counter-clock-wise) 
+
+		(math node >> arctan2 with x plugged into the bottom socket, and
+     y plugged into the top)
+
+so how do we calculate the theta?
+
+		theta = atan(x,z) (clock-wise)
+
+theta is blue!
+
+phi is red and green.
+
+(theta is only a quarter of the whole square distance that phi covers)
+
+while in the spherical coordinate system, this is where you would do
+all the cool stuff, then convert back from the -1..1 spherical
+system back into cartesian coordinates
+
+the theta change (delta) is the strength of the normal map. if theta 
+is 0, it's a perfectly flat normal map.
+
+so use a math node, and multiply theta to increase the depth. 
+
+		IF THETA IS MADE TOO STRONG, (more than 90 degrees, clamp node to 
+    keep it in range -- max value would be pi*0.5
+        </pre
+				>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/V2R7zHiHfIQ"
+					target="_blank"
+					class="href">
+					<span>
+						How To Rotate A Normal Map Correctly (Blender Tutorial, Textures)
+						<img
+							src="https://i.ytimg.com/vi/V2R7zHiHfIQ/hqdefault.jpg"
+							alt="How To Rotate A Normal Map Correctly (Blender Tutorial, Textures)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/S9sz00l3FqQ"
+					target="_blank"
+					class="href">
+					<span>
+						How To Combine Normal Maps Correctly (Adding Texture Detail, Blender Tutorial)
+						<img
+							src="https://i.ytimg.com/vi/S9sz00l3FqQ/hqdefault.jpg"
+							alt="How To Combine Normal Maps Correctly (Adding Texture Detail, Blender Tutorial)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/arvhK4tvYuY"
+					target="_blank"
+					class="href">
+					<span>
+						Bake PERFECT Displacement Maps (height maps)
+						<img
+							src="https://i.ytimg.com/vi/arvhK4tvYuY/hqdefault.jpg"
+							alt="Bake PERFECT Displacement Maps (height maps)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/mJVuodaPHTQ"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural scales in Blender 2.8 part 1 (how to make a scale armour based on UVs)
+
+						<img
+							src="https://i.ytimg.com/vi/mJVuodaPHTQ/hqdefault.jpg"
+							alt="Procedural scales in Blender 2.8 part 1" />
+					</span>
+				</a>
+				<pre>Procedural scales in Blender 2.8 part 1</pre>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/v7a4ouBLIow">
+					<span>
+						Procedural scales Blender 2.8 part 2
+						<img
+							src="https://i.ytimg.com/vi/v7a4ouBLIow/hqdefault.jpg"
+							alt="Procedural scales Blender 2.8 part 2"
+							title="Procedural scales Blender 2.8 part 2" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Uk4WsD4F9D8"
+					target="_blank"
+					class="href">
+					<span>
+						How to Make Procedural Wood in Blender (Three Materials) - YouTube
+						<img
+							src="https://i.ytimg.com/vi/Uk4WsD4F9D8/hqdefault.jpg"
+							alt=" How to Make Procedural Wood in Blender (Three Materials) - YouTube " />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/ewq69iNRdmQ"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Scratched Metal Material (Blender Tutorial) - YouTube
+						<img
+							src="https://i.ytimg.com/vi/ewq69iNRdmQ/hqdefault.jpg"
+							alt=" Procedural Scratched Metal Material (Blender Tutorial) - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/yX1CJZswHPs"
+					target="_blank"
+					class="href">
+					<span>
+						This Metal Shader Is Better Than the Principled BSDF (Blender Tutorial) - YouTube
+						<img
+							src="https://i.ytimg.com/vi/yX1CJZswHPs/hqdefault.jpg"
+							alt=" This Metal Shader Is Better Than the Principled BSDF (Blender Tutorial) - YouTube " />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/kAdIcYBMzII"
+					target="_blank"
+					class="href">
+					<span>
+						How to make a Procedural Eyeball in Blender
+						<img
+							src="https://i.ytimg.com/vi/kAdIcYBMzII/hqdefault.jpg"
+							alt=" How to make a Procedural Eyeball in Blender " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/n0r0UnaIK_Y"
+					target="_blank"
+					class="href">
+					<span>
+						Eye tutorial in Blender
+						<img
+							src="https://i.ytimg.com/vi/n0r0UnaIK_Y/hqdefault.jpg"
+							alt=" Eye tutorial in Blender  " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/4zVLcUqZvSM"
+					target="_blank"
+					class="href">
+					<span>
+						How to have Parallax Occluded Rooms in Blender
+						<img
+							src="https://i.ytimg.com/vi/4zVLcUqZvSM/hqdefault.jpg"
+							alt=" How to have Parallax Occluded Rooms in Blender " />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/qkqsx951gcg"
+					target="_blank"
+					class="href">
+					<span>
+						Blender 2 64 Tutorial I Absorption in Cycles | absorption | Beer-Lambert law
+						<img
+							src="https://i.ytimg.com/vi/qkqsx951gcg/hqdefault.jpg"
+							alt="Blender 2 64 Tutorial I Absorption in Cycles | absorption" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/rrZiSwXoBVA"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Tutorial How to Turn HDRi to 3D ENVIRONMENT - YouTube
+						<img
+							src="https://i.ytimg.com/vi/rrZiSwXoBVA/hqdefault.jpg"
+							alt=" Blender Tutorial How to Turn HDRi to 3D ENVIRONMENT - YouTube " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/IaEwxrqrX4k"
+					target="_blank"
+					class="href">
+					<span>
+						Solving the issue with weight painting in Blender (casting weight paint onto geo node geometry)
+						<img
+							src="https://i.ytimg.com/vi/IaEwxrqrX4k/hqdefault.jpg"
+							alt=" Solving the issue with weight painting in Blender (casting weight paint onto geo node geometry) " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/CN2p3tNN0eU"
+					target="_blank"
+					class="href">
+					<span>
+						10 Geometry Nodes HACKS in Blender personal note: (toony_crater_moon) under blender props
+						<img
+							src="https://i.ytimg.com/vi/CN2p3tNN0eU/hqdefault.jpg"
+							alt=" 10 Geometry Nodes HACKS in Blender personal note: (toony_crater_moon) under blender props " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/9CQLftRp1QQ"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Tutorial - Fake Interior mapping shader (Parallax mapping)
+						<img
+							src="https://i.ytimg.com/vi/9CQLftRp1QQ/hqdefault.jpg"
+							alt=" Blender Tutorial - Fake Interior mapping shader (Parallax mapping) " />
+					</span>
+				</a>
+				<br />
+				<a
+					href="https://mrrolord.gumroad.com/l/BlenderPOM"
+					target="_blank"
+					class="href">
+					https://mrrolord.gumroad.com/l/BlenderPOM
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/x1TwfpQRhbk"
+					target="_blank"
+					class="href">
+					<span>
+						Parallax Effect in regard UV @2:10
+						<img
+							src="https://i.ytimg.com/vi/x1TwfpQRhbk/hqdefault.jpg"
+							alt=" Parallax Effect in regard UV @2:10 " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/XS2TJfn1TAg"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Parallax Effect in Blender @23:45
+						<img
+							src="https://i.ytimg.com/vi/XS2TJfn1TAg/hqdefault.jpg"
+							alt=" Procedural Parallax Effect in Blender " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/v_L5NwqXEV4"
+					target="_blank"
+					class="href">
+					<span>
+						Parallax Occlusion Mapping Deep Dive EP: 3 - Shadows
+						<img
+							src="https://i.ytimg.com/vi/v_L5NwqXEV4/hqdefault.jpg"
+							alt=" Parallax Occlusion Mapping Deep Dive EP: 3 - Shadows " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/eX7x1mJrQJs"
+					target="_blank"
+					class="href">
+					<span>
+						how this game made millions of rooms using 1 polygon Parallax Occlusion Mapping raycast from the view
+						angle to the "polygon" surface
+						<img
+							src="https://i.ytimg.com/vi/eX7x1mJrQJs/hqdefault.jpg"
+							alt=" how this game made millions of rooms using 1 polygon Parallax Occlusion Mapping raycast from the view angle to the 'polygon' surface " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/GX-Ed6WbGlY"
+					target="_blank"
+					class="href">
+					<span>
+						Parallax Occlusion Mapping see how to set up nodes for it here: @1:58
+						<img
+							src="https://i.ytimg.com/vi/GX-Ed6WbGlY/hqdefault.jpg"
+							alt=" Parallax Occlusion Mapping see how to set up nodes for it here: @1:58 " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/GvIRe36v65U"
+					target="_blank"
+					class="href">
+					<span>
+						Parallax Occlusion Mapping (more)
+						<img
+							src="https://i.ytimg.com/vi/GvIRe36v65U/hqdefault.jpg"
+							alt=" Parallax Occlusion Mapping (more) " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/tAo7HxxxA08"
+					target="_blank"
+					class="href">
+					<span>
+						[Blender 2.8/2.9 ]Un-confusing the NLA Editor (Nonlinear Animation)
+						<img
+							src="https://i.ytimg.com/vi/tAo7HxxxA08/hqdefault.jpg"
+							alt=" [Blender 2.8/2.9 ]Un-confusing the NLA Editor (Nonlinear Animation) " />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/6yxBAQFMG60"
+					target="_blank"
+					class="href">
+					<span>
+						COMBINE TEXTURES/SHADERS! Masks and Mixing Nodes (+Light Path) - Blender Texture Basics
+
+						<img
+							src="https://i.ytimg.com/vi/6yxBAQFMG60/hqdefault.jpg"
+							alt="COMBINE TEXTURES/SHADERS! Masks and Mixing Nodes (+Light Path) - Blender Texture Basics" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/AGoATLxsdsc"
+					target="_blank"
+					class="href">
+					<span>
+						Improved Reflection Catcher in Blender Cycles
+
+						<img
+							src="https://i.ytimg.com/vi/AGoATLxsdsc/hqdefault.jpg"
+							alt="Improved Reflection Catcher in Blender Cycles" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/b-scwnmZ79o"
+					target="_blank"
+					class="href">
+					<span>
+						Textures Don’t Work on Curves—How to Fix It (Blender Tutorial)
+
+						<img
+							src="https://i.ytimg.com/vi/b-scwnmZ79o/hqdefault.jpg"
+							alt="Textures Don’t Work on Curves—How to Fix It (Blender Tutorial)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/_XNUVdP3K-g"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Nodes (part 34) - Voronoi in Blender
+
+						<img
+							src="https://i.ytimg.com/vi/_XNUVdP3K-g/hqdefault.jpg"
+							alt="Procedural Nodes (part 34) - Voronoi in Blender" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://b3d.interplanety.org/en/mapping-texture-to-planet/"
+					target="_blank"
+					class="href">
+					https://b3d.interplanety.org/en/mapping-texture-to-planet/
+					<br />
+					B3D - Interplanety
+					<br />
+					Blender 3D: tutorials, articles, tips, notes
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/el8u37Pqadg"
+					target="_blank"
+					class="href">
+					<span>
+						Blender 2.8 EEVEE Shadow catcher - Tutorial
+
+						<img
+							src="https://i.ytimg.com/vi/el8u37Pqadg/hqdefault.jpg"
+							alt="Blender 2.8 EEVEE Shadow catcher - Tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Bfq9n37oz2I"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Nodes (part 47) - Procedural Gold Metal in Blender
+
+						<img
+							src="https://i.ytimg.com/vi/Bfq9n37oz2I/hqdefault.jpg"
+							alt="Procedural Nodes (part 47) - Procedural Gold Metal in Blender" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/WSJ8C9EZJG4"
+					target="_blank"
+					class="href">
+					<span>
+						2D Precision - Measureit - Export SVG | Blender 2.9+ Through Precision Modeling | Part - 15
+
+						<img
+							src="https://i.ytimg.com/vi/WSJ8C9EZJG4/hqdefault.jpg"
+							alt="2D Precision - Measureit - Export SVG | Blender 2.9+ Through Precision Modeling | Part - 15" />
+					</span>
+				</a>
+				<br />
+				<a
+					target="_blank"
+					href="https://www.youtube.com/watch?v=WSJ8C9EZJG4&list=PL6Fiih6ItYsXzUbBNz7-IvV7UJYHZzCdF&index=20"
+					class="href">
+					https://www.youtube.com/watch?v=WSJ8C9EZJG4&list=PL6Fiih6ItYsXzUbBNz7-IvV7UJYHZzCdF&index=20
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/dSjeqRy3KS0"
+					target="_blank"
+					class="href">
+					<span>
+						CAD Transforms Movement Basics | Blender 2.9+ / 3.0 Through Precision Modeling | Part - 10
+
+						<img
+							src="https://i.ytimg.com/vi/dSjeqRy3KS0/hqdefault.jpg"
+							alt="CAD Transforms Movement Basics | Blender 2.9+ / 3.0 Through Precision Modeling | Part - 10" />
+					</span>
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/watch?v=dSjeqRy3KS0&list=PL6Fiih6ItYsXzUbBNz7-IvV7UJYHZzCdF&index=11"
+					target="_blank"
+					class="href">
+					https://www.youtube.com/watch?v=dSjeqRy3KS0&list=PL6Fiih6ItYsXzUbBNz7-IvV7UJYHZzCdF&index=11
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/4zytiZczsps"
+					target="_blank"
+					class="href">
+					<span>
+						working with array modifiers
+						<img
+							src="https://i.ytimg.com/vi/4zytiZczsps/hqdefault.jpg"
+							alt="working with array modifiers" />
+					</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/nattlrdnEPM"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Quick Tip - Transparent Shadow in Final Render via compositing
+						<img
+							src="https://i.ytimg.com/vi/nattlrdnEPM/hqdefault.jpg"
+							alt="Blender Quick Tip - Transparent Shadow in Final Render" />
+					</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/W8PxOFA6AFo"
+					target="_blank"
+					class="href">
+					<span>
+						Updating Blender Addons for 2.7 and 2.8 How to make a single script work in both at once - YouTube
+						<img
+							src="https://i.ytimg.com/vi/W8PxOFA6AFo/hqdefault.jpg"
+							alt="Updating Blender Addons for 2.7 and 2.8 How to make a single script work in both at once" />
+					</span>
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/watch?v=W8PxOFA6AFo&list=PL8X_CzUEVBfZSpGNyagWEWrB7suFb17Io&index=10"
+					target="_blank"
+					class="href">
+					(Python) How to make a single script work playlist | Tutorials by TheDuckCow
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/AepOux5G0kQ"
+					target="_blank"
+					class="href">
+					<span>
+						using scripts within the node tree to do wiggling text: (Blender diplom)
+						<img
+							src="https://i.ytimg.com/vi/AepOux5G0kQ/hqdefault.jpg"
+							alt="using scripts within the node tree to do wiggling text: (Blender diplom)" />
+					</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/CPEEjlRLKEU"
+					target="_blank"
+					class="href">
+					<span>
+						Quick Tip: Working With Drivers in Blender
+						<img
+							src="https://i.ytimg.com/vi/CPEEjlRLKEU/hqdefault.jpg"
+							alt="Quick Tip: Working With Drivers in Blender" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/nmzAbeUDPUQ"
+					target="_blank"
+					class="href">
+					<span>
+						3 Simple ways to Animate Face Textures 2.0 [With Drivers][In Blender]
+
+						<img
+							src="https://i.ytimg.com/vi/nmzAbeUDPUQ/hqdefault.jpg"
+							alt="3 Simple ways to Animate Face Textures 2.0 [With Drivers][In Blender]" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Bq3RiZvqXMg"
+					target="_blank"
+					class="href">
+					<span>
+						Animating Textures with Image Sequence Nodes made EASY [In Blender: With Drivers] Overloading per
+						texture limit in EEVEE
+						<img
+							src="https://i.ytimg.com/vi/Bq3RiZvqXMg/hqdefault.jpg"
+							alt="Animating Textures with Image Sequence Nodes made EASY [In Blender: With Drivers]" />
+					</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/U0VlUeljRMI"
+					target="_blank"
+					class="href">
+					<span>
+						3D Laser Engraving | How To Make A Depth Map Out Of Almost Anything | STL to Depth Map | Tutorial
+						<img
+							src="https://i.ytimg.com/vi/U0VlUeljRMI/hqdefault.jpg"
+							alt="3D Laser Engraving | How To Make A Depth Map Out Of Almost Anything | STL to Depth Map | Tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/fRjjyMcOO04"
+					target="_blank"
+					class="href">
+					<span>
+						Must Know Modifiers & Linked Duplicates | Learn Blender 2.9+ Through Precision Modeling | Part- 30
+						<img
+							src="https://i.ytimg.com/vi/fRjjyMcOO04/hqdefault.jpg"
+							alt="Must Know Modifiers & Linked Duplicates | Learn Blender 2.9+ Through Precision Modeling | Part- 30" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Vuph3QHDroI"
+					target="_blank"
+					class="href">
+					<span>
+						How to Use ACTIONS & RE-USE Keyframes in Future Projects
+						<img
+							src="https://i.ytimg.com/vi/Vuph3QHDroI/hqdefault.jpg"
+							alt="How to Use ACTIONS & RE-USE Keyframes in Future Projects" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/_KNv_kPJW9k"
+					target="_blank"
+					class="href">
+					<span>
+						The Key to Effective Keyframing! - [BLENDER 2.8 for ANIMATORS]
+						<img
+							src="https://i.ytimg.com/vi/_KNv_kPJW9k/hqdefault.jpg"
+							alt="The Key to Effective Keyframing! - [BLENDER 2.8 for ANIMATORS]" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/1aNnERnHRZg"
+					target="_blank"
+					class="href">
+					<span>
+						wettened peeling paint with moss on an abandoned seattle house uses a multiple-color channel technique
+						to achieve it's look: multiple-channel-texture-node.png
+						<img
+							src="https://i.ytimg.com/vi/1aNnERnHRZg/hqdefault.jpg"
+							alt="wettened peeling paint with moss on an abandoned seattle house" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>Grease Pencil</h2>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/iWSbiTtRks8"
+					target="_blank"
+					class="href">
+					<span>
+						Great Blender Grease Pencil Addons
+						<img
+							src="https://i.ytimg.com/vi/iWSbiTtRks8/hqdefault.jpg"
+							alt="Great Blender Grease Pencil Addons" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/tgy2j3yy9B4"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Grease Pencil Head-Turn Part 1: Drawing
+						<img
+							src="https://i.ytimg.com/vi/tgy2j3yy9B4/hqdefault.jpg"
+							alt="Blender Grease Pencil Head-Turn Part 1: Drawing" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/leIjtFcwQto"
+					target="_blank"
+					class="href">
+					<span>
+						Getting a traditional PENCIL style with grease pencil! Blender tutorial and drawing demo
+						<img
+							src="https://i.ytimg.com/vi/leIjtFcwQto/hqdefault.jpg"
+							alt="Getting a traditional PENCIL style with grease pencil! Blender tutorial and drawing demo" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/HjTzVe5GNbs"
+					target="_blank"
+					class="href">
+					<span>
+						@2:36 Grease Pencil Blender 3.5 Tips & Tricks | Expanded from Dantti's 2D Workflow Mastering Course
+						<img
+							src="https://i.ytimg.com/vi/HjTzVe5GNbs/hqdefault.jpg"
+							alt="Grease Pencil Blender 3.5 Tips & Tricks | Expanded from Dantti's 2D Workflow Mastering Course" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/z11Sv_kkoUs"
+					target="_blank"
+					class="href">
+					<span>
+						USING GREASE PENCIL IN BLENDER @16:50
+						<img
+							src="https://i.ytimg.com/vi/z11Sv_kkoUs/hqdefault.jpg"
+							alt="USING GREASE PENCIL IN BLENDER @16:50" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.3dblendered.com/blender-tutorials/3d-grease-pencil-painting-process-in-blender/"
+					target="_blank"
+					class="href">
+					Grease pencil work in Blender (Sophie Jantak, Red Riding Hood retelling)
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/embed/Gar5HGt2eIU"
+					target="_blank"
+					class="href">
+					<span>
+						Sophie Jantak
+						<img
+							src="https://i.ytimg.com/vi/Gar5HGt2eIU/hqdefault.jpg"
+							alt="Sophie Jantak" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://cgcookie.com/courses/grease-pencil-basics-an-introduction-to-blender-s-grease-pencil">
+					<span>
+						DRAW! An Introduction to Blender's Grease Pencil
+						<img
+							src="https://i.ytimg.com/vi/wpmqd5ldlVY/hqdefault.jpg"
+							alt="DRAW! An Introduction to Blender's Grease Pencil"
+							title="DRAW! An Introduction to Blender's Grease Pencil" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link rating_4">
+				<a
+					href="https://www.youtube.com/embed/NA3wZBC1Nvw"
+					target="_blank"
+					class="href">
+					<span>
+						beginner tute: Grease Pencil: making a bonzai tree
+						<img
+							src="https://i.ytimg.com/vi/NA3wZBC1Nvw/hqdefault.jpg"
+							alt="beginner tute: Grease Pencil: making a bonzai tree" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blendersushi.blogspot.com/2020/03/turning-2d-line-art-into-vectorized-art.html"
+					target="_blank"
+					class="href">
+					blender for 2d artwork
+				</a>
+			</div>
+			<hr class="page_break" />
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/pX4KQ7wjEec"
+					target="_blank"
+					class="href">
+					<span>
+						texturing in blender:
+						<img
+							src="https://i.ytimg.com/vi/pX4KQ7wjEec/hqdefault.jpg"
+							alt="texturing in blender" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h3>This NEW ADVANCED TEXTURING Tool (that is programmable)</h3>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/n-fKfj2XjvM"
+					target="_blank"
+					class="href">
+					<span>
+						This NEW ADVANCED TEXTURING Tool Is Coming
+						<img
+							src="https://i.ytimg.com/vi/n-fKfj2XjvM/hqdefault.jpg"
+							alt=" This NEW ADVANCED TEXTURING Tool Is Coming" />
+					</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/4WyPq6YO9U8"
+					target="_blank"
+					class="href">
+					<span>
+						Mountains and Canyons in Blender Displacement Maps and Texture Painting - YouTube
+						<img
+							src="https://i.ytimg.com/vi/4WyPq6YO9U8/hqdefault.jpg"
+							alt="Mountains and Canyons in Blender Displacement Maps and Texture Painting - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/hUILySfQ3ic"
+					target="_blank"
+					class="href">
+					<span>
+						Blender tutorial: Create dynamic Mountains based on Modifiers | Using vertex groups to control where a
+						texture appears
+						<img
+							src="https://i.ytimg.com/vi/hUILySfQ3ic/hqdefault.jpg"
+							alt="Blender tutorial: Create dynamic Mountains based on Modifiers | Using vertex groups to control where a texture appears" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/fP5hlKpOHKs"
+					target="_blank"
+					class="href">
+					<span>
+						Blender 3.4 Hidden Features: A.N.T. Landscape!!!!! Weight Maps w Mountains /Erosion Tool (~9 min into
+						video)!!!
+						<img
+							src="https://i.ytimg.com/vi/fP5hlKpOHKs/hqdefault.jpg"
+							alt="Blender 3.4 Hidden Features: A.N.T. Landscape!!!!! Weight Maps w/Erosion Tool (~9 min into video)!!!" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/V1kF_qpSI7s"
+					target="_blank"
+					class="href">
+					<span>
+						How to create weight maps from height maps of mountains in Blender
+						<img
+							src="https://i.ytimg.com/vi/V1kF_qpSI7s/hqdefault.jpg"
+							alt="How to create weight maps from height maps in Blender" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/yBP5x87HNXE">
+					<span>
+						Epic Landscapes in Blender
+						<img
+							src="https://i.ytimg.com/vi/yBP5x87HNXE/hqdefault.jpg"
+							alt="Epic Landscapes in Blender"
+							title="Epic Landscapes in Blender" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Gtp51eZkwoI"
+					target="_blank"
+					class="href">
+					<span>
+						electricity @ 1:17 (Lightning strikes video)
+						<img
+							src="https://i.ytimg.com/vi/Gtp51eZkwoI/hqdefault.jpg"
+							alt="electricity" />
+					</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/kPBsTbiiFMA"
+					target="_blank"
+					class="href">
+					<span>
+						retopology
+						<img
+							src="https://i.ytimg.com/vi/kPBsTbiiFMA/hqdefault.jpg"
+							alt="retopology" />
+					</span>
+				</a>
+				<br />
+				<a
+					href="https://github.com/mifth/mifthtools"
+					target="_blank"
+					class="href">
+					more retopo tools in Blender
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://blenderartists.org/t/retopo-mt-for-blender-2-80/1186704?u=peetie"
+					target="_blank"
+					class="href">
+					another retopo addon for blender
+				</a>
+				<pre>Retopo MT for Blender 2.80</pre>
+			</div>
+
+			<hr class="page_break" />
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/weMes839wlc"
+					target="_blank"
+					class="href">
+					<span>
+						Blender actions
+						<img
+							src="https://i.ytimg.com/vi/weMes839wlc/hqdefault.jpg"
+							alt="Blender actions" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/x28RWgsIu8Y"
+					target="_blank"
+					class="href">
+					<span>
+						Using actions
+						<img
+							src="https://i.ytimg.com/vi/x28RWgsIu8Y/hqdefault.jpg"
+							alt="using actions" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Hz1TwvSNsrA"
+					target="_blank"
+					class="href">
+					<span>
+						NLA editor
+						<img
+							src="https://i.ytimg.com/vi/Hz1TwvSNsrA/hqdefault.jpg"
+							alt="NLA editor" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/tAo7HxxxA08"
+					target="_blank"
+					class="href">
+					<span>
+						[Blender 2.8/2.9 ]Un-confusing the NLA Editor (Nonlinear Animation)
+						<img
+							src="https://i.ytimg.com/vi/tAo7HxxxA08/hqdefault.jpg"
+							alt="[Blender 2.8/2.9 ]Un-confusing the NLA Editor (Nonlinear Animation)" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/mu9J0D6ebVw"
+					target="_blank"
+					class="href">
+					<span>
+						make an airplane in blender
+						<img
+							src="https://i.ytimg.com/vi/mu9J0D6ebVw/hqdefault.jpg"
+							alt="make an airplane in blender" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/p4lsgMw9uQc"
+					target="_blank"
+					class="href">
+					<span>
+						make an airplane in blender part 2
+						<img
+							src="https://i.ytimg.com/vi/p4lsgMw9uQc/hqdefault.jpg"
+							alt="make an airplane in blender part 2" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/4EZezYWyelM"
+					target="_blank"
+					class="href">
+					<span>
+						How to make realistic foam in Blender
+						<img
+							src="https://i.ytimg.com/vi/4EZezYWyelM/hqdefault.jpg"
+							alt="How to make realistic foam in Blender" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blenderartists.org/t/wispy-smoke-vapor/1207029/2"
+					target="_blank"
+					class="href">
+					Blender Tutorial How to Create Mist in Blender
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>Volumetric Lighting</h2>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/oOz0QuTac0c">
+					<span>
+						Light probes in EEVEE next to improve lighting
+						<img
+							src="https://i.ytimg.com/vi/oOz0QuTac0c/hqdefault.jpg"
+							alt="Light probes in EEVEE next to improve lighting"
+							title="Light probes in EEVEE next to improve lighting" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/waRjtHg-pSU"
+					target="_blank"
+					class="href">
+					<span>
+						FIX UGLY VOLUMETRICS (Flickering and Light Flares) - Blender EEVEE
+						<img
+							src="https://i.ytimg.com/vi/waRjtHg-pSU/hqdefault.jpg"
+							alt="FIX UGLY VOLUMETRICS (Flickering and Light Flares) - Blender EEVEE" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/PHL3qNAQuGE"
+					target="_blank"
+					class="href">
+					<span>
+						volumetric lighting in blender
+						<img
+							src="https://i.ytimg.com/vi/PHL3qNAQuGE/hqdefault.jpg"
+							alt="volumetric lighting in blender" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/-JtEoOTghOw"
+					target="_blank"
+					class="href">
+					<span>
+						Blender volumetric particle rendering
+						<img
+							src="https://i.ytimg.com/vi/-JtEoOTghOw/hqdefault.jpg"
+							alt="Blender volumetric particle rendering" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/505pFi6TGR0"
+					target="_blank"
+					class="href">
+					<span>
+						EXAMPLE (NO SOUND) Particle Turbulence (200k particles)
+						<img
+							src="https://i.ytimg.com/vi/505pFi6TGR0/hqdefault.jpg"
+							alt="Particle Turbulence (200k particles)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/UJ4rQXDXtPM">
+					<span>
+						Particles Alternative
+						<img
+							src="https://i.ytimg.com/vi/UJ4rQXDXtPM/hqdefault.jpg"
+							alt="Particles Alternative"
+							title="Particles Alternative" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/adahnQCqmw0"
+					target="_blank"
+					class="href">
+					<span>
+						Create Projectors Fast (Blender Tutorial)
+						<img
+							src="https://i.ytimg.com/vi/adahnQCqmw0/hqdefault.jpg"
+							alt="Create Projectors Fast (Blender Tutorial)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/XQcyUn5nG2c"
+					target="_blank"
+					class="href">
+					<span>
+						Easy Eevee God Rays Tutorial
+						<img
+							src="https://i.ytimg.com/vi/XQcyUn5nG2c/hqdefault.jpg"
+							alt="Easy Eevee God Rays Tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/ViGC0MM0vkI"
+					target="_blank"
+					class="href">
+					<span>
+						Volumetric Light Through A Window || Blender Tutorial 2.83
+						<img
+							src="https://i.ytimg.com/vi/ViGC0MM0vkI/hqdefault.jpg"
+							alt="Volumetric Light Through A Window || Blender Tutorial 2.83" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/WtRuxpgLwDg"
+					target="_blank"
+					class="href">
+					<span>
+						Create a SPOTLIGHT / GODRAY effect in Blender 2.8 Eevee
+						<img
+							src="https://i.ytimg.com/vi/WtRuxpgLwDg/hqdefault.jpg"
+							alt="Create a SPOTLIGHT / GODRAY effect in Blender 2.8 Eevee" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/x5JfyhdjOJo"
+					target="_blank"
+					class="href">
+					<span>
+						God Rays/Sun Rays in Blender 2.8
+						<img
+							src="https://i.ytimg.com/vi/x5JfyhdjOJo/hqdefault.jpg"
+							alt="God Rays/Sun Rays in Blender 2.8" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/I6I0ZsfBvWE"
+					target="_blank"
+					class="href">
+					<span>
+						3 ways to God Rays - Blender Tutorial
+						<img
+							src="https://i.ytimg.com/vi/I6I0ZsfBvWE/hqdefault.jpg"
+							alt="3 ways to God Rays - Blender Tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/mDOu7hPCwDs"
+					target="_blank"
+					class="href">
+					<span>
+						How to Flatten With Vector Displacement (Blender Tutorial)
+						<img
+							src="https://i.ytimg.com/vi/mDOu7hPCwDs/hqdefault.jpg"
+							alt="How to Flatten With Vector Displacement (Blender Tutorial)" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>UV Mapping</h2>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/hyzLjXw8RFk"
+					target="_blank"
+					class="href">
+					<span>
+						Organic Unwrapping in Blender | Full Class
+						<img
+							src="https://i.ytimg.com/vi/hyzLjXw8RFk/hqdefault.jpg"
+							alt="Organic Unwrapping in Blender | Full Class + Free Gift" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/1HyexrUEIv0"
+					target="_blank"
+					class="href">
+					<span>
+						Bake Textures From One UV Map to Another UV Map (Blender Tutorial)
+						<img
+							src="https://i.ytimg.com/vi/1HyexrUEIv0/hqdefault.jpg"
+							alt=" Bake Textures From One UV Map to Another UV Map (Blender Tutorial) " />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/clFJ4AlK_Uw"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Multi-channel UV Decals
+						<img
+							src="https://i.ytimg.com/vi/clFJ4AlK_Uw/hqdefault.jpg"
+							alt="Blender Multi-channel UV Decals" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/bWPD2aEd8tY"
+					target="_blank"
+					class="href">
+					<span>
+						blender and UV tips
+						<img
+							src="https://i.ytimg.com/vi/bWPD2aEd8tY/hqdefault.jpg"
+							alt="blender and UV tips" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/6lqak2bFkpA"
+					target="_blank"
+					class="href">
+					<span>
+						@12 minutes Lizard Mage: Modeling, Texturing, Rigging (Blender Timelapse)
+
+						<img
+							src="https://i.ytimg.com/vi/6lqak2bFkpA/hqdefault.jpg"
+							alt="Lizard Mage: Modeling, Texturing, Rigging (Blender Timelapse)" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+
+			<h2>Realistic looking Ink spill effects</h2>
+
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/24284/creating-inky-looking-characters-in-blender"
+					target="_blank"
+					class="href">
+					Creating Inky-looking characters in Blender
+				</a>
+				<pre>particle systems that morph into recognizable things</pre>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://blenderdiplom.com/en/tutorials/335-tutorial-a-cool-looking-inkdrop-in-blender.html"
+					target="_blank"
+					class="href">
+					Tutorial: A cool looking Inkdrop in Blender
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/218305/how-to-create-a-realistic-looking-ink-spill-from-a-bottle"
+					target="_blank"
+					class="href">
+					How to create a realistic looking Ink spill from a bottle
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/62843/ink-on-porous-paper-or-water-bleed-effect"
+					target="_blank"
+					class="href">
+					Ink on Porous Paper or Water Bleed Effect
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/142506/animating-blood-dripping-down-surface-of-mesh"
+					target="_blank"
+					class="href">
+					Animating blood dripping down surface of mesh
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/307996/how-to-animate-the-shape-of-an-object-based-on-two-splines"
+					target="_blank"
+					class="href">
+					How to animate the shape of an object based on two splines
+				</a>
+			</div>
+			<hr class="page_break" />
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/gBWaARrOiyE"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Tutorial: How to Create Ripples Effect with dynamic paint and particles.
+						<img
+							src="https://i.ytimg.com/vi/gBWaARrOiyE/hqdefault.jpg"
+							alt="Blender Tutorial: How to Create Ripples Effect with dynamic paint and particles." />
+					</span>
+				</a>
+				<br />
+				<a
+					href="https://www.creativeshrimp.com/ripples-effect-in-blender.html"
+					target="_blank"
+					class="href">
+					https://www.creativeshrimp.com/ripples-effect-in-blender.html
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/A4SCEeduIks"
+					target="_blank"
+					class="href">
+					<span>
+						Blender's dynamic paint is pretty cool - Procedural Nodes (part 95)
+						<img
+							src="https://i.ytimg.com/vi/A4SCEeduIks/hqdefault.jpg"
+							alt="Blender's dynamic paint is pretty cool - Procedural Nodes (part 95)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/sWdeqZ61YxM"
+					target="_blank"
+					class="href">
+					<span>
+						blender 2.92 dynamic paint drops animation - tutorial
+						<img
+							src="https://i.ytimg.com/vi/sWdeqZ61YxM/hqdefault.jpg"
+							alt="blender 2.92 dynamic paint drops animation - tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/vychtDH3Drw"
+					target="_blank"
+					class="href">
+					<span>
+						damned handy blender tutorial @13:47
+						<img
+							src="https://i.ytimg.com/vi/vychtDH3Drw/hqdefault.jpg"
+							alt="damned handy blender tutorial @13:47" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Ba37Q8kxCIQ"
+					target="_blank"
+					class="href">
+					<span>
+						blender modeling rope
+						<img
+							src="https://i.ytimg.com/vi/Ba37Q8kxCIQ/hqdefault.jpg"
+							alt="blender modeling rope" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/qrlfmcQ2lCs"
+					target="_blank"
+					class="href">
+					<span>
+						fitting geometry to curved surface
+						<img
+							src="https://i.ytimg.com/vi/qrlfmcQ2lCs/hqdefault.jpg"
+							alt="fitting geometry to curved surface" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>Physics</h2>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/GaZAI8RIq0Q"
+					target="_blank"
+					class="href">
+					<span>
+						RAGDOLL PHYSICS
+						<img
+							src="https://i.ytimg.com/vi/GaZAI8RIq0Q/hqdefault.jpg"
+							alt="RAGDOLL PHYSICS" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/2vpgsyBj76c"
+					target="_blank"
+					class="href">
+					<span>
+						USING physics IN BLENDER
+						<img
+							src="https://i.ytimg.com/vi/2vpgsyBj76c/hqdefault.jpg"
+							alt="USING physics IN BLENDER" />
+					</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+			<h2>vector math</h2>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/daxdpMJAfik"
+					target="_blank"
+					class="href">
+					<span>
+						Vector Math Node explained by an ENGINEER in electronics
+						<img
+							src="https://i.ytimg.com/vi/daxdpMJAfik/hqdefault.jpg"
+							alt="Vector Math Node explained by an ENGINEER in electronics" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/SkSXroZsysY"
+					target="_blank"
+					class="href">
+					<span>
+						Where to Begin in Geometry Nodes: Vector Math
+						<img
+							src="https://i.ytimg.com/vi/SkSXroZsysY/hqdefault.jpg"
+							alt="Where to Begin in Geometry Nodes: Vector Math" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/watch?v=hCGpCXXpMYk&list=PLi8dC48sCzPBf2xK-iizSyhh6-jO3viwv"
+					target="_blank"
+					class="href">
+					<span>
+						Basic Vector Math Functions - Vector Math Master Class in Blender
+						<img
+							src="https://i.ytimg.com/vi/hCGpCXXpMYk/hqdefault.jpg"
+							alt="Basic Vector Math Functions - Vector Math Master Class in Blender" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/0dZUAh4fFfM"
+					target="_blank"
+					class="href">
+					<span>
+						Vector math is EASY when you SEE it with Blender and Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/0dZUAh4fFfM/hqdefault.jpg"
+							alt="Vector math is EASY when you SEE it with Blender and Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Uvc2P911rZk"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Nodes (part 1) - Using simple math to create shapes in Blender
+						<img
+							src="https://i.ytimg.com/vi/Uvc2P911rZk/hqdefault.jpg"
+							alt="Procedural Nodes (part 1) - Using simple math to create shapes in Blender" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/0jqNnHpc8fA"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Nodes (part 2) - Procedural patterns on a cube
+						<img
+							src="https://i.ytimg.com/vi/0jqNnHpc8fA/hqdefault.jpg"
+							alt="Procedural Nodes (part 2) - Procedural patterns on a cube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/XR_vRtzH4GY"
+					target="_blank"
+					class="href">
+					<span>
+						3D Differential Growth in Blender! Volume-to-mesh
+						<img
+							src="https://i.ytimg.com/vi/XR_vRtzH4GY/hqdefault.jpg"
+							alt="3D Differential Growth in Blender!" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/TZm0-QZoJgI"
+					target="_blank"
+					class="href">
+					<span>
+						Blender node insanity made sane
+						<img
+							src="https://i.ytimg.com/vi/TZm0-QZoJgI/hqdefault.jpg"
+							alt="Blender node insanity made sane" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/JWnTIVgZc-w"
+					target="_blank"
+					class="href">
+					<span>
+						EEVEE is being REPLACED!? and it looks AMAZING! eevee next raytracing
+						<img
+							src="https://i.ytimg.com/vi/JWnTIVgZc-w/hqdefault.jpg"
+							alt="EEVEE is being REPLACED!? and it looks AMAZING!" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Ex_g2w4E5lQ"
+					target="_blank"
+					class="href">
+					<span>
+						Spherical Coordinates 3D Animation, phi, rho, and theta
+						<img
+							src="https://i.ytimg.com/vi/Ex_g2w4E5lQ/hqdefault.jpg"
+							alt="Spherical Coordinates 3D Animation" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/1ArOVAO7FjI"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Math Series Part 2 - The Beauty of Polar Coordinate System, theta, phi
+						<img
+							src="https://i.ytimg.com/vi/1ArOVAO7FjI/hqdefault.jpg"
+							alt="Blender Math Series Part 2 - The Beauty of Polar Coordinate System" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/s8b5Y7M4Ho8"
+					target="_blank"
+					class="href">
+					<span>
+						But what makes Polar Coordinates so special? ornaments
+						<img
+							src="https://i.ytimg.com/vi/s8b5Y7M4Ho8/hqdefault.jpg"
+							alt="But what makes Polar Coordinates so special? ornaments" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/FDyenWWlPdU"
+					target="_blank"
+					class="href">
+					<span>
+						Spherical Coordinate System (With 3D Animation)
+						<img
+							src="https://i.ytimg.com/vi/FDyenWWlPdU/hqdefault.jpg"
+							alt="Spherical Coordinate System (With 3D Animation)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/1ArOVAO7FjI"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Math Series Part 2 - The Beauty of Polar Coordinate System
+						<img
+							src="https://i.ytimg.com/vi/1ArOVAO7FjI/hqdefault.jpg"
+							alt="Blender Math Series Part 2 - The Beauty of Polar Coordinate System" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/eh3cZ20emNk"
+					target="_blank"
+					class="href">
+					<span>
+						Vector Math Explained - YouTube
+						<img
+							src="https://i.ytimg.com/vi/eh3cZ20emNk/hqdefault.jpg"
+							alt="Vector Math Explained - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://blenderartists.org/t/mapping-a-flat-grid-to-the-world-background-cartesian-to-spherical-coordinates-with-shader-nodes/1480926"
+					target="_blank"
+					class="href">
+					<span>
+						Mapping a flat grid to the World background (cartesian to spherical coordinates with shader nodes)
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/W4ViqzbF96Q"
+					target="_blank"
+					class="href">
+					<span>
+						How to Derive the Equations of 3D Surfaces of Arbitrary Complexity and Model Them in Blender - YouTube
+						<img
+							src="https://i.ytimg.com/vi/W4ViqzbF96Q/hqdefault.jpg"
+							alt="How to Derive the Equations of 3D Surfaces of Arbitrary Complexity and Model Them in Blender - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/oobJkNMOyxM"
+					target="_blank"
+					class="href">
+					<span>
+						How to make Procedural Styrofoam Shader in blender in 3 mins - YouTube
+						<img
+							src="https://i.ytimg.com/vi/oobJkNMOyxM/hqdefault.jpg"
+							alt="How to make Procedural Styrofoam Shader in blender in 3 mins - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/U0_ONQQ5ZNM"
+					target="_blank"
+					class="href">
+					<span>
+						The Math behind (most) 3D games - Perspective Projection - YouTube
+						<img
+							src="https://i.ytimg.com/vi/U0_ONQQ5ZNM/hqdefault.jpg"
+							alt="The Math behind (most) 3D games - Perspective Projection - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/ClpxJjRK80E"
+					target="_blank"
+					class="href">
+					<span>
+						Easily Draw any Polygon on the Canvas
+
+						<img
+							src="https://i.ytimg.com/vi/ClpxJjRK80E/hqdefault.jpg"
+							alt="Easily Draw any Polygon on the Canvas" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/B3PlAguibRc"
+					target="_blank"
+					class="href">
+					<span>
+						Tile ANY Procedural Texture
+						<img
+							src="https://i.ytimg.com/vi/B3PlAguibRc/hqdefault.jpg"
+							alt="Tile ANY Procedural Texture" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/2C5j47qa8pA"
+					target="_blank"
+					class="href">
+					<span>
+						TOP 10 TIPS FOR NODEVEMBER - Blender Procedural Shaders - YouTube
+						<img
+							src="https://i.ytimg.com/vi/2C5j47qa8pA/hqdefault.jpg"
+							alt="TOP 10 TIPS FOR NODEVEMBER - Blender Procedural Shaders - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/_zmhsVqBwTg"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Fabric Weave (Knitted Patterns) - Blender Shader Tutorial
+
+						<img
+							src="https://i.ytimg.com/vi/_zmhsVqBwTg/hqdefault.jpg"
+							alt="Procedural Fabric Weave - Blender Shader Tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/KPoeNZZ6H4s"
+					target="_blank"
+					class="href">
+					<span>
+						Giving Personality to Procedural Animations using Math - YouTube
+						<img
+							src="https://i.ytimg.com/vi/KPoeNZZ6H4s/hqdefault.jpg"
+							alt="Giving Personality to Procedural Animations using Math - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/C8YtdC8mxTU"
+					target="_blank"
+					class="href">
+					<span>
+						How do Video Game Graphics Work?
+						<img
+							src="https://i.ytimg.com/vi/C8YtdC8mxTU/hqdefault.jpg"
+							alt="How do Video Game Graphics Work?" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/3mfvZ-mdtZQ"
+					target="_blank"
+					class="href">
+					<span>
+						Introduction to shaders: Learn the basics!
+						<img
+							src="https://i.ytimg.com/vi/3mfvZ-mdtZQ/hqdefault.jpg"
+							alt="Introduction to shaders: Learn the basics!" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/XW-DrBQ-u1o"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Bricks with Blender 2.9 - Blender Shader Node Tutorial - YouTube
+						<img
+							src="https://i.ytimg.com/vi/XW-DrBQ-u1o/hqdefault.jpg"
+							alt="Procedural Bricks with Blender 2.9 - Blender Shader Node Tutorial - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://devtalk.blender.org/t/what-does-faceforward-formula-mean/26634"
+					target="_blank"
+					class="href">
+					<span>What does Faceforward formula mean?</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/mcDHDfK2pXs"
+					target="_blank"
+					class="href">
+					<span>
+						What are Euler Rotations in Blender? | How to Avoid Gimbal Lock (2021)
+						<img
+							src="https://i.ytimg.com/vi/mcDHDfK2pXs/hqdefault.jpg"
+							alt="What are Euler Rotations in Blender? | How to Avoid Gimbal Lock (2021)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/MOYiVLEnhrw"
+					target="_blank"
+					class="href">
+					<span>
+						Freya Holmér 243K subscribers Vectors & Dot Product • Math for Game Devs [Part 1]
+
+						<img
+							src="https://i.ytimg.com/vi/MOYiVLEnhrw/hqdefault.jpg"
+							alt="Vectors & Dot Product • Math for Game Devs [Part 1]" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/dZ36etj39Ko"
+					target="_blank"
+					class="href">
+					<span>
+						Blender - Render Separate Grease Pencil _ Ink Layer Pass
+						<img
+							src="https://i.ytimg.com/vi/dZ36etj39Ko/hqdefault.jpg"
+							alt="Blender - Render Separate Grease Pencil _ Ink Layer Pass" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Tzvm8ALOK68"
+					target="_blank"
+					class="href">
+					<span>
+						Mastering Blender's Shaders and Line Art
+						<img
+							src="https://i.ytimg.com/vi/Tzvm8ALOK68/hqdefault.jpg"
+							alt="Mastering Blender's Shaders and Line Art" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/YLPLuwUicx4"
+					target="_blank"
+					class="href">
+					<span>
+						Brand New Blender Procedural Line Art Modifier.
+
+						<img
+							src="https://i.ytimg.com/vi/YLPLuwUicx4/hqdefault.jpg"
+							alt="Brand New Blender Procedural Line Art Modifier" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/-RrxBhqLzpE"
+					target="_blank"
+					class="href">
+					<span>
+						Line Art Modifier - This week with Grease Pencil
+
+						<img
+							src="https://i.ytimg.com/vi/-RrxBhqLzpE/hqdefault.jpg"
+							alt="Line Art Modifier - This week with Grease Pencil" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/292692/exportgreasepencil-as-svg-line-thickness-differs-from-viewport"
+					target="_blank"
+					class="href">
+					<span>"Export>GreasePencil as SVG" line thickness differs from Viewport</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://en.wikipedia.org/wiki/Fisheye_lens"
+					target="_blank"
+					class="href">
+					<span>
+						Fisheye lens
+						<img
+							src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Circular_fisheye_view_of_Oude_Kerk_Amsterdam_Daniel_D._Teoli_Jr..jpg/440px-Circular_fisheye_view_of_Oude_Kerk_Amsterdam_Daniel_D._Teoli_Jr..jpg"
+							alt="Fisheye lens" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://carlyorme.wordpress.com/2013/12/11/scale-drawing-orthographic/"
+					target="_blank"
+					class="href">
+					<span>
+						Scale Drawing; Orthographic
+						<img
+							src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Axonometric_projections.png/440px-Axonometric_projections.png"
+							alt="The three views. The percentages show the amount of foreshortening." />
+
+						<!-- <img
+              src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Axonometric_projections.png"
+              alt="Fisheye lens"
+            /> -->
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/170208/how-to-precisely-set-orthographic-scale">
+					<span>
+						How to precisely set orthographic scale
+						<img
+							src="https://i.stack.imgur.com/EldIh.png"
+							alt="How to precisely set orthographic scale" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://en.wikipedia.org/wiki/Orthographic_map_projection">
+					<span>
+						Orthographic map projection
+						<img
+							src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Orthographic_projection_SW.jpg/560px-Orthographic_projection_SW.jpg"
+							alt="Orthographic map projection" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/64914/setting-camera-to-position-where-it-can-render-a-seamless-repetable-orthographic/64920#64920">
+					<span>
+						(Python) Setting camera to position where it can render a seamless repetable orthographic scene
+
+						<br />
+						Then I find the adjacent (plane_height * cos(camera.rotation_euler.x)). Divide the render width by the
+						aspect ratio of plane_width / projected_plane_height to find the render height.
+						<img
+							src="https://i.stack.imgur.com/PqMl0.gif"
+							alt="The goal is to have an isometric background image that repeats seamless. I set the camera with orthographic projection and 45° of rotation" />
+
+						<!-- <img
+              src="https://i.stack.imgur.com/E24sn.png"
+              alt="The goal is to have an isometric background image that repeats seamless. I set the camera with orthographic projection and 45° of rotation"
+            />  -->
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/watch?v=ZHQ1rnCqc0c&list=PLUe04fv-YMwyivoTSJIKIJ5VKzrTtmwMc"
+					target="_blank"
+					class="href">
+					ULTIMATE GUIDE to texture coordinates in blender full playlist
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/embed/ZHQ1rnCqc0c"
+					target="_blank"
+					class="href">
+					ULTIMATE GUIDE to texture coordinates in blender # 1
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/embed/3tU0PM8aVks"
+					target="_blank"
+					class="href">
+					ULTIMATE GUIDE to texture coordinates in blender # 2
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/embed/T_PS8fy43AE"
+					target="_blank"
+					class="href">
+					ULTIMATE GUIDE to texture coordinates in blender # 3
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/embed/EM6gWJBs7p8"
+					target="_blank"
+					class="href">
+					ULTIMATE GUIDE to texture coordinates in blender # 4
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/embed/0hpo0bq7-pw"
+					target="_blank"
+					class="href">
+					ULTIMATE GUIDE to texture coordinates in blender # 5
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/embed/-XxR78kTas8"
+					target="_blank"
+					class="href">
+					ULTIMATE GUIDE to texture coordinates in blender # 6
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/embed/Y125IwiPmEg"
+					target="_blank"
+					class="href">
+					ULTIMATE GUIDE to texture coordinates in blender # 7
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/embed/GpuHqa4YttY"
+					target="_blank"
+					class="href">
+					ULTIMATE GUIDE to texture coordinates in blender # 8
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/embed/Uor5oJ8xGMs"
+					target="_blank"
+					class="href">
+					ULTIMATE GUIDE to texture coordinates in blender # 9
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/embed/Mq2knqvpIUk"
+					target="_blank"
+					class="href">
+					<span>
+						ULTIMATE GUIDE to texture coordinates in blender #10 - cylindrical & spherical coordinates magical
+						effects
+						<img
+							src="https://i.ytimg.com/vi/Mq2knqvpIUk/hqdefault.jpg"
+							alt="ULTIMATE GUIDE to texture coordinates in blender #10 - cylindrical & spherical coordinates" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>Hair Grooming</h2>
+			<div class="video_link">
+				<a
+					href="https://www.artstation.com/blogs/godstepson/0ga4/006-hair-in-blender-part-2-procedural-grooming-tools-2"
+					target="_blank"
+					class="href">
+					<span>
+						006 - Hair in Blender Part 2 - Procedural Grooming Tools 2
+						<img
+							style="max-width: 320px"
+							src="https://cdna.artstation.com/p/media_assets/images/images/000/566/172/original/006_21_Roughness_UniformAndSize_OPTIMIZED.gif"
+							alt="006 - Hair in Blender Part 2 - Procedural Grooming Tools 2" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/wiYk0I3_xss"
+					target="_blank"
+					class="href">
+					<span>
+						Blender 2.8 Eevee - hair shading tutorial
+						<img
+							src="https://i.ytimg.com/vi/wiYk0I3_xss/hqdefault.jpg"
+							alt="Blender 2.8 Eevee - hair shading tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>Addon Suggestions That might help</h2>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Msz2G8wwXwc"
+					target="_blank"
+					class="href">
+					<span>
+						Free tools EVERY BLENDER Artist Should Be Using
+						<img
+							src="https://i.ytimg.com/vi/Msz2G8wwXwc/hqdefault.jpg"
+							alt="Free tools EVERY BLENDER Artist Should Be Using" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/FMfLocFWc2M"
+					target="_blank"
+					class="href">
+					<span>
+						Free Blender Addons that even the PROs USE
+						<img
+							src="https://i.ytimg.com/vi/FMfLocFWc2M/hqdefault.jpg"
+							alt="Free Blender Addons that even the PROs USE" />
+					</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+			<h2>Rigging</h2>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/wcU-vTz-lZ0"
+					target="_blank"
+					class="href">
+					<span>
+						Rigging Made Easy, Skeleton Character Blender 2.93 - YouTube- concentrate on AXIS section
+						<img
+							src="https://i.ytimg.com/vi/wcU-vTz-lZ0/hqdefault.jpg"
+							alt="Rigging Made Easy, Skeleton Character Blender 2.93 - YouTube- concentrate on AXIS section" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/BnUGyq5i1Eg"
+					target="_blank"
+					class="href">
+					<span>
+						Advanced Foot Rig Made Easy, Pivot and Roll || Blender 2.92
+						<img
+							src="https://i.ytimg.com/vi/BnUGyq5i1Eg/hqdefault.jpg"
+							alt="Advanced Foot Rig Made Easy, Pivot and Roll || Blender 2.92" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>Fundamentals</h2>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/MF1qEhBSfq4"
+					target="_blank"
+					class="href">
+					<span>
+						Blender fundamentals
+						<img
+							src="https://i.ytimg.com/vi/MF1qEhBSfq4/hqdefault.jpg"
+							alt="tracking with the camera" />
+					</span>
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/watch?v=MF1qEhBSfq4&list=PLa1F2ddGya_-UvuAqHAksYnB0qL9yWDO6"
+					target="_blank"
+					class="href">
+					<span>the entire fundamentals list</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/-c0Evpf8V3A"
+					target="_blank"
+					class="href">
+					<span>
+						Ryan King | How to Use Blender's Snapping Feature (Tutorial) | adding detail onto a surface @ 9
+						minutes
+						<img
+							src="https://i.ytimg.com/vi/-c0Evpf8V3A/hqdefault.jpg"
+							alt="How to Use Blender's Snapping Feature (Tutorial)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/UTwXG3K4l2g"
+					target="_blank"
+					class="href">
+					<span>
+						intro to cycles
+						<img
+							src="https://i.ytimg.com/vi/UTwXG3K4l2g/hqdefault.jpg"
+							alt="intro to cycles" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/1Zropvzs1Gg"
+					target="_blank"
+					class="href">
+					<span>
+						Blender 3D Tutorial - 3 - Creating Objects - YouTube
+						<img
+							src="https://i.ytimg.com/vi/1Zropvzs1Gg/hqdefault.jpg"
+							alt="Blender 3D Tutorial - 3 - Creating Objects - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/wWB5XVK7-VI"
+					target="_blank"
+					class="href">
+					<span>
+						Blender For Noobs - How to work with bump maps
+						<img
+							src="https://i.ytimg.com/vi/wWB5XVK7-VI/hqdefault.jpg"
+							alt="Blender For Noobs - How to work with bump maps" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/-rwvxusuJXU"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Mesh Intersect Tool
+						<img
+							src="https://i.ytimg.com/vi/-rwvxusuJXU/hqdefault.jpg"
+							alt="Blender Mesh Intersect Tool " />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/pNiVB7tRG68"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Physically Based Shading Fresnel - YouTube
+						<img
+							src="https://i.ytimg.com/vi/pNiVB7tRG68/hqdefault.jpg"
+							alt="Blender Physically Based Shading Fresnel - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/rImvyRepx1U"
+					target="_blank"
+					class="href">
+					<span>
+						CynicatPro Blender Physically Based Shading
+						<img
+							src="https://i.ytimg.com/vi/rImvyRepx1U/hqdefault.jpg"
+							alt="CynicatPro: Blender Physically Based Shading" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/6pJrlEzbNek"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Physically Based Shading 6: Simpler Implementation (Fresnel Redux) [OLD] this could be the
+						basis for a fast shader, with separate refraction, reflection and roughness controls...
+						<img
+							src="https://i.ytimg.com/vi/6pJrlEzbNek/hqdefault.jpg"
+							alt="Blender Physically Based Shading 6: Simpler Implementation (Fresnel Redux) [OLD]" />
+					</span>
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/user/CynicatPro"
+					target="_blank"
+					class="href">
+					from the channel:
+					<br />
+					CynicatPro Channel https://www.youtube.com/user/CynicatPro
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>Animation Basics</h2>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/sM4_rbrQMpo">
+					<span>
+						How to Animate | the Basics of Animation
+						<img
+							src="https://i.ytimg.com/vi/sM4_rbrQMpo/hqdefault.jpg"
+							alt="How to Animate | the Basics of Animation"
+							title="How to Animate | the Basics" />
+					</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+
+			<h2>Modeling</h2>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Qh3y6lFDCyU">
+					<span>
+						a better approach non-destructive boolean approach
+						<img
+							src="https://i.ytimg.com/vi/Qh3y6lFDCyU/hqdefault.jpg"
+							alt="a better approach non-destructive boolean approach "
+							title="a better approach non-destructive boolean approach " />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/cL2680MYc0M">
+					<span>
+						Hide in Viewport and Edit original in Collection
+						<img
+							src="https://i.ytimg.com/vi/cL2680MYc0M/hqdefault.jpg"
+							alt="Hide in Viewport and Edit original in Collection"
+							title="Hide in Viewport and Edit original in Collection" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/fbVq13f47-8">
+					<span>
+						Thin Film Interference bubbles and metal
+						<img
+							src="https://i.ytimg.com/vi/fbVq13f47-8/hqdefault.jpg"
+							alt="Thin Film Interference bubbles and metal"
+							title="Thin Film Interference bubbles and metal" />
+					</span>
+				</a>
+			</div>
+
+			<h2>Modeling Basics</h2>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/AnfVrP6L89M"
+					target="_blank"
+					class="href">
+					<span>
+						How to Model a Face - Low Poly Beginner 3D Modeling Tutorial
+						<img
+							src="https://i.ytimg.com/vi/AnfVrP6L89M/hqdefault.jpg"
+							alt="How to Model a Face - Low Poly Beginner 3D Modeling Tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/9GwfvP2XIFw">
+					<span>
+						Seamless interweaving pattern for use with Tissue
+						<img
+							src="https://i.ytimg.com/vi/9GwfvP2XIFw/hqdefault.jpg"
+							alt="Seamless interweaving pattern for use with Tissue"
+							title="Seamless interweaving pattern for use with Tissue" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Eu9abP0LIb8">
+					<span>
+						Connect two objects using the Data Transfer
+						<img
+							src="https://i.ytimg.com/vi/Eu9abP0LIb8/hqdefault.jpg"
+							alt="Connect two objects using the Data Transfer"
+							title="Connect two objects using the Data Transfer" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/WGQwVAJrg4Q">
+					<span>
+						Parallel Offset Modeling hard surfaces
+						<img
+							src="https://i.ytimg.com/vi/WGQwVAJrg4Q/hqdefault.jpg"
+							alt="Parallel Offset Modeling hard surfaces"
+							title="Parallel Offset Modeling hard surfaces" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/ZComvDDT7v0">
+					<span>
+						Multiple ways of modeling without subdivision
+						<img
+							src="https://i.ytimg.com/vi/ZComvDDT7v0/hqdefault.jpg"
+							alt="Multiple ways of modeling without subdivision "
+							title="Multiple ways of modeling without subdivision " />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/luFz5gzvM9s"
+					target="_blank"
+					class="href">
+					<span>
+						snap seamlessly hard surface objects in blender
+						<img
+							src="https://i.ytimg.com/vi/luFz5gzvM9s/hqdefault.jpg"
+							alt="snap seamlessly hard surface objects in blender" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>Dealing with Subsurface Scattering:</h2>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/5U4tgCvkQY4"
+					target="_blank"
+					class="href">
+					<span>
+						SubSurface Scattering In Cycles | Almost Idiot-proofed
+						<img
+							src="https://i.ytimg.com/vi/5U4tgCvkQY4/hqdefault.jpg"
+							alt="SubSurface Scattering In Cycles | Almost Idiot-proofed" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/iLYkTBz9_do"
+					target="_blank"
+					class="href">
+					<span>
+						Subsurface Scattering in Blender (mixing the textures from "the OLD way" into one shader)
+						<img
+							src="https://i.ytimg.com/vi/iLYkTBz9_do/hqdefault.jpg"
+							alt="Subsurface Scattering in Blender" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://bensimonds.com/2010/05/31/three-layer-sss-in-blender-demystified/"
+					target="_blank"
+					class="href">
+					SubSurface Scattering In Cycles | OLD way (using three texture layers)
+					<br />
+					https://bensimonds.com/2010/05/31/three-layer-sss-in-blender-demystified/
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<h2>More Links</h2>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/RQVAUaSUP-k"
+					target="_blank"
+					class="href">
+					<span>
+						Pixel Perfect Texture & Easy Unwrapping! in Blender 2.8 My Workflow Tutorial
+						<img
+							src="https://i.ytimg.com/vi/RQVAUaSUP-k/hqdefault.jpg"
+							alt="Pixel Perfect Texture & Easy Unwrapping! in Blender 2.8 My Workflow Tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/vIKJ1AqfI0Q"
+					target="_blank"
+					class="href">
+					<span>
+						3D to 2D pixel in-depth Blender Tutorial
+						<img
+							src="https://i.ytimg.com/vi/vIKJ1AqfI0Q/hqdefault.jpg"
+							alt="3D to 2D pixel in-depth Blender Tutorial" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/1FrIBkuq0ZI">
+					<span>
+						Making an Animation for my 3D Pixel Art Game
+						<img
+							src="https://i.ytimg.com/vi/1FrIBkuq0ZI/hqdefault.jpg"
+							alt="Making an Animation for my 3D Pixel Art Game"
+							title="Making an Animation for my 3D Pixel Art Game" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/GBIXU9BlyXg"
+					target="_blank"
+					class="href">
+					<span>
+						Knitted Materials - Getting started with Blender Nodes Part 4
+
+						<img
+							src="https://i.ytimg.com/vi/GBIXU9BlyXg/hqdefault.jpg"
+							alt=" Knitted Materials - Getting started with Blender Nodes Part 4 " />
+					</span>
+				</a>
+				<pre>this could easily be a mosiac maker (turning something into pixel art)</pre>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/a2JBUE_tLNc">
+					<span>
+						Learn vector transformations with Pixel Art (GUM ROAD FREE DOWNLOAD)
+						<img
+							src="https://i.ytimg.com/vi/a2JBUE_tLNc/hqdefault.jpg"
+							alt="Learn vector transformations with Pixel Art (GUM ROAD FREE DOWNLOAD)"
+							title="Learn vector transformations with Pixel Art (GUM ROAD FREE DOWNLOAD)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/gZRDwbHEB34"
+					target="_blank"
+					class="href">
+					<span>
+						Advance Unwrapping & Making Texture Atlases | linked duplicates
+						<img
+							src="https://i.ytimg.com/vi/gZRDwbHEB34/hqdefault.jpg"
+							alt="Advance Unwrapping & Making Texture Atlases | linked duplicates" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/kAUmLcXhUj0"
+					target="_blank"
+					class="href">
+					<span>
+						Manipulate texture coordinates like a boss - Bartek Skorupa
+						<img
+							src="https://i.ytimg.com/vi/kAUmLcXhUj0/hqdefault.jpg"
+							alt="Manipulate texture coordinates like a boss - Bartek Skorupa" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/cIok7SCQ3SA"
+					target="_blank"
+					class="href">
+					<span>
+						texture atlas lighting bake
+						<img
+							src="https://i.ytimg.com/vi/cIok7SCQ3SA/hqdefault.jpg"
+							alt="texture atlas lighting bake" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/9airvjDaVh4"
+					target="_blank"
+					class="href">
+					<span>
+						Grant Abbitt : Baking Multiple Textures onto One Map | No Plugins
+
+						<img
+							src="https://i.ytimg.com/vi/9airvjDaVh4/hqdefault.jpg"
+							alt="Grant Abbitt : Baking Multiple Textures onto One Map | No Plugins" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/y__2EUie0-4"
+					target="_blank"
+					class="href">
+					<span>
+						Blender 3.5 Tutorial - Create custom VDM brushes in Blender
+						<img
+							src="https://i.ytimg.com/vi/y__2EUie0-4/hqdefault.jpg"
+							alt="Blender 3.5 Tutorial - Create custom VDM brushes in Blender" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/ITVOllroIaE"
+					target="_blank"
+					class="href">
+					<span>
+						Different methods for creating wood texture using alpha sculpting
+						<img
+							src="https://i.ytimg.com/vi/ITVOllroIaE/hqdefault.jpg"
+							alt="Different methods for creating wood texture using alpha sculpting" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/y9BhNHPVBzc"
+					target="_blank"
+					class="href">
+					<span>
+						Breaking up models into fitted parts for 3D printing - The Edge Split Tool
+						<img
+							src="https://i.ytimg.com/vi/y9BhNHPVBzc/hqdefault.jpg"
+							alt="Breaking up models into fitted parts for 3D printing - The Edge Split Tool" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/9-44yRfQ-A0"
+					target="_blank"
+					class="href">
+					<span>
+						tracking with the camera
+						<img
+							src="https://i.ytimg.com/vi/9-44yRfQ-A0/hqdefault.jpg"
+							alt="tracking with the camera" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/7JUNlj6mR0U"
+					target="_blank"
+					class="href">
+					<span>
+						using seams with UV texture
+						<img
+							src="https://i.ytimg.com/vi/7JUNlj6mR0U/hqdefault.jpg"
+							alt="using seams with UV texture" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/_9dEqM3H31g"
+					target="_blank"
+					class="href">
+					<span>
+						100 Blender 2.8 tips you might not know! (Blender 2.8 tips and tricks)
+						<img
+							src="https://i.ytimg.com/vi/_9dEqM3H31g/hqdefault.jpg"
+							alt="100 Blender 2.8 tips you might not know! (Blender 2.8 tips and tricks)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/channel/UCG8AxMVa6eutIGxrdnDxWpQ"
+					target="_blank"
+					class="href">
+					<span>
+						photogrammetry for free
+						<img
+							src="https://i.ytimg.com/vi/k4NTf0hMjtY/hqdefault.jpg"
+							alt="photogrammetry for free" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Gq5YWSpvME8"
+					target="_blank"
+					class="href">
+					<span>
+						render passes to control things for blurry textures
+						<img
+							src="https://i.ytimg.com/vi/Gq5YWSpvME8/hqdefault.jpg"
+							alt="render passes to control things for blurry textures" />
+					</span>
+				</a>
+				<br />
+				<a
+					href="https://www.creativeshrimp.com/5-ways-to-use-render-passes.html"
+					target="_blank"
+					class="href">
+					from here: https://www.creativeshrimp.com/5-ways-to-use-render-passes.html
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/UiLcAiXlgvE">
+					<span>
+						The NEW Curve Pen Tool
+						<img
+							src="https://i.ytimg.com/vi/UiLcAiXlgvE/hqdefault.jpg"
+							alt="The NEW Curve Pen Tool"
+							title="The NEW Curve Pen Tool" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/gl5HFg57bpU">
+					<span>
+						Oldschool Airbrush Look with Eevee NPR Shaders - Roger Dean Inspired
+						<img
+							src="https://i.ytimg.com/vi/gl5HFg57bpU/hqdefault.jpg"
+							alt="Oldschool Airbrush Look with Eevee NPR Shaders - Roger Dean Inspired"
+							title="Oldschool Airbrush Look" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/hCGpCXXpMYk">
+					<span>
+						Basic Vector Math Functions
+						<img
+							src="https://i.ytimg.com/vi/hCGpCXXpMYk/hqdefault.jpg"
+							alt="Basic Vector Math Functions"
+							title="a more MATH-related visual representation of the vector math node." />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/LyJTsmvyZko">
+					<span>
+						Light Path Node Demystified
+						<img
+							src="https://i.ytimg.com/vi/LyJTsmvyZko/hqdefault.jpg"
+							alt="Light Path Node Demystified"
+							title="Light Path Node Demystified" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Uvc2P911rZk">
+					<span>
+						visually shows math formulae for parabolas, among others.
+						<img
+							src="https://i.ytimg.com/vi/Uvc2P911rZk/hqdefault.jpg"
+							alt="visually shows math formulae for parabolas, among others."
+							title="Procedural Nodes (part 1) - Using simple math to create shapes" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/yEe52hRuFCA">
+					<span>
+						How to Increase Strength of Normal Maps
+						<img
+							src="https://i.ytimg.com/vi/yEe52hRuFCA/hqdefault.jpg"
+							alt="How to Increase Strength of Normal Maps"
+							title="How to Increase Strength of Normal Maps" />
+					</span>
+				</a>
+
+				<br />
+				<pre>
+  How to Increase Strength of Normal Maps
+rgb is xyz, but that's not very useful when dealing with 
+normal map/ UV? coordinates.
+
+RGB needs to be converted to XYZ, first by
+
+taking the R or G or B value going
+	from 0 to 1 and 
+	change it to -1 to 1
+	
+		first vector math 
+		multiply the val by 2
+		the subtract 1
+		
+	To convert back to 0 to 1....
+	
+	(vector math)
+	
+		add 1
+		divide by 2
+		
+converting XYZ (cartesian coordinates)
+	to 
+Spherical coordinates (something better used in UV)
+
+X,Y,Z becomes theta,phi
+
+Theta is the angle that controls how far the vector is 
+rotated down around (away from the Z axis in the X direction)
+imagine rotating clock-wise around the Y axis to go further
+ in the X direction. The Z X spherical quadrant would be a
+  change in theta. (to 90 degrees)
+
+phi denotes the rotation around the Z axis, maps to y, 
+and goes to 360 degrees.
+
+so how can we caculate phi?
+
+we only concern ourselves with the ground (0,0) plane 
+intersection of the ZX quadrant.
+
+		phi = atan(y,x)  (counter-clock-wise) 
+
+		(math node >> arctan2 with x plugged into the bottom 
+    socket, and y plugged into the top)
+
+so how do we calculate the theta?
+
+		theta = atan(x,z) (clock-wise)
+
+theta is blue!
+
+phi is red and green.
+
+(theta is only a quarter of the whole square distance that 
+phi covers)
+
+while in the spherical coordinate system, this is where you 
+would do all the cool stuff, then convert back from the
+-1..1 spherical system back into cartesian coordinates
+
+the theta change (delta) is the strength of the normal map. 
+if theta is 0, it's a perfectly flat normal map.
+
+so use a math node, and multiply theta to increase the depth. 
+
+		IF THETA IS MADE TOO STRONG, (more than 90 degrees, 
+    clamp node to keep it in range -- max value would be pi*0.5
+
+
+</pre
+				>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/e-Ql-bMa9So">
+					<span>
+						The First Blender 4.0 Exterior Archviz MASTERCLASS! | iMeshh.com Guide
+						<img
+							src="https://i.ytimg.com/vi/e-Ql-bMa9So/hqdefault.jpg"
+							alt="The First Blender 4.0 Exterior Archviz MASTERCLASS! | iMeshh.com Guide"
+							title="The First Blender 4.0 Exterior Archviz MASTERCLASS! | iMeshh.com Guide" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/L8YHP2edo-o">
+					<span>
+						focus on render passes
+						<br />
+						Make an interior in Blender like a PRO!
+						<img
+							src="https://i.ytimg.com/vi/L8YHP2edo-o/hqdefault.jpg"
+							alt="Make an interior in Blender like a PRO!"
+							title="Make an interior in Blender like a PRO!" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Q1Mo2o5j4MM">
+					<span>
+						<br />
+						near 31 mins good glass setup -- 1-46- denoise setup
+						<br />
+
+						Blender Archviz MASTERCLASS | Archvis Tutorial #3 | iMeshh.com Guide
+						<img
+							src="https://i.ytimg.com/vi/Q1Mo2o5j4MM/hqdefault.jpg"
+							alt="Blender Archviz MASTERCLASS | Archvis Tutorial #3 | iMeshh.com Guide"
+							title="Blender Archviz MASTERCLASS | Archvis Tutorial #3 | iMeshh.com Guide" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/@deayanstudios/videos">
+					<span>
+						good physics simulations
+						<img
+							src="#"
+							alt="good physics simulations"
+							title="good physics simulations" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://devtalk.blender.org/t/mathematical-formula-of-vector-refraction/26207">
+					<span>
+						[In Blender, What is the] Mathematical formula of Vector Refraction?
+						<img
+							src="#"
+							alt="[In Blender, What is the] Mathematical formula of Vector Refraction?"
+							title="[In Blender, What is the] Mathematical formula of Vector Refraction?" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/4dgB-6K6_UE">
+					<span>
+						a decent way to set up a folder for production in 3d
+						<img
+							src="https://i.ytimg.com/vi/4dgB-6K6_UE/hqdefault.jpg"
+							alt="a decent way to set up a folder for production in 3d"
+							title="a decent way to set up a folder for production in 3d" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/f53GvpTIO2w">
+					<span>
+						bezier curve tutorial for new users
+						<img
+							src="https://i.ytimg.com/vi/f53GvpTIO2w/hqdefault.jpg"
+							alt="bezier curve tutorial for new users"
+							title="bezier curve tutorial for new users" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/hpzJ_3H-05s">
+					<span>
+						Curve Pen Tool
+						<img
+							src="https://i.ytimg.com/vi/hpzJ_3H-05s/hqdefault.jpg"
+							alt="Curve Pen Tool"
+							title="Curve Pen Tool" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/aR3yNNGK_sc">
+					<span>
+						Production Pipeline Example
+						<img
+							src="https://i.ytimg.com/vi/aR3yNNGK_sc/hqdefault.jpg"
+							alt="Production Pipeline Example"
+							title="The Production Pipeline of Spring - Andy Goralczyk" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/3yUzNedrZIk"
+					target="_blank"
+					class="href">
+					<span>
+						Blend Juice - An in depth Blender 3D Breakdown of my hyper-realistic beverage animation! - YouTube
+						<img
+							src="https://i.ytimg.com/vi/3yUzNedrZIk/hqdefault.jpg"
+							alt="Blend Juice - An in depth Blender 3D Breakdown of my hyper-realistic beverage animation! - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Vud9Ora9IwE">
+					<span>
+						Make your animation 10x better with LAYERS - Blender tutorial
+						<img
+							src="https://i.ytimg.com/vi/Vud9Ora9IwE/hqdefault.jpg"
+							alt="Make your animation 10x better with LAYERS - Blender tutorial"
+							title="Make your animation 10x better with LAYERS - Blender tutorial" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/rC8Qs9kLBhY">
+					<span>
+						The Key to Realistic Fur &amp; Hair
+						<img
+							src="https://i.ytimg.com/vi/rC8Qs9kLBhY/hqdefault.jpg"
+							alt="The Key to Realistic Fur &amp; Hair"
+							title="The Key to Realistic Fur &amp; Hair" />
+					</span>
+				</a>
+			</div>
+			<hr />
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/-Ya-7olrPyc">
+					<span>
+						Beginner Blender Modelling
+						<img
+							src="https://i.ytimg.com/vi/-Ya-7olrPyc/hqdefault.jpg"
+							alt="Beginner Blender Modelling"
+							title="Beginner Blender Modelling" />
+					</span>
+				</a>
+			</div>
+			<hr />
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/xCGsBfZWbfA">
+					<span>
+						3D Modeling Cartoon Bed-- using cloth for blanket and pillow
+						<img
+							src="https://i.ytimg.com/vi/xCGsBfZWbfA/hqdefault.jpg"
+							alt="3D Modeling Cartoon Bed-- using cloth for blanket and pillow"
+							title="3D Modeling Cartoon Bed-- using cloth for blanket and pillow" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/8_apXIn0g5w">
+					<span>
+						FREE Substance Painter Alternative? Ucupaint!
+						<img
+							src="https://i.ytimg.com/vi/8_apXIn0g5w/hqdefault.jpg"
+							alt="FREE Substance Painter Alternative? Ucupaint!"
+							title="FREE Substance Painter Alternative? Ucupaint!" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/8YGBUCgogRI">
+					<span>
+						Realistic Dry Ice
+						<img
+							src="https://i.ytimg.com/vi/8YGBUCgogRI/hqdefault.jpg"
+							alt="Realistic Dry Ice"
+							title="Realistic Dry Ice" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/VvD0ql9OvdE">
+					<span>
+						Procedural Sponge Material
+						<img
+							src="https://i.ytimg.com/vi/VvD0ql9OvdE/hqdefault.jpg"
+							alt="Procedural Sponge Material"
+							title="Procedural Sponge Material" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/oD2tz_738GQ">
+					<span>
+						Realistic Skin Texture in 6 Minutes
+						<img
+							src="https://i.ytimg.com/vi/oD2tz_738GQ/hqdefault.jpg"
+							alt="Realistic Skin Texture in 6 Minutes"
+							title="Realistic Skin Texture in 6 Minutes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/-JdchfLk1M4">
+					<span>
+						Glass Shader (with Fake Reflections)
+						<img
+							src="https://i.ytimg.com/vi/-JdchfLk1M4/hqdefault.jpg"
+							alt="Glass Shader (with Fake Reflections)"
+							title="Glass Shader (with Fake Reflections)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.blendernation.com/category/store/training-videos-store/">
+					<span>
+						Training Videos
+						<img
+							src="../not-available.svg"
+							alt="Training Videos"
+							title="Training Videos" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.blendernation.com/category/education/tutorials/videotutorials/">
+					<span>
+						Video tutorials
+						<img
+							src="../not-available.svg"
+							alt="Video tutorials"
+							title="Video tutorials" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/81vfj1Ui-bc">
+					<span>
+						Simulation Nodes Cloth
+						<img
+							src="https://i.ytimg.com/vi/81vfj1Ui-bc/hqdefault.jpg"
+							alt="Simulation Nodes Cloth"
+							title="Simulation Nodes Cloth" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/sxWJqMJdL04">
+					<span>
+						Hyper Realistic Water
+						<img
+							src="https://i.ytimg.com/vi/sxWJqMJdL04/hqdefault.jpg"
+							alt="Hyper Realistic Water"
+							title="Hyper Realistic Water" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/180507/simulating-a-40w-light-bulb">
+					<span>
+						Simulating a 40W Light Bulb
+						<img
+							src="../not-available.svg"
+							alt="Simulating a 40W Light Bulb"
+							title="Simulating a 40W Light Bulb" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/blackbody-behavior-when-using-with-light-sources/1452214">
+					<span>
+						blackbody behavior when using with light sources
+						<img
+							src="../not-available.svg"
+							alt="blackbody behavior when using with light sources"
+							title="blackbody behavior when using with light sources" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/aBh350Klu60">
+					<span>
+						Toon Shader &amp; Lineart
+						<img
+							src="https://i.ytimg.com/vi/aBh350Klu60/hqdefault.jpg"
+							alt="Toon Shader &amp; Lineart"
+							title="Toon Shader &amp; Lineart" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/6YEICiVkU_w">
+					<span>
+						10 Common Blender Mistakes
+						<img
+							src="https://i.ytimg.com/vi/6YEICiVkU_w/hqdefault.jpg"
+							alt="10 Common Blender Mistakes"
+							title="10 Common Blender Mistakes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/154163/incorrect-gradient-in-linear-color-ramp/154528#154528">
+					<span>
+						HSV values have been gamma corrected
+						<img
+							src="../not-available.svg"
+							alt="HSV values have been gamma corrected"
+							title="HSV values have been gamma corrected" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/43755/how-would-i-change-a-cycles-materials-color-using-the-scale-of-the-object-insta">
+					<span>
+						change a Cycles material color using the scale of the object
+						<img
+							src="https://i.sstatic.net/bMMU4.gif"
+							alt="change a Cycles material color using the scale of the object"
+							title="change a Cycles material color using the scale of the object" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/31266/is-it-possible-to-get-an-objects-scale-through-an-input-in-the-cycles-node-edito">
+					<span>
+						get an objects scale through cycles node editor
+						<img
+							src="https://i.sstatic.net/pGrHz.png"
+							alt="get an objects scale through cycles node editor"
+							title="get an objects scale through cycles node editor" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/HAsUIiwMTdQ">
+					<span>
+						Vector Displacement Tutorial Part 2
+						<img
+							src="https://i.ytimg.com/vi/HAsUIiwMTdQ/hqdefault.jpg"
+							alt="Vector Displacement Tutorial Part 2"
+							title="Vector Displacement Tutorial Part 2" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Xw2ELWEk27M">
+					<span>
+						vector displacement tips
+						<img
+							src="https://i.ytimg.com/vi/Xw2ELWEk27M/hqdefault.jpg"
+							alt="vector displacement tips"
+							title="vector displacement tips" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/@BlenderOfficial/videos">
+					<span>
+						Blender Official
+						<img
+							src="../not-available.svg"
+							alt="Blender Official"
+							title="Blender Official" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/jlkRsiiJiMQ">
+					<span>
+						Will Anderson | Innovation in Character Creation — Blender Conference 2024
+						<img
+							src="https://i.ytimg.com/vi/jlkRsiiJiMQ/hqdefault.jpg"
+							alt="Will Anderson | Innovation in Character Creation — Blender Conference 2024"
+							title="Will Anderson | Innovation in Character Creation — Blender Conference 2024" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/grZuKnKSiwY">
+					<span>
+						Why The Blender Conference 2024 Blew My Mind AGAIN!
+						<img
+							src="https://i.ytimg.com/vi/grZuKnKSiwY/hqdefault.jpg"
+							alt="Why The Blender Conference 2024 Blew My Mind AGAIN!"
+							title="Why The Blender Conference 2024 Blew My Mind AGAIN!" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://wanderson.xyz/">
+					<span>
+						© Wanderson Studio 2024, Will Anderson
+						<img
+							src="../not-available.svg"
+							alt="© Wanderson Studio 2024, Will Anderson"
+							title="© Wanderson Studio 2024, Will Anderson" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/8VKGMhohLJU">
+					<span>
+						https://www.youtube.com/watch?v=8VKGMhohLJU&amp;t=130s
+						<img src="https://i.ytimg.com/vi/8VKGMhohLJU/hqdefault.jpg" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/cprYwZ9sFSo">
+					<span>
+						grease pencil beginner's guide
+						<img
+							src="https://i.ytimg.com/vi/cprYwZ9sFSo/hqdefault.jpg"
+							alt="grease pencil beginner's guide"
+							title="grease pencil beginner's guide" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/d0dlgxdC95Y">
+					<span>
+						How To Bend Water! - or control fire
+						<img
+							src="https://i.ytimg.com/vi/d0dlgxdC95Y/hqdefault.jpg"
+							alt="How To Bend Water! - or control fire"
+							title="How To Bend Water! - or control fire" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/4JT_43qc0Dc">
+					<span>
+						2D Metaballs
+						<img
+							src="https://i.ytimg.com/vi/4JT_43qc0Dc/hqdefault.jpg"
+							alt="2D Metaballs"
+							title="2D Metaballs" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/202472/what-is-the-difference-between-generated-and-normal-texture-coordinates">
+					<span>
+						What is the difference between "Generated" and "Normal" texture coordinates?
+						<img
+							src="../not-available.svg"
+							alt='What is the difference between "Generated" and "Normal" texture coordinates?'
+							title='What is the difference between "Generated" and "Normal" texture coordinates?' />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/267862/in-shader-nodes-how-can-i-get-the-position-and-rotation-of-a-camera">
+					<span>
+						In shader nodes, how can I get the position and rotation of a camera?
+						<img
+							src="../not-available.svg"
+							alt="In shader nodes, how can I get the position and rotation of a camera?"
+							title="In shader nodes, how can I get the position and rotation of a camera?" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/X80M0q0gxIE">
+					<span>
+						Quaternion or Euler, understanding rotation
+						<img
+							src="https://i.ytimg.com/vi/X80M0q0gxIE/hqdefault.jpg"
+							alt="Quaternion or Euler, understanding rotation"
+							title="Quaternion or Euler, understanding rotation" />
+					</span>
+				</a>
+			</div>
+
+			<!--  --- END LINKS -->
+
+			<!--  
+      <hr class="page_break" />
+      
+      --></div>
+		<div class="video_link bottom_link">
+			<a
+				href="../__index_learning_links.html"
+				class="href">
+				all_links
+			</a>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,4926 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Geo Nodes information</title>
+		<link
+			rel="stylesheet"
+			href="../styles/learning_link_styles.css" />
+		<script src="../scripts/learning_links_script.js"></script>
+	</head>
+	<body>
+		<div class="tagging_system">
+			<h4>the tagging system: enter a term here and javascript makes links to anchors with the same text</h4>
+			<span
+				id="cloud_area"
+				class="anchor_tags"></span>
+		</div>
+		<div
+			id="main"
+			class="main">
+			<p>How to use the geo nodes in Blender.</p>
+			<p>Johnny Matthews on youtube is great for beginners. Erindale is great for advanced nodes.</p>
+			<pre>
+ explore making splines that extrude along a profile with geometry nodes. so--- make points that crawl along a profile,  similar to Curve Deform with Geometry Nodes minutes 15-20 connect those points with a spline use that spline to extrude a second profile all with geometry nodes? can I fill a rectangle with points that follow a pattern, and subsequently connect those points? a fibinacci scattering, plus using depth. find one, or make it.. a spiral maker-- see above.... spiral, using x and y (based on 0-1) sin of x * cos of y ? generate points along the way think fan-shaped flower petal....  (carnation petal) a branching spreader that takes and makes a rectangle of points, that first extrudes points using branching.... see video about mushrooms growing.... filling out to the extent of the plane, then connects the outer points with an edge. keeps depth in z branches are deeper than outer, random. after all that is done, can curl the whole thing about a cylinder research gaussian fall-off. array-based or grid-based instancer (see notes on erindale videos) something spiky around an edge.... introducing a random point around an edge of a thing (think a rose leaf) is it possible to build a trumpet-looking flower, like a fox-glove petal? imagine a cone, with open ends cone endpoint c amount of curl r amount of rotation from end-point n number of sides d amount of depth t amount of taper ext amount of extension using branching, "p-end" amount of "petal end" (random) </pre
+			>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/yUPKODvGOdA"
+					target="_blank"
+					class="href">
+					<span>
+						The Basic Art of Selection - Blender Geometry Node For Beginners! [Tutorial]
+						<img
+							src="https://i.ytimg.com/vi/yUPKODvGOdA/hqdefault.jpg"
+							alt=" The Basic Art of Selection - Blender Geometry Node For Beginners! [Tutorial] " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/F9iaZZKCYeo"
+					target="_blank"
+					class="href">
+					<span>
+						Brick walls from a single curve! Geometry Nodes Blender
+						<img
+							src="https://i.ytimg.com/vi/F9iaZZKCYeo/hqdefault.jpg"
+							alt=" Brick walls from a single curve! Geometry Nodes Blender " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Kv7VBvbHWKY"
+					target="_blank"
+					class="href">
+					<span>
+						Blender 2.92 Alpha is UPDATING! - WEEKLY UPDATES.
+						<img
+							src="https://i.ytimg.com/vi/Kv7VBvbHWKY/hqdefault.jpg"
+							alt=" Blender 2.92 Alpha is UPDATING! - WEEKLY UPDATES. " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/LrEHoaq6QFE"
+					target="_blank"
+					class="href">
+					<span>
+						Lego anything with this NEW Blender geometry nodes feature
+						<img
+							src="https://i.ytimg.com/vi/LrEHoaq6QFE/hqdefault.jpg"
+							alt="Lego anything with this NEW Blender geometry nodes feature" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/4yHrHn0FxXw"
+					target="_blank"
+					class="href">
+					<span>
+						Turn 2D Images Into 3D Objects In Blender 3.2 | Geometry Nodes Tutorial
+						<img
+							src="https://i.ytimg.com/vi/4yHrHn0FxXw/hqdefault.jpg"
+							alt="Turn 2D Images Into 3D Objects In Blender 3.2 | Geometry Nodes Tutorial" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/_7GLcKJbWDw"
+					target="_blank"
+					class="href">
+					<span>
+						Text in geometry nodes is POWERFUL - Blender
+						<img
+							src="https://i.ytimg.com/vi/_7GLcKJbWDw/hqdefault.jpg"
+							alt="Text in geometry nodes is POWERFUL - Blender" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/4zbhuVjBBH0"
+					target="_blank"
+					class="href">
+					<span>
+						BLENDER 2.92 - GEOMETRY NODES - NEW FEATURE - EXPLAINED & REVIEW!
+						<img
+							src="https://i.ytimg.com/vi/4zbhuVjBBH0/hqdefault.jpg"
+							alt=" BLENDER 2.92 - GEOMETRY NODES - NEW FEATURE - EXPLAINED & REVIEW! " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/h2o-cZ5fvyQ"
+					target="_blank"
+					class="href">
+					<span>
+						Blender 3.0 Alpha - Attributes and Fields!
+						<img
+							src="https://i.ytimg.com/vi/h2o-cZ5fvyQ/hqdefault.jpg"
+							alt=" Blender 3.0 Alpha - Attributes and Fields! " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/zNws-2-979Y"
+					target="_blank"
+					class="href">
+					<span>
+						Richard Kokstein Center of Bounding Box in Geometry Nodes | Blender 2.93 Quick Tutorial
+						<img
+							src="https://i.ytimg.com/vi/zNws-2-979Y/hqdefault.jpg"
+							alt=" Center of Bounding Box in Geometry Nodes " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/AM_HYYY6VII"
+					target="_blank"
+					class="href">
+					<span>
+						3D PACMAN Blender Geometry Nodes - YouTube
+						<img
+							src="https://i.ytimg.com/vi/AM_HYYY6VII/hqdefault.jpg"
+							alt="3D PACMAN Blender Geometry Nodes - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/nT3WYFxvPLk"
+					target="_blank"
+					class="href">
+					<span>
+						Addition and Subtraction of Complex Numbers - Complex Analysis #2 - YouTube
+						<img
+							src="https://i.ytimg.com/vi/nT3WYFxvPLk/hqdefault.jpg"
+							alt="Addition and Subtraction of Complex Numbers - Complex Analysis 2" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/91yqmxAkL_c"
+					target="_blank"
+					class="href">
+					<span>
+						Blender 3D Caustics Like a Pro! (2023) - YouTube
+						<img
+							src="https://i.ytimg.com/vi/91yqmxAkL_c/hqdefault.jpg"
+							alt="Blender 3D Caustics Like a Pro! (2023) - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/lEPZ1IUkoB4"
+					target="_blank"
+					class="href">
+					<span>
+						Blender cycles continuous glass dispersion - YouTube
+						<img
+							src="https://i.ytimg.com/vi/lEPZ1IUkoB4/hqdefault.jpg"
+							alt="Blender cycles continuous glass dispersion - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/GQ9yipmAakY"
+					target="_blank"
+					class="href">
+					<span>
+						Blender TENTACLES! - YouTube
+						<img
+							src="https://i.ytimg.com/vi/GQ9yipmAakY/hqdefault.jpg"
+							alt="Blender TENTACLES! - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/nDEHRH69I2c"
+					target="_blank"
+					class="href">
+					<span>
+						BOOSTER PADS! (and dying in the woods) - YouTube
+						<img
+							src="https://i.ytimg.com/vi/nDEHRH69I2c/hqdefault.jpg"
+							alt="BOOSTER PADS! (and dying in the woods) - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/_cbhxu08sbg"
+					target="_blank"
+					class="href">
+					<span>
+						cracked pottery in blender with geometry nodes - YouTube
+						<img
+							src="https://i.ytimg.com/vi/_cbhxu08sbg/hqdefault.jpg"
+							alt="cracked pottery in blender with geometry nodes - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/N0Ilyo3qYak"
+					target="_blank"
+					class="href">
+					<span>
+						DEAD SIMPLE GEOMETRY NODES - YouTube
+						<img
+							src="https://i.ytimg.com/vi/N0Ilyo3qYak/hqdefault.jpg"
+							alt="DEAD SIMPLE GEOMETRY NODES - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/94vFk-t64oU"
+					target="_blank"
+					class="href">
+					<span>
+						DVD Physics Are Hard - YouTube
+						<img
+							src="https://i.ytimg.com/vi/94vFk-t64oU/hqdefault.jpg"
+							alt="DVD Physics Are Hard " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/i7OZQ2Akcg0"
+					target="_blank"
+					class="href">
+					<span>
+						dynamic color correction
+						<img
+							src="https://i.ytimg.com/vi/i7OZQ2Akcg0/hqdefault.jpg"
+							alt="dynamic color correction" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/playlist?list=PL9tHLTl03LqHfuOpZJeSx4qnYRv4O4alo"
+					target="_blank"
+					class="href">
+					<span>
+						Extra Visuals - YouTube
+						<img
+							src="https://i.ytimg.com/vi/s6sdEbGNdic/hqdefault.jpg"
+							alt="Extra Visuals - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/i7OZQ2Akcg0"
+					target="_blank"
+					class="href">
+					<span>
+						I found the greatest render hack
+						<img
+							src="https://i.ytimg.com/vi/i7OZQ2Akcg0/hqdefault.jpg"
+							alt="I found the greatest render hack" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/03zuUQtZ09Q"
+					target="_blank"
+					class="href">
+					<span>
+						geo node hedges
+						<img
+							src="https://i.ytimg.com/vi/03zuUQtZ09Q/hqdefault.jpg"
+							alt="geo node hedges" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/nAy1hqBZFhs"
+					target="_blank"
+					class="href">
+					<span>
+						geo nodes rest on ground tool animated
+						<img
+							src="https://i.ytimg.com/vi/nAy1hqBZFhs/hqdefault.jpg"
+							alt="geo nodes rest on ground tool animated" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/_PvwU1qMk3c"
+					target="_blank"
+					class="href">
+					<span>
+						How To Make Realistic Glass With Dispersion In Blender _ Blender Glass Tutorial - YouTube
+						<img
+							src="https://i.ytimg.com/vi/_PvwU1qMk3c/hqdefault.jpg"
+							alt="How To Make Realistic Glass With Dispersion In Blender _ Blender Glass Tutorial - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/azmogXKyVQ4"
+					target="_blank"
+					class="href">
+					<span>
+						HOW TO USE CAPTURE ATTRIBUTE IN GEOMETRY NODES - BLENDER 3 - YouTube
+						<img
+							src="https://i.ytimg.com/vi/azmogXKyVQ4/hqdefault.jpg"
+							alt="HOW TO USE CAPTURE ATTRIBUTE IN GEOMETRY NODES - BLENDER 3 - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Au0eLbCR1v0"
+					target="_blank"
+					class="href">
+					<span>
+						I FAKED Confetti in Blender... - YouTube
+						<img
+							src="https://i.ytimg.com/vi/Au0eLbCR1v0/hqdefault.jpg"
+							alt="I FAKED Confetti in Blender... - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/68d4aqz0Cr8"
+					target="_blank"
+					class="href">
+					<span>
+						Ice Cream geo nodes part 2
+						<img
+							src="https://i.ytimg.com/vi/68d4aqz0Cr8/hqdefault.jpg"
+							alt="Ice Cream geo nodes part 2" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/9T0PbKgucME"
+					target="_blank"
+					class="href">
+					<span>
+						Ice Cream... with GEO NODES part 1
+						<img
+							src="https://i.ytimg.com/vi/9T0PbKgucME/hqdefault.jpg"
+							alt="Ice Cream... with GEO NODES part 1" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/1EUiaBeG0os"
+					target="_blank"
+					class="href">
+					<span>
+						ICICLES! (Blender Tutorial) - YouTube
+						<img
+							src="https://i.ytimg.com/vi/1EUiaBeG0os/hqdefault.jpg"
+							alt="ICICLES" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/bIY6ahHVgqA"
+					target="_blank"
+					class="href">
+					<span>
+						Imaginary Numbers, Functions of Complex Variables 3D animations. - YouTube
+						<img
+							src="https://i.ytimg.com/vi/bIY6ahHVgqA/hqdefault.jpg"
+							alt="Imaginary Numbers" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/jU7QW6AjUf4"
+					target="_blank"
+					class="href">
+					<span>
+						Introduction to Complex Numbers - Complex Analysis #1 - YouTube
+						<img
+							src="https://i.ytimg.com/vi/jU7QW6AjUf4/hqdefault.jpg"
+							alt="Introduction to Complex Numbers - Complex Analysis" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/iZNsTr36rog"
+					target="_blank"
+					class="href">
+					<span>
+						Introduction to Procedural Textures - Getting started with Blender Nodes Part 1 - YouTube
+						<img
+							src="https://i.ytimg.com/vi/iZNsTr36rog/hqdefault.jpg"
+							alt="Introduction to Procedural Textures - Getting started with Blender Nodes Part 1" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/c6DlPeS38do"
+					target="_blank"
+					class="href">
+					<span>
+						make any object roll around
+						<img
+							src="https://i.ytimg.com/vi/c6DlPeS38do/hqdefault.jpg"
+							alt="make any object roll around" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/XUredxyRLB0"
+					target="_blank"
+					class="href">
+					<span>
+						Painted Anime Cel Shadows in Blender [EEVEE] - Comfee Tutorial - YouTube
+						<img
+							src="https://i.ytimg.com/vi/XUredxyRLB0/hqdefault.jpg"
+							alt="Painted Anime Cel Shadows in Blender" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/watch?v=O3aJCGbyfR8&list=PL9tHLTl03LqEM2q6xZTcOAVFNTj4TqtL6&index=3"
+					target="_blank"
+					class="href">
+					<span>
+						Polar Coordinates - Complex Analysis #3 - YouTube
+						<img
+							src="https://i.ytimg.com/vi/O3aJCGbyfR8/hqdefault.jpg"
+							alt="Polar Coordinates - Complex Analysis" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/L8OQMJWeXuc"
+					target="_blank"
+					class="href">
+					<span>
+						random grid pop art geo nodes
+						<img
+							src="https://i.ytimg.com/vi/L8OQMJWeXuc/hqdefault.jpg"
+							alt="random grid pop art geo nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/u5se4RDwFwQ"
+					target="_blank"
+					class="href">
+					<span>
+						random track-path thing geo nodes
+						<img
+							src="https://i.ytimg.com/vi/u5se4RDwFwQ/hqdefault.jpg"
+							alt="random track-path thing geo nodese" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/qx8j2nKQ81w"
+					target="_blank"
+					class="href">
+					<span>
+						simple font string geo node effect
+						<img
+							src="https://i.ytimg.com/vi/qx8j2nKQ81w/hqdefault.jpg"
+							alt="  simple font string geo node effect" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/QvpUEnwZxe0"
+					target="_blank"
+					class="href">
+					<span>
+						spiral textures with shaders
+						<img
+							src="https://i.ytimg.com/vi/QvpUEnwZxe0/hqdefault.jpg"
+							alt=" spiral textures with shaders" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/NtoIXhUgqSk"
+					target="_blank"
+					class="href">
+					<span>
+						The 5 ways to visualize complex functions Essence of complex analysis #3 - YouTube
+						<img
+							src="https://i.ytimg.com/vi/NtoIXhUgqSk/hqdefault.jpg"
+							alt=" The 5 ways to visualize complex functions Essence of complex analysis " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/7MotVcGvFMg"
+					target="_blank"
+					class="href">
+					<span>
+						The Mandelbrot Set Explained - YouTube
+						<img
+							src="https://i.ytimg.com/vi/7MotVcGvFMg/hqdefault.jpg"
+							alt=" The Mandelbrot Set Explained " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/1l411zv5iFA"
+					target="_blank"
+					class="href">
+					<span>
+						Visualizing Complex-Valued Functions - YouTube
+						<img
+							src="https://i.ytimg.com/vi/1l411zv5iFA/hqdefault.jpg"
+							alt="  Visualizing Complex-Valued Functions" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Rju2g-sExng"
+					target="_blank"
+					class="href">
+					<span>
+						What are complex numbers Essence of complex analysis #2 - YouTube
+						<img
+							src="https://i.ytimg.com/vi/Rju2g-sExng/hqdefault.jpg"
+							alt=" What are complex numbers Essence of complex analysis" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/TaWBXRaNEcc"
+					target="_blank"
+					class="href">
+					<span>
+						What do complex functions look like Essence of complex analysis #4 - YouTube
+						<img
+							src="https://i.ytimg.com/vi/TaWBXRaNEcc/hqdefault.jpg"
+							alt=" What do complex functions look like Essence of complex analysis" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Gr1oNwtzzUc"
+					target="_blank"
+					class="href">
+					<span>
+						Why Your Glass Looks Weird _ Blender Glass Tutorial - YouTube
+						<img
+							src="https://i.ytimg.com/vi/Gr1oNwtzzUc/hqdefault.jpg"
+							alt="Why Your Glass Looks Weird _ Blender Glass Tutorial - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/O9qqWfxxoCM"
+					target="_blank"
+					class="href">
+					<span>
+						make candies with the sine and arctan2 functions (mapping a 2d function to a 3d outcome)
+						<img
+							src="https://i.ytimg.com/vi/O9qqWfxxoCM/hqdefault.jpg"
+							alt=" make candies with the sine and arctan2 functions (mapping a 2d function to a 3d outcome) " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/5tlkn5xB0sk"
+					target="_blank"
+					class="href">
+					<span>
+						moving the origin with the geonodes
+						<br />
+						and it shows how to move the pivot point, while the translation point stays put.
+						<img
+							src="https://i.ytimg.com/vi/5tlkn5xB0sk/hqdefault.jpg"
+							alt=" moving the origin with the geonodes " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/247900/how-to-set-the-origin-of-a-procedurally-created-mesh-in-geometry-nodes"
+					target="_blank"
+					class="href">
+					<span>this site uses the bounding box to accomplish the task</span>
+				</a>
+				<p>
+					You can use the Bounding Box node which outputs a mesh's enclosing (bounding) box, as well as the minimum
+					point and the maximum point of the box in the 3 axes.
+				</p>
+				<p>
+					Then take the mean value of the Min and Max to get the origin of the box. Translate the mesh by this
+					amount to center the origin to geometry.
+				</p>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/OCKXA9-OU1A"
+					target="_blank"
+					class="href">
+					<span>
+						elongating a 2d spiral
+						<img
+							src="https://i.ytimg.com/vi/OCKXA9-OU1A/hqdefault.jpg"
+							alt=" elongating a 2d spiral " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/qkz2QXSJVPs"
+					target="_blank"
+					class="href">
+					<span>
+						spiral AND DRAGON SCALES
+						<img
+							src="https://i.ytimg.com/vi/qkz2QXSJVPs/hqdefault.jpg"
+							alt=" spiral AND DRAGON SCALES " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link rating_5">
+				<a
+					href="https://www.youtube.com/embed/llJdazdLmBU"
+					target="_blank"
+					class="href">
+					<span>
+						Create a Pipe Generator with Blender's Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/llJdazdLmBU/hqdefault.jpg"
+							alt=" Create a Pipe Generator with Blender's Geometry Nodes " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/ezMKUwK7CEE"
+					target="_blank"
+					class="href">
+					<span>
+						Vertex Groups and UVs - Geometry Nodes 101
+						<img
+							src="https://i.ytimg.com/vi/ezMKUwK7CEE/hqdefault.jpg"
+							alt=" Vertex Groups and UVs - Geometry Nodes 101 " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/EboNtLKn_m8"
+					target="_blank"
+					class="href">
+					<span>
+						Hexagon World with Geometry Nodes Fields - Blender 3.0 Tutorial
+						<img
+							src="https://i.ytimg.com/vi/EboNtLKn_m8/hqdefault.jpg"
+							alt=" Hexagon World with Geometry Nodes Fields - Blender 3.0 Tutorial " />
+					</span>
+				</a>
+				<pre>
+ the textures levels:{ {level_num:0,level_type:water}, {level_num:1,level_type:sand}, {level_num:2,level_type:grass}, {level_num:3,level_type:stone}, {level_num:4,level_type:snow}, } something is wrong in my implementation... the grid is always at 20? </pre
+				>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/RSpkkuOOtBw"
+					target="_blank"
+					class="href">
+					<span>
+						Reaction Diffusion with Simulation Nodes - Blender 3.6
+						<img
+							src="https://i.ytimg.com/vi/RSpkkuOOtBw/hqdefault.jpg"
+							alt=" Reaction Diffusion with Simulation Nodes - Blender 3.6 " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/rS4Xs0srFsA"
+					target="_blank"
+					class="href">
+					<span>
+						Infinite Block Breaker Game - Simulation Nodes Tutorial
+						<img
+							src="https://i.ytimg.com/vi/rS4Xs0srFsA/hqdefault.jpg"
+							alt=" Infinite Block Breaker Game - Simulation Nodes Tutorial " />
+					</span>
+				</a>
+				<pre>
+ start from scratch, and make a simulation that can be viewed indefinitely. Using emissive shading, two balls are set to play a bounded "game", bouncing within boundaries to erode an initial half-area rectangle. minute 3.5, storing named attributes. from 8:25-15 minutes (10:30-- ".create_collider group" *note name for one-off*) he sets up a 3d grid to calculate a test for x,y (excluding z) returns that value to a selection to use to determine where the dots he initially set up will be within the grid. (he has basically made a 10x10 pixel art canvas that could be used with interpolation (on/off with a min/max) to do 3d pixel art.) 15-20 he makes a reflection node, and blender tells the interface about a reflection of a vector, so that the "point" (ball) that was initially made is sent back from a collision. (with regards to the outbound collider) (this means that a pinball simulation could be done within blender itself!) within 23 minutes, this guy has made a bouncing ball simulation from scratch. </pre
+				>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/h4BTgkdHd30"
+					target="_blank"
+					class="href">
+					<span>
+						Control ANYTHING with Geometry Nodes!
+						<img
+							src="https://i.ytimg.com/vi/h4BTgkdHd30/hqdefault.jpg"
+							alt=" Control ANYTHING with Geometry Nodes! " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/sZhRcpJGqjs"
+					target="_blank"
+					class="href">
+					<span>
+						How to get started with Geometry Nodes in Blender
+						<img
+							src="https://i.ytimg.com/vi/sZhRcpJGqjs/hqdefault.jpg"
+							alt="How to get started with Geometry Nodes in Blender" />
+					</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+			<h3>Procedural texturing</h3>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/O3gLBhC353Y"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Procedural texturing Nodes
+						<img
+							src="https://i.ytimg.com/vi/O3gLBhC353Y/hqdefault.jpg"
+							alt="Blender Procedural texturing Nodes" />
+					</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/UqRVxosrnGc"
+					target="_blank"
+					class="href">
+					<span>
+						Blender 3.0 New Geometry Nodes Tutorial
+						<img
+							src="https://i.ytimg.com/vi/UqRVxosrnGc/hqdefault.jpg"
+							alt="Blender 3.0 New Geometry Nodes Tutorial" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/mjv0x_XnxDE"
+					target="_blank"
+					class="href">
+					<span>
+						Instances From Collection [Blender Animation Nodes Tutorial] @2:45
+						<img
+							src="https://i.ytimg.com/vi/mjv0x_XnxDE/hqdefault.jpg"
+							alt="Instances From Collection [Blender Animation Nodes Tutorial] @2:45" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/xWwoWi_vPTg"
+					target="_blank"
+					class="href">
+					<span>
+						Geo Nodes and Python - Blender Tutorial
+						<img
+							src="https://i.ytimg.com/vi/xWwoWi_vPTg/hqdefault.jpg"
+							alt="Geo Nodes and Python - Blender Tutorial" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/I53asPKiqNo"
+					target="_blank"
+					class="href">
+					<span>
+						No One Is Talking About This New Node in Blender! Distribute Points In Volume
+						<img
+							src="https://i.ytimg.com/vi/I53asPKiqNo/hqdefault.jpg"
+							alt="No One Is Talking About This New Node in Blender! Distribute Points In Volume" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/p4rwhifXNCw"
+					target="_blank"
+					class="href">
+					<span>
+						Select What You Want in Geometry Nodes - Blender Tutorial
+						<img
+							src="https://i.ytimg.com/vi/p4rwhifXNCw/hqdefault.jpg"
+							alt="Select What You Want in Geometry Nodes - Blender Tutorial" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/zJz6B17jxtY"
+					target="_blank"
+					class="href">
+					<span>
+						geo-nodes vines whats going on with random branching
+						<img
+							src="https://i.ytimg.com/vi/zJz6B17jxtY/hqdefault.jpg"
+							alt="geo-nodes vines whats going on with random branching" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/QA13LPCZ3dM"
+					target="_blank"
+					class="href">
+					<span>
+						Turning ANYTHING into Rocks - that dont intersect themselves cobblestone anything (making the
+						fantastic four "Thing" kind of)
+						<img
+							src="https://i.ytimg.com/vi/QA13LPCZ3dM/hqdefault.jpg"
+							alt="Turning ANYTHING into Rocks - that dont intersect themselves cobblestone anything (making the fantastic four 'Thing' kind of)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/8yWgt57atOg"
+					target="_blank"
+					class="href">
+					<span>
+						WEBS? Easy Enough! Blender makes a radar graph with a point that follows a curve within a circle
+						<img
+							src="https://i.ytimg.com/vi/8yWgt57atOg/hqdefault.jpg"
+							alt="WEBS? Easy Enough! Blender makes a radar graph with a point that follows a curve within a circle" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/294186/using-vdm-brushes-procedurally-in-geometry-nodes"
+					target="_blank"
+					class="href">
+					displacement - Using VDM Brushes procedurally in Geometry Nodes - Blender Stack Exchange
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/67Q2Z4vVrMI"
+					target="_blank"
+					class="href">
+					<span>
+						wireframe-with-quads
+						<br />
+						the wireframe modifier causes a diagonal, this is a shader that works on UV coordinates, and fixes the
+						diagonal problem.
+						<img
+							src="https://i.ytimg.com/vi/67Q2Z4vVrMI/hqdefault.jpg"
+							alt="wireframe-with-quads" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/KgH9SJEDCKo"
+					target="_blank"
+					class="href">
+					<span>
+						an explosive tutorial (making an old timey cartoon bomb)
+						<img
+							src="https://i.ytimg.com/vi/KgH9SJEDCKo/hqdefault.jpg"
+							alt="an explosive tutorial (making an old timey cartoon bomb)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/aRpq3p3cr7Q"
+					target="_blank"
+					class="href">
+					<span>
+						great ground tiles - Blender Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/aRpq3p3cr7Q/hqdefault.jpg"
+							alt="great ground tiles - Blender Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Xp9i2RSwaP0"
+					target="_blank"
+					class="href">
+					<span>
+						Blender MAZES! (in Geo Nodes)
+						<img
+							src="https://i.ytimg.com/vi/Xp9i2RSwaP0/hqdefault.jpg"
+							alt="Blender MAZES! (in Geo Nodes)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/KXa8z9M6bSY"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Procedural River [FULL COURSE] WITH GEO NODES
+						<img
+							src="https://i.ytimg.com/vi/KXa8z9M6bSY/hqdefault.jpg"
+							alt="Blender Procedural River [FULL COURSE]  WITH GEO NODES" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/aEeBAxjvY8U"
+					target="_blank"
+					class="href">
+					<span>
+						Vector Displacement Tutorial Part 1 - Blender Procedurals and masking at 16 min
+						<img
+							src="https://i.ytimg.com/vi/aEeBAxjvY8U/hqdefault.jpg"
+							alt="Vector Displacement Tutorial Part 1 - Blender Procedurals and masking at 16 min" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/bHbgQs8zkpw"
+					target="_blank"
+					class="href">
+					<span>
+						How to Flatten UV Islands (Blender Tutorial) - YouTube
+						<img
+							src="https://i.ytimg.com/vi/bHbgQs8zkpw/hqdefault.jpg"
+							alt="How to Flatten UV Islands (Blender Tutorial) - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/ODmjIbHufBg"
+					target="_blank"
+					class="href">
+					<span>
+						spiral space tube toy
+						<img
+							src="https://i.ytimg.com/vi/ODmjIbHufBg/hqdefault.jpg"
+							alt="spiral space tube toy" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/3yy7raaJuYE"
+					target="_blank"
+					class="href">
+					<span>
+						Advanced Blender Stickers
+						<img
+							src="https://i.ytimg.com/vi/3yy7raaJuYE/hqdefault.jpg"
+							alt="Advanced Blender Stickers" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/iWb3XJ_K05M"
+					target="_blank"
+					class="href">
+					<span>
+						PHYSICS in Geo Nodes! (sticking on the floor with nodes (hacky way))
+						<img
+							src="https://i.ytimg.com/vi/iWb3XJ_K05M/hqdefault.jpg"
+							alt="PHYSICS in Geo Nodes! (sticking on the floor with nodes (hacky way))" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Aqc6bCQQf6Q"
+					target="_blank"
+					class="href">
+					<span>
+						Flashing paparazzi camera texture (strobing)
+						<img
+							src="https://i.ytimg.com/vi/Aqc6bCQQf6Q/hqdefault.jpg"
+							alt="Flashing paparazzi camera texture (strobing)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/u_keN4Wx2Zs"
+					target="_blank"
+					class="href">
+					<span>
+						Rotoscoping REALISTIC ANIMATION for idiots
+						<img
+							src="https://i.ytimg.com/vi/u_keN4Wx2Zs/hqdefault.jpg"
+							alt="Rotoscoping REALISTIC ANIMATION for idiots" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/00_DrAIS4U0"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Geometry Nodes: Pumpkin Generator Tutorial | Procedural
+						<img
+							src="https://i.ytimg.com/vi/00_DrAIS4U0/hqdefault.jpg"
+							alt="Blender Geometry Nodes: Pumpkin Generator Tutorial | Procedural" />
+					</span>
+				</a>
+				<br />
+				<a
+					href="https://www.youtube.com/watch?v=00_DrAIS4U0&list=PL8KZSbxI4-qg-3xp5EC6_-78tmxBfg_r8"
+					target="_blank"
+					class="href">
+					https://www.youtube.com/watch?v=00_DrAIS4U0&list=PL8KZSbxI4-qg-3xp5EC6_-78tmxBfg_r8
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/WtodhYN63Ic"
+					target="_blank"
+					class="href">
+					<span>
+						YIN YANGS
+						<img
+							src="https://i.ytimg.com/vi/WtodhYN63Ic/hqdefault.jpg"
+							alt="YIN YANGS" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/a2j9HMvNgfY"
+					target="_blank"
+					class="href">
+					<span>
+						particle splitting with simulation nodes (fire works, kind of)
+						<img
+							src="https://i.ytimg.com/vi/a2j9HMvNgfY/hqdefault.jpg"
+							alt="particle splitting with simulation nodes (fire works, kind of)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/gMOgB7Ds3ZI"
+					target="_blank"
+					class="href">
+					<span>
+						Intro to Simulation Nodes - Geometry Nodes Tutorial
+						<img
+							src="https://i.ytimg.com/vi/gMOgB7Ds3ZI/hqdefault.jpg"
+							alt="Intro to Simulation Nodes - Geometry Nodes Tutorial" />
+					</span>
+				</a>
+				<pre>
+ grow mushrooms around a model with geometry nodes. same guy takes novel approach to grow shapes around a model up to a point. uses a serial loop with extrusion so that mushrooms grow on points that are generated randomly. all simulation isn't cached, but "played" on tick of frame. MOVING VECTORS THRU NOISE FIELDS! </pre
+				>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/3N8ZvG1_MLc"
+					target="_blank"
+					class="href">
+					<span>
+						Describes how to use the shortest path function of geometry nodes, and how to follow nodes correctly
+						<img
+							src="https://i.ytimg.com/vi/3N8ZvG1_MLc/hqdefault.jpg"
+							alt="Shortest Path Nodes - Geometry Nodes Tutorial" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/xByTjgtrGMM"
+					target="_blank"
+					class="href">
+					<span>
+						building various simple objects through geometry nodes.
+						<br />
+						mouse house: (starting with part 2)
+						<img
+							src="https://i.ytimg.com/vi/xByTjgtrGMM/hqdefault.jpg"
+							alt="mouse house: (starting with part 2)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/hN_T11LRLL0"
+					target="_blank"
+					class="href">
+					<span>
+						mouse house part 3
+						<img
+							src="https://i.ytimg.com/vi/hN_T11LRLL0/hqdefault.jpg"
+							alt="mouse house part 3" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/WkPHn7jUOt8"
+					target="_blank"
+					class="href">
+					<span>
+						mouse house part 4
+						<img
+							src="https://i.ytimg.com/vi/WkPHn7jUOt8/hqdefault.jpg"
+							alt="mouse house part 4" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/PpR5nl4Ohvw"
+					target="_blank"
+					class="href">
+					<span>
+						mouse house part 5
+						<img
+							src="https://i.ytimg.com/vi/PpR5nl4Ohvw/hqdefault.jpg"
+							alt="mouse house part 5" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/6RDI7lFbwkU"
+					target="_blank"
+					class="href">
+					<span>
+						mouse house part 6
+						<br />
+						(setting dot patterns near hour 2)
+						<img
+							src="https://i.ytimg.com/vi/6RDI7lFbwkU/hqdefault.jpg"
+							alt="mouse house part 6" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/b-qj06u5w2U"
+					target="_blank"
+					class="href">
+					<span>
+						train set with geometry nodes!
+						<br />
+						see hour 6 minute 19 (6:25 for updated way) for a way to make arrays with geometry nodes. (think area
+						lights using spotlights)
+						<img
+							src="https://i.ytimg.com/vi/b-qj06u5w2U/hqdefault.jpg"
+							alt="train set with geometry nodes!" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/SsaNfzO2Hfw"
+					target="_blank"
+					class="href">
+					<span>
+						geometry nodes process for making a flower still life
+						<br />
+						teaches how to use geometry nodes process for making a flower still life. (part 1) left off at 3 hour,
+						12 mins.
+						<img
+							src="https://i.ytimg.com/vi/SsaNfzO2Hfw/hqdefault.jpg"
+							alt="geometry nodes process for making a flower still life" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/XFbD3rqE1eM"
+					target="_blank"
+					class="href">
+					<span>
+						Packing Collection Objects - Geometry Nodes Tutorial
+						<img
+							src="https://i.ytimg.com/vi/XFbD3rqE1eM/hqdefault.jpg"
+							alt="Packing Collection Objects - Geometry Nodes Tutorial" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Ms6CX8Gsd5A"
+					target="_blank"
+					class="href">
+					<span>
+						Custom Bounding Boxes - Geometry Nodes Tutorial
+						<img
+							src="https://i.ytimg.com/vi/Ms6CX8Gsd5A/hqdefault.jpg"
+							alt="Custom Bounding Boxes - Geometry Nodes Tutorial" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/uv0E_FQLQYI"
+					target="_blank"
+					class="href">
+					<span>
+						Curve Deform with Geometry Nodes - Blender 4.0 Tutorial
+						<br />
+						covers selections, dividing selection into parts testing and coloring sections of selections to debug
+						visually.
+						<img
+							src="https://i.ytimg.com/vi/uv0E_FQLQYI/hqdefault.jpg"
+							alt="Curve Deform with Geometry Nodes - Blender 4.0 Tutorial" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/xhmxZCiFtLs"
+					target="_blank"
+					class="href">
+					<span>
+						Array Objects on Curves - Building Professional Tools with Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/xhmxZCiFtLs/hqdefault.jpg"
+							alt="Array Objects on Curves - Building Professional Tools with Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/277647/scale-according-rotation-in-geometry-nodes"
+					target="_blank"
+					class="href">
+					<span>Scale according Rotation in Geometry Nodes</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/VlSs430PAeU"
+					target="_blank"
+					class="href">
+					<span>
+						Making Stitches for patterns AND philosophy of WHY
+						<img
+							src="https://i.ytimg.com/vi/VlSs430PAeU/hqdefault.jpg"
+							alt="I wish I knew this before using Geometry Nodes (Blender)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/IQdT5kACMQc"
+					target="_blank"
+					class="href">
+					<span>
+						How to Actually Use Align Euler to Vector in Blender's Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/IQdT5kACMQc/hqdefault.jpg"
+							alt="How to Actually Use Align Euler to Vector in Blender's Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/mbO5GoqcaN0"
+					target="_blank"
+					class="href">
+					<span>
+						Simple Bevel Effects (Geometry Nodes, Blender)
+						<img
+							src="https://i.ytimg.com/vi/mbO5GoqcaN0/hqdefault.jpg"
+							alt="Simple Bevel Effects (Geometry Nodes, Blender)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/srmzM2cWW7U"
+					target="_blank"
+					class="href">
+					<span>
+						Better 3D Text in Blender with Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/srmzM2cWW7U/hqdefault.jpg"
+							alt="Better 3D Text in Blender with Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/09wyhmrSGPk"
+					target="_blank"
+					class="href">
+					<span>
+						Geometry Node Selecting Vertices Tips and Tricks
+						<img
+							src="https://i.ytimg.com/vi/09wyhmrSGPk/hqdefault.jpg"
+							alt="Geometry Node Selecting Vertices Tips and Tricks" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/6LMuT2hN2yw"
+					target="_blank"
+					class="href">
+					<span>
+						Distribute Objects using Weight Paint-Geometry Nodes (Blender Tutorial)
+						<img
+							src="https://i.ytimg.com/vi/6LMuT2hN2yw/hqdefault.jpg"
+							alt="Distribute Objects using Weight Paint-Geometry Nodes (Blender Tutorial)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/TF92_sMxD9o"
+					target="_blank"
+					class="href">
+					<span>
+						[Tut] Shuffle Objects from a Collection - Blender Geometry Nodes 3.0 Field
+						<img
+							src="https://i.ytimg.com/vi/TF92_sMxD9o/hqdefault.jpg"
+							alt=" [Tut] Shuffle Objects from a Collection - Blender Geometry Nodes 3.0 Field" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/38YbeNC9LXA"
+					target="_blank"
+					class="href">
+					<span>
+						Controlling Scatter Placement with Weight Painting and Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/38YbeNC9LXA/hqdefault.jpg"
+							alt="Controlling Scatter Placement with Weight Painting and Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blender.stackexchange.com/questions/255520/can-t-use-weight-painting-to-control-the-density"
+					target="_blank"
+					class="href">
+					<span>
+						Can‘t use Weight Painting to control the density
+						<img
+							src="https://i.stack.imgur.com/WUYrP.gif"
+							alt="Can't use Weight Painting to control the density" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blenderartists.org/t/geometry-nodes-not-respecting-weight-paint/1417458"
+					target="_blank"
+					class="href">
+					<span>
+						Geometry nodes not respecting Weight Paint?
+						<img
+							src="https://blenderartists.org/uploads/default/original/4X/c/a/7/ca73774e7482f884cacb7b8f8dbb79eba2aba4bd.jpeg"
+							alt="Geometry nodes not respecting Weight Paint?" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/ln1IpYnufxc"
+					target="_blank"
+					class="href">
+					<span>
+						How To Make Crazy Renders With Easy Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/ln1IpYnufxc/hqdefault.jpg"
+							alt="How To Make Crazy Renders With Easy Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/gxHC1IQSzc0"
+					target="_blank"
+					class="href">
+					<span>
+						How to Avoid Object Intersection with Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/gxHC1IQSzc0/hqdefault.jpg"
+							alt="How to Avoid Object Intersection Blender Geometry Nodes Tutorial - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Dj-2xCb_GKs">
+					<span>
+						Squishing items into a container (using dot product against the inverse normal to determine whether or
+						not something is inside of a container)
+						<img
+							src="https://i.ytimg.com/vi/Dj-2xCb_GKs/hqdefault.jpg"
+							alt="Squishing items into a container (using dot product against the inverse normal to determine whether or not something is inside of a container)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/TZNUmgPymns">
+					<span>
+						Project drawn curves on to a service with geometric NODES:
+						<img
+							src="https://i.ytimg.com/vi/TZNUmgPymns/hqdefault.jpg"
+							alt="Project drawn curves on to a service with geometric NODES:" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/KQdM7STo744">
+					<span>
+						Emphasis on using raycasting nodes properly to shoot rays towards the normals of a container object:
+						<img
+							src="https://i.ytimg.com/vi/KQdM7STo744/hqdefault.jpg"
+							alt="Emphasis on using raycasting nodes properly to shoot rays towards the normals of a container object:" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Iv9pVTYbu9c">
+					<span>
+						MC Escher–styled ribbon effect using geometry nodes:
+						<img
+							src="https://i.ytimg.com/vi/Iv9pVTYbu9c/hqdefault.jpg"
+							alt="MC Escher–styled ribbon effect using geometry nodes:" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/YExiLAs5sYQ">
+					<span>
+						Instancing: using the corners of the mesh, instance an object along the curve
+						<img
+							src="https://i.ytimg.com/vi/YExiLAs5sYQ/hqdefault.jpg"
+							alt="Instancing: using the corners of the mesh, instance an object along the curve" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/247840/geometry-nodes-set-sharp-or-crease-attribute-for-an-edge">
+					<span>
+						dealing with edges and sharpness in Geo nodes: (this is so that freestyle can be using sharp edges
+						based on the geometry, and it can kind of be controlled maybe?)
+						<img
+							src="../not-available.svg"
+							alt="dealing with edges and sharpness in Geo nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/3N8ZvG1_MLc">
+					<span>
+						Describes how to use the shortest path function of geometry nodes, and how to follow nodes correctly
+						<img
+							src="https://i.ytimg.com/vi/3N8ZvG1_MLc/hqdefault.jpg"
+							alt="Describes how to use the shortest path function of geometry nodes, and how to follow nodes correctly" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/create-procedural-curb-with-sharp-corners-respecting-the-uv-map/1457879/14">
+					<span>
+						make a curve profile stretch geometry around the frame making the UV pattern as it goes. According to
+						pixel level pixel level level pixel level guy the UV’s aren’t stretching, so like the river tutorial
+						you need to do some divisions to make sure that the length of your spline controls the amounts of
+						divisions in UV pattern
+						<img
+							src="../not-available.svg"
+							alt="make a curve profile stretch geometry around the frame making the UV pattern as it goes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/301181/controlling-the-angle-sharpness-at-which-edges-are-joined-using-geometry-nodes">
+					<span>
+						Creating sawtooth patterns that look like castle battlements that follow a controlled curve and
+						generate geometry.
+						<img
+							src="https://i.sstatic.net/5GnX8.png"
+							alt="Creating sawtooth patterns following a controlled curve." />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/MSZobqlYJWY">
+					<span>
+						Optimizing the mesh that’s created by using a branch creation tool with the shortest path geometry
+						nodes
+						<img
+							src="https://i.ytimg.com/vi/MSZobqlYJWY/hqdefault.jpg"
+							alt="Optimizing the mesh that’s created by using a branch creation tool with the shortest path geometry nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/303423/how-to-make-curves-go-around-obstacles">
+					<span>
+						A description of avoiding obstacles with shortest path geometry nodes
+						<img
+							src="https://i.sstatic.net/z8jyY.png"
+							alt="A description of avoiding obstacles with shortest path geometry nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/303785/shortest-path-through-an-ordered-list-of-points">
+					<span>
+						shortest path through an ordered list of points
+						<img
+							src="https://i.sstatic.net/mvghh.png"
+							alt="shortest path through an ordered list of points" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/303534/displace-points-in-face-normal-direction-of-another-object/303539#303539">
+					<span>
+						Displacing geometry upon intersection with another object via proximity node
+						<img
+							src="https://i.sstatic.net/iGjnY.gif"
+							alt="Displacing geometry upon intersection with another object via proximity node" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/kDEf9JSlK2Q">
+					<span>
+						Mesh Lines
+						<img
+							src="https://i.ytimg.com/vi/kDEf9JSlK2Q/hqdefault.jpg"
+							alt="Mesh Lines" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/V0r8f9OwLQs">
+					<span>
+						creating contour lines from any landscape mesh in geometry nodes in blender
+						<img
+							src="https://i.ytimg.com/vi/V0r8f9OwLQs/hqdefault.jpg"
+							alt="creating contour lines from any landscape mesh in geometry nodes in blender"
+							title="creating contour lines from any landscape mesh in geometry nodes in blender" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/84lXcZpB6Tc">
+					<span>
+						Attribute Statistic Node for Each Mesh Island.
+						<img
+							src="https://i.ytimg.com/vi/84lXcZpB6Tc/hqdefault.jpg"
+							alt="Attribute Statistic Node for Each Mesh Island."
+							title="Attribute Statistic Node for Each Mesh Island." />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/-NOqNMWukl0">
+					<span>
+						Shortest Path
+						<img
+							src="https://i.ytimg.com/vi/-NOqNMWukl0/hqdefault.jpg"
+							alt="Shortest Path"
+							title="Shortest Path" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/JuSLy2Cy8dM">
+					<span>
+						Procedural Curvature of a Curve in Geometry Nodes - Blender
+						<img
+							src="https://i.ytimg.com/vi/JuSLy2Cy8dM/hqdefault.jpg"
+							alt="Procedural Curvature of a Curve in Geometry Nodes - Blender"
+							title="Procedural Curvature of a Curve in Geometry Nodes - Blender" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/TlpUGy5aP1Q">
+					<span>
+						Discover the Power of the Shortest Paths Node in Blender
+						<img
+							src="https://i.ytimg.com/vi/TlpUGy5aP1Q/hqdefault.jpg"
+							alt="Discover the Power of the Shortest Paths Node in Blender"
+							title="Discover the Power of the Shortest Paths Node in Blender" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/7yz_0tsTwwM">
+					<span>
+						Filling a Volume with Roots using the Shortest Edge Path Node
+						<img
+							src="https://i.ytimg.com/vi/7yz_0tsTwwM/hqdefault.jpg"
+							alt="Filling a Volume with Roots using the Shortest Edge Path Node"
+							title="Filling a Volume with Roots using the Shortest Edge Path Node" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/56O_wc7lin8">
+					<span>
+						Advanced Volume Conservation // Blender Tutorial
+						<img
+							src="https://i.ytimg.com/vi/56O_wc7lin8/hqdefault.jpg"
+							alt="Advanced Volume Conservation"
+							title="Advanced Volume Conservation" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/-O6SjcLPnSo">
+					<span>
+						Simple UV Retopology using Geometry Nodes in Blender 4.0
+						<img
+							src="https://i.ytimg.com/vi/-O6SjcLPnSo/hqdefault.jpg"
+							alt="Simple UV Retopology using Geometry Nodes in Blender 4.0"
+							title="Simple UV Retopology using Geometry Nodes in Blender 4.0" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/3zz2b9NFqB0">
+					<span>
+						Blender Node Shortcuts
+						<img
+							src="https://i.ytimg.com/vi/3zz2b9NFqB0/hqdefault.jpg"
+							alt="Blender Node Shortcuts"
+							title="Blender Node Shortcuts" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/300094/is-it-possible-to-scatter-points-on-the-outside-surface-of-a-group-of-instances/300502#300502">
+					<span>
+						is it possible to scatter points on the outside surface of a group of instances
+						<img
+							src="https://i.sstatic.net/lTOzK.gif"
+							alt="is it possible to scatter points on the outside surface of a group of instances"
+							title="is it possible to scatter points on the outside surface of a group of instances" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/KoLF99PFLFM">
+					<span>
+						Frustum Culling
+						<img
+							src="https://i.ytimg.com/vi/KoLF99PFLFM/hqdefault.jpg"
+							alt="Frustum Culling"
+							title="Frustum Culling" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/4YU1L2wq_uw">
+					<span>
+						CURVE LOVE
+						<img
+							src="https://i.ytimg.com/vi/4YU1L2wq_uw/hqdefault.jpg"
+							alt="CURVE LOVE "
+							title="CURVE LOVE" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/v-X02qFTF0Y">
+					<span>
+						Geometry Nodes Sorting Vertices Tips and Tricks
+						<img
+							src="https://i.ytimg.com/vi/v-X02qFTF0Y/hqdefault.jpg"
+							alt="Geometry Nodes Sorting Vertices Tips and Tricks"
+							title="Geometry Nodes Sorting Vertices Tips and Tricks" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/spJIZo9bFKc">
+					<span>
+						Procedural Decks of cards in Geometry nodes - Blender tutorial ENG
+						<img
+							src="https://i.ytimg.com/vi/spJIZo9bFKc/hqdefault.jpg"
+							alt="Procedural Decks of cards in Geometry nodes - Blender tutorial ENG"
+							title="Procedural Decks of cards in Geometry nodes - Blender tutorial ENG" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/6r5zUOxpO7c">
+					<span>
+						Creating Hair in Blender without grooming
+						<img
+							src="https://i.ytimg.com/vi/6r5zUOxpO7c/hqdefault.jpg"
+							alt="Creating Hair in Blender without grooming "
+							title="Creating Hair in Blender without grooming " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/watch?v=K6D5cM-6Llk&amp;list=PLiEPxDOPk46dSGjHOodItpaM8GHgkdEDB&amp;index=12"
+					target="_blank"
+					class="href">
+					<span>
+						Powerfull new Addition to Geometry Nodes!!! - Blender 3.4 - look at hair growth shrink-wrapped to mesh
+						<br />
+						https://www.youtube.com/watch?v=K6D5cM-6Llk&amp;list=PLiEPxDOPk46dSGjHOodItpaM8GHgkdEDB&amp;index=12
+						<img
+							src="../not-available.svg"
+							alt="K6D5cM-6Llk" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Ge1qWMG-U90">
+					<span>
+						How To Make Female Long Hair
+						<img
+							src="https://i.ytimg.com/vi/Ge1qWMG-U90/hqdefault.jpg"
+							alt="How To Make Female Long Hair"
+							title="How To Make Female Long Hair" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/KAskUAxa9zY"
+					target="_blank"
+					class="href">
+					<span>
+						pixel level pixel (bristles -geometry nodes)-control hair
+						<img
+							src="https://i.ytimg.com/vi/KAskUAxa9zY/hqdefault.jpg"
+							alt="pixel level pixel (bristles -geometry nodes)-control hair" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/bwI8MzTOlE0">
+					<span>
+						Realistic Hair
+						<img
+							src="https://i.ytimg.com/vi/bwI8MzTOlE0/hqdefault.jpg"
+							alt="Realistic Hair"
+							title="Realistic Hair" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/v-X02qFTF0Y">
+					<span>
+						Sorting Vertices Tips and Tricks - Blender Tutorial
+						<img
+							src="https://i.ytimg.com/vi/v-X02qFTF0Y/hqdefault.jpg"
+							alt=" Sorting Vertices Tips and Tricks - Blender Tutorial"
+							title=" Sorting Vertices Tips and Tricks - Blender Tutorial" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/U0-hAieXz68">
+					<span>
+						Curves - Geometry Nodes for Beginners
+						<img
+							src="https://i.ytimg.com/vi/U0-hAieXz68/hqdefault.jpg"
+							alt="Curves - Geometry Nodes for Beginners"
+							title="Curves - Geometry Nodes for Beginners" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/lqnBneJYSvk">
+					<span>
+						Spider Webs with Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/lqnBneJYSvk/hqdefault.jpg"
+							alt="Spider Webs with Geometry Nodes"
+							title="Spider Webs with Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/BFFmHjzTTn4">
+					<span>
+						Snow &amp; Icicles with Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/BFFmHjzTTn4/hqdefault.jpg"
+							alt="Snow &amp; Icicles with Geometry Nodes  "
+							title="Snow &amp; Icicles with Geometry Nodes  " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/JxeKovEzWhg">
+					<span>
+						Freezing Snow Effect w Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/JxeKovEzWhg/hqdefault.jpg"
+							alt="Freezing Effect w Geometry Nodes"
+							title="Freezing Effect w Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/FWkM1_j4NpU">
+					<span>
+						Seamless Texture Wrapping on Curve Objects with Blender Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/FWkM1_j4NpU/hqdefault.jpg"
+							alt="Seamless Texture Wrapping on Curve Objects with Blender Geometry Nodes"
+							title="Seamless Texture Wrapping on Curve Objects with Blender Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/iq1Bddo16G0">
+					<span>
+						Hydraulic Terrain Erosion with Blender Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/iq1Bddo16G0/hqdefault.jpg"
+							alt="Hydraulic Terrain Erosion with Blender Geometry Nodes"
+							title="Hydraulic Terrain Erosion with Blender Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/abjIKm_UHNo">
+					<span>
+						Rotation tips on curves in Geometry nodes
+						<img
+							src="https://i.ytimg.com/vi/abjIKm_UHNo/hqdefault.jpg"
+							alt="Rotation tips on curves in Geometry nodes"
+							title="Rotation tips on curves in Geometry nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/j4KGppQ26FY">
+					<span>
+						Geometry Nodes Blender Nature
+						<img
+							src="https://i.ytimg.com/vi/j4KGppQ26FY/hqdefault.jpg"
+							alt="Geometry Nodes Blender Nature "
+							title="Geometry Nodes Blender Nature " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/EpxftbsAUk8">
+					<span>
+						Spider Web (cob webs) Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/EpxftbsAUk8/hqdefault.jpg"
+							alt="Spider Web (cob webs) Geometry Nodes"
+							title="Spider Web (cob webs) Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/55Wiu6OONV0">
+					<span>
+						Spider Webs droplets
+						<img
+							src="https://i.ytimg.com/vi/55Wiu6OONV0/hqdefault.jpg"
+							alt="Spider Webs droplets"
+							title="Spider Webs droplets" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/a-4oCHe-hDE">
+					<span>
+						A guide to attributes &amp; fields - blender geometry nodes
+						<img
+							src="https://i.ytimg.com/vi/a-4oCHe-hDE/hqdefault.jpg"
+							alt="A guide to attributes &amp; fields - blender geometry nodes"
+							title="A guide to attributes &amp; fields - blender geometry nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/ozHBQ3MBIWg">
+					<span>
+						What's new in blender geometry nodes 4.2
+						<img
+							src="https://i.ytimg.com/vi/ozHBQ3MBIWg/hqdefault.jpg"
+							alt="What's new in blender geometry nodes 4.2"
+							title="What's new in blender geometry nodes 4.2" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/05HZ4EH4yTg"
+					target="_blank"
+					class="href">
+					<span>
+						Fly Swarm in Blender_ Complex paths, basic maths - YouTube
+						<br />
+						https://www.youtube.com/embed/05HZ4EH4yTg
+						<img
+							src="https://i.ytimg.com/vi/05HZ4EH4yTg/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/4yHrHn0FxXw"
+					target="_blank"
+					class="href">
+					<span>
+						Turn 2D Images Into 3D Objects In Blender 3.2 _ Geometry Nodes Tutorial - YouTube
+						<br />
+						https://www.youtube.com/embed/4yHrHn0FxXw
+						<img
+							src="https://i.ytimg.com/vi/4yHrHn0FxXw/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/AZbYI0wbdhQ"
+					target="_blank"
+					class="href">
+					<span>
+						The Blender trick you NEED to know - YouTube
+						<br />
+						https://www.youtube.com/embed/AZbYI0wbdhQ
+						<img
+							src="https://i.ytimg.com/vi/AZbYI0wbdhQ/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/uslTaqiv_7k"
+					target="_blank"
+					class="href">
+					<span>
+						Blender 3.0 Beginner Geometry Nodes Tutorial - YouTube
+						<br />
+						https://www.youtube.com/embed/uslTaqiv_7k
+						<img
+							src="https://i.ytimg.com/vi/uslTaqiv_7k/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/kv8-4Pu-5qU"
+					target="_blank"
+					class="href">
+					<span>
+						How to Make Ocean Waves in Geometrynodes! (Blender) - YouTube
+						<br />
+						https://www.youtube.com/embed/kv8-4Pu-5qU
+						<img
+							src="https://i.ytimg.com/vi/kv8-4Pu-5qU/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/VIiPN8uBE5A"
+					target="_blank"
+					class="href">
+					<span>
+						Water Sim in Geometry nodes
+						<br />
+						https://www.youtube.com/embed/VIiPN8uBE5A
+						<img
+							src="https://i.ytimg.com/vi/VIiPN8uBE5A/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/OPeuIwsiFNY">
+					<span>
+						Water using Simulation Nodes
+						<img
+							src="https://i.ytimg.com/vi/OPeuIwsiFNY/hqdefault.jpg"
+							alt="Water using Simulation Nodes"
+							title="Water using Simulation Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/dtmostVVuv8"
+					target="_blank"
+					class="href">
+					<span>
+						How to make the Mini Mimic Effect in Blender 3.2 (Livestream Tutorial) - YouTube
+						<br />
+						https://www.youtube.com/embed/dtmostVVuv8
+						<img
+							src="https://i.ytimg.com/vi/dtmostVVuv8/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/ZTnhDRQB40M"
+					target="_blank"
+					class="href">
+					<span>
+						Advanced Procedural Lightning Effects in Blender _ Second Step - YouTube
+						<br />
+						https://www.youtube.com/embed/ZTnhDRQB40M
+						<img
+							src="https://i.ytimg.com/vi/ZTnhDRQB40M/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/LJjdhi6_YKc"
+					target="_blank"
+					class="href">
+					<span>
+						Spiderman Web Shooting Made Easy with Blender Geometry Nodes - YouTube
+						<br />
+						https://www.youtube.com/embed/LJjdhi6_YKc
+						<img
+							src="https://i.ytimg.com/vi/LJjdhi6_YKc/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/rd5joo1aKmk"
+					target="_blank"
+					class="href">
+					<span>
+						Geometry Nodes tutorial - Non destructive editing of procedurally generated forest -- fading weight
+						implicitly from distinct objects
+						<br />
+						https://www.youtube.com/embed/rd5joo1aKmk
+						<img
+							src="https://i.ytimg.com/vi/rd5joo1aKmk/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/BFsq-Jc55no"
+					target="_blank"
+					class="href">
+					<span>
+						Geometry Nodes in Blender - Closing forest boundary - YouTube
+						<br />
+						https://www.youtube.com/embed/BFsq-Jc55no
+						<img
+							src="https://i.ytimg.com/vi/BFsq-Jc55no/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/watch?v=BwWOAREXpNw&amp;list=PLiEPxDOPk46dSGjHOodItpaM8GHgkdEDB&amp;index=7"
+					target="_blank"
+					class="href">
+					<span>
+						Interface Animation in 3D with Geometry Nodes - Beginner Blender Tutorial - YouTube
+						<br />
+						https://www.youtube.com/watch?v=BwWOAREXpNw&amp;list=PLiEPxDOPk46dSGjHOodItpaM8GHgkdEDB&amp;index=7
+						<img
+							src="../not-available.svg"
+							alt="BwWOAREXpNw" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/watch?v=Hlo-X_8Ifjw&amp;list=PLdFfFRXT0K_hMTsT00-Oxe95V9-u3mwiv&amp;index=20"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Guest Tutorial_ Differential Line Growth - YouTube
+						<br />
+						https://www.youtube.com/watch?v=Hlo-X_8Ifjw&amp;list=PLdFfFRXT0K_hMTsT00-Oxe95V9-u3mwiv&amp;index=20
+						<img
+							src="https://i.ytimg.com/vi/Hlo-X_8Ifjw/hqdefault.jpg"
+							alt="Hlo-X_8Ifjw" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/watch?v=KXD2eQe3F8Q&amp;list=PLdFfFRXT0K_hMTsT00-Oxe95V9-u3mwiv&amp;index=8"
+					target="_blank"
+					class="href">
+					<span>
+						Create a Procedural Hatching Shader in Blender Cycles - YouTube
+						<br />
+						https://www.youtube.com/watch?v=KXD2eQe3F8Q&amp;list=PLdFfFRXT0K_hMTsT00-Oxe95V9-u3mwiv&amp;index=8
+						<img
+							src="../not-available.svg"
+							alt="KXD2eQe3F8Q" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/watch?v=2dvMyBVRit0&amp;list=PLdFfFRXT0K_hMTsT00-Oxe95V9-u3mwiv&amp;index=3"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Geometry Nodes_ Dynamic Outlines Part1 - Basics - YouTube
+						<br />
+						https://www.youtube.com/watch?v=2dvMyBVRit0&amp;list=PLdFfFRXT0K_hMTsT00-Oxe95V9-u3mwiv&amp;index=3
+						<img
+							src="../not-available.svg"
+							alt="2dvMyBVRit0" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/playlist?list=PLgO2ChD7acqHzccBuhAGw8dTPLnR1E3QB"
+					target="_blank"
+					class="href">
+					<span>
+						Geometry Nodes For Beginners - Blender 3D - YouTube
+						<br />
+						https://www.youtube.com/playlist?list=PLgO2ChD7acqHzccBuhAGw8dTPLnR1E3QB
+						<img
+							src="../not-available.svg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/eVbQn5d9RrU"
+					target="_blank"
+					class="href">
+					<span>
+						A New Blender Subdivision Modifier Is Here! - YouTube
+						<br />
+						https://www.youtube.com/embed/eVbQn5d9RrU
+						<img
+							src="https://i.ytimg.com/vi/eVbQn5d9RrU/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/sTHiRZebl48"
+					target="_blank"
+					class="href">
+					<span>
+						Make instances to follow curve with practical examples(updated tutorial for 3.1) - YouTube
+						<br />
+						https://www.youtube.com/embed/sTHiRZebl48
+						<img
+							src="https://i.ytimg.com/vi/sTHiRZebl48/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/pgZOgIpnlSE"
+					target="_blank"
+					class="href">
+					<span>
+						Real Time Materials for Blender Production Diary - 04 Fossil Material-- 1hr37-- spirals in shader--
+						2hr12-cavity map using bevel
+						<br />
+						https://www.youtube.com/embed/pgZOgIpnlSE
+						<img
+							src="https://i.ytimg.com/vi/pgZOgIpnlSE/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/lGbgTuwU1Qw"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Geometry Nodes Proximity Disintegration For Beginners _ Part 2_3 - YouTube
+						<br />
+						https://www.youtube.com/embed/lGbgTuwU1Qw
+						<img
+							src="https://i.ytimg.com/vi/lGbgTuwU1Qw/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/gMOgB7Ds3ZI"
+					target="_blank"
+					class="href">
+					<span>
+						Intro to Simulation Nodes - Geometry Nodes Tutorial - YouTube
+						<br />
+						https://www.youtube.com/embed/gMOgB7Ds3ZI
+						<img
+							src="https://i.ytimg.com/vi/gMOgB7Ds3ZI/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/ZCCQXoJoIK4"
+					target="_blank"
+					class="href">
+					<span>
+						RAYCAST - Geometry Nodes 101 - YouTube
+						<br />
+						https://www.youtube.com/embed/ZCCQXoJoIK4
+						<img
+							src="https://i.ytimg.com/vi/ZCCQXoJoIK4/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/o_BA6X33sS4"
+					target="_blank"
+					class="href">
+					<span>
+						Nodevember Day 4 Grain Timelapse - Blender Vector Displacement - YouTube
+						<br />
+						https://www.youtube.com/embed/o_BA6X33sS4
+						<img
+							src="https://i.ytimg.com/vi/o_BA6X33sS4/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/CLH8SZypElw"
+					target="_blank"
+					class="href">
+					<span>
+						Meta Balls with Geometry Nodes - The Joy of Proceduralism - YouTube
+						<br />
+						https://www.youtube.com/embed/CLH8SZypElw
+						<img
+							src="https://i.ytimg.com/vi/CLH8SZypElw/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Ijk7XHo9yOI"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural wood material - Part 2 (fixed) - YouTube
+						<br />
+						https://www.youtube.com/embed/Ijk7XHo9yOI
+						<img
+							src="https://i.ytimg.com/vi/Ijk7XHo9yOI/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/6pKoUrW-lbQ"
+					target="_blank"
+					class="href">
+					<span>
+						Modeling without subdivision, with modifiers, for non-destructive editing workflow. - YouTube
+						<br />
+						https://www.youtube.com/embed/6pKoUrW-lbQ
+						<img
+							src="https://i.ytimg.com/vi/6pKoUrW-lbQ/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/3q3i26RGeVQ"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Wood is awesome! - YouTube
+						<br />
+						https://www.youtube.com/embed/3q3i26RGeVQ
+						<img
+							src="https://i.ytimg.com/vi/3q3i26RGeVQ/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/dGLlRcVYwuQ"
+					target="_blank"
+					class="href">
+					<span>
+						Calculus of Variations (in Blender) __ Optimization Simulations - --find simplest path
+						<br />
+						https://www.youtube.com/embed/dGLlRcVYwuQ
+						<img
+							src="https://i.ytimg.com/vi/dGLlRcVYwuQ/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/rJVVufqoRfA"
+					target="_blank"
+					class="href">
+					<span>
+						Fake Caustics
+						<br />
+						https://www.youtube.com/embed/rJVVufqoRfA
+						<img
+							src="https://i.ytimg.com/vi/rJVVufqoRfA/hqdefault.jpg"
+							alt="Fake Caustics" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/x_thYdHUak0"
+					target="_blank"
+					class="href">
+					<span>
+						Portfolio Review #1 - How to build a compelling portfolio project - YouTube
+						<br />
+						https://www.youtube.com/embed/x_thYdHUak0
+						<img
+							src="https://i.ytimg.com/vi/x_thYdHUak0/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/xBM4BPpfbUg"
+					target="_blank"
+					class="href">
+					<span>
+						Supercharge Your Geometry Nodes Workflow - Blender Tutorial - YouTube
+						<br />
+						https://www.youtube.com/embed/xBM4BPpfbUg
+						<img
+							src="../not-available.svg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/HDBZ7CwlfIs"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Shader Nodes (beginner ➤ advanced) - YouTube
+						<br />
+						https://www.youtube.com/embed/HDBZ7CwlfIs
+						<img
+							src="https://i.ytimg.com/vi/HDBZ7CwlfIs/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/B3PlAguibRc"
+					target="_blank"
+					class="href">
+					<span>
+						Tile ANY Procedural Texture - YouTube
+						<br />
+						https://www.youtube.com/embed/B3PlAguibRc
+						<img
+							src="https://i.ytimg.com/vi/B3PlAguibRc/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/wVhThuzRDIk"
+					target="_blank"
+					class="href">
+					<span>
+						Unwrap Your UVs in a Flash with Blender's Geometry Nodes - YouTube
+						<br />
+						https://www.youtube.com/embed/wVhThuzRDIk
+						<img
+							src="https://i.ytimg.com/vi/wVhThuzRDIk/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/watch?v=Q0q7n13DwzQ"
+					target="_blank"
+					class="href">
+					<span>
+						Rigging a Wing Using Geometry Nodes in Blender 3.4. Part 2 - YouTube
+						<br />
+						https://www.youtube.com/watch?v=Q0q7n13DwzQ
+						<img
+							src="https://i.ytimg.com/vi/Q0q7n13DwzQ/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/N4TYfYf1fjo"
+					target="_blank"
+					class="href">
+					<span>
+						Blender for Scientists | Storing and Using Data | Periodic Table
+						<br />
+						https://www.youtube.com/embed/N4TYfYf1fjo
+						<img
+							src="https://i.ytimg.com/vi/N4TYfYf1fjo/hqdefault.jpg"
+							alt="Blender for Scientists | Storing and Using Data | Periodic Table" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/szTGq29qZpg"
+					target="_blank"
+					class="href">
+					<span>
+						Procedural Mountain Landscape - Blender 3.1 Geometry Nodes Tutorial - YouTube
+						<br />
+						https://www.youtube.com/embed/szTGq29qZpg
+						<img
+							src="https://i.ytimg.com/vi/szTGq29qZpg/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/i0hvnvMXJuI"
+					target="_blank"
+					class="href">
+					<span>
+						Instance on Edges with Geometry Nodes - Blender 4.1 Tutorial - YouTube
+						<br />
+						https://www.youtube.com/embed/i0hvnvMXJuI
+						<img
+							src="https://i.ytimg.com/vi/i0hvnvMXJuI/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/4f2bVsv8GPg"
+					target="_blank"
+					class="href">
+					<span>
+						Build the Ultimate Curves Tool in Geometry Nodes _ Blender 4.0 - YouTube
+						<br />
+						https://www.youtube.com/embed/4f2bVsv8GPg
+						<img
+							src="https://i.ytimg.com/vi/4f2bVsv8GPg/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/f2ogRoiCQvw"
+					target="_blank"
+					class="href">
+					<span>
+						[Tut] Knitting Animation - Blender Geometry Nodes 3.0 Field - YouTube
+						<br />
+						https://www.youtube.com/embed/f2ogRoiCQvw
+						<img
+							src="https://i.ytimg.com/vi/f2ogRoiCQvw/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/watch?v=NBHI1cj25tM"
+					target="_blank"
+					class="href">
+					<span>
+						New Nodes, Revisiting The Rope Bridge, & Game Jam
+						<br />
+						https://www.youtube.com/watch?v=NBHI1cj25tM
+						<img
+							src="https://i.ytimg.com/vi/NBHI1cj25tM/hqdefault.jpg"
+							alt="New Nodes, Revisiting The Rope Bridge, & Game Jam" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://blenderartists.org/t/how-to-create-a-curve-between-two-points-in-geometry-nodes/1314712/4"
+					target="_blank"
+					class="href">
+					<span>
+						How to create a curve between two points in geometry nodes_ - Support _ Modeling - Blender Artists
+						Community
+						<br />
+						https://blenderartists.org/t/how-to-create-a-curve-between-two-points-in-geometry-nodes/1314712/4
+						<img
+							src="../not-available.svg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/9Y_lMMsFeXg"
+					target="_blank"
+					class="href">
+					<span>
+						Parametric Rope Bridge for Blender 3.0 - Geometry Nodes Tutorial - YouTube
+						<br />
+						https://www.youtube.com/embed/9Y_lMMsFeXg
+						<img
+							src="https://i.ytimg.com/vi/9Y_lMMsFeXg/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/aBpihNllKNw"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Tutorial_ How To Combine Normal Maps - YouTube
+						<br />
+						https://www.youtube.com/embed/aBpihNllKNw
+						<img
+							src="https://i.ytimg.com/vi/aBpihNllKNw/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/keCu8mfoKEA"
+					target="_blank"
+					class="href">
+					<span>
+						The BEST way to combine MULTIPLE normal maps in Blender! - YouTube
+						<br />
+						https://www.youtube.com/embed/keCu8mfoKEA
+						<img
+							src="https://i.ytimg.com/vi/keCu8mfoKEA/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/@Erindale/search?query=getting%20started"
+					target="_blank"
+					class="href">
+					<span>
+						Erindale - YouTube
+						<br />
+						https://www.youtube.com/@Erindale/search?query=getting%20started
+						<img
+							src="../not-available.svg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/8od3pGdiRG8"
+					target="_blank"
+					class="href">
+					<span>
+						Understanding Texture Coordinates - Getting Started with Blender Nodes - YouTube
+						<br />
+						https://www.youtube.com/embed/8od3pGdiRG8
+						<img
+							src="https://i.ytimg.com/vi/8od3pGdiRG8/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/watch?v=xBM4BPpfbUg&amp;list=PLVm7O9OzjT6EIDtFGC67QxGsHkz3_RbIw"
+					target="_blank"
+					class="href">
+					<span>
+						truck driving game from blender Supercharge Your Geometry Nodes Workflow
+						<br />
+						https://www.youtube.com/watch?v=xBM4BPpfbUg&amp;list=PLVm7O9OzjT6EIDtFGC67QxGsHkz3_RbIw
+						<img
+							src="../not-available.svg"
+							alt="truck driving game from blender Supercharge Your Geometry Nodes Workflow" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/X8YkWdhty7I"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Tutorial_ 14 Non-photoreal Stylization Techniques (Advanced) - YouTube
+						<br />
+						https://www.youtube.com/embed/X8YkWdhty7I
+						<img
+							src="https://i.ytimg.com/vi/X8YkWdhty7I/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/TTgtrqO1llw"
+					target="_blank"
+					class="href">
+					<span>
+						Loft Curves Properly - Geometry Nodes in Blender 3.6 - YouTube
+						<br />
+						https://www.youtube.com/embed/TTgtrqO1llw
+						<img
+							src="https://i.ytimg.com/vi/TTgtrqO1llw/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/LFMomZIa6jg"
+					target="_blank"
+					class="href">
+					<span>
+						Blender 3.3 LTS_ Making and Using a 'Distribute Points In Mesh'- point cloud
+						<br />
+						https://www.youtube.com/embed/LFMomZIa6jg
+						<img
+							src="https://i.ytimg.com/vi/LFMomZIa6jg/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Nj5a4blpcAk"
+					target="_blank"
+					class="href">
+					<span>
+						Mesh Wrapping - Geometry Nodes Tutorial - YouTube
+						<br />
+						https://www.youtube.com/embed/Nj5a4blpcAk
+						<img
+							src="https://i.ytimg.com/vi/Nj5a4blpcAk/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/eynGezP-DYU"
+					target="_blank"
+					class="href">
+					<span>
+						How to Create Camera Culling in Blender Geometry Nodes - Understand Blender's Camera --27-38
+						<br />
+						https://www.youtube.com/embed/eynGezP-DYU
+						<img
+							src="https://i.ytimg.com/vi/eynGezP-DYU/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/KXa8z9M6bSY"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Procedural River [FULL COURSE] - YouTube
+						<br />
+						https://www.youtube.com/embed/KXa8z9M6bSY
+						<img
+							src="https://i.ytimg.com/vi/KXa8z9M6bSY/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/zdfCmScgra4"
+					target="_blank"
+					class="href">
+					<span>
+						Blender Quick Tip_ Freestyle Exclude Collection - YouTube
+						<br />
+						https://www.youtube.com/embed/zdfCmScgra4
+						<img
+							src="https://i.ytimg.com/vi/zdfCmScgra4/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/cnQu1kMs49s"
+					target="_blank"
+					class="href">
+					<span>
+						10 Outline Techniques I Wish I Knew Sooner in Blender - YouTube
+						<br />
+						https://www.youtube.com/embed/cnQu1kMs49s
+						<img
+							src="https://i.ytimg.com/vi/cnQu1kMs49s/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/watch?v=ZcPZLOo2jSo"
+					target="_blank"
+					class="href">
+					<span>
+						Solid JS Tutorial #2 - Making a New Solid App - YouTube
+						<br />
+						https://www.youtube.com/watch?v=ZcPZLOo2jSo
+						<img
+							src="https://i.ytimg.com/vi/ZcPZLOo2jSo/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/-hxiufn2fQo"
+					target="_blank"
+					class="href">
+					<span>
+						11- Attributes- Blender Geometry Nodes - YouTube
+						<br />
+						https://www.youtube.com/embed/-hxiufn2fQo
+						<img
+							src="https://i.ytimg.com/vi/-hxiufn2fQo/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/kAUmLcXhUj0"
+					target="_blank"
+					class="href">
+					<span>
+						Manipulate texture coordinates like a boss - Bartek Skorupa - YouTube
+						<br />
+						https://www.youtube.com/embed/kAUmLcXhUj0
+						<img
+							src="https://i.ytimg.com/vi/kAUmLcXhUj0/hqdefault.jpg"
+							alt="" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/4Lcwb7g3888">
+					<span>
+						Fake Liquid
+						<img
+							src="https://i.ytimg.com/vi/4Lcwb7g3888/hqdefault.jpg"
+							alt="Fake Liquid"
+							title="Fake Liquid" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/AjrxYJ2vqDo">
+					<span>
+						Blender: Lighting with Color Temperature
+						<img
+							src="https://i.ytimg.com/vi/AjrxYJ2vqDo/hqdefault.jpg"
+							alt="Blender: Lighting with Color Temperature"
+							title="Blender: Lighting with Color Temperature" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/0E1K9j9zoik">
+					<span>
+						Align Euler to Vector Node Explained
+						<img
+							src="https://i.ytimg.com/vi/0E1K9j9zoik/hqdefault.jpg"
+							alt="Align Euler to Vector Node Explained "
+							title="Align Euler to Vector Node Explained " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/34CIChr-K8Y">
+					<span>
+						Make a Water Slide that Builds Itself
+						<img
+							src="https://i.ytimg.com/vi/34CIChr-K8Y/hqdefault.jpg"
+							alt="Make a Water Slide that Builds Itself"
+							title="Make a Water Slide that Builds Itself" />
+					</span>
+				</a>
+			</div>
+			<hr class="page_break" />
+			<h3>For later--(this guy is improvising while making these buildings, and it's rather confusing)</h3>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/59PeIGmZQdY">
+					<span>
+						procedural buildings | Part 1
+						<img
+							src="https://i.ytimg.com/vi/59PeIGmZQdY/hqdefault.jpg"
+							alt="procedural buildings | Part 1"
+							title="procedural buildings | Part 1" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Nu94Zqm4DUk">
+					<span>
+						procedural buildings | Part 2
+						<img
+							src="https://i.ytimg.com/vi/Nu94Zqm4DUk/hqdefault.jpg"
+							alt="procedural buildings | Part 2"
+							title="procedural buildings | Part 2" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/O04q0KuTywc">
+					<span>
+						procedural buildings | Part 3
+						<img
+							src="https://i.ytimg.com/vi/O04q0KuTywc/hqdefault.jpg"
+							alt="procedural buildings | Part 3"
+							title="procedural buildings | Part 3" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/AMLdsqMUk5w">
+					<span>
+						procedural buildings | Part 4
+						<img
+							src="https://i.ytimg.com/vi/AMLdsqMUk5w/hqdefault.jpg"
+							alt="procedural buildings | Part 4"
+							title="procedural buildings | Part 4" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/gv9gdjgzzJM">
+					<span>
+						procedural buildings | Part 5
+						<img
+							src="https://i.ytimg.com/vi/gv9gdjgzzJM/hqdefault.jpg"
+							alt="procedural buildings | Part 5"
+							title="procedural buildings | Part 5" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/-rexNuTap44">
+					<span>
+						fantasy buildings creation
+						<img
+							src="https://i.ytimg.com/vi/-rexNuTap44/hqdefault.jpg"
+							alt="fantasy buildings creation"
+							title="fantasy buildings creation" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/P7KbltczT1Y"
+					target="_blank"
+					class="href">
+					<span>
+						random city buildings generator
+						<img
+							src="https://i.ytimg.com/vi/P7KbltczT1Y/hqdefault.jpg"
+							alt="random city buildings generator" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/zbFoJiug8Ss">
+					<span>
+						Create Measure Angle Geometry Node
+						<img
+							src="https://i.ytimg.com/vi/zbFoJiug8Ss/hqdefault.jpg"
+							alt="Create Measure Angle Geometry Node"
+							title="Create Measure Angle Geometry Node" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/adBKU1IOztA">
+					<span>
+						Neon Sign Generator in Blender Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/adBKU1IOztA/hqdefault.jpg"
+							alt="Neon Sign Generator in Blender Geometry Nodes"
+							title="Neon Sign Generator in Blender Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/iyxoeRKz_kg">
+					<span>
+						Floorplanner Geometry Node Asset
+						<img
+							src="https://i.ytimg.com/vi/iyxoeRKz_kg/hqdefault.jpg"
+							alt="Floorplanner Geometry Node Asset"
+							title="Floorplanner Geometry Node Asset" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/RE17ZpIIoVM">
+					<span>
+						update for Floorplanner
+						<img
+							src="https://i.ytimg.com/vi/RE17ZpIIoVM/hqdefault.jpg"
+							alt=" update for Floorplanner"
+							title=" update for Floorplanner" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/_W47HfoeFsg">
+					<span>
+						Visualize Numeric Attributes in Geometry Nodes (Long-winded, but seems to work)
+						<img
+							src="https://i.ytimg.com/vi/_W47HfoeFsg/hqdefault.jpg"
+							alt="Visualize Numeric Attributes in Geometry Nodes"
+							title="Visualize Numeric Attributes in Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/BwH70W1eOJU">
+					<span>
+						Seamless Pattern Generator
+						<img
+							src="https://i.ytimg.com/vi/BwH70W1eOJU/hqdefault.jpg"
+							alt="Seamless Pattern Generator"
+							title="Seamless Pattern Generator" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/arkX5TEiORY">
+					<span>
+						Abstract Graphics: Mesh Topology Curves
+						<img
+							src="https://i.ytimg.com/vi/arkX5TEiORY/hqdefault.jpg"
+							alt="Abstract Graphics: Mesh Topology Curves"
+							title="Abstract Graphics: Mesh Topology Curves" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/goayI0oaRg4">
+					<span>
+						Access Topology Like a Pro | Mesh Topology Nodes
+						<img
+							src="https://i.ytimg.com/vi/goayI0oaRg4/hqdefault.jpg"
+							alt="Access Topology Like a Pro | Mesh Topology Nodes"
+							title="Access Topology Like a Pro | Mesh Topology Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/VpSK5aaAg94">
+					<span>
+						Blender Procedural Dimensions 2 0
+						<img
+							src="https://i.ytimg.com/vi/VpSK5aaAg94/hqdefault.jpg"
+							alt="Blender Procedural Dimensions 2 0 "
+							title="Blender Procedural Dimensions 2 0 " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/27xFYDZefJY">
+					<span>
+						How to Change the INDEX ORDER and Reveal Elements
+						<img
+							src="https://i.ytimg.com/vi/27xFYDZefJY/hqdefault.jpg"
+							alt="How to Change the INDEX ORDER and Reveal Elements"
+							title="How to Change the INDEX ORDER and Reveal Elements" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/ZerJnivvBn4">
+					<span>
+						Blender Geometry Nodes | LEVEL1
+						<img
+							src="https://i.ytimg.com/vi/ZerJnivvBn4/hqdefault.jpg"
+							alt="Blender Geometry Nodes | LEVEL1 "
+							title="Blender Geometry Nodes | LEVEL1 " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/kAe0RPzxXlQ">
+					<span>
+						Blender 4.1 Flash Lightning Simulation!
+						<img
+							src="https://i.ytimg.com/vi/kAe0RPzxXlQ/hqdefault.jpg"
+							alt="Blender 4.1 Flash Lightning Simulation!"
+							title="Blender 4.1 Flash Lightning Simulation!" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/CHuc3a5uaec">
+					<span>
+						Key Fundamental Concepts
+						<img
+							src="https://i.ytimg.com/vi/CHuc3a5uaec/hqdefault.jpg"
+							alt="Key Fundamental Concepts"
+							title="Key Fundamental Concepts" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/jTFoB2962C0">
+					<span>
+						https://www.youtube.com/watch?v=jTFoB2962C0
+						<img src="https://i.ytimg.com/vi/jTFoB2962C0/hqdefault.jpg" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/PBuXuRM8IKE">
+					<span>
+						Terrain Erosion
+						<img
+							src="https://i.ytimg.com/vi/PBuXuRM8IKE/hqdefault.jpg"
+							alt="Terrain Erosion"
+							title="Terrain Erosion" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/uq50TBj1ZZs">
+					<span>
+						Create a custom "Distribute Points On Curve"
+						<img
+							src="https://i.ytimg.com/vi/uq50TBj1ZZs/hqdefault.jpg"
+							alt='Create a custom "Distribute Points On Curve"'
+							title='Create a custom "Distribute Points On Curve"' />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/wssaDM0Qec4">
+					<span>
+						Procedural Scales
+						<img
+							src="https://i.ytimg.com/vi/wssaDM0Qec4/hqdefault.jpg"
+							alt="Procedural Scales"
+							title="Procedural Scales" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/x-My39mbN4s">
+					<span>
+						Sliding Along a Curve
+						<img
+							src="https://i.ytimg.com/vi/x-My39mbN4s/hqdefault.jpg"
+							alt="Sliding Along a Curve "
+							title="Sliding Along a Curve " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/YVTLcJLWEJA">
+					<span>
+						Creating perfect animated noise loops
+						<img
+							src="https://i.ytimg.com/vi/YVTLcJLWEJA/hqdefault.jpg"
+							alt="Creating perfect animated noise loops"
+							title="Creating perfect animated noise loops" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/xhmxZCiFtLs">
+					<span>
+						Array Objects on Curves
+						<img
+							src="https://i.ytimg.com/vi/xhmxZCiFtLs/hqdefault.jpg"
+							alt="Array Objects on Curves "
+							title="Array Objects on Curves " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/CdUbNbYr25Q">
+					<span>
+						"Repeat Zone" Lightning Generator
+						<img
+							src="https://i.ytimg.com/vi/CdUbNbYr25Q/hqdefault.jpg"
+							alt='"Repeat Zone" Lightning Generator '
+							title='"Repeat Zone" Lightning Generator ' />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/alwSNvaU47A">
+					<span>
+						Raycast to Surface
+						<img
+							src="https://i.ytimg.com/vi/alwSNvaU47A/hqdefault.jpg"
+							alt=" Raycast to Surface"
+							title=" Raycast to Surface" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/-Gi3BbKA3cY">
+					<span>
+						Looping instances on a curve
+						<img
+							src="https://i.ytimg.com/vi/-Gi3BbKA3cY/hqdefault.jpg"
+							alt=" Looping instances on a curve"
+							title=" Looping instances on a curve" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/_QbT_jOi_7Q">
+					<span>
+						Select Points on a Curve | Endpoint Selection
+						<img
+							src="https://i.ytimg.com/vi/_QbT_jOi_7Q/hqdefault.jpg"
+							alt="Select Points on a Curve | Endpoint Selection"
+							title="Select Points on a Curve | Endpoint Selection" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/mJ3sPta-X3k">
+					<span>
+						Camera Mapping
+						<img
+							src="https://i.ytimg.com/vi/mJ3sPta-X3k/hqdefault.jpg"
+							alt="Camera Mapping "
+							title="Camera Mapping " />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/276087/where-is-transfer-attribute-in-3-4">
+					<span>
+						Where is Transfer attribute in 3.4?
+						<img
+							src="../not-available.svg"
+							alt="Where is Transfer attribute in 3.4?"
+							title="Where is Transfer attribute in 3.4?" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/262829/find-highest-index-value-for-each-mesh-island-is-it-possible-geometry-nodes">
+					<span>
+						Find highest index value for each Mesh Island. Is it possible?
+						<img
+							src="../not-available.svg"
+							alt="Find highest index value for each Mesh Island. Is it possible?"
+							title="Find highest index value for each Mesh Island. Is it possible?" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/298114/how-do-i-align-extruded-faces-perpendicular-to-the-global-z-axis-using-geometry">
+					<span>
+						How do I align extruded faces perpendicular to the global z axis
+						<img
+							src="../not-available.svg"
+							alt="How do I align extruded faces perpendicular to the global z axis"
+							title="How do I align extruded faces perpendicular to the global z axis" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/how-do-i-turn-separate-mesh-islands-into-their-own-instances/1443287/1">
+					<span>
+						how do i turn separate mesh islands into their own instances
+						<img
+							src="../not-available.svg"
+							alt="how do i turn separate mesh islands into their own instances"
+							title="how do i turn separate mesh islands into their own instances" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/0dZUAh4fFfM">
+					<span>
+						Vector math is EASY when you SEE it
+						<img
+							src="https://i.ytimg.com/vi/0dZUAh4fFfM/hqdefault.jpg"
+							alt="Vector math is EASY when you SEE it"
+							title="Vector math is EASY when you SEE it" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/pBRKbvN1sLc">
+					<span>
+						GeometryNodes for Super-Beginners #2 - Vector Manipulation &amp; Noise
+						<img
+							src="https://i.ytimg.com/vi/pBRKbvN1sLc/hqdefault.jpg"
+							alt="GeometryNodes for Super-Beginners #2 - Vector Manipulation &amp; Noise"
+							title="GeometryNodes for Super-Beginners #2 - Vector Manipulation &amp; Noise" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/jUvq8rj5rEQ">
+					<span>
+						animated Pixel Assets in Blender
+						<img
+							src="https://i.ytimg.com/vi/jUvq8rj5rEQ/hqdefault.jpg"
+							alt="animated Pixel Assets in Blender"
+							title="animated Pixel Assets in Blender" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/8K26vKeiX4E">
+					<span>
+						How to Make Cloud
+						<img
+							src="https://i.ytimg.com/vi/8K26vKeiX4E/hqdefault.jpg"
+							alt="How to Make Cloud"
+							title="How to Make Cloud" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://higgsas-geo-nodes-manual.readthedocs.io/en/latest/">
+					<span>
+						Higgsas geometry nodes groups manual
+						<img
+							src="../not-available.svg"
+							alt="Higgsas geometry nodes groups manual"
+							title="Higgsas geometry nodes groups manual" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/higgsas-geometry-nodes-groups-blender-3-3-4-2/1351737/15">
+					<span>
+						Higgsas Geometry Nodes Groups
+						<img
+							src="../not-available.svg"
+							alt="Higgsas Geometry Nodes Groups"
+							title="Higgsas Geometry Nodes Groups" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blendermarket.com/products/geometry-nodes-groups">
+					<span>
+						Higgsas Geometry Nodes Toolset
+						<img
+							src="../not-available.svg"
+							alt="Higgsas Geometry Nodes Toolset"
+							title="Higgsas Geometry Nodes Toolset" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/oybbFR0cfjY">
+					<span>
+						Geometry Nodes UV Retopology
+						<img
+							src="https://i.ytimg.com/vi/oybbFR0cfjY/hqdefault.jpg"
+							alt="Geometry Nodes UV Retopology"
+							title="Geometry Nodes UV Retopology" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Q5YZBa6dsuA">
+					<span>
+						Shrinkwrap
+						<img
+							src="https://i.ytimg.com/vi/Q5YZBa6dsuA/hqdefault.jpg"
+							alt="Shrinkwrap"
+							title="Shrinkwrap" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/02XNGOVpSV4">
+					<span>
+						Procedural UV Unwrapping
+						<img
+							src="https://i.ytimg.com/vi/02XNGOVpSV4/hqdefault.jpg"
+							alt="Procedural UV Unwrapping"
+							title="Procedural UV Unwrapping" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/300149/creating-instances-scaled-to-mesh-islands">
+					<span>
+						Creating Instances Scaled to Mesh Islands
+						<img
+							src="../not-available.svg"
+							alt="Creating Instances Scaled to Mesh Islands"
+							title="Creating Instances Scaled to Mesh Islands" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/self-intersection-fix/1517139">
+					<span>
+						Self intersection fix
+						<img
+							src="../not-available.svg"
+							alt="Self intersection fix"
+							title="Self intersection fix" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/ri4n5QvVYHU">
+					<span>
+						Making Road Generator with Sidewalk
+						<img
+							src="https://i.ytimg.com/vi/ri4n5QvVYHU/hqdefault.jpg"
+							alt="Making Road Generator with Sidewalk"
+							title="Making Road Generator with Sidewalk" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/316900/how-can-i-seperate-and-fill-mesh-islands-in-geometry-nodes">
+					<span>
+						seperate and fill mesh islands
+						<img
+							src="../not-available.svg"
+							alt="seperate and fill mesh islands"
+							title="seperate and fill mesh islands" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/ULOpI5bP5q4">
+					<span>
+						3 Minutes to Perfect Clouds | Free Ultra HQ Cloud VDB Pack
+						<img
+							src="https://i.ytimg.com/vi/ULOpI5bP5q4/hqdefault.jpg"
+							alt="3 Minutes to Perfect Clouds | Free Ultra HQ Cloud VDB Pack"
+							title="3 Minutes to Perfect Clouds | Free Ultra HQ Cloud VDB Pack" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/299475/geometry-nodes-how-to-select-the-boundaries-of-mesh-islands">
+					<span>
+						select the boundaries of mesh islands
+						<img
+							src="../not-available.svg"
+							alt="select the boundaries of mesh islands"
+							title="select the boundaries of mesh islands" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/how-to-deform-a-mesh-along-a-curve-in-a-geometry-node/1367480">
+					<span>
+						How to deform a mesh along a curve
+						<img
+							src="../not-available.svg"
+							alt="How to deform a mesh along a curve"
+							title="How to deform a mesh along a curve" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/245282/how-to-bend-geometry-with-geometry-nodes/245553#245553">
+					<span>
+						bending things
+						<img
+							src="../not-available.svg"
+							alt="bending things"
+							title="bending things" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.tylerxhobbs.com/words/flow-fields">
+					<span>
+						see information on Flow Fields here: (NOT A GEO NODES Tutorial)
+						<img
+							src="../not-available.svg"
+							alt="Flow Fields"
+							title="Flow Fields" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/jzjnbE_McpM">
+					<span>
+						Packing || Index of Nearest Node
+						<img
+							src="https://i.ytimg.com/vi/jzjnbE_McpM/hqdefault.jpg"
+							alt="Packing || Index of Nearest Node"
+							title="Packing || Index of Nearest Node" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/290546/calculate-the-angle-between-two-edges-using-geometry-nodes">
+					<span>
+						Calculate the angle between two edges
+						<img
+							src="../not-available.svg"
+							alt="Calculate the angle between two edges"
+							title="Calculate the angle between two edges" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/sdf-volumes-and-force-fields/1395332/30?page=2">
+					<span>
+						SDF, Volumes and Force Fields
+						<img
+							src="../not-available.svg"
+							alt="SDF, Volumes and Force Fields"
+							title="SDF, Volumes and Force Fields" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/4Nzgck3nRkI">
+					<span>
+						Converting Position Vectors to Direction Vectors
+						<img
+							src="https://i.ytimg.com/vi/4Nzgck3nRkI/hqdefault.jpg"
+							alt="Converting Position Vectors to Direction Vectors "
+							title="Converting Position Vectors to Direction Vectors" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/geometry-nodes-how-to-tell-which-of-the-face-corner-of-a-face-i-am-on-to-set-uv-solved/1507934">
+					<span>
+						how to tell which of the face corner of a face i am on to set UV
+						<img
+							src="../not-available.svg"
+							alt="how to tell which of the face corner of a face i am on to set UV"
+							title="how to tell which of the face corner of a face i am on to set UV" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/looking-for-geometry-node-tutorials/1515504">
+					<span>
+						'geo nodes' tutorial collection
+						<img
+							src="../not-available.svg"
+							alt="'geo nodes' tutorial collection"
+							title="'geo nodes' tutorial collection" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/the-great-collective-geo-nodes-thread/1493683">
+					<span>
+						The Great Collective Geo Nodes Thread
+						<img
+							src="../not-available.svg"
+							alt="The Great Collective Geo Nodes Thread"
+							title="The Great Collective Geo Nodes Thread" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://robinhohni.gumroad.com/l/BlenderParticleNodeGroups">
+					<span>
+						Particle Node Groups for free
+						<img
+							src="../not-available.svg"
+							alt="Particle Node Groups for free"
+							title="Particle Node Groups for free" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/272640/how-can-i-flip-only-negative-faces-in-geometry-nodes">
+					<span>
+						How can I flip only negative faces
+						<img
+							src="../not-available.svg"
+							alt="How can I flip only negative faces"
+							title="How can I flip only negative faces" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/268525/deleting-faces-that-are-not-visible-from-certain-direction">
+					<span>
+						Deleting faces that are not visible from certain direction
+						<img
+							src="../not-available.svg"
+							alt="Deleting faces that are not visible from certain direction"
+							title="Deleting faces that are not visible from certain direction" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/RQaYqAbmxhM">
+					<span>
+						Text Effects
+						<img
+							src="https://i.ytimg.com/vi/RQaYqAbmxhM/hqdefault.jpg"
+							alt="Text Effects"
+							title="Text Effects" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/elAE2YNOb0I">
+					<span>
+						3D Text - Custom Extruded Profile
+						<img
+							src="https://i.ytimg.com/vi/elAE2YNOb0I/hqdefault.jpg"
+							alt="3D Text - Custom Extruded Profile"
+							title="3D Text - Custom Extruded Profile" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/DxRVoIyCqHE">
+					<span>
+						Making Fully Procedural Edge Bias Binding for Animated Garments
+						<img
+							src="https://i.ytimg.com/vi/DxRVoIyCqHE/hqdefault.jpg"
+							alt="Making Fully Procedural Edge Bias Binding for Animated Garments"
+							title="Making Fully Procedural Edge Bias Binding for Animated Garments" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/9pLv3Q-YqgU">
+					<span>
+						Curves - An engineer's approach
+						<img
+							src="https://i.ytimg.com/vi/9pLv3Q-YqgU/hqdefault.jpg"
+							alt="Curves - An engineer's approach"
+							title="Curves - An engineer's approach" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/245282/how-to-bend-geometry-with-geometry-nodes/312130#312130">
+					<span>
+						how to bend geometry (like shoelaces)
+						<img
+							src="../not-available.svg"
+							alt="how to bend geometry (like shoelaces)"
+							title="how to bend geometry (like shoelaces)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/0VSxDgScFFo">
+					<span>
+						Creating Cambridge Mosque (basketball nets)
+						<img
+							src="https://i.ytimg.com/vi/0VSxDgScFFo/hqdefault.jpg"
+							alt="Creating Cambridge Mosque"
+							title="Creating Cambridge Mosque" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/271761/how-to-correct-curve-tilt-tangents-and-normals-of-a-curve">
+					<span>
+						How to correct curve tilt, tangents and normals of a curve
+						<img
+							src="../not-available.svg"
+							alt="How to correct curve tilt, tangents and normals of a curve"
+							title="How to correct curve tilt, tangents and normals of a curve" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/299739/how-to-maintain-curve-tilt-when-adjusting-height">
+					<span>
+						How to maintain curve tilt when adjusting height
+						<img
+							src="../not-available.svg"
+							alt="How to maintain curve tilt when adjusting height"
+							title="How to maintain curve tilt when adjusting height" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/258415/aligning-instances-axes-inward-in-geometry-nodes">
+					<span>
+						Aligning Instances' Axes Inward
+						<img
+							src="../not-available.svg"
+							alt="Aligning Instances' Axes Inward"
+							title="Aligning Instances' Axes Inward" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/259240/how-to-make-instances-twist-about-a-curve/259246#259246">
+					<span>
+						How to make instances twist about a curve
+						<img
+							src="../not-available.svg"
+							alt="How to make instances twist about a curve"
+							title="How to make instances twist about a curve" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/281577/whorled-leaf-curling-with-phyllotaxis">
+					<span>
+						Whorled leaf curling with phyllotaxis
+						<img
+							src="../not-available.svg"
+							alt="Whorled leaf curling with phyllotaxis"
+							title="Whorled leaf curling with phyllotaxis" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/282040/circular-shape-with-sine-edge">
+					<span>
+						Circular shape with sine edge
+						<img
+							src="../not-available.svg"
+							alt="Circular shape with sine edge"
+							title="Circular shape with sine edge" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/298808/rotating-instances-on-a-curve-with-tilt">
+					<span>
+						Rotating Instances on a Curve with Tilt
+						<img
+							src="../not-available.svg"
+							alt="Rotating Instances on a Curve with Tilt"
+							title="Rotating Instances on a Curve with Tilt" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/300608/trimming-start-of-the-curve-geometry-nodes-without-altering-tilt/300612#300612">
+					<span>
+						Trimming start of the curve geometry nodes without altering tilt
+						<img
+							src="../not-available.svg"
+							alt="Trimming start of the curve geometry nodes without altering tilt"
+							title="Trimming start of the curve geometry nodes without altering tilt" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/272893/geometry-nodes-tilted-curve-boolean">
+					<span>
+						Geometry Nodes - Tilted Curve Boolean
+						<img
+							src="../not-available.svg"
+							alt="Geometry Nodes - Tilted Curve Boolean"
+							title="Geometry Nodes - Tilted Curve Boolean" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/269730/geometry-nodes-zipper-problem">
+					<span>
+						Geometry nodes zipper problem
+						<img
+							src="../not-available.svg"
+							alt="Geometry nodes zipper problem"
+							title="Geometry nodes zipper problem" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/zfLXrKqPkRY">
+					<span>
+						Simulation Bubbles
+						<img
+							src="https://i.ytimg.com/vi/zfLXrKqPkRY/hqdefault.jpg"
+							alt="Simulation Bubbles"
+							title="Simulation Bubbles" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/Z5eGxPoqfvA">
+					<span>
+						Bubble Simulation
+						<img
+							src="https://i.ytimg.com/vi/Z5eGxPoqfvA/hqdefault.jpg"
+							alt="Bubble Simulation"
+							title="Bubble Simulation" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/mQn8P0MLE48">
+					<span>
+						Filling Objects
+						<img
+							src="https://i.ytimg.com/vi/mQn8P0MLE48/hqdefault.jpg"
+							alt="Filling Objects"
+							title="Filling Objects" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/jR-E5FQ-T-s">
+					<span>
+						Draw Curves
+						<img
+							src="https://i.ytimg.com/vi/jR-E5FQ-T-s/hqdefault.jpg"
+							alt="Draw Curves"
+							title="Draw Curves" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/MC_MXaGZfqM">
+					<span>
+						Procedural Pathways
+						<img
+							src="https://i.ytimg.com/vi/MC_MXaGZfqM/hqdefault.jpg"
+							alt="Procedural Pathways"
+							title="Procedural Pathways" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/0m8RAcWGgws">
+					<span>
+						Curve to Mesh
+						<img
+							src="https://i.ytimg.com/vi/0m8RAcWGgws/hqdefault.jpg"
+							alt="Curve to Mesh"
+							title="Curve to Mesh" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/267087/procedural-border-detection-on-a-flat-object">
+					<span>
+						Procedural Border Detection on a Flat Object (gradient fill)
+						<img
+							src="../not-available.svg"
+							alt="Procedural Border Detection on a Flat Object (gradient fill)"
+							title="Procedural Border Detection on a Flat Object (gradient fill)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/315620/reduce-text-width-to-0-internal-wire/316486#316486">
+					<span>
+						Reduce text width (internal wire, centerline)
+						<img
+							src="../not-available.svg"
+							alt="Reduce text width (internal wire, centerline)"
+							title="Reduce text width (internal wire, centerline)" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/geometry-nodes-to-create-a-spline-deformer/1391199">
+					<span>
+						spline deformer
+						<img
+							src="../not-available.svg"
+							alt="spline deformer"
+							title="spline deformer" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/325100/geometry-nodes-splines-curves-merging-neighbors-cw-ccw">
+					<span>
+						Splines Curves Merging Neighbors
+						<img
+							src="../not-available.svg"
+							alt="Splines Curves Merging Neighbors"
+							title="Splines Curves Merging Neighbors" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/0MTiMby4NaQ">
+					<span>
+						four corner mazes
+						<img
+							src="https://i.ytimg.com/vi/0MTiMby4NaQ/hqdefault.jpg"
+							alt="four corner mazes"
+							title="four corner mazes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/WCYzAwjQWeo">
+					<span>
+						lava lamp
+						<img
+							src="https://i.ytimg.com/vi/WCYzAwjQWeo/hqdefault.jpg"
+							alt="lava lamp"
+							title="lava lamp" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/iSoqddxoCl8">
+					<span>
+						Game of Life
+						<img
+							src="https://i.ytimg.com/vi/iSoqddxoCl8/hqdefault.jpg"
+							alt="Game of Life"
+							title="Game of Life" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/287637/geometry-nodes-connect-points-by-index">
+					<span>
+						Connect Points by index
+						<img
+							src="../not-available.svg"
+							alt="Connect Points by index"
+							title="Connect Points by index" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/239516/obtain-position-of-point-in-geometry-node/245332#245332">
+					<span>
+						Obtain position of point
+						<img
+							src="../not-available.svg"
+							alt="Obtain position of point"
+							title="Obtain position of point" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/276087/where-is-transfer-attribute-in-3-4">
+					<span>
+						Where is Transfer attribute
+						<img
+							src="../not-available.svg"
+							alt="Where is Transfer attribute"
+							title="Where is Transfer attribute" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/240358/geometry-nodes-is-it-possible-to-merge-multiple-curve-segments">
+					<span>
+						merge multiple curve segments
+						<img
+							src="../not-available.svg"
+							alt="merge multiple curve segments"
+							title="merge multiple curve segments" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/323833/align-and-snap-a-cad-modeled-connector-to-the-end-of-an-extruded-profile-curve-w">
+					<span>
+						Align and Snap a Model a Curve
+						<img
+							src="../not-available.svg"
+							alt="Align and Snap a Model a Curve"
+							title="Align and Snap a Model a Curve" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/310339/curve-tilt-of-instanced-curves-to-follow-sampled-geometry">
+					<span>
+						Curve tilt of instanced curves to follow sampled geometry
+						<img
+							src="../not-available.svg"
+							alt="Curve tilt of instanced curves to follow sampled geometry"
+							title="Curve tilt of instanced curves to follow sampled geometry" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/302389/how-to-align-an-object-to-remain-flat-along-a-spiral/302392#302392">
+					<span>
+						How to align an object to remain flat along a spiral
+						<img
+							src="../not-available.svg"
+							alt="How to align an object to remain flat along a spiral"
+							title="How to align an object to remain flat along a spiral" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/F9iaZZKCYeo">
+					<span>
+						Brick walls from a single curve
+						<img
+							src="https://i.ytimg.com/vi/F9iaZZKCYeo/hqdefault.jpg"
+							alt="Brick walls from a single curve"
+							title="Brick walls from a single curve" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/gxHC1IQSzc0">
+					<span>
+						How to Avoid Object Intersection
+						<img
+							src="https://i.ytimg.com/vi/gxHC1IQSzc0/hqdefault.jpg"
+							alt="How to Avoid Object Intersection"
+							title="How to Avoid Object Intersection" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/l_vnAz0Yo8w">
+					<span>
+						fluid simulations
+						<img
+							src="https://i.ytimg.com/vi/l_vnAz0Yo8w/hqdefault.jpg"
+							alt="fluid simulations"
+							title="fluid simulations" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/ziULQfSnTs0">
+					<span>
+						Cobweb generator
+						<img
+							src="https://i.ytimg.com/vi/ziULQfSnTs0/hqdefault.jpg"
+							alt="Cobweb generator"
+							title="Cobweb generator" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/sRyubLSd-9E">
+					<span>
+						Array Following Curves
+						<img
+							src="https://i.ytimg.com/vi/sRyubLSd-9E/hqdefault.jpg"
+							alt="Array Following Curves"
+							title="Array Following Curves" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/S-G5KElPC0w">
+					<span>
+						Even and Odd and Advanced Selections with MODULO
+						<img
+							src="https://i.ytimg.com/vi/S-G5KElPC0w/hqdefault.jpg"
+							alt="Even and Odd and Advanced Selections with MODULO"
+							title="Even and Odd and Advanced Selections with MODULO" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/D1v0wWGKdT4">
+					<span>
+						Random Arrays
+						<img
+							src="https://i.ytimg.com/vi/D1v0wWGKdT4/hqdefault.jpg"
+							alt="Random Arrays"
+							title="Random Arrays" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/splne-brush-painterly-tool-for-blender-powered-by-geometry-nodes/1523839">
+					<span>
+						Splne Brush painterly tool
+						<img
+							src="../not-available.svg"
+							alt="Splne Brush painterly tool"
+							title="Splne Brush painterly tool" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/_TYD-CRDGXI">
+					<span>
+						LED Screen
+						<img
+							src="https://i.ytimg.com/vi/_TYD-CRDGXI/hqdefault.jpg"
+							alt="LED Screen"
+							title="LED Screen" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/284474/how-to-select-the-outer-edges-of-a-plane-in-geometry-nodes">
+					<span>
+						select the outer edges of a plane
+						<img
+							src="../not-available.svg"
+							alt="select the outer edges of a plane"
+							title="select the outer edges of a plane" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/how-to-create-shrinkwrap-node-using-raycast-geometry-node/1548507">
+					<span>
+						create shrinkwrap node using Raycast
+						<img
+							src="../not-available.svg"
+							alt="create shrinkwrap node using Raycast"
+							title="create shrinkwrap node using Raycast" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/V0r8f9OwLQs">
+					<span>
+						creating contour lines from any landscape mesh
+						<img
+							src="https://i.ytimg.com/vi/V0r8f9OwLQs/hqdefault.jpg"
+							alt="creating contour lines from any landscape mesh"
+							title="creating contour lines from any landscape mesh" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/-f2HXGtVUpo">
+					<span>
+						Spherical Coordinates in the node editor
+						<img
+							src="https://i.ytimg.com/vi/-f2HXGtVUpo/hqdefault.jpg"
+							alt="Spherical Coordinates in the node editor"
+							title="Spherical Coordinates in the node editor" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/geometry-nodes-resample-curve-non-linear/1378191/21">
+					<span>
+						Geometry Nodes Resample curve Non Linear
+						<img
+							src="../not-available.svg"
+							alt="Geometry Nodes Resample curve Non Linear"
+							title="Geometry Nodes Resample curve Non Linear" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/261215/how-to-capture-curve-radius-in-geometry-nodes">
+					<span>
+						How to capture curve radius in geometry nodes
+						<img
+							src="../not-available.svg"
+							alt="How to capture curve radius in geometry nodes"
+							title="How to capture curve radius in geometry nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/YMwzdcMkado">
+					<span>
+						How to Scale The Radius of a Curve
+						<img
+							src="https://i.ytimg.com/vi/YMwzdcMkado/hqdefault.jpg"
+							alt="How to Scale The Radius of a Curve"
+							title="How to Scale The Radius of a Curve" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/lets-recreate-pointiness-cavity-in-geometry-nodes/1445560">
+					<span>
+						recreate Pointiness (Cavity)
+						<img
+							src="../not-available.svg"
+							alt="recreate Pointiness (Cavity)"
+							title="recreate Pointiness (Cavity)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/19ptQCVCak0">
+					<span>
+						Creating Pie Charts
+						<img
+							src="https://i.ytimg.com/vi/19ptQCVCak0/hqdefault.jpg"
+							alt="Creating Pie Charts"
+							title="Creating Pie Charts" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/0rxNqTUvqYQ">
+					<span>
+						Proximity Lightning/Electricity
+						<img
+							src="https://i.ytimg.com/vi/0rxNqTUvqYQ/hqdefault.jpg"
+							alt="Proximity Lightning/Electricity"
+							title="Proximity Lightning/Electricity" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/1DikXzRN6t4">
+					<span>
+						Making slime in blender 3D explained in under 9 minutes
+						<img
+							src="https://i.ytimg.com/vi/1DikXzRN6t4/hqdefault.jpg"
+							alt="Making slime in blender 3D explained in under 9 minutes"
+							title="Making slime in blender 3D explained in under 9 minutes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/276099/create-curve-from-path-of-an-object-using-geometry-nodes">
+					<span>
+						Create Curve from Path of an Object
+						<img
+							src="../not-available.svg"
+							alt="Create Curve from Path of an Object"
+							title="Create Curve from Path of an Object" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/URWuNhg5ZNk">
+					<span>
+						Making Pine Trees
+						<img
+							src="https://i.ytimg.com/vi/URWuNhg5ZNk/hqdefault.jpg"
+							alt="Making Pine Trees"
+							title="Making Pine Trees" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/264217/use-curve-control-point-radius-to-scale-mesh-in-geometry-nodes">
+					<span>
+						Use Curve Control Point Radius to Scale Mesh
+						<img
+							src="../not-available.svg"
+							alt="Use Curve Control Point Radius to Scale Mesh"
+							title="Use Curve Control Point Radius to Scale Mesh" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/0AcfTZ2wH28">
+					<span>
+						Power Lines
+						<img
+							src="https://i.ytimg.com/vi/0AcfTZ2wH28/hqdefault.jpg"
+							alt="Power Lines"
+							title="Power Lines" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://usamababar.com/object-tracking-using-geometry-nodes-in-blender/">
+					<span>
+						Object Tracking using Geometry Nodes
+						<img
+							src="https://usamababar.com/wp-content/uploads/2021/12/Object_tracking_featured_image.png"
+							alt="Object Tracking using Geometry Nodes"
+							title="Object Tracking using Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/355BEbeLVFQ">
+					<span>
+						Trimming tips on mesh curves in Geometry nodes
+						<img
+							src="https://i.ytimg.com/vi/355BEbeLVFQ/hqdefault.jpg"
+							alt="Trimming tips on mesh curves in Geometry nodes"
+							title="Trimming tips on mesh curves in Geometry nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/MgZsVBVZ3Nc">
+					<span>
+						Painting brush strokes with Geometry Nodes
+						<img
+							src="https://i.ytimg.com/vi/MgZsVBVZ3Nc/hqdefault.jpg"
+							alt="Painting brush strokes with Geometry Nodes"
+							title="Painting brush strokes with Geometry Nodes" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/J7vEq3vG8rM">
+					<span>
+						Procedural Flowmap with Geometry Nodes and Animation Nodes
+						<img
+							src="https://i.ytimg.com/vi/J7vEq3vG8rM/hqdefault.jpg"
+							alt="Procedural Flowmap with Geometry Nodes and Animation Nodes"
+							title="Procedural Flowmap with Geometry Nodes and Animation Nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/OXlAmETEU6Y">
+					<span>
+						fill curve node in blender fixed in geometry nodes
+						<img
+							src="https://i.ytimg.com/vi/OXlAmETEU6Y/hqdefault.jpg"
+							alt="fill curve node in blender fixed in geometry nodes"
+							title="fill curve node in blender fixed in geometry nodes" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blender.stackexchange.com/questions/274557/why-is-there-a-red-line-when-i-try-to-connect-one-node-to-another">
+					<span>
+						problems connecting node fields
+						<img
+							src="https://i.sstatic.net/R6uQZ.png"
+							alt="problems connecting node fields"
+							title="problems connecting node fields" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blenderartists.org/t/snap-points-based-on-ids-using-geometry-nodes/1469563">
+					<span>
+						Snap points based on IDs using geometry nodes
+						<img
+							src="https://blenderartists.org/uploads/default/original/4X/8/9/8/898aa23de9731ee533f118b7b73fded53f667786.png"
+							alt="Snap points based on IDs using geometry nodes"
+							title="Snap points based on IDs using geometry nodes" />
+					</span>
+				</a>
+			</div>
+
+			<!-- END LINKS --  CLOSE MAIN -->
+		</div>
+		<!-- ALL LINKS -->
+		<div class="video_link bottom_link">
+			<a
+				href="../__index_learning_links.html"
+				class="href">
+				all_links
+			</a>
+		</div>
+	</body>
+</html>

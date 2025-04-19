@@ -1,0 +1,1475 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Javascript Links For learning</title>
+		<link
+			rel="stylesheet"
+			href="../styles/learning_link_styles.css" />
+		<script src="../scripts/learning_links_script.js"></script>
+	</head>
+	<body>
+		<div class="tagging_system">
+			<h4>the tagging system: enter a term here and javascript makes links to anchors with the same text</h4>
+
+			<span
+				id="cloud_area"
+				class="anchor_tags">
+				<!-- UV, sculpture,geometry nodes,geo nodes,grease pencil,modeling,procedural,texture,animation,topology, -->
+			</span>
+		</div>
+		<div
+			id="main"
+			class="main">
+			<h1>Javascript learning</h1>
+			<p>tips and tricks found in videos, and tools to aid in learning advanced javascript.</p>
+			<p>
+				The information here is for a person that is familiar with basic to intermediate javascript, pre ES6. (and
+				there may be some tips here for ES6 as well, since the author is having to re-map his brain with that in
+				mind.)
+			</p>
+			<p>ARROW FUNCTIONS HAVE ORIGINS in ES6 (ecma 2015). Find out more in the link below.</p>
+
+			<pre>
+    WORKING WITH THE DOM
+        render to dom
+        move fragment to DOM
+          create a view with a fragment
+            append children
+            append Fragment to dom
+      
+        exists in dom?
+          does the id exist?
+          is the dom insertion a fragment?
+          
+        clone/edit/replace
+          is a reference for the view stored?
+          store a reference to the view:
+            target it
+            clone it
+            edit (with document fragments)
+            replace current in tree
+      </pre
+			>
+
+			<pre>
+THOUGHTS ON LOADING RESOURCES:
+    when loading resources for a page
+
+    check to see if the resource exists:
+    check to see if the resource is in the cache
+    check to see if the resource is loading already
+    check to see if the resource is not null or undefined
+
+    when loading images:
+    set a handler for the .onload
+    when .onload handler fires, have it check if resource.naturalWidth===undefined||resource.naturalWidth<=0
+    if those conditions exist, try reloading the resource
+ 
+    how to monitor loading progress in javascript?
+      seems the only answer to this question is to use a framework like ASP,
+        so that an asynchronous XMLhttpRequest will have an API for a progress event
+        (enter createjs)
+      </pre
+			>
+
+			<pre>
+JAVASCRIPT SNIPPET FOR REPORTING ALL THE URLS AND HREFS WITHIN AN RSS FEED XML
+      var a=document.querySelectorAll("[href]");
+      var b=document.querySelectorAll("[url]");
+      var c=Array.from(a).concat(Array.from(b));
+      var d=[];
+      for (var i in c){
+        var result=c[i].getAttribute("href")||c[i].getAttribute("url");
+        d.push(result);	 
+      }
+      console.log(d);
+      </pre
+			>
+
+			<hr class="page_break" />
+			<p>
+				http://www.kirupa.com/html5/check_if_internet_connection_exists_in_javascript.htm
+				<br />
+				<br />
+				XMLHttpRequest
+				<br />
+				------------------
+				<br />
+				<br />
+				If there is ever a moment when you need your internet connection to work, there is a very good chance it is
+				at that very moment your internet connection will fail. This is one of those universally accepted truths...I
+				think. Anyway, building an app or a site whose functionality relies on an internet connection being present
+				is tricky. You can't always guarantee that an internet connection will be available when your app requires
+				it, and this is especially true on mobile devices when your internet connectivity might be flaky.
+				<br />
+				<br />
+				To avoid situations where something you create misbehaves because an internet connection isn't available,
+				you need a way to detect whether an internet connection exists. The best part is that it isn't very hard to
+				do.
+				<br />
+				<br />
+				Take a look at the following example:
+				<br />
+				<br />
+				Click on the Check connection! text. If you have an active internet connection, you will see a dialog
+				telling you that a connection exists:
+				<br />
+				<br />
+				connection exists
+				<br />
+				<br />
+				If you don't have an internet connection (something you can temporarily simulate by unplugging your network
+				cable or turning off your wireless), you will see a dialog that says that an internet connection does not
+				exist:
+				<br />
+				<br />
+				connection doesn't exist
+				<br />
+				<br />
+				This crazy-awesome functionality is made possible using a little bit of JavaScript and a simple
+				XMLHttpRequest technique. In this article, you will learn all about it.
+				<br />
+				<br />
+				Onwards!
+				<br />
+				Detecting the Internet Connection
+				<br />
+				<br />
+				The way I check if an internet connection exists pretty simple. There is some code that attempts to access a
+				file that exists on the internet. If we can access that file, this means an internet connection exists:
+				<br />
+				<br />
+				connection exists
+				<br />
+				<br />
+				If we can't access that file, this means an internet connection doesn't exist or something like a firewall
+				or Nicholas Cage is preventing your app from connecting to the internet:
+				<br />
+				<br />
+				no connection
+				<br />
+				<br />
+				The code for all of what I just described looks as follows:
+				<br />
+				function doesConnectionExist() {
+				<br />
+				var xhr = new XMLHttpRequest();
+				<br />
+				var file = &quot;http://www.yoursite.com/somefile.png&quot;;
+				<br />
+				var randomNum = Math.round(Math.random() * 10000);
+				<br />
+				<br />
+				xhr.open('HEAD', file + &quot;?rand=&quot; + randomNum, false);
+				<br />
+				<br />
+				try {
+				<br />
+				xhr.send();
+				<br />
+				<br />
+				if (xhr.status >= 200 &amp;&amp; xhr.status < 304) {
+				<br />
+				return true;
+				<br />
+				} else {
+				<br />
+				return false;
+				<br />
+				}
+				<br />
+				} catch (e) {
+				<br />
+				return false;
+				<br />
+				}
+				<br />
+				}
+				<br />
+				<br />
+				The doesConnectionExist function returns a true if an internet connection exists. This function returns a
+				false if an internet connection does not exist. To use this code in your own site or app, the only thing you
+				need to do is change the URL specified for the file variable:
+				<br />
+				var file = &quot;http://www.yoursite.com/somefile.png&quot;;
+				<br />
+				<br />
+				Change the URL to point to any file that you know exists on your own server. That's all there is to it. To
+				see a full working version of this code, check out the source for the example you saw earlier from the
+				following location.
+				<br />
+				The Code Explained
+				<br />
+				<br />
+				In the previous section, you saw the code that makes all of this work. You also received a very simple
+				explanation as to what the code does. In this section, let's look through each line of our code in detail
+				and get the real explanation...starting at the top:
+				<br />
+				var xhr = new XMLHttpRequest();
+				<br />
+				<br />
+				The first thing we do is create the xhr variable and initialize it to a new XMLHttpRequest object. This
+				object contains all of the properties and methods you need for sending or getting data from across the
+				internet without requiring you to refresh your page.
+				<br />
+				<br />
+				<br />
+				<br />
+				The next three lines are related, so let's look at them together:
+				<br />
+				var file = &quot;http://www.yoursite.com/somefile.png&quot;;
+				<br />
+				var randomNum = Math.round(Math.random() * 10000);
+				<br />
+				<br />
+				xhr.open('HEAD', file + &quot;?rand=&quot; + randomNum, false);
+				<br />
+				<br />
+				The file and randomNum variables help you to construct a URL that points to a known file on the internet.
+				You see these variables being used when we call open on our xhr object:
+				<br />
+				var file = &quot;http://www.yoursite.com/somefile.png&quot;;
+				<br />
+				var randomNum = Math.round(Math.random() * 10000);
+				<br />
+				<br />
+				xhr.open('HEAD', file + &quot;?rand=&quot; + randomNum, false);
+				<br />
+				<br />
+				The open method is pretty interesting, so let's look at it in more detail.
+				<br />
+				The Open Method
+				<br />
+				<br />
+				The open method allows us to construct a request. Think of this is formally defining the parameters you want
+				in order to send your request off to the internet. The open method (in this variation) takes three
+				arguments:
+				<br />
+				<br />
+				The type of HTTP method to use
+				<br />
+				The URL to send the request to
+				<br />
+				Whether the request will be made asynchronously
+				<br />
+				<br />
+				HTTP Method
+				<br />
+				<br />
+				Our HTTP method is going to be HEAD. There are several HTTP methods available that you can specify, but we
+				want to use a method that simply checks on a file without actually downloading it. The HEAD method fits that
+				requirement.
+				<br />
+				The URL
+				<br />
+				<br />
+				The URL we specify is the path to the file that we want to check on. This URL is a combination of the file
+				and randomNum variables that you saw earlier. Then end result is a string that might look as follows:
+				<br />
+				http://www.kirupa.com/blank.png?rand=6544
+				<br />
+				<br />
+				The random number tagged on as part of the URL is there to prevent a cached result from being returned.
+				<br />
+				Asynchronous Much?
+				<br />
+				<br />
+				The last argument we specify is whether we want this request to be done in the background asynchronously or
+				whether we want this to block all other code from executing and run synchronously. Whether you specify true
+				(asynchronous) or false (synchronous) depends entirely on your app.
+				<br />
+				<br />
+				If your application simply cannot proceed further without first checking whether an internet connection
+				exists, you should specify false. If you are checking for the internet connection in a more passive way and
+				your application doesn't demand an answer immediately, specify true.
+				<br />
+				<br />
+				In our example, we specified false.
+				<br />
+				<br />
+				<br />
+				<br />
+				So far, all we've done is create our XMLHttpRequest object and constructed our HTTP request. Things really
+				start moving in the next chunk of code:
+				<br />
+				try {
+				<br />
+				xhr.send();
+				<br />
+				<br />
+				if (xhr.status >= 200 &amp;&amp; xhr.status < 304) {
+				<br />
+				return true;
+				<br />
+				} else {
+				<br />
+				return false;
+				<br />
+				}
+				<br />
+				} catch (e) {
+				<br />
+				return false;
+				<br />
+				}
+				<br />
+				<br />
+				We wrap all of this code inside a try/catch statement. The reason has to do with the xhr.send() line:
+				<br />
+				try {
+				<br />
+				xhr.send();
+				<br />
+				<br />
+				if (xhr.status >= 200 &amp;&amp; xhr.status < 304) {
+				<br />
+				return true;
+				<br />
+				} else {
+				<br />
+				return false;
+				<br />
+				}
+				<br />
+				} catch (e) {
+				<br />
+				return false;
+				<br />
+				}
+				<br />
+				<br />
+				When the send method executes, the HTTP request you constructed earlier in open is actually transmitted. If
+				you do not have an internet connection that allows this request to fly away, the send method throws an
+				exception. At this point, your app would instantly crash if you didn't use the try/catch statement to
+				anticipate and react to this mini-meltdown.
+				<br />
+				<br />
+				If an internet connection does exist, your send method transmits the message and returns an HTTP status code
+				(xhr.status). Looking at the various status codes goes well beyond the scope of this article, but as long as
+				your status code falls within 200 and 303, you are in good shape and this entire function returns a true.
+				<br />
+				<br />
+				That check is handled by the following highlighted lines:
+				<br />
+				try {
+				<br />
+				xhr.send();
+				<br />
+				<br />
+				if (xhr.status >= 200 &amp;&amp; xhr.status < 304) {
+				<br />
+				return true;
+				<br />
+				} else {
+				<br />
+				return false;
+				<br />
+				}
+				<br />
+				} catch (e) {
+				<br />
+				return false;
+				<br />
+				}
+				<br />
+				<br />
+				If your status code goes outside of that range, nobody really knows what is going on. To be safe, our code
+				returns a false to indicate that the connection doesn't exist. It is very likely be that the file you
+				specified as part of your request doesn't exist and needs to be altered. It could be that something else is
+				preventing your connection from succeeding. If you see false being returned consistently, that is a sign
+				that you need to troubleshoot your connection.
+				<br />
+				Note on the navigator.onLine Property
+				<br />
+				<br />
+				After writing this article, several people asked me why I don't use the navigator.onLine property to check
+				whether a connection exists or not. After all, this property's sole reason for existing is to tell
+				you...whether a connection exists or not. It seems like the obvious choice, right? Well, not quite! Here is
+				why I don't like to use it for what we are trying to do.
+				<br />
+				<br />
+				What we are doing is checking if we have an internet connection. The reason we are doing this is to actually
+				connect to the internet and do something with some remote data. Simply checking if we have a valid
+				connection isn't adequate. I could be connected to a local network and not have access to the broader
+				internet. I could be in a virtual machine with a virtual network adapter that always shows an active
+				connection...even if such a connection doesn't actually exist. You may have a firewall that causes problems.
+				There are many cases where your browser will falsely report a connection exists, but the navigator.onLine
+				property will return true.
+				<br />
+				<br />
+				By making a web request like this article describes, there is no ambiguity on whether your page can connect
+				to the internet. That's why I prefer the XHR approach as opposed to the navigator.onLine property.
+				<br />
+				<br />
+				CONCLUSION
+				<br />
+				---------
+				<br />
+				More and more of your sites and apps store state in a remote location. Having an internet connection at all
+				times when using your phone or computer or whatever is no longer a luxury for many parts of the world. It is
+				a necessity. Despite that, we (and your users) always manage to get ourselves into situations where an
+				internet connection might not always exist. I'm looking at you Mammoth Caves.
+				<br />
+				<br />
+				For those moments when your site or app doesn't have an internet connection that it desperately relies on,
+				this code provides you with a basic solution for how to start dealing with it.
+				<br />
+			</p>
+			<hr class="page_break" />
+
+			<div>
+				<h2>things about the shadow dom</h2>
+				<ol>
+					<li>
+						<a
+							target="_blank"
+							href="https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles">
+							<code>bubbles</code>
+						</a>
+					</li>
+					<li>
+						<a
+							target="_blank"
+							href="https://developer.mozilla.org/en-US/docs/Web/API/Event/composed">
+							<code>composed</code>
+						</a>
+					</li>
+					<li>
+						<a
+							target="_blank"
+							href="https://w3c.github.io/uievents">
+							UI events
+						</a>
+					</li>
+					<li>
+						<a
+							target="_blank"
+							href="https://developer.mozilla.org/en-US/docs/Web/API/Event/target">
+							<code>Event.prototype.target</code>
+						</a>
+					</li>
+
+					<li>
+						<a
+							target="_blank"
+							href="https://developer.mozilla.org/en-US/docs/Web/API/Event/composedPath">
+							<code>Event.prototype.composedPath</code>
+						</a>
+					</li>
+					<li>
+						<a
+							target="_blank"
+							href="https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/mode">
+							<code>mode</code>
+						</a>
+					</li>
+					<li>
+						<a
+							target="_blank"
+							href="https://codepen.io/pmdartus/pen/ZELJRyX?editors=1000">
+							Codepen
+						</a>
+					</li>
+					<li>
+						<a
+							target="_blank"
+							href="https://lit.dev/">
+							lit
+						</a>
+					</li>
+					<li>
+						<a
+							target="_blank"
+							href="https://roughjs.com/">
+							Rough.js
+						</a>
+					</li>
+					<li>
+						<a
+							target="_blank"
+							href="https://github.com/pmdartus/event-visualizer">
+							pmdartus event-visualizer
+						</a>
+					</li>
+					<li>
+						<a
+							target="_blank"
+							href="https://nolanlawson.com/">
+							Nolan Lawson
+						</a>
+					</li>
+				</ol>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://262.ecma-international.org/6.0/">
+					<span>
+						ES6 specification (ecma 2015)
+						<img
+							src="https://262.ecma-international.org/6.0/Ecma_RVB-003.jpg"
+							alt="ES6 specification (ecma 2015)"
+							title="ES6 specification (ecma 2015)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/PoRJizFvM7s"
+					target="_blank"
+					class="href">
+					<span>
+						Async JS Crash Course - Callbacks, Promises, Async Await
+						<img
+							src="https://i.ytimg.com/vi/PoRJizFvM7s/hqdefault.jpg"
+							alt="Introduction to shaders: Learn the basics!" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/Mus_vwhTCq0"
+					target="_blank"
+					class="href">
+					<span>
+						JavaScript Pro Tips - Code This, NOT That | useful console logging
+						<img
+							src="https://i.ytimg.com/vi/Mus_vwhTCq0/hqdefault.jpg"
+							alt="Introduction to shaders: Learn the basics!" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+			<div class="video_link">
+				<a
+					href="https://www.youtube.com/embed/18q6-QR_XXY"
+					target="_blank"
+					class="href">
+					<span>
+						CreateObjectURL and RevokeObjectURL (Explained by Example)
+						<img
+							src="https://i.ytimg.com/vi/18q6-QR_XXY/hqdefault.jpg"
+							alt="CreateObjectURL and RevokeObjectURL (Explained by Example)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/lPVZYS4fvco">
+					<span>
+						using svg filters to do Button Distortion Effects - YouTube
+						<img
+							src="https://i.ytimg.com/vi/lPVZYS4fvco/hqdefault.jpg"
+							alt="using svg filters to do Button Distortion Effects - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<h2>Vanilla javascript links</h2>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/ycXyix8oc3Q">
+					<span>
+						What is a vector - YouTube
+						<img
+							src="https://i.ytimg.com/vi/ycXyix8oc3Q/hqdefault.jpg"
+							alt="What is a vector - YouTube" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.softschools.com/math/pre_calculus/direction_angles_of_vectors/">
+					<span>
+						Direction Angles of Vectors
+						<img
+							src="#"
+							alt="Direction Angles of Vectors" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/kwkL8K3blVU">
+					<span>
+						01 - Calculating Magnitude of a Vector &amp; Direction, Part 1 (Vector Magnitude &amp; Angle) -
+						YouTube
+						<img
+							src="https://i.ytimg.com/vi/kwkL8K3blVU/hqdefault.jpg"
+							alt="01 - Calculating Magnitude of a Vector &amp; Direction, Part 1 (Vector Magnitude &amp; Angle) - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/0L6QGPH6Q60">
+					<span>
+						How to find the direction angle of a vector - YouTube
+						<img
+							src="https://i.ytimg.com/vi/0L6QGPH6Q60/hqdefault.jpg"
+							alt="How to find the direction angle of a vector - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.stormstreaming.com/docs/v1/javascript-library-attaching-detaching-events">
+					<span>
+						removing event listeners | player.removeAllEventListeners();
+						<img
+							src="#"
+							alt="removing event listeners | player.removeAllEventListeners();" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://gameprogrammingpatterns.com/contents.html">
+					<span>
+						Game Programming Patterns (patterned around C++)
+						<img
+							src="#"
+							alt="Game Programming Patterns (patterned around C++)" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a class="href">
+					<span>Research Modularizing code in Javascript</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://dev.to/petrussola/vanilla-js-how-to-work-with-modules-76e"
+					target="_blank"
+					class="href">
+					<span>How to work with Javascript Modules</span>
+					<img
+						src="https://media.dev.to/cdn-cgi/image/width=320,height=320,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F233782%2F81fd1724-ec78-4555-844f-f90fc3f5a03b.jpeg"
+						alt="How to work with Javascript Modules" />
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://eloquentjavascript.net/15_event.html">
+					<span>
+						Handling Events
+						<img
+							src="#"
+							alt="Handling Events" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.axiom-media.com/">
+					<span>
+						good looking PORTFOLIO site:
+						<img
+							src="#"
+							alt="good looking PORTFOLIO site:" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://jsfiddle.net/dR7Ur/2/">
+					<span>
+						html5 | createjs | local to global
+						<img
+							src="#"
+							alt="container-of-html5" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://greensock.com/forums/topic/12289-flash-professional-html5-canvas-export-with-gsap/">
+					<span>
+						show you how to get started using GSAP in Flash Pro
+						<img
+							src="#"
+							alt="show you how to get started using GSAP in Flash Pro" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://github.com/CreateJS/html5ads/tree/master/AdHelper">
+					<span>
+						HTML5 Ad helper that uses the createjs library
+						<img
+							src="#"
+							alt="HTML5 Ad helper that uses the createjs library" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/EF6Ua0cC4jY">
+					<span>
+						JavaScript Tip: Loading an External XML File
+						<img
+							src="https://i.ytimg.com/vi/EF6Ua0cC4jY/hqdefault.jpg"
+							alt="JavaScript Tip: Loading an External XML File" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://github.com/CreateJS/EaselJS/issues/14">
+					<span>
+						Scale and registration points with createjs
+						<img
+							src="#"
+							alt="Scale and registration points with createjs" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blog.createjs.com/scaling-and-stretching-with-the-scalebitmap-class/">
+					<span>
+						Scaling and Stretching with the ScaleBitmap Class
+						<img
+							src="#"
+							alt="Scaling and Stretching with the ScaleBitmap Class" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/7Azlj0f9vas">
+					<span>
+						Coding Snake in JavaScript Complete Tutorial Every Step Explained with HTML5 Canvas
+						<img
+							src="https://i.ytimg.com/vi/7Azlj0f9vas/hqdefault.jpg"
+							alt="Coding Snake in JavaScript Complete Tutorial Every Step Explained with HTML5 Canvas" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+
+			<h2>exploring javascript on my own</h2>
+
+			<pre>
+   
+        find the title of a web page:
+        var arr = document.querySelectorAll("title");
+        for (var i = 0; i < arr.length; i++) {
+          console.log(arr[i].textContent);
+        }
+      </pre
+			>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.reddit.com/r/learnprogramming/wiki/faq/#wiki_getting_started">
+					<span>
+						faq - sub REDDIT learnprogramming
+						<img
+							src="#"
+							alt="faq - sub REDDIT learnprogramming" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://webdevelopmenttutorials.com/freejavascripttutorials.php"
+					target="_blank"
+					class="href">
+					<span>Javascript Tutorials</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.phpied.com/rendering-repaint-reflowrelayout-restyle/"
+					target="_blank"
+					class="href">
+					<span>DOM manipulation:Rendering: repaint, reflow/relayout, restyle</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://www.drupal.org/docs/drupal-apis/javascript-api/ajax-forms/"
+					target="_blank"
+					class="href">
+					<span>Tutorial 3 Creating new widgets with AJAX drupal.org</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://krazydad.com/tutorials/makecolors.php"
+					target="_blank"
+					class="href">
+					<span>Making annoying rainbows in javascript | A tutorial by jim bumgardner (@jbum on twitter)</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://perishablepress.com/3-ways-preload-images-css-javascript-ajax/"
+					target="_blank"
+					class="href">
+					<span>preloading images using javascript the right way and without frameworks</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://perishablepress.com/css-image-caching/"
+					target="_blank"
+					class="href">
+					<span>css-image-caching</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://perishablepress.com/a-way-to-preload-images-without-javascript-that-is-so-much-better/"
+					target="_blank"
+					class="href">
+					<span>a way to preload images without javascript that is so much better</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://perishablepress.com/pure-css-better-image-preloading-without-javascript/"
+					target="_blank"
+					class="href">
+					<span>pure css better image preloading without javascript</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://perishablepress.com/css-throwdown-preload-images-without-javascript/"
+					target="_blank"
+					class="href">
+					<span>css throwdown preload images without javascript</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://perishablepress.com/preloading-images-with-css-and-javascript/"
+					target="_blank"
+					class="href">
+					<span>preloading images with css and javascript</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://learn.jquery.com/jquery-ui/getting-started/"
+					target="_blank"
+					class="href">
+					<span>Getting Started with jQuery UI</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://api.jqueryui.com/"
+					target="_blank"
+					class="href">
+					<span>jQuery UI 1.13 API Documentation</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://jqueryui.com/demos/"
+					target="_blank"
+					class="href">
+					<span>jQuery UI Demos</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://learn.jquery.com/jquery-ui/"
+					target="_blank"
+					class="href">
+					<span>jQuery UI jQuery Learning Center</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					href="https://learn.jquery.com/ajax/key-concepts/"
+					target="_blank"
+					class="href">
+					<span>jQuery in: Ajax | Key Concepts</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://codepen.io/nstock/full/vNKWaz"
+					target="_blank"
+					class="href">
+					<span>a link from '5 Minute Physics' by David DeSandro. No longer Available on YouTube.</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					href="https://desandro.com/"
+					target="_blank"
+					class="href">
+					<span>
+						https://desandro.com/
+						<br />
+						proud creator of
+						<a
+							target="_blank"
+							href="https://v2.desandro.com/articles/masonry-identity/">
+							Masonry
+						</a>
+						, and
+						<a
+							target="_blank"
+							href="https://isotope.metafizzy.co/">
+							isotope
+						</a>
+						. There is also
+						<a
+							target="_blank"
+							href="https://v2.desandro.com/articles/half-ton-halftones/">
+							Half-ton Halftones, too.
+						</a>
+						Uncle Doug would have loved that he
+						<a
+							target="_blank"
+							href="https://v2.desandro.com/articles/fruit-stickers/">
+							collected fruit stickers too.
+						</a>
+						<br />
+						Install the library for
+						<a
+							target="_blank"
+							href="https://imagesloaded.desandro.com/#vanilla-javascript">
+							imagesLoaded
+						</a>
+						while you wait
+						<br />
+						If you want some slides, check out
+						<a
+							target="_blank"
+							href="https://css-tricks.com/creating-responsive-touch-friendly-carousels-with-flickity/">
+							flickety
+						</a>
+						<br />
+						here's a list of his stuff:
+						<ul>
+							<li>
+								<a
+									target="_blank"
+									href="http://github.com/desandro">
+									GitHub
+								</a>
+							</li>
+							<li>
+								<a
+									target="_blank"
+									href="http://www.flickr.com/photos/nemoorange/">
+									Flickr
+								</a>
+							</li>
+							<li>
+								<a
+									target="_blank"
+									href="http://desandro.tumblr.com">
+									Tumblr
+								</a>
+							</li>
+							<li>
+								<a
+									target="_blank"
+									href="http://vimeo.com/desandro">
+									Vimeo
+								</a>
+							</li>
+							<li>
+								<a
+									target="_blank"
+									href="http://www.last.fm/user/nemoorange">
+									Last.fm
+								</a>
+							</li>
+							<li>
+								<a
+									target="_blank"
+									href="http://stackoverflow.com/users/182183/desandro">
+									StackOverflow
+								</a>
+							</li>
+							<li>
+								<a
+									target="_blank"
+									href="https://dribbble.com/desandro">
+									Dribbble
+								</a>
+							</li>
+							<li>
+								<a
+									target="_blank"
+									href="http://jsfiddle.net/user/desandro/">
+									jsFiddle
+								</a>
+							</li>
+							<li>
+								<a
+									target="_blank"
+									href="http://delicious.com/desandro">
+									Delicious
+								</a>
+							</li>
+						</ul>
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/ZcPZLOo2jSo">
+					<span>
+						Solid JS Tutorial #2 - Making a New Solid App - YouTube
+						<img
+							src="https://i.ytimg.com/vi/ZcPZLOo2jSo/hqdefault.jpg"
+							alt="Solid JS Tutorial #2 - Making a New Solid App - YouTube" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.codeproject.com/Articles/530428/Building-Atari-with-CreateJS">
+					<span>
+						https://www.codeproject.com/Articles/530428/Building-Atari-with-CreateJS
+						<br />
+						Building Atari with CreateJS
+						<br />
+
+						covers:
+						<br />
+						CreateJS and the Atari Arcade SDK
+						<br />
+						<img src="./lockup.png" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://stackoverflow.com/questions/30797862/java-bytearray-equivalent-in-javascript">
+					<span>
+						Java byteArray equivalent in JavaScript
+						<img
+							src="#"
+							alt="Java byteArray equivalent in JavaScript"
+							title="Java byteArray equivalent" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<h3>Regarding earth map coordinates and translating them from a dataset to a map:</h3>
+				<a
+					class="href"
+					target="_blank"
+					href="https://trac.osgeo.org/proj4js/wiki/UserGuide">
+					<span>
+						guide is for Proj4js
+						<img
+							src="./trac_banner.png"
+							alt="guide is for Proj4js"
+							title="guide is for Proj4js" />
+					</span>
+				</a>
+
+				<p>
+					Proj4js is a JavaScript library to transform point coordinates from one coordinate system to another,
+					including datum transformations.
+					<br />
+					Originally a port of PROJ (then known as PROJ.4) and GCTCP C (Archive) it is a part of the MetaCRS group
+					of projects.
+				</p>
+				SEE ALSO:
+				<br />
+				<a
+					href="https://github.com/proj4js/proj4js#using"
+					target="_blank"
+					class="href">
+					https://github.com/proj4js/proj4js#using
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://stackoverflow.com/questions/38864933/what-is-difference-between-module-loader-and-module-bundler-in-javascript">
+					<span>
+						What is difference between Module Loader and Module Bundler in JavaScript?
+						<img
+							src="#"
+							alt="What is difference between Module Loader and Module Bundler in JavaScript?"
+							title="Module Loader vs Module Bundler" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://loune.net/2011/05/javascript-arraybuffer-binary-handling-in-javascript/">
+					<span>
+						Javascript ArrayBuffer – Binary handling in javascript
+						<img
+							src="#"
+							alt="Javascript ArrayBuffer – Binary handling in javascript"
+							title="Javascript ArrayBuffer" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://zellwk.com/blog/polymorphism-javascript/">
+					<span>
+						Polymorphism in JavaScript
+						<img
+							src="#"
+							alt="Polymorphism in JavaScript"
+							title="Polymorphism in JavaScript" />
+					</span>
+				</a>
+			</div>
+
+			<hr class="page_break" />
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/2uf4fuSLQJ8">
+					<span>
+						Unreal Engine 5.3 Beginner Tutorial - Create Castle Ruins
+						<img
+							src="https://i.ytimg.com/vi/2uf4fuSLQJ8/hqdefault.jpg"
+							alt="Unreal Engine 5.3 Beginner Tutorial - Create Castle Ruins"
+							title="Unreal Engine 5.3 Beginner Tutorial - Create Castle Ruins" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.hotscripts.com/category/scripts/javascript/">
+					<span>
+						JavaScript Applications Functions Download Hot Scripts
+						<img
+							src="../not-available.svg"
+							alt="JavaScript Applications Functions Download Hot Scripts"
+							title="JavaScript Applications Functions Download Hot Scripts" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.sitepoint.com/javascript-history-pushstate/">
+					<span>
+						How to Modify the Browser History in Complex HTML5 and JavaScript Applications
+						<img
+							src="../not-available.svg"
+							alt="How to Modify the Browser History in Complex HTML5 and JavaScript Applications"
+							title="How to Modify the Browser History in Complex HTML5 and JavaScript Applications" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://medium.com/@nagachaitanyakonada/javascript-window-history-pushstate-tutorial-56e2126eaff1">
+					<span>
+						JavaScript window.history pushState tutorial
+						<img
+							src="https://miro.medium.com/v2/resize:fit:1276/format:webp/1*6lRAjnH9t6m0i3ooy5FEJQ.png"
+							alt="JavaScript window.history pushState tutorial"
+							title="JavaScript window.history pushState tutorial" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://blogs.sitepointstatic.com/examples/tech/history-pushstate/index.html">
+					<span>
+						Back/forward button history in HTML5 pushState/replaceState
+						<img
+							src="../not-available.svg"
+							alt="Back/forward button history in HTML5 pushState/replaceState"
+							title="Back/forward button history in HTML5 pushState/replaceState" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.fullstackpython.com/web-development.html">
+					<span>
+						Full Stack Python
+						<img
+							src="https://www.python.org/static/community_logos/python-logo.png"
+							alt="Full Stack Python"
+							title="Full Stack Python" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://developer.mozilla.org/en-US/docs/Glossary/Python">
+					<span>
+						mozilla.org's Python links
+						<img
+							src="../not-available.svg"
+							alt="mozilla.org's Python links"
+							title="mozilla.org's Python links" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://alexsexton.com/blog/2013/04/understanding-javascript-inheritance/">
+					<span>
+						Understanding JavaScript Inheritance
+						<img
+							src="https://www.spaceotechnologies.com/wp-content/uploads/2023/04/What-is-a-Prototype.png"
+							alt="Understanding JavaScript Inheritance"
+							title="Understanding JavaScript Inheritance" />
+					</span>
+				</a>
+			</div>
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/embed/PMfcsYzj-9M">
+					<span>
+						The Definitive Guide to Object-Oriented JavaScript
+						<img
+							src="https://i.ytimg.com/vi/PMfcsYzj-9M/hqdefault.jpg"
+							alt="The Definitive Guide to Object-Oriented JavaScript"
+							title="The Definitive Guide to Object-Oriented JavaScript" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.objectplayground.com/">
+					<span>
+						Try examples of Javascript
+						<img
+							src="https://www.letscodejavascript.com/v3/images/sprite_feature.png"
+							alt="Try examples of Javascript"
+							title="Try examples of Javascript" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://www.youtube.com/@jamesshore/search?query=javascript">
+					<span>
+						james shore's youtube channel
+						<img
+							src="https://yt3.googleusercontent.com/ytc/AIdro_kHnzp0lT5uBPbJKOi8uHhRsyC6lAFgFWyDFNsNf9B4Pg=s160-c-k-c0x00ffffff-no-rj"
+							alt="james shore's youtube channel"
+							title="james shore's youtube channel" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://m2.material.io/resources/tutorials">
+					<span>
+						Tutorials Material Components | Hands-on lessons putting Material into action
+						<img
+							src="https://lh3.googleusercontent.com/uS5u7Ra8MXWYyDwEm_g7NtFVIWq66WukJFoGhFh2CVdwe5NHEOuzGHFWsZsXuWJ3m-8m_A17MTcUfbOqFEt4b1vYK4ARQ0KNciFRAg=w150-v0"
+							alt="Tutorials Material Components | Hands-on lessons putting Material into action"
+							title="Tutorials Material Components | Hands-on lessons putting Material into action" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://ponyfoo.com/articles/es6-destructuring-in-depth">
+					<span>
+						ES6 JavaScript Destructuring in Depth — Pony Foo
+						<img
+							src="https://ponyfoo.com/favicon.ico"
+							alt="ES6 JavaScript Destructuring in Depth — Pony Foo"
+							title="ES6 JavaScript Destructuring in Depth — Pony Foo" />
+					</span>
+				</a>
+			</div>
+
+			<div class="video_link">
+				<a
+					class="href"
+					target="_blank"
+					href="https://dmitripavlutin.com/ecmascript-modules-dynamic-import/">
+					<span>
+						ES Modules Dynamic Import
+						<img
+							src="https://dmitripavlutin.com/static/50146d7680a4a42b9d1220f1fd63f745/be4c9/dynamic-es-modules-3.webp"
+							alt="ES Modules Dynamic Import"
+							title="ES Modules Dynamic Import" />
+					</span>
+				</a>
+			</div>
+
+			<!--
+      <hr class="page_break" />
+<div class="video_link">
+        <a href="https://www.youtube.com/embed/cbzBt60dhY8" target="_blank" class="href">
+          <span>
+            Blender Asset Browser: all you need to know (and then some!)
+            <img
+              src="https://i.ytimg.com/vi/cbzBt60dhY8/hqdefault.jpg"
+              alt="Blender Asset Browser: all you need to know (and then some!)"
+            />
+          </span>
+        </a>
+      </div> 
+       -->
+
+			<!-- A LONG VIDEO LINK WITH ASSOCIATED INFO: -->
+			<!-- 
+
+      <div class="video_link">
+        <a
+          href="https://www.youtube.com/watch?v=ZHQ1rnCqc0c&list=PLUe04fv-YMwyivoTSJIKIJ5VKzrTtmwMc"
+          target="_blank"
+          class="href"
+        >
+          ULTIMATE GUIDE to texture coordinates in blender full playlist
+        </a>
+        <br />
+        <a href="https://www.youtube.com/embed/ZHQ1rnCqc0c" target="_blank" class="href">
+          ULTIMATE GUIDE to texture coordinates in blender # 1
+        </a>
+        <br />
+        <a href="https://www.youtube.com/embed/3tU0PM8aVks" target="_blank" class="href">
+          ULTIMATE GUIDE to texture coordinates in blender # 2
+        </a>
+        <br />
+        <a href="https://www.youtube.com/embed/Mq2knqvpIUk" target="_blank" class="href">
+          <span>
+            ULTIMATE GUIDE to texture coordinates in blender #10 - cylindrical & spherical coordinates magical effects
+            <img
+              src="https://i.ytimg.com/vi/Mq2knqvpIUk/hqdefault.jpg"
+              alt="ULTIMATE GUIDE to texture coordinates in blender #10 - cylindrical & spherical coordinates"
+            />
+          </span>
+        </a>
+      </div>
+
+ -->
+		</div>
+		<div class="video_link bottom_link">
+			<a
+				href="../__index_learning_links.html"
+				class="href">
+				all_links
+			</a>
+		</div>
+	</body>
+</html>

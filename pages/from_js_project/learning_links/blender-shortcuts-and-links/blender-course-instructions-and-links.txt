@@ -1,0 +1,1752 @@
+ 
+Looking to have a property equal 0 unless another variable is on
+
+unresolved-- user asked if there was a non-python solution
+
+...i[s] there... an expression I can use to get this result[:] I want this property to stay 0 unless two other properties are both 1, in which case this property can be either 0 or 1. But I'm not familiar with Python so I don't know how I'd write that.
+
+https://blender.stackexchange.com/questions/308034/looking-to-have-a-property-equal-0-unless-another-variable-is-on
+
+"You might be better off with a driver for something this simple." --- not sure....
+
+(maybe more answers in future >12-2023)
+
+Interpolate error while searching x value if y = 0
+Asked 6 months ago (curr- DEC 2023)
+ 
+PYTHON:
+https://stackoverflow.com/questions/76416770/interpolate-error-while-searching-x-value-if-y-0
+ 
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+ 
+ 
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+Blender artist (fast, and good with faces.)
+SpeedChar
+SpeedChar LIVE (channel #2)
+
+SpeedChar channel:
+https://www.youtube.com/channel/UCZmZjz7XvWfKz4fMjLwrNmQ
+   
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+ 
+normal_baking_cycles.txt
+
+normal baking in cycles:
+https://blenderdiplom.com/en/tutorials/all-tutorials/589-tutorial-normal-baking-with-cycles.html
+ 
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+https://cgcookie.com/posts/the-ultimate-2022-guide-to-the-best-blender-add-ons?page=2#modeling
+addon:
+commotion
+If you’ve ever needed to offset otherwise identical animations for each object, you know that it’s a big pain whenever you need to make a change. Commotion makes it easy to offset animation data, and can even do it based on proximity to other objects which makes for a nice animation / geometry nodes type effect (and was around before those two existed). 
+https://github.com/mrachinskiy/commotion
+
+
+Pablo Dobarro and Daniel Martinez Lara, two legendary Blender developers, once teamed up to create an add-on, called Keymesh, that brought Grease Pencil style keyframing to mesh objects for stop motion animations. That add-on has not been maintained, but the community member Aldrin Matthew has taken up the mantle and expanded its functionality by turning it into what is now Stopmagic. This is significantly different from using shapekeys because, once you've set one mesh keyframe, you can change the object in any way for the next keyframe, including adding or removing vertices. You can even use sculpting and dynamic topology to create truly clay-like effects like the animation by Andrei Apanasik https://www.youtube.com/watch?v=dwkItP-vVoc.
+
+https://github.com/AldrinMathew/stopmagic
+ 
+Dream UV (Free)
+  
+If you like not leaving the 3D viewport, you may also want to try the DreamUV add-on, which is a collection of UV tools for the 3D view sidebar. Its most interesting feature, in my opinion, is hotspotting. That tool will attempt to find an appropriately sized rectangle on the texture atlas and automatically fit it to the selected mesh based on the seams. DreamUV is specifically made for interactively texturing objects using tiled textures or trim sheets, so game artists should definitely give it a try.
+https://github.com/leukbaars/DreamUV
+
+
+Render Burst (Free)
+
+This add-on is also very simple, but it certainly comes in handy. Render Burst will render out an image from all cameras in the scene or from all selected cameras. If you have multiple angles to shoot and just need to tweak the model or material slightly, this will save you from having to manually re-render everything.
+https://github.com/VertStretch/RenderBurst
+
+VFX Nodes (Free)
+
+There aren’t many compositing addons out there, but for those that work with video clips in Blender’s compositor, you may want to look at VFX Nodes. This add-on adds some preset node groups for common tasks like vignetting, cloning, patching, glitching, and replacing eye colors.
+
+https://darkfallblender.blogspot.com/p/blog-page_8.html
+
+
+Screencast Keys (Free)
+
+screencast_keys.jpg
+
+Screencast Keys is really only helpful for those making tutorials or teaching a class, but if you’re showing someone how to do something in Blender, it’s perfect for making sure they know exactly what keys you’re pressing. If you’ve used Blender for a long time, you probably do some things automatically without even thinking! With Screencast Keys, they’ll be able to follow along regardless.
+https://github.com/nutti/Screencast-Keys
+
+
+Edge Flow (Free)
+ 
+
+This popular 3DS Max and Maya tool has made its way over to Blender! Edge Flow uses spline interpolation to adjust edge loops to fit the surrounding geometry. You can use it to quickly clean up messy topology or better blend between two areas. It’s two operators Set Flow and Set Linear come in handy pretty often, and they’re conveniently added to the edge context menu. It’s free, simple, and adds operations that can’t be done with vanilla Blender. I’ll definitely be using it a lot!
+
+https://github.com/BenjaminSauder/EdgeFlow/blob/master/README.md
+
+
+
+Sketchfab (Free)
+ 
+Similarly, the official Sketchfab add-on lets you download and use any of the hundreds (thousands?) of models posted as free on their site. It also makes it extremely easy to upload and share your models with other people. They aren't Blender-specific, so there won't be any procedural materials or ready to use rigs, but they make up for it with the sheer amount of available content. 
+
+https://github.com/sketchfab/blender-plugin/
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+what_I_learned_in_blender.txt
+
+You have to mess around with Blender too much!
+
+Always check the environment settings for the room texture, and make it look nice, or objects won't look relistic AT ALL
+Under Environment Settings, check multiple importance for Surface
+Map Resolution can be 1024, but constrain bounces to something like 24 here.
+
+tone down sampling with speed ups like:
+
+No square samples,
+Clamp Indirect (3)
+
+MANAGE LIGH PATHS
+you won't need more than 8 bounces for transparency, or 4 for other bouncing (Dave Price)
+
+
+current "green plastic" is not reflective of objects in  front
+────────────────
+rendering_notes.txt
+
+differences in the rendering that add SO MUCH!
+
+
+an ambient occlusion pass that darken what's already supposed to be in shadow
+
+and a specular pass that pops a rim lite on the subject
+
+(doesn't have to be obvious, but boy it's noticeable when it's not there!) maybe 4:00, 45degrees high
+
+there's a "glamour glow" pass that adds a bloom to the shiny specular. Looks great
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+
+saving_video_from_blender.txt
+
+To answer my own question, it looks like you can follow the answer here 
+
+https://blender.stackexchange.com/questions/15142/how-to-render-an-animation-as-video-in-blender
+
+but instead just import the 'mistake' video file instead of the image sequence into the Video Editor, then go back to Default view, set the correct output settings and click 'Animation' to re-export the video in the new format. – eljaydub Feb 23 '16 at 21:01 
+ 
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+creating HDRIs:
+https://www.youtube.com/watch?v=zeiy-rqb894
+
+I saw many tutorials about creating hdr by photographing multiple images with different exposure. what i need is not to create an hdr map from a scene in max or maya but to create an hdr from these multiple images that i photographed so that i can use them in vray. The problem is that after i merge them to hdr in photoshop the extension is .jpg so how can we change them to a map that can be used in max
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+
+camera projection:
+set the rendered dimensions to the dimensions of the loaded in environment that you're using as a background image to project
+100% scale
+
+
+set the camera to approximate the focal length of the image (very important!)
+
+
+anchor a corner into the floor  -- line the camera up with a cube and a floor (to represent the main obj)-- could take a while
+	(use the local movement and origin in the corner of the mesh)
+	
+	
+	
+once model is constructed, use texture
+
+(project from view, light path controlling the from camera rays to transparent shader (so that transparency is in use)
+
+Camera Mapping - Blender Tutorial
+
+check the end of this vid for details:
+https://www.youtube.com/watch?time_continue=22&v=mJ3sPta-X3k
+
+mimick sticky render?
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+learning exercises:
+BLENDER EXERCISES:
+
+End Product (#1)  ?:
+create a snowflake Christmas ornament
+use an illustrator svg
+ornament complete with a dangling hook on one end
+Paint the model with Painting editor, (low res color is fine)
+Displace the Model with some normal maps, giving the illusion of extra detail (ie a chip, or break)
+Ensure the model's edges are clear--even could be a different color via Vertex coloring
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+You WILL LEARN:
+--------
+AI import
+(modeling)  extrusion, modifiers (ie: bevel)
+	effects (modifiers)  shouldn't have to be final as part of the object
+UV mapping
+	UV maps can be utilized for the hook, esp to differentiate the connected parts of the model
+Normal map painting
+Vertex map
+
+
+NOTE:
+
+model the mesh in one file, and LINK to the mesh from another. That will prevent model failings (such as weird rotations, etc.)
+
+
+	
+V2: we will take this model and:
+	animate it
+	rig it so it moves
+	apply physics at some point to make it break
+	
+	learn:
+		keyframing
+		rigging
+		physics
+		
+		
+		pos:
+		-14
+		0
+		22
+		
+		scale:
+		
+		37.743
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+compositing:
+blurring the background image in cycles:
+
+https://blender.stackexchange.com/questions/34023/how-to-blur-background-image
+
+
+green screening in blender
+https://www.maketecheasier.com/green-screen-visual-effects/
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+
+BLENDER SHORTCUTS:
+
+Alt-Z (textured view in display)
+
+
+NODE WRANGLER SHORTCUTS:
+
+CynicatPro
+
+CTRL-SHIFT-LMB (control, shift, left mouse button) -- temp shader for viewing surface
+
+
+SHIFT-S (switch node type)
+SHIFT-= (shift = ) align nodes
+SHIFT-ALT-D (detach outputs of selected nodes)
+
+3DBandit
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+https://blender.stackexchange.com/questions/32494/how-to-make-dirty-looking-object
+
+multiple cameras, multiple targets
+
+scene backgrounds
+
+model files
+
+linked files
+
+uv textures
+
+
+https://blender.stackexchange.com/questions/14694/how-can-i-bake-alpha-in-cycle-nodes-images-to-make-leave-textures-for-my-trees/14703#14703
+
+using baking to make uv'd copies of things like leaves
+----------------------------------
+
+https://blender.stackexchange.com/questions/6277/different-camera-settings-for-different-render-layers
+
+using scene layers for different perspectives
+-----------------------------
+IF there are large amounts of objects with a similar name that you want to select, use "select by pattern" from the selection drop-down (it should be named: "Select by Name")  -- use a working regular expression to make the selection
+-----------------------------
+Need to experiment with getting multiple lights to focus on only one or more targets
+-----------------------------
+creating ink drops (smoke domains and volumetric scattering)
+https://www.youtube.com/watch?v=iw8hj2Uycvk
+-----------------------------
+Making an H.U.D. in Blender 
+https://www.youtube.com/watch?v=owid9yrq97s
+21 min in
+dupli verts (groups?) / proxies?
+
+more from SkywayVisuals:
+https://www.youtube.com/embed/EmIg549H3io
+
+
+26 min, 30 sec:
+displacement textures, and their effect on particles
+
+29, 30 sec:
+compositing with multiple layers within scene
+
+36:
+link materials 
+
+40, 40min
+graph modifiers to adjust blinking on surfaces
+-----------------------------
+https://www.youtube.com/embed/rZC8i7nq32k
+animating a clock and making it dance
+
+-----------------------------
+https://www.youtube.com/embed/ktsyL2Kp5bQ
+
+using sss in the link above, as well as describing how to hook up a skin texture (explained quickly)
+
+https://www.youtube.com/embed/IG1IEpU5VAw
+
+sculpting tips above
+----------------
+
+to incorporate muliple cameras at animation time: 
+
+1) set up the views of the multiple cameras  -- (next steps apply for each camera)
+2) select the camera to switch to in the drop-down
+3) make the view of the camera active (CTRL-0)
+within the animation timeline:
+3a-- select the frame number
+4) create a marker at desired switch time (m)
+6) then (control-m) (so you can rename markers to something useful, like "shot 1")
+5) lastly, bind the camera to the switch time with control-b
+
+----------------
+
+https://blender.stackexchange.com/questions/26108/how-do-i-parent-objects/26109#26109
+
+grouping/linking/parenting (and why grouping in blender bites)
+
+try proxy objects:
+https://docs.blender.org/manual/en/dev/data_system/linked_libraries.html#object-proxy
+
+(supposedly link linking, but in same file-- maybe not ideal)
+----------------
+
+
+from this series:
+https://www.youtube.com/watch?v=Vi4Ri_IbMIE&feature=youtu.be&t=155#t=13.308104
+
+https://www.youtube.com/embed/Vi4Ri_IbMIE
+
+(3mins)
+
+
+shift-num7 align to active
+
+::::::::::::::::::::::::
+to achieve a cartoon-like surface: (VERSION 1--- dependent on the lighting setup for basic cel shading)
+ sun lamp must be very small (.0001)
+ position sun lamp close to object
+ with a high strength; 5--2
+ ambient occlusion: .11--.18, at a distance of 0
+ 
+ node setup:
+ fresnel plugged into
+ color ramp with 2/3 color stops representing zones
+ set color ramp to constant, instead of linear
+ stops positioned very close to the end (.7--.9) of the ramp
+ change ray visibility in the world tab to affect only camera at first, experiment as needed.
+
+ "specular" toon shading:
+	is actually a SECONDARY DIFFUSE SHADER
+	using a lighter color with a smaller radius of the size in the toon shader
+	both plugged into an ADD shader
+	CAVEAT--- geometry will destroy the effect of the lighter color (the added color)
+	https://www.youtube.com/watch?v=xDBORldMW_s
+	(at 17 minutes, create eye colors using color stops on color ramps)
+ farther into the scene, shows result of compositing and freestyle (which may not be used!) to get soft shadows with toon shading. this creates artifacts with models with transparency overlapped
+-------------
+https://www.youtube.com/watch?v=7afTgY5V7pw
+VERSION 2: lighting independent, so the normals can be adjusted, allowing for clip-art style rendering (line-art, or hatching)
+
+a layer weight -driven color ramp set to constant, 
+
+mixed with a wave texture plugged into another constant color ramp
+ (with 30 for scale, using the WINDOW input from a texture coordinate input (reversed stops from the layer-weight one)
+ 
+ a half-tone can be applied using a MAGIC texture in the same manner as the waves texture, set from the WINDOW normal input
+ 
+mixrgb multiplied using a normal vector node for the fac plug allowing a pseudo-light source
+
+see clipart_style_rendering.png
+
+
+water ripples:
+https://www.youtube.com/embed/EwRFNdKkDEw
+(uses a weight-painting effect to achieve a ripple)
+:::::::::::::::::::::::::::
+
+
+
+uv unwrap follow active quads , set one as active (by unwrapping) then select interested polygons, then unwrap with the follow active quads
+
+try to find an alignment and distribution add-on
+
+
+enable unified color on the texture brushes so that all the brushes have the same texture color when using them.
+
+make a hard and soft brush type so that they are available for use.
+(set these up with the curves in the brush menu)
+
+the brush "profile" is akin to the button bevel selection in KIA's power tools, or contours in PS, where the left of the curve is the center of the brush, and the right of the curve is the outer edge of the brush's profile
+
+
+
+
+in prefences, select a color picker:
+system color picker--- square SV+H is preferred by some.
+
+use uv seams (after the unwrap) as selection limiters
+
+when blocking out colors, turn off occlude cull and normal off under the project painting options (helps with the flood fill)
+
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+shattering a cup with Blender
+https://www.youtube.com/embed/QY7iJmqsJf8 
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+using cloth sims for "modeling" correct looking cloth....
+
+good tips on shape keys (morph targets)
+https://www.youtube.com/embed/ssYemC0j6Ag
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+hand-painting a dagger:
+https://www.youtube.com/embed/Vi4Ri_IbMIE
+
+see three minutes in 3 mins
+
+
+shift-num7 align to active
+
+
+
+uv unwrap follow active quads , set one as active (by unwrapping) then select interested polygons, then unwrap with the follow active quads
+
+try to find an alignment and distribution add-on
+
+
+enable unified color on the texture brushes so that all the brushes have the same texture color when using them.
+
+make a hard and soft brush type so that they are available for use.
+(set these up with the curves in the brush menu)
+
+the brush "profile" is akin to the button bevel selection in KIA's power tools, or contours in PS, where the left of the curve is the center of the brush, and the right of the curve is the outer edge of the brush's profile
+
+
+
+
+in prefences, select a color picker:
+system color picker--- square SV+H is preferred by some.
+
+use uv seams (after the unwrap) as selection limiters
+
+when blocking out colors, turn off occlude cull and normal off under the project painting options (helps with the flood fill)
+++++++++++++++++++++++++
+
+
+using array modifiers and bevels on curves to come up with editable geometry in Blender
+https://www.youtube.com/embed/ImNtC2mbPZ0
+
+( making pinball ramps with Blender )
+
+author has other unity tools in his clip channel
+
+using blender for toon rendering *
+http://www.minimaexpresion.es/en/cycles-toon-shading-tutorial-use-cycles-and-blender-compositor-to-create-comic-style-renders/
+
+*this uses conpositing for achieving the toon shader effect, along with lighting and surfaces.
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+ 
+https://cgmasters.net/free-tutorials/uv-unfolding-blender/
+
+https://anothertutorial.wordpress.com/2015/07/22/maylees-tips-and-tricks-for-a-better-uving-in-blender/
+  
+ 
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+Cycles Render Settings Explained: Sampling and Light Paths
+https://www.blendernation.com/2015/04/15/cycles-render-settings-explained-sampling-and-light-paths/
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+ 
+Make Your Own PBR Shader (Part 1) - Blender Guru
+https://www.blenderguru.com/tutorials/pbr-shader-tutorial-pt1/
+
+
+How to Make Realistic Rust Blender Guru
+https://www.blenderguru.com/tutorials/how-to-make-rust/
+ 
+How do I align the viewport to a face normal?
+https://blender.stackexchange.com/questions/15045/how-do-i-align-the-viewport-to-a-face-normal
+
+Texturing for Beginners: Top 14 Ways to Mix Textures and Shaders 
+https://www.creativeshrimp.com/texturing-mix-tutorial.html
+
+
+(old)Quick Tip: Blender Cycles Displacement (2.78) [TUTORIAL]
+https://www.youtube.com/watch?v=_cbcV1_rgZg
+
+PBR explained--- (slides)
+https://docs.google.com/presentation/d/1bdRpNeWPu0R5_lH5mKNVmxsHIsSc99bW9WFii2TDp3s/edit?pref=2&pli=1#slide=id.g14d7c21f8a_0_111
+
+
+BLENDER AND GLASS AND INVERT AND REFRACTION - Google Search
+https://www.google.com/search?q=BLENDER+AND+GLASS+AND+INVERT+AND+REFRACTION&tbm=isch&tbo=u&source=univ&sa=X&ved=0ahUKEwjAxfiDpKnQAhVir1QKHcY6CRcQ7AkIMQ&biw=1680&bih=857
+
+blender AND light path AND use cases
+https://www.google.com/search?q=blender+AND+refraction&ie=utf-8&oe=utf-8&aq=t&rls=org.mozilla:en-US:official&client=firefox-a&channel=sb#channel=sb&q=blender+AND+%22light+path%22+AND+use+cases
+
+Blender Training - Short Cuts - Fake Caustic Material - YouTube
+https://www.youtube.com/watch?v=ALlP3GSrmK4
+
+Ray Length Nodes in use
+https://www.creativeshrimp.com/wp-content/uploads/2015/01/ray_length_01.jpg
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+blender and uv mapping and complex bent item
+https://www.google.com/search?q=blender+and+uv+mapping+and+complex+bent+item+&ie=utf-8&oe=utf-8
+
+
+Tutorial: Boolean Modifier in Blender 2.78 
+https://blenderdiplom.com/en/tutorials/simulation/640-tutorial-boolean-modifier-in-blender-2-78.html
+
+Bumpmap not working at grazing angles
+https://blenderartists.org/t/bumpmap-not-working-at-grazing-angles/670238
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+
+https://www.blenderguru.com/tutorials/pbr-shader-tutorial-pt1/
+
+https://jtheninja.wordpress.com/2014/09/27/blender-cycles-simple-pbr-shader/
+
+https://cgcookie.com/2015/05/20/pbr-in-blenders-viewport/
+
+http://3dcoat.com/forum/index.php?/topic/17212-pbr-in-blender-cycles/
+
+https://www.google.com/search?q=blender+AND+metal+AND+PBR+AND+complete&ie=utf-8&oe=utf-8&aq=t&rls=org.mozilla:en-US:official&client=firefox-a&channel=sb
+
+https://poliigon.com/texture/69
+
+ 
+*-------------------------
+METALS
+
+all reflection, little diffuse
+
+they can tint their reflection
+
+respect fresnel!
+
+(become more reflection on grazing angles.)
+
+different wavelengths of light falloff at different values at grazing angles.
+
+
+
+
+
+start with a glossy shader (for reflections)
+
+CTRL-G for input/out
+
+add color mix
+
+(based on the fresnel from CynicatPro)
+
+metal roughness respects that it causes the surface to not react with grazing angles as much
+
+
+layer weight works well with the back of polygons, but not for glass
+
+https://www.youtube.com/watch?v=FeH-g9bGz_4
+
+
+
+
+lava lamp shader
+https://www.youtube.com/watch?v=MNgW0FvLpUU
+
+ 
+-----------------------
+
+game engine's surfacing models account for:
+Base color
+Roughness
+Normal
+Metalness (less diffusion, more fresnel, more edge tinting)
+
+-----------------------
+regarding the "blend" factor of the "layer weight" node
+the differences in the Layer Weight input Blend factor, and the Fresnel node input (IOR)
+Blend:  0.00  0.10  0.50  0.70  0.80  0.90  0.95  0.98  1.00
+  IOR:  1.00  1.10  1.70  3.30  5.10  10.0  20.0  50.0  1000
+
+The Y scale is logarithmic
+
+Confirmed by Brecht (thanks) the conversion formula is:
+
+    IOR = 1/(1 - Blend)
+
+    Blend = 1 - 1/IOR
+
+	
+http://blender.stackexchange.com/questions/29161/relation-between-fresnel-ior-and-layerweight-blend
+
+ 
+correct IOR formula:
+IOR = 1 - log(1 - Blend)
+
+------------------------
+Real Time lens flares (compositing)
+https://www.youtube.com/watch?v=CvibsEVDfsc
+------------------------
+
+
+change test grid to indicate one-inch squares.
+------------------------
+
+finding the formula for light absorption, using Beer-Lambert:
+4:40
+how it computes in the shader
+8:39
+
+9:16
+
+e power 2 *(-2*x)
+e**(-1x)
+
+and at 16:42 you can see how it's being implemented
+
+currently the set up he's used isn't working for me, so I'm trying to understand what I'm missing...
+
+
+subsurface scattering in 4.0, and changes from previous versions, discussing anisotropy and its affectation on surface 
+https://www.youtube.com/watch?v=9i-gqWbcS3Q
+ 
+pro-looking renderings
+https://www.youtube.com/embed/vsZFdJzmGe0
+
+
+texturing in Blender (unwrapping and texturing with brush) (and personal setup)
+https://www.youtube.com/watch?v=p4ngVoGIj1Q
+
+https://www.google.com/search?q=blender+and+subsurface+settings&ie=utf-8&oe=utf-8&aq=t&rls=org.mozilla:en-US:official&client=firefox-a&channel=sb
+
+Oliver Villar Blendtuts! - Learn 3D using Blender
+valentine chocolates
+https://www.youtube.com/embed/zVigpYh7-FE
+https://www.youtube.com/channel/UCgG4R2IQv9cB5aYoLRLKQig
+
+emission shaders, crystals, compositing, vignettes in compositor
+
+https://www.youtube.com/watch?v=KpWWYEF59lo
+
+CtRL- ALT -0 moves the camera to the current perspective view
+SHIFT-F to "fly" the camera
+
+CynicatPro
+https://www.youtube.com/user/CynicatPro/playlists
+
+metallic shader has fresnel hooked directly into a normal for color. I think that was incorrect on the other shader I did.
+
+
+sculpting a cube
+http://cgi.tutsplus.com/articles/sculpt-model-and-texture-a-low-poly-skull-in-blender--cg-7
+
+CYCLES NODES--------------------------------------
+http://blenderartists.org/forum/showthread.php?239181-cycles-mixing-nodes-how-does-it-works
+
+
+post #37 and # 42 for metals
+post # 44 for general texture in cycles
+
+if interested let me know i can upload a file for these!
+
+i got another file for copper brass and bronze too!
+
+-----
+general metals and precious metals
+post #47 and #48
+http://blenderartists.org/forum/showthread.php?239181-cycles-mixing-nodes-how-does-it-works&p=2121333&posted=1#post2121333
+
+may be i'm wrong but skin mat cycle should use Ray Length for fake sss 
+
+
+------------------
+Texture painting | photo realism | Quick guide 
+
+https://www.youtube.com/watch?v=YNxmh5UVi08#t=340.004129
+
+------------------
+procedurally handle clouds
+
+https://www.youtube.com/watch?v=Ba18cwDSAsk
+
+
+----------------------
+Blender 2.6 Tutorial 12 - UV Mapping (Image Textures) - YouTube
+https://www.youtube.com/watch?annotation_id=annotation_624987&feature=iv&src_vid=l-Zkt3uAeO0&v=obB9T3jXlak
+
+Blender 2.6 Tutorial 35 - Character UV Mapping - YouTube
+https://www.youtube.com/watch?v=l-Zkt3uAeO0&feature=youtu.be
+
+Blender 2.7 Tutorial #0 Introduction #b3d - YouTube
+https://www.youtube.com/watch?v=lY6KPrc4uMw&list=PLda3VoSoc_TR7X7wfblBGiRz-bvhKpGkS&index=1
+
+blender AND cycles AND transparent AND shader AND black areas - Google Search
+https://www.google.com/search?q=blender+AND+cycles+AND+transparent+AND+shader+AND+black+areas&client=firefox-a&rls=org.mozilla:en-US:official&channel=sb&tbm=isch&tbo=u&source=univ&sa=X&ved=0ahUKEwifwYiCmcvLAhWluIMKHWULCTMQsAQILA&biw=1680&bih=871
+
+XNALara - View topic - Blender Cycles + XnaLara Tutorials
+http://www.xnalara.org/viewtopic.php?f=8&t=135&sid=21f360264093d07dc6ce1544ae037351&start=60
+
+
+cycles - Make the flame of a candle more yellow - Blender Stack Exchange
+http://blender.stackexchange.com/questions/43248/make-the-flame-of-a-candle-more-yellow/43250
+ 
+(Sky)Light Portal in Blender Cycles on Vimeo
+https://vimeo.com/86248824
+
+5 Ways to Use Render Passes in Blender • Creative Shrimp
+http://www.creativeshrimp.com/5-ways-to-use-render-passes.html
+
+blender AND create AND simple object - Google Search
+https://www.google.com/search?q=blender+AND+create+AND+simple+object&ie=utf-8&oe=utf-8&aq=t&rls=org.mozilla:en-US:official&client=firefox-a&channel=sb
+  
+ 
+   
+mat_cap_libraries
+http://pixologic.com/zbrush/downloadcenter/library/
+
+Tutorial Absorption in Cycles 
+https://www.youtube.com/watch?v=qkqsx951gcg
+https://www.wardsci.com/www.wardsci.com/images/BeerLamb_Colorimeter.pdf
+
+Using Blender's Bilateral Blur Compositing Node - YouTube
+https://www.youtube.com/watch?v=h2UnvgqXqLc
+
+https://www.google.com/search?q=site%3Ahttps%3A%2F%2Fwww.desmos.com%2F+AND+beer+AND+lambert&ie=utf-8&oe=utf-8&aq=t&rls=org.mozilla:en-US:official&client=firefox-a&channel=sb#channel=sb&q=beer+AND+lambert+AND+graph
+
+
+
+https://symplecticgames.wordpress.com/2015/10/15/blender-ing-in/
+
+http://www.blenderguru.com/articles/cycles-input-encyclopedia/
+
+https://www.blender.org/manual/render/cycles/nodes/input.html
+
+http://blender.stackexchange.com/questions/40770/possible-to-control-a-driver-from-a-group-node-input-slider/40829#40829
+
+------------------
+CYCLES links:
+http://blenderartists.org/forum/showthread.php?278285-Yet-Another-Thread-about-Cycles-Materials/page4
+
+
+better materials:
+http://www.blenderguru.com/articles/making-better-materials/
+------------------
+excellent looking plastic SSS
+http://elbrujodelatribu.blogspot.com.es/2014/08/sss-plastic-material.html
+
+------------------
+ 
+good materials images:
+http://www.reynantemartinez.com
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+3d lighting
+https://www.creativebloq.com/3d-world
+
+https://www.creativebloq.com/3d-tips/blender-tutorials-1232739
+https://www.creativebloq.com/how-to/create-interiors-with-blenders-eevee
+https://www.creativebloq.com/features/17-top-tips-for-modelling-a-complex-3d-city-scene
+https://www.creativebloq.com/how-to/use-blender-to-build-an-ocean-scene
+https://www.creativebloq.com/how-to/build-a-complex-3d-sci-fi-scene
+https://www.creativebloq.com/how-to/illuminate-your-3d-work-with-dome-lights
+https://www.creativebloq.com/3d-modelling/create-realistic-metallic-models-blender-121413667
+https://www.creativebloq.com/how-to/12-tips-for-realistic-3d-lighting
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+ 
+------------------
+Making Blocky textures (removing interpolation)
+https://blenderartists.org/t/cycles-getting-rid-of-texture-interpolation-yay-for-blocky-no-for-blurry/531699
+
+
+------------------
+MODELING:
+http://www.chocofur.com/4-subdiv-modeling-ii.html
+
+----------------
+
+
+https://www.khanacademy.org/math/algebra2/exponential-and-logarithmic-functions/change-of-base-formula-for-logarithms/v/change-of-base-formula
+
+http://chemwiki.ucdavis.edu/Core/Physical_Chemistry/Spectroscopy/Electronic_Spectroscopy/Electronic_Spectroscopy_Basics/The_Beer-Lambert_Law
+
+https://www.youtube.com/watch?v=pW8pUhkqi3Y
+
+https://www.youtube.com/watch?v=qkqsx951gcg
+
+https://en.wikibooks.org/wiki/Blender_3D:_Noob_to_Pro/Multiple_Materials_Per_Object
+
+http://www.creativeshrimp.com/create-realistic-ice-lighting-book-02.html
+
+https://www.google.com/imgres?imgurl=http%3A%2F%2Fblenderartists.org%2Fforum%2Fattachment.php%3Fattachmentid%3D389388%26d%3D1436943267%26thumb%3D1&imgrefurl=http%3A%2F%2Fblenderartists.org%2Fforum%2Fshowthread.php%3F376214-Milky-White-Plastic-in-Cycles-(Help-Needed)&docid=VTzjNxe9731PyM&tbnid=fmNuwM41qkZ10M%3A&w=436&h=700&client=firefox-a&ved=0ahUKEwj2g5PBk_3LAhWEsYMKHUV0A2oQMwhUKC0wLQ&iact=mrc&uact=8
+
+https://www.google.com/search?q=blender+AND+translucent+AND+plastic&client=firefox-a&rls=org.mozilla:en-US:official&channel=sb&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjtvJa_k_3LAhWBkYMKHfVcDDQQ_AUICCgC&biw=1680&bih=871
+-------------------
+Physics:
+(limp noodle)
+https://www.youtube.com/watch?v=Lg7jxAMs60Q
+
+-------------------
+
+
+Don't know if it's what you're meaning, but i always mix my glossy with an emission shader set to black, 0 strength.
+
+
+ The glossy controls the sharpness of the reflections,
+ 
+ the mix shader controls the influence of that gloss on the total image
+ 
+ 
+ Then on the mix shader between diffuse and glossy I use a layerweight node routed through a rgb curves node as the mix. This way I have as simple or complex control over the range of the mesh the reflections occur. I've made this setup a default material in my materials.blend file for appending to my projects. Just add the finer details like textures, bumps, normals, and the kitchen sink and it all just works pretty well.
+ 
+-----------
+https://blenderartists.org/forum/showthread.php?401202-What-is-the-scientific-name-of-that-colored-rough-gloss-in-some-materials
+
+blender animation tutorial with LOTS OF INFO:
+https://youtu.be/R70HeSY2q-U?t=399
+
+USING SHAPE KEyS (facial animation)
+
+https://www.youtube.com/watch?v=YAKJxyvbk8o
+
+----------
+sounds
+http://www.wtv-zone.com/summerhoosier3/html2/
+
+http://www.eg.bucknell.edu/physics/astronomy/astr101/specials/parallax.html
+
+file:///C:/from-passport/_pixel_streamer_stuff/work/work_personal/work_web/web-experiments/todo_list/todo.xml
+
+
+
+----------
+rigging:
+general rigs: *****
+https://www.youtube.com/watch?v=eF4CuIX40XE
+(transform locks)
+
+^there's a part 2 for advanced constraints
+look for part 2 here:
+https://www.youtube.com/channel/UC1205kBUDBfSfOuoG0f9PCg
+
+
+@ ~9 min:
+https://www.youtube.com/watch?v=nJT9zRi56w0
+^look how "control node" operates both wings
+
+basic walk cycle:
+https://www.youtube.com/watch?v=cGvalWG8HBU
+
+https://www.youtube.com/watch?v=4rIEUv_Tiv4
+
+6 min:
+https://www.youtube.com/watch?v=SNKI9sUZiw0
+
+https://www.youtube.com/watch?v=26fLkwy6EiQ
+
+
+--------
+
+using a distortion filter as a refraction stand-in:
+https://www.youtube.com/watch?v=9bZkivGauxY
+--------
+
+older version of particles, explaining their interaction:
+https://www.youtube.com/watch?v=n4_0nNZSWdw
+
+using math nodes to control veins in marble (turquoise)
+https://www.youtube.com/watch?v=zqhi8q4EGZk
+
+OK, cycles samples can be keyframed!
+look at 25 minutes in:
+https://www.youtube.com/watch?v=qx5L8K99j10
+
+-------------
+SCULPTING
+https://www.youtube.com/watch?v=XeixeeWS_JA
+
+------------
+CLOTHING:
+http://www.3dartistonline.com/news/2013/11/dressing-to-impress/
+
+-----------
+baking:
+https://b3d.interplanety.org/en/baking-displace-map-from-procedural-texture/
+
+mapping a matrix function to the nodes so that matrix material manipulation is possible:
+https://b3d.interplanety.org/en/rotating-texture-by-nodes/#more-1516
+
+------------
+irredescence (faked, but nice-- look for sunglasses)
+https://blender.stackexchange.com/questions/23913/how-to-create-a-mirror-shader
+
+spacey looking with internal compositing:
+https://mclelun.deviantart.com/art/Blender3D-Procedural-Texture-Starfield-500217086
+
+-------------
+flocks of birds:
+https://www.youtube.com/watch?v=nJT9zRi56w0
+
+
+-------------
+spline modeling tutorial:
+https://b3d.interplanety.org/en/modeling-with-curves-wires-and-pipes/#more-1399
+
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+curvature maps:
+https://blender.stackexchange.com/questions/90152/how-to-generate-a-fake-hand-painted-texture-blizzard-like-borderlands-effect/90153#90153
+
+https://i.stack.imgur.com/C8VHW.png
+
+https://i.stack.imgur.com/MGoEr.png
+ 
+https://blender.stackexchange.com/questions/52902/how-to-convert-a-normal-map-into-a-curvature-map-per-pixel-curvature
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+IK AND FK rig
+https://www.youtube.com/watch?v=P3_zi-YcWfU
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+creat a mirrored duplicate of the vertex groups (weights) for bones
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+
+More Blender Links
+
+Lighting Guide 01: Intro & Basic Rules & Mistakes
+
+https://www.youtube.com/channel/UCXtzglUKLgekxmJlc9F1KXQ
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+BAKING IN CYCLES:
+https://www.youtube.com/watch?v=9z2kOJiheZs
+
+
+simple object:
+(beginner)
+https://www.youtube.com/watch?v=o568T79egTs
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+ 
+
+Blender Tutorial - Procedural Scratches
+
+https://www.youtube.com/watch?v=e4BhdrFDHkQ
+
+ 
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+finally! CLOTH:
+https://www.youtube.com/watch?v=TZm0-QZoJgI
+
+the maths:
+https://www.youtube.com/watch?v=CoCDbCbeiAk
+
+procedural tartan:
+https://www.youtube.com/watch?v=yonXoF6obyc
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+really cool things done with lattices in blender:
+https://www.youtube.com/channel/UCpxizXEIm73-GJJwayhGceA
+
+https://www.youtube.com/watch?v=FgfzqGxpUxk
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+lip synching intros:
+https://www.youtube.com/user/vscorpianc/playlists
+
+simple good foot roll binding:
+https://www.youtube.com/watch?v=CHdp7Os8l5Y&list=PLP3-5QSIC-Vd4SUqiMb93g6dqVOpfC5Zf&index=19
+
+hand poses:
+https://www.youtube.com/watch?v=xKPOL_u6hms&list=PLP3-5QSIC-Vd4SUqiMb93g6dqVOpfC5Zf&index=20
+
+
+rigging for disconnection of props
+https://www.youtube.com/watch?v=LFrAn5IjVHU&list=PLP3-5QSIC-Vd4SUqiMb93g6dqVOpfC5Zf&index=23
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+downloadable poses:
+https://download.tuxfamily.org/makehuman/assets/1.1/base/poses/
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+really fast IK rig:
+https://www.youtube.com/watch?v=cGvalWG8HBU
+---
+great simple leg armature-- custom IK shapes
+https://www.youtube.com/watch?v=0U3NjTvwdWI
+---
+5:48-- parenting for a reverse-foot rig to manipulate heel roll
+https://www.youtube.com/watch?v=dWgYP-ABNSk
+---
+using keyframe for drivers
+rigging an fk AND ik for an armature
+https://www.youtube.com/watch?v=863YV9aR1Uk
+---
+intro to rigging:
+https://www.youtube.com/watch?v=f2pTkW-1JkE
+---
+multiple armatures
+https://www.youtube.com/watch?v=WpgDjKIxYOA
+---
+rigging clothing:
+https://blender.stackexchange.com/questions/111476/rigging-clothes-to-a-character
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+using physics for modeling:
+(cake icing)
+https://www.youtube.com/watch?v=YqjMUr7JWM0&feature=emb_logo
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+setting up action controls
+https://www.youtube.com/watch?v=1D6YC0yKLj8&list=PLBbfFcNW4C9cRZL1rLTaFnP7AAdimOnE4&index=3
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+CREATIVE DIRECTOR AND FASHION PHOTOGRAPHER BASED IN MILAN, PAOLO BOCCARDI WAS BORN ON AUGUST 19, 1976.
+http://www.fashionphotographer.it/
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+determine normals for the UV coordinates on the curves used to make things (like piping) in blender
+
+learn how to bake particles!
+https://sketchfab.com/blogs/community/baking-particles-sketchfab-blender-edition/
+
+hair with collisions
+
+https://www.youtube.com/watch?v=2YCQLZMuvkE
+
+what exactly the hair is doing from those render panels:
+https://www.youtube.com/watch?v=6sWQz59-pcY
+
+
+extrusions in blender:  for hair glob shapes
+https://www.youtube.com/watch?v=t2XjdzzWCqI
+
+using curves to form hair (mix with the one above and DANG)
+https://www.youtube.com/watch?v=vu6MQC6qdRY
+needs its own particle, weight, and curve
+
+hair using a mash gen: (moustaches, etc)  ****
+https://www.youtube.com/watch?v=gZ4Sxi_BLrM
+
+22:38 has texture demo
+HAS SKIN TUTS, TOO!
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+TOTALLY JEALOUS OF THIS RENDERED HUMAN:
+https://www.youtube.com/watch?v=HjHiC0mt4Ts
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+more hair (long, flowing hair)
+https://www.youtube.com/watch?v=WVJyGzPJIeQ
+
+
+really good looking hair groom-- the hard way?
+https://www.youtube.com/watch?v=s9NDZ5q3SaE&list=PLU4J0_LxiMENzEuZyMphKEdW315lTSouz
+
+more hair: (using a graphic running along a curve-- "hair card")
+https://www.youtube.com/watch?v=222IYwGQdgc
+
+look up curve guide used with force field
+https://www.youtube.com/watch?v=PYHOV3bVIG0
+
+particulate dirt!
+https://www.youtube.com/watch?v=x_zNrolENjU
+
+2.8 overview
+https://www.youtube.com/watch?v=XoyEjutFR1U
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+GOALS-blender-2019.txt
+
+using the principled volumetric setup for simple fire and smoke:
+
+https://www.youtube.com/watch?v=7-lTqiKitHw
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+eevee AND fog set up (pretty easy)
+
+(volumetric lighting 101)
+
+https://www.blendernation.com/2018/12/03/blender-2-8-eevee-volumetrics-tutorial-from-chocofur/#prettyPhoto
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+SCI-FI energy cube:
+https://www.youtube.com/watch?v=z2DZ9srPshM
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+comprehansive tutorial: 2.8
+Part 1: Up and Running
+https://www.youtube.com/watch?v=KyjSnak3Yjo
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+recreat the stage from this video:
+https://www.youtube.com/watch?v=GuDg3u-ZPEM
+
+Judas Priest - Halls of Valhalla (Live from Battle Cry)
+
+look at the green lasers flying up through the smoke!
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+After effects looping
+
+https://youtu.be/phXbs40wev8
+
+https://youtu.be/V55hA573yRY
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+multiple eevee lights
+https://www.youtube.com/watch?v=lckoSJyXPMc
+
+
+https://www.youtube.com/watch?v=daCTRzzmpyk
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+animating with lattice:
+(controlling the lattice with a rig, too:
+https://www.youtube.com/watch?v=pUFzpIqlCfg
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+Data Transfer Modifier -- Easily Taper Comb Teeth
+https://www.youtube.com/embed/jvbX9tcNeUI
+
+
+How to make this Infinite Slicing Loop animation in Blender
+https://www.youtube.com/watch?v=FsQAXwn443c
+
+Blender Character Animation: Walk Cycle
+https://www.youtube.com/embed/DuUWxUitJos
+
+Animation Practice 5 - Dog Sit & Stand Up
+https://www.youtube.com/watch?v=fX4mGzsSEmM
+
+Blender: [preventing] unwanted stretching, bending and twisting in Rigged characters
+https://www.youtube.com/embed/CVRka6XEQmY
+
+The Nuts and Bolts of Blender's animation system
+https://www.youtube.com/watch?v=p3m57yAcsi0&list=RDCMUCRSx63y-VPidCrycgDS-o_Q&index=5
+
+
+Blender for Scientists - How to Make Mitochondria in Blender
+https://www.youtube.com/watch?v=1hag-4lX_sA
+
+
+Blender 2.7 Tutorial #86: The Mesh Deform Modifier #b3d
+https://www.youtube.com/embed/V2CqQUXraeY
+
+Clean Toon Face Shading with Object Normals in Blender
+https://www.youtube.com/embed/sQW2wqltB0A
+
+[Blender 2.8/2.9] Rig ANYTHING with Rigify #1 - Rigging for Beginners
+https://www.youtube.com/watch?v=ERAScO1s8Zk&list=RDCMUCRSx63y-VPidCrycgDS-o_Q&index=6
+
+[Blender 2.8/2.9] Rig ANYTHING with Rigify #5-1 - "Rig Types" EXPLAINED
+https://www.youtube.com/watch?v=v8Vb0Jp6vjE&list=PLdcL5aF8ZcJv68SSdwxip33M7snakl6Dx&index=7
+ 
+Creating linked library overrides in Blender | Quick python trick
+https://www.youtube.com/embed/5M6cdhn4YCE
+
+
+efficient Blender 3.0 Animation Library 
+https://www.youtube.com/embed/oXGKDG1BeW4
+
+Correcting Normals Using Data Transfer Modifier [No Addons Necessary] -- Blender 2.8+
+https://www.youtube.com/watch?v=hOi8h5UE21s
+
+[Blender 2.8/2.9] Rig ANYTHING with Rigify #3.2 - Prebuilt Meta Rigs (Dog)
+https://www.youtube.com/watch?v=6LM50gJJOrQ&list=PLdcL5aF8ZcJv68SSdwxip33M7snakl6Dx&index=5
+
+How to create Low Poly Animations in Blender (Breakdown)
+https://www.youtube.com/watch?v=AG5Ibqs6Glc
+
+A few solutions: Bone Heat Weighting error in Blender
+https://www.youtube.com/embed/bSkf11scfP0
+
+bone heat weighting failure FIX
+https://www.youtube.com/embed/M0Be2nvv90I
+
+
+[Blender 2.8/2.9] Rigify Tutorial 7-3: Rigify Bone Groups and Layers (Advanced)
+https://www.youtube.com/watch?v=2XldUB2eT-o&list=PLdcL5aF8ZcJv68SSdwxip33M7snakl6Dx&index=12
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+Some configuration notes for the sculpt tools in Blender
+
+Since I run a graphics tablet, THE TOOLS FOR SCULPTING NEED TO BE SET UP INDIVIDUALLY to taste.
+
+Through experience, I've found the following to be true for the various sculpting tools:
+
+Turn off the AUTOSMOOTH FUNCTIONALITY. It DOESN'T WORK.
+
+
+SculptDraw brush tool :
+	Strength:  .3
+	
+Smooth brush tool :
+	Strength:  .25
+
+Flatten brush tool :
+	Strength:  1
+	
+	Set Topology rake to ON when using Dynotopology setting
+	
+	Dynotopology setting should be set to the power of 8, and set to the highest constant detail setting that will allow for necessary model detail.
+	
+	Dynotopology setting: 1024 | Subdivide/Collapse | Constant detail |smooth shading ticked on.
+
+ 
+
+Tracking Constraints - Blender 2.80 Fundamentals
+https://www.youtube.com/embed/aGBOu-dNZ-w
+
+Transform Constraints - Blender 2.80 Fundamentals
+https://www.youtube.com/embed/1_LcXcNnieQ
+
+The AMAZING T-Rex Illusion RETURNS
+https://www.youtube.com/embed/sk87jDzHGKA
+
+Bringing YOUR Drawings to LIFE! | Realistified! S2E2
+https://www.youtube.com/watch?v=JTjZQbm4Y6A&list=PL79tlP6xgfAma_WfxK2BKUQKaMObFAp6I
+
+
+
+How to make an abandoned house in Blender - Tutorial
+https://www.youtube.com/watch?v=1aNnERnHRZg
+
+BlenderInsight Procedural Materials
+Cycles node creations totally free for all occasions!
+https://www.blenderinsight.com/1494-2/#post-1494-_2aq3jvfrqs7
+
+Reflection Calculation wrong?
+https://blender.stackexchange.com/questions/217604/reflection-calculation-wrong
+
+6 Most BASIC Blender MATERIALS (Eevee and Cycles Tutorial)
+https://www.youtube.com/watch?v=CN9ggYpl9SU
+
+HOW TO BUILD Basic FK, IK, Bendy Bone and Spline IK Rigs! - Character Rigging 02b
+https://www.youtube.com/embed/Bv4TQIxXoZY
+
+Character Rigging in Blender 7 - Creating an Advanced IK Foot Rig
+https://www.youtube.com/embed/NR0U81jlTYY
+
+
+Easy Mouth Rig || Blender 2.93 
+https://www.youtube.com/watch?v=6nmT123wVe4 
+
+
+Grease Pencil Tips and Tricks to Master Whole 2D Workflow | Blender Tutorial
+https://www.youtube.com/embed/z11Sv_kkoUs
+
+
+4K CYCLES render in MINUTES - Blender 2 81 - HOW to SPEED UP cycles -quick guide.
+https://www.youtube.com/embed/PhsNlNyTplY
+
+https://sculptober.com/
+2021 Official Prompt List
+
+Every October, artists from around the world get together and sculpt something new every day of the month. Join the challenge and share your work online with #sculptober
+
+Resources for Blender
+https://blender.stackexchange.com/questions/15355/resources-for-blender/15358#15358
+
+Blender Video Editing 2.7X Series
+31 videos 
+https://www.youtube.com/playlist?list=PLjyuVPBuorqIhlqZtoIvnAVQ3x18sNev4
+
+Using the Camera Data Node
+https://blender.stackexchange.com/questions/27764/using-the-camera-data-node
+
+
+Cycles Math Nodes [Download]
+https://www.reddit.com/r/blender/comments/3l6o31/cycles_math_nodes_download/
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+Bloom effect in cycles:
+https://www.youtube.com/embed/eQ1InBbRcco
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+After effects:
+https://www.youtube.com/c/CodeandMotion/playlists
+
+
+Premiere Pro 2020 Export Settings - Secret to Amazing Quality
+https://www.youtube.com/watch?v=jpJe5Wc73DA
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+adobe-scripting
+This guide walks through the process of getting started writing scripts in Javascript for use in Adobe Illustrator CC.
+This tutorial was written using Adobe Illustrator CC (2017) running on macOS (10.12).
+https://github.com/rjduran/adobe-scripting
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+Normal Maps for Pixel Art-- created in a graphics program
+https://www.youtube.com/watch?v=gUkY8ZoRfuQ
+
+What is Vector Displacement in Blender? (Get ready for Nodevember)
+https://www.youtube.com/embed/ekaQPkEdudw
+
+Muscle texture tutorial
+https://www.artstation.com/artwork/Rb8LO
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+PRECISION  MODELING* *recommmended addons
+
+*outline to svg addon
+https://www.youtube.com/watch?v=WSJ8C9EZJG4&list=PL6Fiih6ItYsXzUbBNz7-IvV7UJYHZzCdF&index=15
+
+*CAD TOOLS ADDON
+
+instancing to restrain wobbly array curves:
+https://www.youtube.com/watch?v=MBvT6RiSEj0&list=PL6Fiih6ItYsXzUbBNz7-IvV7UJYHZzCdF&index=28
+
+CAD transform for Blender 0.0.9
+
+
+https://www.youtube.com/c/MakerTales/playlists
+
+
+
+ 
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+D:\pixel_streamer_files\Blender_laptop_files\characters\character-parts\chest-and-faces\
+ 
+ 1984
+ 2*:
+The Theory and Practice of Oligarchical Collectivism by emmanuel goldstein is a book read by characters in the 1984 novel.
+
+https://en.wikipedia.org/wiki/The_Theory_and_Practice_of_Oligarchical_Collectivism
+ 
+
+GOOD resume example:
+https://www.linkedin.com/in/kimberly-loach-a1819215/
+
+
+BLACK Leggings
+https://www.etsy.com/listing/576485621/black-leggings-kamala-for-yoga-fitness?ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=laser+cut+leggings&ref=sr_gallery-1-6
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+ 
+get good at stencil painting
+
+get good at baking textures
+ 
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+glossy plastic surface
+textured wood
+glossy textured wood
+grungy
+Clean white diffuse → AO with ColorRamp for contrast → Grunge overlay
+Baked AO- New grungy texture, maybe hand-painted mask
+http://www.blenderguru.com/tutorials/how-to-grunge/
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+https://askinglot.com/what-is-the-diameter-of-a-human-hair-in-inches
+
+ 
+[Blender 2.8/2.9] Rig ANYTHING with Rigify #1 - Crash Course in Blender Armatures
+https://www.youtube.com/watch?v=ERAScO1s8Zk
+
+Blender 2.81 human meta rig (easy and fast) tutorial
+https://www.youtube.com/watch?v=XHa2Y8zjtZQ
+
+
+
+Blender Hamburger [FULL COURSE] - YouTube.URL
+https://www.youtube.com/watch?v=pi4wA1L8Q6A
+ 
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+How to make an abandoned house in Blender - Tutorial
+https://www.youtube.com/embed/1aNnERnHRZg
+
+Make Any Image a Brush Alpha | Blender 2.8
+https://www.youtube.com/watch?v=-YWte1cqYBA
+
+Projection Painting in Blender 2.90 | Tutorial
+https://www.youtube.com/embed/Gh_LzoliD6A
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+  
+
+How to work with metaballs
+https://www.youtube.com/embed/kn0pUWTLGGI
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+
+Scaling UVs from the center in Blender
+https://www.youtube.com/embed/ddXGIilaFIc
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+
+Isometric Scene Tutorial in Blender
+https://www.3dblendered.com/blender-tutorials/how-to-create-isometric-scenes-in-blender/
+ 
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+Texture baking for beginners
+https://www.youtube.com/embed/eYvgFWEiNp8
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+
+How to Bake Lighting, Shadows, Texture and Reflection in Blender-2.90
+https://www.youtube.com/watch?v=r0M363A8um4
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+
+Easy character modeling
+https://www.youtube.com/embed/S7zRQjDQmS0
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+Texture Painting for beginners
+https://www.youtube.com/embed/4d4N8d4ki2Y
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+best add-ons for blender
+https://www.youtube.com/watch?v=9yx3oeyytzw
+
+https://www.youtube.com/watch?v=VWyjYqKINqo
+
+BLENDER GIS-- make a city from a map
+MAGIC UV
+Mira tools (2.8 only?)
+https://www.blendernation.com/2019/07/25/add-on-mira-tools-3-modern-modeling-and-retopology-tools/
+Extreme PBR 
+retopoflow
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+how to set up free PBR materials in Blender
+https://www.youtube.com/embed/vQcXLu49z28
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+
+create your face
+https://www.youtube.com/watch?v=sf88UeC7LmE
+
+Hide original instance when using vertex duplication
+https://www.youtube.com/watch?v=c3cMiup_ZdE
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+Making Hair in Blender
+https://www.youtube.com/embed/JXq3BH4uOU4
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+three-layered-skin using Sub-surface-scattering:
+https://www.youtube.com/watch?v=iLYkTBz9_do
+
+skin using Sub-surface-scattering and MFPC  
+https://www.youtube.com/embed/zj7BdhUiyak
+
+left off at 19:40 mins. (going into numbers for oily reflection)
+
+MFPC outlined here:  (Mean Free Path Color)
+https://rmanwiki.pixar.com/display/REN22/Subsurface+Scattering+Parameters
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+How To Fix Bones Not Moving In Blender | Parenting Blender Tutorial (EASY)
+https://www.youtube.com/watch?v=X83lG-kF7mQ
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+Getting errors when trying to parent an armature to an object?
+This workaround uses the data transfer modifier to successfully bind an armature to vertex group data from a decimated version of the target object.
+https://www.youtube.com/embed/EuHkd61RhDs
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬  
+using the compositor to make holdout layers for everything in the scene
+https://www.youtube.com/embed/xJFEUnLYAZE
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+Blender rigging for impatient people:
+https://www.youtube.com/embed/DDeB4tDVCGY
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+LINKS FOR PIXEL ART IN BLENDER:
+
+Pixel Art with eevee - FREE blender addon - YouTube
+https://www.youtube.com/embed/vzIVn3G1Z2U
+
+
+
+(camera and lighting settings):
+https://www.youtube.com/embed/FxspGqoKcaE
+
+compositor settings (from the last email) which look WAY better than above, but the above link shows steps for lighting controls, and some basic things for toon shading (see my other pdfs)---
+https://cort3d.tumblr.com/post/621938189075136512/tutorial-pixel-style-rendering-in-blender3d/amp
+
+Making animated PIXEL ART with Blender 2.8 in 12 Minutes
+(details an "inverse" rule for pixelization, but could be different than that mentioned above.)
+https://www.youtube.com/embed/cLnyKRfBFsQ
+
+This guy details the commonality of the textures, and shapes, and what angles they follow in pixel art. He details a setup for isometric angles that would be very useful. CAVEAT-- he mentions tweaking the color profile settings in blender, changing them away from filmic, and that's a huge can of worms. I'd stay away from those unless you just can't get the look you need (colors dull, or something). He also tweaks out the light so the shading is done very much in his style, so look into the way he's doing shading after you're familiar with the interface more. (His line work is almost dead-on straight out of the render though):
+https://www.youtube.com/embed/7W2na8OKC8U
+this same guy has a more advanced tutorial using an add-on for blender (that he wrote) too, so save this for the vault (I downloaded the addon and it's written in python. since you learned that, you can see how it's done too) HE EVEN MANAGED TO COME UP WITH A WAY TO DO AUTOMATIC DITHERING.  He goes into great detail about the compositor, while using his addon, and the information is really good. He is teaching how to make node groups to increase the legibility of the node area while performing specific tasks:
+https://www.youtube.com/embed/Cwh_TpouPfQ
+
+
+this guy shows an interesting time sink equivalency and good reason to use blender (your time is important-- and cleaning the pixel art is where the greatness will lie-- should you look for it between the blocks) and he outlines other videos to enjoy. He is using the same software you want to learn to clean up.
+https://www.reddit.com/r/PixelArt/comments/lo886t/i_made_a_tutorial_on_how_to_use_blender_to_create/
+
+btw, here is the whole link listing (between the black blocks):
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+STEP BY STEP TUTORIAL : https://youtu.be/eSqb6II3WMM
+
+Summary of the workflow :
+
+I created and rigged a 3d model of the character in Blender with exagerated features so it would pixelize well. Then I created the 8 frames walking animation and I change the camera 45 degre with each loop.
+
+I use "Freestyle" to create the outer lines and a composite shader to get the pixelized effect.
+
+Then I render all the frames and I use Aseprite to do the clean up and add things like the eyes.
+
+If this interest you, here is what I did to learn how to do this with blender :
+
+1- I followed the whole donut tutorial : https://youtu.be/TPrnSACiTJ4 Its a high quality tutorial, well explained, it gives a glimpse of the whole Blender workflow.
+
+2-I followed the chair tutorial : https://youtu.be/Hf2esGA7vCc Same Youtuber but this tutorial is very modeling oriented.
+
+3- I Followed some character modeling tutorials. There is a shitload of them on youtube. The one I ended up watching the most is this one : https://youtu.be/NDAalAojTvo Its low poly, and its style seemed perfect to pixelize.
+How to Model a Low Poly Character in Blender 2.81
+https://www.youtube.com/embed/NDAalAojTvo
+
+4- I watched this tutorial on how to make hair : https://youtu.be/BqWYgrXw7Jk Thats how I made the hair and the cape falling behind my character.
+
+5- I watched this tutorial on how to pixelize my renders : https://youtu.be/AQcovwUHMf0 I was so impressed with the result, this is how I will save thousands of hours on making my game.
+
+6- I did this tutorial to learn how to weight and rig my character : https://youtu.be/srpOeu9UUBU
+
+7- And those ones to learn how to use IK for legs and arms animation : (legs) https://youtu.be/Pt3-mHBCoQk (arms) https://youtu.be/0bFrZn8xlLw
+
+8 - As for the cloths and accessories, Im using some tricks shown in this video : https://youtu.be/U7lKIFfHffY
+
+9 - Finally, I tried many techniques to do the outline, many of witch was far too complex for me and overkill for a render that will be pixelized anyway. So I ended up using Freestyle, using this tutorial to learn how : https://youtu.be/p7mr71nfjFY,
+
+My first attempt was ok : https://imgur.com/a/xzjHE9R My second attempt was better : https://imgur.com/a/1xhLh1A Then I practice making clothes which ended up looking like garbage bag : https://imgur.com/a/CpXlqdr But the pixelize effect was already convincing : https://imgur.com/a/ZoGhr59 https://imgur.com/a/sEIAwLz Then I started working on my character with what I learned : https://imgur.com/a/9rIoz4q https://imgur.com/a/EmjCood
+
+And it ended up like this : https://imgur.com/a/iXpPDzQ
+
+And I find it looked great with the pixelize effect : https://imgur.com/a/DstwzsS
+
+After that I used Aseprite to touch up the 2d sprite.
+
+   
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+RIGGING
+
+
+https://docs.blender.org/manual/en/latest/addons/rigging/rigify/bone_positioning.html
+
+
+Rigging a Dog in Blender - Exercise Notes
+
+https://www.youtube.com/embed/0IB5KCPmEEI
+
+Basic Animal Rigging in Blender 2.91
+https://www.youtube.com/embed/AQ2A5OC5UFk
+
+I packed 50 BLENDER TIPS into one video!
+https://www.youtube.com/embed/4YDf_ctubbI
+
+
+Blender Asset Browser - FULL Tutorial
+
+https://www.youtube.com/embed/G4DjNSxlxSM
+
+90's Anime in Blender - Tutorial
+https://www.youtube.com/embed/ZsvZsVPhTVs
+
+How To Remove Armature and Retain Pose - Blender 2.8
+https://www.youtube.com/embed/EguBsuwum5s
+
+Copy animation from one object to another in Blender 2.8x
+https://www.youtube.com/embed/mdD9odG_CQs
+Daily Blender Secrets - Copy animation from one object to another
+https://www.youtube.com/watch?v=NjpXXI7ZLN0
+
+https://www.youtube.com/watch?v=xeTdCt4CIb8
+
+
+blender AND rigging videos:
+
+Dikko 
+My FOUR most used rigging components in Blender! - Character Rigging 02a
+https://www.youtube.com/embed/vbF78A50D0w
+
+
+Character Rigging in Blender 7 - Creating an Advanced IK Foot Rig
+https://www.youtube.com/embed/NR0U81jlTYY
+
+
+Character Rigging - Blender 2.80 Fundamentals 
+https://www.youtube.com/embed/f2pTkW-1JkE
+
+
+Grant Abbitt 
+Rigging a Low Poly Person | Blender 2.8 | Beginners
+https://www.youtube.com/embed/srpOeu9UUBU
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+
+
+[3.x] How to Bend Objects In Blender | Simple Deform Modifier | All Settings Explained With Examples
+https://www.youtube.com/embed/KgM-nWTHAJU
+
+[Blender 2.8/2.9 ]Un-confusing the NLA Editor (Nonlinear Animation)
+https://www.youtube.com/embed/tAo7HxxxA08
+
+Advanced Arrays, Instancing & Curves| Learn Blender 2.9 / 3.0 Through Precision Modeling | Part- 28
+https://www.youtube.com/embed/MBvT6RiSEj0
+
+
+Blender 2.8 Texture extraction projection painting (part 1)
+https://www.youtube.com/embed/gz4qV5_zuMo
+
+
+Create Projectors Fast (Blender Tutorial) 
+make something look like it's projecting light.
+https://www.youtube.com/embed/adahnQCqmw0
+
+Blender 3 - Complete Beginners Guide - Part 1
+https://www.youtube.com/embed/jnj2BL4chaQ
+
+Blender Grease Pencil Beginner Tutorial - 2D & 3D Toon Shaded Scene - Part 2/2 
+https://www.youtube.com/embed/P7VsRlH7w_4
+
+Blender- Make This Scene With Projection [Blender 2.83 Alpha]
+https://www.youtube.com/embed/wL4KgVQhcZo
+
+Blender Tutorial Bezier Curve Handle Types, Practising Using Curves and Fixing Common Problems
+https://www.youtube.com/watch?v=Cjv54YRi5Hk
+
+
+Resolve bone heat Weighting failure in blender
+https://www.youtube.com/embed/EuHkd61RhDs
+
+
+How to Use Curves in Blender (Tutorial)
+https://www.youtube.com/embed/Ve9h7-E8EuM
+
+How to work with bevels on curves (and their weight) | Blender 2.8 | Tutorial
+https://www.youtube.com/embed/cjT8c2uuDXg
+
+Rigging Made Easy, Skeleton Character || Blender 2.93
+https://www.youtube.com/embed/wcU-vTz-lZ0
+
+
+Advanced Foot Rig Made Easy, Pivot and Roll || Blender 2.92
+https://www.youtube.com/embed/BnUGyq5i1Eg
+
+How to create large-scale road network in Blender 2.8x
+https://www.youtube.com/embed/RGULgi3f-1c
+
+
+
+
+Blender:
+Baking multiple textures into one texture map:
+https://www.youtube.com/watch?v=60fuFYkohrw
+you must have the bake texture referenced inside the material that will be transferred to the new image.
+This means that each material must have a representative image node for the final "collective" texture.
+
+grant abbitt:
+https://www.youtube.com/watch?v=MH7Xdol5erw
+
+painting with stencils:
+https://www.youtube.com/watch?v=lO8qDNZf5o0&list=RDCMUCZFUrFoqvqlN8seaAeEwjlw&index=2
+
+Blender tips for impatient people
+https://www.youtube.com/@JoeyCarlino
+Rigging for impatient people:
+https://www.youtube.com/embed/DDeB4tDVCGY
+
+Eevee Lighting Tutorial - learn to shape light like a PRO [Blender 3.2]
+https://www.youtube.com/embed/ZeKodExfp_4
+
+Pixel Art with eevee - FREE blender addon - YouTube
+https://www.youtube.com/embed/vzIVn3G1Z2U
+
+Vector Math made easy in Blender and Geometry Nodes - CG Cookie Learn Blender, Online Tutorials and Feedback
+https://cgcookie.com/posts/vector-math-made-easy-in-blender-and-geometry-nodes
+
+how to align vector to euler works in geometry nodes
+https://www.youtube.com/embed/IQdT5kACMQc
+
+Blender artist:
+https://www.youtube.com/@CG_Vortex/videos
+
+8 New Blender Addons You Probably Missed! - YouTube
+https://www.youtube.com/embed/JbprdQXZayQ
+
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+Selection Tips and Tricks for Blender - YouTube
+https://www.youtube.com/embed/uuExZ8UoDcA
+
+COMPLETE non-destructive workflow in Blender tutorial
+https://www.youtube.com/embed/LdQwmfPyuw0
+
+Hard Surface Modeling in Blender - SciFi Pilot Seat - YouTube
+https://www.youtube.com/embed/P5PRI4PvImA
+
+Blender Secrets - Easy Non-Destructive Panel Cuts - YouTube
+https://www.youtube.com/embed/YD9u-5h9_3Q
+  
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 
+
+Josh Beck (here in town) tech teacher with some vids on using java for an android app.
+https://www.youtube.com/user/jbeckneisdnet/playlists
